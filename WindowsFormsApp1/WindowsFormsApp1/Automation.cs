@@ -610,7 +610,6 @@ namespace AutomateDownloader
                         if (DlButtonHandle != IntPtr.Zero)
                         {
                             SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-                            //SendKeys.SendWait("{ENTER}"); //close runtime? focus is on yes
                             System.Threading.Thread.Sleep(500); //important to wait a bit
 
                             IntPtr deactivateRTPopup = FindWindow(anyPopupClass, "Target system");
@@ -770,31 +769,6 @@ namespace AutomateDownloader
             {
                 SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
                 System.Threading.Thread.Sleep(1000);
-
-                ////this area used to handle the popup. way too overkill
-                //IntPtr rdpPopup = FindWindow("#32770", "Remote Desktop Connection");
-                //if (rdpPopup != IntPtr.Zero)
-                //{
-                //    SetForegroundWindow(rdpPopup);
-                //    System.Threading.Thread.Sleep(1000);
-
-                //    SendKeys.SendWait("{ENTER}");
-                //    rdpPopup = FindWindow("#32770", "Remote Desktop Connection"); //search again
-                //    if (rdpPopup != IntPtr.Zero)
-                //    {
-                //        IntPtr OkButton = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", "OK");
-                //        if (OkButton != IntPtr.Zero)
-                //        {
-                //            SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-                //            System.Threading.Thread.Sleep(500);
-                //        }
-                //        else
-                //        {
-                //            //also can be avoided by checking to never ask .........
-                //            //MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found when closing the remote session!"); //careful to focus on it
-                //        }
-                //    }
-                //}
             }
         }
 
