@@ -1,11 +1,12 @@
 NCM_Downloader application
 Date: 		22/07/2020
 Author: 	MURESAN Radu-Adrian (MURA02)
-Version:	1.3
+Version:	1.31
 
 This app automates the NCM Manager to automatically download to the clients you select.
 On the first download, it will generate an .ini file to keep the settings you just input.
 the Remote Desktop Automation is required for allowing WinCC to also start the runtime (the user needs to be logged on)
+the Remote Desktop Session to the engineering station must not be minimized in the taskbar in this version. should be visible, not necessarily maximized
 
 ************************************************************************************************************************************
 REQUIRED FIELDS

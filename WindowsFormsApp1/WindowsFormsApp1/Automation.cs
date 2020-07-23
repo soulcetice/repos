@@ -116,6 +116,9 @@ namespace AutomateDownloader
         [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool SendMessage(IntPtr hWnd, uint Msg, int wParam, StringBuilder lParam);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
         [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SendMessage(int hWnd, int Msg, int wparam, int lparam);
 
@@ -704,34 +707,7 @@ namespace AutomateDownloader
                                     System.Threading.Thread.Sleep(1000);
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
-                                bool success = true;
-                                do
-                                {
-                                    try
-                                    {
-                                        SetForegroundWindow(dldingTgtHandle);
-                                        IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
-                                        if (OkButton != IntPtr.Zero)
-                                        {
-                                            SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
-                                            var checkText = ExtractWindowTextByHandle(dldingTgtHandle);
-                                            if (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0)
-                                            {
-                                                success = true;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            logFile.WriteLine("The Ok Button was not found in the downloading window to confirm finish!");
-                                            MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
-                                            success = false;
-                                        }
-                                    }
-                                    catch (Exception exc)
-                                    {
-                                        logFile.WriteLine(exc); success = false;
-                                    }
-                                } while (success == false);
+                                ClickButtonUsingMessage(dldingTgtHandle, "OK", "Download to target system was completed successfully", logFile);
                                 //SendKeys.SendWait("{ENTER}");
                             }
                         }
@@ -749,6 +725,40 @@ namespace AutomateDownloader
                 logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
+        }
+
+        private void ClickButtonUsingMessage(IntPtr windowHandle, string buttonText, string windowText, StreamWriter log)
+        {
+            bool success = true;
+            do
+            {
+                try
+                {
+                    SetForegroundWindow(windowHandle);
+                    IntPtr OkButton = FindWindowEx(windowHandle, IntPtr.Zero, "Button", buttonText);
+                    if (OkButton != IntPtr.Zero)
+                    {
+                        SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
+                        var checkText = ExtractWindowTextByHandle(windowHandle);
+                        if (checkText.Where(x => x.Contains(windowText)).Count() == 0)
+                        {
+                            success = true;
+                        }
+                    }
+                    else
+                    {
+                        log.WriteLine("The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        //MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
+                        success = false;
+                    }
+                }
+                catch (Exception exc)
+                {
+                    log.WriteLine(exc);
+                    //MessageBox.Show(new Form { TopMost = true }, exc.Message);
+                    success = false;
+                }
+            } while (success == false);
         }
 
         private void CloseRemoteSession(string ip)
@@ -797,20 +807,21 @@ namespace AutomateDownloader
 
         private void ResetExpansions(IntPtr ncm)
         {
+            System.Threading.Thread.Sleep(1000);
             int num = int.Parse(numClTextBox.Text) * 3;
             for (int i = 0; i < num; i++) //go up
             {
                 SetForegroundWindow(ncm);
-                SendKeys.SendWait("{UP}");
+                SendKeys.Send("{UP}");
             }
             for (int i = 0; i < num; i++) //expand all
             {
                 SetForegroundWindow(ncm);
-                SendKeys.SendWait("{DOWN}");
+                SendKeys.Send("{DOWN}");
                 for (int j = 0; j < 6; j++)
                 {
                     SetForegroundWindow(ncm);
-                    SendKeys.SendWait("{RIGHT}");
+                    SendKeys.Send("{RIGHT}");
                 }
             }
             for (int i = 0; i < num; i++) //back to compact
@@ -818,15 +829,15 @@ namespace AutomateDownloader
                 for (int j = 0; j < 4; j++)
                 {
                     SetForegroundWindow(ncm);
-                    SendKeys.SendWait("{LEFT}");
+                    SendKeys.Send("{LEFT}");
                 }
                 SetForegroundWindow(ncm);
-                SendKeys.SendWait("{UP}");
+                SendKeys.Send("{UP}");
             }
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeys.Send("{RIGHT}");
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{DOWN}"); //go to first dev station or whatever in the list
+            SendKeys.Send("{DOWN}"); //go to first dev station or whatever in the list
         }
 
         private void DownloadToCurrentIndex(int index, IntPtr ncm)
