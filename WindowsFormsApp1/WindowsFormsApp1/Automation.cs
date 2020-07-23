@@ -76,6 +76,17 @@ namespace AutomateDownloader
                 if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
             }
 
+            //RenewIpsOrInit();
+
+            button1.Click += new EventHandler(Button1_Click);
+
+            this.DoubleClick += new EventHandler(Form1_DoubleClick);
+
+            this.Controls.Add(firstClientIndexBox);
+        }
+
+        private void RenewIpsOrInit()
+        {
             GetIpsLmHosts();
             if (ipList.Count() > 0)
             {
@@ -87,12 +98,6 @@ namespace AutomateDownloader
                 checkedListBox1.Refresh();
                 numClTextBox.Text = Convert.ToString(ipList.Count());
             }
-
-            button1.Click += new EventHandler(Button1_Click);
-
-            this.DoubleClick += new EventHandler(Form1_DoubleClick);
-            //this.Controls.Add(button1);
-            this.Controls.Add(firstClientIndexBox);
         }
 
         #region ImportDlls
@@ -578,16 +583,16 @@ namespace AutomateDownloader
                     //
                     //download process starts here - first needs to navigate to correct index
                     SetForegroundWindow(ncmHandle);
-                    ResetExpansions(ncmHandle);
+                    ResetExpansions(ncmHandle, logFile);
                     SetForegroundWindow(ncmHandle);
-                    ReturnToFirstClient(ncmHandle);
+                    ReturnToFirstClient(ncmHandle, logFile);
                     SetForegroundWindow(ncmHandle);
-                    DownloadToCurrentIndex(clientIndex, ncmHandle);
+                    DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
                     logFile.WriteLine("Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
 
                     //now new window with download os
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(5000);
                     IntPtr osDldTgtWndHandle = FindWindow(anyPopupClass, "Download OS");
                     if (osDldTgtWndHandle == IntPtr.Zero)
                     {
@@ -606,7 +611,7 @@ namespace AutomateDownloader
                         {
                             SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                             //SendKeys.SendWait("{ENTER}"); //close runtime? focus is on yes
-                            System.Threading.Thread.Sleep(2000); //important to wait a bit
+                            System.Threading.Thread.Sleep(500); //important to wait a bit
 
                             IntPtr deactivateRTPopup = FindWindow(anyPopupClass, "Target system");
                             if (deactivateRTPopup != IntPtr.Zero)
@@ -623,7 +628,6 @@ namespace AutomateDownloader
                                     logFile.WriteLine("The Ok Button was not found in the deactivation window!");
                                     MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
-                                //SendKeys.SendWait("{ENTER}"); //downloading here //here was the confirmation that you want to close the rt
                             }
                             else
                             {
@@ -693,7 +697,6 @@ namespace AutomateDownloader
                                             logFile.WriteLine("The Ok Button was not found in the downloading window!");
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
-                                        //SendKeys.SendWait("{ENTER}");
                                         logFile.WriteLine("Error on download to client " + clientIndex + 1);
                                     }
 
@@ -708,8 +711,7 @@ namespace AutomateDownloader
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
                                 ClickButtonUsingMessage(dldingTgtHandle, "OK", "Download to target system was completed successfully", logFile);
-                                //SendKeys.SendWait("{ENTER}");
-                            }
+                                            }
                         }
                         if (rdpCheckBox.Checked == true)
                         {
@@ -796,32 +798,50 @@ namespace AutomateDownloader
             }
         }
 
-        private void NavigateToIndex(int index, IntPtr ncm)
+        private void SendKeyHandled(IntPtr ncm, string key, StreamWriter log)
+        {
+            SetForegroundWindow(ncm);
+            bool success;
+            do
+            {
+                try
+                {
+                    SendKeys.Send(key);
+                    success = true;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("false");
+                    success = false;
+                }
+            } while (success == false);
+        }
+
+        private void NavigateToIndex(int index, IntPtr ncm, StreamWriter log)
         {
             for (int i = 0; i < index; i++)
             {
-                SetForegroundWindow(ncm);
-                SendKeys.SendWait("{DOWN}");
+                SendKeyHandled(ncm, "{DOWN}", log);
             }
         }
 
-        private void ResetExpansions(IntPtr ncm)
+        private void ResetExpansions(IntPtr ncm,StreamWriter log)
         {
             System.Threading.Thread.Sleep(1000);
             int num = int.Parse(numClTextBox.Text) * 3;
             for (int i = 0; i < num; i++) //go up
             {
                 SetForegroundWindow(ncm);
-                SendKeys.Send("{UP}");
+                SendKeyHandled(ncm, "{UP}",log);
             }
             for (int i = 0; i < num; i++) //expand all
             {
                 SetForegroundWindow(ncm);
-                SendKeys.Send("{DOWN}");
+                SendKeyHandled(ncm, "{DOWN}",log);
                 for (int j = 0; j < 6; j++)
                 {
                     SetForegroundWindow(ncm);
-                    SendKeys.Send("{RIGHT}");
+                    SendKeyHandled(ncm, "{RIGHT}", log);
                 }
             }
             for (int i = 0; i < num; i++) //back to compact
@@ -829,53 +849,53 @@ namespace AutomateDownloader
                 for (int j = 0; j < 4; j++)
                 {
                     SetForegroundWindow(ncm);
-                    SendKeys.Send("{LEFT}");
+                    SendKeyHandled(ncm, "{LEFT}", log);
                 }
                 SetForegroundWindow(ncm);
-                SendKeys.Send("{UP}");
+                SendKeyHandled(ncm, "{UP}", log);
             }
             SetForegroundWindow(ncm);
-            SendKeys.Send("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.Send("{DOWN}"); //go to first dev station or whatever in the list
+            SendKeyHandled(ncm, "{DOWN}", log); //go to first dev station or whatever in the list
         }
 
-        private void DownloadToCurrentIndex(int index, IntPtr ncm)
+        private void DownloadToCurrentIndex(int index, IntPtr ncm, StreamWriter log)
         {
-            NavigateToIndex(index, ncm);
+            NavigateToIndex(index, ncm, log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
             SetForegroundWindow(ncm);
-            SendKeys.Send("^(l)");
+            SendKeyHandled(ncm, "^(l)", log);
             System.Threading.Thread.Sleep(500);
         }
 
-        private void ReturnToFirstClient(IntPtr ncm)
+        private void ReturnToFirstClient(IntPtr ncm, StreamWriter log)
         {
             for (int i = 0; i < 10; i++)
             {
                 SetForegroundWindow(ncm);
-                SendKeys.SendWait("{LEFT}");
+                SendKeyHandled(ncm, "{LEFT}", log);
             }
             SetForegroundWindow(ncm);
-            SendKeys.SendWait("{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}", log);
 
             for (int i = 0; i < Int32.Parse(firstClientIndexBox.Text); i++)
             {
                 SetForegroundWindow(ncm);
-                SendKeys.SendWait("{DOWN}");
+                SendKeyHandled(ncm, "{DOWN}", log);
             }
         }
 
@@ -984,6 +1004,7 @@ namespace AutomateDownloader
             this.ipTextBox.Size = new System.Drawing.Size(245, 18);
             this.ipTextBox.TabIndex = 12;
             this.ipTextBox.Text = "C:\\Windows\\System32\\drivers\\etc\\lmhosts";
+            this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
             // 
             // unTextBox
             // 
@@ -1132,6 +1153,11 @@ namespace AutomateDownloader
                     checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
                 }
             }
+        }
+
+        private void ipTextBox_TextChanged(object sender, EventArgs e)
+        {
+            RenewIpsOrInit();
         }
     }
 }

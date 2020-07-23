@@ -67,6 +67,8 @@ namespace Deploy_Files
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
         [DllImport("user32.dll")]
         static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
+        [DllImport("user32.dll")]
+        public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
         //get objects in window ?
         [DllImport("user32.dll")]
         public static extern IntPtr FindWindowEx(IntPtr handleParent, IntPtr handleChild, string className, string WindowName);
@@ -75,8 +77,74 @@ namespace Deploy_Files
         public static extern bool SetForegroundWindow(IntPtr hWnd);
         internal delegate int WindowEnumProc(IntPtr hwnd, IntPtr lparam);
 
+        private void SendKey(IntPtr key, IntPtr handle)
+        {
+            PostMessage(handle, (uint)WindowsMessages.WM_KEYDOWN, key, IntPtr.Zero);
+            PostMessage(handle, (uint)WindowsMessages.WM_KEYUP, key, IntPtr.Zero);
+        }
+
+        private void SendKeyHandled(IntPtr ncm, string key)
+        {
+            SetForegroundWindow(ncm);
+            bool success;
+            do
+            {
+                try
+                {
+                    SendKeys.Send(key);
+                    success = true;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("false");
+                    success = false;
+                }
+            } while (success == false);
+        }
+
+        private void ResetExpansions(IntPtr ncm)
+        {
+            System.Threading.Thread.Sleep(1000);
+            int num = 12;
+            for (int i = 0; i < num; i++) //go up
+            {
+                SetForegroundWindow(ncm);
+                SendKeyHandled(ncm, "{UP}");
+            }
+            for (int i = 0; i < num; i++) //expand all
+            {
+                SetForegroundWindow(ncm);
+                SendKeyHandled(ncm, "{DOWN}");
+                for (int j = 0; j < 6; j++)
+                {
+                    SetForegroundWindow(ncm);
+                    SendKeyHandled(ncm, "{RIGHT}");
+                }
+            }
+            for (int i = 0; i < num; i++) //back to compact
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    SetForegroundWindow(ncm);
+                    SendKeyHandled(ncm, "{LEFT}");
+                }
+                SetForegroundWindow(ncm);
+                SendKeyHandled(ncm, "{UP}");
+            }
+            SetForegroundWindow(ncm);
+            SendKeyHandled(ncm, "{RIGHT}");
+            SetForegroundWindow(ncm);
+            SendKeyHandled(ncm, "{DOWN}"); //go to first dev station or whatever in the list
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
+            var ncmWndClass = "s7tgtopx"; //ncm manager main window
+            var anyPopupClass = "#32770"; //usually any popup
+
+            IntPtr ncmHandle = FindWindow(ncmWndClass, null);
+            IntPtr tgtWndHandle = FindWindow(anyPopupClass, null);
+
             //    IntPtr myRdp = FindWindow("TscShellContainerClass", "10.127.2.166 - Remote Desktop Connection");
             //    SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
             //    IntPtr rdpPopup = FindWindow("#32770", "Remote Desktop Connection");
@@ -97,12 +165,13 @@ namespace Deploy_Files
             //SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
 
 
-            IntPtr dldingTgtHandle = FindWindow("#32770", "Downloading to target system");
-            SetForegroundWindow(dldingTgtHandle);
-            IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
-            SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
-
-
+            //IntPtr dldingTgtHandle = FindWindow("#32770", "Downloading to target system");
+            //SetForegroundWindow(dldingTgtHandle);
+            //IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
+            //SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
+            SetForegroundWindow(ncmHandle);
+            System.Threading.Thread.Sleep(500);
+            ResetExpansions(ncmHandle);
         }
 
     }

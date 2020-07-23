@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace WindowsUtilities
 {
+    public enum KeysMessages : int
+    {
+        VK_LEFT = 0x25,
+        VK_UP = 0x26,
+        VK_RIGHT = 0x27,
+        VK_DOWN = 0x28,
+    }
+
     public enum WindowsMessages : int
     {
         WM_NULL = 0x0000,
