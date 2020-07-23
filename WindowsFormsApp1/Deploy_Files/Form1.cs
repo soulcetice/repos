@@ -77,15 +77,24 @@ namespace Deploy_Files
 
         private void button2_Click(object sender, EventArgs e)
         {
-            IntPtr myRdp = FindWindow("TscShellContainerClass", "10.127.2.166 - Remote Desktop Connection");
-            SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
-            IntPtr rdpPopup = FindWindow("#32770", "Remote Desktop Connection");
-            //SetForegroundWindow(rdpPopup);
+            //    IntPtr myRdp = FindWindow("TscShellContainerClass", "10.127.2.166 - Remote Desktop Connection");
+            //    SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
+            //    IntPtr rdpPopup = FindWindow("#32770", "Remote Desktop Connection");
+            //    //SetForegroundWindow(rdpPopup);
+            //    //System.Threading.Thread.Sleep(50);
+            //    //SendKeys.Send("{ENTER}");
+
+            //    //IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", null);
+            //    SendMessage(IntPtr.Zero, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+
+            IntPtr rdpPopup = FindWindow("#32770", "Download OS");
+            SetForegroundWindow(rdpPopup);
             //System.Threading.Thread.Sleep(50);
             //SendKeys.Send("{ENTER}");
 
             //IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", null);
-            SendMessage(IntPtr.Zero, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+            IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", "OK");
+            SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
         }
     }
 }

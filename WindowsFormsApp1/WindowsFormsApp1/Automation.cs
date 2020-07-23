@@ -469,6 +469,7 @@ namespace AutomateDownloader
         }
 
         // Send a series of key presses to the application.
+        private const int IDOK = 1;
         private void Button1_Click(object sender, EventArgs e)
         {
             //
@@ -549,9 +550,13 @@ namespace AutomateDownloader
                 //now perform actions from now on, i.e. CTRL+L
                 for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
                 {
+                    if (i > 0)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                    }
                     // sys tree view 32 already selected when focusing - navigate from here
                     SetForegroundWindow(ncmHandle);
-                    System.Threading.Thread.Sleep(200);
+                    System.Threading.Thread.Sleep(500);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     int clientID = clientIndex + 1;
                     //
@@ -574,7 +579,7 @@ namespace AutomateDownloader
                     logFile.WriteLine("Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
 
                     //now new window with download os
-                    System.Threading.Thread.Sleep(200);
+                    System.Threading.Thread.Sleep(1000);
                     IntPtr osDldTgtWndHandle = FindWindow(anyPopupClass, "Download OS");
                     if (osDldTgtWndHandle == IntPtr.Zero)
                     {
@@ -587,14 +592,16 @@ namespace AutomateDownloader
 
                     if (osDldTgtWndHandle != IntPtr.Zero)
                     {
+                        System.Threading.Thread.Sleep(500);
+                        SetForegroundWindow(osDldTgtWndHandle);
+                        System.Threading.Thread.Sleep(500);
                         IntPtr DlButtonHandle = FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "OK");
                         if (DlButtonHandle != IntPtr.Zero)
                         {
-                            SetForegroundWindow(osDldTgtWndHandle);
                             System.Threading.Thread.Sleep(500); //important to wait a bit
                             SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                             //SendKeys.SendWait("{ENTER}"); //close runtime? focus is on yes
-                            System.Threading.Thread.Sleep(1000); //important to wait a bit
+                            System.Threading.Thread.Sleep(2000); //important to wait a bit
 
                             IntPtr deactivateRTPopup = FindWindow(anyPopupClass, "Target system");
                             if (deactivateRTPopup != IntPtr.Zero)
@@ -623,6 +630,7 @@ namespace AutomateDownloader
                             if (rdpCheckBox.Checked == true)
                             {
                                 //certificate needs to be generated here
+                                System.Threading.Thread.Sleep(10000); //important to wait a bit
                                 RemoteOpen(newIp, unTextBox.Text, passTextBox.Text);
                             }
 
@@ -712,6 +720,7 @@ namespace AutomateDownloader
                                         {
                                             logFile.WriteLine("The Ok Button was not found in the downloading window to confirm finish!");
                                             MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
+                                            success = false;
                                         }
                                     }
                                     catch (Exception exc)
