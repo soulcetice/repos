@@ -586,14 +586,14 @@ namespace AutomateDownloader
                     //now new window with download os
                     System.Threading.Thread.Sleep(1000);
                     IntPtr osDldTgtWndHandle = FindWindow(anyPopupClass, "Download OS");
-                    //if (osDldTgtWndHandle == IntPtr.Zero)
-                    //{
-                    //    osDldTgtWndHandle = FindWindow(anyPopupClass, "Downloading to target system");
-                    //    if (osDldTgtWndHandle == IntPtr.Zero)
-                    //    {
-                    //        osDldTgtWndHandle = FindWindow(anyPopupClass, null);
-                    //    }
-                    //}
+                    if (osDldTgtWndHandle == IntPtr.Zero)
+                    {
+                        osDldTgtWndHandle = FindWindow(anyPopupClass, "Downloading to target system");
+                        if (osDldTgtWndHandle == IntPtr.Zero)
+                        {
+                            osDldTgtWndHandle = FindWindow(anyPopupClass, null);
+                        }
+                    }
 
                     if (osDldTgtWndHandle != IntPtr.Zero)
                     {
@@ -705,8 +705,8 @@ namespace AutomateDownloader
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
                                 bool success = true;
-                                while (success == false)
-                                {
+                                //while (success == false)
+                                    //{
                                     try
                                     {
                                         SetForegroundWindow(dldingTgtHandle);
@@ -731,7 +731,7 @@ namespace AutomateDownloader
                                     {
                                         logFile.WriteLine(exc);
                                     }
-                                }
+                                //}
                                 //SendKeys.SendWait("{ENTER}");
                             }
                         }
