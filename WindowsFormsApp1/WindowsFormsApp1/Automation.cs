@@ -500,6 +500,11 @@ namespace AutomateDownloader
             //
             KeepConfig();
             //
+            DownloadProcess();
+        }
+
+        private void DownloadProcess()
+        {
             // init logFile
             //
             string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
@@ -541,7 +546,7 @@ namespace AutomateDownloader
             }
             else
             {
-                //Console.WriteLine("The missing software package notification did not appear");
+                Console.WriteLine("The missing software package notification did not appear");
                 SetForegroundWindow(ncmHandle);
             }
 
@@ -581,24 +586,21 @@ namespace AutomateDownloader
                     //now new window with download os
                     System.Threading.Thread.Sleep(1000);
                     IntPtr osDldTgtWndHandle = FindWindow(anyPopupClass, "Download OS");
-                    if (osDldTgtWndHandle == IntPtr.Zero)
-                    {
-                        osDldTgtWndHandle = FindWindow(anyPopupClass, "Downloading to target system");
-                        if (osDldTgtWndHandle == IntPtr.Zero)
-                        {
-                            osDldTgtWndHandle = FindWindow(anyPopupClass, null);
-                        }
-                    }
+                    //if (osDldTgtWndHandle == IntPtr.Zero)
+                    //{
+                    //    osDldTgtWndHandle = FindWindow(anyPopupClass, "Downloading to target system");
+                    //    if (osDldTgtWndHandle == IntPtr.Zero)
+                    //    {
+                    //        osDldTgtWndHandle = FindWindow(anyPopupClass, null);
+                    //    }
+                    //}
 
                     if (osDldTgtWndHandle != IntPtr.Zero)
                     {
-                        System.Threading.Thread.Sleep(500);
                         SetForegroundWindow(osDldTgtWndHandle);
-                        System.Threading.Thread.Sleep(500);
                         IntPtr DlButtonHandle = FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "OK");
                         if (DlButtonHandle != IntPtr.Zero)
                         {
-                            System.Threading.Thread.Sleep(500); //important to wait a bit
                             SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                             //SendKeys.SendWait("{ENTER}"); //close runtime? focus is on yes
                             System.Threading.Thread.Sleep(2000); //important to wait a bit
@@ -707,14 +709,16 @@ namespace AutomateDownloader
                                 {
                                     try
                                     {
-                                        System.Threading.Thread.Sleep(500);
                                         SetForegroundWindow(dldingTgtHandle);
-                                        System.Threading.Thread.Sleep(500);
                                         IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
                                         if (OkButton != IntPtr.Zero)
                                         {
-                                            SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-                                            success = true;
+                                            SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
+                                            var checkText = ExtractWindowTextByHandle(dldingTgtHandle);
+                                            if (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0)
+                                            {
+                                                success = true;
+                                            }
                                         }
                                         else
                                         {
@@ -844,6 +848,7 @@ namespace AutomateDownloader
             SendKeys.SendWait("{RIGHT}");
             SetForegroundWindow(ncm);
             SendKeys.Send("^(l)");
+            System.Threading.Thread.Sleep(500);
         }
 
         private void ReturnToFirstClient(IntPtr ncm)
