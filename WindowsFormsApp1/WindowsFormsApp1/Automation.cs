@@ -705,8 +705,8 @@ namespace AutomateDownloader
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
                                 bool success = true;
-                                //while (success == false)
-                                    //{
+                                do
+                                {
                                     try
                                     {
                                         SetForegroundWindow(dldingTgtHandle);
@@ -729,9 +729,9 @@ namespace AutomateDownloader
                                     }
                                     catch (Exception exc)
                                     {
-                                        logFile.WriteLine(exc);
+                                        logFile.WriteLine(exc); success = false;
                                     }
-                                //}
+                                } while (success == false);
                                 //SendKeys.SendWait("{ENTER}");
                             }
                         }
