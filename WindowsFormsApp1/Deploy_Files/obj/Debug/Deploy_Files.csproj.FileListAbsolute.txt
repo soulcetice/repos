@@ -1,0 +1,14 @@
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csprojAssemblyReference.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Form1.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Properties.Resources.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.GenerateResource.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CoreCompileInputs.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\NCM_Downloader.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\NCM_Downloader.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\NCM_Downloader.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CopyComplete
