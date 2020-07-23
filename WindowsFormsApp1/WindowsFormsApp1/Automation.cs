@@ -785,7 +785,7 @@ namespace AutomateDownloader
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("false");
+                    log.WriteLine(e.Message);
                     success = false;
                 }
             } while (success == false);
@@ -802,6 +802,7 @@ namespace AutomateDownloader
         private void ResetExpansions(IntPtr ncm,StreamWriter log)
         {
             System.Threading.Thread.Sleep(1000);
+
             int num = int.Parse(numClTextBox.Text) * 3;
             for (int i = 0; i < num; i++) //go up
             {
