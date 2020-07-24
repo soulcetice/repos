@@ -46,6 +46,7 @@ namespace AutomateDownloader
         }
 
         private List<string> ipList = new List<string>();
+        private List<string> sdList = new List<string>();
 
         public NCMForm()
         {
@@ -76,7 +77,7 @@ namespace AutomateDownloader
                 if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
             }
 
-            //RenewIpsOrInit();
+            RenewIpsOrInit();
 
             button1.Click += new EventHandler(Button1_Click);
 
@@ -95,9 +96,10 @@ namespace AutomateDownloader
                 {
                     checkedListBox1.Items.Add(item.Split(Convert.ToChar("\t"))[1]);
                 }
-                checkedListBox1.Refresh();
                 numClTextBox.Text = Convert.ToString(ipList.Count());
+                firstClientIndexBox.Text = Convert.ToString(sdList.Count() + 1);
             }
+            checkedListBox1.Refresh();
         }
 
         #region ImportDlls
@@ -446,7 +448,8 @@ namespace AutomateDownloader
 
         private void GetIpsLmHosts()
         {
-            //List<string> ipList = new List<string>();
+            ipList = new List<string>();
+            sdList = new List<string>();
             string lmhostPath = ipTextBox.Text;
             if (File.Exists(lmhostPath))
             {
@@ -457,6 +460,10 @@ namespace AutomateDownloader
                     if ((item.IndexOf("HMIC") > 0 || item.IndexOf("HmiC") > 0) && item.StartsWith("#") == false && item != "")
                     {
                         ipList.Add(item); //(item.Split(Convert.ToChar("\t")));
+                    }
+                    if ((item.IndexOf("HMID") > 0 || item.IndexOf("HmiD") > 0 || item.IndexOf("HmiS") > 0 || item.IndexOf("HMIS") > 0) && item.StartsWith("#") == false && item != "")
+                    {
+                        sdList.Add(item); //(item.Split(Convert.ToChar("\t")));
                     }
                 }
             }
@@ -710,7 +717,7 @@ namespace AutomateDownloader
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
                                 ClickButtonUsingMessage(dldingTgtHandle, "OK", "Download to target system was completed successfully", logFile);
-                                            }
+                            }
                         }
                         if (rdpCheckBox.Checked == true)
                         {
@@ -799,7 +806,7 @@ namespace AutomateDownloader
             }
         }
 
-        private void ResetExpansions(IntPtr ncm,StreamWriter log)
+        private void ResetExpansions(IntPtr ncm, StreamWriter log)
         {
             System.Threading.Thread.Sleep(1000);
 
@@ -807,12 +814,12 @@ namespace AutomateDownloader
             for (int i = 0; i < num; i++) //go up
             {
                 SetForegroundWindow(ncm);
-                SendKeyHandled(ncm, "{UP}",log);
+                SendKeyHandled(ncm, "{UP}", log);
             }
             for (int i = 0; i < num; i++) //expand all
             {
                 SetForegroundWindow(ncm);
-                SendKeyHandled(ncm, "{DOWN}",log);
+                SendKeyHandled(ncm, "{DOWN}", log);
                 for (int j = 0; j < 6; j++)
                 {
                     SetForegroundWindow(ncm);
@@ -916,6 +923,7 @@ namespace AutomateDownloader
             // 
             // firstClientIndexBox
             // 
+            this.firstClientIndexBox.Enabled = false;
             this.firstClientIndexBox.Location = new System.Drawing.Point(107, 66);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
@@ -1131,7 +1139,7 @@ namespace AutomateDownloader
         }
 
         private void ipTextBox_TextChanged(object sender, EventArgs e)
-        {
+        {            
             RenewIpsOrInit();
         }
     }
