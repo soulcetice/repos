@@ -599,7 +599,7 @@ namespace AutomateDownloader
                     logFile.WriteLine("Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
 
                     //now new window with download os
-                    System.Threading.Thread.Sleep(5000);
+                    System.Threading.Thread.Sleep(500);
                     IntPtr osDldTgtWndHandle = FindWindow(anyPopupClass, "Download OS");
                     if (osDldTgtWndHandle == IntPtr.Zero)
                     {
