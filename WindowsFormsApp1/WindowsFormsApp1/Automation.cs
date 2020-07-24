@@ -915,28 +915,31 @@ namespace AutomateDownloader
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 69);
+            this.label1.Location = new System.Drawing.Point(-66, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clients start index:";
+            this.label1.Visible = false;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // firstClientIndexBox
             // 
             this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(107, 66);
+            this.firstClientIndexBox.Location = new System.Drawing.Point(34, 65);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
             this.firstClientIndexBox.TabIndex = 1;
             this.firstClientIndexBox.Text = "3";
             this.firstClientIndexBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.firstClientIndexBox.Visible = false;
             // 
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(13, 316);
+            this.button1.Location = new System.Drawing.Point(12, 317);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(294, 35);
+            this.button1.Size = new System.Drawing.Size(300, 35);
             this.button1.TabIndex = 2;
             this.button1.Text = "Download to selected NCM Clients";
             this.button1.UseVisualStyleBackColor = true;
@@ -945,63 +948,65 @@ namespace AutomateDownloader
             // 
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.Control;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(150, 65);
+            this.checkedListBox1.Location = new System.Drawing.Point(68, 65);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(157, 139);
+            this.checkedListBox1.Size = new System.Drawing.Size(244, 139);
             this.checkedListBox1.TabIndex = 8;
             // 
             // numClTextBox
             // 
             this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(107, 95);
+            this.numClTextBox.Location = new System.Drawing.Point(34, 94);
             this.numClTextBox.Name = "numClTextBox";
             this.numClTextBox.Size = new System.Drawing.Size(28, 20);
             this.numClTextBox.TabIndex = 9;
             this.numClTextBox.Text = "4";
             this.numClTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numClTextBox.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 98);
+            this.label5.Location = new System.Drawing.Point(-66, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "Number of clients:";
+            this.label5.Visible = false;
             // 
             // pathTextBox
             // 
             this.pathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.pathTextBox.Location = new System.Drawing.Point(62, 11);
+            this.pathTextBox.Location = new System.Drawing.Point(68, 11);
             this.pathTextBox.Name = "pathTextBox";
-            this.pathTextBox.Size = new System.Drawing.Size(245, 18);
+            this.pathTextBox.Size = new System.Drawing.Size(244, 18);
             this.pathTextBox.TabIndex = 11;
             this.pathTextBox.Text = "D:\\Project\\SDIB_TCM\\wincproj\\SDIB_TCM_CLT_Ref";
             // 
             // ipTextBox
             // 
             this.ipTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.ipTextBox.Location = new System.Drawing.Point(62, 35);
+            this.ipTextBox.Location = new System.Drawing.Point(68, 35);
             this.ipTextBox.Name = "ipTextBox";
-            this.ipTextBox.Size = new System.Drawing.Size(245, 18);
+            this.ipTextBox.Size = new System.Drawing.Size(244, 18);
             this.ipTextBox.TabIndex = 12;
             this.ipTextBox.Text = "C:\\Windows\\System32\\drivers\\etc\\lmhosts";
             this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
             // 
             // unTextBox
             // 
-            this.unTextBox.Location = new System.Drawing.Point(63, 19);
+            this.unTextBox.Location = new System.Drawing.Point(56, 19);
             this.unTextBox.Name = "unTextBox";
-            this.unTextBox.Size = new System.Drawing.Size(201, 20);
+            this.unTextBox.Size = new System.Drawing.Size(238, 20);
             this.unTextBox.TabIndex = 13;
             this.unTextBox.Text = "IJMKB2SRK21L2D1\\TATA-CM21";
             // 
             // passTextBox
             // 
-            this.passTextBox.Location = new System.Drawing.Point(63, 45);
+            this.passTextBox.Location = new System.Drawing.Point(56, 45);
             this.passTextBox.Name = "passTextBox";
-            this.passTextBox.Size = new System.Drawing.Size(201, 20);
+            this.passTextBox.Size = new System.Drawing.Size(238, 20);
             this.passTextBox.TabIndex = 14;
             this.passTextBox.Text = "A02346";
             // 
@@ -1009,7 +1014,7 @@ namespace AutomateDownloader
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label2.Location = new System.Drawing.Point(9, 39);
+            this.label2.Location = new System.Drawing.Point(10, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 15;
@@ -1021,9 +1026,9 @@ namespace AutomateDownloader
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.label3.Location = new System.Drawing.Point(6, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Username";
+            this.label3.Text = "User";
             // 
             // label4
             // 
@@ -1031,14 +1036,14 @@ namespace AutomateDownloader
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.label4.Location = new System.Drawing.Point(6, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 17;
-            this.label4.Text = "Password";
+            this.label4.Text = "Pass";
             // 
             // rdpCheckBox
             // 
             this.rdpCheckBox.AutoSize = true;
-            this.rdpCheckBox.Location = new System.Drawing.Point(13, 210);
+            this.rdpCheckBox.Location = new System.Drawing.Point(13, 217);
             this.rdpCheckBox.Name = "rdpCheckBox";
             this.rdpCheckBox.Size = new System.Drawing.Size(79, 17);
             this.rdpCheckBox.TabIndex = 18;
@@ -1051,9 +1056,9 @@ namespace AutomateDownloader
             this.rdpBox1.Controls.Add(this.label3);
             this.rdpBox1.Controls.Add(this.unTextBox);
             this.rdpBox1.Controls.Add(this.passTextBox);
-            this.rdpBox1.Location = new System.Drawing.Point(13, 233);
+            this.rdpBox1.Location = new System.Drawing.Point(12, 239);
             this.rdpBox1.Name = "rdpBox1";
-            this.rdpBox1.Size = new System.Drawing.Size(294, 77);
+            this.rdpBox1.Size = new System.Drawing.Size(300, 72);
             this.rdpBox1.TabIndex = 19;
             this.rdpBox1.TabStop = false;
             this.rdpBox1.Text = "Remote Desktop Automation";
@@ -1061,8 +1066,9 @@ namespace AutomateDownloader
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(160, 210);
+            this.checkBox1.Location = new System.Drawing.Point(195, 217);
             this.checkBox1.Name = "checkBox1";
+            this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox1.Size = new System.Drawing.Size(117, 17);
             this.checkBox1.TabIndex = 20;
             this.checkBox1.Text = "Select/Deselect All";
@@ -1073,7 +1079,7 @@ namespace AutomateDownloader
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label6.Location = new System.Drawing.Point(9, 14);
+            this.label6.Location = new System.Drawing.Point(10, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 21;
@@ -1081,7 +1087,7 @@ namespace AutomateDownloader
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(319, 358);
+            this.ClientSize = new System.Drawing.Size(324, 361);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.rdpCheckBox);
             this.Controls.Add(this.label2);
@@ -1097,6 +1103,7 @@ namespace AutomateDownloader
             this.Controls.Add(this.label1);
             this.Name = "NCMForm";
             this.Text = "NCM Manager Automation";
+            this.Load += new System.EventHandler(this.NCMForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -1141,6 +1148,16 @@ namespace AutomateDownloader
         private void ipTextBox_TextChanged(object sender, EventArgs e)
         {            
             RenewIpsOrInit();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NCMForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

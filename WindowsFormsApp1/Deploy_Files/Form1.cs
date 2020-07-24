@@ -139,6 +139,10 @@ namespace Deploy_Files
 
         private void button2_Click(object sender, EventArgs e)
         {
+            tests();
+        }
+        private void tests()
+        {
             var ncmWndClass = "s7tgtopx"; //ncm manager main window
             var anyPopupClass = "#32770"; //usually any popup
 
