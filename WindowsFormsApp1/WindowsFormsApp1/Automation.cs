@@ -457,13 +457,23 @@ namespace AutomateDownloader
                 foreach (var item in lmHosts)
                 {
                     //int index = item.IndexOf("HMIC");
-                    if ((item.IndexOf("HMIC") > 0 || item.IndexOf("HmiC") > 0) && item.StartsWith("#") == false && item != "")
+                    if (item.IndexOf("HMIC") > 0 ||
+                        item.IndexOf("HmiC") > 0 ||
+                        ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0) ||
+                        (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0)) &&
+                        item.StartsWith("#") == false && item != "")
                     {
-                        ipList.Add(item); //(item.Split(Convert.ToChar("\t")));
+                        ipList.Add(item);
                     }
-                    if ((item.IndexOf("HMID") > 0 || item.IndexOf("HmiD") > 0 || item.IndexOf("HmiS") > 0 || item.IndexOf("HMIS") > 0) && item.StartsWith("#") == false && item != "")
+                    if ((item.IndexOf("HMID01") > 0 ||
+                        item.IndexOf("HmiD01") > 0 ||
+                        item.IndexOf("HmiE01") > 0 ||
+                        item.IndexOf("HMIE01") > 0 ||
+                        item.IndexOf("HmiS") > 0 ||
+                        item.IndexOf("HMIS") > 0) && 
+                        item.StartsWith("#") == false && item != "")
                     {
-                        sdList.Add(item); //(item.Split(Convert.ToChar("\t")));
+                        sdList.Add(item);
                     }
                 }
             }
