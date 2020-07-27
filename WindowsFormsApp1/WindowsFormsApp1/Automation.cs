@@ -50,6 +50,8 @@ namespace AutomateDownloader
 
         public NCMForm()
         {
+            CloseConflictingProcesses("NCM_Downloader");
+
             InitializeComponent();
 
             //textBox4_TextChanged(numClTextBox, new System.EventArgs());
@@ -456,21 +458,20 @@ namespace AutomateDownloader
                 var lmHosts = File.ReadLines(lmhostPath);
                 foreach (var item in lmHosts)
                 {
-                    //int index = item.IndexOf("HMIC");
-                    if (item.IndexOf("HMIC") > 0 ||
-                        item.IndexOf("HmiC") > 0 ||
-                        ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0) ||
-                        (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0)) &&
-                        item.StartsWith("#") == false && item != "")
+                    if (item.IndexOf("HMIC") > 0
+                        || item.IndexOf("HmiC") > 0
+                        || ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0)
+                        || (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0))
+                        && item.StartsWith("#") == false && item != "")
                     {
                         ipList.Add(item);
                     }
                     if ((item.IndexOf("HMID01") > 0 ||
                         item.IndexOf("HmiD01") > 0 ||
-                        item.IndexOf("HmiE01") > 0 ||
                         item.IndexOf("HMIE01") > 0 ||
+                        item.IndexOf("HmiE01") > 0 ||
                         item.IndexOf("HmiS") > 0 ||
-                        item.IndexOf("HMIS") > 0) && 
+                        item.IndexOf("HMIS") > 0) &&
                         item.StartsWith("#") == false && item != "")
                     {
                         sdList.Add(item);
@@ -777,6 +778,26 @@ namespace AutomateDownloader
                     success = false;
                 }
             } while (success == false);
+        }
+
+        private void CloseConflictingProcesses(string substr)
+        {
+            List<Process> myProcesses = new List<Process>();
+            //int i = 0;
+            foreach (var proc in Process.GetProcesses())
+            {
+                if (proc.ProcessName.StartsWith(substr))
+                {
+                    myProcesses.Add(proc);
+                }
+            }
+            foreach (var proc in myProcesses)
+            {
+                if (proc.Id != Process.GetCurrentProcess().Id)
+                {
+                    proc.Kill();
+                }
+            }
         }
 
         private void CloseRemoteSession(string ip)
@@ -1156,7 +1177,7 @@ namespace AutomateDownloader
         }
 
         private void ipTextBox_TextChanged(object sender, EventArgs e)
-        {            
+        {
             RenewIpsOrInit();
         }
 

@@ -7,3 +7,4 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_D
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.exe
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.pdb
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\AutomateDownloader.NCMForm.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
