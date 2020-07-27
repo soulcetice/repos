@@ -40,6 +40,8 @@ namespace AutomateDownloader
         private System.Windows.Forms.TextBox widthBox;
         private System.Windows.Forms.TextBox topBox;
         private System.Windows.Forms.TextBox leftBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
         private Form frm1 = new Form();
 
 
@@ -1078,6 +1080,8 @@ namespace AutomateDownloader
             this.label6 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.rdpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1090,7 +1094,6 @@ namespace AutomateDownloader
             this.label1.TabIndex = 0;
             this.label1.Text = "Clients start index:";
             this.label1.Visible = false;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // firstClientIndexBox
             // 
@@ -1177,7 +1180,6 @@ namespace AutomateDownloader
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.Size = new System.Drawing.Size(238, 20);
             this.passTextBox.TabIndex = 14;
-            this.passTextBox.Text = "A02346";
             // 
             // label2
             // 
@@ -1221,6 +1223,8 @@ namespace AutomateDownloader
             // 
             // rdpBox1
             // 
+            this.rdpBox1.Controls.Add(this.label8);
+            this.rdpBox1.Controls.Add(this.label7);
             this.rdpBox1.Controls.Add(this.topBox);
             this.rdpBox1.Controls.Add(this.leftBox);
             this.rdpBox1.Controls.Add(this.heightBox);
@@ -1238,41 +1242,40 @@ namespace AutomateDownloader
             // 
             // topBox
             // 
-            this.topBox.Location = new System.Drawing.Point(244, 71);
+            this.topBox.Location = new System.Drawing.Point(264, 71);
             this.topBox.Name = "topBox";
-            this.topBox.Size = new System.Drawing.Size(50, 20);
+            this.topBox.Size = new System.Drawing.Size(30, 20);
             this.topBox.TabIndex = 21;
             this.topBox.Text = "300";
             // 
             // leftBox
             // 
-            this.leftBox.Location = new System.Drawing.Point(183, 71);
+            this.leftBox.Location = new System.Drawing.Point(228, 71);
             this.leftBox.Name = "leftBox";
-            this.leftBox.Size = new System.Drawing.Size(47, 20);
+            this.leftBox.Size = new System.Drawing.Size(30, 20);
             this.leftBox.TabIndex = 20;
             this.leftBox.Text = "700";
             // 
             // heightBox
             // 
-            this.heightBox.Location = new System.Drawing.Point(118, 71);
+            this.heightBox.Location = new System.Drawing.Point(92, 71);
             this.heightBox.Name = "heightBox";
-            this.heightBox.Size = new System.Drawing.Size(50, 20);
+            this.heightBox.Size = new System.Drawing.Size(30, 20);
             this.heightBox.TabIndex = 19;
             this.heightBox.Text = "480";
-            this.heightBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // widthBox
             // 
             this.widthBox.Location = new System.Drawing.Point(56, 71);
             this.widthBox.Name = "widthBox";
-            this.widthBox.Size = new System.Drawing.Size(47, 20);
+            this.widthBox.Size = new System.Drawing.Size(30, 20);
             this.widthBox.TabIndex = 18;
             this.widthBox.Text = "640";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(195, 217);
+            this.checkBox1.Location = new System.Drawing.Point(189, 217);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox1.Size = new System.Drawing.Size(117, 17);
@@ -1307,6 +1310,26 @@ namespace AutomateDownloader
             this.statusLabel.TabIndex = 23;
             this.statusLabel.Text = "Progress: 0%";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label7.Location = new System.Drawing.Point(6, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Res.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label8.Location = new System.Drawing.Point(180, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Pos.";
+            // 
             // NCMForm
             // 
             this.ClientSize = new System.Drawing.Size(324, 421);
@@ -1327,7 +1350,6 @@ namespace AutomateDownloader
             this.Controls.Add(this.label1);
             this.Name = "NCMForm";
             this.Text = "NCM Manager Automation";
-            this.Load += new System.EventHandler(this.NCMForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -1374,19 +1396,5 @@ namespace AutomateDownloader
             RenewIpsOrInit();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NCMForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
