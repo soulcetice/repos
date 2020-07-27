@@ -34,6 +34,14 @@ namespace AutomateDownloader
         private System.Windows.Forms.GroupBox rdpBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.TextBox heightBox;
+        private System.Windows.Forms.TextBox widthBox;
+        private System.Windows.Forms.TextBox topBox;
+        private System.Windows.Forms.TextBox leftBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
         private Form frm1 = new Form();
 
 
@@ -42,6 +50,7 @@ namespace AutomateDownloader
         {
             Application.EnableVisualStyles();
             Application.Run(new NCMForm());
+
             //Done by Muresan Radu-Adrian MURA02 20200716
         }
 
@@ -50,6 +59,8 @@ namespace AutomateDownloader
 
         public NCMForm()
         {
+            CloseConflictingProcesses("NCM_Downloader");
+
             InitializeComponent();
 
             //textBox4_TextChanged(numClTextBox, new System.EventArgs());
@@ -65,17 +76,10 @@ namespace AutomateDownloader
             }
             if (configPath != string.Empty)
             {
-                var configFile = File.ReadLines(configPath);
-                var fileLen = configFile.Count();
-
-                pathTextBox.Text = configFile.ElementAt(0);
-                if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
-                if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
-                if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
-                if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
-                if (fileLen >= 6) passTextBox.Text = configFile.ElementAt(5);
-                if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
+                GetInitialValues(configPath);
             }
+
+            SetTooltips();
 
             RenewIpsOrInit();
 
@@ -84,6 +88,24 @@ namespace AutomateDownloader
             this.DoubleClick += new EventHandler(Form1_DoubleClick);
 
             this.Controls.Add(firstClientIndexBox);
+        }
+
+        private void GetInitialValues(string path)
+        {
+            var configFile = File.ReadLines(path);
+            var fileLen = configFile.Count();
+
+            pathTextBox.Text = configFile.ElementAt(0);
+            if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
+            if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
+            if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
+            if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
+            if (fileLen >= 6) passTextBox.Text = configFile.ElementAt(5);
+            if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
+            if (fileLen >= 8) widthBox.Text = configFile.ElementAt(7);
+            if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
+            if (fileLen >= 10) leftBox.Text = configFile.ElementAt(9);
+            if (fileLen >= 11) topBox.Text = configFile.ElementAt(10);
         }
 
         private void RenewIpsOrInit()
@@ -98,15 +120,25 @@ namespace AutomateDownloader
                 }
                 numClTextBox.Text = Convert.ToString(ipList.Count());
                 firstClientIndexBox.Text = Convert.ToString(sdList.Count() + 1);
+                statusLabel.Text = "Ready";
             }
+            else
+            {
+                statusLabel.Text = "Status: Did not find LmHosts file, please check path";
+            }
+            statusLabel.Refresh();
             checkedListBox1.Refresh();
         }
 
         #region ImportDlls
-
         // Get a handle to an application window.
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        // Define the SetWindowPos API function.
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
 
         //get objects in window ?
         [DllImport("user32.dll")]
@@ -161,6 +193,24 @@ namespace AutomateDownloader
 
         #region FLAGS
         [Flags]
+        private enum SetWindowPosFlags : uint
+        {
+            SynchronousWindowPosition = 0x4000,
+            DeferErase = 0x2000,
+            DrawFrame = 0x0020,
+            FrameChanged = 0x0020,
+            HideWindow = 0x0080,
+            DoNotActivate = 0x0010,
+            DoNotCopyBits = 0x0100,
+            IgnoreMove = 0x0002,
+            DoNotChangeOwnerZOrder = 0x0200,
+            DoNotRedraw = 0x0008,
+            DoNotReposition = 0x0200,
+            DoNotSendChangingEvent = 0x0400,
+            IgnoreResize = 0x0001,
+            IgnoreZOrder = 0x0004,
+            ShowWindow = 0x0040,
+        }
         public enum ProcessAccessFlags : uint
         {
             All = 0x001F0FFF,
@@ -434,18 +484,6 @@ namespace AutomateDownloader
             return list;
         }
 
-        private void RemoteOpen(string ip, string un, string pw)
-        {
-            Process rdcProcess = new Process();
-            rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\cmdkey.exe");
-            rdcProcess.StartInfo.Arguments = "/generic:TERMSRV/" + ip + " /user:" + un + " /pass:" + pw;
-            rdcProcess.Start();
-            rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\mstsc.exe");
-            rdcProcess.StartInfo.Arguments = "/v " + ip; // ip or name of computer to connect
-            rdcProcess.Start();
-            System.Threading.Thread.Sleep(10000);
-        }
-
         private void GetIpsLmHosts()
         {
             ipList = new List<string>();
@@ -456,21 +494,20 @@ namespace AutomateDownloader
                 var lmHosts = File.ReadLines(lmhostPath);
                 foreach (var item in lmHosts)
                 {
-                    //int index = item.IndexOf("HMIC");
-                    if (item.IndexOf("HMIC") > 0 ||
-                        item.IndexOf("HmiC") > 0 ||
-                        ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0) ||
-                        (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0)) &&
-                        item.StartsWith("#") == false && item != "")
+                    if (item.IndexOf("HMIC") > 0
+                        || item.IndexOf("HmiC") > 0
+                        || ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0)
+                        || (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0))
+                        && item.StartsWith("#") == false && item != "")
                     {
                         ipList.Add(item);
                     }
                     if ((item.IndexOf("HMID01") > 0 ||
                         item.IndexOf("HmiD01") > 0 ||
-                        item.IndexOf("HmiE01") > 0 ||
                         item.IndexOf("HMIE01") > 0 ||
+                        item.IndexOf("HmiE01") > 0 ||
                         item.IndexOf("HmiS") > 0 ||
-                        item.IndexOf("HMIS") > 0) && 
+                        item.IndexOf("HMIS") > 0) &&
                         item.StartsWith("#") == false && item != "")
                     {
                         sdList.Add(item);
@@ -490,24 +527,72 @@ namespace AutomateDownloader
             configFile.WriteLine(unTextBox.Text);
             configFile.WriteLine(passTextBox.Text);
             configFile.WriteLine(rdpCheckBox.Checked);
+            configFile.WriteLine(widthBox.Text);
+            configFile.WriteLine(heightBox.Text);
+            configFile.WriteLine(leftBox.Text);
+            configFile.WriteLine(topBox.Text);
+            configFile.WriteLine("");
+            configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
             configFile.Close();
+        }
+
+        private void SetTooltips()
+        {
+            var toolTip1 = new System.Windows.Forms.ToolTip();
+            toolTip1.SetToolTip(widthBox, "Set RDP Window Width");
+
+            var toolTip2 = new System.Windows.Forms.ToolTip();
+            toolTip2.SetToolTip(heightBox, "Set RDP Window Height");
+
+            var toolTip3 = new System.Windows.Forms.ToolTip();
+            toolTip3.SetToolTip(leftBox, "Set RDP Window x");
+
+            var toolTip4 = new System.Windows.Forms.ToolTip();
+            toolTip4.SetToolTip(topBox, "Set RDP Window y");
+
+            var toolTip5 = new System.Windows.Forms.ToolTip();
+            toolTip5.SetToolTip(ipTextBox, "Set path to your lmhosts file.");
+
+            var toolTip6 = new System.Windows.Forms.ToolTip();
+            toolTip6.SetToolTip(ipTextBox, "Set path to your lmhosts file.");
+
+            var toolTip7 = new System.Windows.Forms.ToolTip();
+            toolTip7.SetToolTip(pathTextBox, "Set path to your LOAD.LOG files as specified in readme.");
         }
 
         // Send a series of key presses to the application.
         private const int IDOK = 1;
+
         private void Button1_Click(object sender, EventArgs e)
         {
+            //for (int i = 0; i <= progressBar1.Maximum; i++)
+            //{
+            //    progressBar1.Value = i;
+            //    System.Threading.Thread.Sleep(10);
+            //    statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+            //    statusLabel.Refresh();
+            //    progressBar1.Refresh();
+            //}
+            progressBar1.Value = 0;
+            statusLabel.Text = "Progress: ";
             //
             // check inputs
             //
-            if (firstClientIndexBox.Text == null || firstClientIndexBox.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please input the index at which clients start");
-                return;
-            }
             if (pathTextBox.Text == null || pathTextBox.Text == "")
             {
                 MessageBox.Show(new Form { TopMost = true }, " Please input the path in the following form: " + @"D:\Project\SDIB_TCM\wincproj\SDIB_TCM_CLT_Ref");
+                return;
+            }
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                //MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
+                statusLabel.Text = "You have not checked any clients to download to!";
+                return;
+            }
+            //obsolete
+            if (firstClientIndexBox.Text == null || firstClientIndexBox.Text == "")
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please input the index at which clients start");
                 return;
             }
             if (numClTextBox.Text == null || numClTextBox.Text == "")
@@ -515,25 +600,25 @@ namespace AutomateDownloader
                 MessageBox.Show(new Form { TopMost = true }, " Please input the number of clients");
                 return;
             }
-            if (checkedListBox1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
-                return;
-            }
+            //end obsolete
             //
             //write config file
             //
             KeepConfig();
+            //
             //
             DownloadProcess();
         }
 
         private void DownloadProcess()
         {
+            int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
             // init logFile
             //
             string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
             var logFile = File.CreateText(logPath);
+            logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Started actions at " + DateTime.Now.ToLongDateString());
+            logFile.Flush();
             //
             // initialize handles for windows
             //
@@ -554,6 +639,8 @@ namespace AutomateDownloader
             if (ncmHandle == IntPtr.Zero)
             {
                 MessageBox.Show(new Form { TopMost = true }, " Simatic NCM Manager is not running.");
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : NCM Manager was not running.");
+                logFile.Flush();
                 return;
             }
 
@@ -571,7 +658,8 @@ namespace AutomateDownloader
             }
             else
             {
-                Console.WriteLine("The missing software package notification did not appear");
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The missing software package notification did not appear - that is ok");
+                logFile.Flush();
                 SetForegroundWindow(ncmHandle);
             }
 
@@ -588,15 +676,10 @@ namespace AutomateDownloader
                     SetForegroundWindow(ncmHandle);
                     System.Threading.Thread.Sleep(500);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
-                    int clientID = clientIndex + 1;
                     //
                     //get ip here
-                    string clientSubStr = "C0" + clientID;
-                    if (clientIndex > 9)
-                    {
-                        clientSubStr = "C" + clientID;
-                    }
-                    var newIp = ipList.Where(x => x.Contains(clientSubStr)).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                    //
+                    var myIp = ipList.Where(x => x.Contains(checkedListBox1.CheckedItems[i].ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
                     //
                     //download process starts here - first needs to navigate to correct index
                     SetForegroundWindow(ncmHandle);
@@ -606,7 +689,10 @@ namespace AutomateDownloader
                     SetForegroundWindow(ncmHandle);
                     DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
-                    logFile.WriteLine("Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
+                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Attempting download to client " + checkedListBox1.CheckedItems[i].ToString());
+                    logFile.Flush();
+
+                    var started = DateTime.Now;
 
                     //now new window with download os
                     System.Threading.Thread.Sleep(500);
@@ -641,13 +727,15 @@ namespace AutomateDownloader
                                 }
                                 else
                                 {
-                                    logFile.WriteLine("The Ok Button was not found in the deactivation window!");
+                                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The Ok Button was not found in the deactivation window!");
+                                    logFile.Flush();
                                     MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
                             {
-                                logFile.WriteLine("Did not find target system popup!");
+                                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Did not find target system popup! (runtime was not active on this client)");
+                                logFile.Flush();
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
@@ -656,7 +744,7 @@ namespace AutomateDownloader
                             {
                                 //certificate needs to be generated here
                                 System.Threading.Thread.Sleep(10000); //important to wait a bit
-                                RemoteOpen(newIp, unTextBox.Text, passTextBox.Text);
+                                OpenRemoteSession(myIp, unTextBox.Text, passTextBox.Text);
                             }
 
                             //if Canceled by the user in LOAD.LOG , assume that RT station not obtainable //read load.log here to find canceled by user
@@ -710,15 +798,19 @@ namespace AutomateDownloader
                                         }
                                         else
                                         {
-                                            logFile.WriteLine("The Ok Button was not found in the downloading window!");
+                                            logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The Ok Button was not found in the downloading window!");
+                                            logFile.Flush();
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
-                                        logFile.WriteLine("Error on download to client " + clientIndex + 1);
+                                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Error on download to client " + clientIndex + 1);
+                                        logFile.Flush();
+                                        continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
                                     {
-                                        logFile.WriteLine("Client " + clientIndex + " download canceled - RT station not obtainable");
+                                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Client " + clientIndex + " download canceled - RT station not obtainable");
+                                        logFile.Flush();
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
                                         continue;
                                     }
@@ -731,15 +823,25 @@ namespace AutomateDownloader
                         }
                         if (rdpCheckBox.Checked == true)
                         {
-                            CloseRemoteSession(newIp);
+                            CloseRemoteSession(myIp);
                         }
+                        progressBar1.Value = clientProg * (i + 1);
+                        statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+                        progressBar1.Refresh();
+                        statusLabel.Refresh();
+                        var ended = DateTime.Now;
+                        var secElapsed = (ended - started).TotalSeconds;
+                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + 
+                            " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString() + 
+                            " in " + secElapsed.ToString() + " seconds");
                     }
                     else
                     {
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
-                logFile.WriteLine("Closing logfile at " + DateTime.Now);
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Closing logfile");
+                logFile.Flush();
                 logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
@@ -765,7 +867,8 @@ namespace AutomateDownloader
                     }
                     else
                     {
-                        log.WriteLine("The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        log.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        log.Flush();
                         //MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
                         success = false;
                     }
@@ -773,10 +876,61 @@ namespace AutomateDownloader
                 catch (Exception exc)
                 {
                     log.WriteLine(exc);
+                    log.Flush();
                     //MessageBox.Show(new Form { TopMost = true }, exc.Message);
                     success = false;
                 }
             } while (success == false);
+        }
+
+        private void CloseConflictingProcesses(string substr)
+        {
+            List<Process> myProcesses = new List<Process>();
+            //int i = 0;
+            foreach (var proc in Process.GetProcesses())
+            {
+                if (proc.ProcessName.StartsWith(substr))
+                {
+                    myProcesses.Add(proc);
+                }
+            }
+            foreach (var proc in myProcesses)
+            {
+                if (proc.Id != Process.GetCurrentProcess().Id)
+                {
+                    proc.Kill();
+                }
+            }
+        }
+
+        private void OpenRemoteSession(string ip, string un, string pw)
+        {
+            Process rdcProcess = new Process();
+            rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\cmdkey.exe");
+            rdcProcess.StartInfo.Arguments = "/generic:TERMSRV/" + ip + " /user:" + un + " /pass:" + pw;
+            rdcProcess.Start();
+            rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\mstsc.exe");
+            rdcProcess.StartInfo.Arguments = "/v " + ip; // ip or name of computer to connect
+            rdcProcess.Start();
+
+            IntPtr myRdp;
+            do
+            {
+                myRdp = FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
+                if (myRdp != IntPtr.Zero)
+                {
+                    // Set the window's position.
+                    int width = int.Parse(widthBox.Text);
+                    int height = int.Parse(heightBox.Text);
+                    int x = int.Parse(leftBox.Text);
+                    int y = int.Parse(topBox.Text);
+                    SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
+                }
+                else
+                {
+                    System.Threading.Thread.Sleep(1000);
+                }
+            } while (myRdp == IntPtr.Zero);
         }
 
         private void CloseRemoteSession(string ip)
@@ -803,6 +957,7 @@ namespace AutomateDownloader
                 catch (Exception e)
                 {
                     log.WriteLine(e.Message);
+                    log.Flush();
                     success = false;
                 }
             } while (success == false);
@@ -917,26 +1072,33 @@ namespace AutomateDownloader
             this.label4 = new System.Windows.Forms.Label();
             this.rdpCheckBox = new System.Windows.Forms.CheckBox();
             this.rdpBox1 = new System.Windows.Forms.GroupBox();
+            this.topBox = new System.Windows.Forms.TextBox();
+            this.leftBox = new System.Windows.Forms.TextBox();
+            this.heightBox = new System.Windows.Forms.TextBox();
+            this.widthBox = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.rdpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-66, 68);
+            this.label1.Location = new System.Drawing.Point(-71, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Clients start index:";
             this.label1.Visible = false;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // firstClientIndexBox
             // 
             this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(34, 65);
+            this.firstClientIndexBox.Location = new System.Drawing.Point(29, 84);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
             this.firstClientIndexBox.TabIndex = 1;
@@ -947,9 +1109,9 @@ namespace AutomateDownloader
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(12, 317);
+            this.button1.Location = new System.Drawing.Point(12, 348);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 35);
+            this.button1.Size = new System.Drawing.Size(300, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Download to selected NCM Clients";
             this.button1.UseVisualStyleBackColor = true;
@@ -967,7 +1129,7 @@ namespace AutomateDownloader
             // numClTextBox
             // 
             this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(34, 94);
+            this.numClTextBox.Location = new System.Drawing.Point(29, 113);
             this.numClTextBox.Name = "numClTextBox";
             this.numClTextBox.Size = new System.Drawing.Size(28, 20);
             this.numClTextBox.TabIndex = 9;
@@ -978,7 +1140,7 @@ namespace AutomateDownloader
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-66, 97);
+            this.label5.Location = new System.Drawing.Point(-71, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 10;
@@ -1018,7 +1180,6 @@ namespace AutomateDownloader
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.Size = new System.Drawing.Size(238, 20);
             this.passTextBox.TabIndex = 14;
-            this.passTextBox.Text = "A02346";
             // 
             // label2
             // 
@@ -1062,21 +1223,59 @@ namespace AutomateDownloader
             // 
             // rdpBox1
             // 
+            this.rdpBox1.Controls.Add(this.label8);
+            this.rdpBox1.Controls.Add(this.label7);
+            this.rdpBox1.Controls.Add(this.topBox);
+            this.rdpBox1.Controls.Add(this.leftBox);
+            this.rdpBox1.Controls.Add(this.heightBox);
+            this.rdpBox1.Controls.Add(this.widthBox);
             this.rdpBox1.Controls.Add(this.label4);
             this.rdpBox1.Controls.Add(this.label3);
             this.rdpBox1.Controls.Add(this.unTextBox);
             this.rdpBox1.Controls.Add(this.passTextBox);
             this.rdpBox1.Location = new System.Drawing.Point(12, 239);
             this.rdpBox1.Name = "rdpBox1";
-            this.rdpBox1.Size = new System.Drawing.Size(300, 72);
+            this.rdpBox1.Size = new System.Drawing.Size(300, 103);
             this.rdpBox1.TabIndex = 19;
             this.rdpBox1.TabStop = false;
             this.rdpBox1.Text = "Remote Desktop Automation";
             // 
+            // topBox
+            // 
+            this.topBox.Location = new System.Drawing.Point(264, 71);
+            this.topBox.Name = "topBox";
+            this.topBox.Size = new System.Drawing.Size(30, 20);
+            this.topBox.TabIndex = 21;
+            this.topBox.Text = "300";
+            // 
+            // leftBox
+            // 
+            this.leftBox.Location = new System.Drawing.Point(228, 71);
+            this.leftBox.Name = "leftBox";
+            this.leftBox.Size = new System.Drawing.Size(30, 20);
+            this.leftBox.TabIndex = 20;
+            this.leftBox.Text = "700";
+            // 
+            // heightBox
+            // 
+            this.heightBox.Location = new System.Drawing.Point(92, 71);
+            this.heightBox.Name = "heightBox";
+            this.heightBox.Size = new System.Drawing.Size(30, 20);
+            this.heightBox.TabIndex = 19;
+            this.heightBox.Text = "480";
+            // 
+            // widthBox
+            // 
+            this.widthBox.Location = new System.Drawing.Point(56, 71);
+            this.widthBox.Name = "widthBox";
+            this.widthBox.Size = new System.Drawing.Size(30, 20);
+            this.widthBox.TabIndex = 18;
+            this.widthBox.Text = "640";
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(195, 217);
+            this.checkBox1.Location = new System.Drawing.Point(189, 217);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox1.Size = new System.Drawing.Size(117, 17);
@@ -1095,9 +1294,47 @@ namespace AutomateDownloader
             this.label6.TabIndex = 21;
             this.label6.Text = "NCMPath";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 396);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(300, 13);
+            this.progressBar1.TabIndex = 22;
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(12, 376);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(68, 13);
+            this.statusLabel.TabIndex = 23;
+            this.statusLabel.Text = "Progress: 0%";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label7.Location = new System.Drawing.Point(6, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Res.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label8.Location = new System.Drawing.Point(180, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Pos.";
+            // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 361);
+            this.ClientSize = new System.Drawing.Size(324, 421);
+            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.rdpCheckBox);
             this.Controls.Add(this.label2);
@@ -1113,7 +1350,6 @@ namespace AutomateDownloader
             this.Controls.Add(this.label1);
             this.Name = "NCMForm";
             this.Text = "NCM Manager Automation";
-            this.Load += new System.EventHandler(this.NCMForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -1156,18 +1392,9 @@ namespace AutomateDownloader
         }
 
         private void ipTextBox_TextChanged(object sender, EventArgs e)
-        {            
+        {
             RenewIpsOrInit();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NCMForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
