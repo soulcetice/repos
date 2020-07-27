@@ -507,39 +507,42 @@ namespace AutomateDownloader
         private const int IDOK = 1;
         private void Button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i <= progressBar1.Maximum; i++)
-            {
-                progressBar1.Value = i;
-                System.Threading.Thread.Sleep(10);
-                label7.Text = "Progress: " + progressBar1.Value.ToString() + "%";
-                label7.Refresh();
-                progressBar1.Refresh();
-            }
+            //for (int i = 0; i <= progressBar1.Maximum; i++)
+            //{
+            //    progressBar1.Value = i;
+            //    System.Threading.Thread.Sleep(10);
+            //    label7.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+            //    label7.Refresh();
+            //    progressBar1.Refresh();
+            //}
             progressBar1.Value = 0;
             label7.Text = "Progress: ";
             //
             // check inputs
             //
-            if (firstClientIndexBox.Text == null || firstClientIndexBox.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please input the index at which clients start");
-                return;
-            }
             if (pathTextBox.Text == null || pathTextBox.Text == "")
             {
                 MessageBox.Show(new Form { TopMost = true }, " Please input the path in the following form: " + @"D:\Project\SDIB_TCM\wincproj\SDIB_TCM_CLT_Ref");
                 return;
             }
-            if (numClTextBox.Text == null || numClTextBox.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, " Please input the number of clients");
-                return;
-            }
             if (checkedListBox1.CheckedItems.Count == 0)
             {
-                MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
+                //MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
+                label7.Text = "You have not checked any clients to download to!";
                 return;
             }
+            ////obsolete
+            //if (firstClientIndexBox.Text == null || firstClientIndexBox.Text == "")
+            //{
+            //    MessageBox.Show(new Form { TopMost = true }, "Please input the index at which clients start");
+            //    return;
+            //}
+            //if (numClTextBox.Text == null || numClTextBox.Text == "")
+            //{
+            //    MessageBox.Show(new Form { TopMost = true }, " Please input the number of clients");
+            //    return;
+            //}
+            //end obsolete
             //
             //write config file
             //
@@ -556,6 +559,8 @@ namespace AutomateDownloader
             //
             string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
             var logFile = File.CreateText(logPath);
+            logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Started actions at " + DateTime.Now.ToLongDateString());
+            logFile.Flush();
             //
             // initialize handles for windows
             //
@@ -576,6 +581,8 @@ namespace AutomateDownloader
             if (ncmHandle == IntPtr.Zero)
             {
                 MessageBox.Show(new Form { TopMost = true }, " Simatic NCM Manager is not running.");
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : NCM Manager was not running.");
+                logFile.Flush();
                 return;
             }
 
@@ -593,7 +600,9 @@ namespace AutomateDownloader
             }
             else
             {
-                Console.WriteLine("The missing software package notification did not appear");
+                Console.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The missing software package notification did not appear");
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The missing software package notification did not appear");
+                logFile.Flush();
                 SetForegroundWindow(ncmHandle);
             }
 
@@ -623,7 +632,8 @@ namespace AutomateDownloader
                     SetForegroundWindow(ncmHandle);
                     DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
-                    logFile.WriteLine("Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
+                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
+                    logFile.Flush();
 
                     //now new window with download os
                     System.Threading.Thread.Sleep(500);
@@ -658,13 +668,15 @@ namespace AutomateDownloader
                                 }
                                 else
                                 {
-                                    logFile.WriteLine("The Ok Button was not found in the deactivation window!");
+                                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The Ok Button was not found in the deactivation window!");
+                                    logFile.Flush();
                                     MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
                             {
-                                logFile.WriteLine("Did not find target system popup!");
+                                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Did not find target system popup!");
+                                logFile.Flush();
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
@@ -727,16 +739,19 @@ namespace AutomateDownloader
                                         }
                                         else
                                         {
-                                            logFile.WriteLine("The Ok Button was not found in the downloading window!");
+                                            logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The Ok Button was not found in the downloading window!");
+                                            logFile.Flush();
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
-                                        logFile.WriteLine("Error on download to client " + clientIndex + 1);
+                                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Error on download to client " + clientIndex + 1);
+                                        logFile.Flush();
                                         continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
                                     {
-                                        logFile.WriteLine("Client " + clientIndex + " download canceled - RT station not obtainable");
+                                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Client " + clientIndex + " download canceled - RT station not obtainable");
+                                        logFile.Flush();
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
                                         continue;
                                     }
@@ -752,13 +767,15 @@ namespace AutomateDownloader
                             CloseRemoteSession(myIp);
                         }
                         progressBar1.Value = clientProg * (i + 1);
+                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString());
                     }
                     else
                     {
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
-                logFile.WriteLine("Closing logfile at " + DateTime.Now);
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Closing logfile at " + DateTime.Now);
+                logFile.Flush();
                 logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
@@ -784,7 +801,8 @@ namespace AutomateDownloader
                     }
                     else
                     {
-                        log.WriteLine("The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        log.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        log.Flush();
                         //MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
                         success = false;
                     }
@@ -792,6 +810,7 @@ namespace AutomateDownloader
                 catch (Exception exc)
                 {
                     log.WriteLine(exc);
+                    log.Flush();
                     //MessageBox.Show(new Form { TopMost = true }, exc.Message);
                     success = false;
                 }
@@ -842,6 +861,7 @@ namespace AutomateDownloader
                 catch (Exception e)
                 {
                     log.WriteLine(e.Message);
+                    log.Flush();
                     success = false;
                 }
             } while (success == false);
