@@ -34,6 +34,8 @@ namespace AutomateDownloader
         private System.Windows.Forms.GroupBox rdpBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label7;
         private Form frm1 = new Form();
 
 
@@ -42,6 +44,7 @@ namespace AutomateDownloader
         {
             Application.EnableVisualStyles();
             Application.Run(new NCMForm());
+
             //Done by Muresan Radu-Adrian MURA02 20200716
         }
 
@@ -100,7 +103,13 @@ namespace AutomateDownloader
                 }
                 numClTextBox.Text = Convert.ToString(ipList.Count());
                 firstClientIndexBox.Text = Convert.ToString(sdList.Count() + 1);
+                label7.Text = "Ready";
             }
+            else
+            {
+                label7.Text = "Status: Did not find LmHosts file, please check path";
+            }
+            label7.Refresh();
             checkedListBox1.Refresh();
         }
 
@@ -498,6 +507,16 @@ namespace AutomateDownloader
         private const int IDOK = 1;
         private void Button1_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i <= progressBar1.Maximum; i++)
+            {
+                progressBar1.Value = i;
+                System.Threading.Thread.Sleep(10);
+                label7.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+                label7.Refresh();
+                progressBar1.Refresh();
+            }
+            progressBar1.Value = 0;
+            label7.Text = "Progress: ";
             //
             // check inputs
             //
@@ -526,11 +545,13 @@ namespace AutomateDownloader
             //
             KeepConfig();
             //
+            //
             DownloadProcess();
         }
 
         private void DownloadProcess()
         {
+            int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
             // init logFile
             //
             string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
@@ -730,6 +751,7 @@ namespace AutomateDownloader
                         {
                             CloseRemoteSession(myIp);
                         }
+                        progressBar1.Value = clientProg * (i + 1);
                     }
                     else
                     {
@@ -936,13 +958,15 @@ namespace AutomateDownloader
             this.rdpBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label7 = new System.Windows.Forms.Label();
             this.rdpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-66, 68);
+            this.label1.Location = new System.Drawing.Point(-71, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -953,7 +977,7 @@ namespace AutomateDownloader
             // firstClientIndexBox
             // 
             this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(34, 65);
+            this.firstClientIndexBox.Location = new System.Drawing.Point(29, 84);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
             this.firstClientIndexBox.TabIndex = 1;
@@ -964,7 +988,7 @@ namespace AutomateDownloader
             // button1
             // 
             this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(12, 317);
+            this.button1.Location = new System.Drawing.Point(12, 310);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(300, 35);
             this.button1.TabIndex = 2;
@@ -984,7 +1008,7 @@ namespace AutomateDownloader
             // numClTextBox
             // 
             this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(34, 94);
+            this.numClTextBox.Location = new System.Drawing.Point(29, 113);
             this.numClTextBox.Name = "numClTextBox";
             this.numClTextBox.Size = new System.Drawing.Size(28, 20);
             this.numClTextBox.TabIndex = 9;
@@ -995,7 +1019,7 @@ namespace AutomateDownloader
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-66, 97);
+            this.label5.Location = new System.Drawing.Point(-71, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 10;
@@ -1112,9 +1136,27 @@ namespace AutomateDownloader
             this.label6.TabIndex = 21;
             this.label6.Text = "NCMPath";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 370);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(300, 20);
+            this.progressBar1.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 350);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Progress: 0%";
+            // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 361);
+            this.ClientSize = new System.Drawing.Size(324, 401);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.rdpCheckBox);
             this.Controls.Add(this.label2);
