@@ -16,4 +16,3 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Dow
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.csproj.CoreCompileInputs.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.pdb
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache

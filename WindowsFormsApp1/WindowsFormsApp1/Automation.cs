@@ -77,18 +77,7 @@ namespace AutomateDownloader
                 GetInitialValues(configPath);
             }
 
-            var toolTip1 = new System.Windows.Forms.ToolTip();
-            toolTip1.SetToolTip(widthBox, "Set RDP Window Width");
-
-            var toolTip2 = new System.Windows.Forms.ToolTip();
-            toolTip2.SetToolTip(heightBox, "Set RDP Window Height");
-
-            var toolTip3 = new System.Windows.Forms.ToolTip();
-            toolTip3.SetToolTip(leftBox, "Set RDP Window x");
-
-            var toolTip4 = new System.Windows.Forms.ToolTip();
-            toolTip4.SetToolTip(topBox, "Set RDP Window y");
-
+            SetTooltips();
 
             RenewIpsOrInit();
 
@@ -140,7 +129,6 @@ namespace AutomateDownloader
         }
 
         #region ImportDlls
-
         // Get a handle to an application window.
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
@@ -541,11 +529,38 @@ namespace AutomateDownloader
             configFile.WriteLine(heightBox.Text);
             configFile.WriteLine(leftBox.Text);
             configFile.WriteLine(topBox.Text);
+            configFile.WriteLine("");
+            configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
             configFile.Close();
+        }
+
+        private void SetTooltips()
+        {
+            var toolTip1 = new System.Windows.Forms.ToolTip();
+            toolTip1.SetToolTip(widthBox, "Set RDP Window Width");
+
+            var toolTip2 = new System.Windows.Forms.ToolTip();
+            toolTip2.SetToolTip(heightBox, "Set RDP Window Height");
+
+            var toolTip3 = new System.Windows.Forms.ToolTip();
+            toolTip3.SetToolTip(leftBox, "Set RDP Window x");
+
+            var toolTip4 = new System.Windows.Forms.ToolTip();
+            toolTip4.SetToolTip(topBox, "Set RDP Window y");
+
+            var toolTip5 = new System.Windows.Forms.ToolTip();
+            toolTip5.SetToolTip(ipTextBox, "Set path to your lmhosts file.");
+
+            var toolTip6 = new System.Windows.Forms.ToolTip();
+            toolTip6.SetToolTip(ipTextBox, "Set path to your lmhosts file.");
+
+            var toolTip7 = new System.Windows.Forms.ToolTip();
+            toolTip7.SetToolTip(pathTextBox, "Set path to your LOAD.LOG files as specified in readme.");
         }
 
         // Send a series of key presses to the application.
         private const int IDOK = 1;
+
         private void Button1_Click(object sender, EventArgs e)
         {
             //for (int i = 0; i <= progressBar1.Maximum; i++)
@@ -715,7 +730,7 @@ namespace AutomateDownloader
                             }
                             else
                             {
-                                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Did not find target system popup!");
+                                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Did not find target system popup! (runtime was not active on this client)");
                                 logFile.Flush();
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
@@ -807,6 +822,9 @@ namespace AutomateDownloader
                             CloseRemoteSession(myIp);
                         }
                         progressBar1.Value = clientProg * (i + 1);
+                        statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+                        progressBar1.Refresh();
+                        statusLabel.Refresh();
                         logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString());
                     }
                     else
