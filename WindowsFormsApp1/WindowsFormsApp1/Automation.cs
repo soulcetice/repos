@@ -74,17 +74,21 @@ namespace AutomateDownloader
             }
             if (configPath != string.Empty)
             {
-                var configFile = File.ReadLines(configPath);
-                var fileLen = configFile.Count();
-
-                pathTextBox.Text = configFile.ElementAt(0);
-                if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
-                if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
-                if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
-                if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
-                if (fileLen >= 6) passTextBox.Text = configFile.ElementAt(5);
-                if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
+                GetInitialValues(configPath);
             }
+
+            var toolTip1 = new System.Windows.Forms.ToolTip();
+            toolTip1.SetToolTip(widthBox, "Set RDP Window Width");
+
+            var toolTip2 = new System.Windows.Forms.ToolTip();
+            toolTip2.SetToolTip(heightBox, "Set RDP Window Height");
+
+            var toolTip3 = new System.Windows.Forms.ToolTip();
+            toolTip3.SetToolTip(leftBox, "Set RDP Window x");
+
+            var toolTip4 = new System.Windows.Forms.ToolTip();
+            toolTip4.SetToolTip(topBox, "Set RDP Window y");
+
 
             RenewIpsOrInit();
 
@@ -93,6 +97,24 @@ namespace AutomateDownloader
             this.DoubleClick += new EventHandler(Form1_DoubleClick);
 
             this.Controls.Add(firstClientIndexBox);
+        }
+
+        private void GetInitialValues(string path)
+        {
+            var configFile = File.ReadLines(path);
+            var fileLen = configFile.Count();
+
+            pathTextBox.Text = configFile.ElementAt(0);
+            if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
+            if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
+            if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
+            if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
+            if (fileLen >= 6) passTextBox.Text = configFile.ElementAt(5);
+            if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
+            if (fileLen >= 8) widthBox.Text = configFile.ElementAt(7);
+            if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
+            if (fileLen >= 10) leftBox.Text = configFile.ElementAt(9);
+            if (fileLen >= 11) topBox.Text = configFile.ElementAt(10);
         }
 
         private void RenewIpsOrInit()
@@ -515,6 +537,10 @@ namespace AutomateDownloader
             configFile.WriteLine(unTextBox.Text);
             configFile.WriteLine(passTextBox.Text);
             configFile.WriteLine(rdpCheckBox.Checked);
+            configFile.WriteLine(widthBox.Text);
+            configFile.WriteLine(heightBox.Text);
+            configFile.WriteLine(leftBox.Text);
+            configFile.WriteLine(topBox.Text);
             configFile.Close();
         }
 
@@ -1010,14 +1036,14 @@ namespace AutomateDownloader
             this.label4 = new System.Windows.Forms.Label();
             this.rdpCheckBox = new System.Windows.Forms.CheckBox();
             this.rdpBox1 = new System.Windows.Forms.GroupBox();
+            this.topBox = new System.Windows.Forms.TextBox();
+            this.leftBox = new System.Windows.Forms.TextBox();
+            this.heightBox = new System.Windows.Forms.TextBox();
+            this.widthBox = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
-            this.widthBox = new System.Windows.Forms.TextBox();
-            this.heightBox = new System.Windows.Forms.TextBox();
-            this.topBox = new System.Windows.Forms.TextBox();
-            this.leftBox = new System.Windows.Forms.TextBox();
             this.rdpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1176,6 +1202,39 @@ namespace AutomateDownloader
             this.rdpBox1.TabStop = false;
             this.rdpBox1.Text = "Remote Desktop Automation";
             // 
+            // topBox
+            // 
+            this.topBox.Location = new System.Drawing.Point(244, 71);
+            this.topBox.Name = "topBox";
+            this.topBox.Size = new System.Drawing.Size(50, 20);
+            this.topBox.TabIndex = 21;
+            this.topBox.Text = "300";
+            // 
+            // leftBox
+            // 
+            this.leftBox.Location = new System.Drawing.Point(183, 71);
+            this.leftBox.Name = "leftBox";
+            this.leftBox.Size = new System.Drawing.Size(47, 20);
+            this.leftBox.TabIndex = 20;
+            this.leftBox.Text = "700";
+            // 
+            // heightBox
+            // 
+            this.heightBox.Location = new System.Drawing.Point(118, 71);
+            this.heightBox.Name = "heightBox";
+            this.heightBox.Size = new System.Drawing.Size(50, 20);
+            this.heightBox.TabIndex = 19;
+            this.heightBox.Text = "480";
+            this.heightBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // widthBox
+            // 
+            this.widthBox.Location = new System.Drawing.Point(56, 71);
+            this.widthBox.Name = "widthBox";
+            this.widthBox.Size = new System.Drawing.Size(47, 20);
+            this.widthBox.TabIndex = 18;
+            this.widthBox.Text = "640";
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -1213,35 +1272,6 @@ namespace AutomateDownloader
             this.statusLabel.Size = new System.Drawing.Size(68, 13);
             this.statusLabel.TabIndex = 23;
             this.statusLabel.Text = "Progress: 0%";
-            // 
-            // widthBox
-            // 
-            this.widthBox.Location = new System.Drawing.Point(56, 71);
-            this.widthBox.Name = "widthBox";
-            this.widthBox.Size = new System.Drawing.Size(47, 20);
-            this.widthBox.TabIndex = 18;
-            // 
-            // heightBox
-            // 
-            this.heightBox.Location = new System.Drawing.Point(118, 71);
-            this.heightBox.Name = "heightBox";
-            this.heightBox.Size = new System.Drawing.Size(50, 20);
-            this.heightBox.TabIndex = 19;
-            this.heightBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // topBox
-            // 
-            this.topBox.Location = new System.Drawing.Point(244, 71);
-            this.topBox.Name = "topBox";
-            this.topBox.Size = new System.Drawing.Size(50, 20);
-            this.topBox.TabIndex = 21;
-            // 
-            // leftBox
-            // 
-            this.leftBox.Location = new System.Drawing.Point(183, 71);
-            this.leftBox.Name = "leftBox";
-            this.leftBox.Size = new System.Drawing.Size(47, 20);
-            this.leftBox.TabIndex = 20;
             // 
             // NCMForm
             // 
