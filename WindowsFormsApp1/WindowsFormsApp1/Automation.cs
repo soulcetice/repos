@@ -589,15 +589,10 @@ namespace AutomateDownloader
                     SetForegroundWindow(ncmHandle);
                     System.Threading.Thread.Sleep(500);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
-                    int clientID = clientIndex + 1;
                     //
                     //get ip here
-                    string clientSubStr = "C0" + clientID;
-                    if (clientIndex > 9)
-                    {
-                        clientSubStr = "C" + clientID;
-                    }
-                    var newIp = ipList.Where(x => x.Contains(clientSubStr)).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                    //
+                    var myIp = ipList.Where(x => x.Contains(checkedListBox1.CheckedItems[i].ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
                     //
                     //download process starts here - first needs to navigate to correct index
                     SetForegroundWindow(ncmHandle);
@@ -657,7 +652,7 @@ namespace AutomateDownloader
                             {
                                 //certificate needs to be generated here
                                 System.Threading.Thread.Sleep(10000); //important to wait a bit
-                                RemoteOpen(newIp, unTextBox.Text, passTextBox.Text);
+                                RemoteOpen(myIp, unTextBox.Text, passTextBox.Text);
                             }
 
                             //if Canceled by the user in LOAD.LOG , assume that RT station not obtainable //read load.log here to find canceled by user
@@ -715,6 +710,7 @@ namespace AutomateDownloader
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
                                         logFile.WriteLine("Error on download to client " + clientIndex + 1);
+                                        continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
@@ -732,7 +728,7 @@ namespace AutomateDownloader
                         }
                         if (rdpCheckBox.Checked == true)
                         {
-                            CloseRemoteSession(newIp);
+                            CloseRemoteSession(myIp);
                         }
                     }
                     else
