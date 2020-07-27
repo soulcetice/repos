@@ -687,8 +687,10 @@ namespace AutomateDownloader
                     SetForegroundWindow(ncmHandle);
                     DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
-                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Attempting download to client index " + Convert.ToInt32(checkedListBox1.CheckedIndices[i] + 1));
+                    logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Attempting download to client " + checkedListBox1.CheckedItems[i].ToString());
                     logFile.Flush();
+
+                    var started = DateTime.Now;
 
                     //now new window with download os
                     System.Threading.Thread.Sleep(500);
@@ -740,7 +742,7 @@ namespace AutomateDownloader
                             {
                                 //certificate needs to be generated here
                                 System.Threading.Thread.Sleep(10000); //important to wait a bit
-                                OpenRemoteDesktop(myIp, unTextBox.Text, passTextBox.Text);
+                                OpenRemoteSession(myIp, unTextBox.Text, passTextBox.Text);
                             }
 
                             //if Canceled by the user in LOAD.LOG , assume that RT station not obtainable //read load.log here to find canceled by user
@@ -825,14 +827,18 @@ namespace AutomateDownloader
                         statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
                         progressBar1.Refresh();
                         statusLabel.Refresh();
-                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString());
+                        var ended = DateTime.Now;
+                        var secElapsed = (ended - started).TotalSeconds;
+                        logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + 
+                            " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString() + 
+                            " in " + secElapsed.ToString() + " seconds");
                     }
                     else
                     {
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
-                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Closing logfile at " + DateTime.Now);
+                logFile.WriteLine(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Closing logfile");
                 logFile.Flush();
                 logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
@@ -895,7 +901,7 @@ namespace AutomateDownloader
             }
         }
 
-        private void OpenRemoteDesktop(string ip, string un, string pw)
+        private void OpenRemoteSession(string ip, string un, string pw)
         {
             Process rdcProcess = new Process();
             rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\cmdkey.exe");
@@ -904,15 +910,25 @@ namespace AutomateDownloader
             rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\mstsc.exe");
             rdcProcess.StartInfo.Arguments = "/v " + ip; // ip or name of computer to connect
             rdcProcess.Start();
-            System.Threading.Thread.Sleep(10000);
 
-            IntPtr myRdp = FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
-            // Set the window's position.
-            int width = int.Parse(widthBox.Text);
-            int height = int.Parse(heightBox.Text);
-            int x = int.Parse(leftBox.Text);
-            int y = int.Parse(topBox.Text);
-            SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
+            IntPtr myRdp;
+            do
+            {
+                myRdp = FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
+                if (myRdp != IntPtr.Zero)
+                {
+                    // Set the window's position.
+                    int width = int.Parse(widthBox.Text);
+                    int height = int.Parse(heightBox.Text);
+                    int x = int.Parse(leftBox.Text);
+                    int y = int.Parse(topBox.Text);
+                    SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
+                }
+                else
+                {
+                    System.Threading.Thread.Sleep(1000);
+                }
+            } while (myRdp == IntPtr.Zero);
         }
 
         private void CloseRemoteSession(string ip)
