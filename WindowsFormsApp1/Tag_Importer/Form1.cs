@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -73,6 +74,11 @@ namespace Tag_Importer
         static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
         [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         public static extern bool SendMessage(IntPtr hWnd, uint Msg, int wParam, StringBuilder lParam);
+        [DllImport("kernel32.dll")]
+        static extern int GetProcessId(IntPtr handle);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
         #endregion
 
         public List<string> ExtractWindowTextByHandle(IntPtr handle)
@@ -143,9 +149,30 @@ namespace Tag_Importer
                 System.Threading.Thread.Sleep(100);
             } while (importPopup == IntPtr.Zero);
 
-            var addressBar = GetChildBySubstring("Address:", importPopup);
+            //changing address...
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{ENTER}");
+            string path = textBox1.Text;
+            foreach (char c in path)
+                SendKeys.SendWait(c.ToString());
+            SendKeyHandled(importPopup, "{ENTER}");
 
-            var text = ExtractWindowTextByHandle(importPopup);
+
+            IntPtr fileListParent = FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", null);
+            IntPtr fileList = FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
+
+
+            //Process myProcess = Process.GetProcesses().Single(p => p.Id != 0 && p.Handle == importPopup);
+
+            //var proc = Process.GetProcesses().FirstOrDefault(c => c.ProcessName == "CCConfigStudio_x64").MainModule.
+
+            Class1.ReadProcessData("notepad");
+
+            IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
 
             Console.WriteLine("Done");
         }
