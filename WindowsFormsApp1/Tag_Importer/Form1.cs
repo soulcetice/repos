@@ -170,8 +170,6 @@ namespace Tag_Importer
 
             //var proc = Process.GetProcesses().FirstOrDefault(c => c.ProcessName == "CCConfigStudio_x64").MainModule.
 
-            Class1.ReadProcessData("notepad");
-
             IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
 
             Console.WriteLine("Done");

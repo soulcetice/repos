@@ -26,3 +26,10 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_File
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CopyComplete
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Form1.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
