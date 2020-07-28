@@ -70,6 +70,7 @@ namespace AutomateDownloader
         // Activate an application window.
         [DllImport("USER32.DLL")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
+
         internal delegate int WindowEnumProc(IntPtr hwnd, IntPtr lparam);
 
         [DllImport("user32.dll")]
