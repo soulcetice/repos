@@ -1,9 +1,0 @@
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.config
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release\WindowsFormsApp1.pdb
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\SimulateKeyPress.Form1.resources
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Properties.Resources.resources
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\NCM_Downloader.csproj.GenerateResource.cache
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\NCM_Downloader.csproj.CoreCompileInputs.cache
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
-Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb

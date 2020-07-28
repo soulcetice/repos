@@ -1,0 +1,14 @@
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csprojAssemblyReference.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Form1.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Properties.Resources.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.GenerateResource.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CoreCompileInputs.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CopyComplete
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.pdb

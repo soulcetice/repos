@@ -84,11 +84,5 @@
   <ItemGroup>
     <Content Include="DeployFiles.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WindowsFormsApp1\NCM_Downloader.csproj">
-      <Project>{651717BE-647E-4E71-A97C-579EDCB1CD9D}</Project>
-      <Name>NCM_Downloader</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
