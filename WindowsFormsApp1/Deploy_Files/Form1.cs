@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsUtilities;
 
@@ -96,7 +92,7 @@ namespace Deploy_Files
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("false");
+                    MessageBox.Show(e.Message);
                     success = false;
                 }
             } while (success == false);
@@ -141,6 +137,7 @@ namespace Deploy_Files
         {
             tests();
         }
+
         private void tests()
         {
             var ncmWndClass = "s7tgtopx"; //ncm manager main window
@@ -173,10 +170,10 @@ namespace Deploy_Files
             //SetForegroundWindow(dldingTgtHandle);
             //IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
             //SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
+
             SetForegroundWindow(ncmHandle);
             System.Threading.Thread.Sleep(500);
             ResetExpansions(ncmHandle);
         }
-
     }
 }

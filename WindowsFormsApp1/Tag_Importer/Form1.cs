@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowHandle;
 using WindowsUtilities;
+using FileDialog;
 
 namespace Tag_Importer
 {
@@ -126,6 +127,12 @@ namespace Tag_Importer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //FileDialog.Program.GetFilesInDialog();
+            ImportTags();
+        }
+
+        private void ImportTags()
+        {
             IntPtr tag = FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
 
             IntPtr ccAx = FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
@@ -161,14 +168,18 @@ namespace Tag_Importer
                 SendKeys.SendWait(c.ToString());
             SendKeyHandled(importPopup, "{ENTER}");
 
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+            SendKeyHandled(importPopup, "{TAB}");
+
+            var sb = new StringBuilder(len + 1);
+            SendMessage(importPopup, (uint)WindowsMessages.WM_GETTEXT, sb.Capacity, sb);
 
             IntPtr fileListParent = FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", null);
             IntPtr fileList = FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
 
-
-            //Process myProcess = Process.GetProcesses().Single(p => p.Id != 0 && p.Handle == importPopup);
-
-            //var proc = Process.GetProcesses().FirstOrDefault(c => c.ProcessName == "CCConfigStudio_x64").MainModule.
 
             IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
 
