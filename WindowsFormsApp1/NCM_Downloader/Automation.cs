@@ -12,10 +12,12 @@ using System.Security;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using PInvoke;
+using ClassLibrary;
 
 namespace AutomateDownloader
 {
-    class NCMForm : Form
+    public class NCMForm : Form
     {
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox firstClientIndexBox;
@@ -44,7 +46,7 @@ namespace AutomateDownloader
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private Form frm1 = new Form();
-                
+
         [STAThread]
         public static void Main()
         {
@@ -114,7 +116,7 @@ namespace AutomateDownloader
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [MarshalAs(UnmanagedType.AsAny)] object lpBuffer, int dwSize, out IntPtr lpNumberOfBytesWritten);
 
         #endregion
-        
+
         #region Flags
         [Flags]
         private enum SetWindowPosFlags : uint
@@ -892,6 +894,7 @@ namespace AutomateDownloader
             }
         }
 
+
         private void OpenRemoteSession(string ip, string un, string pw)
         {
             Process rdcProcess = new Process();
@@ -913,7 +916,23 @@ namespace AutomateDownloader
                     int height = int.Parse(heightBox.Text);
                     int x = int.Parse(leftBox.Text);
                     int y = int.Parse(topBox.Text);
+
+                    // Prepare the WINDOWPLACEMENT structure.
+                    var placement = new PinvokeLibrary.WINDOWPLACEMENT();
+                    placement.Length = Marshal.SizeOf(placement);
+
+                    // Get the window's current placement.
+                    PinvokeLibrary.GetWindowPlacement(myRdp, ref placement);
+                    if (placement.ShowCmd != PinvokeLibrary.ShowWindowCommands.Normal)
+                    {
+                        //alter the placement
+                        placement.ShowCmd = PinvokeLibrary.ShowWindowCommands.Normal;
+                        //set the changes
+                        PinvokeLibrary.SetWindowPlacement(myRdp, ref placement);
+                    }
+
                     SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
+
                 }
                 else
                 {
@@ -931,7 +950,6 @@ namespace AutomateDownloader
                 System.Threading.Thread.Sleep(1000);
             }
         }
-
 
         private void SendKeyHandled(IntPtr windowHandle, string key, StreamWriter log)
         {

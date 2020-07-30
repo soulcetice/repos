@@ -127,8 +127,8 @@ namespace Tag_Importer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //FileDialog.Program.GetFilesInDialog();
-            ImportTags();
+            FileDialog.Program.GetFilesInDialog();
+            //ImportTags();
         }
 
         private void ImportTags()
@@ -174,8 +174,9 @@ namespace Tag_Importer
             SendKeyHandled(importPopup, "{TAB}");
             SendKeyHandled(importPopup, "{TAB}");
 
-            var sb = new StringBuilder(len + 1);
-            SendMessage(importPopup, (uint)WindowsMessages.WM_GETTEXT, sb.Capacity, sb);
+            //var len = SendMessage(importPopup, (uint)WindowsMessages.WM_GETTEXTLENGTH, 0, null);
+            //var sb = new StringBuilder(len + 1);
+            //SendMessage(importPopup, (uint)WindowsMessages.WM_GETTEXT, sb.Capacity, sb);
 
             IntPtr fileListParent = FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", null);
             IntPtr fileList = FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);

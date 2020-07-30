@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Security.Principal;
 using System.Diagnostics;
+using Tag_Importer;
+using AutomateDownloader;
 
 namespace FileDialog
 {
@@ -105,19 +107,29 @@ namespace FileDialog
 
         public static void GetFilesInDialog()
         {
-            IntPtr hWnd = FindWindow(null, "Open");
+            IntPtr hWnd = FindWindow(null, "Untitled - Notepad");
 
             if (hWnd != IntPtr.Zero)
             {
+
+                //// Prepare the WINDOWPLACEMENT structure.
+                //var placement = new NCMForm.WINDOWPLACEMENT();
+                //placement.Length = Marshal.SizeOf(placement);
+                //// Get the window's current placement.
+                //NCMForm.GetWindowPlacement(hWnd, ref placement);
+                //placement.ShowCmd = NCMForm.ShowWindowCommands.Maximize;
+                //NCMForm.SetWindowPlacement(hWnd, ref placement);
+
                 Console.WriteLine("Open File Dialog is open");
 
                 IntPtr hwndButton = FindWindowEx(hWnd, IntPtr.Zero, "Button", "&Open");
                 Console.WriteLine("The handle of the Open button is " + hwndButton);
 
                 IntPtr FileDialogHandle = FindWindow(null, "Open");
+
                 IntPtr iptrHWndControl = GetDlgItem(FileDialogHandle, 1148);
                 HandleRef hrefHWndTarget = new HandleRef(null, iptrHWndControl);
-                //SendMessage(hrefHWndTarget, WM_SETTEXT, 0, "your file path");
+                SendMessage(hrefHWndTarget, WM_SETTEXT, 0, "your file path");
 
                 IntPtr opnButton = FindWindowEx(FileDialogHandle, IntPtr.Zero, "Open", null);
 

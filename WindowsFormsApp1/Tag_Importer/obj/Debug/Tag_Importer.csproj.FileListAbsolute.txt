@@ -31,3 +31,5 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Impor
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CopyComplete
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\PInvoke.Windows.Core.xml
