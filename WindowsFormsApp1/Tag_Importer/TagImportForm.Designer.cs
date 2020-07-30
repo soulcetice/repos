@@ -1,6 +1,6 @@
 ﻿namespace Tag_Importer
 {
-    partial class Form1
+    partial class TagImportForm
     {
         /// <summary>
         /// Required designer variable.

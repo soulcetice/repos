@@ -59,17 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="TagImportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TagImportForm.Designer.cs">
+      <DependentUpon>TagImportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OpenFileDialog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="TagImportForm.resx">
+      <DependentUpon>TagImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -95,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NCM_Downloader\NCM_Downloader.csproj">
-      <Project>{651717be-647e-4e71-a97c-579edcb1cd9d}</Project>
-      <Name>NCM_Downloader</Name>
+    <ProjectReference Include="..\ClassLibrary\Interoperability.csproj">
+      <Project>{0b0a0e29-5272-4824-a2cf-b00f2beb0303}</Project>
+      <Name>Interoperability</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

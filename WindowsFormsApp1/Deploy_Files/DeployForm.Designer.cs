@@ -2,7 +2,7 @@
 
 namespace Deploy_Files
 {
-    partial class Form1
+    partial class DeployForm
     {
         /// <summary>
         /// Required designer variable.

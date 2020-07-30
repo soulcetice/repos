@@ -15,9 +15,9 @@ using FileDialog;
 
 namespace Tag_Importer
 {
-    public partial class Form1 : Form
+    public partial class TagImportForm : Form
     {
-        public Form1()
+        public TagImportForm()
         {
             InitializeComponent();
         }
@@ -60,7 +60,7 @@ namespace Tag_Importer
 
         #region ImportDlls
         // Get a handle to an application window.
-        [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         //get objects in window ?
@@ -68,7 +68,7 @@ namespace Tag_Importer
         public static extern IntPtr FindWindowEx(IntPtr handleParent, IntPtr handleChild, string className, string WindowName);
 
         // Activate an application window.
-        [DllImport("USER32.DLL")]
+        [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll")]

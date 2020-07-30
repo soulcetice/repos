@@ -1,7 +1,8 @@
 NCM_Downloader application
 Date: 		22/07/2020
 Author: 	MURESAN Radu-Adrian (MURA02)
-Version:	1.31
+Version:	1.5
+Requirement:	InteroperabilityFunctions.dll
 
 This app automates the NCM Manager to automatically download to the clients you select.
 On the first download, it will generate an .ini file to keep the settings you just input.
@@ -22,13 +23,6 @@ REQUIRED FIELDS
 					- automatically opening the remote desktop sessions for the RT to be started for each client
 	IMPORTANT! It needs the IPS & station names to be in the same order as they appear in the NCM Manager
 	****************************************************************************************************************************
-	Client start index field:
-		Required for finding the correct tree items to download to.
-		D01
-		S01
-		C01
-		C02
-		In this case, input 3 in this field.
 ************************************************************************************************************************************
 OPTIONAL FIELDS
 	****************************************************************************************************************************

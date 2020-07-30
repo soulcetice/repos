@@ -78,15 +78,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Automation.cs">
+    <Compile Include="NCMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WindowsUtilities.cs" />
-    <Compile Include="WindowHandle.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Automation.resx">
-      <DependentUpon>Automation.cs</DependentUpon>
+    <EmbeddedResource Include="NCMForm.resx">
+      <DependentUpon>NCMForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,9 +127,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
+    <ProjectReference Include="..\ClassLibrary\Interoperability.csproj">
       <Project>{0b0a0e29-5272-4824-a2cf-b00f2beb0303}</Project>
-      <Name>ClassLibrary</Name>
+      <Name>Interoperability</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

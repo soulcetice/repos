@@ -1,0 +1,9 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\ClassLibrary.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\ClassLibrary.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\ClassLibrary.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\ClassLibrary.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\ClassLibrary.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
