@@ -136,7 +136,7 @@ namespace AutomateDownloader
         {
 
             // Get the size of the string required to hold the window title (including trailing null.) 
-            Int32 titleSize = InteroperabilityFunctions.PinvokeLibrary.SendMessage((int)hWnd, (int)WindowsMessages.WM_GETTEXTLENGTH, 0, 0).ToInt32();
+            Int32 titleSize = PInvokeLibrary.SendMessage((int)hWnd, (int)WindowsMessages.WM_GETTEXTLENGTH, 0, 0).ToInt32();
 
             // If titleSize is 0, there is no title so return an empty string (or null)
             if (titleSize == 0)
@@ -144,41 +144,171 @@ namespace AutomateDownloader
 
             StringBuilder title = new StringBuilder(titleSize + 1);
 
-            InteroperabilityFunctions.PinvokeLibrary.SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXT, title.Capacity, title);
+            PInvokeLibrary.SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXT, title.Capacity, title);
 
             return title.ToString();
         }
 
         #region TextExtractArea
+
+
+        // privileges
+        const int PROCESS_CREATE_THREAD = 0x0002;
+        const int PROCESS_QUERY_INFORMATION = 0x0400;
+        const int PROCESS_VM_OPERATION = 0x0008;
+        const int PROCESS_VM_WRITE = 0x0020;
+        const int PROCESS_VM_READ = 0x0010;
+
+        // used for memory allocation
+        const uint MEM_COMMIT = 0x00001000;
+        const int MEM_DECOMMIT = 0x4000;
+        const uint MEM_RESERVE = 0x00002000;
+        const uint PAGE_READWRITE = 4;
+
+        ///<summary>Returns the tree node information from another process.</summary>
+        ///<param name="hwndItem">Handle to a tree node item.</param>
+        ///<param name="hwndTreeView">Handle to a tree view control.</param>
+        ///<param name="process">Process hosting the tree view control.</param>
+        private static NodeData AllocTest(Process process, IntPtr hwndTreeView, IntPtr hwndItem)
+        {
+            // code based on article posted here: http://www.codingvision.net/miscellaneous/c-inject-a-dll-into-a-process-w-createremotethread
+
+            // handle of the process with the required privileges
+            IntPtr procHandle = PInvokeLibrary.OpenProcess((PInvokeLibrary.ProcessAccessFlags)(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ), false, process.Id);
+
+            // Write TVITEM to memory
+            // Invoke TVM_GETITEM
+            // Read TVITEM from memory
+
+            var item = new TVITEMEX();
+            item.hItem = hwndItem;
+            item.mask = (int)(WindowsMessages.TVIF_HANDLE | /*WindowsMessages.TVIF_CHILDREN |*/ WindowsMessages.TVIF_TEXT);
+            item.cchTextMax = 1024;
+            item.pszText = PInvokeLibrary.VirtualAllocEx(procHandle, IntPtr.Zero, (uint)item.cchTextMax, (PInvokeLibrary.AllocationType)(MEM_COMMIT | MEM_RESERVE), (PInvokeLibrary.MemoryProtection)PAGE_READWRITE); // node text pointer
+
+            byte[] data = getBytes(item);
+
+            int dwSize = (int)data.Length;
+            IntPtr allocMemAddress = PInvokeLibrary.VirtualAllocEx(procHandle, IntPtr.Zero, (uint)dwSize, (PInvokeLibrary.AllocationType)(MEM_COMMIT | MEM_RESERVE), (PInvokeLibrary.MemoryProtection)PAGE_READWRITE); // TVITEM pointer
+
+            int nSize = dwSize;
+            IntPtr bytesWritten;
+            bool successWrite = PInvokeLibrary.WriteProcessMemory(procHandle, allocMemAddress, data, nSize, out bytesWritten);
+
+            var sm = PInvokeLibrary.SendMessage(hwndTreeView, (int)WindowsMessages.TVM_GETITEM, 0, allocMemAddress);
+
+            IntPtr bytesRead;
+            bool successRead = PInvokeLibrary.ReadProcessMemory(procHandle, allocMemAddress, data, nSize, out bytesRead);
+
+            IntPtr bytesReadText;
+            byte[] nodeText = new byte[item.cchTextMax];
+            bool successReadText = PInvokeLibrary.ReadProcessMemory(procHandle, item.pszText, nodeText, (int)item.cchTextMax, out bytesReadText);
+
+            bool success1 = PInvokeLibrary.VirtualFreeEx(procHandle, allocMemAddress, dwSize, (PInvokeLibrary.AllocationType)MEM_DECOMMIT);
+            bool success2 = PInvokeLibrary.VirtualFreeEx(procHandle, item.pszText, (int)item.cchTextMax, (PInvokeLibrary.AllocationType)MEM_DECOMMIT);
+
+            var item2 = fromBytes<TVITEMEX>(data);
+
+            String name = Encoding.Unicode.GetString(nodeText);
+            int x = name.IndexOf('\0');
+            if (x >= 0)
+                name = name.Substring(0, x);
+
+            NodeData node = new NodeData();
+            node.Text = name;
+            node.HasChildren = (item2.cChildren == 1);
+
+            return node;
+        }
+
+        public class NodeData
+        {
+            public String Text { get; set; }
+            public bool HasChildren { get; set; }
+        }
+
+        private static byte[] getBytes(Object item)
+        {
+            int size = Marshal.SizeOf(item);
+            byte[] arr = new byte[size];
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+
+            Marshal.StructureToPtr(item, ptr, true);
+            Marshal.Copy(ptr, arr, 0, size);
+            Marshal.FreeHGlobal(ptr);
+
+            return arr;
+        }
+
+        private static T fromBytes<T>(byte[] arr)
+        {
+            T item = default(T);
+            int size = Marshal.SizeOf(item);
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            Marshal.Copy(arr, 0, ptr, size);
+            item = (T)Marshal.PtrToStructure(ptr, typeof(T));
+            Marshal.FreeHGlobal(ptr);
+            return item;
+        }
+
+        // Note: different layouts required depending on OS versions.
+        // https://msdn.microsoft.com/en-us/library/windows/desktop/bb773459%28v=vs.85%29.aspx
+        [StructLayout(LayoutKind.Sequential)]
+        public struct TVITEMEX
+        {
+            public uint mask;
+            public IntPtr hItem;
+            public uint state;
+            public uint stateMask;
+            public IntPtr pszText;
+            public int cchTextMax;
+            public int iImage;
+            public int iSelectedImage;
+            public int cChildren;
+            public IntPtr lParam;
+            public int iIntegral;
+            public uint uStateEx;
+            public IntPtr hwnd;
+            public int iExpandedImage;
+            public int iReserved;
+        }
+
+
         public static string GetTreeItemText(IntPtr treeViewHwnd, IntPtr hItem)
         {
             string itemText;
 
-            uint pid;
-            InteroperabilityFunctions.PinvokeLibrary.GetWindowThreadProcessId(treeViewHwnd, out pid);
+            PInvokeLibrary.GetWindowThreadProcessId(treeViewHwnd, out uint pid);
 
-            IntPtr process = InteroperabilityFunctions.PinvokeLibrary.OpenProcess(InteroperabilityFunctions.PinvokeLibrary.ProcessAccessFlags.VirtualMemoryOperation | InteroperabilityFunctions.PinvokeLibrary.ProcessAccessFlags.VirtualMemoryRead | InteroperabilityFunctions.PinvokeLibrary.ProcessAccessFlags.VirtualMemoryWrite | InteroperabilityFunctions.PinvokeLibrary.ProcessAccessFlags.QueryInformation, false, (int)pid);
+            IntPtr process = PInvokeLibrary.OpenProcess(PInvokeLibrary.ProcessAccessFlags.VirtualMemoryOperation | PInvokeLibrary.ProcessAccessFlags.VirtualMemoryRead | PInvokeLibrary.ProcessAccessFlags.VirtualMemoryWrite | PInvokeLibrary.ProcessAccessFlags.QueryInformation, false, (int)pid);
             if (process == IntPtr.Zero)
                 throw new Exception("Could not open handle to owning process of TreeView", new Win32Exception());
 
             try
             {
-                uint tviSize = (uint)Marshal.SizeOf(typeof(InteroperabilityFunctions.PinvokeLibrary.TVITEM));
+                uint tviSize = (uint)Marshal.SizeOf(typeof(PInvokeLibrary.TVITEM));
 
                 uint textSize = (uint)WindowsMessages.MY_MAXLVITEMTEXT;
-                bool isUnicode = InteroperabilityFunctions.PinvokeLibrary.IsWindowUnicode(treeViewHwnd);
+                bool isUnicode = PInvokeLibrary.IsWindowUnicode(treeViewHwnd);
                 if (isUnicode)
                     textSize *= 2;
 
-                IntPtr tviPtr = InteroperabilityFunctions.PinvokeLibrary.VirtualAllocEx(process, IntPtr.Zero, tviSize + textSize, InteroperabilityFunctions.PinvokeLibrary.AllocationType.Commit, InteroperabilityFunctions.PinvokeLibrary.MemoryProtection.ReadWrite);
-                if (tviPtr == IntPtr.Zero)
-                    throw new Exception("Could not allocate memory in owning process of TreeView", new Win32Exception());
+                IntPtr tviPtr = IntPtr.Zero;
+                try
+                {
+                    tviPtr = PInvokeLibrary.VirtualAllocEx(process, IntPtr.Zero, tviSize + textSize, PInvokeLibrary.AllocationType.Commit, PInvokeLibrary.MemoryProtection.ReadWrite);
+                }
+                catch (Exception exc)
+                {
+                    if (tviPtr == IntPtr.Zero)
+                        throw new Exception("Could not allocate memory in owning process of TreeView", new Win32Exception());
+                }
 
                 try
                 {
                     IntPtr textPtr = IntPtr.Add(tviPtr, (int)tviSize);
 
-                    InteroperabilityFunctions.PinvokeLibrary.TVITEM tvi = new InteroperabilityFunctions.PinvokeLibrary.TVITEM();
+                    PInvokeLibrary.TVITEM tvi = new PInvokeLibrary.TVITEM();
                     tvi.mask = (uint)WindowsMessages.TVIF_TEXT;
                     tvi.hItem = hItem;
                     tvi.cchTextMax = (int)WindowsMessages.MY_MAXLVITEMTEXT;
@@ -189,7 +319,7 @@ namespace AutomateDownloader
                     {
                         IntPtr myPtr = IntPtr.Zero;
                         Marshal.StructureToPtr(tvi, ptr, false);
-                        if (!PinvokeLibrary.WriteProcessMemory(process, tviPtr, ptr, (int)tviSize, out myPtr))
+                        if (!PInvokeLibrary.WriteProcessMemory(process, tviPtr, ptr, (int)tviSize, out myPtr))
                             throw new Exception("Could not write to memory in owning process of TreeView", new Win32Exception());
                     }
                     finally
@@ -197,7 +327,7 @@ namespace AutomateDownloader
                         Marshal.FreeHGlobal(ptr);
                     }
 
-                    if ((int)PinvokeLibrary.SendMessage(treeViewHwnd, (int)WindowsMessages.TVM_GETITEMW, 0, tviPtr) != 1)
+                    if ((int)PInvokeLibrary.SendMessage(treeViewHwnd, (int)WindowsMessages.TVM_GETITEM, 0, tviPtr) != 1)
                         throw new Exception("Could not get item data from TreeView");
 
                     ptr = Marshal.AllocHGlobal((int)textSize);
@@ -205,7 +335,7 @@ namespace AutomateDownloader
                     {
                         int bytesRead = 0;
                         IntPtr bytesReadPtr = IntPtr.Zero;
-                        if (!InteroperabilityFunctions.PinvokeLibrary.ReadProcessMemory(process, textPtr, ptr, (int)textSize, out bytesReadPtr))
+                        if (!PInvokeLibrary.ReadProcessMemory(process, textPtr, ptr, (int)textSize, out bytesReadPtr))
                             throw new Exception("Could not read from memory in owning process of TreeView", new Win32Exception());
 
                         bytesRead = (int)bytesReadPtr;
@@ -222,12 +352,12 @@ namespace AutomateDownloader
                 }
                 finally
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.VirtualFreeEx(process, tviPtr, 0, (PinvokeLibrary.AllocationType)InteroperabilityFunctions.PinvokeLibrary.FreeType.Release);
+                    PInvokeLibrary.VirtualFreeEx(process, tviPtr, 0, (PInvokeLibrary.AllocationType)PInvokeLibrary.FreeType.Release);
                 }
             }
             finally
             {
-                InteroperabilityFunctions.PinvokeLibrary.CloseHandle(process);
+                PInvokeLibrary.CloseHandle(process);
             }
 
             //char[] arr = itemText.ToCharArray(); //<== use this array to look at the bytes in debug mode
@@ -318,7 +448,7 @@ namespace AutomateDownloader
 
             do
             {
-                result = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(hWndParent, IntPtr.Zero, type, null);
+                result = PInvokeLibrary.FindWindowEx(hWndParent, IntPtr.Zero, type, null);
                 if (result != IntPtr.Zero)
                 {
                     list.Add(result);
@@ -439,14 +569,18 @@ namespace AutomateDownloader
         private void Testing(IntPtr ncmHandle, string anyPopupClass)
         {
             //testing for treeview
-            var parent3 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(ncmHandle, IntPtr.Zero, "MDIClient", null);
-            var parent2 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:7fde068d", null);
-            var parent1 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
-            var parent = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, null);
-            var treeH = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", null);
-            var treeItemHeight = (int)InteroperabilityFunctions.PinvokeLibrary.SendMessage(treeH, (int)WindowsMessages.TVM_GETITEMHEIGHT, 0, IntPtr.Zero); //works
+            var parent3 = PInvokeLibrary.FindWindowEx(ncmHandle, IntPtr.Zero, "MDIClient", null);
+            var parent2 = PInvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:104d09c9", null);
+            var parent1 = PInvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
+            var parent = PInvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, "");
+            var treeH = PInvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", "Generic1");
+            var treeItemHeight = (int)PInvokeLibrary.SendMessage(treeH, (int)WindowsMessages.TVM_GETITEMW,5, IntPtr.Zero); //works
 
+            //PInvokeLibrary.TVITEM item = new PInvokeLibrary.TVITEM();
 
+            var t = AllocTest(Process.GetProcessById(7396), treeH, IntPtr.Zero);
+
+            //instead build an xml
 
             var s = GetTreeItemText(treeH, IntPtr.Zero);
 
@@ -468,8 +602,8 @@ namespace AutomateDownloader
             var ncmWndClass = "s7tgtopx"; //ncm manager main window
             var anyPopupClass = "#32770"; //usually any popup
 
-            IntPtr ncmHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(ncmWndClass, null);
-            IntPtr tgtWndHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, null);
+            IntPtr ncmHandle = PInvokeLibrary.FindWindow(ncmWndClass, null);
+            IntPtr tgtWndHandle = PInvokeLibrary.FindWindow(anyPopupClass, null);
 
             //Testing(ncmHandle, anyPopupClass);
 
@@ -486,20 +620,20 @@ namespace AutomateDownloader
             //handle the missing software package notification
             if (tgtWndHandle != IntPtr.Zero)
             {
-                IntPtr btnHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(tgtWndHandle, IntPtr.Zero, "Button", null);
+                IntPtr btnHandle = PInvokeLibrary.FindWindowEx(tgtWndHandle, IntPtr.Zero, "Button", null);
 
                 if (btnHandle != new IntPtr(0x00000000))
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(tgtWndHandle);
-                    InteroperabilityFunctions.PinvokeLibrary.SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                    PInvokeLibrary.SetForegroundWindow(tgtWndHandle);
+                    PInvokeLibrary.SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                    PInvokeLibrary.SetForegroundWindow(ncmHandle);
                 }
             }
             else
             {
                 logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : The missing software package notification did not appear - that is ok");
                 logFile.Flush();
-                InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                PInvokeLibrary.SetForegroundWindow(ncmHandle);
             }
 
             if (tgtWndHandle != IntPtr.Zero)
@@ -512,7 +646,7 @@ namespace AutomateDownloader
                         System.Threading.Thread.Sleep(1000);
                     }
                     // sys tree view 32 already selected when focusing - navigate from here
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                    PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     System.Threading.Thread.Sleep(500);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     string clientName = checkedListBox1.CheckedItems[i].ToString();
@@ -522,11 +656,11 @@ namespace AutomateDownloader
                     var myIp = ipList.Where(x => x.Contains(clientName)).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
                     //
                     //download process starts here - first needs to navigate to correct index
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                    PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     ResetExpansions(ncmHandle, logFile);
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                    PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     ReturnToFirstClient(ncmHandle, logFile);
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+                    PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
                     logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Attempting download to client " + clientName);
@@ -536,34 +670,34 @@ namespace AutomateDownloader
 
                     //now new window with download os
                     System.Threading.Thread.Sleep(500);
-                    IntPtr osDldTgtWndHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, "Download OS");
+                    IntPtr osDldTgtWndHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Download OS");
                     if (osDldTgtWndHandle == IntPtr.Zero)
                     {
-                        osDldTgtWndHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
+                        osDldTgtWndHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
                         if (osDldTgtWndHandle == IntPtr.Zero)
                         {
-                            osDldTgtWndHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, null);
+                            osDldTgtWndHandle = PInvokeLibrary.FindWindow(anyPopupClass, null);
                         }
                     }
 
                     if (osDldTgtWndHandle != IntPtr.Zero)
                     {
-                        InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
-                        IntPtr DlButtonHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "OK");
+                        PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
+                        IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "OK");
                         if (DlButtonHandle != IntPtr.Zero)
                         {
-                            InteroperabilityFunctions.PinvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                            PInvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                             System.Threading.Thread.Sleep(500); //important to wait a bit
 
-                            IntPtr deactivateRTPopup = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, "Target system");
+                            IntPtr deactivateRTPopup = PInvokeLibrary.FindWindow(anyPopupClass, "Target system");
                             if (deactivateRTPopup != IntPtr.Zero)
                             {
-                                InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(deactivateRTPopup);
+                                PInvokeLibrary.SetForegroundWindow(deactivateRTPopup);
                                 System.Threading.Thread.Sleep(500); //important to wait a bit
-                                IntPtr YesButton = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(deactivateRTPopup, IntPtr.Zero, "Button", "&Yes");
+                                IntPtr YesButton = PInvokeLibrary.FindWindowEx(deactivateRTPopup, IntPtr.Zero, "Button", "&Yes");
                                 if (YesButton != IntPtr.Zero)
                                 {
-                                    InteroperabilityFunctions.PinvokeLibrary.SendMessage(YesButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                                    PInvokeLibrary.SendMessage(YesButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                                 }
                                 else
                                 {
@@ -588,7 +722,7 @@ namespace AutomateDownloader
                             }
 
                             //if Canceled by the user in LOAD.LOG , assume that RT station not obtainable //read load.log here to find canceled by user
-                            InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
+                            PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
                             //var downloadTargetWindowText = ExtractWindowTextByHandle(osDldTgtWndHandle);
 
                             var filePath = pathTextBox.Text + "(" + checkedListBox1.CheckedIndices[i] + 1 + ")\\winccom\\LOAD.LOG";
@@ -604,7 +738,7 @@ namespace AutomateDownloader
 
                             SleepUntilDownloadFeedback(clientIndex + 1);
 
-                            IntPtr dldingTgtHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
+                            IntPtr dldingTgtHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
                             if (dldingTgtHandle != IntPtr.Zero)
                             {
                                 //Download to target system was completed successfully. do not send enter until this text is present in the window...
@@ -629,12 +763,12 @@ namespace AutomateDownloader
                                     if (dldingTgtText.Where(x => x.Contains("Error")).Count() > 0)
                                     {
                                         System.Threading.Thread.Sleep(500);
-                                        InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
+                                        PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
                                         System.Threading.Thread.Sleep(500);
-                                        IntPtr YesButton = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "Ok");
+                                        IntPtr YesButton = PInvokeLibrary.FindWindowEx(osDldTgtWndHandle, IntPtr.Zero, "Button", "Ok");
                                         if (YesButton != IntPtr.Zero)
                                         {
-                                            InteroperabilityFunctions.PinvokeLibrary.SendMessage(YesButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                                            PInvokeLibrary.SendMessage(YesButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
                                         }
                                         else
                                         {
@@ -701,11 +835,11 @@ namespace AutomateDownloader
             {
                 try
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(windowHandle);
-                    IntPtr OkButton = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(windowHandle, IntPtr.Zero, "Button", buttonText);
+                    PInvokeLibrary.SetForegroundWindow(windowHandle);
+                    IntPtr OkButton = PInvokeLibrary.FindWindowEx(windowHandle, IntPtr.Zero, "Button", buttonText);
                     if (OkButton != IntPtr.Zero)
                     {
-                        InteroperabilityFunctions.PinvokeLibrary.SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
+                        PInvokeLibrary.SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
                         var checkText = ExtractWindowTextByHandle(windowHandle);
                         if (checkText.Where(x => x.Contains(windowText)).Count() == 0)
                         {
@@ -764,7 +898,7 @@ namespace AutomateDownloader
             IntPtr myRdp;
             do
             {
-                myRdp = InteroperabilityFunctions.PinvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
+                myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
                 if (myRdp != IntPtr.Zero)
                 {
                     // Set the window's position.
@@ -774,20 +908,20 @@ namespace AutomateDownloader
                     int y = int.Parse(topBox.Text);
 
                     // Prepare the WINDOWPLACEMENT structure.
-                    var placement = new PinvokeLibrary.WINDOWPLACEMENT();
+                    var placement = new PInvokeLibrary.WINDOWPLACEMENT();
                     placement.Length = Marshal.SizeOf(placement);
 
                     // Get the window's current placement.
-                    PinvokeLibrary.GetWindowPlacement(myRdp, ref placement);
-                    if (placement.ShowCmd != PinvokeLibrary.ShowWindowCommands.Normal)
+                    PInvokeLibrary.GetWindowPlacement(myRdp, ref placement);
+                    if (placement.ShowCmd != PInvokeLibrary.ShowWindowCommands.Normal)
                     {
                         //alter the placement
-                        placement.ShowCmd = PinvokeLibrary.ShowWindowCommands.Normal;
+                        placement.ShowCmd = PInvokeLibrary.ShowWindowCommands.Normal;
                         //set the changes
-                        PinvokeLibrary.SetWindowPlacement(myRdp, ref placement);
+                        PInvokeLibrary.SetWindowPlacement(myRdp, ref placement);
                     }
 
-                    InteroperabilityFunctions.PinvokeLibrary.SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
+                    PInvokeLibrary.SetWindowPos(myRdp, IntPtr.Zero, x, y, width, height, 0);
 
                 }
                 else
@@ -799,10 +933,10 @@ namespace AutomateDownloader
 
         private void CloseRemoteSession(string ip)
         {
-            IntPtr myRdp = InteroperabilityFunctions.PinvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
+            IntPtr myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
             if (myRdp != IntPtr.Zero)
             {
-                InteroperabilityFunctions.PinvokeLibrary.SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
+                PInvokeLibrary.SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
                 System.Threading.Thread.Sleep(1000);
             }
         }
@@ -814,7 +948,7 @@ namespace AutomateDownloader
             {
                 try
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(windowHandle);
+                    PInvokeLibrary.SetForegroundWindow(windowHandle);
                     SendKeys.Send(key);
                     success = true;
                 }

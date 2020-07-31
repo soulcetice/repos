@@ -62,13 +62,13 @@ namespace Deploy_Files
 
         private void SendKey(IntPtr key, IntPtr handle)
         {
-            InteroperabilityFunctions.PinvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYDOWN, key, IntPtr.Zero);
-            InteroperabilityFunctions.PinvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYUP, key, IntPtr.Zero);
+            InteroperabilityFunctions.PInvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYDOWN, key, IntPtr.Zero);
+            InteroperabilityFunctions.PInvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYUP, key, IntPtr.Zero);
         }
 
         private void SendKeyHandled(IntPtr ncm, string key)
         {
-            InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+            InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
             bool success;
             do
             {
@@ -91,16 +91,16 @@ namespace Deploy_Files
             int num = 12;
             for (int i = 0; i < num; i++) //go up
             {
-                InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+                InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
                 SendKeyHandled(ncm, "{UP}");
             }
             for (int i = 0; i < num; i++) //expand all
             {
-                InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+                InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
                 SendKeyHandled(ncm, "{DOWN}");
                 for (int j = 0; j < 6; j++)
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+                    InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
                     SendKeyHandled(ncm, "{RIGHT}");
                 }
             }
@@ -108,15 +108,15 @@ namespace Deploy_Files
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+                    InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
                     SendKeyHandled(ncm, "{LEFT}");
                 }
-                InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+                InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
                 SendKeyHandled(ncm, "{UP}");
             }
-            InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+            InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
             SendKeyHandled(ncm, "{RIGHT}");
-            InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncm);
+            InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncm);
             SendKeyHandled(ncm, "{DOWN}"); //go to first dev station or whatever in the list
         }
 
@@ -131,8 +131,8 @@ namespace Deploy_Files
             var ncmWndClass = "s7tgtopx"; //ncm manager main window
             var anyPopupClass = "#32770"; //usually any popup
 
-            IntPtr ncmHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(ncmWndClass, null);
-            IntPtr tgtWndHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(anyPopupClass, null);
+            IntPtr ncmHandle = InteroperabilityFunctions.PInvokeLibrary.FindWindow(ncmWndClass, null);
+            IntPtr tgtWndHandle = InteroperabilityFunctions.PInvokeLibrary.FindWindow(anyPopupClass, null);
 
             //    IntPtr myRdp = FindWindow("TscShellContainerClass", "10.127.2.166 - Remote Desktop Connection");
             //    SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
@@ -159,7 +159,7 @@ namespace Deploy_Files
             //IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
             //SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
 
-            InteroperabilityFunctions.PinvokeLibrary.SetForegroundWindow(ncmHandle);
+            InteroperabilityFunctions.PInvokeLibrary.SetForegroundWindow(ncmHandle);
             System.Threading.Thread.Sleep(500);
             ResetExpansions(ncmHandle);
         }
@@ -188,24 +188,24 @@ namespace Deploy_Files
             var anyPopupClass = "#32770"; //usually any popup
 
 
-            hwnd = InteroperabilityFunctions.PinvokeLibrary.FindWindow(ncmWndClass, null);
+            hwnd = InteroperabilityFunctions.PInvokeLibrary.FindWindow(ncmWndClass, null);
 
             if (hwnd != IntPtr.Zero)
             {
                 //Select TreeView Item
-                var parent3 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(hwnd, IntPtr.Zero, "MDIClient", null);
-                var parent2 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:7fde068d", null);
-                var parent1 = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
-                var parent = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, null);
-                var treeHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", null);
+                var parent3 = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(hwnd, IntPtr.Zero, "MDIClient", null);
+                var parent2 = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:7fde068d", null);
+                var parent1 = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
+                var parent = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, null);
+                var treeHandle = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", null);
                 treeChild = treeHandle;
 
                 var t = new StringBuilder();
                 int b = 0;
-                var treeItem = InteroperabilityFunctions.PinvokeLibrary.SendMessage(treeChild, (int)WindowsMessages.TVM_GETCOUNT, 0, (IntPtr)b);
-                //treeItem = InteroperabilityFunctions.PinvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_NEXT, (IntPtr)treeItem);
-                //treeItem = InteroperabilityFunctions.PinvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_CHILD, (IntPtr)treeItem);
-                //InteroperabilityFunctions.PinvokeLibrary.SendMessage((int)treeChild, TVM_SELECTITEM, TVGN_CARET, (IntPtr)treeItem);
+                var treeItem = InteroperabilityFunctions.PInvokeLibrary.SendMessage(treeChild, (int)WindowsMessages.TVM_GETCOUNT, 0, (IntPtr)b);
+                //treeItem = InteroperabilityFunctions.PInvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_NEXT, (IntPtr)treeItem);
+                //treeItem = InteroperabilityFunctions.PInvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_CHILD, (IntPtr)treeItem);
+                //InteroperabilityFunctions.PInvokeLibrary.SendMessage((int)treeChild, TVM_SELECTITEM, TVGN_CARET, (IntPtr)treeItem);
 
 
                 // ...Continue with my automation...

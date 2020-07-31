@@ -36,7 +36,7 @@ namespace FileDialog
 
         public static void GetFilesInDialog()
         {
-            IntPtr hWnd = InteroperabilityFunctions.PinvokeLibrary.FindWindow(null, "Untitled - Notepad");
+            IntPtr hWnd = InteroperabilityFunctions.PInvokeLibrary.FindWindow(null, "Untitled - Notepad");
 
             if (hWnd != IntPtr.Zero)
             {
@@ -51,23 +51,23 @@ namespace FileDialog
 
                 Console.WriteLine("Open File Dialog is open");
 
-                IntPtr hwndButton = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(hWnd, IntPtr.Zero, "Button", "&Open");
+                IntPtr hwndButton = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(hWnd, IntPtr.Zero, "Button", "&Open");
                 Console.WriteLine("The handle of the Open button is " + hwndButton);
 
-                IntPtr FileDialogHandle = InteroperabilityFunctions.PinvokeLibrary.FindWindow(null, "Open");
+                IntPtr FileDialogHandle = InteroperabilityFunctions.PInvokeLibrary.FindWindow(null, "Open");
 
-                IntPtr iptrHWndControl = InteroperabilityFunctions.PinvokeLibrary.GetDlgItem(FileDialogHandle, 1148);
+                IntPtr iptrHWndControl = InteroperabilityFunctions.PInvokeLibrary.GetDlgItem(FileDialogHandle, 1148);
                 HandleRef hrefHWndTarget = new HandleRef(null, iptrHWndControl);
-                InteroperabilityFunctions.PinvokeLibrary.SendMessage(hrefHWndTarget, WM_SETTEXT, 0, "your file path");
+                InteroperabilityFunctions.PInvokeLibrary.SendMessage(hrefHWndTarget, WM_SETTEXT, 0, "your file path");
 
-                IntPtr opnButton = InteroperabilityFunctions.PinvokeLibrary.FindWindowEx(FileDialogHandle, IntPtr.Zero, "Open", null);
+                IntPtr opnButton = InteroperabilityFunctions.PInvokeLibrary.FindWindowEx(FileDialogHandle, IntPtr.Zero, "Open", null);
 
-                InteroperabilityFunctions.PinvokeLibrary.SendMessage((int)opnButton, BN_CLICKED, 0, IntPtr.Zero);
+                InteroperabilityFunctions.PInvokeLibrary.SendMessage((int)opnButton, BN_CLICKED, 0, IntPtr.Zero);
 
-                int len = (int)InteroperabilityFunctions.PinvokeLibrary.SendMessage(hrefHWndTarget, WM_GETTEXTLENGTH, 0, null);
+                int len = (int)InteroperabilityFunctions.PInvokeLibrary.SendMessage(hrefHWndTarget, WM_GETTEXTLENGTH, 0, null);
                 var sb = new StringBuilder(len + 1);
 
-                InteroperabilityFunctions.PinvokeLibrary.SendMessage(hrefHWndTarget, WM_GETTEXT, sb.Capacity, sb);
+                InteroperabilityFunctions.PInvokeLibrary.SendMessage(hrefHWndTarget, WM_GETTEXT, sb.Capacity, sb);
                 string text = sb.ToString();
                 FileInfo f = new FileInfo(text);
                 DirectoryInfo hdDirectoryInWhichToSearch = new DirectoryInfo(@"c:\");
@@ -109,8 +109,8 @@ namespace FileDialog
                 return 1;
             }
             long fileSize;
-            InteroperabilityFunctions.PinvokeLibrary.GetFileSizeEx(handle, out fileSize);
-            InteroperabilityFunctions.PinvokeLibrary.CloseHandle(handle);
+            InteroperabilityFunctions.PInvokeLibrary.GetFileSizeEx(handle, out fileSize);
+            InteroperabilityFunctions.PInvokeLibrary.CloseHandle(handle);
             return (uint)fileSize;
         }
     }

@@ -1002,6 +1002,8 @@ namespace WindowsUtilities
         LM_SETITEM = (WM_USER + 0x302),
         LM_GETITEM = (WM_USER + 0x303),
         TVIF_TEXT = 0x0001,
+        TVIF_HANDLE = 0x0010,
+        TVM_GETITEM = TV_FIRST + 62,
         MY_MAXLVITEMTEXT = 260
     }
 }

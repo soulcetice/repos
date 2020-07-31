@@ -8,10 +8,85 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.ComponentModel;
+using System.Drawing.Imaging;
+using System.Xml;
 
 namespace InteroperabilityFunctions
 {
-    public class PinvokeLibrary
+    public class MouseOperations
+    {
+        [Flags]
+        public enum MouseEventFlags
+        {
+            LeftDown = 0x00000002,
+            LeftUp = 0x00000004,
+            MiddleDown = 0x00000020,
+            MiddleUp = 0x00000040,
+            Move = 0x00000001,
+            Absolute = 0x00008000,
+            RightDown = 0x00000008,
+            RightUp = 0x00000010
+        }
+
+        [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SetCursorPos(int x, int y);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetCursorPos(out MousePoint lpMousePoint);
+
+        [DllImport("user32.dll")]
+        private static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
+
+        public static void SetCursorPosition(int x, int y)
+        {
+            SetCursorPos(x, y);
+        }
+
+        public static void SetCursorPosition(MousePoint point)
+        {
+            SetCursorPos(point.X, point.Y);
+        }
+
+        public static MousePoint GetCursorPosition()
+        {
+            MousePoint currentMousePoint;
+            var gotPoint = GetCursorPos(out currentMousePoint);
+            if (!gotPoint) { currentMousePoint = new MousePoint(0, 0); }
+            return currentMousePoint;
+        }
+
+        public static void MouseEvent(MouseEventFlags value)
+        {
+            MousePoint position = GetCursorPosition();
+
+            mouse_event
+                ((int)value,
+                 position.X,
+                 position.Y,
+                 0,
+                 0)
+                ;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MousePoint
+        {
+            public int X;
+            public int Y;
+
+            public MousePoint(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+    }
+
+    public class PInvokeLibrary
     {
         public enum ShowWindowCommands
         {
@@ -153,6 +228,9 @@ namespace InteroperabilityFunctions
         // Get a handle to an application window.
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
 
         // Define the SetWindowPos API function.
         [DllImport("user32.dll")]
@@ -391,5 +469,172 @@ namespace InteroperabilityFunctions
             Release = 0x8000,
         }
         #endregion
+    }
+
+    public class MyFunctions
+    {
+        public static PInvokeLibrary.WINDOWPLACEMENT GetPlacementByHandle(IntPtr handle)
+        {
+            // Prepare the WINDOWPLACEMENT structure.
+            var placement = new PInvokeLibrary.WINDOWPLACEMENT();
+            placement.Length = Marshal.SizeOf(placement);
+            // Get the window's current placement.
+            PInvokeLibrary.GetWindowPlacement(handle, ref placement);
+
+            return placement;
+        }
+
+        public static Rectangle RECTToRectangle(RECT rect)
+        {
+            var rectangle = new Rectangle()
+            {
+                X = rect.left,
+                Y = rect.top,
+                Height = rect.bottom - rect.top,
+                Width = rect.right - rect.left,
+                //Location = new Point(rect.left, rect.top),
+                //Size = new Size(rect.right - rect.left, rect.bottom - rect.top)
+            };
+            return rectangle;
+        }
+
+        public static Bitmap GetPngByHandle(IntPtr handle)
+        {
+            var rect = new RECT();
+
+            if (!PInvokeLibrary.SetForegroundWindow(handle))
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+
+            if (!PInvokeLibrary.GetWindowRect(handle, out rect))
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+
+            System.Threading.Thread.Sleep(500);
+
+            Rectangle windowSize = RECTToRectangle(rect);
+            Bitmap target = new Bitmap(windowSize.Width, windowSize.Height);
+            using (Graphics g = Graphics.FromImage(target))
+            {
+                g.CopyFromScreen(windowSize.X, windowSize.Y, 0, 0, new Size(windowSize.Width, windowSize.Height));
+            }
+
+            target.Save("output.png", System.Drawing.Imaging.ImageFormat.Png);
+
+            return target;
+        }
+
+        public static Bitmap ConvertPng(Bitmap minus, System.Drawing.Imaging.PixelFormat format)
+        {
+            Bitmap minusClone = new Bitmap(minus.Width, minus.Height,
+                format);
+            using (Graphics gr = Graphics.FromImage(minusClone))
+            {
+                gr.DrawImage(minus, new Rectangle(0, 0, minusClone.Width, minusClone.Height));
+            }
+            minus.Dispose();
+
+            return minusClone;
+        }
+
+        public static List<Point> FindBitmapsEntry(Bitmap sourceBitmap, Bitmap searchingBitmap)
+        {
+            #region Arguments check
+            searchingBitmap = ConvertPng(searchingBitmap, sourceBitmap.PixelFormat);
+
+            if (sourceBitmap == null || searchingBitmap == null)
+                throw new ArgumentNullException();
+
+            if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
+                throw new ArgumentException("Pixel formats aren't equal");
+
+            if (sourceBitmap.Width < searchingBitmap.Width || sourceBitmap.Height < searchingBitmap.Height)
+                throw new ArgumentException("Size of searchingBitmap bigger then sourceBitmap");
+
+            #endregion
+
+            var pixelFormatSize = Image.GetPixelFormatSize(sourceBitmap.PixelFormat) / 8;
+
+
+            // Copy sourceBitmap to byte array
+            var sourceBitmapData = sourceBitmap.LockBits(new Rectangle(0, 0, sourceBitmap.Width, sourceBitmap.Height),
+                ImageLockMode.ReadOnly, sourceBitmap.PixelFormat);
+            var sourceBitmapBytesLength = sourceBitmapData.Stride * sourceBitmap.Height;
+            var sourceBytes = new byte[sourceBitmapBytesLength];
+            Marshal.Copy(sourceBitmapData.Scan0, sourceBytes, 0, sourceBitmapBytesLength);
+            sourceBitmap.UnlockBits(sourceBitmapData);
+
+            // Copy searchingBitmap to byte array
+            var serchingBitmapData =
+                searchingBitmap.LockBits(new Rectangle(0, 0, searchingBitmap.Width, searchingBitmap.Height),
+                    ImageLockMode.ReadOnly, searchingBitmap.PixelFormat);
+            var serchingBitmapBytesLength = serchingBitmapData.Stride * searchingBitmap.Height;
+            var serchingBytes = new byte[serchingBitmapBytesLength];
+            Marshal.Copy(serchingBitmapData.Scan0, serchingBytes, 0, serchingBitmapBytesLength);
+            searchingBitmap.UnlockBits(serchingBitmapData);
+
+            var pointsList = new List<Point>();
+
+            // Serching entries
+            // minimazing serching zone
+            // sourceBitmap.Height - searchingBitmap.Height + 1
+            for (var mainY = 0; mainY < sourceBitmap.Height - searchingBitmap.Height + 1; mainY++)
+            {
+                var sourceY = mainY * sourceBitmapData.Stride;
+
+                for (var mainX = 0; mainX < sourceBitmap.Width - searchingBitmap.Width + 1; mainX++)
+                {// mainY & mainX - pixel coordinates of sourceBitmap
+                 // sourceY + sourceX = pointer in array sourceBitmap bytes
+                    var sourceX = mainX * pixelFormatSize;
+
+                    var isEqual = true;
+                    for (var c = 0; c < pixelFormatSize; c++)
+                    {// through the bytes in pixel
+                        if (sourceBytes[sourceX + sourceY + c] == serchingBytes[c])
+                            continue;
+                        isEqual = false;
+                        break;
+                    }
+
+                    if (!isEqual) continue;
+
+                    var isStop = false;
+
+                    // find fist equalation and now we go deeper) 
+                    for (var secY = 0; secY < searchingBitmap.Height; secY++)
+                    {
+                        var serchY = secY * serchingBitmapData.Stride;
+
+                        var sourceSecY = (mainY + secY) * sourceBitmapData.Stride;
+
+                        for (var secX = 0; secX < searchingBitmap.Width; secX++)
+                        {// secX & secY - coordinates of searchingBitmap
+                         // serchX + serchY = pointer in array searchingBitmap bytes
+
+                            var serchX = secX * pixelFormatSize;
+
+                            var sourceSecX = (mainX + secX) * pixelFormatSize;
+
+                            for (var c = 0; c < pixelFormatSize; c++)
+                            {// through the bytes in pixel
+                                if (sourceBytes[sourceSecX + sourceSecY + c] == serchingBytes[serchX + serchY + c]) continue;
+
+                                // not equal - abort iteration
+                                isStop = true;
+                                break;
+                            }
+
+                            if (isStop) break;
+                        }
+
+                        if (isStop) break;
+                    }
+
+                    if (!isStop)
+                    {// serching bitmap is found!!
+                        pointsList.Add(new Point(mainX, mainY));
+                    }
+                }
+            }
+            return pointsList;
+        }
     }
 }

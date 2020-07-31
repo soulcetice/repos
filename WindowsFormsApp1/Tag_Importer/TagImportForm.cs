@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using WindowHandle;
 using WindowsUtilities;
 using FileDialog;
+using InteroperabilityFunctions;
+using PInvoke;
 
 namespace Tag_Importer
 {
@@ -24,7 +26,7 @@ namespace Tag_Importer
 
         private void OpenTagMgmtMenu(IntPtr tagMgmt)
         {
-            SetForegroundWindow(tagMgmt);
+            PInvokeLibrary.SetForegroundWindow(tagMgmt);
 
             SendKeyHandled(tagMgmt, "(%)");
             SendKeyHandled(tagMgmt, "{RIGHT}");
@@ -44,7 +46,7 @@ namespace Tag_Importer
             {
                 try
                 {
-                    SetForegroundWindow(windowHandle);
+                    PInvokeLibrary.SetForegroundWindow(windowHandle);
                     SendKeys.SendWait(key);
                     success = true;
                 }
@@ -57,30 +59,6 @@ namespace Tag_Importer
                 }
             } while (success == false);
         }
-
-        #region ImportDlls
-        // Get a handle to an application window.
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        //get objects in window ?
-        [DllImport("user32.dll")]
-        public static extern IntPtr FindWindowEx(IntPtr handleParent, IntPtr handleChild, string className, string WindowName);
-
-        // Activate an application window.
-        [DllImport("user32.dll")]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, IntPtr lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
-        public static extern bool SendMessage(IntPtr hWnd, uint Msg, int wParam, StringBuilder lParam);
-        [DllImport("kernel32.dll")]
-        static extern int GetProcessId(IntPtr handle);
-
-        [DllImport("kernel32.dll")]
-        public static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
-        #endregion
 
         public List<string> ExtractWindowTextByHandle(IntPtr handle)
         {
@@ -97,7 +75,7 @@ namespace Tag_Importer
         {
 
             // Get the size of the string required to hold the window title (including trailing null.) 
-            Int32 titleSize = SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXTLENGTH, 0, IntPtr.Zero).ToInt32();
+            Int32 titleSize = PInvokeLibrary.SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXTLENGTH, 0, IntPtr.Zero).ToInt32();
 
             // If titleSize is 0, there is no title so return an empty string (or null)
             if (titleSize == 0)
@@ -105,7 +83,7 @@ namespace Tag_Importer
 
             StringBuilder title = new StringBuilder(titleSize + 1);
 
-            SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXT, title.Capacity, title);
+            PInvokeLibrary.SendMessage(hWnd, (int)WindowsMessages.WM_GETTEXT, title.Capacity, title);
 
             return title.ToString();
         }
@@ -127,28 +105,55 @@ namespace Tag_Importer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FileDialog.Program.GetFilesInDialog();
-            //ImportTags();
+            //FileDialog.Program.GetFilesInDialog();
+            ImportTags();
+        }
+
+        private void ClickOnExpandOrRevert(IntPtr handle, int x, int y)
+        {
+            PInvokeLibrary.SetForegroundWindow(handle);
+
+            MouseOperations.SetCursorPosition(x, y); //have to use the found minus/plus coordinates here
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
         }
 
         private void ImportTags()
         {
-            IntPtr tag = FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
+            IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
+            IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
+            IntPtr navBar = PInvokeLibrary.FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
+            IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
+            IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
 
-            IntPtr ccAx = FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
+            var trRect = new RECT();
+            PInvokeLibrary.SetForegroundWindow(trHandle);
+            PInvokeLibrary.GetWindowRect(trHandle, out trRect);
+            System.Threading.Thread.Sleep(500);
 
-            IntPtr navBar = FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
+            #region imageRecognitionAndAction
+            Bitmap img = MyFunctions.GetPngByHandle(trHandle);
+            Bitmap minus = (Bitmap)Bitmap.FromFile("minus.png");
+            Bitmap plus = (Bitmap)Bitmap.FromFile("plus.png");
 
-            IntPtr treeView = FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
+            List<Point> searchMinus = MyFunctions.FindBitmapsEntry(img, minus);
+            List<Point> searchPlus = MyFunctions.FindBitmapsEntry(img, plus);
 
-            IntPtr trHandle = FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", null);
+            //click on minus from image
+            ClickOnExpandOrRevert(tag, trRect.left + searchMinus[0].X, trRect.top + searchMinus[0].Y); //have to use the found minus/plus coordinates here
+
+            //do scrolling, same manner
+
+            minus.Dispose();
+            plus.Dispose();
+            img.Dispose();
+            #endregion
 
             OpenTagMgmtMenu(tag);
 
-            IntPtr importPopup = FindWindow("#32770", "Import");
+            IntPtr importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
             do
             {
-                try { importPopup = FindWindow("#32770", "Import"); }
+                try { importPopup = PInvokeLibrary.FindWindow("#32770", "Import"); }
                 catch (Exception exc)
                 {
                     Console.WriteLine(exc.Message);
@@ -178,8 +183,8 @@ namespace Tag_Importer
             //var sb = new StringBuilder(len + 1);
             //SendMessage(importPopup, (uint)WindowsMessages.WM_GETTEXT, sb.Capacity, sb);
 
-            IntPtr fileListParent = FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", null);
-            IntPtr fileList = FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
+            IntPtr fileListParent = PInvokeLibrary.FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", null);
+            IntPtr fileList = PInvokeLibrary.FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
 
 
             IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
