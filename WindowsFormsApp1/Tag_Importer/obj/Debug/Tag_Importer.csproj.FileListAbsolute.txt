@@ -1,0 +1,39 @@
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csprojAssemblyReference.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Form1.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Properties.Resources.resources
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.GenerateResource.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CoreCompileInputs.cache
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.pdb
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\NCM_Downloader.exe.config
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CopyComplete
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.exe
+Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Microsoft.Rest.ClientRuntime.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Newtonsoft.Json.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\System.Security.Cryptography.Cng.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Newtonsoft.Json.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\System.Security.Cryptography.Cng.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\PInvoke.Windows.Core.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\InteroperabilityFunctions.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\InteroperabilityFunctions.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.TagImportForm.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\x86\liblept1753.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\x86\libtesseract3052.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\x64\liblept1753.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\x64\libtesseract3052.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tesseract.dll

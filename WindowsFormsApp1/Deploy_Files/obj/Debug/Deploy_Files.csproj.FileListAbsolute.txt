@@ -26,3 +26,18 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_File
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CopyComplete
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\InteroperabilityFunctions.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\InteroperabilityFunctions.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.DeployForm.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\PInvoke.Windows.Core.xml
