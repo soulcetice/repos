@@ -13,7 +13,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using PInvoke;
-using InteroperabilityFunctions;
+using Interoperability;
 
 
 namespace AutomateDownloader

@@ -13,7 +13,7 @@ using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Xml;
 
-namespace InteroperabilityFunctions
+namespace Interoperability
 {
     public class MouseOperations
     {
@@ -530,7 +530,7 @@ namespace InteroperabilityFunctions
             {
                 gr.DrawImage(minus, new Rectangle(0, 0, minusClone.Width, minusClone.Height));
             }
-            minus.Dispose();
+            //minus.Dispose();
 
             return minusClone;
         }
@@ -538,7 +538,8 @@ namespace InteroperabilityFunctions
         public static List<Point> FindBitmapsEntry(Bitmap sourceBitmap, Bitmap searchingBitmap)
         {
             #region Arguments check
-            searchingBitmap = ConvertPng(searchingBitmap, sourceBitmap.PixelFormat);
+            if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
+                searchingBitmap = ConvertPng(searchingBitmap, sourceBitmap.PixelFormat);
 
             if (sourceBitmap == null || searchingBitmap == null)
                 throw new ArgumentNullException();
@@ -635,6 +636,122 @@ namespace InteroperabilityFunctions
                 }
             }
             return pointsList;
+        }
+
+        public static List<posLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
+        {
+            #region Arguments check
+            if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
+                searchingBitmap = ConvertPng(searchingBitmap, sourceBitmap.PixelFormat);
+
+            if (sourceBitmap == null || searchingBitmap == null)
+                throw new ArgumentNullException();
+
+            if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
+                throw new ArgumentException("Pixel formats aren't equal");
+
+            if (sourceBitmap.Width < searchingBitmap.Width || sourceBitmap.Height < searchingBitmap.Height)
+                throw new ArgumentException("Size of searchingBitmap bigger then sourceBitmap");
+
+            #endregion
+
+            var pixelFormatSize = Image.GetPixelFormatSize(sourceBitmap.PixelFormat) / 8;
+
+
+            // Copy sourceBitmap to byte array
+            var sourceBitmapData = sourceBitmap.LockBits(new Rectangle(0, 0, sourceBitmap.Width, sourceBitmap.Height),
+                ImageLockMode.ReadOnly, sourceBitmap.PixelFormat);
+            var sourceBitmapBytesLength = sourceBitmapData.Stride * sourceBitmap.Height;
+            var sourceBytes = new byte[sourceBitmapBytesLength];
+            Marshal.Copy(sourceBitmapData.Scan0, sourceBytes, 0, sourceBitmapBytesLength);
+            sourceBitmap.UnlockBits(sourceBitmapData);
+
+            // Copy searchingBitmap to byte array
+            var serchingBitmapData =
+                searchingBitmap.LockBits(new Rectangle(0, 0, searchingBitmap.Width, searchingBitmap.Height),
+                    ImageLockMode.ReadOnly, searchingBitmap.PixelFormat);
+            var serchingBitmapBytesLength = serchingBitmapData.Stride * searchingBitmap.Height;
+            var serchingBytes = new byte[serchingBitmapBytesLength];
+            Marshal.Copy(serchingBitmapData.Scan0, serchingBytes, 0, serchingBitmapBytesLength);
+            searchingBitmap.UnlockBits(serchingBitmapData);
+
+            var pointsList = new List<posLetter>();
+
+            // Serching entries
+            // minimazing serching zone
+            // sourceBitmap.Height - searchingBitmap.Height + 1
+            for (var mainY = 0; mainY < sourceBitmap.Height - searchingBitmap.Height + 1; mainY++)
+            {
+                var sourceY = mainY * sourceBitmapData.Stride;
+
+                for (var mainX = 0; mainX < sourceBitmap.Width - searchingBitmap.Width + 1; mainX++)
+                {// mainY & mainX - pixel coordinates of sourceBitmap
+                 // sourceY + sourceX = pointer in array sourceBitmap bytes
+                    var sourceX = mainX * pixelFormatSize;
+
+                    var isEqual = true;
+                    for (var c = 0; c < pixelFormatSize; c++)
+                    {// through the bytes in pixel
+                        if (sourceBytes[sourceX + sourceY + c] == serchingBytes[c])
+                            continue;
+                        isEqual = false;
+                        break;
+                    }
+
+                    if (!isEqual) continue;
+
+                    var isStop = false;
+
+                    // find fist equalation and now we go deeper) 
+                    for (var secY = 0; secY < searchingBitmap.Height; secY++)
+                    {
+                        var serchY = secY * serchingBitmapData.Stride;
+
+                        var sourceSecY = (mainY + secY) * sourceBitmapData.Stride;
+
+                        for (var secX = 0; secX < searchingBitmap.Width; secX++)
+                        {// secX & secY - coordinates of searchingBitmap
+                         // serchX + serchY = pointer in array searchingBitmap bytes
+
+                            var serchX = secX * pixelFormatSize;
+
+                            var sourceSecX = (mainX + secX) * pixelFormatSize;
+
+                            for (var c = 0; c < pixelFormatSize; c++)
+                            {// through the bytes in pixel
+                                int tol = 100;
+                                if (sourceBytes[sourceSecX + sourceSecY + c] > serchingBytes[serchX + serchY + c] - tol && sourceBytes[sourceSecX + sourceSecY + c] < serchingBytes[serchX + serchY + c] + tol)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    // not equal - abort iteration
+                                    isStop = true;
+                                    break;
+                                }
+                            }
+
+                            if (isStop) break;
+                        }
+
+                        if (isStop) break;
+                    }
+
+                    if (!isStop)
+                    {// serching bitmap is found!!
+                        pointsList.Add(new posLetter() { x = mainX, y = mainY, letter = myLetter });
+                    }
+                }
+            }
+            return pointsList;
+        }
+
+        public class posLetter
+        {
+            public int x;
+            public int y;
+            public string letter;
         }
     }
 }
