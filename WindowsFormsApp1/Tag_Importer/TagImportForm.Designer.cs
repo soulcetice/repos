@@ -51,6 +51,7 @@
             this.textBox1.Size = new System.Drawing.Size(352, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "C:\\Projects\\Tags";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // checkedListBox1
             // 
@@ -59,6 +60,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(271, 199);
             this.checkedListBox1.TabIndex = 2;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // checkBox1
             // 
@@ -70,7 +72,7 @@
             this.checkBox1.Text = "Select/Deselect All";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // TagImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -79,7 +81,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "TagImportForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -26,6 +26,7 @@ namespace Tag_Importer
         public TagImportForm()
         {
             InitializeComponent();
+            textBox1_TextChanged(textBox1, new EventArgs());
         }
 
         private IntPtr OpenTagMgmtMenu(IntPtr tagMgmt)
@@ -126,7 +127,6 @@ namespace Tag_Importer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //FileDialog.Program.GetFilesInDialog();
             ImportTags();
         }
 
@@ -162,141 +162,75 @@ namespace Tag_Importer
 
         private List<MyFunctions.PosLetter> GetCharactersInHandle(IntPtr handle)
         {
+            //only works for white background for now!!!
+            MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
             Bitmap img = MyFunctions.GetPngByHandle(handle);
             List<MyFunctions.PosLetter> allCharsFound = new List<MyFunctions.PosLetter>();
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_A.png"), "A"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_B.png"), "B"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_C.png"), "C"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_D.png"), "D"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_E.png"), "E"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_F.png"), "F"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_G.png"), "G"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_H.png"), "H"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_I.png"), "I"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_J.png"), "J"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_K.png"), "K"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_L.png"), "L"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_M.png"), "M"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_N.png"), "N"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_O.png"), "O"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_P.png"), "P"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_Q.png"), "Q"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_R.png"), "R"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_S.png"), "S"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_T.png"), "T"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_U.png"), "U"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_V.png"), "V"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_W.png"), "W"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_X.png"), "X"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_Y.png"), "Y"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/upper_Z.png"), "Z"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_A.png")), "A"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_B.png")), "B"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_C.png")), "C"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_D.png")), "D"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_E.png")), "E"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_F.png")), "F"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_G.png")), "G"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_H.png")), "H"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_I.png")), "I"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_J.png")), "J"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_K.png")), "K"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_L.png")), "L"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_M.png")), "M"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_N.png")), "N"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_O.png")), "O"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_P.png")), "P"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Q.png")), "Q"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_R.png")), "R"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_S.png")), "S"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_T.png")), "T"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_U.png")), "U"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_V.png")), "V"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_W.png")), "W"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_X.png")), "X"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Y.png")), "Y"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Z.png")), "Z"));
 
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_A.png"), "a"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_B.png"), "b"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_C.png"), "c"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_D.png"), "d"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_E.png"), "e"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_F.png"), "f"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_G.png"), "g"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_H.png"), "h"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_I.png"), "i"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_J.png"), "j"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_K.png"), "k"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_L.png"), "l"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_M.png"), "m"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_N.png"), "n"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_O.png"), "o"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_P.png"), "p"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_Q.png"), "q"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_R.png"), "r"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_S.png"), "s"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_T.png"), "t"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_U.png"), "u"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_V.png"), "v"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_W.png"), "w"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_X.png"), "x"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_Y.png"), "y"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_Z.png"), "z"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/lower_rf.png"), "rf"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_A.png")), "a"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_B.png")), "b"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_C.png")), "c"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_D.png")), "d"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_E.png")), "e"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_F.png")), "f"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_G.png")), "g"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_H.png")), "h"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_I.png")), "i"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_J.png")), "j"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_K.png")), "k"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_L.png")), "l"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_M.png")), "m"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_N.png")), "n"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_O.png")), "o"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_P.png")), "p"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Q.png")), "q"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_R.png")), "r"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_S.png")), "s"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_T.png")), "t"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_U.png")), "u"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_V.png")), "v"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_W.png")), "w"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_X.png")), "x"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Y.png")), "y"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Z.png")), "z"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_rf.png")), "rf"));
 
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/underscore.png"), "_"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/arond.png"), "@"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/#.png"), "#"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/1.png"), "1"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/2.png"), "2"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/3.png"), "3"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/4.png"), "4"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, (Bitmap)Image.FromFile("characters/5.png"), "5"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/underscore.png")), "_"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/arond.png")), "@"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/#.png")), "#"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/1.png")), "1"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/2.png")), "2"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/3.png")), "3"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/4.png")), "4"));
+            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/5.png")), "5"));
 
             return allCharsFound;
-        }
-
-        private List<string> GetTreeText(IntPtr trHandle)
-        {
-            //all characters should be taken at the same top value x to i can sort easily.
-
-            List<MyFunctions.PosLetter> allCharsFound = GetCharactersInHandle(trHandle);
-
-            Bitmap img = MyFunctions.GetPngByHandle(trHandle);
-            int imgHeight = img.Height;
-            img.Dispose();
-
-            var orderedChars = allCharsFound.OrderBy(c => c.y).ThenBy(c => c.x).ToList();
-
-            List<List<MyFunctions.PosLetter>> filterRows = new List<List<MyFunctions.PosLetter>>();
-            int firsty = 0;
-            int inc = -1;
-            foreach (MyFunctions.PosLetter c in orderedChars)
-            {
-                if (firsty == 0)
-                {
-                    firsty = c.y;
-                    filterRows.Add(new List<MyFunctions.PosLetter>());
-                    inc++;
-                };
-
-                if (c.y >= firsty && c.y < firsty + 15)
-                {
-                    filterRows[inc].Add(c);
-                }
-                else
-                {
-                    firsty = c.y;
-                    filterRows.Add(new List<MyFunctions.PosLetter>());
-                    inc++;
-                    filterRows[inc].Add(c);
-                }
-            }
-
-            var moreFilter = (from List<MyFunctions.PosLetter> row in filterRows
-                              select row.OrderBy(c => c.x).ToList()).ToList();
-
-            //each row is once every 20 px
-            List<string> allRows = new List<string>();
-            for (int i = 10; i < imgHeight; i += 20)
-            {
-                int lastx = -1;
-                List<MyFunctions.PosLetter> row = new List<MyFunctions.PosLetter>();
-                foreach (var c in from item in moreFilter
-                                  from c in
-                                      from c in item
-                                      where c.y > i - 10 && c.y < i + 10 && c.x > lastx
-                                      select c
-                                  select c)
-                {
-                    row.Add(c);
-                    lastx = c.x;
-                }
-
-                List<MyFunctions.PosLetter> orderedRow = row.OrderBy(c => c.x).ToList();
-                string myWord = "";
-                foreach (MyFunctions.PosLetter c in orderedRow)
-                {
-                    myWord += c.letter;
-                }
-                allRows.Add(myWord);
-            }
-            return allRows;
         }
 
         private void Testing()
@@ -306,6 +240,8 @@ namespace Tag_Importer
             //grafexe.HMIObjects ts;
 
             //grafexe.Application app;
+
+            //app = grafexe.ApplicationClass;
 
             //ts = app.ActiveDocument.HMIObjects;
 
@@ -318,25 +254,36 @@ namespace Tag_Importer
 
         private void ImportTags()
         {
+            #region tree view handle capture
             IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
             IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
             IntPtr navBar = PInvokeLibrary.FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
             IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
             IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
-
-            System.Threading.Thread.Sleep(100);
+            #endregion
 
             #region lookInDirectory
 
             DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
             FileInfo[] Files = dinfo.GetFiles("*.txt");
 
+            foreach (var elem in Files)
+            {
+                checkedListBox1.Items.Add(elem);
+            }
+
             #endregion
 
-            #region imageRecognitionAndAction
-            //List<string> rowData = GetTreeText(trHandle);
-            //int myElem = rowData.IndexOf("iTracking");
-            ExpandOrHideVisibleTree(tag, trHandle, expand: true);
+            #region image character recognition
+
+            //find required tag group in treeview, expand and scroll until found
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+            var myElem = rowData.FirstOrDefault(c => c.word == "iTracking");
+            //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
+
+            #endregion
+
+            #region delete variables
 
             //expand all tree elements and scroll until no expand is seen - in tag management only
 
@@ -360,20 +307,31 @@ namespace Tag_Importer
             //click on required tag group
 
             //focus on spreadsheet, ctrl+A , delete
-            //open import dialog
-
-            //do scrolling, same manner
 
             #endregion
 
+            #region open import dialog
+
+            isFirstImporting = true;
             foreach (var file in Files)
             {
                 ImportTagFile(tag, file);
             }
+
+            #endregion
+
+            MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
         }
+
+        private bool isFirstImporting;
 
         private void ImportTagFile(IntPtr tag, FileInfo f)
         {
+            if (isFirstImporting == false)
+            {
+                SendKeyHandled(tag, "(%)");
+                isFirstImporting = false;
+            }
             IntPtr importPopup = OpenTagMgmtMenu(tag);
             System.Threading.Thread.Sleep(500);
             //find files in import dialog
@@ -397,22 +355,46 @@ namespace Tag_Importer
 
             _ = PInvokeLibrary.GetWindowRect(fileList, out RECT fileListRect);
 
-            var fileName = Path.GetFileNameWithoutExtension(f.FullName);
-            var tagFile = filesInDialog.FirstOrDefault(c => c.word == fileName);
+            WordWithLocation tagFile = RobustFileChoice(f, filesInDialog);
 
             ClickInWindowAtXY(fileList, fileListRect.left + tagFile.x, fileListRect.top + tagFile.y);
             SendKeyHandled(fileList, "{ENTER}");
             System.Threading.Thread.Sleep(1000);
 
-            IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
-            if (confirmationPopup != IntPtr.Zero)
+            bool success = false;
+            do
             {
-                SendKeyHandled(confirmationPopup, "{ENTER}");
-                System.Threading.Thread.Sleep(500);
-            }
+                IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
+                if (confirmationPopup != IntPtr.Zero)
+                {
+                    SendKeyHandled(confirmationPopup, "{ENTER}");
+                    System.Threading.Thread.Sleep(1000);
+                    success = true;
+                }
+                if (confirmationPopup == IntPtr.Zero)
+                    System.Threading.Thread.Sleep(1000);
+            } while (success == false);
+        }
 
-            //IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
-            //Console.WriteLine("Done");
+        private static WordWithLocation RobustFileChoice(FileInfo f, List<WordWithLocation> filesInDialog)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(f.FullName);
+            var tagFile = filesInDialog.FirstOrDefault(c => c.word == fileName);
+            if (tagFile == null)
+            {
+                int levDist = 50;
+                string chosenFile = "";
+                foreach (var t in filesInDialog)
+                {
+                    if (LevenshteinDistance.Compute(fileName, t.word) < levDist)
+                    {
+                        levDist = LevenshteinDistance.Compute(fileName, t.word);
+                        chosenFile = t.word;
+                    }
+                }
+                tagFile = filesInDialog.FirstOrDefault(c => c.word == chosenFile);
+            }
+            return tagFile;
         }
 
         private List<WordWithLocation> GetWordsInHandle(IntPtr fileListParent)
@@ -512,5 +494,65 @@ namespace Tag_Importer
             }
             return result;
         }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
+            checkedListBox1.Items.Clear();
+            if (dinfo.Exists)
+            {
+                FileInfo[] Files = dinfo.GetFiles("*.txt");
+
+                foreach (var elem in Files)
+                {
+                    checkedListBox1.Items.Add(elem.Name);
+                }
+            }
+        }
     }
+
+    static class LevenshteinDistance
+    {
+        public static int Compute(string s, string t)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                if (string.IsNullOrEmpty(t))
+                    return 0;
+                return t.Length;
+            }
+
+            if (string.IsNullOrEmpty(t))
+            {
+                return s.Length;
+            }
+
+            int n = s.Length;
+            int m = t.Length;
+            int[,] d = new int[n + 1, m + 1];
+
+            // initialize the top and right of the table to 0, 1, 2, ...
+            for (int i = 0; i <= n; d[i, 0] = i++) ;
+            for (int j = 1; j <= m; d[0, j] = j++) ;
+
+            for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= m; j++)
+                {
+                    int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+                    int min1 = d[i - 1, j] + 1;
+                    int min2 = d[i, j - 1] + 1;
+                    int min3 = d[i - 1, j - 1] + cost;
+                    d[i, j] = Math.Min(Math.Min(min1, min2), min3);
+                }
+            }
+            return d[n, m];
+        }
+    }
+
 }

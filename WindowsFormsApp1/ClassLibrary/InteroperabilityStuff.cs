@@ -573,9 +573,17 @@ namespace Interoperability
                 g.CopyFromScreen(windowSize.X, windowSize.Y, 0, 0, new Size(windowSize.Width, windowSize.Height));
             }
 
-            target.Save("output.png", System.Drawing.Imaging.ImageFormat.Png);
+            target.MakeTransparent();
+
+            target.Save("output.png", System.Drawing.Imaging.ImageFormat.Png);            
 
             return target;
+        }
+
+        public static Bitmap MakeExistingTransparent(Bitmap img)
+        {
+            img.MakeTransparent();
+            return img;
         }
 
         public static Bitmap ConvertPng(Bitmap minus, System.Drawing.Imaging.PixelFormat format)
