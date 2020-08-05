@@ -16,6 +16,7 @@ using Interoperability;
 using PInvoke;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Forms.VisualStyles;
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -388,51 +389,96 @@ namespace Tag_Importer
             IntPtr fileListParent = PInvokeLibrary.FindWindowEx(CtrlNotifySink, IntPtr.Zero, "SHELLDLL_DefView", null);
             IntPtr fileList = PInvokeLibrary.FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
 
-            //sorting new list testing
-            var sorted = new List<dynamic>();
-            var toSort = GetCharactersInHandle(fileListParent).OrderBy(elem => elem.x).ThenBy(elem => elem.y).ToList();
+            var filesInDialog = GetWordsInHandle(fileListParent);
 
-            var nearest = distanceToNearestPointSquared(toSort[0], toSort);
+            _ = PInvokeLibrary.GetWindowRect(fileListParent, out RECT fileDialogRect);
 
-            for (int i = 0; i < toSort.Count; i++)
-            {
-                if (sorted.Count == 0)
-                {
-                    sorted.Add(toSort[0]);
-                }
-                var closest = Closest(toSort[i], toSort, 10, 10);
-                sorted.Add(closest);
-                toSort.Remove(toSort[i]);
-            }
-
-            foreach (var elem in sorted)
-            {
-                toSort.Remove(elem);
-            }
+            ClickOnExpandOrRevert(fileList, filesInDialog[0].x, filesInDialog[0].y);
 
             IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
 
             Console.WriteLine("Done");
         }
 
-        //first element of the list
-        //find the closest to this element
-        //add both to sorted list, 
-
-
-        private MyFunctions.PosLetter Closest(MyFunctions.PosLetter p, List<MyFunctions.PosLetter> points, int xtol, int ytol)
+        private List<WordWithLocation> GetWordsInHandle(IntPtr fileListParent)
         {
-            var closest = new MyFunctions.PosLetter();
-            foreach (var c in points)
+            //find y ranges
+            //smallest x for these ranges is the first letter
+            //then in these ranges, add all elements to the first letter to get the word
+
+            var sorted = new List<dynamic>();
+            var toSort = GetCharactersInHandle(fileListParent).OrderBy(elem => elem.y).ToList();
+
+            var yList = (from MyFunctions.PosLetter c in toSort
+                         select c.y).ToList();
+            List<int> yDifs = new List<int>();
+            for (int i = 1; i < yList.Count; i++)
             {
-                int dx = Math.Abs(p.x - c.x);
-                int dy = Math.Abs(p.y - c.y);
-                if (dy < ytol && dx < xtol && c != p)
+                yDifs.Add(yList[i] - yList[i - 1]);
+            }
+
+            //find y bands and group by band
+            var sortedList = new List<List<MyFunctions.PosLetter>>();
+            int j = -1;
+            for (int i = 0; i < yDifs.Count; i++)
+            {
+                //add first element and first character
+                if (sortedList.Count == 0)
                 {
-                    closest = c;
+                    sortedList.Add(new List<MyFunctions.PosLetter>());
+                    j++;
+                    sortedList[j].Add(toSort[i]);
+                }
+                else //add the rest
+                {
+                    if (yDifs[i] > 10) //the yband tolerance
+                    {
+                        sortedList.Add(new List<MyFunctions.PosLetter>());
+                        sortedList[j].Add(toSort[i]);
+                        j++;
+                    }
+                    else
+                    {
+                        sortedList[j].Add(toSort[i]);
+                    }
+                    if (i == yDifs.Count - 1) //add last element in whole set (smaller number of ydifs)
+                    {
+                        sortedList[j].Add(toSort[i + 1]);
+                    }
                 }
             }
-            return closest;
+
+            //sort
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                sortedList[i] = sortedList[i].OrderBy(c => c.x).ToList();
+            }
+
+            //group words
+            var words = new List<WordWithLocation>();
+            int iter = 0;
+            foreach (List<MyFunctions.PosLetter> word in sortedList)
+            {
+                words.Add(new WordWithLocation());
+                foreach (MyFunctions.PosLetter c in word)
+                {
+                    words[iter].word += c.letter;
+                    words[iter].x += c.x;
+                    words[iter].y += c.y;
+                }
+                words[iter].x = words[iter].x / words[iter].word.Length;
+                words[iter].y = words[iter].y / words[iter].word.Length;
+
+                iter++;
+            }
+            return words;
+        }
+
+        private class WordWithLocation
+        {
+            public int x;
+            public int y;
+            public string word;
         }
 
         public static List<IntPtr> GetAllChildrenWindowHandles(IntPtr hParent, int maxCount)

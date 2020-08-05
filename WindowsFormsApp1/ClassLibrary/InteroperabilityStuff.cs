@@ -707,7 +707,6 @@ namespace Interoperability
 
             if (sourceBitmap.Width < searchingBitmap.Width || sourceBitmap.Height < searchingBitmap.Height)
                 throw new ArgumentException("Size of searchingBitmap bigger then sourceBitmap");
-
             #endregion
 
             var pixelFormatSize = Image.GetPixelFormatSize(sourceBitmap.PixelFormat) / 8;
