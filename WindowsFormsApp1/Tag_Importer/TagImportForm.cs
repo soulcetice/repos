@@ -130,7 +130,7 @@ namespace Tag_Importer
             ImportTags();
         }
 
-        private void ClickOnExpandOrRevert(IntPtr handle, int x, int y)
+        private void ClickInWindowAtXY(IntPtr handle, int x, int y)
         {
             PInvokeLibrary.SetForegroundWindow(handle);
 
@@ -153,7 +153,7 @@ namespace Tag_Importer
                 for (int i = 0; i < src.Count; i++)
                 {
                     if (src[i].Y != 6 && src[i].X == 7) break;
-                    ClickOnExpandOrRevert(tagMgmt, trRect.left + src[i].X, trRect.top + src[i].Y); //have to use the found minus/plus coordinates here
+                    ClickInWindowAtXY(tagMgmt, trRect.left + src[i].X, trRect.top + src[i].Y); //have to use the found minus/plus coordinates here
                 }
             } while (src.Count > 0);
 
@@ -366,15 +366,19 @@ namespace Tag_Importer
 
             #endregion
 
+            foreach (var file in Files)
+            {
+                ImportTagFile(tag, file);
+            }
+        }
 
+        private void ImportTagFile(IntPtr tag, FileInfo f)
+        {
             IntPtr importPopup = OpenTagMgmtMenu(tag);
-
-            System.Threading.Thread.Sleep(1000);
-
+            System.Threading.Thread.Sleep(500);
             //find files in import dialog
             IntPtr duiview = PInvokeLibrary.FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", "");
             IntPtr directuihwnd = PInvokeLibrary.FindWindowEx(duiview, IntPtr.Zero, "DirectUIHWND", "");
-
             var ctrlNotifySinks = GetAllChildrenWindowHandles(directuihwnd, 5);
 
             int oldWidth = 0;
@@ -391,13 +395,24 @@ namespace Tag_Importer
 
             var filesInDialog = GetWordsInHandle(fileListParent);
 
-            _ = PInvokeLibrary.GetWindowRect(fileListParent, out RECT fileDialogRect);
+            _ = PInvokeLibrary.GetWindowRect(fileList, out RECT fileListRect);
 
-            ClickOnExpandOrRevert(fileList, filesInDialog[0].x, filesInDialog[0].y);
+            var fileName = Path.GetFileNameWithoutExtension(f.FullName);
+            var tagFile = filesInDialog.FirstOrDefault(c => c.word == fileName);
 
-            IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
+            ClickInWindowAtXY(fileList, fileListRect.left + tagFile.x, fileListRect.top + tagFile.y);
+            SendKeyHandled(fileList, "{ENTER}");
+            System.Threading.Thread.Sleep(1000);
 
-            Console.WriteLine("Done");
+            IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
+            if (confirmationPopup != IntPtr.Zero)
+            {
+                SendKeyHandled(confirmationPopup, "{ENTER}");
+                System.Threading.Thread.Sleep(500);
+            }
+
+            //IntPtr addressBar = GetChildBySubstring("Address:", importPopup);
+            //Console.WriteLine("Done");
         }
 
         private List<WordWithLocation> GetWordsInHandle(IntPtr fileListParent)
