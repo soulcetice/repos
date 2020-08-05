@@ -17,6 +17,7 @@ using PInvoke;
 using System.IO;
 using Microsoft.Win32;
 using System.Windows.Forms.VisualStyles;
+using System.Drawing.Imaging;
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -149,7 +150,7 @@ namespace Tag_Importer
             do //extend or hide all visible
             {
                 img = MyFunctions.GetPngByHandle(trHandle);
-                src = MyFunctions.FindBitmapsEntry(img, find);
+                src = Find(img, find);
                 for (int i = 0; i < src.Count; i++)
                 {
                     if (src[i].Y != 6 && src[i].X == 7) break;
@@ -166,69 +167,69 @@ namespace Tag_Importer
             MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
             Bitmap img = MyFunctions.GetPngByHandle(handle);
             List<MyFunctions.PosLetter> allCharsFound = new List<MyFunctions.PosLetter>();
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_A.png")), "A"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_B.png")), "B"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_C.png")), "C"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_D.png")), "D"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_E.png")), "E"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_F.png")), "F"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_G.png")), "G"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_H.png")), "H"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_I.png")), "I"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_J.png")), "J"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_K.png")), "K"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_L.png")), "L"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_M.png")), "M"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_N.png")), "N"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_O.png")), "O"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_P.png")), "P"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Q.png")), "Q"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_R.png")), "R"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_S.png")), "S"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_T.png")), "T"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_U.png")), "U"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_V.png")), "V"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_W.png")), "W"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_X.png")), "X"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Y.png")), "Y"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Z.png")), "Z"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_A.png")), "A"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_B.png")), "B"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_C.png")), "C"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_D.png")), "D"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_E.png")), "E"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_F.png")), "F"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_G.png")), "G"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_H.png")), "H"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_I.png")), "I"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_J.png")), "J"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_K.png")), "K"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_L.png")), "L"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_M.png")), "M"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_N.png")), "N"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_O.png")), "O"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_P.png")), "P"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Q.png")), "Q"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_R.png")), "R"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_S.png")), "S"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_T.png")), "T"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_U.png")), "U"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_V.png")), "V"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_W.png")), "W"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_X.png")), "X"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Y.png")), "Y"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/upper_Z.png")), "Z"));
 
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_A.png")), "a"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_B.png")), "b"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_C.png")), "c"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_D.png")), "d"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_E.png")), "e"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_F.png")), "f"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_G.png")), "g"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_H.png")), "h"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_I.png")), "i"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_J.png")), "j"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_K.png")), "k"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_L.png")), "l"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_M.png")), "m"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_N.png")), "n"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_O.png")), "o"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_P.png")), "p"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Q.png")), "q"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_R.png")), "r"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_S.png")), "s"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_T.png")), "t"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_U.png")), "u"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_V.png")), "v"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_W.png")), "w"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_X.png")), "x"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Y.png")), "y"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Z.png")), "z"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_rf.png")), "rf"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_A.png")), "a"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_B.png")), "b"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_C.png")), "c"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_D.png")), "d"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_E.png")), "e"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_F.png")), "f"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_G.png")), "g"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_H.png")), "h"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_I.png")), "i"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_J.png")), "j"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_K.png")), "k"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_L.png")), "l"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_M.png")), "m"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_N.png")), "n"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_O.png")), "o"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_P.png")), "p"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Q.png")), "q"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_R.png")), "r"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_S.png")), "s"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_T.png")), "t"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_U.png")), "u"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_V.png")), "v"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_W.png")), "w"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_X.png")), "x"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Y.png")), "y"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_Z.png")), "z"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/lower_rf.png")), "rf"));
 
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/underscore.png")), "_"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/arond.png")), "@"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/#.png")), "#"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/1.png")), "1"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/2.png")), "2"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/3.png")), "3"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/4.png")), "4"));
-            allCharsFound.AddRange(MyFunctions.FindLetters(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/5.png")), "5"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/underscore.png")), "_"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/arond.png")), "@"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/#.png")), "#"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/1.png")), "1"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/2.png")), "2"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/3.png")), "3"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/4.png")), "4"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/5.png")), "5"));
 
             return allCharsFound;
         }
@@ -513,6 +514,121 @@ namespace Tag_Importer
                     checkedListBox1.Items.Add(elem.Name);
                 }
             }
+        }
+
+
+        public List<Point> Find(Bitmap haystack, Bitmap needle)
+        {
+            if (null == haystack || null == needle)
+            {
+                return null;
+            }
+            if (haystack.Width < needle.Width || haystack.Height < needle.Height)
+            {
+                return null;
+            }
+
+            var haystackArray = GetPixelArray(haystack);
+            var needleArray = GetPixelArray(needle);
+            var list = new List<Point>();
+
+            foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
+            {
+                if (IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1))
+                {
+                    list.Add(firstLineMatchPoint);
+                }
+            }
+
+            return list;
+        }
+
+        public List<MyFunctions.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
+        {
+            if (null == haystack || null == needle)
+            {
+                return null;
+            }
+            if (haystack.Width < needle.Width || haystack.Height < needle.Height)
+            {
+                return null;
+            }
+
+            var haystackArray = GetPixelArray(haystack);
+            var needleArray = GetPixelArray(needle);
+            var list = new List<MyFunctions.PosLetter>();
+
+            foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
+            {
+                if (IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1))
+                {
+                    list.Add(new MyFunctions.PosLetter()
+                    {
+                        letter = l,
+                        x = firstLineMatchPoint.X,
+                        y = firstLineMatchPoint.Y
+                    });
+                }
+            }
+
+            return list;
+        }
+        private int[][] GetPixelArray(Bitmap bitmap)
+        {
+            var result = new int[bitmap.Height][];
+            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly,
+                PixelFormat.Format32bppArgb);
+
+            for (int y = 0; y < bitmap.Height; ++y)
+            {
+                result[y] = new int[bitmap.Width];
+                Marshal.Copy(bitmapData.Scan0 + y * bitmapData.Stride, result[y], 0, result[y].Length);
+            }
+
+            bitmap.UnlockBits(bitmapData);
+
+            return result;
+        }
+
+        private IEnumerable<Point> FindMatch(IEnumerable<int[]> haystackLines, int[] needleLine)
+        {
+            var y = 0;
+            foreach (var haystackLine in haystackLines)
+            {
+                for (int x = 0, n = haystackLine.Length - needleLine.Length; x < n; ++x)
+                {
+                    if (ContainSameElements(haystackLine, x, needleLine, 0, needleLine.Length))
+                    {
+                        yield return new Point(x, y);
+                    }
+                }
+                y += 1;
+            }
+        }
+
+        private bool ContainSameElements(int[] first, int firstStart, int[] second, int secondStart, int length)
+        {
+            for (int i = 0; i < length; ++i)
+            {
+                if (first[i + firstStart] != second[i + secondStart])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool IsNeedlePresentAtLocation(int[][] haystack, int[][] needle, Point point, int alreadyVerified)
+        {
+            //we already know that "alreadyVerified" lines already match, so skip them
+            for (int y = alreadyVerified; y < needle.Length; ++y)
+            {
+                if (!ContainSameElements(haystack[y + point.Y], point.X, needle[y], 0, needle[y].Length))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
