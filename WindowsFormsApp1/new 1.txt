@@ -1,0 +1,8 @@
+minDist = infinity
+for i = 1 to length(P) - 1 do
+    for j = i + 1 to length(P) do
+        let p = P[i], q = P[j]
+        if dist(p, q) < minDist  then
+            minDist = dist(p, q)
+            closestPair = (p, q)
+return closestPair

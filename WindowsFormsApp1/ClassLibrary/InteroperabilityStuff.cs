@@ -340,7 +340,63 @@ namespace Interoperability
         [DllImport("kernel32.dll")]
         static extern IntPtr FindClose(IntPtr pff);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr GetWindow(IntPtr hWnd, GetWindowType uCmd);
+
         #endregion
+
+
+        public enum GetWindowType : uint
+        {
+            /// <summary>
+            /// The retrieved handle identifies the window of the same type that is highest in the Z order.
+            /// <para/>
+            /// If the specified window is a topmost window, the handle identifies a topmost window.
+            /// If the specified window is a top-level window, the handle identifies a top-level window.
+            /// If the specified window is a child window, the handle identifies a sibling window.
+            /// </summary>
+            GW_HWNDFIRST = 0,
+            /// <summary>
+            /// The retrieved handle identifies the window of the same type that is lowest in the Z order.
+            /// <para />
+            /// If the specified window is a topmost window, the handle identifies a topmost window.
+            /// If the specified window is a top-level window, the handle identifies a top-level window.
+            /// If the specified window is a child window, the handle identifies a sibling window.
+            /// </summary>
+            GW_HWNDLAST = 1,
+            /// <summary>
+            /// The retrieved handle identifies the window below the specified window in the Z order.
+            /// <para />
+            /// If the specified window is a topmost window, the handle identifies a topmost window.
+            /// If the specified window is a top-level window, the handle identifies a top-level window.
+            /// If the specified window is a child window, the handle identifies a sibling window.
+            /// </summary>
+            GW_HWNDNEXT = 2,
+            /// <summary>
+            /// The retrieved handle identifies the window above the specified window in the Z order.
+            /// <para />
+            /// If the specified window is a topmost window, the handle identifies a topmost window.
+            /// If the specified window is a top-level window, the handle identifies a top-level window.
+            /// If the specified window is a child window, the handle identifies a sibling window.
+            /// </summary>
+            GW_HWNDPREV = 3,
+            /// <summary>
+            /// The retrieved handle identifies the specified window's owner window, if any.
+            /// </summary>
+            GW_OWNER = 4,
+            /// <summary>
+            /// The retrieved handle identifies the child window at the top of the Z order,
+            /// if the specified window is a parent window; otherwise, the retrieved handle is NULL.
+            /// The function examines only child windows of the specified window. It does not examine descendant windows.
+            /// </summary>
+            GW_CHILD = 5,
+            /// <summary>
+            /// The retrieved handle identifies the enabled popup window owned by the specified window (the
+            /// search uses the first such window found using GW_HWNDNEXT); otherwise, if there are no enabled
+            /// popup windows, the retrieved handle is that of the specified window.
+            /// </summary>
+            GW_ENABLEDPOPUP = 6
+        }
 
         public struct WIN32_FIND_DATA
         {
@@ -530,7 +586,6 @@ namespace Interoperability
             {
                 gr.DrawImage(minus, new Rectangle(0, 0, minusClone.Width, minusClone.Height));
             }
-            //minus.Dispose();
 
             return minusClone;
         }
@@ -564,18 +619,18 @@ namespace Interoperability
             sourceBitmap.UnlockBits(sourceBitmapData);
 
             // Copy searchingBitmap to byte array
-            var serchingBitmapData =
+            var searchingBitmapData =
                 searchingBitmap.LockBits(new Rectangle(0, 0, searchingBitmap.Width, searchingBitmap.Height),
                     ImageLockMode.ReadOnly, searchingBitmap.PixelFormat);
-            var serchingBitmapBytesLength = serchingBitmapData.Stride * searchingBitmap.Height;
-            var serchingBytes = new byte[serchingBitmapBytesLength];
-            Marshal.Copy(serchingBitmapData.Scan0, serchingBytes, 0, serchingBitmapBytesLength);
-            searchingBitmap.UnlockBits(serchingBitmapData);
+            var searchingBitmapBytesLength = searchingBitmapData.Stride * searchingBitmap.Height;
+            var searchingBytes = new byte[searchingBitmapBytesLength];
+            Marshal.Copy(searchingBitmapData.Scan0, searchingBytes, 0, searchingBitmapBytesLength);
+            searchingBitmap.UnlockBits(searchingBitmapData);
 
             var pointsList = new List<Point>();
 
             // Serching entries
-            // minimazing serching zone
+            // minimazing searching zone
             // sourceBitmap.Height - searchingBitmap.Height + 1
             for (var mainY = 0; mainY < sourceBitmap.Height - searchingBitmap.Height + 1; mainY++)
             {
@@ -589,7 +644,7 @@ namespace Interoperability
                     var isEqual = true;
                     for (var c = 0; c < pixelFormatSize; c++)
                     {// through the bytes in pixel
-                        if (sourceBytes[sourceX + sourceY + c] == serchingBytes[c])
+                        if (sourceBytes[sourceX + sourceY + c] == searchingBytes[c])
                             continue;
                         isEqual = false;
                         break;
@@ -602,21 +657,21 @@ namespace Interoperability
                     // find fist equalation and now we go deeper) 
                     for (var secY = 0; secY < searchingBitmap.Height; secY++)
                     {
-                        var serchY = secY * serchingBitmapData.Stride;
+                        var searchY = secY * searchingBitmapData.Stride;
 
                         var sourceSecY = (mainY + secY) * sourceBitmapData.Stride;
 
                         for (var secX = 0; secX < searchingBitmap.Width; secX++)
                         {// secX & secY - coordinates of searchingBitmap
-                         // serchX + serchY = pointer in array searchingBitmap bytes
+                         // searchX + searchY = pointer in array searchingBitmap bytes
 
-                            var serchX = secX * pixelFormatSize;
+                            var searchX = secX * pixelFormatSize;
 
                             var sourceSecX = (mainX + secX) * pixelFormatSize;
 
                             for (var c = 0; c < pixelFormatSize; c++)
                             {// through the bytes in pixel
-                                if (sourceBytes[sourceSecX + sourceSecY + c] == serchingBytes[serchX + serchY + c]) continue;
+                                if (sourceBytes[sourceSecX + sourceSecY + c] == searchingBytes[searchX + searchY + c]) continue;
 
                                 // not equal - abort iteration
                                 isStop = true;
@@ -630,7 +685,7 @@ namespace Interoperability
                     }
 
                     if (!isStop)
-                    {// serching bitmap is found!!
+                    {// searching bitmap is found!!
                         pointsList.Add(new Point(mainX, mainY));
                     }
                 }
@@ -638,7 +693,7 @@ namespace Interoperability
             return pointsList;
         }
 
-        public static List<posLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
+        public static List<PosLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
         {
             #region Arguments check
             if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
@@ -667,18 +722,18 @@ namespace Interoperability
             sourceBitmap.UnlockBits(sourceBitmapData);
 
             // Copy searchingBitmap to byte array
-            var serchingBitmapData =
+            var searchingBitmapData =
                 searchingBitmap.LockBits(new Rectangle(0, 0, searchingBitmap.Width, searchingBitmap.Height),
                     ImageLockMode.ReadOnly, searchingBitmap.PixelFormat);
-            var serchingBitmapBytesLength = serchingBitmapData.Stride * searchingBitmap.Height;
-            var serchingBytes = new byte[serchingBitmapBytesLength];
-            Marshal.Copy(serchingBitmapData.Scan0, serchingBytes, 0, serchingBitmapBytesLength);
-            searchingBitmap.UnlockBits(serchingBitmapData);
+            var searchingBitmapBytesLength = searchingBitmapData.Stride * searchingBitmap.Height;
+            var searchingBytes = new byte[searchingBitmapBytesLength];
+            Marshal.Copy(searchingBitmapData.Scan0, searchingBytes, 0, searchingBitmapBytesLength);
+            searchingBitmap.UnlockBits(searchingBitmapData);
 
-            var pointsList = new List<posLetter>();
+            var pointsList = new List<PosLetter>();
 
             // Serching entries
-            // minimazing serching zone
+            // minimazing searching zone
             // sourceBitmap.Height - searchingBitmap.Height + 1
             for (var mainY = 0; mainY < sourceBitmap.Height - searchingBitmap.Height + 1; mainY++)
             {
@@ -692,7 +747,7 @@ namespace Interoperability
                     var isEqual = true;
                     for (var c = 0; c < pixelFormatSize; c++)
                     {// through the bytes in pixel
-                        if (sourceBytes[sourceX + sourceY + c] == serchingBytes[c])
+                        if (sourceBytes[sourceX + sourceY + c] == searchingBytes[c])
                             continue;
                         isEqual = false;
                         break;
@@ -705,22 +760,22 @@ namespace Interoperability
                     // find fist equalation and now we go deeper) 
                     for (var secY = 0; secY < searchingBitmap.Height; secY++)
                     {
-                        var serchY = secY * serchingBitmapData.Stride;
+                        var searchY = secY * searchingBitmapData.Stride;
 
                         var sourceSecY = (mainY + secY) * sourceBitmapData.Stride;
 
                         for (var secX = 0; secX < searchingBitmap.Width; secX++)
                         {// secX & secY - coordinates of searchingBitmap
-                         // serchX + serchY = pointer in array searchingBitmap bytes
+                         // searchX + searchY = pointer in array searchingBitmap bytes
 
-                            var serchX = secX * pixelFormatSize;
+                            var searchX = secX * pixelFormatSize;
 
                             var sourceSecX = (mainX + secX) * pixelFormatSize;
 
                             for (var c = 0; c < pixelFormatSize; c++)
                             {// through the bytes in pixel
-                                int tol = 100;
-                                if (sourceBytes[sourceSecX + sourceSecY + c] > serchingBytes[serchX + serchY + c] - tol && sourceBytes[sourceSecX + sourceSecY + c] < serchingBytes[serchX + serchY + c] + tol)
+                                int tol = 90;
+                                if (sourceBytes[sourceSecX + sourceSecY + c] > searchingBytes[searchX + searchY + c] - tol && sourceBytes[sourceSecX + sourceSecY + c] < searchingBytes[searchX + searchY + c] + tol)
                                 {
                                     continue;
                                 }
@@ -739,15 +794,15 @@ namespace Interoperability
                     }
 
                     if (!isStop)
-                    {// serching bitmap is found!!
-                        pointsList.Add(new posLetter() { x = mainX, y = mainY, letter = myLetter });
+                    {// searching bitmap is found!!
+                        pointsList.Add(new PosLetter() { x = mainX, y = mainY, letter = myLetter });
                     }
                 }
             }
             return pointsList;
         }
 
-        public class posLetter
+        public class PosLetter
         {
             public int x;
             public int y;
