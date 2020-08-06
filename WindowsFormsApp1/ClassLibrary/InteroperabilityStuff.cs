@@ -600,7 +600,7 @@ namespace Interoperability
             return minusClone;
         }
 
-        public static List<Point> FindBitmapsEntry(Bitmap sourceBitmap, Bitmap searchingBitmap)
+        private static List<Point> FindBitmapsEntry(Bitmap sourceBitmap, Bitmap searchingBitmap)
         {
             #region Arguments check
             if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
@@ -703,7 +703,7 @@ namespace Interoperability
             return pointsList;
         }
 
-        public static List<PosLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
+        private static List<PosLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
         {
             #region Arguments check
             if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)

@@ -97,6 +97,7 @@ namespace Tag_Importer
             } while (success == false);
         }
 
+        #region currently unused
         public string GetControlText(IntPtr hWnd)
         {
             // Get the size of the string required to hold the window title (including trailing null.) 
@@ -125,6 +126,27 @@ namespace Tag_Importer
             }
             return IntPtr.Zero;
         }
+
+        private void Testing()
+        {
+            #region grafexe
+            //grafexe.HMIObject t;
+            //grafexe.HMIObjects ts;
+
+            //grafexe.Application app;
+
+            //app = grafexe.ApplicationClass;
+
+            //ts = app.ActiveDocument.HMIObjects;
+
+            //foreach (var obj in ts)
+            //{
+
+            //}
+            #endregion
+        }
+
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -234,25 +256,6 @@ namespace Tag_Importer
             return allCharsFound;
         }
 
-        private void Testing()
-        {
-            #region grafexe
-            //grafexe.HMIObject t;
-            //grafexe.HMIObjects ts;
-
-            //grafexe.Application app;
-
-            //app = grafexe.ApplicationClass;
-
-            //ts = app.ActiveDocument.HMIObjects;
-
-            //foreach (var obj in ts)
-            //{
-
-            //}
-            #endregion
-        }
-
         private void ImportTags()
         {
             #region tree view handle capture
@@ -279,7 +282,16 @@ namespace Tag_Importer
 
             //find required tag group in treeview, expand and scroll until found
             List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
-            var myElem = rowData.FirstOrDefault(c => c.word == "iTracking");
+            WordWithLocation myElem = null;
+            string FindThis = "iTracker";
+            myElem = rowData.FirstOrDefault(c => c.word == FindThis);
+            if (myElem == null) //only do this after i have the entire tree model (all the words with locations)
+            {
+                myElem = FindClosestMatch(rowData, FindThis);
+            }
+
+            Console.WriteLine("Found");
+
             //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
 
             #endregion
@@ -324,6 +336,7 @@ namespace Tag_Importer
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
         }
 
+
         private bool isFirstImporting;
 
         private void ImportTagFile(IntPtr tag, FileInfo f)
@@ -338,11 +351,11 @@ namespace Tag_Importer
             //find files in import dialog
             IntPtr duiview = PInvokeLibrary.FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", "");
             IntPtr directuihwnd = PInvokeLibrary.FindWindowEx(duiview, IntPtr.Zero, "DirectUIHWND", "");
-            var ctrlNotifySinks = GetAllChildrenWindowHandles(directuihwnd, 5);
+            List<IntPtr> ctrlNotifySinks = GetAllChildrenWindowHandles(directuihwnd, 5);
 
             int oldWidth = 0;
             IntPtr CtrlNotifySink = IntPtr.Zero;
-            foreach (var elem in ctrlNotifySinks)
+            foreach (IntPtr elem in ctrlNotifySinks)
             {
                 _ = PInvokeLibrary.GetWindowRect(elem, out RECT rect);
                 if (rect.right - rect.left > oldWidth) CtrlNotifySink = elem;
@@ -375,6 +388,27 @@ namespace Tag_Importer
                 if (confirmationPopup == IntPtr.Zero)
                     System.Threading.Thread.Sleep(1000);
             } while (success == false);
+        }
+
+        private static WordWithLocation FindClosestMatch(List<WordWithLocation> rowData, string FindThis)
+        {
+            WordWithLocation myElem;
+            do
+            {
+                myElem = rowData.FirstOrDefault(c => c.word == FindThis);
+                int levDist = 50;
+                WordWithLocation chosenFile = new WordWithLocation();
+                foreach (var c in rowData)
+                {
+                    if (LevenshteinDistance.Compute(FindThis, c.word) < levDist)
+                    {
+                        levDist = LevenshteinDistance.Compute(FindThis, c.word);
+                        chosenFile = c;
+                    }
+                }
+                myElem = chosenFile;
+            } while (myElem == null);
+            return myElem;
         }
 
         private static WordWithLocation RobustFileChoice(FileInfo f, List<WordWithLocation> filesInDialog)
@@ -429,7 +463,7 @@ namespace Tag_Importer
                 }
                 else //add the rest
                 {
-                    if (yDifs[i] > 10) //the yband tolerance
+                    if (yDifs[i] > 7) //the yband tolerance
                     {
                         sortedList.Add(new List<MyFunctions.PosLetter>());
                         sortedList[j].Add(toSort[i]);
@@ -472,13 +506,6 @@ namespace Tag_Importer
             return words;
         }
 
-        private class WordWithLocation
-        {
-            public int x;
-            public int y;
-            public string word;
-        }
-
         public static List<IntPtr> GetAllChildrenWindowHandles(IntPtr hParent, int maxCount)
         {
             List<IntPtr> result = new List<IntPtr>();
@@ -516,7 +543,7 @@ namespace Tag_Importer
             }
         }
 
-
+        #region OptimumBitmapFind
         public List<Point> Find(Bitmap haystack, Bitmap needle)
         {
             if (null == haystack || null == needle)
@@ -542,7 +569,6 @@ namespace Tag_Importer
 
             return list;
         }
-
         public List<MyFunctions.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
         {
             if (null == haystack || null == needle)
@@ -589,7 +615,6 @@ namespace Tag_Importer
 
             return result;
         }
-
         private IEnumerable<Point> FindMatch(IEnumerable<int[]> haystackLines, int[] needleLine)
         {
             var y = 0;
@@ -605,7 +630,6 @@ namespace Tag_Importer
                 y += 1;
             }
         }
-
         private bool ContainSameElements(int[] first, int firstStart, int[] second, int secondStart, int length)
         {
             for (int i = 0; i < length; ++i)
@@ -617,7 +641,6 @@ namespace Tag_Importer
             }
             return true;
         }
-
         private bool IsNeedlePresentAtLocation(int[][] haystack, int[][] needle, Point point, int alreadyVerified)
         {
             //we already know that "alreadyVerified" lines already match, so skip them
@@ -630,6 +653,14 @@ namespace Tag_Importer
             }
             return true;
         }
+        #endregion
+    }
+
+    class WordWithLocation
+    {
+        public int x;
+        public int y;
+        public string word;
     }
 
     static class LevenshteinDistance
@@ -670,5 +701,4 @@ namespace Tag_Importer
             return d[n, m];
         }
     }
-
 }
