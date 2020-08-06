@@ -320,7 +320,7 @@ namespace AutomateDownloader
                 {
                     tviPtr = PInvokeLibrary.VirtualAllocEx(process, IntPtr.Zero, tviSize + textSize, PInvokeLibrary.AllocationType.Commit, PInvokeLibrary.MemoryProtection.ReadWrite);
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
                     if (tviPtr == IntPtr.Zero)
                         throw new Exception("Could not allocate memory in owning process of TreeView", new Win32Exception());
@@ -1303,7 +1303,7 @@ namespace AutomateDownloader
             // 
             this.progressBar1.Location = new System.Drawing.Point(13, 377);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(194, 13);
+            this.progressBar1.Size = new System.Drawing.Size(299, 13);
             this.progressBar1.TabIndex = 22;
             // 
             // statusLabel
@@ -1321,9 +1321,8 @@ namespace AutomateDownloader
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(213, 377);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 24;
-            //this.label9.Text = "Remaining [s]: ~0";
             // 
             // NCMForm
             // 

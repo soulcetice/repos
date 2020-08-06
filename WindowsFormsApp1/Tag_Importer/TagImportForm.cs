@@ -18,6 +18,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Forms.VisualStyles;
 using System.Drawing.Imaging;
+
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -153,18 +154,19 @@ namespace Tag_Importer
             ImportTags();
         }
 
-        private void ClickInWindowAtXY(IntPtr handle, int x, int y)
+        private void ClickInWindowAtXY(IntPtr handle, int? x, int? y)
         {
             PInvokeLibrary.SetForegroundWindow(handle);
 
-            MouseOperations.SetCursorPosition(x, y); //have to use the found minus/plus coordinates here
+            MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
         }
 
         private void ExpandOrHideVisibleTree(IntPtr tagMgmt, IntPtr trHandle, bool expand)
         {
             Bitmap img;
-            Bitmap find = expand != true ? (Bitmap)Image.FromFile("minus.png") : (Bitmap)Image.FromFile("plus.png");
+            Bitmap find = expand != true ? (Bitmap)Image.FromFile("characters/minus.png") : (Bitmap)Image.FromFile("characters/plus.png");
             List<Point> src;
             _ = PInvokeLibrary.SetForegroundWindow(trHandle);
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
@@ -172,6 +174,7 @@ namespace Tag_Importer
             do //extend or hide all visible
             {
                 img = MyFunctions.GetPngByHandle(trHandle);
+                int scrollState = GetHandleScrollState(img);
                 src = Find(img, find);
                 for (int i = 0; i < src.Count; i++)
                 {
@@ -181,6 +184,20 @@ namespace Tag_Importer
             } while (src.Count > 0);
 
             find.Dispose();
+        }
+
+        private int GetHandleScrollState(Bitmap img)
+        {
+            Bitmap scrollUp = (Bitmap)Image.FromFile("characters/scrollUp.png");
+            Bitmap scrollDn = (Bitmap)Image.FromFile("characters/scrollDown.png");
+            var hasUp = Find(img, scrollUp);
+            var hasDn = Find(img, scrollDn);
+            if (hasUp.Count == 0 && hasDn.Count != 0) return 1; //Console.WriteLine("is already scrolled all the way up");
+            if (hasDn.Count == 0 && hasUp.Count != 0) return 2; //Console.WriteLine("is already scrolled all the way down");
+            if (hasDn.Count != 0 && hasDn.Count != 0) return 3; //Console.WriteLine("is in between");
+            if (hasDn.Count == 0 && hasDn.Count == 0) return 4; //Console.WriteLine("there is no scrolling available, window contens are all seen. expand?");
+
+            return 0; //inconclusive
         }
 
         private List<MyFunctions.PosLetter> GetCharactersInHandle(IntPtr handle)
@@ -258,41 +275,89 @@ namespace Tag_Importer
 
         private void ImportTags()
         {
+            var t = LevenshteinDistance.Compute("OPC", "OPCUA");
+            var b = LevenshteinDistance.Compute("OPCUA", "OPCUA");
+
+
             #region tree view handle capture
             IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
             IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
             IntPtr navBar = PInvokeLibrary.FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
             IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
             IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
+            _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
             #endregion
+
+
+            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
+
+            IntPtr ccAxt = ccAxs[2]; //hope this holds together - second largest width
+            _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
+            //int oldHeight = 0;
+            //IntPtr ccAxt = IntPtr.Zero;
+            //for( int i = 1; i < ccAxs.Count; i++)
+            //{
+            //    _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
+            //    int width = rect.right - rect.left;
+            //    if (width > oldHeight) ccAxt = ccAxs[i];
+            //    oldHeight = width;
+            //}
+            IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
+
+            Console.WriteLine("testing");
 
             #region lookInDirectory
 
             DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
             FileInfo[] Files = dinfo.GetFiles("*.txt");
 
-            foreach (var elem in Files)
-            {
-                checkedListBox1.Items.Add(elem);
-            }
-
             #endregion
 
             #region image character recognition
 
-            //find required tag group in treeview, expand and scroll until found
-            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
-            WordWithLocation myElem = null;
-            string FindThis = "iTracker";
-            myElem = rowData.FirstOrDefault(c => c.word == FindThis);
-            if (myElem == null) //only do this after i have the entire tree model (all the words with locations)
-            {
-                myElem = FindClosestMatch(rowData, FindThis);
-            }
-
-            Console.WriteLine("Found");
-
             //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
+
+            //find required tag group in treeview, expand and scroll until found
+            //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+
+            #region Expand Only Tag Management
+            var img = MyFunctions.GetPngByHandle(trHandle);
+            var scrollState = GetHandleScrollState(img);
+            //rowData = HideStructureTags(trHandle, rowData, trRect);
+            Bitmap scrollUp = (Bitmap)Image.FromFile("characters/scrollUp.png");
+            Bitmap scrollDn = (Bitmap)Image.FromFile("characters/scrollDown.png");
+            if (scrollState != 1 || scrollState != 4)
+            {
+                do
+                {
+                    var goUpHere = Find(img, scrollUp).FirstOrDefault();
+                    ClickInWindowAtXY(trHandle, trRect.left + goUpHere.X, trRect.top + goUpHere.Y);
+                    img = MyFunctions.GetPngByHandle(trHandle);
+
+                    scrollState = GetHandleScrollState(img);
+                    img.Dispose();
+                    System.Threading.Thread.Sleep(10);
+                } while (scrollState != 1 && scrollState != 4);
+            }
+            if (FindClosestMatch(rowData, "TagManagement") == null)
+            {
+                SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
+            }
+            ExpandTreeItem(trHandle, "TagManagement", true, trRect);
+            #endregion
+
+            //DmConnection Connections Connection
+            //[NAME][100][1][CHANNEL][101][1][CHANNELUNIT][102][1][PARAMS][103][1]
+            //Name Communication driver Channel unit Connection Parameters
+            //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
+            ExpandTreeItem(trHandle, "OPCUA", true, trRect);
+            ExpandTreeItem(trHandle, "OPCUnifiedArchitecture", true, trRect);
+
+            //now get structures
+
+            scrollUp.Dispose();
+            scrollDn.Dispose();
 
             #endregion
 
@@ -328,6 +393,31 @@ namespace Tag_Importer
             isFirstImporting = true;
             foreach (var file in Files)
             {
+                List<NameConnection> nc = new List<NameConnection>();
+                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
+                foreach (var c in line)
+                {
+                    if (c == "") break;
+                    var conn = c.Split(Convert.ToChar("\t"));
+                    nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
+                }
+
+                foreach (var connData in nc)
+                {
+                    Console.WriteLine(connData.connection + ", " + connData.name);
+                    ExpandTreeItem(trHandle, connData.connection, true, trRect);
+                    rowData = GetWordsInHandle(trHandle);
+                    var myGroup = FindClosestMatch(rowData, connData.name);
+                    ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
+                    //now delete the tags
+                    ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
+                    SendKeyHandled(dataGridHandle, "^(a)");
+                    SendKeyHandled(dataGridHandle, "{DELETE}");
+                    ExpandTreeItem(trHandle, connData.connection, false, trRect);
+                    Console.WriteLine("testing");
+                }
+
+                //ExpandTreeItem(trHandle,  "", true, trRect);
                 ImportTagFile(tag, file);
             }
 
@@ -336,6 +426,42 @@ namespace Tag_Importer
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
         }
 
+        private List<WordWithLocation> HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
+        {
+            if (FindClosestMatch(rowData, "Structuretags") == null)
+            {
+                SendKeyHandled(trHandle, "{UP}"); SendKeyHandled(trHandle, "{UP}"); rowData = GetWordsInHandle(trHandle);
+            }
+            if (FindClosestMatch(rowData, "Structuretags") != null)
+            {
+                rowData = GetWordsInHandle(trHandle);
+                ExpandTreeItem(trHandle, "Structuretags", false, trRect);
+            }
+            return rowData;
+        }
+
+        private void ExpandTreeItem(IntPtr trHandle, string FindThis, bool expand, RECT trRect)
+        {
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+            WordWithLocation foundElem = FindClosestMatch(rowData, FindThis);
+            var getElement = TextHasExpandOrHide(trHandle, foundElem, expand);
+            if (getElement != null)
+            {
+                ClickInWindowAtXY(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y);
+            }
+        }
+
+        private Point? TextHasExpandOrHide(IntPtr trHandle, WordWithLocation foundElem, bool expand)
+        {
+            Bitmap find = expand != true ? (Bitmap)Image.FromFile("characters/minus.png") : (Bitmap)Image.FromFile("characters/plus.png");
+            var img = MyFunctions.GetPngByHandle(trHandle);
+            var foundExpandButtons = Find(img, find);
+            if (foundExpandButtons.Where(c => Math.Abs(c.Y - foundElem.y) < 4 && Math.Abs(c.X - foundElem.x) < 150).ToList().Count > 0)
+            {
+                return foundExpandButtons.FirstOrDefault(c => Math.Abs(c.Y - foundElem.y) < 4 && Math.Abs(c.X - foundElem.x) < 150);
+            }
+            return null;
+        }
 
         private bool isFirstImporting;
 
@@ -392,11 +518,11 @@ namespace Tag_Importer
 
         private static WordWithLocation FindClosestMatch(List<WordWithLocation> rowData, string FindThis)
         {
+            int levDist = 100;
             WordWithLocation myElem;
             do
             {
                 myElem = rowData.FirstOrDefault(c => c.word == FindThis);
-                int levDist = 50;
                 WordWithLocation chosenFile = new WordWithLocation();
                 foreach (var c in rowData)
                 {
@@ -408,7 +534,13 @@ namespace Tag_Importer
                 }
                 myElem = chosenFile;
             } while (myElem == null);
-            return myElem;
+
+            if (levDist > 5)
+            {
+                return null;
+            }
+            else
+                return myElem;
         }
 
         private static WordWithLocation RobustFileChoice(FileInfo f, List<WordWithLocation> filesInDialog)
@@ -661,6 +793,12 @@ namespace Tag_Importer
         public int x;
         public int y;
         public string word;
+    }
+
+    class NameConnection
+    {
+        public string name;
+        public string connection;
     }
 
     static class LevenshteinDistance

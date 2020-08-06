@@ -40,9 +40,6 @@
     <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.21\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="PInvoke.Windows.Core, Version=0.6.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\packages\PInvoke.Windows.Core.0.6.49\lib\net20\PInvoke.Windows.Core.dll</HintPath>
@@ -53,9 +50,6 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security.Cryptography.Cng, Version=4.3.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Cng.4.7.0\lib\net461\System.Security.Cryptography.Cng.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,6 +83,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="characters\Thumbs.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,6 +105,72 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="characters\#.png" />
+    <Content Include="characters\1.png" />
+    <Content Include="characters\2.png" />
+    <Content Include="characters\3.png" />
+    <Content Include="characters\4.png" />
+    <Content Include="characters\5.png" />
+    <Content Include="characters\arond.png" />
+    <Content Include="characters\fileIcon.png" />
+    <Content Include="characters\lower_a.png" />
+    <Content Include="characters\lower_b.png" />
+    <Content Include="characters\lower_c.png" />
+    <Content Include="characters\lower_d.png" />
+    <Content Include="characters\lower_e.png" />
+    <Content Include="characters\lower_f.png" />
+    <Content Include="characters\lower_g.png" />
+    <Content Include="characters\lower_h.png" />
+    <Content Include="characters\lower_i.png" />
+    <Content Include="characters\lower_j.png" />
+    <Content Include="characters\lower_k.png" />
+    <Content Include="characters\lower_l.png" />
+    <Content Include="characters\lower_m.png" />
+    <Content Include="characters\lower_n.png" />
+    <Content Include="characters\lower_o.png" />
+    <Content Include="characters\lower_p.png" />
+    <Content Include="characters\lower_q.png" />
+    <Content Include="characters\lower_r.png" />
+    <Content Include="characters\lower_rf.png" />
+    <Content Include="characters\lower_s.png" />
+    <Content Include="characters\lower_t.png" />
+    <Content Include="characters\lower_u.png" />
+    <Content Include="characters\lower_v.png" />
+    <Content Include="characters\lower_w.png" />
+    <Content Include="characters\lower_x.png" />
+    <Content Include="characters\lower_y.png" />
+    <Content Include="characters\lower_z.png" />
+    <Content Include="characters\minus.png" />
+    <Content Include="characters\plus.png" />
+    <Content Include="characters\scrollDown.png" />
+    <Content Include="characters\scrollUp.png" />
+    <Content Include="characters\underscore.png" />
+    <Content Include="characters\upper_A.png" />
+    <Content Include="characters\upper_B.png" />
+    <Content Include="characters\upper_C.png" />
+    <Content Include="characters\upper_D.png" />
+    <Content Include="characters\upper_E.png" />
+    <Content Include="characters\upper_F.png" />
+    <Content Include="characters\upper_G.png" />
+    <Content Include="characters\upper_H.png" />
+    <Content Include="characters\upper_I.png" />
+    <Content Include="characters\upper_J.png" />
+    <Content Include="characters\upper_K.png" />
+    <Content Include="characters\upper_L.png" />
+    <Content Include="characters\upper_M.png" />
+    <Content Include="characters\upper_N.png" />
+    <Content Include="characters\upper_O.png" />
+    <Content Include="characters\upper_P.png" />
+    <Content Include="characters\upper_Q.png" />
+    <Content Include="characters\upper_R.png" />
+    <Content Include="characters\upper_S.png" />
+    <Content Include="characters\upper_T.png" />
+    <Content Include="characters\upper_U.png" />
+    <Content Include="characters\upper_V.png" />
+    <Content Include="characters\upper_W.png" />
+    <Content Include="characters\upper_X.png" />
+    <Content Include="characters\upper_Y.png" />
+    <Content Include="characters\upper_Z.png" />
     <Content Include="GetTagManagementTreeNodesResult.xml" />
   </ItemGroup>
   <ItemGroup>
