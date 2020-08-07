@@ -30,4 +30,3 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Impor
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Interop.grafexe.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.ResolveComReference.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.TagImportForm.resources
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csprojAssemblyReference.cache

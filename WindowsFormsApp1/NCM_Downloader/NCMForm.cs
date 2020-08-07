@@ -1021,7 +1021,7 @@ namespace AutomateDownloader
             }
             SendKeyHandled(ncm, "{RIGHT}", log);
 
-            for (int i = 0; i < Int32.Parse(firstClientIndexBox.Text); i++)
+            for (int i = 0; i < int.Parse(firstClientIndexBox.Text); i++)
             {
                 SendKeyHandled(ncm, "{DOWN}", log);
             }
@@ -1343,6 +1343,7 @@ namespace AutomateDownloader
             this.Controls.Add(this.button1);
             this.Controls.Add(this.firstClientIndexBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "NCMForm";

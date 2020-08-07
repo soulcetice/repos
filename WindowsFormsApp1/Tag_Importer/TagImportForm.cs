@@ -18,7 +18,6 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Forms.VisualStyles;
 using System.Drawing.Imaging;
-
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -35,8 +34,9 @@ namespace Tag_Importer
         {
             PInvokeLibrary.SetForegroundWindow(tagMgmt);
 
-            IntPtr importPopup = IntPtr.Zero;
-            importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
+            System.Threading.Thread.Sleep(100);
+
+            IntPtr importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
 
             if (importPopup == IntPtr.Zero)
             {
@@ -47,7 +47,6 @@ namespace Tag_Importer
                 SendKeyHandled(tagMgmt, "{DOWN}");
                 SendKeyHandled(tagMgmt, "{DOWN}");
                 SendKeyHandled(tagMgmt, "{DOWN}");
-                //SendKeyHandled(tagMgmt, "{DOWN}");
                 SendKeyHandled(tagMgmt, "{ENTER}");
 
                 importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
@@ -75,6 +74,16 @@ namespace Tag_Importer
 
             }
             return importPopup;
+        }
+
+        private void KeepConfig()
+        {
+            string configPath = "Tag_Importer.ini";
+            var configFile = File.CreateText(configPath);
+            configFile.WriteLine(textBox1.Text);
+            configFile.WriteLine("");
+            configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
+            configFile.Close();
         }
 
         private void SendKeyHandled(IntPtr windowHandle, string key/*, StreamWriter log*/)
@@ -151,6 +160,7 @@ namespace Tag_Importer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             ImportTags();
         }
 
@@ -161,29 +171,6 @@ namespace Tag_Importer
             MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-        }
-
-        private void ExpandOrHideVisibleTree(IntPtr tagMgmt, IntPtr trHandle, bool expand)
-        {
-            Bitmap img;
-            Bitmap find = expand != true ? (Bitmap)Image.FromFile("characters/minus.png") : (Bitmap)Image.FromFile("characters/plus.png");
-            List<Point> src;
-            _ = PInvokeLibrary.SetForegroundWindow(trHandle);
-            _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
-
-            do //extend or hide all visible
-            {
-                img = MyFunctions.GetPngByHandle(trHandle);
-                int scrollState = GetHandleScrollState(img);
-                src = Find(img, find);
-                for (int i = 0; i < src.Count; i++)
-                {
-                    if (src[i].Y != 6 && src[i].X == 7) break;
-                    ClickInWindowAtXY(tagMgmt, trRect.left + src[i].X, trRect.top + src[i].Y); //have to use the found minus/plus coordinates here
-                }
-            } while (src.Count > 0);
-
-            find.Dispose();
         }
 
         private int GetHandleScrollState(Bitmap img)
@@ -275,10 +262,6 @@ namespace Tag_Importer
 
         private void ImportTags()
         {
-            var t = LevenshteinDistance.Compute("OPC", "OPCUA");
-            var b = LevenshteinDistance.Compute("OPCUA", "OPCUA");
-
-
             #region tree view handle capture
             IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
             IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
@@ -288,23 +271,18 @@ namespace Tag_Importer
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
             #endregion
 
-
             List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
-
-            IntPtr ccAxt = ccAxs[2]; //hope this holds together - second largest width
+            var widthsccAx = new List<int>();
+            for (int i = 1; i < ccAxs.Count; i++)
+            {
+                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
+                int width = rect.right - rect.left;
+                widthsccAx.Add(width);
+            }
+            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(1).FirstOrDefault());
+            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
             _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
-            //int oldHeight = 0;
-            //IntPtr ccAxt = IntPtr.Zero;
-            //for( int i = 1; i < ccAxs.Count; i++)
-            //{
-            //    _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
-            //    int width = rect.right - rect.left;
-            //    if (width > oldHeight) ccAxt = ccAxs[i];
-            //    oldHeight = width;
-            //}
             IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
-
-            Console.WriteLine("testing");
 
             #region lookInDirectory
 
@@ -347,13 +325,6 @@ namespace Tag_Importer
             ExpandTreeItem(trHandle, "TagManagement", true, trRect);
             #endregion
 
-            //DmConnection Connections Connection
-            //[NAME][100][1][CHANNEL][101][1][CHANNELUNIT][102][1][PARAMS][103][1]
-            //Name Communication driver Channel unit Connection Parameters
-            //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
-            ExpandTreeItem(trHandle, "OPCUA", true, trRect);
-            ExpandTreeItem(trHandle, "OPCUnifiedArchitecture", true, trRect);
-
             //now get structures
 
             scrollUp.Dispose();
@@ -391,39 +362,81 @@ namespace Tag_Importer
             #region open import dialog
 
             isFirstImporting = true;
-            foreach (var file in Files)
+            //checkedListBox1.CheckedItems;
+            for (int fileNo = 0; fileNo < Files.Length; fileNo++)
             {
-                List<NameConnection> nc = new List<NameConnection>();
-                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
-                foreach (var c in line)
+                FileInfo file = Files[fileNo];
+                //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
+                var grup = File.ReadLines(file.FullName).Skip(3).Take(1).ToList()[0].Split(Convert.ToChar("\t"));
+                for (int i = 0; i < grup.Length; i++)
                 {
+                    grup[i] = grup[i].Replace(" ", string.Empty);
+                }
+                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
+
+                List<NameConnection> nc = new List<NameConnection>();
+                for (int i = 0; i < line.Count; i++)
+                {
+                    string c = line[i];
                     if (c == "") break;
                     var conn = c.Split(Convert.ToChar("\t"));
                     nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
                 }
 
-                foreach (var connData in nc)
+                ExpandTreeItem(trHandle, grup[1], true, trRect);
+                ExpandTreeItem(trHandle, grup[2], true, trRect);
+
+                for (int i = 0; i < nc.Count; i++)
                 {
-                    Console.WriteLine(connData.connection + ", " + connData.name);
-                    ExpandTreeItem(trHandle, connData.connection, true, trRect);
-                    rowData = GetWordsInHandle(trHandle);
-                    var myGroup = FindClosestMatch(rowData, connData.name);
-                    ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
-                    //now delete the tags
-                    ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
-                    SendKeyHandled(dataGridHandle, "^(a)");
-                    SendKeyHandled(dataGridHandle, "{DELETE}");
-                    ExpandTreeItem(trHandle, connData.connection, false, trRect);
-                    Console.WriteLine("testing");
+                    DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc, i);
                 }
 
-                //ExpandTreeItem(trHandle,  "", true, trRect);
+                ExpandTreeItem(trHandle, grup[2], false, trRect);
+                ExpandTreeItem(trHandle, grup[1], false, trRect);
+
                 ImportTagFile(tag, file);
+
+
             }
 
             #endregion
 
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    checkedListBox1.SetItemCheckState(i, CheckState.Checked);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                {
+                    checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                }
+            }
+            checkedListBox1_SelectedIndexChanged(checkBox1, new System.EventArgs());
+        }
+
+        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, List<NameConnection> nc, int i)
+        {
+            List<WordWithLocation> rowData;
+            NameConnection connData = nc[i];
+            //Console.WriteLine(connData.connection + ", " + connData.name);
+            ExpandTreeItem(trHandle, connData.connection, true, trRect);
+            rowData = GetWordsInHandle(trHandle);
+            var myGroup = FindClosestMatch(rowData, connData.name);
+            ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
+            //now delete the tags
+            ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
+            SendKeyHandled(dataGridHandle, "^(a)");
+            SendKeyHandled(dataGridHandle, "{DELETE}");
+            ExpandTreeItem(trHandle, connData.connection, false, trRect);
         }
 
         private List<WordWithLocation> HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
@@ -481,8 +494,9 @@ namespace Tag_Importer
 
             int oldWidth = 0;
             IntPtr CtrlNotifySink = IntPtr.Zero;
-            foreach (IntPtr elem in ctrlNotifySinks)
+            for (int i = 0; i < ctrlNotifySinks.Count; i++)
             {
+                IntPtr elem = ctrlNotifySinks[i];
                 _ = PInvokeLibrary.GetWindowRect(elem, out RECT rect);
                 if (rect.right - rect.left > oldWidth) CtrlNotifySink = elem;
                 oldWidth = rect.right - rect.left;
@@ -524,8 +538,9 @@ namespace Tag_Importer
             {
                 myElem = rowData.FirstOrDefault(c => c.word == FindThis);
                 WordWithLocation chosenFile = new WordWithLocation();
-                foreach (var c in rowData)
+                for (int i = 0; i < rowData.Count; i++)
                 {
+                    WordWithLocation c = rowData[i];
                     if (LevenshteinDistance.Compute(FindThis, c.word) < levDist)
                     {
                         levDist = LevenshteinDistance.Compute(FindThis, c.word);
@@ -551,8 +566,9 @@ namespace Tag_Importer
             {
                 int levDist = 50;
                 string chosenFile = "";
-                foreach (var t in filesInDialog)
+                for (int i = 0; i < filesInDialog.Count; i++)
                 {
+                    WordWithLocation t = filesInDialog[i];
                     if (LevenshteinDistance.Compute(fileName, t.word) < levDist)
                     {
                         levDist = LevenshteinDistance.Compute(fileName, t.word);
@@ -621,11 +637,13 @@ namespace Tag_Importer
             //group words
             var words = new List<WordWithLocation>();
             int iter = 0;
-            foreach (List<MyFunctions.PosLetter> word in sortedList)
+            for (int i = 0; i < sortedList.Count; i++)
             {
+                List<MyFunctions.PosLetter> word = sortedList[i];
                 words.Add(new WordWithLocation());
-                foreach (MyFunctions.PosLetter c in word)
+                for (int i1 = 0; i1 < word.Count; i1++)
                 {
+                    MyFunctions.PosLetter c = word[i1];
                     words[iter].word += c.letter;
                     words[iter].x += c.x;
                     words[iter].y += c.y;
@@ -689,17 +707,9 @@ namespace Tag_Importer
 
             var haystackArray = GetPixelArray(haystack);
             var needleArray = GetPixelArray(needle);
-            var list = new List<Point>();
-
-            foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
-            {
-                if (IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1))
-                {
-                    list.Add(firstLineMatchPoint);
-                }
-            }
-
-            return list;
+            return (from firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0])
+                    where IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1)
+                    select firstLineMatchPoint).ToList();
         }
         public List<MyFunctions.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
         {
