@@ -6,15 +6,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
-using System.Security;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using PInvoke;
 using Interoperability;
-
 
 namespace AutomateDownloader
 {
@@ -64,8 +59,6 @@ namespace AutomateDownloader
             CloseConflictingProcesses("NCM_Downloader");
 
             InitializeComponent();
-
-            //textBox4_TextChanged(numClTextBox, new System.EventArgs());
 
             string configPath = string.Empty;
             if (File.Exists(Application.StartupPath + "\\NCM_Downloader.ini"))

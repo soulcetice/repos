@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowHandle;
 using WindowsUtilities;
-using FileDialog;
 using Interoperability;
 using PInvoke;
 using System.IO;
-using Microsoft.Win32;
-using System.Windows.Forms.VisualStyles;
 using System.Drawing.Imaging;
+using System.Resources;
+using Tag_Importer.Properties;
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -27,7 +23,20 @@ namespace Tag_Importer
         public TagImportForm()
         {
             InitializeComponent();
+
+            string configFile = Application.StartupPath + "\\Tag_Importer.ini";
+            GetInitialValues(configFile);
+
             textBox1_TextChanged(textBox1, new EventArgs());
+        }
+
+        private bool isFirstImporting;
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            KeepConfig();
+            ImportTags();
+            RemoveTemporaryOutputs();
         }
 
         private IntPtr OpenTagMgmtMenu(IntPtr tagMgmt)
@@ -78,12 +87,31 @@ namespace Tag_Importer
 
         private void KeepConfig()
         {
-            string configPath = "Tag_Importer.ini";
+            string configPath = Application.StartupPath + "\\Tag_Importer.ini";
             var configFile = File.CreateText(configPath);
             configFile.WriteLine(textBox1.Text);
-            configFile.WriteLine("");
+            configFile.WriteLine(textBox2.Text);
+            configFile.WriteLine(checkBox1.Checked);
+            configFile.WriteLine(checkBox2.Checked);
             configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
             configFile.Close();
+        }
+
+        private void GetInitialValues(string path)
+        {
+            if (path != string.Empty)
+            {
+                if (new FileInfo(path).Exists)
+                {
+                    var configFile = File.ReadLines(path);
+                    var fileLen = configFile.Count();
+
+                    textBox1.Text = configFile.ElementAt(0);
+                    if (fileLen >= 2) textBox2.Text = configFile.ElementAt(1);
+                    if (fileLen >= 3) checkBox1.Checked = bool.Parse(configFile.ElementAt(2));
+                    if (fileLen >= 4) checkBox2.Checked = bool.Parse(configFile.ElementAt(3));
+                }
+            }
         }
 
         private void SendKeyHandled(IntPtr windowHandle, string key/*, StreamWriter log*/)
@@ -158,10 +186,199 @@ namespace Tag_Importer
 
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
+        private static void RemoveTemporaryOutputs()
         {
-            KeepConfig();
-            ImportTags();
+            FileInfo output = new FileInfo(Application.StartupPath + "\\output.png");
+            if (output.Exists)
+            {
+                output.Delete();
+            }
+        }
+
+        private void ImportTags()
+        {
+            #region tree view handle capture
+            IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
+            IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
+            IntPtr navBar = PInvokeLibrary.FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
+            IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
+            IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
+            _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
+            #endregion
+
+            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
+            var widthsccAx = new List<int>();
+            for (int i = 1; i < ccAxs.Count; i++)
+            {
+                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
+                int width = rect.right - rect.left;
+                widthsccAx.Add(width);
+            }
+            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(1).FirstOrDefault());
+            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
+            _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
+            IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
+
+            Bitmap scrollUp = (Bitmap)Image.FromFile("characters/scrollUp.png");
+            Bitmap scrollDn = (Bitmap)Image.FromFile("characters/scrollDown.png");
+            #region lookInDirectory
+
+            DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
+            FileInfo[] Files = dinfo.GetFiles("*.txt");
+
+            #endregion
+
+            #region image character recognition
+
+            //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
+
+            //find required tag group in treeview, expand and scroll until found
+            //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+
+            
+
+            #region Expand Only Tag Management
+            ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, true);
+            if (FindClosestMatch(rowData, "TagManagement") == null)
+            {
+                SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
+            }
+            ExpandTreeItem(trHandle, "TagManagement", true, trRect);
+            #endregion
+
+            //now get structures
+            #endregion
+
+            #region delete variables
+
+            //expand all tree elements and scroll until no expand is seen - in tag management only
+
+            //hide all tree elements from down
+
+            //get image and coordinate of following text
+            //expand all tag management, omit structure tags if possible
+
+            //get image and coordinate of following text
+            //expand OPCUA
+
+            //get image and coordinate of following text
+            //expand OPC Unified Architecture
+
+            //find text files to be imported in import folder, to get what required tag group and tag resource to click on
+
+            //get image and coordinate of following text
+            //expand required resource
+
+            //get image and coordinate of following text
+            //click on required tag group
+
+            //focus on spreadsheet, ctrl+A , delete
+
+            #endregion
+
+            #region open import dialog
+
+            isFirstImporting = true;
+            //checkedListBox1.CheckedItems;
+            for (int fileNo = 0; fileNo < Files.Length; fileNo++)
+            {
+                FileInfo file = Files[fileNo];
+
+                //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
+                var grup = File.ReadLines(file.FullName).Skip(3).Take(1).ToList()[0].Split(Convert.ToChar("\t"));
+                for (int i = 0; i < grup.Length; i++)
+                {
+                    grup[i] = grup[i].Replace(" ", string.Empty);
+                }
+
+                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
+
+                List<NameConnection> nc = new List<NameConnection>();
+                for (int i = 0; i < line.Count; i++)
+                {
+                    string c = line[i];
+                    if (c == "") break;
+                    var conn = c.Split(Convert.ToChar("\t"));
+                    nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
+                }
+
+                if (grup[1] != "OPC")
+                {
+                    ExpandTreeItem(trHandle, grup[1], false, trRect);
+                }
+
+                ExpandTreeItem(trHandle, grup[1], true, trRect);
+                //while (ExpandTreeItem(trHandle, grup[1], true, trRect) == false)
+                //{
+                //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                //}
+
+                ExpandTreeItem(trHandle, grup[2], true, trRect);
+                //while (ExpandTreeItem(trHandle, grup[2], true, trRect) == false)
+                //{
+                //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                //}
+
+                for (int i = 0; i < nc.Count; i++)
+                {
+                    DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc, i);
+                }
+
+                ExpandTreeItem(trHandle, grup[2], false, trRect);
+                ExpandTreeItem(trHandle, grup[1], false, trRect);
+
+                ImportTagFile(tag, file);
+
+                if (checkBox2.CheckState == CheckState.Checked)
+                {
+                    MoveFilesPair(file);
+                }
+            }
+
+            scrollUp.Dispose();
+            scrollDn.Dispose();
+
+            #endregion
+
+            MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
+        }
+
+        private void MoveFilesPair(FileInfo file)
+        {
+            //\\10.16.80.31\d$\Project Data\002 - Tag Import\C1\G_CVC\2020 - 06\29
+            string moveToPath = textBox2.Text;
+            if (textBox2.Text.EndsWith(@"\") == false)
+            {
+                moveToPath = textBox2.Text + "\\";
+            }
+
+            var dateFolder = "\\" + DateTime.Now.Year + " - "
+                + ((DateTime.Now.Month < 10) ? "0" + DateTime.Now.Month.ToString() : DateTime.Now.Month.ToString())
+                + "\\" + (DateTime.Now.Day < 10 ? "0" + DateTime.Now.Day.ToString() : DateTime.Now.Day.ToString())
+                + "\\";
+
+            string[] myStruct = file.Name.Replace(".txt", "").Split(Convert.ToChar("_"));
+            switch (myStruct.Count())
+            {
+                case 3:
+                    moveToPath = moveToPath + myStruct[0] + "\\" + myStruct[1] + "_" + myStruct[2] + dateFolder;
+                    break;
+                case 2:
+                    moveToPath = moveToPath + myStruct[0] + "\\" + myStruct[1] + dateFolder;
+                    break;
+            }
+
+            if (file.Exists)
+            {
+                file.MoveTo(moveToPath + file.Name + ".txt");
+            }
+
+            FileInfo xml = new FileInfo(file.FullName.Replace(".txt", "_VarData.XML"));
+            if (xml.Exists)
+            {
+                file.MoveTo(moveToPath + xml.Name);
+            }
         }
 
         private void ClickInWindowAtXY(IntPtr handle, int? x, int? y)
@@ -189,6 +406,9 @@ namespace Tag_Importer
 
         private List<MyFunctions.PosLetter> GetCharactersInHandle(IntPtr handle)
         {
+
+            var t = (Bitmap)Resources.ResourceManager.GetObject("lower_a");
+
             //only works for white background for now!!!
             MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
             Bitmap img = MyFunctions.GetPngByHandle(handle);
@@ -260,148 +480,47 @@ namespace Tag_Importer
             return allCharsFound;
         }
 
-        private void ImportTags()
+        private void ScrollAllTheWayUp(IntPtr trHandle, RECT trRect, Bitmap scrollUp, Bitmap scrollDn, bool up)
         {
-            #region tree view handle capture
-            IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
-            IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
-            IntPtr navBar = PInvokeLibrary.FindWindowEx(ccAx, IntPtr.Zero, "WinCC NavigationBarControl Window", null);
-            IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
-            IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
-            _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
-            #endregion
-
-            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
-            var widthsccAx = new List<int>();
-            for (int i = 1; i < ccAxs.Count; i++)
-            {
-                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
-                int width = rect.right - rect.left;
-                widthsccAx.Add(width);
-            }
-            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(1).FirstOrDefault());
-            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
-            _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
-            IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
-
-            #region lookInDirectory
-
-            DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
-            FileInfo[] Files = dinfo.GetFiles("*.txt");
-
-            #endregion
-
-            #region image character recognition
-
-            //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
-
-            //find required tag group in treeview, expand and scroll until found
-            //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
-            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
-
-            #region Expand Only Tag Management
             var img = MyFunctions.GetPngByHandle(trHandle);
             var scrollState = GetHandleScrollState(img);
-            //rowData = HideStructureTags(trHandle, rowData, trRect);
-            Bitmap scrollUp = (Bitmap)Image.FromFile("characters/scrollUp.png");
-            Bitmap scrollDn = (Bitmap)Image.FromFile("characters/scrollDown.png");
-            if (scrollState != 1 || scrollState != 4)
+            HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
+
+            int FirstState;
+            int SecondState;
+
+            switch (up)
+            {
+                case true:
+                    FirstState = 1;
+                    break;
+                default:
+                    FirstState = 2;
+                    break;
+            }
+            SecondState = 4;
+
+            if (scrollState != FirstState || scrollState != SecondState)
             {
                 do
                 {
-                    var goUpHere = Find(img, scrollUp).FirstOrDefault();
-                    ClickInWindowAtXY(trHandle, trRect.left + goUpHere.X, trRect.top + goUpHere.Y);
+                    if (up == true)
+                    {
+                        var goHere = Find(img, scrollUp).FirstOrDefault();
+                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y);
+                    }
+                    else
+                    {
+                        var goHere = Find(img, scrollDn).FirstOrDefault();
+                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y);
+                    }
                     img = MyFunctions.GetPngByHandle(trHandle);
 
                     scrollState = GetHandleScrollState(img);
                     img.Dispose();
                     System.Threading.Thread.Sleep(10);
-                } while (scrollState != 1 && scrollState != 4);
+                } while (scrollState != FirstState && scrollState != SecondState);
             }
-            if (FindClosestMatch(rowData, "TagManagement") == null)
-            {
-                SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
-            }
-            ExpandTreeItem(trHandle, "TagManagement", true, trRect);
-            #endregion
-
-            //now get structures
-
-            scrollUp.Dispose();
-            scrollDn.Dispose();
-
-            #endregion
-
-            #region delete variables
-
-            //expand all tree elements and scroll until no expand is seen - in tag management only
-
-            //hide all tree elements from down
-
-            //get image and coordinate of following text
-            //expand all tag management, omit structure tags if possible
-
-            //get image and coordinate of following text
-            //expand OPCUA
-
-            //get image and coordinate of following text
-            //expand OPC Unified Architecture
-
-            //find text files to be imported in import folder, to get what required tag group and tag resource to click on
-
-            //get image and coordinate of following text
-            //expand required resource
-
-            //get image and coordinate of following text
-            //click on required tag group
-
-            //focus on spreadsheet, ctrl+A , delete
-
-            #endregion
-
-            #region open import dialog
-
-            isFirstImporting = true;
-            //checkedListBox1.CheckedItems;
-            for (int fileNo = 0; fileNo < Files.Length; fileNo++)
-            {
-                FileInfo file = Files[fileNo];
-                //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
-                var grup = File.ReadLines(file.FullName).Skip(3).Take(1).ToList()[0].Split(Convert.ToChar("\t"));
-                for (int i = 0; i < grup.Length; i++)
-                {
-                    grup[i] = grup[i].Replace(" ", string.Empty);
-                }
-                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
-
-                List<NameConnection> nc = new List<NameConnection>();
-                for (int i = 0; i < line.Count; i++)
-                {
-                    string c = line[i];
-                    if (c == "") break;
-                    var conn = c.Split(Convert.ToChar("\t"));
-                    nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
-                }
-
-                ExpandTreeItem(trHandle, grup[1], true, trRect);
-                ExpandTreeItem(trHandle, grup[2], true, trRect);
-
-                for (int i = 0; i < nc.Count; i++)
-                {
-                    DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc, i);
-                }
-
-                ExpandTreeItem(trHandle, grup[2], false, trRect);
-                ExpandTreeItem(trHandle, grup[1], false, trRect);
-
-                ImportTagFile(tag, file);
-
-
-            }
-
-            #endregion
-
-            MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -439,7 +558,7 @@ namespace Tag_Importer
             ExpandTreeItem(trHandle, connData.connection, false, trRect);
         }
 
-        private List<WordWithLocation> HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
+        private void HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
         {
             if (FindClosestMatch(rowData, "Structuretags") == null)
             {
@@ -450,10 +569,10 @@ namespace Tag_Importer
                 rowData = GetWordsInHandle(trHandle);
                 ExpandTreeItem(trHandle, "Structuretags", false, trRect);
             }
-            return rowData;
+            //return rowData;
         }
 
-        private void ExpandTreeItem(IntPtr trHandle, string FindThis, bool expand, RECT trRect)
+        private bool ExpandTreeItem(IntPtr trHandle, string FindThis, bool expand, RECT trRect)
         {
             List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
             WordWithLocation foundElem = FindClosestMatch(rowData, FindThis);
@@ -461,6 +580,11 @@ namespace Tag_Importer
             if (getElement != null)
             {
                 ClickInWindowAtXY(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -475,8 +599,6 @@ namespace Tag_Importer
             }
             return null;
         }
-
-        private bool isFirstImporting;
 
         private void ImportTagFile(IntPtr tag, FileInfo f)
         {
@@ -694,6 +816,7 @@ namespace Tag_Importer
         }
 
         #region OptimumBitmapFind
+
         public List<Point> Find(Bitmap haystack, Bitmap needle)
         {
             if (null == haystack || null == needle)
@@ -711,6 +834,7 @@ namespace Tag_Importer
                     where IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1)
                     select firstLineMatchPoint).ToList();
         }
+
         public List<MyFunctions.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
         {
             if (null == haystack || null == needle)
@@ -741,6 +865,7 @@ namespace Tag_Importer
 
             return list;
         }
+
         private int[][] GetPixelArray(Bitmap bitmap)
         {
             var result = new int[bitmap.Height][];
@@ -757,6 +882,7 @@ namespace Tag_Importer
 
             return result;
         }
+
         private IEnumerable<Point> FindMatch(IEnumerable<int[]> haystackLines, int[] needleLine)
         {
             var y = 0;
@@ -772,6 +898,7 @@ namespace Tag_Importer
                 y += 1;
             }
         }
+
         private bool ContainSameElements(int[] first, int firstStart, int[] second, int secondStart, int length)
         {
             for (int i = 0; i < length; ++i)
@@ -783,6 +910,7 @@ namespace Tag_Importer
             }
             return true;
         }
+
         private bool IsNeedlePresentAtLocation(int[][] haystack, int[][] needle, Point point, int alreadyVerified)
         {
             //we already know that "alreadyVerified" lines already match, so skip them
@@ -795,6 +923,7 @@ namespace Tag_Importer
             }
             return true;
         }
+
         #endregion
     }
 

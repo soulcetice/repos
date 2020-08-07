@@ -83,7 +83,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="characters\Thumbs.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,6 +93,72 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\#" />
+    <None Include="Resources\1" />
+    <None Include="Resources\2" />
+    <None Include="Resources\3" />
+    <None Include="Resources\4" />
+    <None Include="Resources\5" />
+    <None Include="Resources\arond" />
+    <None Include="Resources\fileIcon" />
+    <None Include="Resources\lower_a" />
+    <None Include="Resources\lower_b" />
+    <None Include="Resources\lower_c" />
+    <None Include="Resources\lower_d" />
+    <None Include="Resources\lower_e" />
+    <None Include="Resources\lower_f" />
+    <None Include="Resources\lower_g" />
+    <None Include="Resources\lower_h" />
+    <None Include="Resources\lower_i" />
+    <None Include="Resources\lower_j" />
+    <None Include="Resources\lower_k" />
+    <None Include="Resources\lower_l" />
+    <None Include="Resources\lower_m" />
+    <None Include="Resources\lower_n" />
+    <None Include="Resources\lower_o" />
+    <None Include="Resources\lower_p" />
+    <None Include="Resources\lower_q" />
+    <None Include="Resources\lower_r" />
+    <None Include="Resources\lower_rf" />
+    <None Include="Resources\lower_s" />
+    <None Include="Resources\lower_t" />
+    <None Include="Resources\lower_u" />
+    <None Include="Resources\lower_v" />
+    <None Include="Resources\lower_w" />
+    <None Include="Resources\lower_x" />
+    <None Include="Resources\lower_y" />
+    <None Include="Resources\lower_z" />
+    <None Include="Resources\minus" />
+    <None Include="Resources\plus" />
+    <None Include="Resources\scrollDown" />
+    <None Include="Resources\scrollUp" />
+    <None Include="Resources\underscore" />
+    <None Include="Resources\upper_A" />
+    <None Include="Resources\upper_B" />
+    <None Include="Resources\upper_C" />
+    <None Include="Resources\upper_D" />
+    <None Include="Resources\upper_E" />
+    <None Include="Resources\upper_F" />
+    <None Include="Resources\upper_G" />
+    <None Include="Resources\upper_H" />
+    <None Include="Resources\upper_I" />
+    <None Include="Resources\upper_J" />
+    <None Include="Resources\upper_K" />
+    <None Include="Resources\upper_L" />
+    <None Include="Resources\upper_M" />
+    <None Include="Resources\upper_N" />
+    <None Include="Resources\upper_O" />
+    <None Include="Resources\upper_P" />
+    <None Include="Resources\upper_Q" />
+    <None Include="Resources\upper_R" />
+    <None Include="Resources\upper_S" />
+    <None Include="Resources\upper_T" />
+    <None Include="Resources\upper_U" />
+    <None Include="Resources\upper_V" />
+    <None Include="Resources\upper_W" />
+    <None Include="Resources\upper_X" />
+    <None Include="Resources\upper_Y" />
+    <None Include="Resources\upper_Z" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -105,72 +170,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="characters\#.png" />
-    <Content Include="characters\1.png" />
-    <Content Include="characters\2.png" />
-    <Content Include="characters\3.png" />
-    <Content Include="characters\4.png" />
-    <Content Include="characters\5.png" />
-    <Content Include="characters\arond.png" />
-    <Content Include="characters\fileIcon.png" />
-    <Content Include="characters\lower_a.png" />
-    <Content Include="characters\lower_b.png" />
-    <Content Include="characters\lower_c.png" />
-    <Content Include="characters\lower_d.png" />
-    <Content Include="characters\lower_e.png" />
-    <Content Include="characters\lower_f.png" />
-    <Content Include="characters\lower_g.png" />
-    <Content Include="characters\lower_h.png" />
-    <Content Include="characters\lower_i.png" />
-    <Content Include="characters\lower_j.png" />
-    <Content Include="characters\lower_k.png" />
-    <Content Include="characters\lower_l.png" />
-    <Content Include="characters\lower_m.png" />
-    <Content Include="characters\lower_n.png" />
-    <Content Include="characters\lower_o.png" />
-    <Content Include="characters\lower_p.png" />
-    <Content Include="characters\lower_q.png" />
-    <Content Include="characters\lower_r.png" />
-    <Content Include="characters\lower_rf.png" />
-    <Content Include="characters\lower_s.png" />
-    <Content Include="characters\lower_t.png" />
-    <Content Include="characters\lower_u.png" />
-    <Content Include="characters\lower_v.png" />
-    <Content Include="characters\lower_w.png" />
-    <Content Include="characters\lower_x.png" />
-    <Content Include="characters\lower_y.png" />
-    <Content Include="characters\lower_z.png" />
-    <Content Include="characters\minus.png" />
-    <Content Include="characters\plus.png" />
-    <Content Include="characters\scrollDown.png" />
-    <Content Include="characters\scrollUp.png" />
-    <Content Include="characters\underscore.png" />
-    <Content Include="characters\upper_A.png" />
-    <Content Include="characters\upper_B.png" />
-    <Content Include="characters\upper_C.png" />
-    <Content Include="characters\upper_D.png" />
-    <Content Include="characters\upper_E.png" />
-    <Content Include="characters\upper_F.png" />
-    <Content Include="characters\upper_G.png" />
-    <Content Include="characters\upper_H.png" />
-    <Content Include="characters\upper_I.png" />
-    <Content Include="characters\upper_J.png" />
-    <Content Include="characters\upper_K.png" />
-    <Content Include="characters\upper_L.png" />
-    <Content Include="characters\upper_M.png" />
-    <Content Include="characters\upper_N.png" />
-    <Content Include="characters\upper_O.png" />
-    <Content Include="characters\upper_P.png" />
-    <Content Include="characters\upper_Q.png" />
-    <Content Include="characters\upper_R.png" />
-    <Content Include="characters\upper_S.png" />
-    <Content Include="characters\upper_T.png" />
-    <Content Include="characters\upper_U.png" />
-    <Content Include="characters\upper_V.png" />
-    <Content Include="characters\upper_W.png" />
-    <Content Include="characters\upper_X.png" />
-    <Content Include="characters\upper_Y.png" />
-    <Content Include="characters\upper_Z.png" />
     <Content Include="GetTagManagementTreeNodesResult.xml" />
   </ItemGroup>
   <ItemGroup>
