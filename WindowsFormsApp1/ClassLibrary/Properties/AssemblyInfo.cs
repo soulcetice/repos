@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("InteroperabilityFunctions")]
+[assembly: AssemblyTitle("Interoperability")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SMS group")]
-[assembly: AssemblyProduct("InteroperabilityFunctions")]
+[assembly: AssemblyProduct("Interoperability")]
 [assembly: AssemblyCopyright("Copyright © SMS group 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

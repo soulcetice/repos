@@ -7,3 +7,12 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.xml
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\InteroperabilityFunctions.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\InteroperabilityFunctions.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csproj.CoreCompileInputs.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csproj.CopyComplete
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\InteroperabilityFunctions.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\InteroperabilityFunctions.pdb

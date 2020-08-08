@@ -6,15 +6,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
-using System.Security;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using PInvoke;
-using InteroperabilityFunctions;
-
+using Interoperability;
 
 namespace AutomateDownloader
 {
@@ -64,8 +59,6 @@ namespace AutomateDownloader
             CloseConflictingProcesses("NCM_Downloader");
 
             InitializeComponent();
-
-            //textBox4_TextChanged(numClTextBox, new System.EventArgs());
 
             string configPath = string.Empty;
             if (File.Exists(Application.StartupPath + "\\NCM_Downloader.ini"))
@@ -169,6 +162,28 @@ namespace AutomateDownloader
         ///<param name="hwndItem">Handle to a tree node item.</param>
         ///<param name="hwndTreeView">Handle to a tree view control.</param>
         ///<param name="process">Process hosting the tree view control.</param>
+        ///
+        private void Testing(IntPtr ncmHandle, string anyPopupClass)
+        {
+            //testing for treeview
+            var parent3 = PInvokeLibrary.FindWindowEx(ncmHandle, IntPtr.Zero, "MDIClient", null);
+            var parent2 = PInvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:104d09c9", null);
+            var parent1 = PInvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
+            var parent = PInvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, "");
+            var treeH = PInvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", "Generic1");
+            var treeItemHeight = (int)PInvokeLibrary.SendMessage(treeH, (int)WindowsMessages.TVM_GETITEMW, 5, IntPtr.Zero); //works
+
+            //PInvokeLibrary.TVITEM item = new PInvokeLibrary.TVITEM();
+
+            var t = AllocTest(Process.GetProcessById(7396), treeH, IntPtr.Zero);
+
+            //instead build an xml
+
+            var s = GetTreeItemText(treeH, IntPtr.Zero);
+
+            Console.WriteLine("uhum");
+        }
+
         private static NodeData AllocTest(Process process, IntPtr hwndTreeView, IntPtr hwndItem)
         {
             // code based on article posted here: http://www.codingvision.net/miscellaneous/c-inject-a-dll-into-a-process-w-createremotethread
@@ -298,7 +313,7 @@ namespace AutomateDownloader
                 {
                     tviPtr = PInvokeLibrary.VirtualAllocEx(process, IntPtr.Zero, tviSize + textSize, PInvokeLibrary.AllocationType.Commit, PInvokeLibrary.MemoryProtection.ReadWrite);
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
                     if (tviPtr == IntPtr.Zero)
                         throw new Exception("Could not allocate memory in owning process of TreeView", new Win32Exception());
@@ -566,26 +581,6 @@ namespace AutomateDownloader
             DownloadProcess();
         }
 
-        private void Testing(IntPtr ncmHandle, string anyPopupClass)
-        {
-            //testing for treeview
-            var parent3 = PInvokeLibrary.FindWindowEx(ncmHandle, IntPtr.Zero, "MDIClient", null);
-            var parent2 = PInvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:104d09c9", null);
-            var parent1 = PInvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
-            var parent = PInvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, "");
-            var treeH = PInvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", "Generic1");
-            var treeItemHeight = (int)PInvokeLibrary.SendMessage(treeH, (int)WindowsMessages.TVM_GETITEMW,5, IntPtr.Zero); //works
-
-            //PInvokeLibrary.TVITEM item = new PInvokeLibrary.TVITEM();
-
-            var t = AllocTest(Process.GetProcessById(7396), treeH, IntPtr.Zero);
-
-            //instead build an xml
-
-            var s = GetTreeItemText(treeH, IntPtr.Zero);
-
-            Console.WriteLine("uhum");
-        }
 
         private void DownloadProcess()
         {
@@ -810,7 +805,7 @@ namespace AutomateDownloader
                             " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString() +
                             " in " + secElapsed.ToString() + " seconds");
                         logFile.Flush();
-                        int currentElapsed = Convert.ToInt32(label9.Text.Split(Convert.ToChar("~"))[1]);
+                        //int currentElapsed = Convert.ToInt32(label9.Text.Split(Convert.ToChar("~"))[1]);
                         //label9.Text = "Remaining [s]: ~" + (currentElapsed - 100).ToString();
                         label9.Refresh();
                         progressBar1.Refresh();
@@ -1019,7 +1014,7 @@ namespace AutomateDownloader
             }
             SendKeyHandled(ncm, "{RIGHT}", log);
 
-            for (int i = 0; i < Int32.Parse(firstClientIndexBox.Text); i++)
+            for (int i = 0; i < int.Parse(firstClientIndexBox.Text); i++)
             {
                 SendKeyHandled(ncm, "{DOWN}", log);
             }
@@ -1301,7 +1296,7 @@ namespace AutomateDownloader
             // 
             this.progressBar1.Location = new System.Drawing.Point(13, 377);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(194, 13);
+            this.progressBar1.Size = new System.Drawing.Size(299, 13);
             this.progressBar1.TabIndex = 22;
             // 
             // statusLabel
@@ -1319,9 +1314,8 @@ namespace AutomateDownloader
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(213, 377);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 13);
+            this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 24;
-            //this.label9.Text = "Remaining [s]: ~0";
             // 
             // NCMForm
             // 
@@ -1342,6 +1336,7 @@ namespace AutomateDownloader
             this.Controls.Add(this.button1);
             this.Controls.Add(this.firstClientIndexBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "NCMForm";
