@@ -572,12 +572,7 @@ namespace AutomateDownloader
                 statusLabel.Refresh();
                 return;
             }
-            //
-            //write config file
-            //
             KeepConfig();
-            //
-            //
             DownloadProcess();
         }
 
@@ -595,10 +590,7 @@ namespace AutomateDownloader
             int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
             // init logFile
             //
-            string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
-            var logFile = File.CreateText(logPath);
-            LogToFile("Started actions");
-            
+            LogToFile("Started actions ******************************************");            
             //
             // initialize handles for windows
             //
@@ -625,7 +617,7 @@ namespace AutomateDownloader
             {
                 IntPtr btnHandle = PInvokeLibrary.FindWindowEx(tgtWndHandle, IntPtr.Zero, "Button", null);
 
-                if (btnHandle != new IntPtr(0x00000000))
+                if (btnHandle != IntPtr.Zero)
                 {
                     PInvokeLibrary.SetForegroundWindow(tgtWndHandle);
                     PInvokeLibrary.SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
@@ -650,7 +642,7 @@ namespace AutomateDownloader
                     }
                     // sys tree view 32 already selected when focusing - navigate from here
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
-                    System.Threading.Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(200);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     string clientName = checkedListBox1.CheckedItems[i].ToString();
                     //
@@ -660,11 +652,11 @@ namespace AutomateDownloader
                     //
                     //download process starts here - first needs to navigate to correct index
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
-                    ResetExpansions(ncmHandle, logFile);
+                    ResetExpansions(ncmHandle);
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
-                    ReturnToFirstClient(ncmHandle, logFile);
+                    ReturnToFirstClient(ncmHandle);
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
-                    DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
+                    DownloadToCurrentIndex(clientIndex, ncmHandle);
 
                     LogToFile("Attempting download to client " + clientName);
                     
@@ -796,7 +788,7 @@ namespace AutomateDownloader
 
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
-                                ClickButtonUsingMessage(dldingTgtHandle, "OK", "Download to target system was completed successfully", logFile);
+                                ClickButtonUsingMessage(dldingTgtHandle, "OK", "Download to target system was completed successfully");
                             }
                         }
 
@@ -826,12 +818,11 @@ namespace AutomateDownloader
                 }
                 LogToFile("Closing logfile");
                 
-                logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
         }
 
-        private void ClickButtonUsingMessage(IntPtr windowHandle, string buttonText, string windowText, StreamWriter log)
+        private void ClickButtonUsingMessage(IntPtr windowHandle, string buttonText, string windowText)
         {
             bool success = true;
             do
@@ -944,7 +935,7 @@ namespace AutomateDownloader
             }
         }
 
-        private void SendKeyHandled(IntPtr windowHandle, string key, StreamWriter log)
+        private void SendKeyHandled(IntPtr windowHandle, string key)
         {
             bool success;
             do
@@ -965,66 +956,66 @@ namespace AutomateDownloader
             } while (success == false);
         }
 
-        private void NavigateToIndex(int index, IntPtr ncm, StreamWriter log)
+        private void NavigateToIndex(int index, IntPtr ncm)
         {
             for (int i = 0; i < index; i++)
             {
-                SendKeyHandled(ncm, "{DOWN}", log);
+                SendKeyHandled(ncm, "{DOWN}");
             }
         }
 
-        private void ResetExpansions(IntPtr ncm, StreamWriter log)
+        private void ResetExpansions(IntPtr ncm)
         {
             int num = int.Parse(numClTextBox.Text) * 3;
             for (int i = 0; i < num; i++) //go up
             {
-                SendKeyHandled(ncm, "{UP}", log);
+                SendKeyHandled(ncm, "{UP}");
             }
             for (int i = 0; i < num; i++) //expand all
             {
-                SendKeyHandled(ncm, "{DOWN}", log);
+                SendKeyHandled(ncm, "{DOWN}");
                 for (int j = 0; j < 6; j++)
                 {
-                    SendKeyHandled(ncm, "{RIGHT}", log);
+                    SendKeyHandled(ncm, "{RIGHT}");
                 }
             }
             for (int i = 0; i < num; i++) //back to compact
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    SendKeyHandled(ncm, "{LEFT}", log);
+                    SendKeyHandled(ncm, "{LEFT}");
                 }
-                SendKeyHandled(ncm, "{UP}", log);
+                SendKeyHandled(ncm, "{UP}");
             }
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{DOWN}", log); //go to first dev station or whatever in the list
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{DOWN}"); //go to first dev station or whatever in the list
         }
 
-        private void DownloadToCurrentIndex(int index, IntPtr ncm, StreamWriter log)
+        private void DownloadToCurrentIndex(int index, IntPtr ncm)
         {
-            NavigateToIndex(index, ncm, log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "{RIGHT}", log);
-            SendKeyHandled(ncm, "^(l)", log);
+            NavigateToIndex(index, ncm);
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "{RIGHT}");
+            SendKeyHandled(ncm, "^(l)");
             System.Threading.Thread.Sleep(500);
         }
 
-        private void ReturnToFirstClient(IntPtr ncm, StreamWriter log)
+        private void ReturnToFirstClient(IntPtr ncm)
         {
             for (int i = 0; i < 10; i++)
             {
-                SendKeyHandled(ncm, "{LEFT}", log);
+                SendKeyHandled(ncm, "{LEFT}");
             }
-            SendKeyHandled(ncm, "{RIGHT}", log);
+            SendKeyHandled(ncm, "{RIGHT}");
 
             for (int i = 0; i < int.Parse(firstClientIndexBox.Text); i++)
             {
-                SendKeyHandled(ncm, "{DOWN}", log);
+                SendKeyHandled(ncm, "{DOWN}");
             }
         }
 

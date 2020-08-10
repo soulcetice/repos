@@ -15,7 +15,6 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Impor
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe.config
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Tag_Importer.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\Microsoft.Rest.ClientRuntime.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Properties.Resources.resources
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.GenerateResource.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CoreCompileInputs.cache
