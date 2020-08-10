@@ -114,7 +114,7 @@ namespace Tag_Importer
             }
         }
 
-        private void SendKeyHandled(IntPtr windowHandle, string key/*, StreamWriter log*/)
+        private void SendKeyHandled(IntPtr windowHandle, string key)
         {
             bool success;
             do
@@ -128,8 +128,7 @@ namespace Tag_Importer
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    //log.WriteLine(e.Message);
-                    //log.Flush();
+                    LogToFile(e.Message);
                     success = false;
                 }
             } while (success == false);
@@ -195,8 +194,19 @@ namespace Tag_Importer
             }
         }
 
+        private static void LogToFile(string content)
+        {
+            using (var fileWriter = new StreamWriter(Application.StartupPath + "\\Tag_Importer.logger", true))
+            {
+                fileWriter.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : " + content);
+                fileWriter.Close();
+            }
+        }
+
         private void ImportTags()
         {
+            LogToFile("Started actions");
+
             #region tree view handle capture
             IntPtr tag = PInvokeLibrary.FindWindow("WinCC ConfigurationStudio MainWindow", "Tag Management - WinCC Configuration Studio");
             IntPtr ccAx = PInvokeLibrary.FindWindowEx(tag, IntPtr.Zero, "CCAxControlContainerWindow", null);
@@ -204,23 +214,17 @@ namespace Tag_Importer
             IntPtr treeView = PInvokeLibrary.FindWindowEx(navBar, IntPtr.Zero, "WinCC ConfigurationStudio NavigationBarTreeView", null);
             IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
-            #endregion
 
-            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
-            var widthsccAx = new List<int>();
-            for (int i = 1; i < ccAxs.Count; i++)
-            {
-                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
-                int width = rect.right - rect.left;
-                widthsccAx.Add(width);
-            }
-            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(1).FirstOrDefault());
-            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
+            IntPtr ccAxt = GetccAxParentOfDataGrid(tag);
             _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
             IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
+            if (dataGridHandle == IntPtr.Zero)
+                LogToFile("dataGridHandle was IntPtr.Zero");
+            #endregion
 
             Bitmap scrollUp = (Bitmap)Image.FromFile("characters/scrollUp.png");
             Bitmap scrollDn = (Bitmap)Image.FromFile("characters/scrollDown.png");
+
             #region lookInDirectory
 
             DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
@@ -236,7 +240,10 @@ namespace Tag_Importer
             //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
             List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
 
-            
+            foreach (var c in rowData)
+            {
+                LogToFile(c.word);
+            }
 
             #region Expand Only Tag Management
             ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, true);
@@ -280,10 +287,9 @@ namespace Tag_Importer
             #region open import dialog
 
             isFirstImporting = true;
-            //checkedListBox1.CheckedItems;
-            for (int fileNo = 0; fileNo < Files.Length; fileNo++)
+            for (int fileNo = 0; fileNo < checkedListBox1.CheckedItems.Count; fileNo++)
             {
-                FileInfo file = Files[fileNo];
+                FileInfo file = Files.FirstOrDefault(f => f.Name.Equals(checkedListBox1.CheckedItems[fileNo]));
 
                 //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
                 var grup = File.ReadLines(file.FullName).Skip(3).Take(1).ToList()[0].Split(Convert.ToChar("\t"));
@@ -301,38 +307,39 @@ namespace Tag_Importer
                     if (c == "") break;
                     var conn = c.Split(Convert.ToChar("\t"));
                     nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
+                    LogToFile(nc[i].connection + ", " + nc[i].name);
                 }
 
-                if (grup[1] != "OPC")
+                //ExpandTreeItem(trHandle, grup[1], true, trRect);
+                while (ExpandTreeItem(trHandle, grup[1], true, trRect) == false)
                 {
-                    ExpandTreeItem(trHandle, grup[1], false, trRect);
+                    LogToFile("Could not find " + grup[1]);
+                    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
                 }
 
-                ExpandTreeItem(trHandle, grup[1], true, trRect);
-                //while (ExpandTreeItem(trHandle, grup[1], true, trRect) == false)
-                //{
-                //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
-                //}
-
-                ExpandTreeItem(trHandle, grup[2], true, trRect);
-                //while (ExpandTreeItem(trHandle, grup[2], true, trRect) == false)
-                //{
-                //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
-                //}
+                //ExpandTreeItem(trHandle, grup[2], true, trRect);
+                while (ExpandTreeItem(trHandle, grup[2], true, trRect) == false)
+                {
+                    LogToFile("Could not find " + grup[2]);
+                    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                }
 
                 for (int i = 0; i < nc.Count; i++)
                 {
                     DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc, i);
+                    LogToFile("Deleted variables for " + nc[i].connection + nc[i].name);
                 }
 
                 ExpandTreeItem(trHandle, grup[2], false, trRect);
                 ExpandTreeItem(trHandle, grup[1], false, trRect);
+                ExpandTreeItem(trHandle, "TagManagement", false, trRect);
 
                 ImportTagFile(tag, file);
 
                 if (checkBox2.CheckState == CheckState.Checked)
                 {
                     MoveFilesPair(file);
+                    LogToFile("Moved files pair for " + file.Name);
                 }
             }
 
@@ -341,7 +348,42 @@ namespace Tag_Importer
 
             #endregion
 
+            LogToFile("Finished importing from folder");
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
+        }
+
+        private static IntPtr GetccAxParentOfDataGrid(IntPtr tag)
+        {
+            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
+            var widthsccAx = new List<int>();
+            for (int i = 0; i < ccAxs.Count; i++)
+            {
+                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
+                int width = rect.right - rect.left;
+                widthsccAx.Add(width);
+            }
+            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(2).FirstOrDefault());
+            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
+            LogToFile((no + 1).ToString());
+
+            //ccAxt = ccAxs[2]; //hope this holds together - second largest width of ccax //in case previous stuff don't work
+            return ccAxt;
+        }
+
+        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, List<NameConnection> nc, int i)
+        {
+            List<WordWithLocation> rowData;
+            NameConnection connData = nc[i];
+            //Console.WriteLine(connData.connection + ", " + connData.name);
+            ExpandTreeItem(trHandle, connData.connection, true, trRect);
+            rowData = GetWordsInHandle(trHandle);
+            var myGroup = FindClosestMatch(rowData, connData.name);
+            ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
+            //now delete the tags
+            ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
+            SendKeyHandled(dataGridHandle, "^(a)");
+            SendKeyHandled(dataGridHandle, "{DELETE}");
+            ExpandTreeItem(trHandle, connData.connection, false, trRect);
         }
 
         private void MoveFilesPair(FileInfo file)
@@ -476,6 +518,11 @@ namespace Tag_Importer
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/3.png")), "3"));
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/4.png")), "4"));
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/5.png")), "5"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/6.png")), "6"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/7.png")), "7"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/8.png")), "8"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/9.png")), "9"));
+            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Image.FromFile("characters/0.png")), "0"));
 
             return allCharsFound;
         }
@@ -540,22 +587,6 @@ namespace Tag_Importer
                 }
             }
             checkedListBox1_SelectedIndexChanged(checkBox1, new System.EventArgs());
-        }
-
-        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, List<NameConnection> nc, int i)
-        {
-            List<WordWithLocation> rowData;
-            NameConnection connData = nc[i];
-            //Console.WriteLine(connData.connection + ", " + connData.name);
-            ExpandTreeItem(trHandle, connData.connection, true, trRect);
-            rowData = GetWordsInHandle(trHandle);
-            var myGroup = FindClosestMatch(rowData, connData.name);
-            ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
-            //now delete the tags
-            ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
-            SendKeyHandled(dataGridHandle, "^(a)");
-            SendKeyHandled(dataGridHandle, "{DELETE}");
-            ExpandTreeItem(trHandle, connData.connection, false, trRect);
         }
 
         private void HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
@@ -672,7 +703,7 @@ namespace Tag_Importer
                 myElem = chosenFile;
             } while (myElem == null);
 
-            if (levDist > 5)
+            if (levDist > 3)
             {
                 return null;
             }

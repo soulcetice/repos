@@ -581,6 +581,14 @@ namespace AutomateDownloader
             DownloadProcess();
         }
 
+        private static void LogToFile(string content)
+        {
+            using (var fileWriter = new StreamWriter(Application.StartupPath + "\\NCM_Downloader.logger", true))
+            {
+                fileWriter.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : " + content);
+                fileWriter.Close();
+            }
+        }
 
         private void DownloadProcess()
         {
@@ -589,8 +597,8 @@ namespace AutomateDownloader
             //
             string logPath = Application.StartupPath + "\\NCM_Downloader.logger";
             var logFile = File.CreateText(logPath);
-            logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Started actions");
-            logFile.Flush();
+            LogToFile("Started actions");
+            
             //
             // initialize handles for windows
             //
@@ -607,8 +615,8 @@ namespace AutomateDownloader
             if (ncmHandle == IntPtr.Zero)
             {
                 MessageBox.Show(new Form { TopMost = true }, " Simatic NCM Manager is not running.");
-                logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : NCM Manager was not running.");
-                logFile.Flush();
+                LogToFile("NCM Manager was not running.");
+                
                 return;
             }
 
@@ -626,8 +634,8 @@ namespace AutomateDownloader
             }
             else
             {
-                logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : The missing software package notification did not appear - that is ok");
-                logFile.Flush();
+                LogToFile("The missing software package notification did not appear - that is ok");
+                
                 PInvokeLibrary.SetForegroundWindow(ncmHandle);
             }
 
@@ -658,8 +666,8 @@ namespace AutomateDownloader
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     DownloadToCurrentIndex(clientIndex, ncmHandle, logFile);
 
-                    logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Attempting download to client " + clientName);
-                    logFile.Flush();
+                    LogToFile("Attempting download to client " + clientName);
+                    
 
                     var started = DateTime.Now;
 
@@ -696,15 +704,15 @@ namespace AutomateDownloader
                                 }
                                 else
                                 {
-                                    logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : The Ok Button was not found in the deactivation window!");
-                                    logFile.Flush();
+                                    LogToFile("The Ok Button was not found in the deactivation window!");
+                                    
                                     MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
                             {
-                                logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Did not find target system popup! (runtime was not active on this client)");
-                                logFile.Flush();
+                                LogToFile("Did not find target system popup! (runtime was not active on this client)");
+                                
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
@@ -767,19 +775,19 @@ namespace AutomateDownloader
                                         }
                                         else
                                         {
-                                            logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : The Ok Button was not found in the downloading window!");
-                                            logFile.Flush();
+                                            LogToFile("The Ok Button was not found in the downloading window!");
+                                            
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
-                                        logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Error on download to client " + clientIndex + 1);
-                                        logFile.Flush();
+                                        LogToFile("Error on download to client " + clientIndex + 1);
+                                        
                                         continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
                                     {
-                                        logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Client " + clientIndex + " download canceled - RT station not obtainable");
-                                        logFile.Flush();
+                                        LogToFile("Client " + clientIndex + " download canceled - RT station not obtainable");
+                                        
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
                                         continue;
                                     }
@@ -801,10 +809,10 @@ namespace AutomateDownloader
                         statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
                         var ended = DateTime.Now;
                         var secElapsed = Math.Round((ended - started).TotalSeconds, 2);
-                        logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() +
+                        LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() +
                             " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString() +
                             " in " + secElapsed.ToString() + " seconds");
-                        logFile.Flush();
+                        
                         //int currentElapsed = Convert.ToInt32(label9.Text.Split(Convert.ToChar("~"))[1]);
                         //label9.Text = "Remaining [s]: ~" + (currentElapsed - 100).ToString();
                         label9.Refresh();
@@ -816,8 +824,8 @@ namespace AutomateDownloader
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
-                logFile.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : Closing logfile");
-                logFile.Flush();
+                LogToFile("Closing logfile");
+                
                 logFile.Close();
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
@@ -843,16 +851,16 @@ namespace AutomateDownloader
                     }
                     else
                     {
-                        log.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : The " + buttonText + " button was not found in the downloading window to confirm finish!");
-                        log.Flush();
+                        LogToFile("The " + buttonText + " button was not found in the downloading window to confirm finish!");
+                        
                         //MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
                         success = false;
                     }
                 }
                 catch (Exception exc)
                 {
-                    log.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + exc.Message);
-                    log.Flush();
+                    LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + exc.Message);
+                    
                     //MessageBox.Show(new Form { TopMost = true }, exc.Message);
                     success = false;
                 }
@@ -949,8 +957,8 @@ namespace AutomateDownloader
                 }
                 catch (Exception e)
                 {
-                    log.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + e.Message);
-                    log.Flush();
+                    LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + e.Message);
+                    
                     success = false;
                     System.Threading.Thread.Sleep(10);
                 }
