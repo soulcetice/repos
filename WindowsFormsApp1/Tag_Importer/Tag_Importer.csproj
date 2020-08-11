@@ -172,6 +172,8 @@
     <None Include="bin\Debug\characters\upper_M.png" />
     <None Include="bin\Debug\characters\plus.png" />
     <None Include="bin\Debug\characters\minus.png" />
+    <None Include="bin\Debug\characters\dot.png" />
+    <None Include="bin\Debug\characters\txt.png" />
     <Content Include="GetTagManagementTreeNodesResult.xml" />
   </ItemGroup>
   <ItemGroup>
