@@ -203,7 +203,7 @@ namespace Tag_Importer
             }
         }
 
-        private void ImportTags()
+        private bool ImportTags()
         {
             LogToFile("Started actions ******************************************");
 
@@ -221,7 +221,10 @@ namespace Tag_Importer
             _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
             IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
             if (dataGridHandle == IntPtr.Zero || dataGridHandle == new IntPtr(0x00000000))
+            {
                 LogToFile("dataGridHandle was IntPtr.Zero");
+                return false;
+            }
             #endregion
 
             Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
@@ -300,47 +303,93 @@ namespace Tag_Importer
                     grup[i] = grup[i].Replace(" ", string.Empty);
                 }
 
-                List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
-
-                List<NameConnection> nc = new List<NameConnection>();
-                for (int i = 0; i < line.Count; i++)
+                if (grup[1] == "Internaltags")
                 {
-                    string c = line[i];
-                    if (c == "") break;
-                    var conn = c.Split(Convert.ToChar("\t"));
-                    nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
-                    LogToFile(nc[i].connection + ", " + nc[i].name);
-                }
+                    ExpandTreeItem(trHandle, grup[1], true, trRect);
 
-                ExpandTreeItem(trHandle, grup[1], true, trRect);
-                // have to implement a better way - in case it is not found, scroll down a bit - scroll to find lowest levenshtein distance
-                //get whole tree model at least for the current "internal tags" 
-                while (ExpandTreeItem(trHandle, grup[1], true, trRect) == false)
+                    WordWithLocation loc;
+                    do
+                    {
+                        ScrollDownOnePage(trHandle, trRect, scrollUp, scrollDn, false);
+                        rowData = GetWordsInHandle(trHandle);
+                        loc = rowData.FirstOrDefault(c => c.word == grup[0]);
+                    } while (loc == null);
+
+                    if (FindClosestMatch(rowData, loc.word) != null)
+                    {
+                        //ClickInWindowAtXY(trHandle, trRect.left + loc.x, trRect.top + loc.y);
+                        DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, new NameConnection() { connection = "Internaltags", name = loc.word });
+                    }
+                    else
+                    {
+                        LogToFile("Did not find " + loc.word);
+                    }
+                }
+                else
                 {
-                    LogToFile("Could not find " + grup[1]);
-                    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                    List<string> line = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
+
+                    List<NameConnection> nc = new List<NameConnection>();
+                    for (int i = 0; i < line.Count; i++)
+                    {
+                        string c = line[i];
+                        if (c == "") break;
+                        var conn = c.Split(Convert.ToChar("\t"));
+                        nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
+                        LogToFile(nc[i].connection + ", " + nc[i].name);
+                    }
+
+                    // have to implement a better way - in case it is not found, scroll down a bit - scroll to find lowest levenshtein distance
+                    //get whole tree model at least for the current "internal tags" 
+
+
+                    //check in this group, lowest levenshtein distance object
+                    //scroll until finding 
+                    //check if expansion is visible of needed group
+
+                    //then expand
+                    ExpandTreeItem(trHandle, grup[1], true, trRect);
+
+                    //while (ExpandTreeItem(trHandle, grup[1], true, trRect) == false)
+                    //{
+                    //    LogToFile("Could not find " + grup[1]);
+                    //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                    //}
+
+                    ExpandTreeItem(trHandle, grup[2], true, trRect);
+
+                    //while (ExpandTreeItem(trHandle, grup[2], true, trRect) == false)
+                    //{
+                    //    LogToFile("Could not find " + grup[2]);
+                    //    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
+                    //}
+
+                    int myLev = 100;
+                    foreach (var c in rowData)
+                    {
+                        //myLev = LevenshteinDistance.Compute();
+                    }
+                    if (myLev > 1)
+                    {
+                        ScrollDownOnePage(trHandle, trRect, scrollUp, scrollDn, false);
+                    }
+                    foreach (var c in rowData)
+                    {
+                        //myLev = LevenshteinDistance.Compute();
+                    }
+
+
+                    for (int i = 0; i < nc.Count; i++)
+                    {
+                        DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc[i]);
+                        System.Threading.Thread.Sleep(5000);
+                        LogToFile("Deleted variables for " + nc[i].connection + " " + nc[i].name);
+                    }
+
+                    ExpandTreeItem(trHandle, grup[2], false, trRect);
+                    ExpandTreeItem(trHandle, grup[1], false, trRect);
+                    ExpandTreeItem(trHandle, "TagManagement", false, trRect);
                 }
-
-
-                ExpandTreeItem(trHandle, grup[2], true, trRect);
-
-                while (ExpandTreeItem(trHandle, grup[2], true, trRect) == false)
-                {
-                    LogToFile("Could not find " + grup[2]);
-                    ScrollAllTheWayUp(trHandle, trRect, scrollUp, scrollDn, false);
-                }
-
-
-                for (int i = 0; i < nc.Count; i++)
-                {
-                    DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc, i);
-                    System.Threading.Thread.Sleep(5000);
-                    LogToFile("Deleted variables for " + nc[i].connection + " " + nc[i].name);
-                }
-
-                ExpandTreeItem(trHandle, grup[2], false, trRect);
-                ExpandTreeItem(trHandle, grup[1], false, trRect);
-                ExpandTreeItem(trHandle, "TagManagement", false, trRect);
 
                 ImportTagFile(tag, file);
 
@@ -358,6 +407,7 @@ namespace Tag_Importer
 
             LogToFile("Finished importing from folder");
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
+            return true;
         }
 
         private static IntPtr GetccAxParentOfDataGrid(IntPtr tag)
@@ -371,24 +421,24 @@ namespace Tag_Importer
                 widthsccAx.Add(width);
             }
             int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(2).FirstOrDefault());
-            IntPtr ccAxt = ccAxs[no + 1]; //hope this holds together - second largest width of ccax
-            LogToFile((no + 1).ToString());
+            IntPtr ccAxt = ccAxs[no]; //hope this holds together - second largest width of ccax
+            LogToFile((no).ToString());
 
             //ccAxt = ccAxs[2]; //hope this holds together - second largest width of ccax //in case previous stuff don't work
 
             return ccAxt;
         }
 
-        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, List<NameConnection> nc, int i)
+        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, NameConnection connData)
         {
             List<WordWithLocation> rowData;
-            NameConnection connData = nc[i];
 
             ExpandTreeItem(trHandle, connData.connection, true, trRect);
 
             rowData = GetWordsInHandle(trHandle);
             var myGroup = FindClosestMatch(rowData, connData.name);
             ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y);
+            System.Threading.Thread.Sleep(100);
             //now delete the tags
             ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100); //click in data grid
             System.Threading.Thread.Sleep(100);
@@ -540,6 +590,49 @@ namespace Tag_Importer
             return allCharsFound;
         }
 
+        private void ScrollDownOnePage(IntPtr trHandle, RECT trRect, Bitmap scrollUp, Bitmap scrollDn, bool up)
+        {
+            var img = MyFunctions.GetPngByHandle(trHandle);
+            var scrollState = GetHandleScrollState(img);
+            //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
+
+            int FirstState;
+            int SecondState;
+
+            switch (up)
+            {
+                case true:
+                    FirstState = 1;
+                    break;
+                default:
+                    FirstState = 2;
+                    break;
+            }
+            SecondState = 4;
+
+            if (scrollState != FirstState || scrollState != SecondState)
+            {
+                if (scrollState != FirstState && scrollState != SecondState)
+                {
+                    if (up == true)
+                    {
+                        var goHere = Find(img, scrollUp).FirstOrDefault();
+                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y);
+                    }
+                    else
+                    {
+                        var goHere = Find(img, scrollDn).FirstOrDefault();
+                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y);
+                    }
+                    img = MyFunctions.GetPngByHandle(trHandle);
+
+                    scrollState = GetHandleScrollState(img);
+                    img.Dispose();
+                    System.Threading.Thread.Sleep(10);
+                }
+            }
+        }
+
         private void ScrollAllTheWayUp(IntPtr trHandle, RECT trRect, Bitmap scrollUp, Bitmap scrollDn, bool up)
         {
             var img = MyFunctions.GetPngByHandle(trHandle);
@@ -620,17 +713,21 @@ namespace Tag_Importer
         {
             List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
             WordWithLocation foundElem = FindClosestMatch(rowData, FindThis);
-            LogToFile("For " + FindThis + " I found the closest element: " + foundElem.word);
-            var getElement = TextHasExpandOrHide(trHandle, foundElem, expand);
-            if (getElement != null)
+            if (foundElem != null)
             {
-                ClickInWindowAtXY(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y);
-                return true;
+                LogToFile("For " + FindThis + " I found the closest element: " + foundElem.word);
+                var getElement = TextHasExpandOrHide(trHandle, foundElem, expand);
+                if (getElement != null)
+                {
+                    ClickInWindowAtXY(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         private Point? TextHasExpandOrHide(IntPtr trHandle, WordWithLocation foundElem, bool expand)
@@ -653,7 +750,7 @@ namespace Tag_Importer
                 isFirstImporting = false;
             }
             IntPtr importPopup = OpenTagMgmtMenu(tag);
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(1000);
             //find files in import dialog
             IntPtr duiview = PInvokeLibrary.FindWindowEx(importPopup, IntPtr.Zero, "DUIViewWndClassName", "");
             IntPtr directuihwnd = PInvokeLibrary.FindWindowEx(duiview, IntPtr.Zero, "DirectUIHWND", "");
@@ -669,10 +766,12 @@ namespace Tag_Importer
                 oldWidth = rect.right - rect.left;
             }
 
+            System.Threading.Thread.Sleep(1000);
+
             IntPtr fileListParent = PInvokeLibrary.FindWindowEx(CtrlNotifySink, IntPtr.Zero, "SHELLDLL_DefView", null);
             IntPtr fileList = PInvokeLibrary.FindWindowEx(fileListParent, IntPtr.Zero, "DirectUIHWND", null);
 
-            var filesInDialog = GetWordsInHandle(fileListParent);
+            var filesInDialog = GetWordsInHandle(fileList);
 
             _ = PInvokeLibrary.GetWindowRect(fileList, out RECT fileListRect);
 

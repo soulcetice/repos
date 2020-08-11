@@ -573,7 +573,7 @@ namespace Interoperability
                 g.CopyFromScreen(windowSize.X, windowSize.Y, 0, 0, new Size(windowSize.Width, windowSize.Height));
             }
 
-            target.MakeTransparent();
+            //target.MakeTransparent();
 
             //target = target.GetPixel();
 
@@ -584,7 +584,7 @@ namespace Interoperability
 
         public static Bitmap MakeExistingTransparent(Bitmap img)
         {
-            img.MakeTransparent();
+            //img.MakeTransparent();
             return img;
         }
 
