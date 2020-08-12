@@ -217,14 +217,18 @@ namespace Tag_Importer
             IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
 
-            IntPtr ccAxt = GetccAxParentOfDataGrid(tag);
-            _ = PInvokeLibrary.GetWindowRect(ccAxt, out RECT ccAxtRect);
-            IntPtr dataGridHandle = PInvokeLibrary.FindWindowEx(ccAxt, IntPtr.Zero, "WinCC DataGridControl Window", null);
+            GetDataGridHandle(tag, out IntPtr dataGridHandle, out RECT ccAxtRect);
+
             if (dataGridHandle == IntPtr.Zero || dataGridHandle == new IntPtr(0x00000000))
             {
                 LogToFile("dataGridHandle was IntPtr.Zero");
                 return false;
             }
+            else
+            {
+                LogToFile("Found dataGridHandle with " + dataGridHandle.ToString());
+            }
+
             #endregion
 
             Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
@@ -237,26 +241,7 @@ namespace Tag_Importer
 
             #endregion
 
-            #region image character recognition
-
-            //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
-
-            //find required tag group in treeview, expand and scroll until found
-            //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
-            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
-
-            foreach (var c in rowData)
-            {
-                LogToFile(c.word);
-            }
-
-            #region Expand Only Tag Management
-            #endregion
-
-            //now get structures
-            #endregion
-
-            #region delete variables
+            #region delete variables comments
 
             //expand all tree elements and scroll until no expand is seen - in tag management only
 
@@ -281,7 +266,22 @@ namespace Tag_Importer
 
             //focus on spreadsheet, ctrl+A , delete
 
+            //ExpandOrHideVisibleTree(tag, trHandle, expand: true);
+
+            //find required tag group in treeview, expand and scroll until found
+            //if structure tags is not visible even after moving a little bit then it's not in the field of view at all - that's ok
             #endregion
+
+            #region image character recognition
+
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+
+            foreach (var c in rowData)
+            {
+                LogToFile(c.word);
+            }
+            #endregion
+
 
             #region open import dialog
 
@@ -391,6 +391,26 @@ namespace Tag_Importer
             return true;
         }
 
+        private static void GetDataGridHandle(IntPtr tag, out IntPtr dataGridHandle, out RECT ccAxtRect)
+        {
+            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
+
+            dataGridHandle = IntPtr.Zero;
+            IntPtr ccAxt = IntPtr.Zero;
+            ccAxtRect = new RECT();
+            //do
+            //{
+                foreach (var c in ccAxs)
+                {
+                    ccAxt = c;
+                    _ = PInvokeLibrary.GetWindowRect(c, out ccAxtRect);
+                    dataGridHandle = PInvokeLibrary.FindWindowEx(c, IntPtr.Zero, "WinCC DataGridControl Window", null);
+                    if (dataGridHandle != IntPtr.Zero)
+                        break;
+                }
+            //} while (dataGridHandle == IntPtr.Zero || dataGridHandle == new IntPtr(0x00000000));
+        }
+
         private static void SleepUntilPopupGoesAway()
         {
             IntPtr tagDeletionWindow;
@@ -401,24 +421,6 @@ namespace Tag_Importer
             } while (tagDeletionWindow != IntPtr.Zero);
         }
 
-        private static IntPtr GetccAxParentOfDataGrid(IntPtr tag)
-        {
-            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
-            var widthsccAx = new List<int>();
-            for (int i = 0; i < ccAxs.Count; i++)
-            {
-                _ = PInvokeLibrary.GetWindowRect(ccAxs[i], out RECT rect);
-                int width = rect.right - rect.left;
-                widthsccAx.Add(width);
-            }
-            int no = widthsccAx.FindIndex(a => a == widthsccAx.OrderByDescending(c => c).Skip(2).FirstOrDefault());
-            IntPtr ccAxt = ccAxs[no]; //hope this holds together - second largest width of ccax
-            LogToFile((no).ToString());
-
-            //ccAxt = ccAxs[2]; //hope this holds together - second largest width of ccax //in case previous stuff don't work
-
-            return ccAxt;
-        }
 
         private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, NameConnection connData, List<WordWithLocation> rowData)
         {
