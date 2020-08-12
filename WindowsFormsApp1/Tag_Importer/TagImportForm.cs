@@ -28,6 +28,8 @@ namespace Tag_Importer
             GetInitialValues(configFile);
 
             textBox1_TextChanged(textBox1, new EventArgs());
+
+            RemoveTemporaryOutputs();
         }
 
         private bool isFirstImporting;
@@ -218,10 +220,9 @@ namespace Tag_Importer
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
 
             GetRobustHandleByParent(tag, out IntPtr dataGridHandle, out RECT ccAxtRect);
-
             #endregion
 
-            #region lookInDirectory
+            #region look in directory to check what files
 
             DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
             FileInfo[] Files = dinfo.GetFiles("*.txt");
@@ -269,7 +270,6 @@ namespace Tag_Importer
             }
             #endregion
 
-
             #region open import dialog
 
             isFirstImporting = true;
@@ -307,6 +307,8 @@ namespace Tag_Importer
                         DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, new NameConnection() { connection = "Internaltags", name = loc.word });
                     else
                         LogToFile("Did not find " + loc.word + " in bitmap words");
+
+                    ExpandTreeItem(trHandle, grup[1], false, trRect); SendKeyHandled(trHandle, "{UP}"); SendKeyHandled(trHandle, "{LEFT}");
                 }
                 else //internal and external tags file
                 {
@@ -322,12 +324,30 @@ namespace Tag_Importer
                         nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
                         LogToFile(nc[i].connection + ", " + nc[i].name);
                     }
+
                     //check in this group, lowest levenshtein distance object
                     //scroll until finding 
                     //check if expansion is visible of needed group
-
                     //then expand
+
+                    WordWithLocation grup1;
+                    grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
+                    while (grup1 == null)
+                    {
+                        ScrollDownOnePage(trHandle, trRect, false);
+                        rowData = GetWordsInHandle(trHandle);
+                        grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
+                    }
                     ExpandTreeItem(trHandle, grup[1], true, trRect);
+
+                    WordWithLocation grup2;
+                    grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
+                    while (grup2 == null)
+                    {
+                        ScrollDownOnePage(trHandle, trRect, false);
+                        rowData = GetWordsInHandle(trHandle);
+                        grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
+                    }
                     ExpandTreeItem(trHandle, grup[2], true, trRect);
 
                     for (int i = 0; i < nc.Count; i++)
@@ -336,6 +356,7 @@ namespace Tag_Importer
                         DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc[i]);
                         LogToFile("Deleted variables for " + nc[i].connection + " " + nc[i].name);
                     }
+                    ScrollAllTheWayUp(trHandle, trRect, true);
 
                     ExpandTreeItem(trHandle, grup[2], false, trRect);
                     ExpandTreeItem(trHandle, grup[1], false, trRect);
@@ -344,16 +365,12 @@ namespace Tag_Importer
 
                 ImportTagFile(tag, file);
 
-                if (grup[1] == "Internaltags")
-                    ExpandTreeItem(trHandle, grup[1], false, trRect); SendKeyHandled(trHandle, "{UP}"); SendKeyHandled(trHandle, "{LEFT}");
-
                 if (checkBox2.CheckState == CheckState.Checked)
                 {
                     MoveFilesPair(file);
                     LogToFile("Moved files pair for " + file.Name);
                 }
             }
-
             #endregion
 
             LogToFile("Finished importing from folder");
@@ -411,12 +428,10 @@ namespace Tag_Importer
             {
                 ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
                 LogToFile("Clicked on treehandle for " + connData.name + " " + connData.connection + " " + myGroup.word.ToString());
-                System.Threading.Thread.Sleep(100);
                 //now delete the tags
                 ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
-                System.Threading.Thread.Sleep(100);
                 SendKeyHandled(dataGridHandle, "^(a)");
-                System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
+                System.Threading.Thread.Sleep(1000); //necessary to sleep because it was trying to delete before selecting
                 SendKeyHandled(dataGridHandle, "{DELETE}");
                 System.Threading.Thread.Sleep(100);
 
@@ -559,6 +574,7 @@ namespace Tag_Importer
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_y")), "y"));
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_z")), "z"));
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rf")), "rf"));
+            //allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rt")), "rt"));
             //allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("txt")), ".txt"));
 
             allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("underscore")), "_"));
@@ -584,7 +600,6 @@ namespace Tag_Importer
             var img = MyFunctions.GetPngByHandle(trHandle);
             var scrollState = GetHandleScrollState(img);
             //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
-
 
             Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
             Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
@@ -776,16 +791,23 @@ namespace Tag_Importer
             bool success = false;
             do
             {
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(100);
                 IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
                 if (confirmationPopup != IntPtr.Zero)
                 {
+                    var data = GetWordsInHandle(confirmationPopup);
+
+                    foreach (var c in data)
+                    {
+                        LogToFile("Confirmation Popup words: " + c.word);
+                    }
+
                     SendKeyHandled(confirmationPopup, "{ENTER}");
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(100);
                     success = true;
                 }
                 if (confirmationPopup == IntPtr.Zero)
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(100);
             } while (success == false);
         }
 
@@ -912,10 +934,10 @@ namespace Tag_Importer
 
                 iter++;
             }
-            //foreach (var word in words)
-            //{
-            //    LogToFile(word.word);
-            //}
+            foreach (var word in words)
+            {
+                LogToFile("Found word " + word.word + " in handle " + fileListParent);
+            }
 
             return words;
         }
