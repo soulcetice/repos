@@ -217,22 +217,9 @@ namespace Tag_Importer
             IntPtr trHandle = PInvokeLibrary.FindWindowEx(treeView, IntPtr.Zero, "SysTreeView32", "");
             _ = PInvokeLibrary.GetWindowRect(trHandle, out RECT trRect);
 
-            GetDataGridHandle(tag, out IntPtr dataGridHandle, out RECT ccAxtRect);
-
-            if (dataGridHandle == IntPtr.Zero || dataGridHandle == new IntPtr(0x00000000))
-            {
-                LogToFile("dataGridHandle was IntPtr.Zero");
-                return false;
-            }
-            else
-            {
-                LogToFile("Found dataGridHandle with " + dataGridHandle.ToString());
-            }
+            GetRobustHandleByParent(tag, out IntPtr dataGridHandle, out RECT ccAxtRect);
 
             #endregion
-
-            Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
-            Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
 
             #region lookInDirectory
 
@@ -304,24 +291,24 @@ namespace Tag_Importer
                     grup[i] = grup[i].Replace(" ", string.Empty);
                 }
 
-                if (grup[1] == "Internaltags")
+                if (grup[1] == "Internaltags") //internal tags file only
                 {
                     ExpandTreeItem(trHandle, grup[1], true, trRect);
 
                     WordWithLocation loc;
                     do
                     {
-                        ScrollDownOnePage(trHandle, trRect, scrollUp, scrollDn, false);
+                        ScrollDownOnePage(trHandle, trRect, false);
                         rowData = GetWordsInHandle(trHandle);
                         loc = rowData.FirstOrDefault(c => c.word == grup[0]);
                     } while (loc == null);
 
                     if (FindClosestMatch(rowData, loc.word) != null)
-                        DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, new NameConnection() { connection = "Internaltags", name = loc.word }, rowData);
+                        DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, new NameConnection() { connection = "Internaltags", name = loc.word });
                     else
                         LogToFile("Did not find " + loc.word + " in bitmap words");
                 }
-                else
+                else //internal and external tags file
                 {
                     List<string> fileConns = File.ReadLines(file.FullName).Skip(8).Take(6).ToList();
 
@@ -329,6 +316,7 @@ namespace Tag_Importer
                     for (int i = 0; i < fileConns.Count; i++)
                     {
                         string c = fileConns[i];
+                        LogToFile("fileconns " + c);
                         if (c == "") break;
                         var conn = c.Split(Convert.ToChar("\t"));
                         nc.Add(new NameConnection() { name = conn[0], connection = conn[1] });
@@ -344,23 +332,8 @@ namespace Tag_Importer
 
                     for (int i = 0; i < nc.Count; i++)
                     {
-                        WordWithLocation loc;
-                        do
-                        {
-                            ScrollDownOnePage(trHandle, trRect, scrollUp, scrollDn, false);
-                            rowData = GetWordsInHandle(trHandle);
-                            loc = rowData.FirstOrDefault(c => c.word == grup[0]);
-                        } while (loc == null);
-
-                        if (FindClosestMatch(rowData, loc.word) != null)
-                        {
-                            DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc[i], rowData);
-                        }
-                        else
-                        {
-                            LogToFile("Did not find " + loc.word + " in bitmap words");
-                        }
-
+                        LogToFile("Trying to delete " + nc[i].name + " in bitmap words " + grup[0] + " " + grup[1] + " " + grup[2]);
+                        DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc[i]);
                         LogToFile("Deleted variables for " + nc[i].connection + " " + nc[i].name);
                     }
 
@@ -381,9 +354,6 @@ namespace Tag_Importer
                 }
             }
 
-            scrollUp.Dispose();
-            scrollDn.Dispose();
-
             #endregion
 
             LogToFile("Finished importing from folder");
@@ -391,24 +361,23 @@ namespace Tag_Importer
             return true;
         }
 
-        private static void GetDataGridHandle(IntPtr tag, out IntPtr dataGridHandle, out RECT ccAxtRect)
+        private static void GetRobustHandleByParent(IntPtr tag, out IntPtr dataGridHandle, out RECT ccAxtRect)
         {
-            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 4);
+            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 10);
 
             dataGridHandle = IntPtr.Zero;
-            IntPtr ccAxt = IntPtr.Zero;
             ccAxtRect = new RECT();
-            //do
-            //{
-                foreach (var c in ccAxs)
+            foreach (var c in ccAxs)
+            {
+                IntPtr ccAxt = c;
+                _ = PInvokeLibrary.GetWindowRect(c, out ccAxtRect);
+                dataGridHandle = PInvokeLibrary.FindWindowEx(c, IntPtr.Zero, "WinCC DataGridControl Window", null);
+                if (dataGridHandle != IntPtr.Zero)
                 {
-                    ccAxt = c;
-                    _ = PInvokeLibrary.GetWindowRect(c, out ccAxtRect);
-                    dataGridHandle = PInvokeLibrary.FindWindowEx(c, IntPtr.Zero, "WinCC DataGridControl Window", null);
-                    if (dataGridHandle != IntPtr.Zero)
-                        break;
+                    LogToFile("Data Grid Handle was " + dataGridHandle.ToString());
+                    break;
                 }
-            //} while (dataGridHandle == IntPtr.Zero || dataGridHandle == new IntPtr(0x00000000));
+            }
         }
 
         private static void SleepUntilPopupGoesAway()
@@ -421,30 +390,46 @@ namespace Tag_Importer
             } while (tagDeletionWindow != IntPtr.Zero);
         }
 
-
-        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, NameConnection connData, List<WordWithLocation> rowData)
+        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, NameConnection connData)
         {
-            //List<WordWithLocation> rowData;
-
             ExpandTreeItem(trHandle, connData.connection, true, trRect);
 
-            //rowData = GetWordsInHandle(trHandle);
-            var myGroup = FindClosestMatch(rowData, connData.name);
-            ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
-            System.Threading.Thread.Sleep(100);
-            //now delete the tags
-            ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
-            System.Threading.Thread.Sleep(100);
-            SendKeyHandled(dataGridHandle, "^(a)");
-            System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
-            SendKeyHandled(dataGridHandle, "{DELETE}");
-            System.Threading.Thread.Sleep(100);
-            ExpandTreeItem(trHandle, connData.connection, false, trRect);
+            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
+            WordWithLocation myGroup = FindClosestMatch(rowData, connData.name);
+            while (myGroup == null)
+            {
+                ScrollDownOnePage(trHandle, trRect, false);
+                rowData = GetWordsInHandle(trHandle);
+                myGroup = FindClosestMatch(rowData, connData.name);
+            }
 
-            SleepUntilPopupGoesAway();
+            foreach (var c in rowData)
+            {
+                LogToFile("myGroup " + c.word + " " + connData.name);
+            }
+            try
+            {
+                ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
+                LogToFile("Clicked on treehandle for " + connData.name + " " + connData.connection + " " + myGroup.word.ToString());
+                System.Threading.Thread.Sleep(100);
+                //now delete the tags
+                ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
+                System.Threading.Thread.Sleep(100);
+                SendKeyHandled(dataGridHandle, "^(a)");
+                System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
+                SendKeyHandled(dataGridHandle, "{DELETE}");
+                System.Threading.Thread.Sleep(100);
 
-            LogToFile("Deleted all variables from " + connData.connection + " " + connData.name);
+                SleepUntilPopupGoesAway();
 
+                ExpandTreeItem(trHandle, connData.connection, false, trRect);
+
+                LogToFile("Deleted all variables from " + connData.connection + " " + connData.name);
+            }
+            catch (Exception exc)
+            {
+                LogToFile(exc.Message + " " + exc.InnerException);
+            }
             ScrollAllTheWayUp(trHandle, trRect, true);
         }
 
@@ -594,11 +579,15 @@ namespace Tag_Importer
             return allCharsFound;
         }
 
-        private void ScrollDownOnePage(IntPtr trHandle, RECT trRect, Bitmap scrollUp, Bitmap scrollDn, bool up)
+        private void ScrollDownOnePage(IntPtr trHandle, RECT trRect, bool up)
         {
             var img = MyFunctions.GetPngByHandle(trHandle);
             var scrollState = GetHandleScrollState(img);
             //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
+
+
+            Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
+            Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
 
             int FirstState;
             int SecondState;
@@ -787,6 +776,7 @@ namespace Tag_Importer
             bool success = false;
             do
             {
+                System.Threading.Thread.Sleep(1000);
                 IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
                 if (confirmationPopup != IntPtr.Zero)
                 {
@@ -922,6 +912,11 @@ namespace Tag_Importer
 
                 iter++;
             }
+            //foreach (var word in words)
+            //{
+            //    LogToFile(word.word);
+            //}
+
             return words;
         }
 

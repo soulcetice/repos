@@ -45,3 +45,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\bin\Debug\PInvoke.Win
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.Properties.Resources.resources
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CoreCompileInputs.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Tag_Importer\obj\Debug\Tag_Importer.csprojAssemblyReference.cache
