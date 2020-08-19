@@ -430,8 +430,9 @@ namespace Tag_Importer
                 LogToFile("Clicked on treehandle for " + connData.name + " " + connData.connection + " " + myGroup.word.ToString());
                 //now delete the tags
                 ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
+                System.Threading.Thread.Sleep(100);
                 SendKeyHandled(dataGridHandle, "^(a)");
-                System.Threading.Thread.Sleep(1000); //necessary to sleep because it was trying to delete before selecting
+                System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
                 SendKeyHandled(dataGridHandle, "{DELETE}");
                 System.Threading.Thread.Sleep(100);
 
