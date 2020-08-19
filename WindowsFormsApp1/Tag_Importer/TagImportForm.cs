@@ -364,6 +364,7 @@ namespace Tag_Importer
                 }
 
                 ImportTagFile(tag, file);
+                SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
 
                 if (checkBox2.CheckState == CheckState.Checked)
                 {
@@ -792,7 +793,7 @@ namespace Tag_Importer
             bool success = false;
             do
             {
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(1000);
                 IntPtr confirmationPopup = PInvokeLibrary.FindWindow("#32770", "Import");
                 if (confirmationPopup != IntPtr.Zero)
                 {
@@ -808,7 +809,7 @@ namespace Tag_Importer
                     success = true;
                 }
                 if (confirmationPopup == IntPtr.Zero)
-                    System.Threading.Thread.Sleep(100);
+                    System.Threading.Thread.Sleep(1000);
             } while (success == false);
         }
 
