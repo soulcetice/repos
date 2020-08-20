@@ -3109,3 +3109,384 @@ Wednesday, August 19, 2020 12:14:21 PM UTC : Confirmation Popup words: Groupskee
 Wednesday, August 19, 2020 12:14:21 PM UTC : Confirmation Popup words: Tagsnecreated92.
 Wednesday, August 19, 2020 12:14:21 PM UTC : Confirmation Popup words: Requiredtime2Seconds.
 Wednesday, August 19, 2020 12:14:21 PM UTC : Finished importing from folder
+Thursday, August 20, 2020 8:22:55 AM UTC : Started actions ******************************************
+Thursday, August 20, 2020 8:22:55 AM UTC : Data Grid Handle was 5049216
+Thursday, August 20, 2020 8:22:58 AM UTC : Found word Structuretags in handle 19860106
+Thursday, August 20, 2020 8:22:58 AM UTC : Structuretags
+Thursday, August 20, 2020 8:23:02 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:23:02 AM UTC : For TagManagement I found the closest element: TagManagement
+Thursday, August 20, 2020 8:23:02 AM UTC : True tag management expansion
+Thursday, August 20, 2020 8:30:22 AM UTC : Started actions ******************************************
+Thursday, August 20, 2020 8:30:22 AM UTC : Data Grid Handle was 5049216
+Thursday, August 20, 2020 8:30:25 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:30:25 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:30:25 AM UTC : TagManagement
+Thursday, August 20, 2020 8:30:25 AM UTC : Internaltags
+Thursday, August 20, 2020 8:30:29 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:30:29 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:30:29 AM UTC : For TagManagement I found the closest element: TagManagement
+Thursday, August 20, 2020 8:30:29 AM UTC : False tag management expansion
+Thursday, August 20, 2020 8:30:36 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:30:36 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:30:36 AM UTC : For Internaltags I found the closest element: Internaltags
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:30:40 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:30:41 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:30:41 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:30:41 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:30:43 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:30:45 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup gh iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup Horn iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup i iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iC1_G_CVC iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iDpDiag iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iEcatDiag iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iGeneral iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMED1_S_FES iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMED1_X_HPH iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMED1_X_LPH iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMED1_X_OLS iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMED2_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMM1_F_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMM1_H_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMM2_E_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMM2_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iMM2_K_SEQ iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iSafey iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iTPM_L2 iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup iTracking iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup OPCUAU iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup Performance iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup ProcessHistorian iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup Script iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup System iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup TagLoggingt iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : myGroup Temp iGeneral
+Thursday, August 20, 2020 8:30:46 AM UTC : Clicked on treehandle for iGeneral Internaltags iGeneral
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Found word Structuretags in handle 19860106
+Thursday, August 20, 2020 8:30:49 AM UTC : Deleted all variables from Internaltags iGeneral
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word #DpDiag in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word #EcatDiag in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word #Saf1_TxtLib in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word #Saf_TxtLib in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @1_System in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @2_Units in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @3_Application in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @3_Connection in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @4_Authorization in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @4_Desktop in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @4_Screen in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @5_Options in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word @X_SourceTags in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word 1234567890@#lIlIlIlIlI in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word a in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word ABCDEFGHIJKLMONPQRSTUVWXYZabcdefghijklmnopqrstuvwyz in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word AggregatnamesAndConditions in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word asdfgh in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word asgsg in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word b in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word c in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word CRM_System in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word d in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word e in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word f in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word g in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word h in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : Found word Hon in handle 19860106
+Thursday, August 20, 2020 8:30:53 AM UTC : For Internaltags I found the closest element: Internaltags
+Thursday, August 20, 2020 8:30:56 AM UTC : Found word iTracking.xt in handle 11536838
+Thursday, August 20, 2020 8:30:56 AM UTC : Found word iGeneral.xt in handle 11536838
+Thursday, August 20, 2020 8:30:59 AM UTC : Found word Impot in handle 15467402
+Thursday, August 20, 2020 8:30:59 AM UTC : Found word Groupskeepunchanged1. in handle 15467402
+Thursday, August 20, 2020 8:30:59 AM UTC : Found word Tagsnecreated11. in handle 15467402
+Thursday, August 20, 2020 8:30:59 AM UTC : Confirmation Popup words: Impot
+Thursday, August 20, 2020 8:30:59 AM UTC : Confirmation Popup words: Groupskeepunchanged1.
+Thursday, August 20, 2020 8:30:59 AM UTC : Confirmation Popup words: Tagsnecreated11.
+Thursday, August 20, 2020 8:31:03 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:31:03 AM UTC : For TagManagement I found the closest element: TagManagement
+Thursday, August 20, 2020 8:31:03 AM UTC : True tag management expansion
+Thursday, August 20, 2020 8:31:06 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:31:06 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:31:06 AM UTC : For Internaltags I found the closest element: Internaltags
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:31:10 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:31:13 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word iTracking in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup gh iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup Horn iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup i iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iC1_G_CVC iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iDpDiag iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iEcatDiag iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iGeneral iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMED1_S_FES iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMED1_X_HPH iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMED1_X_LPH iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMED1_X_OLS iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMED2_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMM1_F_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMM1_H_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMM2_E_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMM2_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iMM2_K_SEQ iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iSafey iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iTPM_L2 iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup iTracking iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup OPCUAU iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup Performance iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup ProcessHistorian iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup Script iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup System iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup TagLoggingt iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : myGroup Temp iTracking
+Thursday, August 20, 2020 8:31:15 AM UTC : Clicked on treehandle for iTracking Internaltags iTracking
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word gh in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word Horn in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word i in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iC1_G_CVC in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iDpDiag in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iEcatDiag in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iGeneral in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMED1_S_FES in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMED1_X_HPH in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMED1_X_LPH in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMED1_X_OLS in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMED2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMM1_F_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMM1_H_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMM2_E_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMM2_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iMM2_K_SEQ in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iSafey in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word iTPM_L2 in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word OPCUAU in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word Performance in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word ProcessHistorian in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word Script in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word System in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word TagLoggingt in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word Temp in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Found word Structuretags in handle 19860106
+Thursday, August 20, 2020 8:31:18 AM UTC : Deleted all variables from Internaltags iTracking
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word TagManagement in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word Internaltags in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word #DpDiag in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word #EcatDiag in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word #Saf1_TxtLib in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word #Saf_TxtLib in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @1_System in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @2_Units in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @3_Application in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @3_Connection in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @4_Authorization in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @4_Desktop in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @4_Screen in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @5_Options in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word @X_SourceTags in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word 1234567890@#lIlIlIlIlI in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word a in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word ABCDEFGHIJKLMONPQRSTUVWXYZabcdefghijklmnopqrstuvwyz in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word AggregatnamesAndConditions in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word asdfgh in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word asgsg in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word b in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word c in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word CRM_System in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word d in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word e in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word f in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word g in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word h in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : Found word Hon in handle 19860106
+Thursday, August 20, 2020 8:31:23 AM UTC : For Internaltags I found the closest element: Internaltags
+Thursday, August 20, 2020 8:31:26 AM UTC : Found word iTracking.xt in handle 14419612
+Thursday, August 20, 2020 8:31:26 AM UTC : Found word iGeneral.xt in handle 14419612
+Thursday, August 20, 2020 8:31:31 AM UTC : Found word Impot in handle 5177686
+Thursday, August 20, 2020 8:31:31 AM UTC : Found word Groupskeepunchanged1. in handle 5177686
+Thursday, August 20, 2020 8:31:31 AM UTC : Found word Tagsnecreated92. in handle 5177686
+Thursday, August 20, 2020 8:31:31 AM UTC : Found word Requiredtime2Seconds. in handle 5177686
+Thursday, August 20, 2020 8:31:31 AM UTC : Confirmation Popup words: Impot
+Thursday, August 20, 2020 8:31:31 AM UTC : Confirmation Popup words: Groupskeepunchanged1.
+Thursday, August 20, 2020 8:31:31 AM UTC : Confirmation Popup words: Tagsnecreated92.
+Thursday, August 20, 2020 8:31:31 AM UTC : Confirmation Popup words: Requiredtime2Seconds.
+Thursday, August 20, 2020 8:31:31 AM UTC : Finished importing from folder

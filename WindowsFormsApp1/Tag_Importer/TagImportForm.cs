@@ -280,7 +280,7 @@ namespace Tag_Importer
                 {
                     SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
                 }
-                ExpandTreeItem(trHandle, "TagManagement", true, trRect);
+                LogToFile(ExpandTreeItem(trHandle, "TagManagement", true, trRect).ToString() + " tag management expansion");
 
                 FileInfo file = Files.FirstOrDefault(f => f.Name.Equals(checkedListBox1.CheckedItems[fileNo]));
 
@@ -338,6 +338,7 @@ namespace Tag_Importer
                         rowData = GetWordsInHandle(trHandle);
                         grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
                     }
+                    LogToFile("grup1 is " + grup1.word);
                     ExpandTreeItem(trHandle, grup[1], true, trRect);
 
                     WordWithLocation grup2;
@@ -358,9 +359,29 @@ namespace Tag_Importer
                     }
                     ScrollAllTheWayUp(trHandle, trRect, true);
 
-                    ExpandTreeItem(trHandle, grup[2], false, trRect);
-                    ExpandTreeItem(trHandle, grup[1], false, trRect);
-                    ExpandTreeItem(trHandle, "TagManagement", false, trRect);
+                    bool expanded = false;
+                    //do
+                    //{
+                    expanded = ExpandTreeItem(trHandle, grup[2], false, trRect);
+                    //    if (expanded == false)
+                    //        ScrollDownOnePage(trHandle, trRect, false);
+                    //} while (expanded == false);
+                    //expanded = false;
+                    //do
+                    //{
+                        expanded = ExpandTreeItem(trHandle, grup[1], false, trRect);
+                    //    if (expanded == false)
+                    //        ScrollDownOnePage(trHandle, trRect, false);
+                    //} while (expanded == false);
+                    //expanded = false;
+                    //do
+                    //{
+                        expanded = ExpandTreeItem(trHandle, "TagManagement", false, trRect);
+                    //    if (expanded == false)
+                    //        ScrollDownOnePage(trHandle, trRect, false);
+                    //} while (expanded == false);
+                    //expanded = false;
+
                 }
 
                 ImportTagFile(tag, file);
@@ -735,10 +756,15 @@ namespace Tag_Importer
                 }
                 else
                 {
+                    LogToFile("getElement was null for " + FindThis);
                     return false;
                 }
             }
-            return false;
+            else
+            {
+                LogToFile("foundElem was null for " + FindThis);
+                return false;
+            }
         }
 
         private Point? TextHasExpandOrHide(IntPtr trHandle, WordWithLocation foundElem, bool expand)
@@ -746,9 +772,19 @@ namespace Tag_Importer
             Bitmap find = expand != true ? (Bitmap)Resources.ResourceManager.GetObject("minus") : (Bitmap)Resources.ResourceManager.GetObject("plus");
             var img = MyFunctions.GetPngByHandle(trHandle);
             var foundExpandButtons = Find(img, find);
-            if (foundExpandButtons.Where(c => Math.Abs(c.Y - foundElem.y) < 4 && Math.Abs(c.X - foundElem.x) < 150).ToList().Count > 0)
+            foreach (var c in foundExpandButtons)
             {
-                return foundExpandButtons.FirstOrDefault(c => Math.Abs(c.Y - foundElem.y) < 4 && Math.Abs(c.X - foundElem.x) < 150);
+                LogToFile("before " + c.X.ToString() + "," + c.Y.ToString() + " of " + foundElem.word + " " + foundElem.x.ToString() + "," + foundElem.y.ToString());
+            }
+            if (foundExpandButtons.Where(c => Math.Abs(c.Y - foundElem.y) < 6 && Math.Abs(c.X - foundElem.x) < 150).ToList().Count > 0)
+            {
+                var myExp = foundExpandButtons.FirstOrDefault(c => Math.Abs(c.Y - foundElem.y) < 6 && Math.Abs(c.X - foundElem.x) < 150);
+                LogToFile("the expansion or hide stuff is not null, " + myExp.X + "," + myExp.Y);
+                return myExp;
+            }
+            foreach (var c in foundExpandButtons)
+            {
+                LogToFile("after " + c.X.ToString() + "," + c.Y.ToString() + " of " + foundElem.word + " " + foundElem.x.ToString() + "," + foundElem.y.ToString());
             }
             return null;
         }
