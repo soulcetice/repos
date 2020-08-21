@@ -433,6 +433,8 @@ namespace Tag_Importer
         {
             ExpandTreeItem(trHandle, connData.connection, true, trRect);
 
+            LogToFile("Expanded: " + connData.connection);
+
             List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
             WordWithLocation myGroup = FindClosestMatch(rowData, connData.name);
             while (myGroup == null)
@@ -444,7 +446,7 @@ namespace Tag_Importer
 
             foreach (var c in rowData)
             {
-                LogToFile("myGroup " + c.word + " " + connData.name);
+                //LogToFile("myGroup " + c.word + " " + connData.name);
             }
             try
             {
@@ -869,8 +871,12 @@ namespace Tag_Importer
                 myElem = chosenFile;
             } while (myElem == null);
 
-            if (levDist > 1)
+            if (levDist > 0) // 1 is for difference between " l " and " I " with the segoe ui font ... scroll after expansion to find the best match ..........or find the difference between l and I
             {
+                foreach (var c in rowData)
+                {
+                    LogToFile("levDist was > 0 for " + FindThis + ", " + c.word);
+                }
                 return null;
             }
             else
