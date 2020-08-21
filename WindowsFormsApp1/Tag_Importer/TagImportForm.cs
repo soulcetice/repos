@@ -14,6 +14,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Resources;
 using Tag_Importer.Properties;
+using System.Text.RegularExpressions;
 //using CCConfigStudio;
 
 namespace Tag_Importer
@@ -293,6 +294,7 @@ namespace Tag_Importer
 
                 if (grup[1] == "Internaltags") //internal tags file only
                 {
+                    LogToFile("Yes was still trying in the wrong place!!!!");
                     ExpandTreeItem(trHandle, grup[1], true, trRect);
 
                     WordWithLocation loc;
@@ -330,62 +332,103 @@ namespace Tag_Importer
                     //check if expansion is visible of needed group
                     //then expand
 
-                    WordWithLocation grup1;
-                    grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
-                    while (grup1 == null)
-                    {
-                        ScrollDownOnePage(trHandle, trRect, false);
-                        rowData = GetWordsInHandle(trHandle);
-                        grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
-                    }
-                    LogToFile("grup1 is " + grup1.word);
-                    ExpandTreeItem(trHandle, grup[1], true, trRect);
-
-                    WordWithLocation grup2;
-                    grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
-                    while (grup2 == null)
-                    {
-                        ScrollDownOnePage(trHandle, trRect, false);
-                        rowData = GetWordsInHandle(trHandle);
-                        grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
-                    }
-                    ExpandTreeItem(trHandle, grup[2], true, trRect);
-
+                    bool expanded = false;
                     for (int i = 0; i < nc.Count; i++)
                     {
+                        #region expand
+                        WordWithLocation grup1;
+                        grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
+                        while (grup1 == null)
+                        {
+                            ScrollDownOnePage(trHandle, trRect, false);
+                            rowData = GetWordsInHandle(trHandle);
+                            grup1 = rowData.FirstOrDefault(c => c.word == grup[1]);
+                        }
+                        LogToFile("grup1 is " + grup1.word);
+                        LogToFile("Trying to show " + grup[1]);
+                        expanded = ExpandTreeItem(trHandle, grup[1], true, trRect);
+                        if (expanded == true)
+                            LogToFile("Successfully shown " + grup[1]);
+                        else
+                            LogToFile("Failed to show     " + grup[1]);
+
+                        WordWithLocation grup2;
+                        grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
+                        while (grup2 == null)
+                        {
+                            ScrollDownOnePage(trHandle, trRect, false);
+                            rowData = GetWordsInHandle(trHandle);
+                            grup2 = rowData.FirstOrDefault(c => c.word == grup[2]);
+                        }
+                        LogToFile("Trying to show " + grup[2]);
+                        expanded = ExpandTreeItem(trHandle, grup[2], true, trRect);
+                        if (expanded == true)
+                            LogToFile("Successfully shown " + grup[2]);
+                        else
+                            LogToFile("Failed to show     " + grup[2]);
+                        #endregion
+
+                        #region delete
                         LogToFile("Trying to delete " + nc[i].name + " in bitmap words " + grup[0] + " " + grup[1] + " " + grup[2]);
                         DeleteExistingTags(trHandle, trRect, ccAxtRect, dataGridHandle, nc[i]);
                         LogToFile("Deleted variables for " + nc[i].connection + " " + nc[i].name);
+                        #endregion
+
+                        #region hide
+
+                        LogToFile("group here " + grup[0] + " " + grup[1] + " " + grup[2]);
+                        LogToFile("nc    here " + nc?[i].connection + " " + nc?[i].name);
+
+                        if (nc[i].connection == "Internal tags")
+                        {
+                            LogToFile("Trying to hide " + nc[i].connection);
+                            expanded = ExpandTreeItem(trHandle, nc[i].connection, false, trRect);
+                            if (expanded == true)
+                                LogToFile("Successfully hid " + nc[i].connection);
+                            else
+                            {
+                                ScrollAllTheWayUp(trHandle, trRect, true);
+                                expanded = ExpandTreeItem(trHandle, nc[i].connection, false, trRect);
+                                if (expanded == true)
+                                    LogToFile("Successfully hid " + nc[i].connection);
+                                else
+                                    LogToFile("Failed to hide   " + nc[i].connection);
+                            }
+                        }
+
+                        LogToFile("Trying to hide " + grup[2]);
+                        expanded = ExpandTreeItem(trHandle, grup[2], false, trRect);
+                        if (expanded == true)
+                            LogToFile("Successfully hid " + grup[2]);
+                        else
+                            LogToFile("Failed to hide   " + grup[2]);
+
+                        LogToFile("Trying to hide " + grup[1]);
+                        expanded = ExpandTreeItem(trHandle, grup[1], false, trRect);
+                        if (expanded == true)
+                            LogToFile("Successfully hid " + grup[1]);
+                        else
+                            LogToFile("Failed to hide   " + grup[1]);
+
+                        #endregion
                     }
                     ScrollAllTheWayUp(trHandle, trRect, true);
 
-                    bool expanded = false;
-                    //do
-                    //{
-                    expanded = ExpandTreeItem(trHandle, grup[2], false, trRect);
-                    //    if (expanded == false)
-                    //        ScrollDownOnePage(trHandle, trRect, false);
-                    //} while (expanded == false);
                     //expanded = false;
                     //do
                     //{
-                        expanded = ExpandTreeItem(trHandle, grup[1], false, trRect);
-                    //    if (expanded == false)
-                    //        ScrollDownOnePage(trHandle, trRect, false);
-                    //} while (expanded == false);
-                    //expanded = false;
-                    //do
-                    //{
-                        expanded = ExpandTreeItem(trHandle, "TagManagement", false, trRect);
+                    expanded = ExpandTreeItem(trHandle, "TagManagement", false, trRect);
                     //    if (expanded == false)
                     //        ScrollDownOnePage(trHandle, trRect, false);
                     //} while (expanded == false);
                     //expanded = false;
 
+                    ScrollAllTheWayUp(trHandle, trRect, true);
                 }
 
                 ImportTagFile(tag, file);
                 SendKeyHandled(trHandle, "{DOWN}"); SendKeyHandled(trHandle, "{DOWN}");
+                ScrollAllTheWayUp(trHandle, trRect, true);
 
                 if (checkBox2.CheckState == CheckState.Checked)
                 {
@@ -448,6 +491,7 @@ namespace Tag_Importer
             {
                 //LogToFile("myGroup " + c.word + " " + connData.name);
             }
+
             try
             {
                 ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
@@ -873,6 +917,13 @@ namespace Tag_Importer
 
             if (levDist > 0) // 1 is for difference between " l " and " I " with the segoe ui font ... scroll after expansion to find the best match ..........or find the difference between l and I
             {
+                int acceptableDistance = CheckForIandls(FindThis) + 1;
+
+                if (acceptableDistance > 0 && levDist < acceptableDistance)
+                {
+                    LogToFile("acceptable levenshtein distance was calculated to be < " + acceptableDistance + " for " + FindThis);
+                    return myElem;
+                }
                 foreach (var c in rowData)
                 {
                     LogToFile("levDist was > 0 for " + FindThis + ", " + c.word);
@@ -881,6 +932,16 @@ namespace Tag_Importer
             }
             else
                 return myElem;
+        }
+
+        private static int CheckForIandls(string FindThis)
+        {
+            int acceptableDistance = 0;
+            for (int i = 0; i < Regex.Matches(FindThis, "I").Count; i++)
+                acceptableDistance++;
+            for (int i = 0; i < Regex.Matches(FindThis, "l").Count; i++)
+                acceptableDistance++;
+            return acceptableDistance;
         }
 
         private static WordWithLocation RobustFileChoice(FileInfo f, List<WordWithLocation> filesInDialog)

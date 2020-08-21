@@ -15,3 +15,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperab
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csproj.CopyComplete
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\InteroperabilityFunctions.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\InteroperabilityFunctions.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache
