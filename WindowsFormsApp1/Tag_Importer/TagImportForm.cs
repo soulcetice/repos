@@ -227,6 +227,20 @@ namespace Tag_Importer
 
             DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
             FileInfo[] Files = dinfo.GetFiles("*.txt");
+            //\\10.16.80.31\d$\Project Data\002 - Tag Import\
+            //\\10.16.80.31\d$\Project Data\002 - Tag Import\MED1\BFCT\2020 - 05\27
+
+            var root1 = dinfo.GetDirectories().ToList(); //structure
+            foreach (var c1 in root1) 
+            {
+                var root2 = c1.GetDirectories().ToList(); //year-month
+                foreach (var c2 in root2)
+                {
+                    var root3 = c2.GetDirectories().ToList(); //date here
+                    Console.WriteLine("test");
+                }
+            }
+            Console.WriteLine("test");
 
             #endregion
 
