@@ -41,5 +41,5 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Dow
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.Windows.Core.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.Windows.Core.xml
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CopyComplete
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\InteroperabilityFunctions.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\InteroperabilityFunctions.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Magic.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Magic.pdb
