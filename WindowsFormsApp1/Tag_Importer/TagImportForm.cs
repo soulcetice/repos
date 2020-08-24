@@ -28,12 +28,13 @@ namespace Tag_Importer
             string configFile = Application.StartupPath + "\\Tag_Importer.ini";
             GetInitialValues(configFile);
 
-            textBox1_TextChanged(textBox1, new EventArgs());
+            Files = GetFilteredFilesFromFolder();
 
             RemoveTemporaryOutputs();
         }
 
         private bool isFirstImporting;
+        private List<FileInfo> Files;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -98,6 +99,10 @@ namespace Tag_Importer
             configFile.WriteLine(textBox2.Text);
             configFile.WriteLine(checkBox1.Checked);
             configFile.WriteLine(checkBox2.Checked);
+            configFile.WriteLine(textBox3.Text);
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
             configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
             configFile.Close();
         }
@@ -115,6 +120,7 @@ namespace Tag_Importer
                     if (fileLen >= 2) textBox2.Text = configFile.ElementAt(1);
                     if (fileLen >= 3) checkBox1.Checked = bool.Parse(configFile.ElementAt(2));
                     if (fileLen >= 4) checkBox2.Checked = bool.Parse(configFile.ElementAt(3));
+                    if (fileLen >= 5) textBox3.Text = configFile.ElementAt(4);
                 }
             }
         }
@@ -223,27 +229,6 @@ namespace Tag_Importer
             GetRobustHandleByParent(tag, out IntPtr dataGridHandle, out RECT ccAxtRect);
             #endregion
 
-            #region look in directory to check what files
-
-            DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
-            FileInfo[] Files = dinfo.GetFiles("*.txt");
-            //\\10.16.80.31\d$\Project Data\002 - Tag Import\
-            //\\10.16.80.31\d$\Project Data\002 - Tag Import\MED1\BFCT\2020 - 05\27
-
-            var root1 = dinfo.GetDirectories().ToList(); //structure
-            foreach (var c1 in root1) 
-            {
-                var root2 = c1.GetDirectories().ToList(); //year-month
-                foreach (var c2 in root2)
-                {
-                    var root3 = c2.GetDirectories().ToList(); //date here
-                    Console.WriteLine("test");
-                }
-            }
-            Console.WriteLine("test");
-
-            #endregion
-
             #region delete variables comments
 
             //expand all tree elements and scroll until no expand is seen - in tag management only
@@ -297,7 +282,7 @@ namespace Tag_Importer
                 }
                 LogToFile(ExpandTreeItem(trHandle, "TagManagement", true, trRect).ToString() + " tag management expansion");
 
-                FileInfo file = Files.FirstOrDefault(f => f.Name.Equals(checkedListBox1.CheckedItems[fileNo]));
+                FileInfo file = Files.FirstOrDefault(f => f.FullName.Equals(textBox1.Text + checkedListBox1.CheckedItems[fileNo]));
 
                 //MED2_OPC_UA1    OPCUA OPC UnifiedArchitecture opc.tcp://10.80.92.245:4890|;#None;<>;<>;1;0;0;1;2;1
                 var grup = File.ReadLines(file.FullName).Skip(3).Take(1).ToList()[0].Split(Convert.ToChar("\t"));
@@ -455,6 +440,42 @@ namespace Tag_Importer
             LogToFile("Finished importing from folder");
             MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
             return true;
+        }
+
+        private List<FileInfo> GetFilteredFilesFromFolder()
+        {
+            if (Directory.Exists(textBox1.Text))
+            {
+                DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
+                //\\10.16.80.31\d$\Project Data\002 - Tag Import\
+                //\\10.16.80.31\d$\Project Data\002 - Tag Import\MED1\BFCT\2020 - 05\27
+                List<string> newFiles = Directory.GetFiles(dinfo.FullName, "*", SearchOption.AllDirectories).Where(c =>
+            c.Contains(".txt") && c.Contains("ImportLog") == false)
+                .ToList();
+                List<FileInfo> files = new List<FileInfo>();
+                foreach (var f in newFiles)
+                    files.Add(new FileInfo(f));
+                List<FileInfo> filteredFilesDate = files.Where(c => c.LastWriteTime >= dateTimePicker1.Value && c.LastWriteTime <= dateTimePicker2.Value).ToList();
+
+                checkedListBox1.Items.Clear();
+                foreach (var f in filteredFilesDate)
+                    checkedListBox1.Items.Add(f.FullName.Replace(textBox1.Text, ""));
+                checkedListBox1.Refresh();
+
+                return filteredFilesDate;
+            }
+            else
+                return new List<FileInfo>();
+        }
+
+        private static string DateItemWithZero(int dayItem)
+        {
+            string myDay;
+            if (dayItem < 10)
+                myDay = "0" + dayItem.ToString();
+            else
+                myDay = dayItem.ToString();
+            return myDay;
         }
 
         private static void GetRobustHandleByParent(IntPtr tag, out IntPtr dataGridHandle, out RECT ccAxtRect)
@@ -784,7 +805,6 @@ namespace Tag_Importer
                     checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
                 }
             }
-            checkedListBox1_SelectedIndexChanged(checkBox1, new System.EventArgs());
         }
 
         private void HideStructureTags(IntPtr trHandle, List<WordWithLocation> rowData, RECT trRect)
@@ -1078,26 +1098,6 @@ namespace Tag_Importer
             return result;
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            DirectoryInfo dinfo = new DirectoryInfo(textBox1.Text);
-            checkedListBox1.Items.Clear();
-            if (dinfo.Exists)
-            {
-                FileInfo[] Files = dinfo.GetFiles("*.txt");
-
-                foreach (var elem in Files)
-                {
-                    checkedListBox1.Items.Add(elem.Name);
-                }
-            }
-        }
-
         #region OptimumBitmapFind
 
         public List<Point> Find(Bitmap haystack, Bitmap needle)
@@ -1208,6 +1208,36 @@ namespace Tag_Importer
         }
 
         #endregion
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(textBox3.Text, out int days))
+                dateTimePicker1.Value = dateTimePicker2.Value.AddDays(-days);
+
+            //Files = GetFilteredFilesFromFolder();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            //Files = GetFilteredFilesFromFolder();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            //Files = GetFilteredFilesFromFolder();
+            textBox3_TextChanged(dateTimePicker2, new System.EventArgs());
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Directory.Exists(textBox1.Text))
+                Files = GetFilteredFilesFromFolder();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Files = GetFilteredFilesFromFolder();
+        }
     }
 
     class WordWithLocation
