@@ -617,9 +617,6 @@ namespace Tag_Importer
 
         private List<MyFunctions.PosLetter> GetCharactersInHandle(IntPtr handle)
         {
-
-            var t = (Bitmap)Resources.ResourceManager.GetObject("lower_a");
-
             //only works for white background for now!!!
             MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
             Bitmap img = MyFunctions.GetPngByHandle(handle);
