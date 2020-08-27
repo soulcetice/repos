@@ -26,6 +26,27 @@ namespace WinCC_Timer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<MenuRow> lists = GetSQLMenu();
+
+            bool v = FindObjectInHMI();
+        }
+
+        public class MenuRow
+        {
+            public string ID;
+            public string RefId;
+            public string Layer;
+            public string Pos;
+            public string LCID;
+            public string ParentId;
+            public string Caption;
+            public string Flags;
+            public string Pdl;
+            public string Parameter;
+        }
+
+        private List<MenuRow> GetSQLMenu()
+        {
             string connectionString = "Data Source=TCMHMID01\\WINCC;Initial Catalog=SMS_RTDesign;Integrated Security=SSPI";
             string query = "SELECT * FROM RT_Menu where RefId = 1";
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -35,31 +56,39 @@ namespace WinCC_Timer
                 //MessageBox.Show("Connection Open ! ");
                 SqlCommand cmd = new SqlCommand(query, cnn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-
                 da.Fill(dataTable);
+                cnn.Close();
+
+                List<MenuRow> myData = new List<MenuRow>();
 
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     var row = dataTable.Rows[i].ItemArray;
-                    string data = "";
-                    foreach (var c in row)
+                    myData.Add(new MenuRow()
                     {
-                        data += c.ToString() + " ";
-                    }
-                    LogToFile(data, "\\Screen.logger");
+                        ID = (string)row?.ElementAt(0),
+                        RefId = (string)row?.ElementAt(1),
+                        Layer = (string)row?.ElementAt(2),
+                        Pos = (string)row?.ElementAt(3),
+                        LCID = (string)row?.ElementAt(4),
+                        ParentId = (string)row?.ElementAt(5),
+                        Caption = (string)row?.ElementAt(6),
+                        Flags = (string)row?.ElementAt(7),
+                        Pdl = (string)row?.ElementAt(8),
+                        Parameter = (string)row?.ElementAt(9)
+                    });
                 }
 
-                cnn.Close();
+                return myData;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! " + ex.Message);
+                LogToFile("Can not open connection ! " + ex.Message, "\\Screen.logger");
+                return null;
             }
-
-            FindObjectInHMI();
         }
 
-        private void FindObjectInHMI()
+        private bool FindObjectInHMI()
         {
             DateTime start = DateTime.UtcNow;
             LogToFile("", "\\Screen.logger");
@@ -68,8 +97,12 @@ namespace WinCC_Timer
             Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
 
             DateTime end = DateTime.UtcNow;
-            LogToFile(CompareMemCmp(bmp, cmp).ToString(), "\\Screen.logger");
+
+            bool t = CompareMemCmp(bmp, cmp);
+            LogToFile(t.ToString(), "\\Screen.logger");
             LogToFile((end.Second - start.Second).ToString() + "." + (end.Millisecond - start.Millisecond).ToString(), "\\Screen.logger");
+
+            return t;
         }
 
         [DllImport("msvcrt.dll")]
@@ -115,7 +148,7 @@ namespace WinCC_Timer
             int width = 5;
             int height = 5;
             int top = 989 + 15;
-            int left = 1666 + 15;
+            int left = 1666 + 15; //1506 is 1681 (175 offset)
             Bitmap bmp = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
