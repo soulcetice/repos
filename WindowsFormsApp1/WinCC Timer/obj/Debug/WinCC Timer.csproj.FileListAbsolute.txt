@@ -1,0 +1,10 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Form1.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb

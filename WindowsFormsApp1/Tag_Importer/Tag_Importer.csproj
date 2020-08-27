@@ -95,12 +95,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary\Interoperability.csproj">
-      <Project>{0b0a0e29-5272-4824-a2cf-b00f2beb0303}</Project>
-      <Name>Interoperability</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="bin\Debug\characters\0.png" />
     <None Include="bin\Debug\characters\9.png" />
     <None Include="bin\Debug\characters\8.png" />
@@ -195,6 +189,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary\Interoperability.csproj">
+      <Project>{0b0a0e29-5272-4824-a2cf-b00f2beb0303}</Project>
+      <Name>Interoperability</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

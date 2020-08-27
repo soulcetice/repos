@@ -209,7 +209,8 @@ namespace Tag_Importer
         {
             using (var fileWriter = new StreamWriter(Application.StartupPath + "\\Tag_Importer.logger", true))
             {
-                fileWriter.WriteLine(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC : " + content);
+                DateTime date = DateTime.UtcNow;
+                fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
                 fileWriter.Close();
             }
         }
