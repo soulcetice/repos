@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using WinCC_Timer.Properties;
+using Interoperability;
 
 namespace WinCC_Timer
 {
@@ -26,9 +27,53 @@ namespace WinCC_Timer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<MenuRow> lists = GetSQLMenu();
+
+            List<MenuRow> lists = GetSQLMenu("1");
+
+            var tier1 = lists.Where(c => c.Layer == "1");
+
+            foreach (var t in tier1)
+            {
+                LogToFile(GetTextWidth(t.Caption, "Arial", 10.0f).ToString() + " " + t.Caption, "\\Screen.logger"); ;
+            }
+
+            IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+
+            //"General is 76 * 30
+            int x = 25/2;
+            int y = 15;
+
+            foreach (MenuRow m in tier1)
+            {
+                x += GetTextWidth(m.Caption, "Arial", 10.0f) / 2;
+                ClickInWindowAtXY(rt, x, y, 1);
+                System.Threading.Thread.Sleep(2000);
+                ClickInWindowAtXY(rt, x, y, 1);
+                x += GetTextWidth(m.Caption, "Arial", 10.0f) / 2;
+                x += 25;
+                //still only almost, gets too offset in the end
+            }
 
             bool v = FindObjectInHMI();
+        }
+
+        private static int GetTextWidth(string text, string fontName, Single fontSize)
+        {
+            var font = new Font(fontName, fontSize, FontStyle.Regular);
+            int textWidth = TextRenderer.MeasureText(text, font).Width;
+            return textWidth;
+        }
+
+        private void ClickInWindowAtXY(IntPtr handle, int? x, int? y, int repeat)
+        {
+            for (int i = 0; i < repeat; i++)
+            {
+                PInvokeLibrary.SetForegroundWindow(handle);
+
+                MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            }
         }
 
         public class MenuRow
@@ -45,10 +90,10 @@ namespace WinCC_Timer
             public string Parameter;
         }
 
-        private List<MenuRow> GetSQLMenu()
+        private List<MenuRow> GetSQLMenu(string id)
         {
             string connectionString = "Data Source=TCMHMID01\\WINCC;Initial Catalog=SMS_RTDesign;Integrated Security=SSPI";
-            string query = "SELECT * FROM RT_Menu where RefId = 1";
+            string query = "SELECT * FROM RT_Menu where RefId = " + id;
             SqlConnection cnn = new SqlConnection(connectionString);
             try
             {
@@ -66,16 +111,16 @@ namespace WinCC_Timer
                     var row = dataTable.Rows[i].ItemArray;
                     myData.Add(new MenuRow()
                     {
-                        ID = (string)row?.ElementAt(0),
-                        RefId = (string)row?.ElementAt(1),
-                        Layer = (string)row?.ElementAt(2),
-                        Pos = (string)row?.ElementAt(3),
-                        LCID = (string)row?.ElementAt(4),
-                        ParentId = (string)row?.ElementAt(5),
-                        Caption = (string)row?.ElementAt(6),
-                        Flags = (string)row?.ElementAt(7),
-                        Pdl = (string)row?.ElementAt(8),
-                        Parameter = (string)row?.ElementAt(9)
+                        ID = row?.ElementAt(0).ToString(),
+                        RefId = row?.ElementAt(1).ToString(),
+                        Layer = row?.ElementAt(2).ToString(),
+                        Pos = row?.ElementAt(3).ToString(),
+                        LCID = row?.ElementAt(4).ToString(),
+                        ParentId = row?.ElementAt(5).ToString(),
+                        Caption = row?.ElementAt(6).ToString(),
+                        Flags = row?.ElementAt(7).ToString(),
+                        Pdl = row?.ElementAt(8).ToString(),
+                        Parameter = row?.ElementAt(9).ToString(),
                     });
                 }
 

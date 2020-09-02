@@ -8,3 +8,8 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete
