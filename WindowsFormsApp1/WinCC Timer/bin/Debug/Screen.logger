@@ -1,3 +1,851 @@
-Thursday, August 27, 2020 8:04 AM:145 UTC: 
-Thursday, August 27, 2020 8:04 AM:335 UTC: False
-Thursday, August 27, 2020 8:04 AM:342 UTC: 0.79
+2020/9/3 7:57:44:364 UTC: 51width, 16height, General
+2020/9/3 7:57:48:375 UTC: @sms_w_Alarmlist
+2020/9/3 7:57:48:404 UTC: 24.0007ms
+2020/9/3 7:57:52:410 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/9/3 7:57:52:438 UTC: 21.9985ms
+2020/9/3 7:57:56:457 UTC: TCM#12-01-00_n_#GEN-OverviewCoilTracking
+2020/9/3 7:57:56:467 UTC: 5.0029ms
+2020/9/3 7:58:6:476 UTC: 66width, 16height, Entry Area
+2020/9/3 7:58:10:483 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/9/3 7:58:10:502 UTC: 13.9975ms
+2020/9/3 7:58:14:509 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/9/3 7:58:14:545 UTC: 30.9461ms
+2020/9/3 7:58:18:553 UTC: TCM#03-03-00_n_#TCM-OverviewCCar1
+2020/9/3 7:58:18:572 UTC: 12.9948ms
+2020/9/3 7:58:22:583 UTC: 107width, 16height, Tandem Cold Mill
+2020/9/3 7:58:26:591 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/9/3 7:58:26:613 UTC: 13.9928ms
+2020/9/3 7:58:30:621 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/9/3 7:58:30:640 UTC: 14.0003ms
+2020/9/3 7:58:34:646 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/9/3 7:58:34:678 UTC: 21.9955ms
+2020/9/3 7:58:38:685 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/9/3 7:58:38:705 UTC: 13.9941ms
+2020/9/3 7:58:42:711 UTC: TCM#08-01-00_n_#TCM-CoilSequences
+2020/9/3 7:58:42:740 UTC: 24.0005ms
+2020/9/3 7:58:46:747 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/9/3 7:58:46:765 UTC: 12.9956ms
+2020/9/3 7:58:50:771 UTC: TCM#08-03-00_n_#TCM-StopTimes
+2020/9/3 7:58:50:798 UTC: 20.9944ms
+2020/9/3 7:58:56:806 UTC: TCM#21-01-00_w_#TCM-CoolingAndLubrication
+2020/9/3 7:58:56:836 UTC: 24.0046ms
+2020/9/3 7:59:2:846 UTC: 55width, 16height, Exit Area
+2020/9/3 7:59:6:854 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/9/3 7:59:6:887 UTC: 27.8804ms
+2020/9/3 7:59:10:896 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/9/3 7:59:10:917 UTC: 13.995ms
+2020/9/3 7:59:14:924 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/9/3 7:59:14:948 UTC: 16.9948ms
+2020/9/3 7:59:18:956 UTC: TCM#04-05-00_n_#TCM-OverviewCoilCar3
+2020/9/3 7:59:18:970 UTC: 9.0032ms
+2020/9/3 7:59:22:977 UTC: 46width, 16height, System
+2020/9/3 7:59:26:985 UTC: i8Sys_w_Environment
+2020/9/3 7:59:27:23 UTC: 31.9959ms
+2020/9/3 7:59:31:31 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/9/3 7:59:31:48 UTC: 11.9983ms
+2020/9/3 8:2:7:619 UTC: 51width, 16height, General
+2020/9/3 8:2:12:630 UTC: @sms_w_Alarmlist
+2020/9/3 8:2:12:641 UTC: 5.004ms
+2020/9/3 8:2:16:148 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/9/3 8:2:16:176 UTC: 21.9998ms
+2020/9/3 8:2:19:685 UTC: TCM#12-01-00_n_#GEN-OverviewCoilTracking
+2020/9/3 8:2:19:712 UTC: 21.9998ms
+2020/9/3 8:2:20:218 UTC: 66width, 16height, Entry Area
+2020/9/3 8:2:25:226 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/9/3 8:2:25:243 UTC: 11.9733ms
+2020/9/3 8:2:28:751 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/9/3 8:2:28:772 UTC: 14.8107ms
+2020/9/3 8:2:32:279 UTC: TCM#03-03-00_n_#TCM-OverviewCCar1
+2020/9/3 8:2:32:364 UTC: 13.9988ms
+2020/9/3 8:2:32:870 UTC: 107width, 16height, Tandem Cold Mill
+2020/9/3 8:2:37:878 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/9/3 8:2:37:894 UTC: 8.9983ms
+2020/9/3 8:2:41:401 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/9/3 8:2:41:425 UTC: 17.9984ms
+2020/9/3 8:2:44:934 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/9/3 8:2:44:958 UTC: 18.9984ms
+2020/9/3 8:2:48:467 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/9/3 8:2:48:489 UTC: 16.0028ms
+2020/9/3 8:2:51:996 UTC: TCM#08-01-00_n_#TCM-CoilSequences
+2020/9/3 8:2:52:17 UTC: 15.0028ms
+2020/9/3 8:2:55:525 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/9/3 8:2:55:549 UTC: 18.0025ms
+2020/9/3 8:2:59:57 UTC: TCM#08-03-00_n_#TCM-StopTimes
+2020/9/3 8:2:59:91 UTC: 27.0037ms
+2020/9/3 8:3:2:599 UTC: TCM#21-01-00_w_#TCM-CoolingAndLubrication
+2020/9/3 8:3:2:623 UTC: 18.0028ms
+2020/9/3 8:3:3:130 UTC: 55width, 16height, Exit Area
+2020/9/3 8:3:8:240 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/9/3 8:3:8:260 UTC: 12.0025ms
+2020/9/3 8:3:11:768 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/9/3 8:3:11:796 UTC: 21.9964ms
+2020/9/3 8:3:15:304 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/9/3 8:3:15:328 UTC: 18.0012ms
+2020/9/3 8:3:18:848 UTC: TCM#04-05-00_n_#TCM-OverviewCoilCar3
+2020/9/3 8:3:18:871 UTC: 17.0006ms
+2020/9/3 8:3:19:378 UTC: 46width, 16height, System
+2020/9/3 8:3:24:387 UTC: i8Sys_w_Environment
+2020/9/3 8:3:24:418 UTC: 25.0025ms
+2020/9/3 8:3:27:926 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/9/3 8:3:27:949 UTC: 16.9996ms
+2020/9/3 8:6:4:919 UTC: 51width, 16height, General
+2020/9/3 8:6:8:432 UTC: @sms_w_Alarmlist
+2020/9/3 8:6:8:462 UTC: 21.998ms
+2020/9/3 8:6:11:970 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/9/3 8:6:12:4 UTC: 26.9974ms
+2020/9/3 8:6:15:513 UTC: TCM#12-01-00_n_#GEN-OverviewCoilTracking
+2020/9/3 8:6:15:537 UTC: 17.0036ms
+2020/9/3 8:6:15:544 UTC: 66width, 16height, Entry Area
+2020/9/3 8:6:19:53 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/9/3 8:6:19:68 UTC: 8.9998ms
+2020/9/3 8:6:22:576 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/9/3 8:6:22:600 UTC: 17.0047ms
+2020/9/3 8:6:26:108 UTC: TCM#03-03-00_n_#TCM-OverviewCCar1
+2020/9/3 8:6:26:130 UTC: 16.0019ms
+2020/9/3 8:6:26:138 UTC: 107width, 16height, Tandem Cold Mill
+2020/9/3 8:6:29:643 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/9/3 8:6:29:663 UTC: 13.0038ms
+2020/9/3 8:6:33:170 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/9/3 8:6:33:203 UTC: 26.9992ms
+2020/9/3 8:6:36:711 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/9/3 8:6:36:733 UTC: 16.001ms
+2020/9/3 8:6:40:240 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/9/3 8:6:40:268 UTC: 20.9806ms
+2020/9/3 8:6:43:776 UTC: TCM#08-01-00_n_#TCM-CoilSequences
+2020/9/3 8:6:43:803 UTC: 20.0341ms
+2020/9/3 8:6:47:311 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/9/3 8:6:47:331 UTC: 14.0018ms
+2020/9/3 8:6:50:839 UTC: TCM#08-03-00_n_#TCM-StopTimes
+2020/9/3 8:6:50:873 UTC: 26.9999ms
+2020/9/3 8:6:54:380 UTC: TCM#21-01-00_w_#TCM-CoolingAndLubrication
+2020/9/3 8:6:54:409 UTC: 21.9996ms
+2020/9/3 8:6:54:414 UTC: 55width, 16height, Exit Area
+2020/9/3 8:6:57:921 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/9/3 8:6:57:956 UTC: 28.9987ms
+2020/9/3 8:7:1:465 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/9/3 8:7:1:485 UTC: 11.0065ms
+2020/9/3 8:7:4:993 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/9/3 8:7:5:30 UTC: 31.0004ms
+2020/9/3 8:7:8:538 UTC: TCM#04-05-00_n_#TCM-OverviewCoilCar3
+2020/9/3 8:7:8:567 UTC: 21.9997ms
+2020/9/3 8:7:8:573 UTC: 46width, 16height, System
+2020/9/3 8:7:12:80 UTC: i8Sys_w_Environment
+2020/9/3 8:7:12:101 UTC: 14.9999ms
+2020/9/3 8:7:15:609 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/9/3 8:7:15:637 UTC: 22.0016ms
+2020/9/3 8:33:23:429 UTC: 51width, 16height, General
+2020/9/3 8:33:26:946 UTC: @sms_w_Alarmlist
+2020/9/3 8:33:26:956 UTC: 4.0028ms
+2020/9/3 8:33:30:463 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/9/3 8:33:30:486 UTC: 16.9872ms
+2020/9/3 8:33:33:994 UTC: TCM#12-01-00_n_#GEN-OverviewCoilTracking
+2020/9/3 8:33:34:14 UTC: 14.0006ms
+2020/9/3 8:33:34:521 UTC: 33width, 16height, Floor
+2020/9/3 8:33:34:528 UTC: 37width, 16height, Cellar
+2020/9/3 8:33:34:533 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:34:537 UTC: 43width, 16height, Details
+2020/9/3 8:33:38:552 UTC: TCM#06-01-00_n_#SAF-Overview-Floor
+2020/9/3 8:33:38:568 UTC: 10.0107ms
+2020/9/3 8:33:38:574 UTC: 33width, 16height, Floor
+2020/9/3 8:33:38:579 UTC: 37width, 16height, Cellar
+2020/9/3 8:33:38:584 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:38:589 UTC: 43width, 16height, Details
+2020/9/3 8:33:42:603 UTC: TCM#06-02-00_n_#SAF-Overview-Cellar
+2020/9/3 8:33:42:634 UTC: 25.0001ms
+2020/9/3 8:33:42:639 UTC: 33width, 16height, Floor
+2020/9/3 8:33:42:644 UTC: 37width, 16height, Cellar
+2020/9/3 8:33:42:649 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:42:654 UTC: 43width, 16height, Details
+2020/9/3 8:33:46:662 UTC: TCM#06-03-00_n_#SAF-Overview-FES
+2020/9/3 8:33:46:692 UTC: 22.9997ms
+2020/9/3 8:33:46:698 UTC: 33width, 16height, Floor
+2020/9/3 8:33:46:703 UTC: 37width, 16height, Cellar
+2020/9/3 8:33:46:707 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:46:712 UTC: 43width, 16height, Details
+2020/9/3 8:33:50:720 UTC: SAF_n_SafetyAreaOverview
+2020/9/3 8:33:50:749 UTC: 22.9989ms
+2020/9/3 8:33:51:256 UTC: 38width, 16height, Media
+2020/9/3 8:33:51:262 UTC: 40width, 16height, Drives
+2020/9/3 8:33:55:270 UTC: TCM#02-01-00_n_#GEN-Media
+2020/9/3 8:33:55:278 UTC: 1.9996ms
+2020/9/3 8:33:55:284 UTC: 38width, 16height, Media
+2020/9/3 8:33:55:290 UTC: 40width, 16height, Drives
+2020/9/3 8:33:59:299 UTC: TCM#02-02-00_n_#GEN-Drives
+2020/9/3 8:33:59:334 UTC: 27.997ms
+2020/9/3 8:33:59:840 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:33:59:846 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:33:59:852 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:33:59:856 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:59:861 UTC: 81width, 16height, Maintenance
+2020/9/3 8:33:59:866 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:33:59:871 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:33:59:876 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:33:59:880 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:59:886 UTC: 81width, 16height, Maintenance
+2020/9/3 8:33:59:890 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:33:59:895 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:33:59:900 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:33:59:905 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:59:910 UTC: 81width, 16height, Maintenance
+2020/9/3 8:33:59:915 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:33:59:927 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:33:59:933 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:33:59:938 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:33:59:943 UTC: 81width, 16height, Maintenance
+2020/9/3 8:34:3:951 UTC: TCM#70-01-00_w_#MED-FumeExhaust
+2020/9/3 8:34:3:986 UTC: 28.015ms
+2020/9/3 8:34:3:992 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:34:3:997 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:34:4:2 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:34:4:7 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:34:4:12 UTC: 81width, 16height, Maintenance
+2020/9/3 8:34:4:518 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:34:4:525 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:34:4:530 UTC: 74width, 16height, Main Drives
+2020/9/3 8:34:4:535 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:34:4:540 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:34:8:548 UTC: TCM#51-01-00_w_#DRV-PowerSupplyMain
+2020/9/3 8:34:8:573 UTC: 14.9783ms
+2020/9/3 8:34:8:578 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:34:8:583 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:34:8:589 UTC: 74width, 16height, Main Drives
+2020/9/3 8:34:8:593 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:34:8:600 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:34:12:610 UTC: TCM#53-01-00_w_#DRV-PowerSupplyAuxiliary
+2020/9/3 8:34:12:633 UTC: 17ms
+2020/9/3 8:34:12:642 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:34:12:647 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:34:12:652 UTC: 74width, 16height, Main Drives
+2020/9/3 8:34:12:657 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:34:12:662 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:34:12:668 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:34:12:673 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:34:12:679 UTC: 74width, 16height, Main Drives
+2020/9/3 8:34:12:683 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:34:12:689 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:34:12:693 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:34:12:699 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:34:12:704 UTC: 74width, 16height, Main Drives
+2020/9/3 8:34:12:709 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:34:12:714 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:34:16:722 UTC: TCM#54-01-00_n_#DRV-DrivesGroupJogging
+2020/9/3 8:34:16:754 UTC: 25.9996ms
+2020/9/3 8:34:16:760 UTC: 66width, 16height, Entry Area
+2020/9/3 8:34:20:267 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/9/3 8:34:20:291 UTC: 16.9977ms
+2020/9/3 8:34:23:799 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/9/3 8:34:23:822 UTC: 16.0009ms
+2020/9/3 8:34:27:330 UTC: TCM#03-03-00_n_#TCM-OverviewCCar1
+2020/9/3 8:34:27:350 UTC: 14.0003ms
+2020/9/3 8:34:27:858 UTC: 156width, 16height, Devices Coil Preparation
+2020/9/3 8:34:27:865 UTC: 87width, 16height, Devices Entry
+2020/9/3 8:34:31:875 UTC: TCM#03-10-00_n_#TCM-DevicesCoilPreparation
+2020/9/3 8:34:31:894 UTC: 12.9955ms
+2020/9/3 8:34:31:901 UTC: 156width, 16height, Devices Coil Preparation
+2020/9/3 8:34:31:906 UTC: 87width, 16height, Devices Entry
+2020/9/3 8:34:35:915 UTC: TCM#03-11-00_n_#TCM-DevicesEntryArea
+2020/9/3 8:34:35:951 UTC: 25.0026ms
+2020/9/3 8:34:35:958 UTC: 107width, 16height, Tandem Cold Mill
+2020/9/3 8:34:39:465 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/9/3 8:34:39:483 UTC: 10.997ms
+2020/9/3 8:34:42:991 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/9/3 8:34:43:18 UTC: 19.9987ms
+2020/9/3 8:34:46:527 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/9/3 8:34:46:556 UTC: 21.3431ms
+2020/9/3 8:34:50:65 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/9/3 8:34:50:88 UTC: 17.0018ms
+2020/9/3 8:34:53:596 UTC: TCM#08-01-00_n_#TCM-CoilSequences
+2020/9/3 8:34:53:621 UTC: 19.0003ms
+2020/9/3 8:34:57:129 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/9/3 8:34:57:156 UTC: 21ms
+2020/9/3 8:35:0:664 UTC: TCM#08-03-00_n_#TCM-StopTimes
+2020/9/3 8:35:0:689 UTC: 14.9992ms
+2020/9/3 8:35:1:195 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:35:1:201 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:35:1:207 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:35:1:213 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:35:1:218 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:35:5:226 UTC: TCM#24-01-00_w_#TCM-FlatnessControlC1
+2020/9/3 8:35:5:245 UTC: 12.062ms
+2020/9/3 8:35:5:252 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:35:5:258 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:35:5:263 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:35:5:268 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:35:5:273 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:35:9:286 UTC: TCM#24-02-00_w_#TCM-FlatnessControlC2
+2020/9/3 8:35:9:308 UTC: 12.9983ms
+2020/9/3 8:35:9:315 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:35:9:320 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:35:9:326 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:35:9:333 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:35:9:338 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:35:13:347 UTC: TCM#24-03-00_w_#TCM-FlatnessControlC3
+2020/9/3 8:35:13:365 UTC: 10.9979ms
+2020/9/3 8:35:13:371 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:35:13:376 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:35:13:383 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:35:13:387 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:35:13:392 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:35:17:401 UTC: TCM#24-04-00_w_#TCM-FlatnessControlC4
+2020/9/3 8:35:17:420 UTC: 17.0069ms
+2020/9/3 8:35:17:427 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:35:17:433 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:35:17:438 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:35:17:443 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:35:17:449 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:35:21:458 UTC: TCM#24-05-00_w_#TCM-FlatnessControlC5
+2020/9/3 8:35:21:478 UTC: 12.9962ms
+2020/9/3 8:35:24:986 UTC: TCM#21-01-00_w_#TCM-CoolingAndLubrication
+2020/9/3 8:35:25:15 UTC: 21.9994ms
+2020/9/3 8:35:25:522 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:529 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:534 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:540 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:545 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:550 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:25:556 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:561 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:566 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:572 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:577 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:582 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:25:587 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:592 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:597 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:602 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:607 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:613 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:25:618 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:622 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:629 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:634 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:639 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:645 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:25:650 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:655 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:660 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:665 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:670 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:676 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:25:681 UTC: 59width, 16height, Stand C1
+2020/9/3 8:35:25:686 UTC: 59width, 16height, Stand C2
+2020/9/3 8:35:25:690 UTC: 59width, 16height, Stand C3
+2020/9/3 8:35:25:695 UTC: 59width, 16height, Stand C4
+2020/9/3 8:35:25:700 UTC: 59width, 16height, Stand C5
+2020/9/3 8:35:25:706 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:35:29:714 UTC: TCM#16-06-00_n_#TCM-DeflectorRollData
+2020/9/3 8:35:29:730 UTC: 9.0008ms
+2020/9/3 8:35:30:236 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:30:243 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:30:249 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:30:254 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:30:260 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:30:265 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:30:270 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:30:276 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:34:286 UTC: TCM#25-01-00_n_#TCM-DevicesMillEntry
+2020/9/3 8:35:34:314 UTC: 21.0017ms
+2020/9/3 8:35:34:322 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:34:327 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:34:332 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:34:338 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:34:343 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:34:348 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:34:353 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:34:358 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:34:363 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:34:368 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:34:373 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:34:378 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:34:384 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:34:390 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:34:395 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:34:400 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:34:405 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:34:410 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:34:416 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:34:421 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:34:426 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:34:432 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:34:437 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:34:442 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:38:451 UTC: TCM#25-12-00_n_#TCM-DevicesPinchRollsandDrumShear
+2020/9/3 8:35:38:476 UTC: 19.0005ms
+2020/9/3 8:35:38:483 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:38:489 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:38:497 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:38:502 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:38:507 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:38:513 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:38:517 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:38:523 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:42:536 UTC: TCM#25-13-00_n_#TCM-DevicesPlantLogistics
+2020/9/3 8:35:42:568 UTC: 24.9923ms
+2020/9/3 8:35:42:575 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:42:580 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:42:586 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:42:591 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:42:596 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:42:603 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:42:607 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:42:612 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:46:620 UTC: TCM#25-14-00_n_#TCM-DevicesMillExit
+2020/9/3 8:35:46:631 UTC: 3.9997ms
+2020/9/3 8:35:46:636 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:46:641 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:46:646 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:46:650 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:46:655 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:46:660 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:46:665 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:46:670 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:50:678 UTC: TCM#25-15-00_n_#TCM-DevicesPlantAccessandSafety
+2020/9/3 8:35:50:686 UTC: 1.0009ms
+2020/9/3 8:35:50:692 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:35:50:698 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:35:50:703 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:35:50:709 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:35:50:715 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:35:50:720 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:35:50:725 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:35:50:730 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:35:54:738 UTC: TCM#25-16-00_n_#TCM-MeasurementSystems
+2020/9/3 8:35:54:750 UTC: 5.0004ms
+2020/9/3 8:35:54:755 UTC: 55width, 16height, Exit Area
+2020/9/3 8:35:58:262 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/9/3 8:35:58:290 UTC: 21.9956ms
+2020/9/3 8:36:1:798 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/9/3 8:36:1:829 UTC: 22.8649ms
+2020/9/3 8:36:5:337 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/9/3 8:36:5:362 UTC: 18.9997ms
+2020/9/3 8:36:8:870 UTC: TCM#04-05-00_n_#TCM-OverviewCoilCar3
+2020/9/3 8:36:8:893 UTC: 15.999ms
+2020/9/3 8:36:9:400 UTC: 76width, 16height, Devices Exit
+2020/9/3 8:36:13:409 UTC: TCM#04-04-00_n_#TCM-DevicesExit
+2020/9/3 8:36:13:443 UTC: 27.0015ms
+2020/9/3 8:36:13:451 UTC: 46width, 16height, System
+2020/9/3 8:36:16:959 UTC: i8Sys_w_Environment
+2020/9/3 8:36:16:972 UTC: 5.9997ms
+2020/9/3 8:36:20:481 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/9/3 8:36:20:507 UTC: 20.0286ms
+2020/9/3 8:36:21:17 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:21:24 UTC: 79width, 16height, Connections
+2020/9/3 8:36:21:30 UTC: 70width, 16height, Information
+2020/9/3 8:36:21:36 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:21:41 UTC: 61width, 16height, Database
+2020/9/3 8:36:21:48 UTC: 69width, 16height, Application
+2020/9/3 8:36:21:54 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:25:63 UTC: i8Sys_w_NodeRights
+2020/9/3 8:36:25:97 UTC: 27.9985ms
+2020/9/3 8:36:25:103 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:25:109 UTC: 79width, 16height, Connections
+2020/9/3 8:36:25:114 UTC: 70width, 16height, Information
+2020/9/3 8:36:25:119 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:25:124 UTC: 61width, 16height, Database
+2020/9/3 8:36:25:129 UTC: 69width, 16height, Application
+2020/9/3 8:36:25:134 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:29:143 UTC: i8App_n_Connections
+2020/9/3 8:36:29:157 UTC: 7.9996ms
+2020/9/3 8:36:29:164 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:29:169 UTC: 79width, 16height, Connections
+2020/9/3 8:36:29:174 UTC: 70width, 16height, Information
+2020/9/3 8:36:29:179 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:29:185 UTC: 61width, 16height, Database
+2020/9/3 8:36:29:190 UTC: 69width, 16height, Application
+2020/9/3 8:36:29:196 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:33:204 UTC: i8Sys_n_Information
+2020/9/3 8:36:33:220 UTC: 8.9982ms
+2020/9/3 8:36:33:228 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:33:233 UTC: 79width, 16height, Connections
+2020/9/3 8:36:33:238 UTC: 70width, 16height, Information
+2020/9/3 8:36:33:243 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:33:249 UTC: 61width, 16height, Database
+2020/9/3 8:36:33:254 UTC: 69width, 16height, Application
+2020/9/3 8:36:33:261 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:37:270 UTC: i8Sys_w_UserRights
+2020/9/3 8:36:37:291 UTC: 14.0024ms
+2020/9/3 8:36:37:297 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:37:303 UTC: 79width, 16height, Connections
+2020/9/3 8:36:37:308 UTC: 70width, 16height, Information
+2020/9/3 8:36:37:318 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:37:323 UTC: 61width, 16height, Database
+2020/9/3 8:36:37:328 UTC: 69width, 16height, Application
+2020/9/3 8:36:37:333 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:41:341 UTC: i8Sys_n_Database
+2020/9/3 8:36:41:349 UTC: 0.9992ms
+2020/9/3 8:36:41:355 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:41:361 UTC: 79width, 16height, Connections
+2020/9/3 8:36:41:366 UTC: 70width, 16height, Information
+2020/9/3 8:36:41:371 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:41:377 UTC: 61width, 16height, Database
+2020/9/3 8:36:41:383 UTC: 69width, 16height, Application
+2020/9/3 8:36:41:388 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:45:396 UTC: i8Sys_n_Application
+2020/9/3 8:36:45:411 UTC: 7.996ms
+2020/9/3 8:36:45:418 UTC: 77width, 16height, Node Rights
+2020/9/3 8:36:45:423 UTC: 79width, 16height, Connections
+2020/9/3 8:36:45:435 UTC: 70width, 16height, Information
+2020/9/3 8:36:45:440 UTC: 73width, 16height, User Rights
+2020/9/3 8:36:45:445 UTC: 61width, 16height, Database
+2020/9/3 8:36:45:450 UTC: 69width, 16height, Application
+2020/9/3 8:36:45:455 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:36:49:464 UTC: i8Sys_n_PdlStatistics
+2020/9/3 8:36:49:473 UTC: 2.9998ms
+2020/9/3 8:38:52:937 UTC: 51width, 16height, General
+2020/9/3 8:38:56:454 UTC: @sms_w_Alarmlist
+2020/9/3 8:38:56:486 UTC: 24.9993ms
+2020/9/3 8:38:59:995 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/9/3 8:39:0:16 UTC: 13.9994ms
+2020/9/3 8:39:3:525 UTC: TCM#12-01-00_n_#GEN-OverviewCoilTracking
+2020/9/3 8:39:3:547 UTC: 16.0006ms
+2020/9/3 8:39:4:61 UTC: 33width, 16height, Floor
+2020/9/3 8:39:4:69 UTC: 37width, 16height, Cellar
+2020/9/3 8:39:4:75 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:4:81 UTC: 43width, 16height, Details
+2020/9/3 8:39:8:89 UTC: TCM#06-01-00_n_#SAF-Overview-Floor
+2020/9/3 8:39:8:113 UTC: 16.9998ms
+2020/9/3 8:39:8:127 UTC: 33width, 16height, Floor
+2020/9/3 8:39:8:134 UTC: 37width, 16height, Cellar
+2020/9/3 8:39:8:139 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:8:144 UTC: 43width, 16height, Details
+2020/9/3 8:39:12:155 UTC: TCM#06-02-00_n_#SAF-Overview-Cellar
+2020/9/3 8:39:12:177 UTC: 12.001ms
+2020/9/3 8:39:12:187 UTC: 33width, 16height, Floor
+2020/9/3 8:39:12:193 UTC: 37width, 16height, Cellar
+2020/9/3 8:39:12:201 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:12:209 UTC: 43width, 16height, Details
+2020/9/3 8:39:16:218 UTC: TCM#06-03-00_n_#SAF-Overview-FES
+2020/9/3 8:39:16:237 UTC: 10.9999ms
+2020/9/3 8:39:16:244 UTC: 33width, 16height, Floor
+2020/9/3 8:39:16:249 UTC: 37width, 16height, Cellar
+2020/9/3 8:39:16:254 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:16:259 UTC: 43width, 16height, Details
+2020/9/3 8:39:20:268 UTC: SAF_n_SafetyAreaOverview
+2020/9/3 8:39:20:292 UTC: 16.0003ms
+2020/9/3 8:39:20:799 UTC: 38width, 16height, Media
+2020/9/3 8:39:20:805 UTC: 40width, 16height, Drives
+2020/9/3 8:39:24:814 UTC: TCM#02-01-00_n_#GEN-Media
+2020/9/3 8:39:24:846 UTC: 25.9985ms
+2020/9/3 8:39:24:852 UTC: 38width, 16height, Media
+2020/9/3 8:39:24:857 UTC: 40width, 16height, Drives
+2020/9/3 8:39:28:864 UTC: TCM#02-02-00_n_#GEN-Drives
+2020/9/3 8:39:28:874 UTC: 2.9948ms
+2020/9/3 8:39:29:383 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:39:29:390 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:39:29:396 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:39:29:401 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:29:408 UTC: 81width, 16height, Maintenance
+2020/9/3 8:39:29:414 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:39:29:421 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:39:29:427 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:39:29:432 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:29:438 UTC: 81width, 16height, Maintenance
+2020/9/3 8:39:29:443 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:39:29:449 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:39:29:456 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:39:29:461 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:29:467 UTC: 81width, 16height, Maintenance
+2020/9/3 8:39:29:472 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:39:29:477 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:39:29:482 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:39:29:486 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:29:492 UTC: 81width, 16height, Maintenance
+2020/9/3 8:39:33:500 UTC: TCM#70-01-00_w_#MED-FumeExhaust
+2020/9/3 8:39:33:522 UTC: 15.9971ms
+2020/9/3 8:39:33:529 UTC: 115width, 16height, Hydraulic Systems
+2020/9/3 8:39:33:534 UTC: 127width, 16height, Lubrication Systems
+2020/9/3 8:39:33:539 UTC: 114width, 16height, Emulsion Systems
+2020/9/3 8:39:33:544 UTC: 140width, 16height, Fume Exhaust System
+2020/9/3 8:39:33:549 UTC: 81width, 16height, Maintenance
+2020/9/3 8:39:34:56 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:39:34:63 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:39:34:68 UTC: 74width, 16height, Main Drives
+2020/9/3 8:39:34:73 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:39:34:78 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:39:38:86 UTC: TCM#51-01-00_w_#DRV-PowerSupplyMain
+2020/9/3 8:39:38:109 UTC: 15.998ms
+2020/9/3 8:39:38:116 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:39:38:122 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:39:38:129 UTC: 74width, 16height, Main Drives
+2020/9/3 8:39:38:134 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:39:38:140 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:39:42:148 UTC: TCM#53-01-00_w_#DRV-PowerSupplyAuxiliary
+2020/9/3 8:39:42:168 UTC: 13.9985ms
+2020/9/3 8:39:42:174 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:39:42:180 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:39:42:186 UTC: 74width, 16height, Main Drives
+2020/9/3 8:39:42:191 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:39:42:197 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:39:42:203 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:39:42:208 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:39:42:214 UTC: 74width, 16height, Main Drives
+2020/9/3 8:39:42:219 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:39:42:224 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:39:42:229 UTC: 120width, 16height, Power Supply Main
+2020/9/3 8:39:42:234 UTC: 141width, 16height, Power Supply Auxiliary
+2020/9/3 8:39:42:239 UTC: 74width, 16height, Main Drives
+2020/9/3 8:39:42:244 UTC: 96width, 16height, Auxiliary Drives
+2020/9/3 8:39:42:249 UTC: 93width, 16height, Group Jogging
+2020/9/3 8:39:46:258 UTC: TCM#54-01-00_n_#DRV-DrivesGroupJogging
+2020/9/3 8:39:46:287 UTC: 22.9969ms
+2020/9/3 8:39:46:293 UTC: 66width, 16height, Entry Area
+2020/9/3 8:39:49:800 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/9/3 8:39:49:826 UTC: 18.9361ms
+2020/9/3 8:39:53:334 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/9/3 8:39:53:361 UTC: 21.0008ms
+2020/9/3 8:39:56:869 UTC: TCM#03-03-00_n_#TCM-OverviewCCar1
+2020/9/3 8:39:56:894 UTC: 18.0004ms
+2020/9/3 8:39:57:400 UTC: 156width, 16height, Devices Coil Preparation
+2020/9/3 8:39:57:406 UTC: 87width, 16height, Devices Entry
+2020/9/3 8:40:1:415 UTC: TCM#03-10-00_n_#TCM-DevicesCoilPreparation
+2020/9/3 8:40:1:448 UTC: 26.9999ms
+2020/9/3 8:40:1:454 UTC: 156width, 16height, Devices Coil Preparation
+2020/9/3 8:40:1:459 UTC: 87width, 16height, Devices Entry
+2020/9/3 8:40:5:467 UTC: TCM#03-11-00_n_#TCM-DevicesEntryArea
+2020/9/3 8:40:5:480 UTC: 7.0009ms
+2020/9/3 8:40:5:487 UTC: 107width, 16height, Tandem Cold Mill
+2020/9/3 8:40:8:994 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/9/3 8:40:9:15 UTC: 14.0223ms
+2020/9/3 8:40:12:523 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/9/3 8:40:12:550 UTC: 19.9985ms
+2020/9/3 8:40:16:60 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/9/3 8:40:16:81 UTC: 12.9981ms
+2020/9/3 8:40:19:589 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/9/3 8:40:19:611 UTC: 14.9991ms
+2020/9/3 8:40:23:119 UTC: TCM#08-01-00_n_#TCM-CoilSequences
+2020/9/3 8:40:23:139 UTC: 13.0017ms
+2020/9/3 8:40:26:647 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/9/3 8:40:26:671 UTC: 17.0501ms
+2020/9/3 8:40:30:179 UTC: TCM#08-03-00_n_#TCM-StopTimes
+2020/9/3 8:40:30:204 UTC: 17.9988ms
+2020/9/3 8:40:30:711 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:40:30:719 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:40:30:725 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:40:30:730 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:40:30:736 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:40:34:744 UTC: TCM#24-01-00_w_#TCM-FlatnessControlC1
+2020/9/3 8:40:34:760 UTC: 10.0026ms
+2020/9/3 8:40:34:779 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:40:34:785 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:40:34:791 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:40:34:798 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:40:34:805 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:40:38:814 UTC: TCM#24-02-00_w_#TCM-FlatnessControlC2
+2020/9/3 8:40:38:846 UTC: 24.9998ms
+2020/9/3 8:40:38:853 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:40:38:860 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:40:38:865 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:40:38:871 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:40:38:877 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:40:42:893 UTC: TCM#24-03-00_w_#TCM-FlatnessControlC3
+2020/9/3 8:40:42:906 UTC: 5.0004ms
+2020/9/3 8:40:42:916 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:40:42:933 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:40:42:942 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:40:42:950 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:40:42:957 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:40:46:971 UTC: TCM#24-04-00_w_#TCM-FlatnessControlC4
+2020/9/3 8:40:46:997 UTC: 18.9959ms
+2020/9/3 8:40:47:5 UTC: 126width, 16height, Flatness Control C1
+2020/9/3 8:40:47:10 UTC: 126width, 16height, Flatness Control C2
+2020/9/3 8:40:47:16 UTC: 126width, 16height, Flatness Control C3
+2020/9/3 8:40:47:21 UTC: 126width, 16height, Flatness Control C4
+2020/9/3 8:40:47:27 UTC: 126width, 16height, Flatness Control C5
+2020/9/3 8:40:51:36 UTC: TCM#24-05-00_w_#TCM-FlatnessControlC5
+2020/9/3 8:40:51:55 UTC: 13.0012ms
+2020/9/3 8:40:54:565 UTC: TCM#21-01-00_w_#TCM-CoolingAndLubrication
+2020/9/3 8:40:54:587 UTC: 14.994ms
+2020/9/3 8:40:55:96 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:103 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:110 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:115 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:119 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:124 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:55:129 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:134 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:139 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:145 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:149 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:154 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:55:159 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:164 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:168 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:173 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:178 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:182 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:55:188 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:192 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:197 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:202 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:207 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:211 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:55:217 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:222 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:227 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:231 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:236 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:241 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:55:245 UTC: 59width, 16height, Stand C1
+2020/9/3 8:40:55:251 UTC: 59width, 16height, Stand C2
+2020/9/3 8:40:55:256 UTC: 59width, 16height, Stand C3
+2020/9/3 8:40:55:260 UTC: 59width, 16height, Stand C4
+2020/9/3 8:40:55:266 UTC: 59width, 16height, Stand C5
+2020/9/3 8:40:55:271 UTC: 126width, 16height, Deflector Rolls Data
+2020/9/3 8:40:59:279 UTC: TCM#16-06-00_n_#TCM-DeflectorRollData
+2020/9/3 8:40:59:304 UTC: 18.9965ms
+2020/9/3 8:40:59:813 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:40:59:820 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:40:59:825 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:40:59:830 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:40:59:835 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:40:59:840 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:40:59:846 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:40:59:851 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:3:859 UTC: TCM#25-01-00_n_#TCM-DevicesMillEntry
+2020/9/3 8:41:3:891 UTC: 26.001ms
+2020/9/3 8:41:3:897 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:3:902 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:3:907 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:3:912 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:3:917 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:3:922 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:3:928 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:3:934 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:3:940 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:3:945 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:3:950 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:3:957 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:3:962 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:3:967 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:3:972 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:3:977 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:3:985 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:3:990 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:3:996 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:4:1 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:4:7 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:4:12 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:4:18 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:4:23 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:8:32 UTC: TCM#25-12-00_n_#TCM-DevicesPinchRollsandDrumShear
+2020/9/3 8:41:8:44 UTC: 3.9998ms
+2020/9/3 8:41:8:50 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:8:57 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:8:63 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:8:75 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:8:81 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:8:87 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:8:93 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:8:98 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:12:108 UTC: TCM#25-13-00_n_#TCM-DevicesPlantLogistics
+2020/9/3 8:41:12:134 UTC: 18.9991ms
+2020/9/3 8:41:12:140 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:12:145 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:12:151 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:12:156 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:12:161 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:12:166 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:12:173 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:12:179 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:16:187 UTC: TCM#25-14-00_n_#TCM-DevicesMillExit
+2020/9/3 8:41:16:224 UTC: 29.9996ms
+2020/9/3 8:41:16:231 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:16:236 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:16:242 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:16:247 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:16:252 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:16:257 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:16:262 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:16:267 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:20:276 UTC: TCM#25-15-00_n_#TCM-DevicesPlantAccessandSafety
+2020/9/3 8:41:20:309 UTC: 24.0043ms
+2020/9/3 8:41:20:317 UTC: 111width, 16height, Devices Mill Entry
+2020/9/3 8:41:20:322 UTC: 115width, 16height, Devices Mill Stand
+2020/9/3 8:41:20:328 UTC: 132width, 16height, Devices Roll Change
+2020/9/3 8:41:20:333 UTC: 232width, 16height, Devices Pinch Rolls and Drum Shear
+2020/9/3 8:41:20:338 UTC: 145width, 16height, Devices Plant Logistics
+2020/9/3 8:41:20:343 UTC: 100width, 16height, Devices Mill Exit
+2020/9/3 8:41:20:348 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/9/3 8:41:20:353 UTC: 143width, 16height, Measurement Systems
+2020/9/3 8:41:24:361 UTC: TCM#25-16-00_n_#TCM-MeasurementSystems
+2020/9/3 8:41:24:397 UTC: 29.9977ms
+2020/9/3 8:41:24:404 UTC: 55width, 16height, Exit Area
+2020/9/3 8:41:27:911 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/9/3 8:41:27:930 UTC: 12.0011ms
+2020/9/3 8:41:31:439 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/9/3 8:41:31:465 UTC: 20.0024ms
+2020/9/3 8:41:34:974 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/9/3 8:41:34:997 UTC: 17.001ms
+2020/9/3 8:41:38:506 UTC: TCM#04-05-00_n_#TCM-OverviewCoilCar3
+2020/9/3 8:41:38:528 UTC: 15.0016ms
+2020/9/3 8:41:39:36 UTC: 76width, 16height, Devices Exit
+2020/9/3 8:41:43:45 UTC: TCM#04-04-00_n_#TCM-DevicesExit
+2020/9/3 8:41:43:54 UTC: 1.9697ms
+2020/9/3 8:41:43:59 UTC: 46width, 16height, System
+2020/9/3 8:41:46:567 UTC: i8Sys_w_Environment
+2020/9/3 8:41:46:589 UTC: 15.9968ms
+2020/9/3 8:41:50:97 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/9/3 8:41:50:121 UTC: 17.0003ms
+2020/9/3 8:41:50:634 UTC: 77width, 16height, Node Rights
+2020/9/3 8:41:50:640 UTC: 79width, 16height, Connections
+2020/9/3 8:41:50:646 UTC: 70width, 16height, Information
+2020/9/3 8:41:50:651 UTC: 73width, 16height, User Rights
+2020/9/3 8:41:50:656 UTC: 61width, 16height, Database
+2020/9/3 8:41:50:664 UTC: 69width, 16height, Application
+2020/9/3 8:41:50:669 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:41:54:677 UTC: i8Sys_w_NodeRights
+2020/9/3 8:41:54:707 UTC: 23.9993ms
+2020/9/3 8:41:54:714 UTC: 77width, 16height, Node Rights
+2020/9/3 8:41:54:720 UTC: 79width, 16height, Connections
+2020/9/3 8:41:54:725 UTC: 70width, 16height, Information
+2020/9/3 8:41:54:730 UTC: 73width, 16height, User Rights
+2020/9/3 8:41:54:736 UTC: 61width, 16height, Database
+2020/9/3 8:41:54:741 UTC: 69width, 16height, Application
+2020/9/3 8:41:54:749 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:41:58:757 UTC: i8App_n_Connections
+2020/9/3 8:41:58:766 UTC: 3.9994ms
+2020/9/3 8:41:58:773 UTC: 77width, 16height, Node Rights
+2020/9/3 8:41:58:777 UTC: 79width, 16height, Connections
+2020/9/3 8:41:58:783 UTC: 70width, 16height, Information
+2020/9/3 8:41:58:788 UTC: 73width, 16height, User Rights
+2020/9/3 8:41:58:793 UTC: 61width, 16height, Database
+2020/9/3 8:41:58:799 UTC: 69width, 16height, Application
+2020/9/3 8:41:58:805 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:42:2:814 UTC: i8Sys_n_Information
+2020/9/3 8:42:2:824 UTC: 4.0003ms
+2020/9/3 8:42:2:830 UTC: 77width, 16height, Node Rights
+2020/9/3 8:42:2:835 UTC: 79width, 16height, Connections
+2020/9/3 8:42:2:841 UTC: 70width, 16height, Information
+2020/9/3 8:42:2:846 UTC: 73width, 16height, User Rights
+2020/9/3 8:42:2:851 UTC: 61width, 16height, Database
+2020/9/3 8:42:2:856 UTC: 69width, 16height, Application
+2020/9/3 8:42:2:862 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:42:6:871 UTC: i8Sys_w_UserRights
+2020/9/3 8:42:6:883 UTC: 6.0016ms
+2020/9/3 8:42:6:888 UTC: 77width, 16height, Node Rights
+2020/9/3 8:42:6:894 UTC: 79width, 16height, Connections
+2020/9/3 8:42:6:899 UTC: 70width, 16height, Information
+2020/9/3 8:42:6:904 UTC: 73width, 16height, User Rights
+2020/9/3 8:42:6:910 UTC: 61width, 16height, Database
+2020/9/3 8:42:6:915 UTC: 69width, 16height, Application
+2020/9/3 8:42:6:920 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:42:10:929 UTC: i8Sys_n_Database
+2020/9/3 8:42:10:945 UTC: 9.9999ms
+2020/9/3 8:42:10:951 UTC: 77width, 16height, Node Rights
+2020/9/3 8:42:10:956 UTC: 79width, 16height, Connections
+2020/9/3 8:42:10:961 UTC: 70width, 16height, Information
+2020/9/3 8:42:10:966 UTC: 73width, 16height, User Rights
+2020/9/3 8:42:10:971 UTC: 61width, 16height, Database
+2020/9/3 8:42:10:976 UTC: 69width, 16height, Application
+2020/9/3 8:42:10:981 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:42:14:990 UTC: i8Sys_n_Application
+2020/9/3 8:42:15:8 UTC: 10.9985ms
+2020/9/3 8:42:15:14 UTC: 77width, 16height, Node Rights
+2020/9/3 8:42:15:19 UTC: 79width, 16height, Connections
+2020/9/3 8:42:15:25 UTC: 70width, 16height, Information
+2020/9/3 8:42:15:30 UTC: 73width, 16height, User Rights
+2020/9/3 8:42:15:35 UTC: 61width, 16height, Database
+2020/9/3 8:42:15:41 UTC: 69width, 16height, Application
+2020/9/3 8:42:15:46 UTC: 86width, 16height, PDL Statistics
+2020/9/3 8:42:19:54 UTC: i8Sys_n_PdlStatistics
+2020/9/3 8:42:19:69 UTC: 8.0012ms

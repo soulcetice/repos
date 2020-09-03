@@ -24,6 +24,7 @@ namespace WinCC_Timer
         }
 
         public DataTable dataTable = new DataTable();
+        public string logName = "\\Screen.logger";
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -32,36 +33,90 @@ namespace WinCC_Timer
 
             var tier1 = lists.Where(c => c.Layer == "1");
 
-            foreach (var t in tier1)
-            {
-                LogToFile(GetTextWidth(t.Caption, "Arial", 10.0f).ToString() + " " + t.Caption, "\\Screen.logger"); ;
-            }
-
             IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+            Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
 
             //"General is 76 * 30
-            int x = 25/2;
-            int y = 15;
-
+            int x = 25 / 2;
+            int y = 0;
             foreach (MenuRow m in tier1)
             {
-                x += GetTextWidth(m.Caption, "Arial", 10.0f) / 2;
-                ClickInWindowAtXY(rt, x, y, 1);
-                System.Threading.Thread.Sleep(2000);
-                ClickInWindowAtXY(rt, x, y, 1);
-                x += GetTextWidth(m.Caption, "Arial", 10.0f) / 2;
+                Size size = GetTextSize(m.Caption, "Arial", 10.0f);
+
+                x += size.Width / 2;
+                y = 15;
+                //ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(2000); //expand tier1 menu
+                y += 28;
+
+                var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID);
+                foreach (var tier2 in ChildrenTier1)
+                {
+                    if (tier2.Pdl != "")
+                    {
+                        ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                        LogToFile(tier2.Pdl, logName);
+                        _ = FindObjectInHMI(cmp);
+                    }
+                    else
+                    {
+                        var ChildrenTier2 = lists.Where(c => c.ParentId == tier2.ID);
+                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+
+                        int yTier3 = y;
+                        int maxWidthTier2 = GetMenuDropWidth(ChildrenTier2);
+                        foreach (var tier3 in ChildrenTier2)
+                        {
+                            int xTier3 = x + maxWidthTier2; // + longest element in tier2's width + some 40 pixels
+                            if (tier3.Pdl != "")
+                            {
+                                ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+
+                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+
+                                LogToFile(tier3.Pdl, logName);
+                                _ = FindObjectInHMI(cmp);
+                            } else
+                            {
+                                //there is also a tier4....
+                            }
+                            yTier3 += 26;
+                        }
+                    }
+                    y += 26; //increment tier2 menu or open page
+                }
+
+                x += size.Width / 2;
                 x += 25;
+
+                //bool v = FindObjectInHMI(cmp);
                 //still only almost, gets too offset in the end
             }
 
-            bool v = FindObjectInHMI();
         }
 
-        private static int GetTextWidth(string text, string fontName, Single fontSize)
+        private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
         {
-            var font = new Font(fontName, fontSize, FontStyle.Regular);
-            int textWidth = TextRenderer.MeasureText(text, font).Width;
-            return textWidth;
+            int maxWidthTier2 = 0;
+            foreach (var z in ChildrenTier2)
+            {
+                var w = GetTextSize(z.Caption, "Arial", 10.0f).Width;
+                if (w > maxWidthTier2)
+                    maxWidthTier2 = w;
+            }
+
+            return maxWidthTier2 + 40;
+        }
+
+        private Size GetTextSize(string text, string fontName, Single fontSize)
+        {
+            Font font = new Font(fontName, fontSize, FontStyle.Regular);
+            Size size = TextRenderer.MeasureText(text, font);
+            size.Width -= 8; //stupid calculation
+            LogToFile(size.Width.ToString() + "width, " + size.Height.ToString() + "height, " + text, logName);
+            //26 height for submenus, 30 height for the tier1 menu
+            return size;
         }
 
         private void ClickInWindowAtXY(IntPtr handle, int? x, int? y, int repeat)
@@ -128,25 +183,17 @@ namespace WinCC_Timer
             }
             catch (Exception ex)
             {
-                LogToFile("Can not open connection ! " + ex.Message, "\\Screen.logger");
+                LogToFile("Can not open connection ! " + ex.Message, logName);
                 return null;
             }
         }
 
-        private bool FindObjectInHMI()
+        private bool FindObjectInHMI(Bitmap cmp)
         {
             DateTime start = DateTime.UtcNow;
-            LogToFile("", "\\Screen.logger");
-
-            Bitmap bmp = TakeScreenShot();
-            Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
-
-            DateTime end = DateTime.UtcNow;
-
+            Bitmap bmp = TakeScreenShot(1004, 1681);
             bool t = CompareMemCmp(bmp, cmp);
-            LogToFile(t.ToString(), "\\Screen.logger");
-            LogToFile((end.Second - start.Second).ToString() + "." + (end.Millisecond - start.Millisecond).ToString(), "\\Screen.logger");
-
+            LogToFile((DateTime.UtcNow - start).TotalMilliseconds.ToString() + "ms", logName);
             return t;
         }
 
@@ -188,12 +235,10 @@ namespace WinCC_Timer
             }
         }
 
-        private Bitmap TakeScreenShot()
+        private Bitmap TakeScreenShot(int top, int left)
         {
             int width = 5;
             int height = 5;
-            int top = 989 + 15;
-            int left = 1666 + 15; //1506 is 1681 (175 offset)
             Bitmap bmp = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
@@ -203,7 +248,7 @@ namespace WinCC_Timer
                     Height = height //Screen.PrimaryScreen.Bounds.Size.Height - height
                 };
                 g.CopyFromScreen(left, top, 0, 0, s);
-                bmp.Save("s.png");  // saves the image
+                //bmp.Save("s.png");  // saves the image
             }
             return bmp;
         }
