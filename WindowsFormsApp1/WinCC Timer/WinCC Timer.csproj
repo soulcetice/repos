@@ -87,5 +87,11 @@
   <ItemGroup>
     <None Include="s.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary\Interoperability.csproj">
+      <Project>{0B0A0E29-5272-4824-A2CF-B00F2BEB0303}</Project>
+      <Name>Interoperability</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
