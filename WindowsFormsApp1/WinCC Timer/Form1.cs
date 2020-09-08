@@ -77,9 +77,33 @@ namespace WinCC_Timer
 
                                 LogToFile(tier3.Pdl, logName);
                                 _ = FindObjectInHMI(cmp);
-                            } else
+                            }
+                            else
                             {
                                 //there is also a tier4....
+                                var ChildrenTier3 = lists.Where(c => c.ParentId == tier3.ID);
+                                ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+
+                                int yTier4 = y;
+                                int maxWidthTier3 = GetMenuDropWidth(ChildrenTier3) + maxWidthTier2;
+                                foreach (var tier4 in ChildrenTier3)
+                                {
+                                    int xTier4 = x + maxWidthTier3; // + longest element in tier2's width + some 40 pixels
+                                    if (tier4.Pdl != "")
+                                    {
+                                        ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                                        LogToFile(tier4.Pdl, logName);
+                                        _ = FindObjectInHMI(cmp);
+                                    }
+                                    else
+                                    {
+                                        //no tier 5 thank god
+                                    }
+                                    yTier4 += 26;
+                                }
                             }
                             yTier3 += 26;
                         }

@@ -732,7 +732,8 @@ namespace AutomateDownloader
                                     lst.Add(sr.ReadLine());
                             }
 
-                            SleepUntilDownloadFeedback(clientIndex + 1);
+                            //SleepUntilDownloadFeedback(clientIndex + 1);
+                            System.Threading.Thread.Sleep(30000);
 
                             IntPtr dldingTgtHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
                             if (dldingTgtHandle != IntPtr.Zero)
@@ -786,6 +787,11 @@ namespace AutomateDownloader
                                     }
 
                                     System.Threading.Thread.Sleep(1000);
+
+                                    foreach (var c in dldingTgtText)
+                                    {
+                                        LogToFile(c);
+                                    }
 
                                 } while (dldingTgtText.Where(x => x.Contains("Download to target system was completed successfully")).Count() == 0);
 
