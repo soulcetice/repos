@@ -5,8 +5,7 @@
         <script src="teechart.js"></script>
         <script src="teechart-3d.js"></script>
         <script src="jquery-3.5.1.min.js"></script>
-        <script>
-            
+        <script>            
             var Chart1, grid;
 
             function draw() {
@@ -59,22 +58,26 @@
 
             $(function() {
                 $('#add').click(function () {
+				//push
                     Chart1.series.items[0].data.values[0].push(Math.random() * 100);
                     Chart1.series.items[0].data.values[1].push(Math.random() * 100);
                     Chart1.series.items[0].data.values[2].push(Math.random() * 100);
+				//splice
                     if (Chart1.series.items[0].data.values[0].length > 50) {
-                                        Chart1.series.items[0].data.values[0].splice(0, 1);
-                                        Chart1.series.items[0].data.values[1].splice(0, 1);
-                                        Chart1.series.items[0].data.values[2].splice(0, 1);
+						Chart1.series.items[0].data.values[0].splice(0, 1);
+						Chart1.series.items[0].data.values[1].splice(0, 1);
+						Chart1.series.items[0].data.values[2].splice(0, 1);
                     }
-
+				//min max
                     grid.chart.axes.top.setMinMax(Chart1.series.items[0].data.values[0].length - 50, Chart1.series.items[0].data.values[0].length - 1);
                     grid.chart.axes.bottom.setMinMax(Chart1.series.items[0].data.values[0].length - 50, Chart1.series.items[0].data.values[0].length - 1);
-                grid.dataChanged=true;
-                Chart1.draw();
+				//redraw
+					grid.dataChanged=true;
+					Chart1.draw();
             }
             );
-                draw();
+            
+			draw();
             });        
         </script>
     </HEAD>
