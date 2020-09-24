@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Interoperability;
+using System.Management;
 
 namespace AutomateDownloader
 {
@@ -41,6 +42,8 @@ namespace AutomateDownloader
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
+        private Button button2;
+        private TextBox textBox1;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -709,8 +712,32 @@ namespace AutomateDownloader
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
-                            //call remote desktop open here
-                            if (rdpCheckBox.Checked == true)
+                            #region TaskKill process if deactivating/closing
+
+
+                            IntPtr killGuideHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
+                            if (killGuideHandle != IntPtr.Zero)
+                            {
+                                //Download to target system was completed successfully. do not send enter until this text is present in the window...
+                                var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
+                                if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS.")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS.")).Count() > 0) //check if closing project takes too long...
+                                {
+                                    var user = unTextBox.Text;
+                                    var pass = passTextBox.Text;
+                                    var ip = myIp;
+
+                                    var processName = "CCOnScreenKeyboard.exe";
+
+                                    LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass);
+                                    TaskKill(user, pass, ip, processName);
+                                }
+
+                            }
+
+                                #endregion
+
+                                //call remote desktop open here
+                                if (rdpCheckBox.Checked == true)
                             {
                                 //certificate needs to be generated here
                                 System.Threading.Thread.Sleep(10000); //important to wait a bit
@@ -827,6 +854,28 @@ namespace AutomateDownloader
                 
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
+        }
+
+        private static void TaskKill(string user, string pass, string ip, string processName)
+        {
+            var connectoptions = new ConnectionOptions();
+            connectoptions.Username = user; //@"YourDomainName\UserName";
+            connectoptions.Password = pass; //"User Password";
+
+            string ipAddress = ip; //"192.168.206.53";
+            ManagementScope scope = new ManagementScope(@"\\" + ipAddress + @"\root\cimv2", connectoptions);
+
+            // WMI query
+            var query = new SelectQuery("select * from Win32_process where name = '" + processName + "'");
+
+            using (var searcher = new ManagementObjectSearcher(scope, query))
+            {
+                foreach (ManagementObject process in searcher.Get()) // this is the fixed line
+                {
+                    process.InvokeMethod("Terminate", null);
+                }
+            }
+            Console.ReadLine();
         }
 
         private void ClickButtonUsingMessage(IntPtr windowHandle, string buttonText, string windowText)
@@ -1064,6 +1113,8 @@ namespace AutomateDownloader
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.rdpBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1323,9 +1374,30 @@ namespace AutomateDownloader
             this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 24;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(240, 414);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Kill Proc";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 416);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(222, 20);
+            this.textBox1.TabIndex = 26;
+            this.textBox1.Text = "Write IP where to kill Taskmgr";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 421);
+            this.ClientSize = new System.Drawing.Size(324, 448);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.progressBar1);
@@ -1383,6 +1455,23 @@ namespace AutomateDownloader
         {
             //label9.Text = "Remaining [s]: ~" + (checkedListBox1.CheckedIndices.Count * 100).ToString();
             label9.Refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var user = unTextBox.Text;
+            var pass = passTextBox.Text;
+            var ip = textBox1.Text;
+
+            var processName = "Taskmgr.exe";
+
+            LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass);
+            TaskKill(user, pass, ip, processName);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
