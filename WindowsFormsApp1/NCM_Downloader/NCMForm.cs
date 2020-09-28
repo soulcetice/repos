@@ -11,6 +11,10 @@ using System.Text;
 using System.Windows.Forms;
 using Interoperability;
 using System.Management;
+using System.Management.Automation;
+using System.Collections.ObjectModel;
+using System.Management.Automation.Runspaces;
+using System.Linq.Expressions;
 
 namespace AutomateDownloader
 {
@@ -44,6 +48,8 @@ namespace AutomateDownloader
         private System.Windows.Forms.Label label9;
         private Button button2;
         private TextBox textBox1;
+        private TextBox textBox2;
+        private GroupBox groupBox1;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -594,7 +600,7 @@ namespace AutomateDownloader
             int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
             // init logFile
             //
-            LogToFile("Started actions ******************************************");            
+            LogToFile("Started actions ******************************************");
             //
             // initialize handles for windows
             //
@@ -612,7 +618,7 @@ namespace AutomateDownloader
             {
                 MessageBox.Show(new Form { TopMost = true }, " Simatic NCM Manager is not running.");
                 LogToFile("NCM Manager was not running.");
-                
+
                 return;
             }
 
@@ -631,7 +637,7 @@ namespace AutomateDownloader
             else
             {
                 LogToFile("The missing software package notification did not appear - that is ok");
-                
+
                 PInvokeLibrary.SetForegroundWindow(ncmHandle);
             }
 
@@ -663,7 +669,7 @@ namespace AutomateDownloader
                     DownloadToCurrentIndex(clientIndex, ncmHandle);
 
                     LogToFile("Attempting download to client " + clientName);
-                    
+
 
                     var started = DateTime.Now;
 
@@ -701,43 +707,45 @@ namespace AutomateDownloader
                                 else
                                 {
                                     LogToFile("The Ok Button was not found in the deactivation window!");
-                                    
+
                                     MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
                             {
                                 LogToFile("Did not find target system popup! (runtime was not active on this client)");
-                                
+
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
                             #region TaskKill process if deactivating/closing
 
-
+                            var processName = "CCOnScreenKeyboard";
+                            var user = unTextBox.Text;
+                            var pass = passTextBox.Text;
+                            var ip = myIp;
                             IntPtr killGuideHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
                             if (killGuideHandle != IntPtr.Zero)
                             {
                                 //Download to target system was completed successfully. do not send enter until this text is present in the window...
-                                var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
-                                if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS.")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS.")).Count() > 0) //check if closing project takes too long...
+                                bool flagKilled = false;
+                                do
                                 {
-                                    var user = unTextBox.Text;
-                                    var pass = passTextBox.Text;
-                                    var ip = myIp;
-
-                                    var processName = "CCOnScreenKeyboard.exe";
-
-                                    LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass);
-                                    TaskKill(user, pass, ip, processName);
-                                }
-
+                                    var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
+                                    if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS.")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS.")).Count() > 0) //check if closing project takes too long...
+                                    {
+                                        LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
+                                        RunPowershell(clientName, processName);
+                                        flagKilled = true;
+                                    }
+                                    System.Threading.Thread.Sleep(50);
+                                } while (flagKilled == false);
                             }
 
-                                #endregion
+                            #endregion
 
-                                //call remote desktop open here
-                                if (rdpCheckBox.Checked == true)
+                            //call remote desktop open here
+                            if (rdpCheckBox.Checked == true)
                             {
                                 //certificate needs to be generated here
                                 System.Threading.Thread.Sleep(10000); //important to wait a bit
@@ -797,18 +805,18 @@ namespace AutomateDownloader
                                         else
                                         {
                                             LogToFile("The Ok Button was not found in the downloading window!");
-                                            
+
                                             MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                         }
                                         LogToFile("Error on download to client " + clientIndex + 1);
-                                        
+
                                         continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
                                     {
                                         LogToFile("Client " + clientIndex + " download canceled - RT station not obtainable");
-                                        
+
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
                                         continue;
                                     }
@@ -838,7 +846,7 @@ namespace AutomateDownloader
                         LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() +
                             " : Finished download process for machine " + checkedListBox1.CheckedItems[i].ToString() +
                             " in " + secElapsed.ToString() + " seconds");
-                        
+
                         //int currentElapsed = Convert.ToInt32(label9.Text.Split(Convert.ToChar("~"))[1]);
                         //label9.Text = "Remaining [s]: ~" + (currentElapsed - 100).ToString();
                         label9.Refresh();
@@ -851,7 +859,7 @@ namespace AutomateDownloader
                     }
                 }
                 LogToFile("Closing logfile");
-                
+
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
             }
         }
@@ -899,7 +907,7 @@ namespace AutomateDownloader
                     else
                     {
                         LogToFile("The " + buttonText + " button was not found in the downloading window to confirm finish!");
-                        
+
                         //MessageBox.Show(new Form { TopMost = true }, "The OK Button was not found in the downloading to target system window!"); //careful to focus on it
                         success = false;
                     }
@@ -907,7 +915,7 @@ namespace AutomateDownloader
                 catch (Exception exc)
                 {
                     LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + exc.Message);
-                    
+
                     //MessageBox.Show(new Form { TopMost = true }, exc.Message);
                     success = false;
                 }
@@ -1005,7 +1013,7 @@ namespace AutomateDownloader
                 catch (Exception e)
                 {
                     LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() + " UTC :" + e.Message);
-                    
+
                     success = false;
                     System.Threading.Thread.Sleep(10);
                 }
@@ -1084,6 +1092,18 @@ namespace AutomateDownloader
             SendKeys.Send("{ENTER}");
         }
 
+        private void ClickInWindowAtXY(IntPtr handle, int? x, int? y, int repeat)
+        {
+            for (int i = 0; i < repeat; i++)
+            {
+                PInvokeLibrary.SetForegroundWindow(handle);
+
+                MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            }
+        }
+
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NCMForm));
@@ -1115,7 +1135,10 @@ namespace AutomateDownloader
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdpBox1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1376,28 +1399,47 @@ namespace AutomateDownloader
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(240, 414);
+            this.button2.Location = new System.Drawing.Point(241, 17);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(53, 23);
             this.button2.TabIndex = 25;
-            this.button2.Text = "Kill Proc";
+            this.button2.Text = "Kill";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 416);
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 20);
+            this.textBox1.Size = new System.Drawing.Size(102, 20);
             this.textBox1.TabIndex = 26;
-            this.textBox1.Text = "Write IP where to kill Taskmgr";
+            this.textBox1.Text = "TcmHmiC05";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(114, 19);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(121, 20);
+            this.textBox2.TabIndex = 27;
+            this.textBox2.Text = "Taskmgr";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 415);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(300, 51);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Process Control";
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 448);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(324, 474);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.progressBar1);
@@ -1422,6 +1464,8 @@ namespace AutomateDownloader
             this.Text = "NCM Manager Automation";
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1459,14 +1503,82 @@ namespace AutomateDownloader
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var user = unTextBox.Text;
-            var pass = passTextBox.Text;
-            var ip = textBox1.Text;
+            //SendKeys.SendWait("^({ESC})");
 
-            var processName = "Taskmgr.exe";
+            var id = textBox1.Text;
 
-            LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass);
-            TaskKill(user, pass, ip, processName);
+            RunPowershell(id, "Taskmgr");
+        }
+
+        private void KillTaskInRDP(string ip, string processName)
+        {
+            IntPtr myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
+
+            Interoperability.PInvokeLibrary.SetForegroundWindow(myRdp);
+
+            _ = PInvokeLibrary.GetWindowRect(myRdp, out PInvoke.RECT myRdpRect);
+
+
+            ClickInWindowAtXY(myRdp, ((myRdpRect.left + myRdpRect.right) / 2) /*(Convert.ToInt32(widthBox.Text) / 480 * 9)*/, ((myRdpRect.top + myRdpRect.bottom) / 2)/*+ myRdpRect.bottom - (Convert.ToInt32(heightBox.Text) / 480 * 9)*/, 1);
+            LogToFile("Clicked at " + (myRdpRect.left + (Convert.ToInt32(widthBox.Text) / 480 * 9)).ToString() + " width, " + (myRdpRect.top + myRdpRect.bottom - (Convert.ToInt32(heightBox.Text) / 480 * 9)).ToString() + " height");
+            System.Threading.Thread.Sleep(500);
+
+            var cmdString = @"Taskkill / IM " + processName + " / F";
+
+            System.Threading.Thread.Sleep(200);
+            foreach (var c in cmdString)
+            {
+                SendKeyHandled(myRdp, c.ToString());
+            }
+
+            SendKeyHandled(myRdp, "^({ESC})");
+            System.Threading.Thread.Sleep(500);
+
+            SendKeyHandled(myRdp, "c");
+            SendKeyHandled(myRdp, "m");
+            SendKeyHandled(myRdp, "d");
+            System.Threading.Thread.Sleep(200);
+            SendKeyHandled(myRdp, "{ENTER}");
+
+            /*var*/
+            cmdString = @"Taskkill / IM " + processName + " / F";
+
+            System.Threading.Thread.Sleep(200);
+            foreach (var c in cmdString)
+            {
+                SendKeyHandled(myRdp, c.ToString());
+            }
+
+            LogToFile("should have succeeded by now");
+        }
+
+        private void RunPowershell(string machine, string process)
+        {
+            //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
+            try
+            {
+                Runspace runSpace = RunspaceFactory.CreateRunspace();
+                runSpace.Open();
+                Pipeline pipeline = runSpace.CreatePipeline();
+
+                Command invokeScript = new Command("Invoke-Command");
+                RunspaceInvoke invoke = new RunspaceInvoke();
+                //Invoke-Command -scriptBlock
+                ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
+                invokeScript.Parameters.Add("computername", machine);
+                invokeScript.Parameters.Add("scriptBlock", sb);
+
+                pipeline.Commands.Add(invokeScript);
+                Collection<PSObject> output = pipeline.Invoke();
+                foreach (PSObject obj in output)
+                {
+                    LogToFile(obj.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                LogToFile(e.Message);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
