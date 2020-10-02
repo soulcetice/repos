@@ -10,3 +10,5 @@ Friday, July 31, 2020 8:07:44 AM UTC : Started actions
 2020/9/24 12:39:10:351 UTC: Attempting to kill Taskmgr.exe at 10.16.80.31 with username SDI and password A02460
 2020/9/25 13:22:2:954 UTC: Attempting to kill Taskmgr.exe at 10.16.75.34 with username SDI and password A02460
 2020/9/25 13:25:55:230 UTC: Attempting to kill Taskmgr.exe at 10.16.75.34 with username SDI and password A02460
+2020/9/28 14:27:3:147 UTC: A parameter cannot be found that matches parameter name 'Path[0]'.
+2020/9/29 15:13:4:984 UTC: The term 'Set-Item WSMan:\localhost\Client\TrustedHosts' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.

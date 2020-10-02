@@ -1,0 +1,1 @@
+﻿Start-Process powershell -verb runas -ArgumentList "-file D:\Project Data\000 - Basic\001 - NCM tool\AddTrustedHosts.ps1"

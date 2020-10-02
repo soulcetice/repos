@@ -708,7 +708,7 @@ namespace AutomateDownloader
                                 {
                                     LogToFile("The Ok Button was not found in the deactivation window!");
 
-                                    MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
+                                    //MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
@@ -732,10 +732,10 @@ namespace AutomateDownloader
                                 do
                                 {
                                     var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
-                                    if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS.")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS.")).Count() > 0) //check if closing project takes too long...
+                                    if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS")).Count() > 0) //check if closing project takes too long...
                                     {
                                         LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
-                                        RunPowershell(clientName, processName);
+                                        KillProcessViaPowershellOnMachine(clientName, processName);
                                         flagKilled = true;
                                     }
                                     System.Threading.Thread.Sleep(50);
@@ -1503,11 +1503,9 @@ namespace AutomateDownloader
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //SendKeys.SendWait("^({ESC})");
-
             var id = textBox1.Text;
+            KillProcessViaPowershellOnMachine(id, textBox2.Text);
 
-            RunPowershell(id, "Taskmgr");
         }
 
         private void KillTaskInRDP(string ip, string processName)
@@ -1552,8 +1550,9 @@ namespace AutomateDownloader
             LogToFile("should have succeeded by now");
         }
 
-        private void RunPowershell(string machine, string process)
+        private void KillProcessViaPowershellOnMachine(string machine, string process)
         {
+            AddToTrustedHosts(machine);
             //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
             try
             {
@@ -1573,6 +1572,84 @@ namespace AutomateDownloader
                 foreach (PSObject obj in output)
                 {
                     LogToFile(obj.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                LogToFile(e.Message + " at kill process");
+            }
+        }
+        private void AddToTrustedHosts(string machine)
+        {
+            //RunPowershellCommand(machine);
+            ////Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
+            //try
+            //{
+            //    Runspace runSpace = RunspaceFactory.CreateRunspace();
+            //    runSpace.Open();
+            //    Pipeline pipeline = runSpace.CreatePipeline();
+
+            //    Command invokeScript = new Command("Set-Item");
+            //    RunspaceInvoke invoke = new RunspaceInvoke();
+            //    //Invoke-Command -scriptBlock
+            //    //ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
+            //    invokeScript.Parameters.Add("Path[0]", @"WSMan:\localhost\Client\TrustedHosts");
+            //    invokeScript.Parameters.Add("Value", machine);
+
+            //    pipeline.Commands.Add(invokeScript);
+            //    Collection<PSObject> output = pipeline.Invoke();
+            //    foreach (PSObject obj in output)
+            //    {
+            //        LogToFile(obj.ToString());
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    LogToFile(e.Message + " at add to trusted hosts");
+            //}
+
+            //System.Security.SecureString pass = new System.Security.SecureString();
+            //string strPass = "!sysadmin";
+            //foreach (char c in strPass)
+            //{
+            //    pass.AppendChar(c);
+            //}
+
+            System.Diagnostics.Process.Start(Application.StartupPath + "\\StartTrustedHosts.ps1");
+            //StartTrustedHosts.ps1 - Notepad
+            System.Threading.Thread.Sleep(500);
+            var win = Interoperability.PInvokeLibrary.FindWindow("Notepad", "StartTrustedHosts.ps1 - Notepad");
+            Interoperability.PInvokeLibrary.CloseHandle(win);
+        }
+
+        private void RunPowershellCommand(string machine)
+        {
+            try
+            {
+                using (PowerShell PowerShellInst = PowerShell.Create())
+                {
+                    //if trying to read from file
+                    //string path = Application.StartupPath + "\\AddTrustedHosts.ps1";
+                    //if (!string.IsNullOrEmpty(path))
+                    PowerShellInst.AddScript(@"Set-Item WSMan:\localhost\Client\TrustedHosts -Value '" + machine + "' -Force");
+                    //PowerShellInst.addsta
+                    //PowerShellInst.AddCommand("Set-Item");
+                    //PowerShellInst.AddParameter(@"WSMan:\localhost\Client\TrustedHosts");
+                    //PowerShellInst.AddParameter()
+
+
+                    Collection<PSObject> PSOutput = PowerShellInst.Invoke();
+                    foreach (PSObject obj in PSOutput)
+                    {
+                        if (obj != null)
+                        {
+                            LogToFile(obj.Properties["EntryType"].Value.ToString() + " - ");
+                            LogToFile(obj.Properties["Source"].Value.ToString() + " - ");
+                            LogToFile(obj.Properties["Message"].Value.ToString() + " - ");
+                        }
+                    }
+                    LogToFile("Ran Powershell Set-Item command");
+                    //Console.Read();
                 }
             }
             catch (Exception e)

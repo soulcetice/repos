@@ -1,0 +1,1 @@
+﻿Set-Item WSMan:\localhost\Client\TrustedHosts -Value $ip -Force
