@@ -1552,31 +1552,44 @@ namespace AutomateDownloader
 
         private void KillProcessViaPowershellOnMachine(string machine, string process)
         {
-            AddToTrustedHosts(machine);
-            //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
             try
             {
-                Runspace runSpace = RunspaceFactory.CreateRunspace();
-                runSpace.Open();
-                Pipeline pipeline = runSpace.CreatePipeline();
-
-                Command invokeScript = new Command("Invoke-Command");
-                RunspaceInvoke invoke = new RunspaceInvoke();
-                //Invoke-Command -scriptBlock
-                ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
-                invokeScript.Parameters.Add("computername", machine);
-                invokeScript.Parameters.Add("scriptBlock", sb);
-
-                pipeline.Commands.Add(invokeScript);
-                Collection<PSObject> output = pipeline.Invoke();
-                foreach (PSObject obj in output)
-                {
-                    LogToFile(obj.ToString());
-                }
+                AddToTrustedHosts(machine);
             }
             catch (Exception e)
             {
-                LogToFile(e.Message + " at kill process");
+                LogToFile(e.Message);
+            }
+            finally
+            {
+                //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
+                try
+                {
+                    Runspace runSpace = RunspaceFactory.CreateRunspace();
+                    runSpace.Open();
+                    Pipeline pipeline = runSpace.CreatePipeline();
+
+                    Command invokeScript = new Command("Invoke-Command");
+                    RunspaceInvoke invoke = new RunspaceInvoke();
+                    //Invoke-Command -scriptBlock
+                    ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
+                    invokeScript.Parameters.Add("computername", machine);
+                    invokeScript.Parameters.Add("scriptBlock", sb);
+
+                    pipeline.Commands.Add(invokeScript);
+                    Collection<PSObject> output = pipeline.Invoke();
+                    foreach (PSObject obj in output)
+                    {
+                        LogToFile(obj.ToString());
+                    }
+                }
+                catch (Exception e)
+                {
+                    LogToFile(e.Message + " at kill process");
+                } finally
+                {
+                    LogToFile("could not kill process");
+                }
             }
         }
         private void AddToTrustedHosts(string machine)
@@ -1616,10 +1629,7 @@ namespace AutomateDownloader
             //}
 
             System.Diagnostics.Process.Start(Application.StartupPath + "\\StartTrustedHosts.ps1");
-            //StartTrustedHosts.ps1 - Notepad
-            System.Threading.Thread.Sleep(500);
-            var win = Interoperability.PInvokeLibrary.FindWindow("Notepad", "StartTrustedHosts.ps1 - Notepad");
-            Interoperability.PInvokeLibrary.CloseHandle(win);
+
         }
 
         private void RunPowershellCommand(string machine)

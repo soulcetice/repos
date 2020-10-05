@@ -45,38 +45,48 @@ namespace WinCC_Timer
 
                 x += size.Width / 2;
                 y = 15;
-                //ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(2000); //expand tier1 menu
                 y += 28;
 
                 var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID);
+                var tier1Width = GetMenuDropWidth(ChildrenTier1);
                 foreach (var tier2 in ChildrenTier1)
                 {
                     if (tier2.Pdl != "")
                     {
                         ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
-                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                        LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
+                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(3000); //open tier2 page
+                        LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                         LogToFile(tier2.Pdl, logName);
                         _ = FindObjectInHMI(cmp);
+                        label1.Text = tier2.Pdl;
+                        label1.Refresh();
                     }
                     else
                     {
                         var ChildrenTier2 = lists.Where(c => c.ParentId == tier2.ID);
-                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                        ClickInWindowAtXY(rt, GetMenuDropWidth(ChildrenTier2), y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu
+                        LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
 
                         int yTier3 = y;
                         int maxWidthTier2 = GetMenuDropWidth(ChildrenTier2);
+                        LogToFile(maxWidthTier2 + " is maxwidthtier2", logName);
                         foreach (var tier3 in ChildrenTier2)
                         {
-                            int xTier3 = x + maxWidthTier2; // + longest element in tier2's width + some 40 pixels
+                            int xTier3 = x + tier1Width; // + longest element in tier2's width + some 40 pixels
                             if (tier3.Pdl != "")
                             {
                                 ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                 ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
-
+                                LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                 ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                                LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
 
                                 LogToFile(tier3.Pdl, logName);
                                 _ = FindObjectInHMI(cmp);
+                                label1.Text = tier3.Pdl;
+                                label1.Refresh();
                             }
                             else
                             {
@@ -84,31 +94,36 @@ namespace WinCC_Timer
                                 var ChildrenTier3 = lists.Where(c => c.ParentId == tier3.ID);
                                 ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
 
-                                int yTier4 = y;
-                                int maxWidthTier3 = GetMenuDropWidth(ChildrenTier3) + maxWidthTier2;
+                                int yTier4 = yTier3;
                                 foreach (var tier4 in ChildrenTier3)
                                 {
-                                    int xTier4 = x + maxWidthTier3; // + longest element in tier2's width + some 40 pixels
+                                    int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 20; // + longest element in tier2's width + some 40 pixels
                                     if (tier4.Pdl != "")
                                     {
                                         ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                        LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                         ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                         ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
                                         ClickInWindowAtXY(rt, xTier4, yTier4, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                                        LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                         LogToFile(tier4.Pdl, logName);
                                         _ = FindObjectInHMI(cmp);
+                                        label1.Text = tier4.Pdl;
+                                        label1.Refresh();
                                     }
                                     else
                                     {
                                         //no tier 5 thank god
                                     }
-                                    yTier4 += 26;
+                                    yTier4 += 25; //if 26 here, then it becomes too much
                                 }
                             }
-                            yTier3 += 26;
+                            yTier3 += 25;
                         }
                     }
-                    y += 26; //increment tier2 menu or open page
+                    y += 25; //increment tier2 menu or open page
                 }
 
                 x += size.Width / 2;
@@ -127,9 +142,13 @@ namespace WinCC_Timer
             {
                 var w = GetTextSize(z.Caption, "Arial", 10.0f).Width;
                 if (w > maxWidthTier2)
+                {
+                    LogToFile(z.Caption + " is the caption for which we check width", logName);
                     maxWidthTier2 = w;
+                }
             }
 
+            LogToFile(maxWidthTier2 + " is x width for childrentier2", logName);
             return maxWidthTier2 + 40;
         }
 
