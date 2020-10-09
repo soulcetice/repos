@@ -210,7 +210,7 @@ namespace AutomateDownloader
             item.cchTextMax = 1024;
             item.pszText = PInvokeLibrary.VirtualAllocEx(procHandle, IntPtr.Zero, (uint)item.cchTextMax, (PInvokeLibrary.AllocationType)(MEM_COMMIT | MEM_RESERVE), (PInvokeLibrary.MemoryProtection)PAGE_READWRITE); // node text pointer
 
-            byte[] data = getBytes(item);
+            byte[] data = GetBytes(item);
 
             int dwSize = (int)data.Length;
             IntPtr allocMemAddress = PInvokeLibrary.VirtualAllocEx(procHandle, IntPtr.Zero, (uint)dwSize, (PInvokeLibrary.AllocationType)(MEM_COMMIT | MEM_RESERVE), (PInvokeLibrary.MemoryProtection)PAGE_READWRITE); // TVITEM pointer
@@ -231,16 +231,18 @@ namespace AutomateDownloader
             bool success1 = PInvokeLibrary.VirtualFreeEx(procHandle, allocMemAddress, dwSize, (PInvokeLibrary.AllocationType)MEM_DECOMMIT);
             bool success2 = PInvokeLibrary.VirtualFreeEx(procHandle, item.pszText, (int)item.cchTextMax, (PInvokeLibrary.AllocationType)MEM_DECOMMIT);
 
-            var item2 = fromBytes<TVITEMEX>(data);
+            var item2 = FromBytes<TVITEMEX>(data);
 
             String name = Encoding.Unicode.GetString(nodeText);
             int x = name.IndexOf('\0');
             if (x >= 0)
                 name = name.Substring(0, x);
 
-            NodeData node = new NodeData();
-            node.Text = name;
-            node.HasChildren = (item2.cChildren == 1);
+            NodeData node = new NodeData
+            {
+                Text = name,
+                HasChildren = (item2.cChildren == 1)
+            };
 
             return node;
         }
@@ -251,7 +253,7 @@ namespace AutomateDownloader
             public bool HasChildren { get; set; }
         }
 
-        private static byte[] getBytes(Object item)
+        private static byte[] GetBytes(Object item)
         {
             int size = Marshal.SizeOf(item);
             byte[] arr = new byte[size];
@@ -264,9 +266,9 @@ namespace AutomateDownloader
             return arr;
         }
 
-        private static T fromBytes<T>(byte[] arr)
+        private static T FromBytes<T>(byte[] arr)
         {
-            T item = default(T);
+            T item = default;
             int size = Marshal.SizeOf(item);
             IntPtr ptr = Marshal.AllocHGlobal(size);
             Marshal.Copy(arr, 0, ptr, size);
@@ -866,9 +868,11 @@ namespace AutomateDownloader
 
         private static void TaskKill(string user, string pass, string ip, string processName)
         {
-            var connectoptions = new ConnectionOptions();
-            connectoptions.Username = user; //@"YourDomainName\UserName";
-            connectoptions.Password = pass; //"User Password";
+            var connectoptions = new ConnectionOptions
+            {
+                Username = user, //@"YourDomainName\UserName";
+                Password = pass //"User Password";
+            };
 
             string ipAddress = ip; //"192.168.206.53";
             ManagementScope scope = new ManagementScope(@"\\" + ipAddress + @"\root\cimv2", connectoptions);

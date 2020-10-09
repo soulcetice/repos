@@ -132,7 +132,6 @@ namespace WinCC_Timer
                 //bool v = FindObjectInHMI(cmp);
                 //still only almost, gets too offset in the end
             }
-
         }
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
