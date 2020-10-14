@@ -390,32 +390,49 @@ namespace WinCC_Timer
                 Thread.Sleep(10);
             }
 
-            var pagecputime = new List<PageCpuTime>();
+            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes);
+
+            for (int i = 0; i < perc.Count; i++)
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i] + "," + pageTimes[i], cpuLogName);
+
+            return true;
+        }
+
+        private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes)
+        {
+            var PageCpuUsageList = new List<PageCpuTime>();
+            var PageLoadTimes = new List<PageTime>();
             for (int i = 0; i < atPagesList.Count; i++)
             {
                 string elem = (string)atPagesList[i];
-                pagecputime.Add(new PageCpuTime()
+                PageCpuUsageList.Add(new PageCpuTime()
                 {
                     cpu = perc[i],
                     page = atPagesList[i],
                     timestamp = datetimes[i]
                 });
             }
-
             var pagesNavigated = atPagesList.Distinct();
             foreach (var p in pagesNavigated)
             {
-                List<PageCpuTime> currentPageData = pagecputime.Where(c => c.page == p).ToList();
+                List<PageCpuTime> currentPageData = PageCpuUsageList.Where(c => c.page == p).ToList();
                 List<DateTime> largeCpuUsages = currentPageData.Where(c => c.cpu > 25).OrderBy(c => c.timestamp).Select(c => c.timestamp).ToList();
                 double loadingTime = (largeCpuUsages.LastOrDefault() - largeCpuUsages.FirstOrDefault()).TotalMilliseconds;
 
-                LogToFile(p + "," + loadingTime.ToString(), timerLogName);
+                PageLoadTimes.Add(new PageTime()
+                {
+                    load = loadingTime,
+                    page = p
+                });
+
+                LogToFile(PageLoadTimes.Last().page + "," + PageLoadTimes.Last().load + " ms", timerLogName);
             }
+        }
 
-            for (int i = 0; i < perc.Count; i++)
-                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i] + "," + pageTimes[i], cpuLogName);
-
-            return true;
+        public class PageTime
+        {
+            public string page;
+            public double load;
         }
 
         public class PageCpuTime
