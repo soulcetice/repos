@@ -27,9 +27,13 @@ namespace WinCC_Timer
             InitializeComponent();
         }
 
+        [DllImport("msvcrt.dll")]
+        private static extern int memcmp(IntPtr b1, IntPtr b2, long count);
+
         public DataTable dataTable = new DataTable();
         public string logName = "\\Screen.logger";
         public string cpuLogName = "\\pdlrt.logger";
+        public string timerLogName = "\\timerData.logger";
 
         public bool endFlag = false;
         public string currentPage = "";
@@ -40,42 +44,50 @@ namespace WinCC_Timer
             RunTasks();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ManipulateWinCCPrograms();
+        }
+
         private void RunTasks()
         {
             #region ParallelTasks
-            // Perform two tasks in parallel
+            // Perform tasks in parallel
             Parallel.Invoke(
 
                 () =>
                 {
                     Console.WriteLine("Begin first task...");
                     NavigateHMIMenu();
-
-                    //for (int i = 0; i < 20; i++)
-                    //{
-                    //    Console.WriteLine("first");
-                    //    Thread.Sleep(100);
-                    //}
-
                 },  // close first Action
 
                 () =>
                 {
                     Console.WriteLine("Begin second task...");
                     GetProcessCPUUsage("PdlRt");
+                }, //close second Action
 
-                    //for (int i = 0; i < 20; i++)
-                    //{
-                    //    Console.WriteLine("second");
-                    //    Thread.Sleep(100);
-                    //}
-
-                } //close second Action
+                () =>
+                {
+                    Console.WriteLine("Begin third task...");
+                    UpdatePageLabel();
+                } //close third Action
 
             ); //close parallel.invoke
 
             Console.WriteLine("Returned from Parallel.Invoke");
             #endregion
+        }
+
+        private void UpdatePageLabel()
+        {
+            while (endFlag == false)
+            {
+                label1.Text = currentPage;
+                label1.Refresh();
+
+                new System.Threading.ManualResetEvent(false).WaitOne(50);
+            };
         }
 
         private void NavigateHMIMenu()
@@ -111,8 +123,6 @@ namespace WinCC_Timer
                         LogToFile(tier2.Pdl, logName);
                         currentPage = tier2.Pdl;
                         //_ = FindObjectInHMI(cmp);
-                        label1.Text = tier2.Pdl;
-                        label1.Refresh();
                     }
                     else
                     {
@@ -140,8 +150,6 @@ namespace WinCC_Timer
                                 currentPage = tier3.Pdl;
 
                                 //_ = FindObjectInHMI(cmp);
-                                label1.Text = tier3.Pdl;
-                                label1.Refresh();
                             }
                             else
                             {
@@ -167,8 +175,6 @@ namespace WinCC_Timer
 
                                         currentPage = tier4.Pdl;
                                         //_ = FindObjectInHMI(cmp);
-                                        label1.Text = tier4.Pdl;
-                                        label1.Refresh();
                                     }
                                     else
                                     {
@@ -231,20 +237,6 @@ namespace WinCC_Timer
             }
         }
 
-        public class MenuRow
-        {
-            public string ID;
-            public string RefId;
-            public string Layer;
-            public string Pos;
-            public string LCID;
-            public string ParentId;
-            public string Caption;
-            public string Flags;
-            public string Pdl;
-            public string Parameter;
-        }
-
         private List<MenuRow> GetSQLMenu(string id)
         {
             string connectionString = "Data Source=TCMHMID01\\WINCC;Initial Catalog=SMS_RTDesign;Integrated Security=SSPI";
@@ -296,9 +288,6 @@ namespace WinCC_Timer
             LogToFile((DateTime.UtcNow - start).TotalMilliseconds.ToString() + "ms", logName);
             return t;
         }
-
-        [DllImport("msvcrt.dll")]
-        private static extern int memcmp(IntPtr b1, IntPtr b2, long count);
 
         public static bool CompareMemCmp(Bitmap b1, Bitmap b2)
         {
@@ -353,11 +342,6 @@ namespace WinCC_Timer
             return bmp;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ManipulateWinCCPrograms();
-        }
-
         private static void ManipulateWinCCPrograms()
         {
             grafexe.Application g = new grafexe.Application();
@@ -379,8 +363,10 @@ namespace WinCC_Timer
         {
             var name = string.Empty;
             var perc = new List<float>();
+            var pageTimes = new List<double>();
             var measTime = new List<string>();
             var atPagesList = new List<string>();
+            var datetimes = new List<DateTime>();
             var procs = Environment.ProcessorCount;
 
             foreach (var proc in Process.GetProcesses())
@@ -396,20 +382,64 @@ namespace WinCC_Timer
 
             while (endFlag == false)
             {
-                var computedPerc = cpu.NextValue() / procs;
-                perc.Add(computedPerc);
                 DateTime date = DateTime.UtcNow;
+                datetimes.Add(date);
+                perc.Add(cpu.NextValue() / procs);
                 measTime.Add(date.Hour + ":" + date.Minute + ":" + date.Second + "." + date.Millisecond);
                 atPagesList.Add(currentPage);
-                Thread.Sleep(100);
+                Thread.Sleep(10);
+            }
+
+            var pagecputime = new List<PageCpuTime>();
+            for (int i = 0; i < atPagesList.Count; i++)
+            {
+                string elem = (string)atPagesList[i];
+                pagecputime.Add(new PageCpuTime()
+                {
+                    cpu = perc[i],
+                    page = atPagesList[i],
+                    timestamp = datetimes[i]
+                });
+            }
+
+            var pagesNavigated = atPagesList.Distinct();
+            foreach (var p in pagesNavigated)
+            {
+                List<PageCpuTime> currentPageData = pagecputime.Where(c => c.page == p).ToList();
+                List<DateTime> largeCpuUsages = currentPageData.Where(c => c.cpu > 25).OrderBy(c => c.timestamp).Select(c => c.timestamp).ToList();
+                double loadingTime = (largeCpuUsages.LastOrDefault() - largeCpuUsages.FirstOrDefault()).TotalMilliseconds;
+
+                LogToFile(p + "," + loadingTime.ToString(), timerLogName);
             }
 
             for (int i = 0; i < perc.Count; i++)
-                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i] + "," + pageTimes[i], cpuLogName);
 
             return true;
         }
 
+        public class PageCpuTime
+        {
+            public string page;
+            public float cpu;
+            public DateTime timestamp;
+        }
+
+        public class MenuRow
+        {
+            public string ID;
+            public string RefId;
+            public string Layer;
+            public string Pos;
+            public string LCID;
+            public string ParentId;
+            public string Caption;
+            public string Flags;
+            public string Pdl;
+            public string Parameter;
+        }
+
+        #region TestingWMI
         private static void WMIQueryForCPUUsage()
         {
             //Get CPU usage values using a WMI query
@@ -425,7 +455,6 @@ namespace WinCC_Timer
                 }
             }
         }
-
 
         private static int lineCount = 0;
         private static StringBuilder output = new StringBuilder();
@@ -458,5 +487,6 @@ namespace WinCC_Timer
             Console.WriteLine("\n\nPress any key to exit.");
             Console.ReadLine();
         }
+        #endregion
     }
 }
