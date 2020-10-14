@@ -299,7 +299,6 @@ namespace AutomateDownloader
             public int iReserved;
         }
 
-
         public static string GetTreeItemText(IntPtr treeViewHwnd, IntPtr hItem)
         {
             string itemText;

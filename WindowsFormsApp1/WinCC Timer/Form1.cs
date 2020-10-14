@@ -13,6 +13,10 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using WinCC_Timer.Properties;
 using Interoperability;
+using System.Diagnostics;
+using System.Threading;
+using System.Management;
+using System.Dynamic;
 
 namespace WinCC_Timer
 {
@@ -25,11 +29,58 @@ namespace WinCC_Timer
 
         public DataTable dataTable = new DataTable();
         public string logName = "\\Screen.logger";
+        public string cpuLogName = "\\pdlrt.logger";
+
+        public bool endFlag = false;
+        public string currentPage = "";
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Thread.Sleep(10000);
+            RunTasks();
+        }
 
-            List<MenuRow> lists = GetSQLMenu("1");
+        private void RunTasks()
+        {
+            #region ParallelTasks
+            // Perform two tasks in parallel
+            Parallel.Invoke(
+
+                () =>
+                {
+                    Console.WriteLine("Begin first task...");
+                    NavigateHMIMenu();
+
+                    //for (int i = 0; i < 20; i++)
+                    //{
+                    //    Console.WriteLine("first");
+                    //    Thread.Sleep(100);
+                    //}
+
+                },  // close first Action
+
+                () =>
+                {
+                    Console.WriteLine("Begin second task...");
+                    GetProcessCPUUsage("PdlRt");
+
+                    //for (int i = 0; i < 20; i++)
+                    //{
+                    //    Console.WriteLine("second");
+                    //    Thread.Sleep(100);
+                    //}
+
+                } //close second Action
+
+            ); //close parallel.invoke
+
+            Console.WriteLine("Returned from Parallel.Invoke");
+            #endregion
+        }
+
+        private void NavigateHMIMenu()
+        {
+            List<MenuRow> lists = GetSQLMenu(refIdBox.Text);
 
             var tier1 = lists.Where(c => c.Layer == "1");
 
@@ -53,19 +104,20 @@ namespace WinCC_Timer
                 {
                     if (tier2.Pdl != "")
                     {
-                        ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                        ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(3000); //open tier2 page
+                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(10000); //open tier2 page
                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                         LogToFile(tier2.Pdl, logName);
-                        _ = FindObjectInHMI(cmp);
+                        currentPage = tier2.Pdl;
+                        //_ = FindObjectInHMI(cmp);
                         label1.Text = tier2.Pdl;
                         label1.Refresh();
                     }
                     else
                     {
                         var ChildrenTier2 = lists.Where(c => c.ParentId == tier2.ID);
-                        ClickInWindowAtXY(rt, GetMenuDropWidth(ChildrenTier2), y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu
+                        ClickInWindowAtXY(rt, GetMenuDropWidth(ChildrenTier2), y, 1); Thread.Sleep(500); //expand tier2 menu
                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
 
                         int yTier3 = y;
@@ -76,15 +128,18 @@ namespace WinCC_Timer
                             int xTier3 = x + tier1Width; // + longest element in tier2's width + some 40 pixels
                             if (tier3.Pdl != "")
                             {
-                                ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                                 LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                 LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(10000); //expand tier2 menu or open page
                                 LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
 
                                 LogToFile(tier3.Pdl, logName);
-                                _ = FindObjectInHMI(cmp);
+
+                                currentPage = tier3.Pdl;
+
+                                //_ = FindObjectInHMI(cmp);
                                 label1.Text = tier3.Pdl;
                                 label1.Refresh();
                             }
@@ -92,7 +147,7 @@ namespace WinCC_Timer
                             {
                                 //there is also a tier4....
                                 var ChildrenTier3 = lists.Where(c => c.ParentId == tier3.ID);
-                                ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
 
                                 int yTier4 = yTier3;
                                 foreach (var tier4 in ChildrenTier3)
@@ -100,16 +155,18 @@ namespace WinCC_Timer
                                     int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 20; // + longest element in tier2's width + some 40 pixels
                                     if (tier4.Pdl != "")
                                     {
-                                        ClickInWindowAtXY(rt, x, 15, 1); System.Threading.Thread.Sleep(500); //expand tier1 menu
+                                        ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                        ClickInWindowAtXY(rt, x, y, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier3, yTier3, 1); System.Threading.Thread.Sleep(500); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                         LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); System.Threading.Thread.Sleep(3000); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(10000); //expand tier2 menu or open page
                                         LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                         LogToFile(tier4.Pdl, logName);
-                                        _ = FindObjectInHMI(cmp);
+
+                                        currentPage = tier4.Pdl;
+                                        //_ = FindObjectInHMI(cmp);
                                         label1.Text = tier4.Pdl;
                                         label1.Refresh();
                                     }
@@ -132,6 +189,7 @@ namespace WinCC_Timer
                 //bool v = FindObjectInHMI(cmp);
                 //still only almost, gets too offset in the end
             }
+            endFlag = true;
         }
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
@@ -233,7 +291,7 @@ namespace WinCC_Timer
         private bool FindObjectInHMI(Bitmap cmp)
         {
             DateTime start = DateTime.UtcNow;
-            Bitmap bmp = TakeScreenShot(1004, 1681);
+            Bitmap bmp = TakeScreenShot(1681, 1004);
             bool t = CompareMemCmp(bmp, cmp);
             LogToFile((DateTime.UtcNow - start).TotalMilliseconds.ToString() + "ms", logName);
             return t;
@@ -277,7 +335,7 @@ namespace WinCC_Timer
             }
         }
 
-        private Bitmap TakeScreenShot(int top, int left)
+        private Bitmap TakeScreenShot(int left, int top)
         {
             int width = 5;
             int height = 5;
@@ -293,6 +351,112 @@ namespace WinCC_Timer
                 //bmp.Save("s.png");  // saves the image
             }
             return bmp;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ManipulateWinCCPrograms();
+        }
+
+        private static void ManipulateWinCCPrograms()
+        {
+            grafexe.Application g = new grafexe.Application();
+            var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
+            var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+            g.DisableVBAEvents = false;
+            var myobjects = grf.HMIObjects.Find("HMIRectangle");
+            var count = myobjects.Count;
+
+            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+
+            var chn = new CCChnDiagX.CCChnDiag();
+
+            var tag = new CCConfigStudio.Application();
+
+        }
+
+        private bool GetProcessCPUUsage(string process)
+        {
+            var name = string.Empty;
+            var perc = new List<float>();
+            var measTime = new List<string>();
+            var atPagesList = new List<string>();
+            var procs = Environment.ProcessorCount;
+
+            foreach (var proc in Process.GetProcesses())
+            {
+                if (proc.ProcessName.StartsWith(process))
+                {
+                    name = proc.ProcessName;
+                    proc.StartInfo.RedirectStandardOutput = true;
+                }
+            }
+
+            PerformanceCounter cpu = new PerformanceCounter("Process", "% Processor Time", name, true);
+
+            while (endFlag == false)
+            {
+                var computedPerc = cpu.NextValue() / procs;
+                perc.Add(computedPerc);
+                DateTime date = DateTime.UtcNow;
+                measTime.Add(date.Hour + ":" + date.Minute + ":" + date.Second + "." + date.Millisecond);
+                atPagesList.Add(currentPage);
+                Thread.Sleep(100);
+            }
+
+            for (int i = 0; i < perc.Count; i++)
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
+
+            return true;
+        }
+
+        private static void WMIQueryForCPUUsage()
+        {
+            //Get CPU usage values using a WMI query
+            for (int i = 0; i < 3; i++)
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfProc_Process WHERE Name = 'Taskmgr'");
+
+                foreach (ManagementObject queryObj in searcher.Get())
+                {
+                    Console.WriteLine("Name: {0}", queryObj["Name"]);
+                    Console.WriteLine("PercentProcessorTime: {0}", queryObj["PercentProcessorTime"]);
+
+                }
+            }
+        }
+
+
+        private static int lineCount = 0;
+        private static StringBuilder output = new StringBuilder();
+        public static void ReadProcessOutputTest()
+        {
+            Process process = Process.GetProcessesByName("Taskmgr")[0];
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+            {
+                // Prepend line numbers to each line of the output.
+                if (!String.IsNullOrEmpty(e.Data))
+                {
+                    lineCount++;
+                    output.Append("\n[" + lineCount + "]: " + e.Data);
+                }
+            });
+
+            // Asynchronously read the standard output of the spawned process.
+            // This raises OutputDataReceived events for each line of output.
+            process.BeginOutputReadLine();
+            process.WaitForExit();
+
+            // Write the redirected output to this application's window.
+            Console.WriteLine(output);
+
+            process.WaitForExit();
+            process.Close();
+
+            Console.WriteLine("\n\nPress any key to exit.");
+            Console.ReadLine();
         }
     }
 }
