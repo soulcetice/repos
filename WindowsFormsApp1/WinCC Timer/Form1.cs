@@ -40,7 +40,7 @@ namespace WinCC_Timer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
             RunTasks();
         }
 
@@ -118,7 +118,7 @@ namespace WinCC_Timer
                     {
                         ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(10000); //open tier2 page
+                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(5000); //open tier2 page
                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                         LogToFile(tier2.Pdl, logName);
                         currentPage = tier2.Pdl;
@@ -142,7 +142,7 @@ namespace WinCC_Timer
                                 LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                 ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                 LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(10000); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(5000); //expand tier2 menu or open page
                                 LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
 
                                 LogToFile(tier3.Pdl, logName);
@@ -169,7 +169,7 @@ namespace WinCC_Timer
                                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                         ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                         LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(10000); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(5000); //expand tier2 menu or open page
                                         LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                         LogToFile(tier4.Pdl, logName);
 
@@ -387,13 +387,15 @@ namespace WinCC_Timer
                 perc.Add(cpu.NextValue() / procs);
                 measTime.Add(date.Hour + ":" + date.Minute + ":" + date.Second + "." + date.Millisecond);
                 atPagesList.Add(currentPage);
-                Thread.Sleep(10);
+                Thread.Sleep(100);
             }
 
             ProcessGatheredCpuUsageData(perc, atPagesList, datetimes);
 
             for (int i = 0; i < perc.Count; i++)
-                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i] + "," + pageTimes[i], cpuLogName);
+            {
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
+            }
 
             return true;
         }
@@ -402,9 +404,8 @@ namespace WinCC_Timer
         {
             var PageCpuUsageList = new List<PageCpuTime>();
             var PageLoadTimes = new List<PageTime>();
-            for (int i = 0; i < atPagesList.Count; i++)
+            for (int i = 0; i < perc.Count; i++)
             {
-                string elem = (string)atPagesList[i];
                 PageCpuUsageList.Add(new PageCpuTime()
                 {
                     cpu = perc[i],
@@ -412,12 +413,25 @@ namespace WinCC_Timer
                     timestamp = datetimes[i]
                 });
             }
+
+
+
             var pagesNavigated = atPagesList.Distinct();
             foreach (var p in pagesNavigated)
             {
-                List<PageCpuTime> currentPageData = PageCpuUsageList.Where(c => c.page == p).ToList();
-                List<DateTime> largeCpuUsages = currentPageData.Where(c => c.cpu > 25).OrderBy(c => c.timestamp).Select(c => c.timestamp).ToList();
-                double loadingTime = (largeCpuUsages.LastOrDefault() - largeCpuUsages.FirstOrDefault()).TotalMilliseconds;
+                //List<PageCpuTime> currentPageData = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
+                var currentPageData = new List<PageCpuTime>();
+                var tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
+                for (int i = 0; i < tempList.Count - 1; i++)
+                {
+                    if (tempList[i].cpu == 0 && tempList[i + 1].cpu == 0 && i > tempList.Count / 3)
+                    {
+                        break; //get out of the loop
+                    }
+                    currentPageData.Add(tempList[i]);
+                }
+                var largeCpuUsages = currentPageData.Where(c => c.cpu > 40).ToList();
+                double loadingTime = (largeCpuUsages.LastOrDefault().timestamp - currentPageData.FirstOrDefault().timestamp).TotalMilliseconds;
 
                 PageLoadTimes.Add(new PageTime()
                 {
@@ -425,7 +439,7 @@ namespace WinCC_Timer
                     page = p
                 });
 
-                LogToFile(PageLoadTimes.Last().page + "," + PageLoadTimes.Last().load + " ms", timerLogName);
+                LogToFile(PageLoadTimes.Last().page + "," + PageLoadTimes.Last().load + " ms," + largeCpuUsages.LastOrDefault().timestamp + ", " + currentPageData.FirstOrDefault().timestamp + ", " + largeCpuUsages.LastOrDefault().cpu + ", " + currentPageData.FirstOrDefault().cpu, timerLogName);
             }
         }
 
