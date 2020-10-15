@@ -1,1049 +1,1049 @@
-2020/10/14 14:45:45:816 UTC: 51width, 16height, General
-2020/10/14 14:45:45:817 UTC: 43width, 16height, Alarms
-2020/10/14 14:45:45:817 UTC: Alarms is the caption for which we check width
-2020/10/14 14:45:45:818 UTC: 94width, 16height, Plant Overview
-2020/10/14 14:45:45:818 UTC: Plant Overview is the caption for which we check width
-2020/10/14 14:45:45:818 UTC: 40width, 16height, Safety
-2020/10/14 14:45:45:818 UTC: 86width, 16height, Switch On/Off
-2020/10/14 14:45:45:818 UTC: 95width, 16height, Media Systems
-2020/10/14 14:45:45:819 UTC: Media Systems is the caption for which we check width
-2020/10/14 14:45:45:819 UTC: 40width, 16height, Drives
-2020/10/14 14:45:45:819 UTC: 95 is x width for childrentier2
-2020/10/14 14:45:46:327 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:45:51:337 UTC: For Alarms expand menu, clicked at 37 x, 43 y
-2020/10/14 14:45:51:338 UTC: @sms_w_Alarmlist
-2020/10/14 14:45:51:848 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:45:56:859 UTC: For Plant Overview expand menu, clicked at 37 x, 68 y
-2020/10/14 14:45:56:859 UTC: TCM#01-01-00_n_#GEN-PlantOverview
-2020/10/14 14:45:56:860 UTC: 33width, 16height, Floor
-2020/10/14 14:45:56:860 UTC: Floor is the caption for which we check width
-2020/10/14 14:45:56:861 UTC: 37width, 16height, Cellar
-2020/10/14 14:45:56:861 UTC: Cellar is the caption for which we check width
-2020/10/14 14:45:56:861 UTC: 140width, 16height, Fume Exhaust System
-2020/10/14 14:45:56:861 UTC: Fume Exhaust System is the caption for which we check width
-2020/10/14 14:45:56:862 UTC: 43width, 16height, Details
-2020/10/14 14:45:56:862 UTC: 140 is x width for childrentier2
-2020/10/14 14:45:57:364 UTC: For Safety expand menu, clicked at 37 x, 93 y
-2020/10/14 14:45:57:365 UTC: 33width, 16height, Floor
-2020/10/14 14:45:57:365 UTC: Floor is the caption for which we check width
-2020/10/14 14:45:57:366 UTC: 37width, 16height, Cellar
-2020/10/14 14:45:57:366 UTC: Cellar is the caption for which we check width
-2020/10/14 14:45:57:366 UTC: 140width, 16height, Fume Exhaust System
-2020/10/14 14:45:57:366 UTC: Fume Exhaust System is the caption for which we check width
-2020/10/14 14:45:57:367 UTC: 43width, 16height, Details
-2020/10/14 14:45:57:367 UTC: 140 is x width for childrentier2
-2020/10/14 14:45:57:367 UTC: 180 is maxwidthtier2
-2020/10/14 14:45:57:870 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:45:58:374 UTC: For Safety expand menu, clicked at 37 x, 93 y
-2020/10/14 14:46:3:375 UTC: For Floor expand menu, clicked at 172 x, 93 y
-2020/10/14 14:46:3:376 UTC: TCM#06-01-00_n_#SAF-Overview-Floor
-2020/10/14 14:46:3:877 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:4:388 UTC: For Safety expand menu, clicked at 37 x, 93 y
-2020/10/14 14:46:9:393 UTC: For Cellar expand menu, clicked at 172 x, 118 y
-2020/10/14 14:46:9:394 UTC: TCM#06-02-00_n_#SAF-Overview-Cellar
-2020/10/14 14:46:9:895 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:10:396 UTC: For Safety expand menu, clicked at 37 x, 93 y
-2020/10/14 14:46:15:398 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 143 y
-2020/10/14 14:46:15:398 UTC: TCM#06-03-00_n_#SAF-Overview-FES
-2020/10/14 14:46:15:902 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:16:403 UTC: For Safety expand menu, clicked at 37 x, 93 y
-2020/10/14 14:46:21:413 UTC: For Details expand menu, clicked at 172 x, 168 y
-2020/10/14 14:46:21:413 UTC: SAF2_n_SafetyAreaOverview
-2020/10/14 14:46:21:414 UTC: 38width, 16height, Media
-2020/10/14 14:46:21:414 UTC: Media is the caption for which we check width
-2020/10/14 14:46:21:414 UTC: 40width, 16height, Drives
-2020/10/14 14:46:21:414 UTC: Drives is the caption for which we check width
-2020/10/14 14:46:21:415 UTC: 40 is x width for childrentier2
-2020/10/14 14:46:21:918 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
-2020/10/14 14:46:21:918 UTC: 38width, 16height, Media
-2020/10/14 14:46:21:919 UTC: Media is the caption for which we check width
-2020/10/14 14:46:21:919 UTC: 40width, 16height, Drives
-2020/10/14 14:46:21:919 UTC: Drives is the caption for which we check width
-2020/10/14 14:46:21:919 UTC: 40 is x width for childrentier2
-2020/10/14 14:46:21:920 UTC: 80 is maxwidthtier2
-2020/10/14 14:46:22:423 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:22:927 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
-2020/10/14 14:46:27:930 UTC: For Media expand menu, clicked at 172 x, 118 y
-2020/10/14 14:46:27:930 UTC: TCM#02-01-00_n_#GEN-Media
-2020/10/14 14:46:28:436 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:28:944 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
-2020/10/14 14:46:33:948 UTC: For Drives expand menu, clicked at 172 x, 143 y
-2020/10/14 14:46:33:948 UTC: TCM#02-02-00_n_#GEN-Drives
-2020/10/14 14:46:33:949 UTC: 115width, 16height, Hydraulic Systems
-2020/10/14 14:46:33:949 UTC: Hydraulic Systems is the caption for which we check width
-2020/10/14 14:46:33:949 UTC: 127width, 16height, Lubrication Systems
-2020/10/14 14:46:33:950 UTC: Lubrication Systems is the caption for which we check width
-2020/10/14 14:46:33:950 UTC: 114width, 16height, Emulsion Systems
-2020/10/14 14:46:33:950 UTC: 140width, 16height, Fume Exhaust System
-2020/10/14 14:46:33:950 UTC: Fume Exhaust System is the caption for which we check width
-2020/10/14 14:46:33:951 UTC: 81width, 16height, Maintenance
-2020/10/14 14:46:33:951 UTC: 140 is x width for childrentier2
-2020/10/14 14:46:34:454 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:46:34:455 UTC: 115width, 16height, Hydraulic Systems
-2020/10/14 14:46:34:455 UTC: Hydraulic Systems is the caption for which we check width
-2020/10/14 14:46:34:455 UTC: 127width, 16height, Lubrication Systems
-2020/10/14 14:46:34:455 UTC: Lubrication Systems is the caption for which we check width
-2020/10/14 14:46:34:456 UTC: 114width, 16height, Emulsion Systems
-2020/10/14 14:46:34:456 UTC: 140width, 16height, Fume Exhaust System
-2020/10/14 14:46:34:456 UTC: Fume Exhaust System is the caption for which we check width
-2020/10/14 14:46:34:456 UTC: 81width, 16height, Maintenance
-2020/10/14 14:46:34:457 UTC: 140 is x width for childrentier2
-2020/10/14 14:46:34:457 UTC: 180 is maxwidthtier2
-2020/10/14 14:46:34:960 UTC: 151width, 16height, High Pressure Hydraulic
-2020/10/14 14:46:34:961 UTC: High Pressure Hydraulic is the caption for which we check width
-2020/10/14 14:46:34:961 UTC: 148width, 16height, Low Pressure Hydraulic
-2020/10/14 14:46:34:961 UTC: 151 is x width for childrentier2
-2020/10/14 14:46:35:464 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:35:972 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:46:36:477 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 143 y
-2020/10/14 14:46:41:478 UTC: For High Pressure Hydraulic expand menu, clicked at 383 x, 143 y
-2020/10/14 14:46:41:480 UTC: TCM#61-01-00_w_#MED-HighPressureHydraulic
-2020/10/14 14:46:41:480 UTC: 151width, 16height, High Pressure Hydraulic
-2020/10/14 14:46:41:487 UTC: High Pressure Hydraulic is the caption for which we check width
-2020/10/14 14:46:41:493 UTC: 148width, 16height, Low Pressure Hydraulic
-2020/10/14 14:46:41:496 UTC: 151 is x width for childrentier2
-2020/10/14 14:46:42:2 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:42:516 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:46:43:21 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 143 y
-2020/10/14 14:46:48:23 UTC: For Low Pressure Hydraulic expand menu, clicked at 383 x, 168 y
-2020/10/14 14:46:48:23 UTC: TCM#62-01-00_w_#MED-LowPressureHydraulic
-2020/10/14 14:46:48:526 UTC: 91width, 16height, Oil Lubrication
-2020/10/14 14:46:48:526 UTC: Oil Lubrication is the caption for which we check width
-2020/10/14 14:46:48:527 UTC: 111width, 16height, Oil Air Lubrication
-2020/10/14 14:46:48:527 UTC: Oil Air Lubrication is the caption for which we check width
-2020/10/14 14:46:48:527 UTC: 111 is x width for childrentier2
-2020/10/14 14:46:49:30 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:49:533 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:46:50:36 UTC: For Lubrication Systems expand menu, clicked at 172 x, 168 y
-2020/10/14 14:46:55:38 UTC: For Oil Lubrication expand menu, clicked at 343 x, 168 y
-2020/10/14 14:46:55:38 UTC: TCM#63-01-00_w_#MED-OilLubrication
-2020/10/14 14:46:55:39 UTC: 91width, 16height, Oil Lubrication
-2020/10/14 14:46:55:39 UTC: Oil Lubrication is the caption for which we check width
-2020/10/14 14:46:55:39 UTC: 111width, 16height, Oil Air Lubrication
-2020/10/14 14:46:55:39 UTC: Oil Air Lubrication is the caption for which we check width
-2020/10/14 14:46:55:40 UTC: 111 is x width for childrentier2
-2020/10/14 14:46:55:543 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:46:56:46 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:46:56:550 UTC: For Lubrication Systems expand menu, clicked at 172 x, 168 y
-2020/10/14 14:47:1:553 UTC: For Oil Air Lubrication expand menu, clicked at 343 x, 193 y
-2020/10/14 14:47:1:553 UTC: TCM#63-02-00_w_#MED-OilAirLubrication
-2020/10/14 14:47:2:57 UTC: 135width, 16height, Emulsion Preparation
-2020/10/14 14:47:2:57 UTC: Emulsion Preparation is the caption for which we check width
-2020/10/14 14:47:2:58 UTC: 76width, 16height, Filter Circuit
-2020/10/14 14:47:2:58 UTC: 143width, 16height, Water and Oil Systems
-2020/10/14 14:47:2:58 UTC: Water and Oil Systems is the caption for which we check width
-2020/10/14 14:47:2:59 UTC: 96width, 16height, Collecting Tank
-2020/10/14 14:47:2:59 UTC: 89width, 16height, Cooling Spray
-2020/10/14 14:47:2:59 UTC: 143 is x width for childrentier2
-2020/10/14 14:47:2:562 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:3:66 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:3:569 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
-2020/10/14 14:47:8:574 UTC: For Emulsion Preparation expand menu, clicked at 375 x, 193 y
-2020/10/14 14:47:8:574 UTC: TCM#64-01-00_w_#MED-EmulsionPreparation
-2020/10/14 14:47:8:575 UTC: 135width, 16height, Emulsion Preparation
-2020/10/14 14:47:8:575 UTC: Emulsion Preparation is the caption for which we check width
-2020/10/14 14:47:8:575 UTC: 76width, 16height, Filter Circuit
-2020/10/14 14:47:8:576 UTC: 143width, 16height, Water and Oil Systems
-2020/10/14 14:47:8:576 UTC: Water and Oil Systems is the caption for which we check width
-2020/10/14 14:47:8:576 UTC: 96width, 16height, Collecting Tank
-2020/10/14 14:47:8:576 UTC: 89width, 16height, Cooling Spray
-2020/10/14 14:47:8:577 UTC: 143 is x width for childrentier2
-2020/10/14 14:47:9:89 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:9:593 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:10:96 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
-2020/10/14 14:47:15:103 UTC: For Filter Circuit expand menu, clicked at 375 x, 218 y
-2020/10/14 14:47:15:104 UTC: TCM#64-02-00_w_#MED-FilterCircuit
-2020/10/14 14:47:15:104 UTC: 135width, 16height, Emulsion Preparation
-2020/10/14 14:47:15:106 UTC: Emulsion Preparation is the caption for which we check width
-2020/10/14 14:47:15:106 UTC: 76width, 16height, Filter Circuit
-2020/10/14 14:47:15:106 UTC: 143width, 16height, Water and Oil Systems
-2020/10/14 14:47:15:106 UTC: Water and Oil Systems is the caption for which we check width
-2020/10/14 14:47:15:107 UTC: 96width, 16height, Collecting Tank
-2020/10/14 14:47:15:107 UTC: 89width, 16height, Cooling Spray
-2020/10/14 14:47:15:109 UTC: 143 is x width for childrentier2
-2020/10/14 14:47:15:614 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:16:120 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:16:625 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
-2020/10/14 14:47:21:631 UTC: For Water and Oil Systems expand menu, clicked at 375 x, 243 y
-2020/10/14 14:47:21:631 UTC: TCM#64-04-00_w_#MED-WaterandOilSystems
-2020/10/14 14:47:21:632 UTC: 135width, 16height, Emulsion Preparation
-2020/10/14 14:47:21:632 UTC: Emulsion Preparation is the caption for which we check width
-2020/10/14 14:47:21:632 UTC: 76width, 16height, Filter Circuit
-2020/10/14 14:47:21:632 UTC: 143width, 16height, Water and Oil Systems
-2020/10/14 14:47:21:633 UTC: Water and Oil Systems is the caption for which we check width
-2020/10/14 14:47:21:633 UTC: 96width, 16height, Collecting Tank
-2020/10/14 14:47:21:633 UTC: 89width, 16height, Cooling Spray
-2020/10/14 14:47:21:633 UTC: 143 is x width for childrentier2
-2020/10/14 14:47:22:137 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:22:640 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:23:143 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
-2020/10/14 14:47:28:150 UTC: For Collecting Tank expand menu, clicked at 375 x, 268 y
-2020/10/14 14:47:28:151 UTC: TCM#64-05-00_w_#MED-CollectingTank
-2020/10/14 14:47:28:151 UTC: 135width, 16height, Emulsion Preparation
-2020/10/14 14:47:28:152 UTC: Emulsion Preparation is the caption for which we check width
-2020/10/14 14:47:28:152 UTC: 76width, 16height, Filter Circuit
-2020/10/14 14:47:28:152 UTC: 143width, 16height, Water and Oil Systems
-2020/10/14 14:47:28:153 UTC: Water and Oil Systems is the caption for which we check width
-2020/10/14 14:47:28:153 UTC: 96width, 16height, Collecting Tank
-2020/10/14 14:47:28:153 UTC: 89width, 16height, Cooling Spray
-2020/10/14 14:47:28:153 UTC: 143 is x width for childrentier2
-2020/10/14 14:47:28:657 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:29:160 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:29:664 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
-2020/10/14 14:47:34:666 UTC: For Cooling Spray expand menu, clicked at 375 x, 293 y
-2020/10/14 14:47:34:666 UTC: TCM#64-03-00_w_#MED-CoolingSpray
-2020/10/14 14:47:35:169 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:35:672 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:40:678 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 218 y
-2020/10/14 14:47:40:678 UTC: TCM#70-01-00_w_#MED-FumeExhaust
-2020/10/14 14:47:41:182 UTC: 93width, 16height, Media Settings
-2020/10/14 14:47:41:182 UTC: Media Settings is the caption for which we check width
-2020/10/14 14:47:41:183 UTC: 93 is x width for childrentier2
-2020/10/14 14:47:41:686 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:42:190 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
-2020/10/14 14:47:42:694 UTC: For Maintenance expand menu, clicked at 172 x, 243 y
-2020/10/14 14:47:47:698 UTC: For Media Settings expand menu, clicked at 325 x, 243 y
-2020/10/14 14:47:47:698 UTC: TCM#60-01-00_w_#MED-Parameters
-2020/10/14 14:47:47:699 UTC: 120width, 16height, Power Supply Main
-2020/10/14 14:47:47:699 UTC: Power Supply Main is the caption for which we check width
-2020/10/14 14:47:47:699 UTC: 141width, 16height, Power Supply Auxiliary
-2020/10/14 14:47:47:700 UTC: Power Supply Auxiliary is the caption for which we check width
-2020/10/14 14:47:47:700 UTC: 74width, 16height, Main Drives
-2020/10/14 14:47:47:700 UTC: 96width, 16height, Auxiliary Drives
-2020/10/14 14:47:47:701 UTC: 93width, 16height, Group Jogging
-2020/10/14 14:47:47:701 UTC: 141 is x width for childrentier2
-2020/10/14 14:47:48:204 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:47:48:205 UTC: 120width, 16height, Power Supply Main
-2020/10/14 14:47:48:205 UTC: Power Supply Main is the caption for which we check width
-2020/10/14 14:47:48:205 UTC: 141width, 16height, Power Supply Auxiliary
-2020/10/14 14:47:48:205 UTC: Power Supply Auxiliary is the caption for which we check width
-2020/10/14 14:47:48:206 UTC: 74width, 16height, Main Drives
-2020/10/14 14:47:48:206 UTC: 96width, 16height, Auxiliary Drives
-2020/10/14 14:47:48:206 UTC: 93width, 16height, Group Jogging
-2020/10/14 14:47:48:206 UTC: 141 is x width for childrentier2
-2020/10/14 14:47:48:207 UTC: 181 is maxwidthtier2
-2020/10/14 14:47:48:708 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:49:219 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:47:54:223 UTC: For Power Supply Main expand menu, clicked at 172 x, 168 y
-2020/10/14 14:47:54:225 UTC: TCM#51-01-00_w_#DRV-PowerSupplyMain
-2020/10/14 14:47:54:728 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:47:55:231 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:0:232 UTC: For Power Supply Auxiliary expand menu, clicked at 172 x, 193 y
-2020/10/14 14:48:0:232 UTC: TCM#53-01-00_w_#DRV-PowerSupplyAuxiliary
-2020/10/14 14:48:0:738 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:0:738 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:0:738 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:0:739 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:0:739 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:0:739 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:0:740 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:0:740 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:0:740 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:0:740 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:0:741 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:1:243 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:1:746 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:2:250 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:7:252 UTC: For Pay Off Reel expand menu, clicked at 328 x, 218 y
-2020/10/14 14:48:7:253 UTC: TCM#52-00-00_n_#DRV-DrivePayOffReel
-2020/10/14 14:48:7:254 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:7:254 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:7:255 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:7:256 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:7:257 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:7:258 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:7:259 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:7:260 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:7:261 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:7:262 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:7:263 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:7:784 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:8:299 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:8:809 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:13:821 UTC: For Drive Stand C1 expand menu, clicked at 328 x, 243 y
-2020/10/14 14:48:13:822 UTC: TCM#52-01-00_n_#DRV-DriveStandC1
-2020/10/14 14:48:13:823 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:13:823 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:13:824 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:13:824 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:13:825 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:13:825 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:13:826 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:13:827 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:13:827 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:13:828 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:13:829 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:14:339 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:14:857 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:15:367 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:20:373 UTC: For Drive Stand C2 expand menu, clicked at 328 x, 268 y
-2020/10/14 14:48:20:373 UTC: TCM#52-02-00_n_#DRV-DriveStandC2
-2020/10/14 14:48:20:374 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:20:374 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:20:374 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:20:374 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:20:375 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:20:375 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:20:375 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:20:375 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:20:375 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:20:376 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:20:376 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:20:877 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:21:379 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:21:879 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:26:893 UTC: For Drive Stand C3 expand menu, clicked at 328 x, 293 y
-2020/10/14 14:48:26:893 UTC: TCM#52-03-00_n_#DRV-DriveStandC3
-2020/10/14 14:48:26:894 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:26:894 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:26:894 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:26:895 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:26:895 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:26:895 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:26:895 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:26:896 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:26:896 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:26:896 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:26:896 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:27:399 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:27:904 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:28:408 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:33:410 UTC: For Drive Stand C4 expand menu, clicked at 328 x, 318 y
-2020/10/14 14:48:33:410 UTC: TCM#52-04-00_n_#DRV-DriveStandC4
-2020/10/14 14:48:33:411 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:33:411 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:33:411 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:33:411 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:33:411 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:33:412 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:33:412 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:33:412 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:33:412 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:33:413 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:33:413 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:33:916 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:34:420 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:34:924 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:39:929 UTC: For Drive Stand C5 expand menu, clicked at 328 x, 343 y
-2020/10/14 14:48:39:930 UTC: TCM#52-05-00_n_#DRV-DriveStandC5
-2020/10/14 14:48:39:930 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:39:930 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:39:930 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:39:931 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:39:931 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:39:931 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:39:931 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:39:932 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:39:932 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:39:932 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:39:932 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:40:435 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:40:938 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:41:441 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:46:446 UTC: For Tension Reel 1 expand menu, clicked at 328 x, 368 y
-2020/10/14 14:48:46:446 UTC: TCM#52-06-00_n_#DRV-DriveTensionReel1
-2020/10/14 14:48:46:447 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:48:46:447 UTC: Pay Off Reel is the caption for which we check width
-2020/10/14 14:48:46:447 UTC: 96width, 16height, Drive Stand C1
-2020/10/14 14:48:46:448 UTC: Drive Stand C1 is the caption for which we check width
-2020/10/14 14:48:46:448 UTC: 96width, 16height, Drive Stand C2
-2020/10/14 14:48:46:448 UTC: 96width, 16height, Drive Stand C3
-2020/10/14 14:48:46:448 UTC: 96width, 16height, Drive Stand C4
-2020/10/14 14:48:46:449 UTC: 96width, 16height, Drive Stand C5
-2020/10/14 14:48:46:449 UTC: 94width, 16height, Tension Reel 1
-2020/10/14 14:48:46:449 UTC: 94width, 16height, Tension Reel 2
-2020/10/14 14:48:46:449 UTC: 96 is x width for childrentier2
-2020/10/14 14:48:46:952 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:47:456 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:47:961 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
-2020/10/14 14:48:52:966 UTC: For Tension Reel 2 expand menu, clicked at 328 x, 393 y
-2020/10/14 14:48:52:967 UTC: TCM#52-07-00_n_#DRV-DriveTensionReel2
-2020/10/14 14:48:53:470 UTC: 71width, 16height, Bridle Rolls
-2020/10/14 14:48:53:470 UTC: Bridle Rolls is the caption for which we check width
-2020/10/14 14:48:53:471 UTC: 85width, 16height, Deflector Roll
-2020/10/14 14:48:53:471 UTC: Deflector Roll is the caption for which we check width
-2020/10/14 14:48:53:471 UTC: 85 is x width for childrentier2
-2020/10/14 14:48:53:975 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:48:54:478 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:48:54:986 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 243 y
-2020/10/14 14:48:59:993 UTC: For Bridle Rolls expand menu, clicked at 317 x, 243 y
-2020/10/14 14:48:59:994 UTC: TCM#55-01-00_n_#DRV-DrivesBridleRolls
-2020/10/14 14:48:59:994 UTC: 71width, 16height, Bridle Rolls
-2020/10/14 14:48:59:994 UTC: Bridle Rolls is the caption for which we check width
-2020/10/14 14:48:59:995 UTC: 85width, 16height, Deflector Roll
-2020/10/14 14:48:59:995 UTC: Deflector Roll is the caption for which we check width
-2020/10/14 14:48:59:995 UTC: 85 is x width for childrentier2
-2020/10/14 14:49:0:498 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:49:1:1 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:49:1:504 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 243 y
-2020/10/14 14:49:6:509 UTC: For Deflector Roll expand menu, clicked at 317 x, 268 y
-2020/10/14 14:49:6:509 UTC: TCM#55-02-00_n_#DRV-DrivesDeflectorRolls
-2020/10/14 14:49:7:13 UTC: For General expand menu, clicked at 37 x, 15 y
-2020/10/14 14:49:7:517 UTC: For Drives expand menu, clicked at 37 x, 168 y
-2020/10/14 14:49:12:522 UTC: For Group Jogging expand menu, clicked at 172 x, 268 y
-2020/10/14 14:49:12:522 UTC: TCM#54-01-00_n_#DRV-DrivesGroupJogging
-2020/10/14 14:49:12:523 UTC: 66width, 16height, Entry Area
-2020/10/14 14:49:12:523 UTC: 197width, 16height, Overview - Coil Transport Entry
-2020/10/14 14:49:12:523 UTC: Overview - Coil Transport Entry is the caption for which we check width
-2020/10/14 14:49:12:524 UTC: 181width, 16height, Overview - Coil Prep. Station
-2020/10/14 14:49:12:524 UTC: 81width, 16height, Maintenance
-2020/10/14 14:49:12:524 UTC: 197 is x width for childrentier2
-2020/10/14 14:49:13:28 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
-2020/10/14 14:49:18:30 UTC: For Overview - Coil Transport Entry expand menu, clicked at 120 x, 43 y
-2020/10/14 14:49:18:30 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
-2020/10/14 14:49:18:536 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
-2020/10/14 14:49:23:541 UTC: For Overview - Coil Prep. Station expand menu, clicked at 120 x, 68 y
-2020/10/14 14:49:23:541 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
-2020/10/14 14:49:23:542 UTC: 87width, 16height, Devices Entry
-2020/10/14 14:49:23:542 UTC: Devices Entry is the caption for which we check width
-2020/10/14 14:49:23:542 UTC: 87 is x width for childrentier2
-2020/10/14 14:49:24:46 UTC: For Maintenance expand menu, clicked at 120 x, 93 y
-2020/10/14 14:49:24:46 UTC: 87width, 16height, Devices Entry
-2020/10/14 14:49:24:47 UTC: Devices Entry is the caption for which we check width
-2020/10/14 14:49:24:47 UTC: 87 is x width for childrentier2
-2020/10/14 14:49:24:47 UTC: 127 is maxwidthtier2
-2020/10/14 14:49:24:550 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
-2020/10/14 14:49:25:54 UTC: For Maintenance expand menu, clicked at 120 x, 93 y
-2020/10/14 14:49:30:58 UTC: For Devices Entry expand menu, clicked at 357 x, 93 y
-2020/10/14 14:49:30:59 UTC: TCM#03-10-00_n_#TCM-DevicesEntryArea
-2020/10/14 14:49:30:59 UTC: 107width, 16height, Tandem Cold Mill
-2020/10/14 14:49:30:59 UTC: 178width, 16height, Overview - Tandem Cold Mill
-2020/10/14 14:49:30:60 UTC: Overview - Tandem Cold Mill is the caption for which we check width
-2020/10/14 14:49:30:60 UTC: 124width, 16height, Tracking Correction
-2020/10/14 14:49:30:60 UTC: 80width, 16height, Pay Off Reel
-2020/10/14 14:49:30:60 UTC: 82width, 16height, Tension Reel
-2020/10/14 14:49:30:61 UTC: 71width, 16height, Setup Data
-2020/10/14 14:49:30:61 UTC: 104width, 16height, Flatness Control
-2020/10/14 14:49:30:61 UTC: 150width, 16height, Cooling and Lubrication
-2020/10/14 14:49:30:61 UTC: 157width, 16height, Machine Prep. Functions
-2020/10/14 14:49:30:62 UTC: 81width, 16height, Maintenance
-2020/10/14 14:49:30:62 UTC: 178 is x width for childrentier2
-2020/10/14 14:49:30:566 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:35:570 UTC: For Overview - Tandem Cold Mill expand menu, clicked at 231 x, 43 y
-2020/10/14 14:49:35:571 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
-2020/10/14 14:49:36:75 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:41:80 UTC: For Tracking Correction expand menu, clicked at 231 x, 68 y
-2020/10/14 14:49:41:80 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
-2020/10/14 14:49:41:583 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:46:587 UTC: For Pay Off Reel expand menu, clicked at 231 x, 93 y
-2020/10/14 14:49:46:587 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
-2020/10/14 14:49:47:90 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:52:94 UTC: For Tension Reel expand menu, clicked at 231 x, 118 y
-2020/10/14 14:49:52:94 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
-2020/10/14 14:49:52:598 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:57:603 UTC: For Setup Data expand menu, clicked at 231 x, 143 y
-2020/10/14 14:49:57:603 UTC: TCM#08-02-00_n_#TCM-SetupData
-2020/10/14 14:49:57:604 UTC: 126width, 16height, Flatness Control C1
-2020/10/14 14:49:57:604 UTC: Flatness Control C1 is the caption for which we check width
-2020/10/14 14:49:57:604 UTC: 126width, 16height, Flatness Control C5
-2020/10/14 14:49:57:604 UTC: 126 is x width for childrentier2
-2020/10/14 14:49:58:107 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
-2020/10/14 14:49:58:108 UTC: 126width, 16height, Flatness Control C1
-2020/10/14 14:49:58:108 UTC: Flatness Control C1 is the caption for which we check width
-2020/10/14 14:49:58:108 UTC: 126width, 16height, Flatness Control C5
-2020/10/14 14:49:58:108 UTC: 126 is x width for childrentier2
-2020/10/14 14:49:58:108 UTC: 166 is maxwidthtier2
-2020/10/14 14:49:58:610 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:49:59:111 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
-2020/10/14 14:50:4:117 UTC: For Flatness Control C1 expand menu, clicked at 449 x, 168 y
-2020/10/14 14:50:4:118 UTC: TCM#24-01-00_w_#TCM-FlatnessControlC1
-2020/10/14 14:50:4:623 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:5:128 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
-2020/10/14 14:50:10:130 UTC: For Flatness Control C5 expand menu, clicked at 449 x, 193 y
-2020/10/14 14:50:10:130 UTC: TCM#24-05-00_w_#TCM-FlatnessControlC5
-2020/10/14 14:50:10:131 UTC: 195width, 16height, Cooling and Lubrication C1-C4
-2020/10/14 14:50:10:131 UTC: Cooling and Lubrication C1-C4 is the caption for which we check width
-2020/10/14 14:50:10:131 UTC: 172width, 16height, Cooling and Lubrication C5
-2020/10/14 14:50:10:131 UTC: 195 is x width for childrentier2
-2020/10/14 14:50:10:635 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
-2020/10/14 14:50:10:636 UTC: 195width, 16height, Cooling and Lubrication C1-C4
-2020/10/14 14:50:10:636 UTC: Cooling and Lubrication C1-C4 is the caption for which we check width
-2020/10/14 14:50:10:637 UTC: 172width, 16height, Cooling and Lubrication C5
-2020/10/14 14:50:10:637 UTC: 195 is x width for childrentier2
-2020/10/14 14:50:10:637 UTC: 235 is maxwidthtier2
-2020/10/14 14:50:11:140 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:11:643 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
-2020/10/14 14:50:16:648 UTC: For Cooling and Lubrication C1-C4 expand menu, clicked at 449 x, 193 y
-2020/10/14 14:50:16:648 UTC: TCM#21-01-00_w_#TCM-CoolingLubricationC1-C4
-2020/10/14 14:50:17:152 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:17:655 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
-2020/10/14 14:50:22:657 UTC: For Cooling and Lubrication C5 expand menu, clicked at 449 x, 218 y
-2020/10/14 14:50:22:657 UTC: TCM#21-05-00_w_#TCM-CoolingLubricationC5
-2020/10/14 14:50:22:657 UTC: 59width, 16height, Stand C1
-2020/10/14 14:50:22:658 UTC: Stand C1 is the caption for which we check width
-2020/10/14 14:50:22:658 UTC: 59width, 16height, Stand C2
-2020/10/14 14:50:22:658 UTC: 59width, 16height, Stand C3
-2020/10/14 14:50:22:658 UTC: 59width, 16height, Stand C4
-2020/10/14 14:50:22:659 UTC: 59width, 16height, Stand C5
-2020/10/14 14:50:22:659 UTC: 126width, 16height, Deflector Rolls Data
-2020/10/14 14:50:22:659 UTC: Deflector Rolls Data is the caption for which we check width
-2020/10/14 14:50:22:659 UTC: 126 is x width for childrentier2
-2020/10/14 14:50:23:163 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:23:164 UTC: 59width, 16height, Stand C1
-2020/10/14 14:50:23:164 UTC: Stand C1 is the caption for which we check width
-2020/10/14 14:50:23:164 UTC: 59width, 16height, Stand C2
-2020/10/14 14:50:23:164 UTC: 59width, 16height, Stand C3
-2020/10/14 14:50:23:165 UTC: 59width, 16height, Stand C4
-2020/10/14 14:50:23:165 UTC: 59width, 16height, Stand C5
-2020/10/14 14:50:23:165 UTC: 126width, 16height, Deflector Rolls Data
-2020/10/14 14:50:23:165 UTC: Deflector Rolls Data is the caption for which we check width
-2020/10/14 14:50:23:166 UTC: 126 is x width for childrentier2
-2020/10/14 14:50:23:166 UTC: 166 is maxwidthtier2
-2020/10/14 14:50:23:671 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:23:671 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:23:671 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:23:672 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:23:672 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:23:672 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:23:673 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:24:176 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:24:680 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:25:186 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
-2020/10/14 14:50:30:191 UTC: For Calibration expand menu, clicked at 615 x, 218 y
-2020/10/14 14:50:30:192 UTC: TCM#16-01-00_n_#TCM-Calibration
-2020/10/14 14:50:30:192 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:30:192 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:30:193 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:30:193 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:30:193 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:30:193 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:30:194 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:30:700 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:31:222 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:31:726 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
-2020/10/14 14:50:36:731 UTC: For Roll Change expand menu, clicked at 615 x, 243 y
-2020/10/14 14:50:36:732 UTC: TCM#14-01-00_n_#TCM-RollChange
-2020/10/14 14:50:36:732 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:36:733 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:36:733 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:36:733 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:36:733 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:36:734 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:36:734 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:37:238 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:37:742 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:38:245 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
-2020/10/14 14:50:43:250 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 268 y
-2020/10/14 14:50:43:251 UTC: TCM#08-11-00_n_#TCM-RollData
-2020/10/14 14:50:43:763 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:43:764 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:43:766 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:43:766 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:43:767 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:43:767 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:43:768 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:44:280 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:44:791 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:45:297 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
-2020/10/14 14:50:50:307 UTC: For Calibration expand menu, clicked at 615 x, 243 y
-2020/10/14 14:50:50:308 UTC: TCM#16-02-00_n_#TCM-Calibration
-2020/10/14 14:50:50:309 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:50:310 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:50:311 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:50:311 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:50:311 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:50:312 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:50:313 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:50:831 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:51:346 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:51:851 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
-2020/10/14 14:50:56:871 UTC: For Roll Change expand menu, clicked at 615 x, 268 y
-2020/10/14 14:50:56:877 UTC: TCM#14-02-00_n_#TCM-RollChange
-2020/10/14 14:50:56:877 UTC: 68width, 16height, Calibration
-2020/10/14 14:50:56:877 UTC: Calibration is the caption for which we check width
-2020/10/14 14:50:56:878 UTC: 78width, 16height, Roll Change
-2020/10/14 14:50:56:878 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:50:56:878 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:50:56:878 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:50:56:879 UTC: 106 is x width for childrentier2
-2020/10/14 14:50:57:383 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:50:57:887 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:50:58:391 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
-2020/10/14 14:51:3:392 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 293 y
-2020/10/14 14:51:3:392 UTC: TCM#08-12-00_n_#TCM-RollData
-2020/10/14 14:51:3:895 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:3:895 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:3:896 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:3:896 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:3:896 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:3:897 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:3:897 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:4:400 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:4:905 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:5:408 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
-2020/10/14 14:51:10:413 UTC: For Calibration expand menu, clicked at 615 x, 268 y
-2020/10/14 14:51:10:414 UTC: TCM#16-03-00_n_#TCM-Calibration
-2020/10/14 14:51:10:414 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:10:414 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:10:415 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:10:415 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:10:415 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:10:415 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:10:416 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:10:919 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:11:423 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:11:926 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
-2020/10/14 14:51:16:927 UTC: For Roll Change expand menu, clicked at 615 x, 293 y
-2020/10/14 14:51:16:927 UTC: TCM#14-03-00_n_#TCM-RollChange
-2020/10/14 14:51:16:927 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:16:928 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:16:928 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:16:928 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:16:928 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:16:929 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:16:929 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:17:430 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:17:942 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:18:445 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
-2020/10/14 14:51:23:449 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 318 y
-2020/10/14 14:51:23:449 UTC: TCM#08-13-00_n_#TCM-RollData
-2020/10/14 14:51:23:953 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:23:953 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:23:953 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:23:954 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:23:954 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:23:954 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:23:954 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:24:459 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:24:964 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:25:467 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
-2020/10/14 14:51:30:473 UTC: For Calibration expand menu, clicked at 615 x, 293 y
-2020/10/14 14:51:30:473 UTC: TCM#16-04-00_n_#TCM-Calibration
-2020/10/14 14:51:30:474 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:30:474 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:30:474 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:30:474 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:30:475 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:30:475 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:30:475 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:30:978 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:31:484 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:32:6 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
-2020/10/14 14:51:37:11 UTC: For Roll Change expand menu, clicked at 615 x, 318 y
-2020/10/14 14:51:37:11 UTC: TCM#14-04-00_n_#TCM-RollChange
-2020/10/14 14:51:37:12 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:37:12 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:37:12 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:37:13 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:37:13 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:37:13 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:37:13 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:37:516 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:38:20 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:38:524 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
-2020/10/14 14:51:43:531 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 343 y
-2020/10/14 14:51:43:532 UTC: TCM#08-14-00_n_#TCM-RollData
-2020/10/14 14:51:44:35 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:44:36 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:44:36 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:44:36 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:44:37 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:44:37 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:44:37 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:44:541 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:45:47 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:45:550 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
-2020/10/14 14:51:50:555 UTC: For Calibration expand menu, clicked at 615 x, 318 y
-2020/10/14 14:51:50:555 UTC: TCM#16-05-00_n_#TCM-Calibration
-2020/10/14 14:51:50:556 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:50:556 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:50:556 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:50:557 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:50:557 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:50:557 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:50:557 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:51:60 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:51:566 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:52:69 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
-2020/10/14 14:51:57:73 UTC: For Roll Change expand menu, clicked at 615 x, 343 y
-2020/10/14 14:51:57:73 UTC: TCM#14-05-00_n_#TCM-RollChange
-2020/10/14 14:51:57:74 UTC: 68width, 16height, Calibration
-2020/10/14 14:51:57:74 UTC: Calibration is the caption for which we check width
-2020/10/14 14:51:57:74 UTC: 78width, 16height, Roll Change
-2020/10/14 14:51:57:74 UTC: Roll Change is the caption for which we check width
-2020/10/14 14:51:57:75 UTC: 106width, 16height, Stand Rolls Data
-2020/10/14 14:51:57:75 UTC: Stand Rolls Data is the caption for which we check width
-2020/10/14 14:51:57:75 UTC: 106 is x width for childrentier2
-2020/10/14 14:51:57:579 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:51:58:82 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:51:58:586 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
-2020/10/14 14:52:3:587 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 368 y
-2020/10/14 14:52:3:587 UTC: TCM#08-15-00_n_#TCM-RollData
-2020/10/14 14:52:4:91 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:4:595 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
-2020/10/14 14:52:9:599 UTC: For Deflector Rolls Data expand menu, clicked at 449 x, 343 y
-2020/10/14 14:52:9:599 UTC: TCM#16-06-00_n_#TCM-DeflectorRollData
-2020/10/14 14:52:9:600 UTC: 115width, 16height, Devices Mill Stand
-2020/10/14 14:52:9:600 UTC: Devices Mill Stand is the caption for which we check width
-2020/10/14 14:52:9:600 UTC: 132width, 16height, Devices Roll Change
-2020/10/14 14:52:9:600 UTC: Devices Roll Change is the caption for which we check width
-2020/10/14 14:52:9:601 UTC: 145width, 16height, Devices Plant Logistics
-2020/10/14 14:52:9:601 UTC: Devices Plant Logistics is the caption for which we check width
-2020/10/14 14:52:9:601 UTC: 100width, 16height, Devices Mill Exit
-2020/10/14 14:52:9:602 UTC: 206width, 16height, Devices Plant Access and Safety
-2020/10/14 14:52:9:602 UTC: Devices Plant Access and Safety is the caption for which we check width
-2020/10/14 14:52:9:602 UTC: 143width, 16height, Measurement Systems
-2020/10/14 14:52:9:602 UTC: 206 is x width for childrentier2
-2020/10/14 14:52:10:106 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:10:107 UTC: 115width, 16height, Devices Mill Stand
-2020/10/14 14:52:10:107 UTC: Devices Mill Stand is the caption for which we check width
-2020/10/14 14:52:10:108 UTC: 132width, 16height, Devices Roll Change
-2020/10/14 14:52:10:108 UTC: Devices Roll Change is the caption for which we check width
-2020/10/14 14:52:10:108 UTC: 145width, 16height, Devices Plant Logistics
-2020/10/14 14:52:10:108 UTC: Devices Plant Logistics is the caption for which we check width
-2020/10/14 14:52:10:109 UTC: 100width, 16height, Devices Mill Exit
-2020/10/14 14:52:10:109 UTC: 206width, 16height, Devices Plant Access and Safety
-2020/10/14 14:52:10:109 UTC: Devices Plant Access and Safety is the caption for which we check width
-2020/10/14 14:52:10:110 UTC: 143width, 16height, Measurement Systems
-2020/10/14 14:52:10:110 UTC: 206 is x width for childrentier2
-2020/10/14 14:52:10:110 UTC: 246 is maxwidthtier2
-2020/10/14 14:52:10:614 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:10:614 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:10:615 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:10:615 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:10:615 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:10:615 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:10:615 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:10:615 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:10:616 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:10:616 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:10:616 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:10:616 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:10:616 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:11:120 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:11:623 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:12:126 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:17:128 UTC: For Details Mill Stand C1 expand menu, clicked at 646 x, 243 y
-2020/10/14 14:52:17:128 UTC: TCM#25-22-00_w_#TCM-DetailsMillStandC1
-2020/10/14 14:52:17:128 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:17:129 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:17:129 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:17:129 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:17:130 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:17:130 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:17:130 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:17:130 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:17:131 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:17:131 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:17:131 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:17:131 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:17:132 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:17:635 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:18:139 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:18:642 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:23:643 UTC: For Devices Mill Stand C1 expand menu, clicked at 646 x, 268 y
-2020/10/14 14:52:23:643 UTC: TCM#25-02-00_n_#TCM-DevicesMillStandC1
-2020/10/14 14:52:23:644 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:23:644 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:23:644 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:23:644 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:23:645 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:23:645 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:23:645 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:23:645 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:23:646 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:23:646 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:23:646 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:23:646 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:23:646 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:24:148 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:24:658 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:25:162 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:30:167 UTC: For Details Mill Stand C2 expand menu, clicked at 646 x, 293 y
-2020/10/14 14:52:30:167 UTC: TCM#25-23-00_w_#TCM-DetailsMillStandC2
-2020/10/14 14:52:30:168 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:30:168 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:30:168 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:30:168 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:30:169 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:30:169 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:30:169 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:30:169 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:30:170 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:30:170 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:30:170 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:30:170 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:30:171 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:30:674 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:31:178 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:31:683 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:36:688 UTC: For Devices Mill Stand C2 expand menu, clicked at 646 x, 318 y
-2020/10/14 14:52:36:688 UTC: TCM#25-03-00_n_#TCM-DevicesMillStandC2
-2020/10/14 14:52:36:689 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:36:689 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:36:689 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:36:690 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:36:690 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:36:690 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:36:690 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:36:691 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:36:691 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:36:691 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:36:691 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:36:692 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:36:692 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:37:199 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:37:703 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:38:206 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:43:212 UTC: For Details Mill Stand C3 expand menu, clicked at 646 x, 343 y
-2020/10/14 14:52:43:213 UTC: TCM#25-24-00_w_#TCM-DetailsMillStandC3
-2020/10/14 14:52:43:213 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:43:213 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:43:214 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:43:214 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:43:214 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:43:214 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:43:215 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:43:215 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:43:215 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:43:215 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:43:216 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:43:216 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:43:216 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:43:719 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:44:223 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:44:727 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:49:728 UTC: For Devices Mill Stand C3 expand menu, clicked at 646 x, 368 y
-2020/10/14 14:52:49:729 UTC: TCM#25-04-00_n_#TCM-DevicesMillStandC3
-2020/10/14 14:52:49:729 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:49:730 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:49:731 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:49:731 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:49:731 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:49:732 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:49:732 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:49:733 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:49:734 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:49:734 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:49:735 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:49:735 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:49:735 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:50:241 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:50:747 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:51:264 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:52:56:280 UTC: For Details Mill Stand C4 expand menu, clicked at 646 x, 393 y
-2020/10/14 14:52:56:282 UTC: TCM#25-25-00_w_#TCM-DetailsMillStandC4
-2020/10/14 14:52:56:283 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:52:56:284 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:56:285 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:52:56:286 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:52:56:286 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:52:56:287 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:52:56:288 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:52:56:289 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:52:56:290 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:52:56:291 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:52:56:292 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:52:56:293 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:52:56:294 UTC: 137 is x width for childrentier2
-2020/10/14 14:52:56:796 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:52:57:299 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:52:57:811 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:53:2:825 UTC: For Devices Mill Stand C4 expand menu, clicked at 646 x, 418 y
-2020/10/14 14:53:2:826 UTC: TCM#25-05-00_n_#TCM-DevicesMillStandC4
-2020/10/14 14:53:2:827 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:53:2:827 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:53:2:840 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:53:2:841 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:53:2:842 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:53:2:842 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:53:2:843 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:53:2:844 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:53:2:844 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:53:2:845 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:53:2:846 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:53:2:846 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:53:2:846 UTC: 137 is x width for childrentier2
-2020/10/14 14:53:3:351 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:3:857 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:4:364 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:53:9:369 UTC: For Details Mill Stand C5 expand menu, clicked at 646 x, 443 y
-2020/10/14 14:53:9:369 UTC: TCM#25-26-00_w_#TCM-DetailsMillStandC5
-2020/10/14 14:53:9:370 UTC: 130width, 16height, Details Mill Stand C1
-2020/10/14 14:53:9:370 UTC: Details Mill Stand C1 is the caption for which we check width
-2020/10/14 14:53:9:370 UTC: 137width, 16height, Devices Mill Stand C1
-2020/10/14 14:53:9:371 UTC: Devices Mill Stand C1 is the caption for which we check width
-2020/10/14 14:53:9:371 UTC: 130width, 16height, Details Mill Stand C2
-2020/10/14 14:53:9:371 UTC: 137width, 16height, Devices Mill Stand C2
-2020/10/14 14:53:9:371 UTC: 130width, 16height, Details Mill Stand C3
-2020/10/14 14:53:9:372 UTC: 137width, 16height, Devices Mill Stand C3
-2020/10/14 14:53:9:372 UTC: 130width, 16height, Details Mill Stand C4
-2020/10/14 14:53:9:372 UTC: 137width, 16height, Devices Mill Stand C4
-2020/10/14 14:53:9:372 UTC: 130width, 16height, Details Mill Stand C5
-2020/10/14 14:53:9:373 UTC: 137width, 16height, Devices Mill Stand C5
-2020/10/14 14:53:9:373 UTC: 137 is x width for childrentier2
-2020/10/14 14:53:9:878 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:10:383 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:10:886 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
-2020/10/14 14:53:15:892 UTC: For Devices Mill Stand C5 expand menu, clicked at 646 x, 468 y
-2020/10/14 14:53:15:893 UTC: TCM#25-06-00_n_#TCM-DevicesMillStandC5
-2020/10/14 14:53:16:396 UTC: 154width, 16height, Devices Roll Change C1
-2020/10/14 14:53:16:397 UTC: Devices Roll Change C1 is the caption for which we check width
-2020/10/14 14:53:16:397 UTC: 154width, 16height, Devices Roll Change C2
-2020/10/14 14:53:16:397 UTC: 154width, 16height, Devices Roll Change C3
-2020/10/14 14:53:16:398 UTC: 154width, 16height, Devices Roll Change C4
-2020/10/14 14:53:16:398 UTC: 154width, 16height, Devices Roll Change C5
-2020/10/14 14:53:16:398 UTC: 154 is x width for childrentier2
-2020/10/14 14:53:16:902 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:17:405 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:17:908 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
-2020/10/14 14:53:22:913 UTC: For Devices Roll Change C1 expand menu, clicked at 663 x, 268 y
-2020/10/14 14:53:22:913 UTC: TCM#25-07-00_n_#TCM-DevicesRollChangeC1
-2020/10/14 14:53:22:914 UTC: 154width, 16height, Devices Roll Change C1
-2020/10/14 14:53:22:914 UTC: Devices Roll Change C1 is the caption for which we check width
-2020/10/14 14:53:22:914 UTC: 154width, 16height, Devices Roll Change C2
-2020/10/14 14:53:22:914 UTC: 154width, 16height, Devices Roll Change C3
-2020/10/14 14:53:22:915 UTC: 154width, 16height, Devices Roll Change C4
-2020/10/14 14:53:22:915 UTC: 154width, 16height, Devices Roll Change C5
-2020/10/14 14:53:22:915 UTC: 154 is x width for childrentier2
-2020/10/14 14:53:23:418 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:23:922 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:24:425 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
-2020/10/14 14:53:29:427 UTC: For Devices Roll Change C2 expand menu, clicked at 663 x, 293 y
-2020/10/14 14:53:29:427 UTC: TCM#25-08-00_n_#TCM-DevicesRollChangeC2
-2020/10/14 14:53:29:428 UTC: 154width, 16height, Devices Roll Change C1
-2020/10/14 14:53:29:428 UTC: Devices Roll Change C1 is the caption for which we check width
-2020/10/14 14:53:29:428 UTC: 154width, 16height, Devices Roll Change C2
-2020/10/14 14:53:29:428 UTC: 154width, 16height, Devices Roll Change C3
-2020/10/14 14:53:29:429 UTC: 154width, 16height, Devices Roll Change C4
-2020/10/14 14:53:29:429 UTC: 154width, 16height, Devices Roll Change C5
-2020/10/14 14:53:29:429 UTC: 154 is x width for childrentier2
-2020/10/14 14:53:29:930 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:30:434 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:30:938 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
-2020/10/14 14:53:35:939 UTC: For Devices Roll Change C3 expand menu, clicked at 663 x, 318 y
-2020/10/14 14:53:35:939 UTC: TCM#25-09-00_n_#TCM-DevicesRollChangeC3
-2020/10/14 14:53:35:939 UTC: 154width, 16height, Devices Roll Change C1
-2020/10/14 14:53:35:940 UTC: Devices Roll Change C1 is the caption for which we check width
-2020/10/14 14:53:35:940 UTC: 154width, 16height, Devices Roll Change C2
-2020/10/14 14:53:35:940 UTC: 154width, 16height, Devices Roll Change C3
-2020/10/14 14:53:35:940 UTC: 154width, 16height, Devices Roll Change C4
-2020/10/14 14:53:35:941 UTC: 154width, 16height, Devices Roll Change C5
-2020/10/14 14:53:35:941 UTC: 154 is x width for childrentier2
-2020/10/14 14:53:36:445 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:36:949 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:37:452 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
-2020/10/14 14:53:42:457 UTC: For Devices Roll Change C4 expand menu, clicked at 663 x, 343 y
-2020/10/14 14:53:42:457 UTC: TCM#25-10-00_n_#TCM-DevicesRollChangeC4
-2020/10/14 14:53:42:457 UTC: 154width, 16height, Devices Roll Change C1
-2020/10/14 14:53:42:458 UTC: Devices Roll Change C1 is the caption for which we check width
-2020/10/14 14:53:42:458 UTC: 154width, 16height, Devices Roll Change C2
-2020/10/14 14:53:42:458 UTC: 154width, 16height, Devices Roll Change C3
-2020/10/14 14:53:42:459 UTC: 154width, 16height, Devices Roll Change C4
-2020/10/14 14:53:42:459 UTC: 154width, 16height, Devices Roll Change C5
-2020/10/14 14:53:42:459 UTC: 154 is x width for childrentier2
-2020/10/14 14:53:42:963 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:43:466 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:43:971 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
-2020/10/14 14:53:48:974 UTC: For Devices Roll Change C5 expand menu, clicked at 663 x, 368 y
-2020/10/14 14:53:48:974 UTC: TCM#25-11-00_n_#TCM-DevicesRollChangeC5
-2020/10/14 14:53:49:480 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:49:984 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:53:54:985 UTC: For Devices Plant Logistics expand menu, clicked at 449 x, 293 y
-2020/10/14 14:53:54:985 UTC: TCM#25-13-00_n_#TCM-DevicesPlantLogistics
-2020/10/14 14:53:55:490 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:53:55:993 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:54:0:998 UTC: For Devices Mill Exit expand menu, clicked at 449 x, 318 y
-2020/10/14 14:54:0:998 UTC: TCM#25-14-00_n_#TCM-DevicesMillExit
-2020/10/14 14:54:1:501 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:54:2:5 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:54:7:10 UTC: For Devices Plant Access and Safety expand menu, clicked at 449 x, 343 y
-2020/10/14 14:54:7:11 UTC: TCM#25-15-00_n_#TCM-DevicesPlantAccessandSafety
-2020/10/14 14:54:7:515 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
-2020/10/14 14:54:8:20 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
-2020/10/14 14:54:13:22 UTC: For Measurement Systems expand menu, clicked at 449 x, 368 y
-2020/10/14 14:54:13:22 UTC: TCM#25-16-00_n_#TCM-MeasurementSystems
-2020/10/14 14:54:13:23 UTC: 55width, 16height, Exit Area
-2020/10/14 14:54:13:23 UTC: 186width, 16height, Overview - Coil Transport Exit
-2020/10/14 14:54:13:23 UTC: Overview - Coil Transport Exit is the caption for which we check width
-2020/10/14 14:54:13:23 UTC: 160width, 16height, Overview - Walking Beam
-2020/10/14 14:54:13:24 UTC: 180width, 16height, Overview - Offline Inspection
-2020/10/14 14:54:13:24 UTC: 81width, 16height, Maintenance
-2020/10/14 14:54:13:24 UTC: 186 is x width for childrentier2
-2020/10/14 14:54:13:528 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
-2020/10/14 14:54:18:530 UTC: For Overview - Coil Transport Exit expand menu, clicked at 336 x, 43 y
-2020/10/14 14:54:18:530 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
-2020/10/14 14:54:19:33 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
-2020/10/14 14:54:24:38 UTC: For Overview - Walking Beam expand menu, clicked at 336 x, 68 y
-2020/10/14 14:54:24:38 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
-2020/10/14 14:54:24:542 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
-2020/10/14 14:54:29:547 UTC: For Overview - Offline Inspection expand menu, clicked at 336 x, 93 y
-2020/10/14 14:54:29:547 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
-2020/10/14 14:54:29:548 UTC: 76width, 16height, Devices Exit
-2020/10/14 14:54:29:548 UTC: Devices Exit is the caption for which we check width
-2020/10/14 14:54:29:548 UTC: 76 is x width for childrentier2
-2020/10/14 14:54:30:50 UTC: For Maintenance expand menu, clicked at 336 x, 118 y
-2020/10/14 14:54:30:50 UTC: 76width, 16height, Devices Exit
-2020/10/14 14:54:30:50 UTC: Devices Exit is the caption for which we check width
-2020/10/14 14:54:30:51 UTC: 76 is x width for childrentier2
-2020/10/14 14:54:30:51 UTC: 116 is maxwidthtier2
-2020/10/14 14:54:30:555 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
-2020/10/14 14:54:31:58 UTC: For Maintenance expand menu, clicked at 336 x, 118 y
-2020/10/14 14:54:36:59 UTC: For Devices Exit expand menu, clicked at 562 x, 118 y
-2020/10/14 14:54:36:59 UTC: TCM#04-04-00_n_#TCM-DevicesExit
-2020/10/14 14:54:36:60 UTC: 46width, 16height, System
-2020/10/14 14:54:36:60 UTC: 77width, 16height, HMI Network
-2020/10/14 14:54:36:60 UTC: HMI Network is the caption for which we check width
-2020/10/14 14:54:36:60 UTC: 108width, 16height, Fieldbus Network
-2020/10/14 14:54:36:61 UTC: Fieldbus Network is the caption for which we check width
-2020/10/14 14:54:36:61 UTC: 112width, 16height, HMI Configuration
-2020/10/14 14:54:36:61 UTC: HMI Configuration is the caption for which we check width
-2020/10/14 14:54:36:61 UTC: 112 is x width for childrentier2
-2020/10/14 14:54:36:564 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:54:41:567 UTC: For HMI Network expand menu, clicked at 411 x, 43 y
-2020/10/14 14:54:41:567 UTC: i8Sys_w_Environment
-2020/10/14 14:54:42:70 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:54:47:71 UTC: For Fieldbus Network expand menu, clicked at 411 x, 68 y
-2020/10/14 14:54:47:71 UTC: i8Sys_w_Environment_Fieldbus_Network
-2020/10/14 14:54:47:72 UTC: 77width, 16height, Node Rights
-2020/10/14 14:54:47:72 UTC: Node Rights is the caption for which we check width
-2020/10/14 14:54:47:72 UTC: 79width, 16height, Connections
-2020/10/14 14:54:47:72 UTC: Connections is the caption for which we check width
-2020/10/14 14:54:47:72 UTC: 70width, 16height, Information
-2020/10/14 14:54:47:73 UTC: 73width, 16height, User Rights
-2020/10/14 14:54:47:73 UTC: 61width, 16height, Database
-2020/10/14 14:54:47:73 UTC: 69width, 16height, Application
-2020/10/14 14:54:47:73 UTC: 86width, 16height, PDL Statistics
-2020/10/14 14:54:47:74 UTC: PDL Statistics is the caption for which we check width
-2020/10/14 14:54:47:74 UTC: 86 is x width for childrentier2
-2020/10/14 14:54:47:576 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:54:47:576 UTC: 77width, 16height, Node Rights
-2020/10/14 14:54:47:576 UTC: Node Rights is the caption for which we check width
-2020/10/14 14:54:47:577 UTC: 79width, 16height, Connections
-2020/10/14 14:54:47:577 UTC: Connections is the caption for which we check width
-2020/10/14 14:54:47:577 UTC: 70width, 16height, Information
-2020/10/14 14:54:47:577 UTC: 73width, 16height, User Rights
-2020/10/14 14:54:47:578 UTC: 61width, 16height, Database
-2020/10/14 14:54:47:578 UTC: 69width, 16height, Application
-2020/10/14 14:54:47:578 UTC: 86width, 16height, PDL Statistics
-2020/10/14 14:54:47:578 UTC: PDL Statistics is the caption for which we check width
-2020/10/14 14:54:47:579 UTC: 86 is x width for childrentier2
-2020/10/14 14:54:47:579 UTC: 126 is maxwidthtier2
-2020/10/14 14:54:48:82 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:54:48:586 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:54:53:591 UTC: For Node Rights expand menu, clicked at 563 x, 93 y
-2020/10/14 14:54:53:591 UTC: i8Sys_w_NodeRights
-2020/10/14 14:54:54:95 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:54:54:599 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:54:59:604 UTC: For Connections expand menu, clicked at 563 x, 118 y
-2020/10/14 14:54:59:604 UTC: i8App_n_Connections
-2020/10/14 14:55:0:107 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:55:0:611 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:55:5:615 UTC: For Information expand menu, clicked at 563 x, 143 y
-2020/10/14 14:55:5:615 UTC: i8Sys_n_Information
-2020/10/14 14:55:6:119 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:55:6:623 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:55:11:624 UTC: For User Rights expand menu, clicked at 563 x, 168 y
-2020/10/14 14:55:11:624 UTC: i8Sys_w_UserRights
-2020/10/14 14:55:12:128 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:55:12:631 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:55:17:635 UTC: For Database expand menu, clicked at 563 x, 193 y
-2020/10/14 14:55:17:635 UTC: i8Sys_n_Database
-2020/10/14 14:55:18:138 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:55:18:642 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:55:23:643 UTC: For Application expand menu, clicked at 563 x, 218 y
-2020/10/14 14:55:23:643 UTC: i8Sys_n_Application
-2020/10/14 14:55:24:146 UTC: For System expand menu, clicked at 411 x, 15 y
-2020/10/14 14:55:24:651 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
-2020/10/14 14:55:29:655 UTC: For PDL Statistics expand menu, clicked at 563 x, 243 y
-2020/10/14 14:55:29:655 UTC: i8Sys_n_PdlStatistics
+2020/10/15 14:55:39:987 UTC: 51width, 16height, General
+2020/10/15 14:55:39:988 UTC: 43width, 16height, Alarms
+2020/10/15 14:55:39:989 UTC: Alarms is the caption for which we check width
+2020/10/15 14:55:39:989 UTC: 94width, 16height, Plant Overview
+2020/10/15 14:55:39:989 UTC: Plant Overview is the caption for which we check width
+2020/10/15 14:55:39:989 UTC: 40width, 16height, Safety
+2020/10/15 14:55:39:989 UTC: 86width, 16height, Switch On/Off
+2020/10/15 14:55:39:990 UTC: 95width, 16height, Media Systems
+2020/10/15 14:55:39:990 UTC: Media Systems is the caption for which we check width
+2020/10/15 14:55:39:990 UTC: 40width, 16height, Drives
+2020/10/15 14:55:39:990 UTC: 95 is x width for childrentier2
+2020/10/15 14:55:40:497 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:55:45:500 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2020/10/15 14:55:45:501 UTC: @sms_w_Alarmlist
+2020/10/15 14:55:46:5 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:55:51:9 UTC: For Plant Overview expand menu, clicked at 37 x, 68 y
+2020/10/15 14:55:51:9 UTC: TCM#01-01-00_n_#GEN-PlantOverview
+2020/10/15 14:55:51:9 UTC: 33width, 16height, Floor
+2020/10/15 14:55:51:10 UTC: Floor is the caption for which we check width
+2020/10/15 14:55:51:10 UTC: 37width, 16height, Cellar
+2020/10/15 14:55:51:10 UTC: Cellar is the caption for which we check width
+2020/10/15 14:55:51:11 UTC: 140width, 16height, Fume Exhaust System
+2020/10/15 14:55:51:11 UTC: Fume Exhaust System is the caption for which we check width
+2020/10/15 14:55:51:11 UTC: 43width, 16height, Details
+2020/10/15 14:55:51:11 UTC: 140 is x width for childrentier2
+2020/10/15 14:55:51:513 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2020/10/15 14:55:51:514 UTC: 33width, 16height, Floor
+2020/10/15 14:55:51:514 UTC: Floor is the caption for which we check width
+2020/10/15 14:55:51:514 UTC: 37width, 16height, Cellar
+2020/10/15 14:55:51:515 UTC: Cellar is the caption for which we check width
+2020/10/15 14:55:51:515 UTC: 140width, 16height, Fume Exhaust System
+2020/10/15 14:55:51:515 UTC: Fume Exhaust System is the caption for which we check width
+2020/10/15 14:55:51:515 UTC: 43width, 16height, Details
+2020/10/15 14:55:51:516 UTC: 140 is x width for childrentier2
+2020/10/15 14:55:51:516 UTC: 180 is maxwidthtier2
+2020/10/15 14:55:52:19 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:55:52:523 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2020/10/15 14:55:57:528 UTC: For Floor expand menu, clicked at 172 x, 93 y
+2020/10/15 14:55:57:529 UTC: TCM#06-01-00_n_#SAF-Overview-Floor
+2020/10/15 14:55:58:31 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:55:58:534 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2020/10/15 14:56:3:535 UTC: For Cellar expand menu, clicked at 172 x, 118 y
+2020/10/15 14:56:3:535 UTC: TCM#06-02-00_n_#SAF-Overview-Cellar
+2020/10/15 14:56:4:38 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:4:542 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2020/10/15 14:56:9:549 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 143 y
+2020/10/15 14:56:9:551 UTC: TCM#06-03-00_n_#SAF-Overview-FES
+2020/10/15 14:56:10:55 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:10:558 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2020/10/15 14:56:15:563 UTC: For Details expand menu, clicked at 172 x, 168 y
+2020/10/15 14:56:15:563 UTC: SAF2_n_SafetyAreaOverview
+2020/10/15 14:56:15:564 UTC: 38width, 16height, Media
+2020/10/15 14:56:15:564 UTC: Media is the caption for which we check width
+2020/10/15 14:56:15:565 UTC: 40width, 16height, Drives
+2020/10/15 14:56:15:565 UTC: Drives is the caption for which we check width
+2020/10/15 14:56:15:565 UTC: 40 is x width for childrentier2
+2020/10/15 14:56:16:68 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2020/10/15 14:56:16:69 UTC: 38width, 16height, Media
+2020/10/15 14:56:16:69 UTC: Media is the caption for which we check width
+2020/10/15 14:56:16:69 UTC: 40width, 16height, Drives
+2020/10/15 14:56:16:70 UTC: Drives is the caption for which we check width
+2020/10/15 14:56:16:70 UTC: 40 is x width for childrentier2
+2020/10/15 14:56:16:70 UTC: 80 is maxwidthtier2
+2020/10/15 14:56:16:573 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:17:76 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2020/10/15 14:56:22:82 UTC: For Media expand menu, clicked at 172 x, 118 y
+2020/10/15 14:56:22:82 UTC: TCM#02-01-00_n_#GEN-Media
+2020/10/15 14:56:22:587 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:23:94 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2020/10/15 14:56:28:95 UTC: For Drives expand menu, clicked at 172 x, 143 y
+2020/10/15 14:56:28:95 UTC: TCM#02-02-00_n_#GEN-Drives
+2020/10/15 14:56:28:96 UTC: 115width, 16height, Hydraulic Systems
+2020/10/15 14:56:28:96 UTC: Hydraulic Systems is the caption for which we check width
+2020/10/15 14:56:28:96 UTC: 127width, 16height, Lubrication Systems
+2020/10/15 14:56:28:96 UTC: Lubrication Systems is the caption for which we check width
+2020/10/15 14:56:28:97 UTC: 114width, 16height, Emulsion Systems
+2020/10/15 14:56:28:97 UTC: 140width, 16height, Fume Exhaust System
+2020/10/15 14:56:28:97 UTC: Fume Exhaust System is the caption for which we check width
+2020/10/15 14:56:28:97 UTC: 81width, 16height, Maintenance
+2020/10/15 14:56:28:98 UTC: 140 is x width for childrentier2
+2020/10/15 14:56:28:599 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:28:606 UTC: 115width, 16height, Hydraulic Systems
+2020/10/15 14:56:28:606 UTC: Hydraulic Systems is the caption for which we check width
+2020/10/15 14:56:28:606 UTC: 127width, 16height, Lubrication Systems
+2020/10/15 14:56:28:607 UTC: Lubrication Systems is the caption for which we check width
+2020/10/15 14:56:28:607 UTC: 114width, 16height, Emulsion Systems
+2020/10/15 14:56:28:607 UTC: 140width, 16height, Fume Exhaust System
+2020/10/15 14:56:28:607 UTC: Fume Exhaust System is the caption for which we check width
+2020/10/15 14:56:28:608 UTC: 81width, 16height, Maintenance
+2020/10/15 14:56:28:608 UTC: 140 is x width for childrentier2
+2020/10/15 14:56:28:608 UTC: 180 is maxwidthtier2
+2020/10/15 14:56:29:111 UTC: 151width, 16height, High Pressure Hydraulic
+2020/10/15 14:56:29:111 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/10/15 14:56:29:112 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/10/15 14:56:29:112 UTC: 151 is x width for childrentier2
+2020/10/15 14:56:29:615 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:30:120 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:30:625 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 143 y
+2020/10/15 14:56:35:629 UTC: For High Pressure Hydraulic expand menu, clicked at 383 x, 143 y
+2020/10/15 14:56:35:629 UTC: TCM#61-01-00_w_#MED-HighPressureHydraulic
+2020/10/15 14:56:35:630 UTC: 151width, 16height, High Pressure Hydraulic
+2020/10/15 14:56:35:630 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/10/15 14:56:35:630 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/10/15 14:56:35:630 UTC: 151 is x width for childrentier2
+2020/10/15 14:56:36:134 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:36:638 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:37:141 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 143 y
+2020/10/15 14:56:42:143 UTC: For Low Pressure Hydraulic expand menu, clicked at 383 x, 168 y
+2020/10/15 14:56:42:143 UTC: TCM#62-01-00_w_#MED-LowPressureHydraulic
+2020/10/15 14:56:42:646 UTC: 91width, 16height, Oil Lubrication
+2020/10/15 14:56:42:647 UTC: Oil Lubrication is the caption for which we check width
+2020/10/15 14:56:42:647 UTC: 111width, 16height, Oil Air Lubrication
+2020/10/15 14:56:42:647 UTC: Oil Air Lubrication is the caption for which we check width
+2020/10/15 14:56:42:648 UTC: 111 is x width for childrentier2
+2020/10/15 14:56:43:149 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:43:654 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:44:157 UTC: For Lubrication Systems expand menu, clicked at 172 x, 168 y
+2020/10/15 14:56:49:162 UTC: For Oil Lubrication expand menu, clicked at 343 x, 168 y
+2020/10/15 14:56:49:162 UTC: TCM#63-01-00_w_#MED-OilLubrication
+2020/10/15 14:56:49:163 UTC: 91width, 16height, Oil Lubrication
+2020/10/15 14:56:49:163 UTC: Oil Lubrication is the caption for which we check width
+2020/10/15 14:56:49:163 UTC: 111width, 16height, Oil Air Lubrication
+2020/10/15 14:56:49:164 UTC: Oil Air Lubrication is the caption for which we check width
+2020/10/15 14:56:49:164 UTC: 111 is x width for childrentier2
+2020/10/15 14:56:49:665 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:50:168 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:50:671 UTC: For Lubrication Systems expand menu, clicked at 172 x, 168 y
+2020/10/15 14:56:55:673 UTC: For Oil Air Lubrication expand menu, clicked at 343 x, 193 y
+2020/10/15 14:56:55:673 UTC: TCM#63-02-00_w_#MED-OilAirLubrication
+2020/10/15 14:56:56:176 UTC: 135width, 16height, Emulsion Preparation
+2020/10/15 14:56:56:177 UTC: Emulsion Preparation is the caption for which we check width
+2020/10/15 14:56:56:177 UTC: 76width, 16height, Filter Circuit
+2020/10/15 14:56:56:177 UTC: 143width, 16height, Water and Oil Systems
+2020/10/15 14:56:56:178 UTC: Water and Oil Systems is the caption for which we check width
+2020/10/15 14:56:56:178 UTC: 96width, 16height, Collecting Tank
+2020/10/15 14:56:56:178 UTC: 89width, 16height, Cooling Spray
+2020/10/15 14:56:56:178 UTC: 143 is x width for childrentier2
+2020/10/15 14:56:56:681 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:56:57:184 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:56:57:689 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:2:699 UTC: For Emulsion Preparation expand menu, clicked at 375 x, 193 y
+2020/10/15 14:57:2:700 UTC: TCM#64-01-00_w_#MED-EmulsionPreparation
+2020/10/15 14:57:2:700 UTC: 135width, 16height, Emulsion Preparation
+2020/10/15 14:57:2:701 UTC: Emulsion Preparation is the caption for which we check width
+2020/10/15 14:57:2:701 UTC: 76width, 16height, Filter Circuit
+2020/10/15 14:57:2:701 UTC: 143width, 16height, Water and Oil Systems
+2020/10/15 14:57:2:702 UTC: Water and Oil Systems is the caption for which we check width
+2020/10/15 14:57:2:702 UTC: 96width, 16height, Collecting Tank
+2020/10/15 14:57:2:702 UTC: 89width, 16height, Cooling Spray
+2020/10/15 14:57:2:703 UTC: 143 is x width for childrentier2
+2020/10/15 14:57:3:206 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:3:709 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:4:213 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:9:215 UTC: For Filter Circuit expand menu, clicked at 375 x, 218 y
+2020/10/15 14:57:9:215 UTC: TCM#64-02-00_w_#MED-FilterCircuit
+2020/10/15 14:57:9:216 UTC: 135width, 16height, Emulsion Preparation
+2020/10/15 14:57:9:216 UTC: Emulsion Preparation is the caption for which we check width
+2020/10/15 14:57:9:216 UTC: 76width, 16height, Filter Circuit
+2020/10/15 14:57:9:216 UTC: 143width, 16height, Water and Oil Systems
+2020/10/15 14:57:9:217 UTC: Water and Oil Systems is the caption for which we check width
+2020/10/15 14:57:9:217 UTC: 96width, 16height, Collecting Tank
+2020/10/15 14:57:9:217 UTC: 89width, 16height, Cooling Spray
+2020/10/15 14:57:9:218 UTC: 143 is x width for childrentier2
+2020/10/15 14:57:9:722 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:10:226 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:10:730 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:15:735 UTC: For Water and Oil Systems expand menu, clicked at 375 x, 243 y
+2020/10/15 14:57:15:735 UTC: TCM#64-04-00_w_#MED-WaterandOilSystems
+2020/10/15 14:57:15:736 UTC: 135width, 16height, Emulsion Preparation
+2020/10/15 14:57:15:736 UTC: Emulsion Preparation is the caption for which we check width
+2020/10/15 14:57:15:736 UTC: 76width, 16height, Filter Circuit
+2020/10/15 14:57:15:737 UTC: 143width, 16height, Water and Oil Systems
+2020/10/15 14:57:15:737 UTC: Water and Oil Systems is the caption for which we check width
+2020/10/15 14:57:15:737 UTC: 96width, 16height, Collecting Tank
+2020/10/15 14:57:15:737 UTC: 89width, 16height, Cooling Spray
+2020/10/15 14:57:15:738 UTC: 143 is x width for childrentier2
+2020/10/15 14:57:16:239 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:16:743 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:17:246 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:22:257 UTC: For Collecting Tank expand menu, clicked at 375 x, 268 y
+2020/10/15 14:57:22:258 UTC: TCM#64-05-00_w_#MED-CollectingTank
+2020/10/15 14:57:22:259 UTC: 135width, 16height, Emulsion Preparation
+2020/10/15 14:57:22:259 UTC: Emulsion Preparation is the caption for which we check width
+2020/10/15 14:57:22:261 UTC: 76width, 16height, Filter Circuit
+2020/10/15 14:57:22:262 UTC: 143width, 16height, Water and Oil Systems
+2020/10/15 14:57:22:262 UTC: Water and Oil Systems is the caption for which we check width
+2020/10/15 14:57:22:263 UTC: 96width, 16height, Collecting Tank
+2020/10/15 14:57:22:264 UTC: 89width, 16height, Cooling Spray
+2020/10/15 14:57:22:265 UTC: 143 is x width for childrentier2
+2020/10/15 14:57:22:774 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:23:318 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:23:827 UTC: For Emulsion Systems expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:28:843 UTC: For Cooling Spray expand menu, clicked at 375 x, 293 y
+2020/10/15 14:57:28:844 UTC: TCM#64-03-00_w_#MED-CoolingSpray
+2020/10/15 14:57:29:352 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:29:857 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:34:866 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 218 y
+2020/10/15 14:57:34:868 UTC: TCM#70-01-00_w_#MED-FumeExhaust
+2020/10/15 14:57:35:372 UTC: 93width, 16height, Media Settings
+2020/10/15 14:57:35:372 UTC: Media Settings is the caption for which we check width
+2020/10/15 14:57:35:373 UTC: 93 is x width for childrentier2
+2020/10/15 14:57:35:876 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:36:380 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2020/10/15 14:57:36:884 UTC: For Maintenance expand menu, clicked at 172 x, 243 y
+2020/10/15 14:57:41:886 UTC: For Media Settings expand menu, clicked at 325 x, 243 y
+2020/10/15 14:57:41:886 UTC: TCM#60-01-00_w_#MED-Parameters
+2020/10/15 14:57:41:886 UTC: 120width, 16height, Power Supply Main
+2020/10/15 14:57:41:887 UTC: Power Supply Main is the caption for which we check width
+2020/10/15 14:57:41:887 UTC: 141width, 16height, Power Supply Auxiliary
+2020/10/15 14:57:41:887 UTC: Power Supply Auxiliary is the caption for which we check width
+2020/10/15 14:57:41:887 UTC: 74width, 16height, Main Drives
+2020/10/15 14:57:41:888 UTC: 96width, 16height, Auxiliary Drives
+2020/10/15 14:57:41:888 UTC: 93width, 16height, Group Jogging
+2020/10/15 14:57:41:888 UTC: 141 is x width for childrentier2
+2020/10/15 14:57:42:392 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:57:42:393 UTC: 120width, 16height, Power Supply Main
+2020/10/15 14:57:42:393 UTC: Power Supply Main is the caption for which we check width
+2020/10/15 14:57:42:393 UTC: 141width, 16height, Power Supply Auxiliary
+2020/10/15 14:57:42:393 UTC: Power Supply Auxiliary is the caption for which we check width
+2020/10/15 14:57:42:394 UTC: 74width, 16height, Main Drives
+2020/10/15 14:57:42:398 UTC: 96width, 16height, Auxiliary Drives
+2020/10/15 14:57:42:399 UTC: 93width, 16height, Group Jogging
+2020/10/15 14:57:42:399 UTC: 141 is x width for childrentier2
+2020/10/15 14:57:42:399 UTC: 181 is maxwidthtier2
+2020/10/15 14:57:42:902 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:43:403 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:57:48:413 UTC: For Power Supply Main expand menu, clicked at 172 x, 168 y
+2020/10/15 14:57:48:413 UTC: TCM#51-01-00_w_#DRV-PowerSupplyMain
+2020/10/15 14:57:48:917 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:49:420 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:57:54:425 UTC: For Power Supply Auxiliary expand menu, clicked at 172 x, 193 y
+2020/10/15 14:57:54:425 UTC: TCM#53-01-00_w_#DRV-PowerSupplyAuxiliary
+2020/10/15 14:57:54:929 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:57:54:929 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:57:54:930 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:57:54:930 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:57:54:930 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:57:54:931 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:57:54:931 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:57:54:931 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:57:54:932 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:57:54:932 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:57:54:932 UTC: 96 is x width for childrentier2
+2020/10/15 14:57:55:434 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:57:55:935 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:57:56:437 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:1:438 UTC: For Pay Off Reel expand menu, clicked at 328 x, 218 y
+2020/10/15 14:58:1:438 UTC: TCM#52-00-00_n_#DRV-DrivePayOffReel
+2020/10/15 14:58:1:438 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:1:439 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:1:439 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:1:439 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:1:439 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:1:440 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:1:440 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:1:440 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:1:441 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:1:441 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:1:441 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:1:943 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:2:446 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:2:947 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:7:948 UTC: For Drive Stand C1 expand menu, clicked at 328 x, 243 y
+2020/10/15 14:58:7:948 UTC: TCM#52-01-00_n_#DRV-DriveStandC1
+2020/10/15 14:58:7:948 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:7:949 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:7:949 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:7:949 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:7:949 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:7:950 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:7:950 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:7:950 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:7:950 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:7:951 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:7:951 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:8:454 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:8:958 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:9:462 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:14:464 UTC: For Drive Stand C2 expand menu, clicked at 328 x, 268 y
+2020/10/15 14:58:14:464 UTC: TCM#52-02-00_n_#DRV-DriveStandC2
+2020/10/15 14:58:14:464 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:14:465 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:14:465 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:14:465 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:14:465 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:14:466 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:14:466 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:14:466 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:14:466 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:14:467 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:14:467 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:14:970 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:15:473 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:15:976 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:20:981 UTC: For Drive Stand C3 expand menu, clicked at 328 x, 293 y
+2020/10/15 14:58:20:981 UTC: TCM#52-03-00_n_#DRV-DriveStandC3
+2020/10/15 14:58:20:981 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:20:982 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:20:982 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:20:982 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:20:982 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:20:983 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:20:983 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:20:983 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:20:983 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:20:984 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:20:984 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:21:490 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:21:994 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:22:497 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:27:501 UTC: For Drive Stand C4 expand menu, clicked at 328 x, 318 y
+2020/10/15 14:58:27:501 UTC: TCM#52-04-00_n_#DRV-DriveStandC4
+2020/10/15 14:58:27:502 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:27:502 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:27:502 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:27:502 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:27:503 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:27:503 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:27:503 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:27:504 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:27:504 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:27:504 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:27:504 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:28:9 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:28:513 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:29:16 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:34:21 UTC: For Drive Stand C5 expand menu, clicked at 328 x, 343 y
+2020/10/15 14:58:34:21 UTC: TCM#52-05-00_n_#DRV-DriveStandC5
+2020/10/15 14:58:34:22 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:34:22 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:34:22 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:34:22 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:34:22 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:34:23 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:34:23 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:34:23 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:34:24 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:34:24 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:34:24 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:34:527 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:35:30 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:35:533 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:40:535 UTC: For Tension Reel 1 expand menu, clicked at 328 x, 368 y
+2020/10/15 14:58:40:535 UTC: TCM#52-06-00_n_#DRV-DriveTensionReel1
+2020/10/15 14:58:40:535 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:58:40:536 UTC: Pay Off Reel is the caption for which we check width
+2020/10/15 14:58:40:536 UTC: 96width, 16height, Drive Stand C1
+2020/10/15 14:58:40:536 UTC: Drive Stand C1 is the caption for which we check width
+2020/10/15 14:58:40:536 UTC: 96width, 16height, Drive Stand C2
+2020/10/15 14:58:40:537 UTC: 96width, 16height, Drive Stand C3
+2020/10/15 14:58:40:537 UTC: 96width, 16height, Drive Stand C4
+2020/10/15 14:58:40:537 UTC: 96width, 16height, Drive Stand C5
+2020/10/15 14:58:40:537 UTC: 94width, 16height, Tension Reel 1
+2020/10/15 14:58:40:538 UTC: 94width, 16height, Tension Reel 2
+2020/10/15 14:58:40:538 UTC: 96 is x width for childrentier2
+2020/10/15 14:58:41:41 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:41:544 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:42:50 UTC: For Main Drives expand menu, clicked at 172 x, 218 y
+2020/10/15 14:58:47:57 UTC: For Tension Reel 2 expand menu, clicked at 328 x, 393 y
+2020/10/15 14:58:47:58 UTC: TCM#52-07-00_n_#DRV-DriveTensionReel2
+2020/10/15 14:58:47:561 UTC: 71width, 16height, Bridle Rolls
+2020/10/15 14:58:47:561 UTC: Bridle Rolls is the caption for which we check width
+2020/10/15 14:58:47:561 UTC: 85width, 16height, Deflector Roll
+2020/10/15 14:58:47:562 UTC: Deflector Roll is the caption for which we check width
+2020/10/15 14:58:47:562 UTC: 85 is x width for childrentier2
+2020/10/15 14:58:48:65 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:48:568 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:49:97 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 243 y
+2020/10/15 14:58:54:99 UTC: For Bridle Rolls expand menu, clicked at 317 x, 243 y
+2020/10/15 14:58:54:99 UTC: TCM#55-01-00_n_#DRV-DrivesBridleRolls
+2020/10/15 14:58:54:100 UTC: 71width, 16height, Bridle Rolls
+2020/10/15 14:58:54:101 UTC: Bridle Rolls is the caption for which we check width
+2020/10/15 14:58:54:101 UTC: 85width, 16height, Deflector Roll
+2020/10/15 14:58:54:101 UTC: Deflector Roll is the caption for which we check width
+2020/10/15 14:58:54:102 UTC: 85 is x width for childrentier2
+2020/10/15 14:58:54:607 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:58:55:112 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:58:55:619 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 243 y
+2020/10/15 14:59:0:624 UTC: For Deflector Roll expand menu, clicked at 317 x, 268 y
+2020/10/15 14:59:0:624 UTC: TCM#55-02-00_n_#DRV-DrivesDeflectorRolls
+2020/10/15 14:59:1:129 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/10/15 14:59:1:632 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2020/10/15 14:59:6:634 UTC: For Group Jogging expand menu, clicked at 172 x, 268 y
+2020/10/15 14:59:6:634 UTC: TCM#54-01-00_n_#DRV-DrivesGroupJogging
+2020/10/15 14:59:6:635 UTC: 66width, 16height, Entry Area
+2020/10/15 14:59:6:635 UTC: 197width, 16height, Overview - Coil Transport Entry
+2020/10/15 14:59:6:635 UTC: Overview - Coil Transport Entry is the caption for which we check width
+2020/10/15 14:59:6:635 UTC: 181width, 16height, Overview - Coil Prep. Station
+2020/10/15 14:59:6:636 UTC: 81width, 16height, Maintenance
+2020/10/15 14:59:6:636 UTC: 197 is x width for childrentier2
+2020/10/15 14:59:7:139 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2020/10/15 14:59:12:144 UTC: For Overview - Coil Transport Entry expand menu, clicked at 120 x, 43 y
+2020/10/15 14:59:12:144 UTC: TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry
+2020/10/15 14:59:12:647 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2020/10/15 14:59:17:652 UTC: For Overview - Coil Prep. Station expand menu, clicked at 120 x, 68 y
+2020/10/15 14:59:17:652 UTC: TCM#03-02-00_n_#TCM-OverviewCPS
+2020/10/15 14:59:17:653 UTC: 87width, 16height, Devices Entry
+2020/10/15 14:59:17:653 UTC: Devices Entry is the caption for which we check width
+2020/10/15 14:59:17:653 UTC: 87 is x width for childrentier2
+2020/10/15 14:59:18:156 UTC: For Maintenance expand menu, clicked at 120 x, 93 y
+2020/10/15 14:59:18:156 UTC: 87width, 16height, Devices Entry
+2020/10/15 14:59:18:157 UTC: Devices Entry is the caption for which we check width
+2020/10/15 14:59:18:157 UTC: 87 is x width for childrentier2
+2020/10/15 14:59:18:157 UTC: 127 is maxwidthtier2
+2020/10/15 14:59:18:660 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2020/10/15 14:59:19:164 UTC: For Maintenance expand menu, clicked at 120 x, 93 y
+2020/10/15 14:59:24:166 UTC: For Devices Entry expand menu, clicked at 357 x, 93 y
+2020/10/15 14:59:24:166 UTC: TCM#03-10-00_n_#TCM-DevicesEntryArea
+2020/10/15 14:59:24:167 UTC: 107width, 16height, Tandem Cold Mill
+2020/10/15 14:59:24:167 UTC: 178width, 16height, Overview - Tandem Cold Mill
+2020/10/15 14:59:24:167 UTC: Overview - Tandem Cold Mill is the caption for which we check width
+2020/10/15 14:59:24:167 UTC: 124width, 16height, Tracking Correction
+2020/10/15 14:59:24:168 UTC: 80width, 16height, Pay Off Reel
+2020/10/15 14:59:24:168 UTC: 82width, 16height, Tension Reel
+2020/10/15 14:59:24:168 UTC: 71width, 16height, Setup Data
+2020/10/15 14:59:24:168 UTC: 104width, 16height, Flatness Control
+2020/10/15 14:59:24:169 UTC: 150width, 16height, Cooling and Lubrication
+2020/10/15 14:59:24:169 UTC: 157width, 16height, Machine Prep. Functions
+2020/10/15 14:59:24:169 UTC: 81width, 16height, Maintenance
+2020/10/15 14:59:24:169 UTC: 178 is x width for childrentier2
+2020/10/15 14:59:24:672 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:29:674 UTC: For Overview - Tandem Cold Mill expand menu, clicked at 231 x, 43 y
+2020/10/15 14:59:29:674 UTC: TCM#01-01-01_n_#TCM-OverviewTCM
+2020/10/15 14:59:30:177 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:35:179 UTC: For Tracking Correction expand menu, clicked at 231 x, 68 y
+2020/10/15 14:59:35:179 UTC: TCM#01-02-00_n_#TCM-OverviewTrackingCorrection
+2020/10/15 14:59:35:683 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:40:684 UTC: For Pay Off Reel expand menu, clicked at 231 x, 93 y
+2020/10/15 14:59:40:684 UTC: TCM#01-03-00_n_#TCM-OverviewPayOffReel
+2020/10/15 14:59:41:191 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:46:197 UTC: For Tension Reel expand menu, clicked at 231 x, 118 y
+2020/10/15 14:59:46:197 UTC: TCM#01-04-00_n_#TCM-OverviewTensionReel
+2020/10/15 14:59:46:702 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:51:707 UTC: For Setup Data expand menu, clicked at 231 x, 143 y
+2020/10/15 14:59:51:708 UTC: TCM#08-02-00_n_#TCM-SetupData
+2020/10/15 14:59:51:708 UTC: 126width, 16height, Flatness Control C1
+2020/10/15 14:59:51:708 UTC: Flatness Control C1 is the caption for which we check width
+2020/10/15 14:59:51:709 UTC: 126width, 16height, Flatness Control C5
+2020/10/15 14:59:51:709 UTC: 126 is x width for childrentier2
+2020/10/15 14:59:52:210 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
+2020/10/15 14:59:52:217 UTC: 126width, 16height, Flatness Control C1
+2020/10/15 14:59:52:217 UTC: Flatness Control C1 is the caption for which we check width
+2020/10/15 14:59:52:217 UTC: 126width, 16height, Flatness Control C5
+2020/10/15 14:59:52:217 UTC: 126 is x width for childrentier2
+2020/10/15 14:59:52:218 UTC: 166 is maxwidthtier2
+2020/10/15 14:59:52:721 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:53:225 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
+2020/10/15 14:59:58:227 UTC: For Flatness Control C1 expand menu, clicked at 449 x, 168 y
+2020/10/15 14:59:58:227 UTC: TCM#24-01-00_w_#TCM-FlatnessControlC1
+2020/10/15 14:59:58:734 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 14:59:59:238 UTC: For Flatness Control expand menu, clicked at 231 x, 168 y
+2020/10/15 15:0:4:245 UTC: For Flatness Control C5 expand menu, clicked at 449 x, 193 y
+2020/10/15 15:0:4:246 UTC: TCM#24-05-00_w_#TCM-FlatnessControlC5
+2020/10/15 15:0:4:248 UTC: 195width, 16height, Cooling and Lubrication C1-C4
+2020/10/15 15:0:4:250 UTC: Cooling and Lubrication C1-C4 is the caption for which we check width
+2020/10/15 15:0:4:252 UTC: 172width, 16height, Cooling and Lubrication C5
+2020/10/15 15:0:4:255 UTC: 195 is x width for childrentier2
+2020/10/15 15:0:4:770 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
+2020/10/15 15:0:4:772 UTC: 195width, 16height, Cooling and Lubrication C1-C4
+2020/10/15 15:0:4:772 UTC: Cooling and Lubrication C1-C4 is the caption for which we check width
+2020/10/15 15:0:4:773 UTC: 172width, 16height, Cooling and Lubrication C5
+2020/10/15 15:0:4:774 UTC: 195 is x width for childrentier2
+2020/10/15 15:0:4:774 UTC: 235 is maxwidthtier2
+2020/10/15 15:0:5:276 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:5:790 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
+2020/10/15 15:0:10:817 UTC: For Cooling and Lubrication C1-C4 expand menu, clicked at 449 x, 193 y
+2020/10/15 15:0:10:819 UTC: TCM#21-01-00_w_#TCM-CoolingLubricationC1-C4
+2020/10/15 15:0:11:329 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:11:839 UTC: For Cooling and Lubrication expand menu, clicked at 231 x, 193 y
+2020/10/15 15:0:16:850 UTC: For Cooling and Lubrication C5 expand menu, clicked at 449 x, 218 y
+2020/10/15 15:0:16:851 UTC: TCM#21-05-00_w_#TCM-CoolingLubricationC5
+2020/10/15 15:0:16:851 UTC: 59width, 16height, Stand C1
+2020/10/15 15:0:16:852 UTC: Stand C1 is the caption for which we check width
+2020/10/15 15:0:16:852 UTC: 59width, 16height, Stand C2
+2020/10/15 15:0:16:852 UTC: 59width, 16height, Stand C3
+2020/10/15 15:0:16:853 UTC: 59width, 16height, Stand C4
+2020/10/15 15:0:16:853 UTC: 59width, 16height, Stand C5
+2020/10/15 15:0:16:854 UTC: 126width, 16height, Deflector Rolls Data
+2020/10/15 15:0:16:855 UTC: Deflector Rolls Data is the caption for which we check width
+2020/10/15 15:0:16:856 UTC: 126 is x width for childrentier2
+2020/10/15 15:0:17:359 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:17:360 UTC: 59width, 16height, Stand C1
+2020/10/15 15:0:17:360 UTC: Stand C1 is the caption for which we check width
+2020/10/15 15:0:17:360 UTC: 59width, 16height, Stand C2
+2020/10/15 15:0:17:360 UTC: 59width, 16height, Stand C3
+2020/10/15 15:0:17:361 UTC: 59width, 16height, Stand C4
+2020/10/15 15:0:17:361 UTC: 59width, 16height, Stand C5
+2020/10/15 15:0:17:361 UTC: 126width, 16height, Deflector Rolls Data
+2020/10/15 15:0:17:361 UTC: Deflector Rolls Data is the caption for which we check width
+2020/10/15 15:0:17:362 UTC: 126 is x width for childrentier2
+2020/10/15 15:0:17:362 UTC: 166 is maxwidthtier2
+2020/10/15 15:0:17:867 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:17:868 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:17:868 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:17:868 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:17:868 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:17:869 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:17:869 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:18:372 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:18:876 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:19:379 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
+2020/10/15 15:0:24:383 UTC: For Calibration expand menu, clicked at 615 x, 218 y
+2020/10/15 15:0:24:384 UTC: TCM#16-01-00_n_#TCM-Calibration
+2020/10/15 15:0:24:384 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:24:384 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:24:385 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:24:385 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:24:385 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:24:385 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:24:386 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:24:887 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:25:395 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:25:898 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
+2020/10/15 15:0:30:900 UTC: For Roll Change expand menu, clicked at 615 x, 243 y
+2020/10/15 15:0:30:900 UTC: TCM#14-01-00_n_#TCM-RollChange
+2020/10/15 15:0:30:901 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:30:901 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:30:901 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:30:901 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:30:902 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:30:902 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:30:902 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:31:405 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:31:908 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:32:412 UTC: For Stand C1 expand menu, clicked at 449 x, 218 y
+2020/10/15 15:0:37:417 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 268 y
+2020/10/15 15:0:37:417 UTC: TCM#08-11-00_n_#TCM-RollData
+2020/10/15 15:0:37:920 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:37:920 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:37:921 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:37:921 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:37:921 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:37:922 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:37:922 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:38:427 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:38:930 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:39:432 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
+2020/10/15 15:0:44:443 UTC: For Calibration expand menu, clicked at 615 x, 243 y
+2020/10/15 15:0:44:444 UTC: TCM#16-02-00_n_#TCM-Calibration
+2020/10/15 15:0:44:444 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:44:444 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:44:444 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:44:445 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:44:445 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:44:445 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:44:445 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:44:949 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:45:453 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:45:956 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
+2020/10/15 15:0:50:961 UTC: For Roll Change expand menu, clicked at 615 x, 268 y
+2020/10/15 15:0:50:961 UTC: TCM#14-02-00_n_#TCM-RollChange
+2020/10/15 15:0:50:962 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:50:962 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:50:962 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:50:962 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:50:963 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:50:963 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:50:963 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:51:466 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:51:970 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:52:474 UTC: For Stand C2 expand menu, clicked at 449 x, 243 y
+2020/10/15 15:0:57:495 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 293 y
+2020/10/15 15:0:57:497 UTC: TCM#08-12-00_n_#TCM-RollData
+2020/10/15 15:0:57:998 UTC: 68width, 16height, Calibration
+2020/10/15 15:0:57:998 UTC: Calibration is the caption for which we check width
+2020/10/15 15:0:57:999 UTC: 78width, 16height, Roll Change
+2020/10/15 15:0:57:999 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:0:57:999 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:0:57:999 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:0:58:0 UTC: 106 is x width for childrentier2
+2020/10/15 15:0:58:504 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:0:59:7 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:0:59:511 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
+2020/10/15 15:1:4:515 UTC: For Calibration expand menu, clicked at 615 x, 268 y
+2020/10/15 15:1:4:516 UTC: TCM#16-03-00_n_#TCM-Calibration
+2020/10/15 15:1:4:516 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:4:516 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:4:517 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:4:517 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:4:517 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:4:518 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:4:518 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:5:22 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:5:526 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:6:30 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
+2020/10/15 15:1:11:36 UTC: For Roll Change expand menu, clicked at 615 x, 293 y
+2020/10/15 15:1:11:36 UTC: TCM#14-03-00_n_#TCM-RollChange
+2020/10/15 15:1:11:37 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:11:37 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:11:37 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:11:37 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:11:38 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:11:38 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:11:38 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:11:541 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:12:45 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:12:548 UTC: For Stand C3 expand menu, clicked at 449 x, 268 y
+2020/10/15 15:1:17:553 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 318 y
+2020/10/15 15:1:17:553 UTC: TCM#08-13-00_n_#TCM-RollData
+2020/10/15 15:1:18:57 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:18:57 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:18:58 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:18:58 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:18:58 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:18:59 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:18:59 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:18:562 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:19:65 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:19:568 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
+2020/10/15 15:1:24:573 UTC: For Calibration expand menu, clicked at 615 x, 293 y
+2020/10/15 15:1:24:573 UTC: TCM#16-04-00_n_#TCM-Calibration
+2020/10/15 15:1:24:574 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:24:574 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:24:574 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:24:574 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:24:575 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:24:575 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:24:575 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:25:79 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:25:583 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:26:86 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
+2020/10/15 15:1:31:88 UTC: For Roll Change expand menu, clicked at 615 x, 318 y
+2020/10/15 15:1:31:88 UTC: TCM#14-04-00_n_#TCM-RollChange
+2020/10/15 15:1:31:89 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:31:89 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:31:89 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:31:90 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:31:90 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:31:91 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:31:91 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:31:592 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:32:95 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:32:603 UTC: For Stand C4 expand menu, clicked at 449 x, 293 y
+2020/10/15 15:1:37:605 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 343 y
+2020/10/15 15:1:37:606 UTC: TCM#08-14-00_n_#TCM-RollData
+2020/10/15 15:1:38:109 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:38:109 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:38:110 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:38:110 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:38:110 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:38:110 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:38:111 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:38:614 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:39:117 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:39:620 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
+2020/10/15 15:1:44:622 UTC: For Calibration expand menu, clicked at 615 x, 318 y
+2020/10/15 15:1:44:622 UTC: TCM#16-05-00_n_#TCM-Calibration
+2020/10/15 15:1:44:622 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:44:623 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:44:623 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:44:623 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:44:624 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:44:624 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:44:624 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:45:128 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:45:631 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:46:134 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
+2020/10/15 15:1:51:138 UTC: For Roll Change expand menu, clicked at 615 x, 343 y
+2020/10/15 15:1:51:138 UTC: TCM#14-05-00_n_#TCM-RollChange
+2020/10/15 15:1:51:139 UTC: 68width, 16height, Calibration
+2020/10/15 15:1:51:139 UTC: Calibration is the caption for which we check width
+2020/10/15 15:1:51:139 UTC: 78width, 16height, Roll Change
+2020/10/15 15:1:51:139 UTC: Roll Change is the caption for which we check width
+2020/10/15 15:1:51:140 UTC: 106width, 16height, Stand Rolls Data
+2020/10/15 15:1:51:140 UTC: Stand Rolls Data is the caption for which we check width
+2020/10/15 15:1:51:140 UTC: 106 is x width for childrentier2
+2020/10/15 15:1:51:644 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:52:147 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:1:52:650 UTC: For Stand C5 expand menu, clicked at 449 x, 318 y
+2020/10/15 15:1:57:655 UTC: For Stand Rolls Data expand menu, clicked at 615 x, 368 y
+2020/10/15 15:1:57:655 UTC: TCM#08-15-00_n_#TCM-RollData
+2020/10/15 15:1:58:158 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:1:58:662 UTC: For Machine Prep. Functions expand menu, clicked at 231 x, 218 y
+2020/10/15 15:2:3:667 UTC: For Deflector Rolls Data expand menu, clicked at 449 x, 343 y
+2020/10/15 15:2:3:667 UTC: TCM#16-06-00_n_#TCM-DeflectorRollData
+2020/10/15 15:2:3:668 UTC: 115width, 16height, Devices Mill Stand
+2020/10/15 15:2:3:668 UTC: Devices Mill Stand is the caption for which we check width
+2020/10/15 15:2:3:668 UTC: 132width, 16height, Devices Roll Change
+2020/10/15 15:2:3:668 UTC: Devices Roll Change is the caption for which we check width
+2020/10/15 15:2:3:669 UTC: 145width, 16height, Devices Plant Logistics
+2020/10/15 15:2:3:669 UTC: Devices Plant Logistics is the caption for which we check width
+2020/10/15 15:2:3:669 UTC: 100width, 16height, Devices Mill Exit
+2020/10/15 15:2:3:669 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/10/15 15:2:3:670 UTC: Devices Plant Access and Safety is the caption for which we check width
+2020/10/15 15:2:3:670 UTC: 143width, 16height, Measurement Systems
+2020/10/15 15:2:3:670 UTC: 206 is x width for childrentier2
+2020/10/15 15:2:4:173 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:4:174 UTC: 115width, 16height, Devices Mill Stand
+2020/10/15 15:2:4:174 UTC: Devices Mill Stand is the caption for which we check width
+2020/10/15 15:2:4:174 UTC: 132width, 16height, Devices Roll Change
+2020/10/15 15:2:4:175 UTC: Devices Roll Change is the caption for which we check width
+2020/10/15 15:2:4:175 UTC: 145width, 16height, Devices Plant Logistics
+2020/10/15 15:2:4:175 UTC: Devices Plant Logistics is the caption for which we check width
+2020/10/15 15:2:4:175 UTC: 100width, 16height, Devices Mill Exit
+2020/10/15 15:2:4:176 UTC: 206width, 16height, Devices Plant Access and Safety
+2020/10/15 15:2:4:176 UTC: Devices Plant Access and Safety is the caption for which we check width
+2020/10/15 15:2:4:176 UTC: 143width, 16height, Measurement Systems
+2020/10/15 15:2:4:177 UTC: 206 is x width for childrentier2
+2020/10/15 15:2:4:177 UTC: 246 is maxwidthtier2
+2020/10/15 15:2:4:682 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:4:683 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:4:683 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:4:683 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:4:684 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:4:684 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:4:684 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:4:684 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:4:685 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:4:685 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:4:685 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:4:685 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:4:686 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:5:189 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:5:695 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:6:202 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:11:208 UTC: For Details Mill Stand C1 expand menu, clicked at 646 x, 243 y
+2020/10/15 15:2:11:208 UTC: TCM#25-22-00_w_#TCM-DetailsMillStandC1
+2020/10/15 15:2:11:209 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:11:209 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:11:209 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:11:210 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:11:210 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:11:210 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:11:211 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:11:211 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:11:211 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:11:211 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:11:212 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:11:212 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:11:212 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:11:715 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:12:219 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:12:722 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:17:727 UTC: For Devices Mill Stand C1 expand menu, clicked at 646 x, 268 y
+2020/10/15 15:2:17:727 UTC: TCM#25-02-00_n_#TCM-DevicesMillStandC1
+2020/10/15 15:2:17:728 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:17:728 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:17:728 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:17:728 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:17:729 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:17:729 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:17:729 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:17:730 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:17:730 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:17:730 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:17:731 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:17:731 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:17:731 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:18:235 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:18:738 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:19:242 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:24:243 UTC: For Details Mill Stand C2 expand menu, clicked at 646 x, 293 y
+2020/10/15 15:2:24:243 UTC: TCM#25-23-00_w_#TCM-DetailsMillStandC2
+2020/10/15 15:2:24:244 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:24:244 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:24:244 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:24:244 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:24:245 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:24:245 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:24:245 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:24:245 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:24:246 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:24:246 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:24:246 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:24:247 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:24:248 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:24:768 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:25:286 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:25:800 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:30:822 UTC: For Devices Mill Stand C2 expand menu, clicked at 646 x, 318 y
+2020/10/15 15:2:30:833 UTC: TCM#25-03-00_n_#TCM-DevicesMillStandC2
+2020/10/15 15:2:30:834 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:30:836 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:30:836 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:30:837 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:30:837 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:30:837 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:30:837 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:30:839 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:30:840 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:30:842 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:30:842 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:30:844 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:30:844 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:31:377 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:31:893 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:32:398 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:37:404 UTC: For Details Mill Stand C3 expand menu, clicked at 646 x, 343 y
+2020/10/15 15:2:37:404 UTC: TCM#25-24-00_w_#TCM-DetailsMillStandC3
+2020/10/15 15:2:37:405 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:37:405 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:37:405 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:37:405 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:37:406 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:37:406 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:37:406 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:37:406 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:37:407 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:37:407 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:37:407 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:37:407 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:37:407 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:37:911 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:38:414 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:38:918 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:43:926 UTC: For Devices Mill Stand C3 expand menu, clicked at 646 x, 368 y
+2020/10/15 15:2:43:927 UTC: TCM#25-04-00_n_#TCM-DevicesMillStandC3
+2020/10/15 15:2:43:927 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:43:928 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:43:928 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:43:928 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:43:929 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:43:929 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:43:929 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:43:929 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:43:930 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:43:930 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:43:930 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:43:930 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:43:930 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:44:435 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:44:938 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:45:442 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:50:447 UTC: For Details Mill Stand C4 expand menu, clicked at 646 x, 393 y
+2020/10/15 15:2:50:447 UTC: TCM#25-25-00_w_#TCM-DetailsMillStandC4
+2020/10/15 15:2:50:448 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:50:448 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:50:448 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:50:448 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:50:449 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:50:449 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:50:449 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:50:450 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:50:450 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:50:451 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:50:451 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:50:452 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:50:453 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:50:956 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:51:459 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:51:963 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:2:56:965 UTC: For Devices Mill Stand C4 expand menu, clicked at 646 x, 418 y
+2020/10/15 15:2:56:965 UTC: TCM#25-05-00_n_#TCM-DevicesMillStandC4
+2020/10/15 15:2:56:966 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:2:56:966 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:56:966 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:2:56:966 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:2:56:966 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:2:56:967 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:2:56:967 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:2:56:967 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:2:56:967 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:2:56:968 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:2:56:968 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:2:56:968 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:2:56:968 UTC: 137 is x width for childrentier2
+2020/10/15 15:2:57:471 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:2:57:972 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:2:58:481 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:3:3:482 UTC: For Details Mill Stand C5 expand menu, clicked at 646 x, 443 y
+2020/10/15 15:3:3:482 UTC: TCM#25-26-00_w_#TCM-DetailsMillStandC5
+2020/10/15 15:3:3:483 UTC: 130width, 16height, Details Mill Stand C1
+2020/10/15 15:3:3:483 UTC: Details Mill Stand C1 is the caption for which we check width
+2020/10/15 15:3:3:483 UTC: 137width, 16height, Devices Mill Stand C1
+2020/10/15 15:3:3:483 UTC: Devices Mill Stand C1 is the caption for which we check width
+2020/10/15 15:3:3:484 UTC: 130width, 16height, Details Mill Stand C2
+2020/10/15 15:3:3:484 UTC: 137width, 16height, Devices Mill Stand C2
+2020/10/15 15:3:3:484 UTC: 130width, 16height, Details Mill Stand C3
+2020/10/15 15:3:3:484 UTC: 137width, 16height, Devices Mill Stand C3
+2020/10/15 15:3:3:485 UTC: 130width, 16height, Details Mill Stand C4
+2020/10/15 15:3:3:485 UTC: 137width, 16height, Devices Mill Stand C4
+2020/10/15 15:3:3:485 UTC: 130width, 16height, Details Mill Stand C5
+2020/10/15 15:3:3:485 UTC: 137width, 16height, Devices Mill Stand C5
+2020/10/15 15:3:3:486 UTC: 137 is x width for childrentier2
+2020/10/15 15:3:3:990 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:4:493 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:4:997 UTC: For Devices Mill Stand expand menu, clicked at 449 x, 243 y
+2020/10/15 15:3:10:3 UTC: For Devices Mill Stand C5 expand menu, clicked at 646 x, 468 y
+2020/10/15 15:3:10:4 UTC: TCM#25-06-00_n_#TCM-DevicesMillStandC5
+2020/10/15 15:3:10:507 UTC: 154width, 16height, Devices Roll Change C1
+2020/10/15 15:3:10:507 UTC: Devices Roll Change C1 is the caption for which we check width
+2020/10/15 15:3:10:508 UTC: 154width, 16height, Devices Roll Change C2
+2020/10/15 15:3:10:508 UTC: 154width, 16height, Devices Roll Change C3
+2020/10/15 15:3:10:508 UTC: 154width, 16height, Devices Roll Change C4
+2020/10/15 15:3:10:509 UTC: 154width, 16height, Devices Roll Change C5
+2020/10/15 15:3:10:509 UTC: 154 is x width for childrentier2
+2020/10/15 15:3:11:13 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:11:516 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:12:20 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
+2020/10/15 15:3:17:25 UTC: For Devices Roll Change C1 expand menu, clicked at 663 x, 268 y
+2020/10/15 15:3:17:26 UTC: TCM#25-07-00_n_#TCM-DevicesRollChangeC1
+2020/10/15 15:3:17:26 UTC: 154width, 16height, Devices Roll Change C1
+2020/10/15 15:3:17:26 UTC: Devices Roll Change C1 is the caption for which we check width
+2020/10/15 15:3:17:27 UTC: 154width, 16height, Devices Roll Change C2
+2020/10/15 15:3:17:27 UTC: 154width, 16height, Devices Roll Change C3
+2020/10/15 15:3:17:27 UTC: 154width, 16height, Devices Roll Change C4
+2020/10/15 15:3:17:27 UTC: 154width, 16height, Devices Roll Change C5
+2020/10/15 15:3:17:28 UTC: 154 is x width for childrentier2
+2020/10/15 15:3:17:529 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:18:37 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:18:540 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
+2020/10/15 15:3:23:545 UTC: For Devices Roll Change C2 expand menu, clicked at 663 x, 293 y
+2020/10/15 15:3:23:545 UTC: TCM#25-08-00_n_#TCM-DevicesRollChangeC2
+2020/10/15 15:3:23:546 UTC: 154width, 16height, Devices Roll Change C1
+2020/10/15 15:3:23:546 UTC: Devices Roll Change C1 is the caption for which we check width
+2020/10/15 15:3:23:546 UTC: 154width, 16height, Devices Roll Change C2
+2020/10/15 15:3:23:546 UTC: 154width, 16height, Devices Roll Change C3
+2020/10/15 15:3:23:547 UTC: 154width, 16height, Devices Roll Change C4
+2020/10/15 15:3:23:547 UTC: 154width, 16height, Devices Roll Change C5
+2020/10/15 15:3:23:547 UTC: 154 is x width for childrentier2
+2020/10/15 15:3:24:50 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:24:553 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:25:57 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
+2020/10/15 15:3:30:62 UTC: For Devices Roll Change C3 expand menu, clicked at 663 x, 318 y
+2020/10/15 15:3:30:62 UTC: TCM#25-09-00_n_#TCM-DevicesRollChangeC3
+2020/10/15 15:3:30:63 UTC: 154width, 16height, Devices Roll Change C1
+2020/10/15 15:3:30:63 UTC: Devices Roll Change C1 is the caption for which we check width
+2020/10/15 15:3:30:63 UTC: 154width, 16height, Devices Roll Change C2
+2020/10/15 15:3:30:64 UTC: 154width, 16height, Devices Roll Change C3
+2020/10/15 15:3:30:64 UTC: 154width, 16height, Devices Roll Change C4
+2020/10/15 15:3:30:64 UTC: 154width, 16height, Devices Roll Change C5
+2020/10/15 15:3:30:64 UTC: 154 is x width for childrentier2
+2020/10/15 15:3:30:569 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:31:72 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:31:576 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
+2020/10/15 15:3:36:577 UTC: For Devices Roll Change C4 expand menu, clicked at 663 x, 343 y
+2020/10/15 15:3:36:577 UTC: TCM#25-10-00_n_#TCM-DevicesRollChangeC4
+2020/10/15 15:3:36:578 UTC: 154width, 16height, Devices Roll Change C1
+2020/10/15 15:3:36:578 UTC: Devices Roll Change C1 is the caption for which we check width
+2020/10/15 15:3:36:578 UTC: 154width, 16height, Devices Roll Change C2
+2020/10/15 15:3:36:578 UTC: 154width, 16height, Devices Roll Change C3
+2020/10/15 15:3:36:579 UTC: 154width, 16height, Devices Roll Change C4
+2020/10/15 15:3:36:579 UTC: 154width, 16height, Devices Roll Change C5
+2020/10/15 15:3:36:579 UTC: 154 is x width for childrentier2
+2020/10/15 15:3:37:83 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:37:586 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:38:89 UTC: For Devices Roll Change expand menu, clicked at 449 x, 268 y
+2020/10/15 15:3:43:95 UTC: For Devices Roll Change C5 expand menu, clicked at 663 x, 368 y
+2020/10/15 15:3:43:95 UTC: TCM#25-11-00_n_#TCM-DevicesRollChangeC5
+2020/10/15 15:3:43:598 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:44:100 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:49:110 UTC: For Devices Plant Logistics expand menu, clicked at 449 x, 293 y
+2020/10/15 15:3:49:110 UTC: TCM#25-13-00_n_#TCM-DevicesPlantLogistics
+2020/10/15 15:3:49:613 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:50:117 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:3:55:122 UTC: For Devices Mill Exit expand menu, clicked at 449 x, 318 y
+2020/10/15 15:3:55:122 UTC: TCM#25-14-00_n_#TCM-DevicesMillExit
+2020/10/15 15:3:55:626 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:3:56:130 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:4:1:147 UTC: For Devices Plant Access and Safety expand menu, clicked at 449 x, 343 y
+2020/10/15 15:4:1:147 UTC: TCM#25-15-00_n_#TCM-DevicesPlantAccessandSafety
+2020/10/15 15:4:1:654 UTC: For Tandem Cold Mill expand menu, clicked at 231 x, 15 y
+2020/10/15 15:4:2:158 UTC: For Maintenance expand menu, clicked at 231 x, 243 y
+2020/10/15 15:4:7:163 UTC: For Measurement Systems expand menu, clicked at 449 x, 368 y
+2020/10/15 15:4:7:163 UTC: TCM#25-16-00_n_#TCM-MeasurementSystems
+2020/10/15 15:4:7:164 UTC: 55width, 16height, Exit Area
+2020/10/15 15:4:7:164 UTC: 186width, 16height, Overview - Coil Transport Exit
+2020/10/15 15:4:7:164 UTC: Overview - Coil Transport Exit is the caption for which we check width
+2020/10/15 15:4:7:164 UTC: 160width, 16height, Overview - Walking Beam
+2020/10/15 15:4:7:165 UTC: 180width, 16height, Overview - Offline Inspection
+2020/10/15 15:4:7:165 UTC: 81width, 16height, Maintenance
+2020/10/15 15:4:7:165 UTC: 186 is x width for childrentier2
+2020/10/15 15:4:7:669 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
+2020/10/15 15:4:12:674 UTC: For Overview - Coil Transport Exit expand menu, clicked at 336 x, 43 y
+2020/10/15 15:4:12:674 UTC: TCM#04-01-00_n_#TCM-OverviewCoilTransportExit
+2020/10/15 15:4:13:177 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
+2020/10/15 15:4:18:183 UTC: For Overview - Walking Beam expand menu, clicked at 336 x, 68 y
+2020/10/15 15:4:18:183 UTC: TCM#04-02-00_n_#TCM-OverviewWalkingBeam
+2020/10/15 15:4:18:685 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
+2020/10/15 15:4:23:704 UTC: For Overview - Offline Inspection expand menu, clicked at 336 x, 93 y
+2020/10/15 15:4:23:704 UTC: TCM#04-03-00_n_#TCM-OverviewOfflineInspection
+2020/10/15 15:4:23:705 UTC: 76width, 16height, Devices Exit
+2020/10/15 15:4:23:705 UTC: Devices Exit is the caption for which we check width
+2020/10/15 15:4:23:705 UTC: 76 is x width for childrentier2
+2020/10/15 15:4:24:209 UTC: For Maintenance expand menu, clicked at 336 x, 118 y
+2020/10/15 15:4:24:209 UTC: 76width, 16height, Devices Exit
+2020/10/15 15:4:24:209 UTC: Devices Exit is the caption for which we check width
+2020/10/15 15:4:24:209 UTC: 76 is x width for childrentier2
+2020/10/15 15:4:24:209 UTC: 116 is maxwidthtier2
+2020/10/15 15:4:24:713 UTC: For Exit Area expand menu, clicked at 336 x, 15 y
+2020/10/15 15:4:25:216 UTC: For Maintenance expand menu, clicked at 336 x, 118 y
+2020/10/15 15:4:30:221 UTC: For Devices Exit expand menu, clicked at 562 x, 118 y
+2020/10/15 15:4:30:222 UTC: TCM#04-04-00_n_#TCM-DevicesExit
+2020/10/15 15:4:30:222 UTC: 46width, 16height, System
+2020/10/15 15:4:30:223 UTC: 77width, 16height, HMI Network
+2020/10/15 15:4:30:223 UTC: HMI Network is the caption for which we check width
+2020/10/15 15:4:30:223 UTC: 108width, 16height, Fieldbus Network
+2020/10/15 15:4:30:223 UTC: Fieldbus Network is the caption for which we check width
+2020/10/15 15:4:30:224 UTC: 112width, 16height, HMI Configuration
+2020/10/15 15:4:30:224 UTC: HMI Configuration is the caption for which we check width
+2020/10/15 15:4:30:224 UTC: 112 is x width for childrentier2
+2020/10/15 15:4:30:728 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:4:35:733 UTC: For HMI Network expand menu, clicked at 411 x, 43 y
+2020/10/15 15:4:35:733 UTC: i8Sys_w_Environment
+2020/10/15 15:4:36:237 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:4:41:242 UTC: For Fieldbus Network expand menu, clicked at 411 x, 68 y
+2020/10/15 15:4:41:242 UTC: i8Sys_w_Environment_Fieldbus_Network
+2020/10/15 15:4:41:242 UTC: 77width, 16height, Node Rights
+2020/10/15 15:4:41:243 UTC: Node Rights is the caption for which we check width
+2020/10/15 15:4:41:243 UTC: 79width, 16height, Connections
+2020/10/15 15:4:41:243 UTC: Connections is the caption for which we check width
+2020/10/15 15:4:41:244 UTC: 70width, 16height, Information
+2020/10/15 15:4:41:244 UTC: 73width, 16height, User Rights
+2020/10/15 15:4:41:244 UTC: 61width, 16height, Database
+2020/10/15 15:4:41:244 UTC: 69width, 16height, Application
+2020/10/15 15:4:41:245 UTC: 86width, 16height, PDL Statistics
+2020/10/15 15:4:41:245 UTC: PDL Statistics is the caption for which we check width
+2020/10/15 15:4:41:245 UTC: 86 is x width for childrentier2
+2020/10/15 15:4:41:750 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:4:41:751 UTC: 77width, 16height, Node Rights
+2020/10/15 15:4:41:751 UTC: Node Rights is the caption for which we check width
+2020/10/15 15:4:41:752 UTC: 79width, 16height, Connections
+2020/10/15 15:4:41:752 UTC: Connections is the caption for which we check width
+2020/10/15 15:4:41:752 UTC: 70width, 16height, Information
+2020/10/15 15:4:41:752 UTC: 73width, 16height, User Rights
+2020/10/15 15:4:41:753 UTC: 61width, 16height, Database
+2020/10/15 15:4:41:753 UTC: 69width, 16height, Application
+2020/10/15 15:4:41:753 UTC: 86width, 16height, PDL Statistics
+2020/10/15 15:4:41:753 UTC: PDL Statistics is the caption for which we check width
+2020/10/15 15:4:41:754 UTC: 86 is x width for childrentier2
+2020/10/15 15:4:41:754 UTC: 126 is maxwidthtier2
+2020/10/15 15:4:42:258 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:4:42:779 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:4:47:821 UTC: For Node Rights expand menu, clicked at 563 x, 93 y
+2020/10/15 15:4:47:822 UTC: i8Sys_w_NodeRights
+2020/10/15 15:4:48:331 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:4:48:841 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:4:53:849 UTC: For Connections expand menu, clicked at 563 x, 118 y
+2020/10/15 15:4:53:849 UTC: i8App_n_Connections
+2020/10/15 15:4:54:353 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:4:54:857 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:4:59:859 UTC: For Information expand menu, clicked at 563 x, 143 y
+2020/10/15 15:4:59:859 UTC: i8Sys_n_Information
+2020/10/15 15:5:0:363 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:5:0:866 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:5:5:872 UTC: For User Rights expand menu, clicked at 563 x, 168 y
+2020/10/15 15:5:5:872 UTC: i8Sys_w_UserRights
+2020/10/15 15:5:6:374 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:5:6:877 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:5:11:879 UTC: For Database expand menu, clicked at 563 x, 193 y
+2020/10/15 15:5:11:879 UTC: i8Sys_n_Database
+2020/10/15 15:5:12:382 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:5:12:887 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:5:17:891 UTC: For Application expand menu, clicked at 563 x, 218 y
+2020/10/15 15:5:17:891 UTC: i8Sys_n_Application
+2020/10/15 15:5:18:395 UTC: For System expand menu, clicked at 411 x, 15 y
+2020/10/15 15:5:18:899 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
+2020/10/15 15:5:23:903 UTC: For PDL Statistics expand menu, clicked at 563 x, 243 y
+2020/10/15 15:5:23:904 UTC: i8Sys_n_PdlStatistics
