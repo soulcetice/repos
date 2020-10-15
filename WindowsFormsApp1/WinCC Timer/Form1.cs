@@ -18,6 +18,7 @@ using System.Threading;
 using System.Management;
 using System.Dynamic;
 
+
 namespace WinCC_Timer
 {
     public partial class Form1 : Form
@@ -344,19 +345,32 @@ namespace WinCC_Timer
 
         private static void ManipulateWinCCPrograms()
         {
+            #region grafexe
             grafexe.Application g = new grafexe.Application();
+
             var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
             var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+
             g.DisableVBAEvents = false;
+
             var myobjects = grf.HMIObjects.Find("HMIRectangle");
             var count = myobjects.Count;
 
+            grafexe.HMIObjects objs = grf.HMIObjects;
+            foreach (grafexe.HMIObject obj in objs)
+            {
+                var t = obj.ObjectName;
+            }
+            #endregion
+
+            #region runtime
             CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            #endregion
 
-            var chn = new CCChnDiagX.CCChnDiag();
-
+            #region configStudio
             var tag = new CCConfigStudio.Application();
-
+            tag.Editors[1].FileOpen("");
+            #endregion
         }
 
         private bool GetProcessCPUUsage(string process)
@@ -390,12 +404,12 @@ namespace WinCC_Timer
                 Thread.Sleep(100);
             }
 
-            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes);
-
             for (int i = 0; i < perc.Count; i++)
             {
                 LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
             }
+
+            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes);
 
             return true;
         }
@@ -414,24 +428,32 @@ namespace WinCC_Timer
                 });
             }
 
-
-
-            var pagesNavigated = atPagesList.Distinct();
-            foreach (var p in pagesNavigated)
+            var pagesNavigated = atPagesList.Distinct().ToList();
+            foreach (string p in pagesNavigated)
             {
                 //List<PageCpuTime> currentPageData = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
-                var currentPageData = new List<PageCpuTime>();
-                var tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
-                for (int i = 0; i < tempList.Count - 1; i++)
+                List<PageCpuTime> currentPageData = new List<PageCpuTime>();
+                List<PageCpuTime> tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
+
+                float maxInTemp = tempList.Select(c => c.cpu).Max();
+                int indexMax = tempList.Select(c => c.cpu).ToList().IndexOf(maxInTemp);
+
+                for (int i = 0; i < indexMax; i++) //add all until max peak
                 {
-                    if (tempList[i].cpu == 0 && tempList[i + 1].cpu == 0 && i > tempList.Count / 3)
+                    currentPageData.Add(tempList[i]);
+                }
+                for (int i = indexMax; i < tempList.Count; i++) //then find first zero after max peak
+                {
+                    if (tempList[i].cpu == 0)
                     {
-                        break; //get out of the loop
+                        break; //get out of the loop at first break in cpu calculations
                     }
                     currentPageData.Add(tempList[i]);
                 }
-                var largeCpuUsages = currentPageData.Where(c => c.cpu > 40).ToList();
-                double loadingTime = (largeCpuUsages.LastOrDefault().timestamp - currentPageData.FirstOrDefault().timestamp).TotalMilliseconds;
+
+
+                //List<PageCpuTime> largeCpuUsages = currentPageData.Where(c => c.cpu > 40).ToList();
+                double loadingTime = (currentPageData.LastOrDefault().timestamp - currentPageData.FirstOrDefault().timestamp).TotalMilliseconds;
 
                 PageLoadTimes.Add(new PageTime()
                 {
@@ -439,7 +461,7 @@ namespace WinCC_Timer
                     page = p
                 });
 
-                LogToFile(PageLoadTimes.Last().page + "," + PageLoadTimes.Last().load + " ms," + largeCpuUsages.LastOrDefault().timestamp + ", " + currentPageData.FirstOrDefault().timestamp + ", " + largeCpuUsages.LastOrDefault().cpu + ", " + currentPageData.FirstOrDefault().cpu, timerLogName);
+                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms," + currentPageData.LastOrDefault().timestamp + ", " + currentPageData.FirstOrDefault().timestamp + ", " + currentPageData.LastOrDefault().cpu + ", " + currentPageData.FirstOrDefault().cpu, timerLogName);
             }
         }
 
