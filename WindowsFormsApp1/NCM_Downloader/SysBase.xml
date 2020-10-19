@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+SMS@group HMI configuration file: Sysbase.xml
+	Section GeneralDate:
+			contains static data which doesn't will appear in the runtime
+				<ProjectName>MyProject</ProjectName>
+				<Author>HEUS</Author>
+	Section	Clusters:
+			is a language related mapping structure for the used server prefix names into a clear description
+			<Cluster name="SMSD_A01::">
+			Values:
+			name = is the used server package name
+				<LCID{Languagecode}>
+					<title>{Description}</title>
+				</LCID{Languagecode}>					
+				Values:
+				{Languagecode}	= is the used LCID code (en=1033)
+				{Description}	= the text you like to print out instead of the package name
+				For each used language inside your WinCC project you must add this section <LCDID...> </LCDID...>
+			</Cluster>
+	Section Nodes:
+			holds for every HMI related station a set of this structure <node> </node>
+			<Node name="E7H055391" id="30" hmitype="1" devtype="0">
+			Values:
+			name	= the netbios name, unique in the system
+			id		= id for the node, unique in the system range for native solution 1-64; mapped versions 1-32
+			hmitype	= type of station; 1 = desktop (pulpit client; 2 = local panel; 3 = multiple/mobile device (only one per configuration)
+			devtype	= pointing device 0 = mouse; 1 = touch 
+				
+				Subsection LCID{Languagecode}; language text information of station
+				<LCID{Languagecode}>
+					<plant>HMI-2015 Demo Project #Version 3.3</plant>
+					<title>Unit1</title>
+				</LCID{Languagecode}>
+				Values:
+				{Languagecode}	= is the used LCID code (en=1033)
+				plant			= description, inside the welcome screen
+				title			= description of the local node
+				For each used language inside your WinCC project you must add this section <LCID...> </LCID...>
+				
+				Subsection Authors: list of possible authorizations you can reach on this node
+				<Authors>
+					<Hit func="101" token="0"/>
+					<Hit func="102" token="0"/>
+					<Hit func="103" token="0"/>
+					<Hit func="104" token="0"/>
+					<Hit func="110" token="0"/>
+					Values:
+					func	= authorization number from the WinCC user administration
+					token	= option (future)
+				</Authors>
+
+				Subsection Areas: screens (mulit-screen) for this node
+				<Areas>
+					<Area id="1" menu="101" pinfo="MyPlant_o_Unit1" almsql="CLASS IN(1) AND TYPE IN(1, 2, 3)" basepdl="i8Int_n_DataClass1" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+					Values:
+					id		= screen instance number 1 or 2, each screen earns an own section <area> </area>
+					menu	= assigned menu ref key for this node; after startup & login you should get it
+					pinfo	= binded orderdata screen, this is here also the "home area"
+					almsql	= any alarm query for this area, screen
+					basepdl	= the home screen, or the first which will be opened after the login procedure 
+					helpURL	= the help URL path information; when you are using the HTML version, this is the target
+
+					<Area id="1" menu="101" pinfo="MyPlant_o_Unit1" almsql="linked" basepdl="i8Int_n_DataClass1" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm">
+						<AlmNode name="SMSD_A01::" default="*" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)"/>
+						<AlmNode name="SMSD_A02::" default="" almsql="CLASS IN(1) AND TYPE IN(2)"/>
+					</Area>
+					When you have a multi client, you should extend your alarm section like shown inside the <area> </area> section with 
+					<AlmNode> </AlmNode>;
+					Values:
+					name = package name of the alarm server
+					default = any character makes this node to the default one; only one should be used as default
+					almsql = the specific sql statement 
+				</Areas>
+
+				Subsection Tags: list of tags, will be written during startup
+				<Tags>
+					<Tag name="#DskTop.ConfHelpSrc" value="0"/>
+				</Tags>
+				Values:
+				name 	= name of the tag, can be also a prefixed one
+				value 	= value what can be a integer, float or text. when float use "2.3"
+			</Node>  
+--> 
+<Config>
+	<GeneralData>
+		<ProjectName>Tandem Cold Mill</ProjectName>
+		<Author>HEUS</Author>
+	</GeneralData>
+	<Clusters>
+		<Cluster name="SMS_TCM::">
+			<LCID1033>
+				<title>SMS_TCM::</title>
+			</LCID1033>
+		</Cluster>
+	</Clusters>
+	<Nodes>
+		<Node name="TCMHMID01" id="60" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Engineering Station</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIS01" id="61" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Server 1</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC01" id="1" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Mill Stand 1</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC02" id="2" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Mill Stand 2</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC03" id="3" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Mill Stand 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC04" id="4" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Mill Stand 4</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC05" id="5" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Mill Stand 5</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC06" id="6" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Hydraulic System</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC07" id="7" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Emulsion System</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC08" id="8" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Preparation Station</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC09" id="9" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Exit Area</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC10" id="10" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 1</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC11" id="11" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 2</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC12" id="12" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+		<Node name="TCMHMIC13" id="13" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node> 
+		<Node name="TCMHMIC14" id="14" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC15" id="15" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC16" id="16" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC17" id="17" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC18" id="18" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC19" id="19" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>
+		<Node name="TCMHMIC20" id="20" hmitype="1" devtype="0">
+			<LCID1033>
+				<plant>SDI Buffalo Tandem Cold Mill</plant>
+				<title>Main Pulpit 3</title>
+			</LCID1033>
+			<Authors>
+	  			  <Hit func="120" token="0"/>
+				  <Hit func="220" token="0"/>
+ 	    			  <Hit func="221" token="0"/>
+	    			  <Hit func="222" token="0"/>
+ 	    			  <Hit func="230" token="0"/>
+ 	    			  <Hit func="231" token="0"/>
+	    			  <Hit func="232" token="0"/>
+ 	    			  <Hit func="290" token="0"/>
+	    			  <Hit func="291" token="0"/>
+      	    			  <Hit func="299" token="0"/>	
+			</Authors>
+			<Areas>
+				<Area id="1" menu="1" pinfo="TCM#00-01-00_o_#TCM" almsql="CLASS IN(1,16) AND TYPE IN(1, 2, 3)" basepdl="@sms_w_Alarmlist" helpURL="\TEXTBIB\Help\HMI help\HMI help_Color code.htm"/>
+			</Areas>
+			<Tags>
+           		 	<Tag name="#User.Name" value="SDI-Buffalo"/>
+            			<Tag name="#User.Passwort" value="A02460"/>
+            			<Tag name="#DskTop.ConfHelpSrc" value="1"/>
+			</Tags>
+		</Node>  
+  	</Nodes>
+</Config>

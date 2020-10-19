@@ -541,5 +541,36 @@ namespace WinCC_Timer
             Console.ReadLine();
         }
         #endregion
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            var filePath = @"C:\Program Files (x86)\Siemens\WinCC\bin\Reset_WinCC.vbs";
+            var remoteScriptCommand = @"Invoke-Command -ComputerName Server01, Server02 -FilePath " + filePath;
+
+            //RESET WINCC REMOTELY - DELETE FILES - START RUNTIME - FOR ALL AT THE SAME TIME INVOKE C#
+
+            #region reset_wincc
+            ////powershell command below runs exe with parameter (button press)
+            //$acommand = '"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe"'
+            //Start-Process $acommand "-terminate"
+            #endregion
+
+            #region delete_files
+            var v = new FileSystemWatcher();
+            
+            #endregion
+
+            #region start_runtime
+            //"C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe" C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.mcp /Activ:yes /LANG=ENU /EnableBreak:no"
+            //run this batch remotely
+            #endregion
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            rt.Stop();
+        }
     }
 }

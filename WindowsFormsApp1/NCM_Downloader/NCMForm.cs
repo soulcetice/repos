@@ -21,11 +21,7 @@ namespace AutomateDownloader
     class NCMForm : Form
     {
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox firstClientIndexBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.TextBox numClTextBox;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox pathTextBox;
         private System.Windows.Forms.TextBox ipTextBox;
         private System.Windows.Forms.TextBox unTextBox;
@@ -37,7 +33,6 @@ namespace AutomateDownloader
         private System.Windows.Forms.GroupBox rdpBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.TextBox heightBox;
         private System.Windows.Forms.TextBox widthBox;
@@ -50,6 +45,10 @@ namespace AutomateDownloader
         private TextBox textBox1;
         private TextBox textBox2;
         private GroupBox groupBox1;
+        private Label label1;
+        private TextBox firstClientIndexBox;
+        private TextBox numClTextBox;
+        private Label label5;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -565,8 +564,7 @@ namespace AutomateDownloader
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
-            statusLabel.Text = "Progress: ";
+            statusLabel.Text = "";
             //
             // check inputs
             //
@@ -598,7 +596,7 @@ namespace AutomateDownloader
 
         private void DownloadProcess()
         {
-            int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
+            //int clientProg = progressBar1.Maximum / checkedListBox1.CheckedIndices.Count;
             // init logFile
             //
             LogToFile("Started actions ******************************************");
@@ -670,6 +668,8 @@ namespace AutomateDownloader
                     DownloadToCurrentIndex(clientIndex, ncmHandle);
 
                     LogToFile("Attempting download to client " + clientName);
+                    statusLabel.Text = "Downloading to " + clientName + "...";
+                    statusLabel.Refresh();
 
 
                     var started = DateTime.Now;
@@ -840,8 +840,9 @@ namespace AutomateDownloader
                             CloseRemoteSession(myIp);
                         }
 
-                        progressBar1.Value = clientProg * (i + 1);
-                        statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+                        //progressBar1.Value = clientProg * (i + 1);
+                        //statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
+                        //statusLabel.Text = "Progress: " + clientName;
                         var ended = DateTime.Now;
                         var secElapsed = Math.Round((ended - started).TotalSeconds, 2);
                         LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() +
@@ -851,7 +852,7 @@ namespace AutomateDownloader
                         //int currentElapsed = Convert.ToInt32(label9.Text.Split(Convert.ToChar("~"))[1]);
                         //label9.Text = "Remaining [s]: ~" + (currentElapsed - 100).ToString();
                         label9.Refresh();
-                        progressBar1.Refresh();
+                        //progressBar1.Refresh();
                         statusLabel.Refresh();
                     }
                     else
@@ -1110,12 +1111,8 @@ namespace AutomateDownloader
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NCMForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.firstClientIndexBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.numClTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.pathTextBox = new System.Windows.Forms.TextBox();
             this.ipTextBox = new System.Windows.Forms.TextBox();
             this.unTextBox = new System.Windows.Forms.TextBox();
@@ -1133,45 +1130,27 @@ namespace AutomateDownloader
             this.widthBox = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.firstClientIndexBox = new System.Windows.Forms.TextBox();
+            this.numClTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-71, 87);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Clients start index:";
-            this.label1.Visible = false;
-            // 
-            // firstClientIndexBox
-            // 
-            this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(29, 84);
-            this.firstClientIndexBox.Name = "firstClientIndexBox";
-            this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
-            this.firstClientIndexBox.TabIndex = 1;
-            this.firstClientIndexBox.Text = "3";
-            this.firstClientIndexBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.firstClientIndexBox.Visible = false;
             // 
             // button1
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(12, 348);
+            this.button1.Location = new System.Drawing.Point(12, 401);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 23);
+            this.button1.Size = new System.Drawing.Size(301, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Download to selected NCM Clients";
             this.button1.UseVisualStyleBackColor = true;
@@ -1186,27 +1165,6 @@ namespace AutomateDownloader
             this.checkedListBox1.Size = new System.Drawing.Size(244, 139);
             this.checkedListBox1.TabIndex = 8;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            // 
-            // numClTextBox
-            // 
-            this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(29, 113);
-            this.numClTextBox.Name = "numClTextBox";
-            this.numClTextBox.Size = new System.Drawing.Size(28, 20);
-            this.numClTextBox.TabIndex = 9;
-            this.numClTextBox.Text = "4";
-            this.numClTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numClTextBox.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-71, 116);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Number of clients:";
-            this.label5.Visible = false;
             // 
             // pathTextBox
             // 
@@ -1375,22 +1333,15 @@ namespace AutomateDownloader
             this.label6.TabIndex = 21;
             this.label6.Text = "NCMPath";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(13, 377);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(299, 13);
-            this.progressBar1.TabIndex = 22;
-            // 
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.Location = new System.Drawing.Point(9, 399);
+            this.statusLabel.Location = new System.Drawing.Point(11, 430);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(68, 13);
+            this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
-            this.statusLabel.Text = "Progress: 0%";
+            this.statusLabel.Text = "Ready";
             // 
             // label9
             // 
@@ -1432,20 +1383,61 @@ namespace AutomateDownloader
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 415);
+            this.groupBox1.Location = new System.Drawing.Point(12, 348);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 51);
+            this.groupBox1.Size = new System.Drawing.Size(300, 47);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Process Control";
+            this.groupBox1.Text = "Process Control Test";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(-71, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Clients start index:";
+            this.label1.Visible = false;
+            // 
+            // firstClientIndexBox
+            // 
+            this.firstClientIndexBox.Enabled = false;
+            this.firstClientIndexBox.Location = new System.Drawing.Point(29, 65);
+            this.firstClientIndexBox.Name = "firstClientIndexBox";
+            this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
+            this.firstClientIndexBox.TabIndex = 1;
+            this.firstClientIndexBox.Text = "3";
+            this.firstClientIndexBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.firstClientIndexBox.Visible = false;
+            // 
+            // numClTextBox
+            // 
+            this.numClTextBox.Enabled = false;
+            this.numClTextBox.Location = new System.Drawing.Point(29, 94);
+            this.numClTextBox.Name = "numClTextBox";
+            this.numClTextBox.Size = new System.Drawing.Size(28, 20);
+            this.numClTextBox.TabIndex = 9;
+            this.numClTextBox.Text = "4";
+            this.numClTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numClTextBox.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(-71, 97);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Number of clients:";
+            this.label5.Visible = false;
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 474);
+            this.ClientSize = new System.Drawing.Size(327, 451);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.rdpCheckBox);
             this.Controls.Add(this.label2);
@@ -1465,6 +1457,7 @@ namespace AutomateDownloader
             this.Name = "NCMForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "NCM Manager Automation";
+            this.TopMost = true;
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
