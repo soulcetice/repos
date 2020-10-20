@@ -121,6 +121,15 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="CCHMIRTGRAPHICS">
+      <Guid>{3A0F86F7-643C-4E1B-B0AF-9766B1DB89C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="CCHMIRUNTIME">
       <Guid>{1BB46049-5331-4AC5-B09B-194199F07FA6}</Guid>
       <VersionMajor>1</VersionMajor>

@@ -348,6 +348,7 @@ namespace WinCC_Timer
             #region grafexe
             grafexe.Application g = new grafexe.Application();
 
+
             var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
             var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
 
@@ -569,8 +570,16 @@ namespace WinCC_Timer
 
         private void button4_Click(object sender, EventArgs e)
         {
-            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
-            rt.Stop();
+            //inject stop runtime executable to remote station
+            //execute stop runtime
+            //reset wincc 
+            //delete remote data
+            //copy data to remote
+            //autostart batch file
+            //done
+
+            //CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            //rt.Stop();
         }
     }
 }

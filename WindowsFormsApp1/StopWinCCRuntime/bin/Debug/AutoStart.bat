@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe" C:\Project\spm_clt\SPM_CLT.mcp /Activ:yes /LANG=ENU /EnableBreak:no

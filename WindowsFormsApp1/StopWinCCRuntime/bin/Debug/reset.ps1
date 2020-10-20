@@ -1,0 +1,1 @@
+﻿Start-Process '"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe"' "-terminate"
