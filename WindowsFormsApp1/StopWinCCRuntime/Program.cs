@@ -12,7 +12,6 @@ namespace StopWinCCRuntime
         {
             CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
             rt.Stop();
-            
 
             //System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe", "-terminate"); //not working uac
         }

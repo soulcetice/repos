@@ -15,6 +15,7 @@ using System.Management.Automation;
 using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
 using System.Linq.Expressions;
+using System.Security;
 
 namespace AutomateDownloader
 {
@@ -49,6 +50,13 @@ namespace AutomateDownloader
         private TextBox firstClientIndexBox;
         private TextBox numClTextBox;
         private Label label5;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Button button8;
+        private GroupBox groupBox2;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -1140,8 +1148,16 @@ namespace AutomateDownloader
             this.firstClientIndexBox = new System.Windows.Forms.TextBox();
             this.numClTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -1150,9 +1166,9 @@ namespace AutomateDownloader
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Location = new System.Drawing.Point(12, 401);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(301, 23);
+            this.button1.Size = new System.Drawing.Size(80, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Download to selected NCM Clients";
+            this.button1.Text = "Download";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // checkedListBox1
@@ -1197,8 +1213,11 @@ namespace AutomateDownloader
             // 
             this.passTextBox.Location = new System.Drawing.Point(56, 45);
             this.passTextBox.Name = "passTextBox";
+            this.passTextBox.PasswordChar = '*';
             this.passTextBox.Size = new System.Drawing.Size(238, 20);
             this.passTextBox.TabIndex = 14;
+            this.passTextBox.Text = "A02460";
+            this.passTextBox.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -1432,9 +1451,86 @@ namespace AutomateDownloader
             this.label5.Text = "Number of clients:";
             this.label5.Visible = false;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(114, 19);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Kill CC Procs";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 19);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 30;
+            this.button4.Text = "Stop RT";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(213, 19);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 31;
+            this.button5.Text = "Start RT";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(6, 48);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 32;
+            this.button6.Text = "Delete Remote";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(114, 48);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 33;
+            this.button7.Text = "CopyBack";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(213, 48);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 34;
+            this.button8.Text = "All";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button8);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Location = new System.Drawing.Point(12, 446);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(294, 77);
+            this.groupBox2.TabIndex = 35;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "New";
+            // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(327, 451);
+            this.ClientSize = new System.Drawing.Size(323, 530);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.statusLabel);
@@ -1462,6 +1558,7 @@ namespace AutomateDownloader
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1501,7 +1598,6 @@ namespace AutomateDownloader
         {
             var id = textBox1.Text;
             KillProcessViaPowershellOnMachine(id, textBox2.Text);
-
         }
 
         private void KillTaskInRDP(string ip, string processName)
@@ -1559,6 +1655,7 @@ namespace AutomateDownloader
             finally
             {
                 //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
+                //kill these:
                 try
                 {
                     Runspace runSpace = RunspaceFactory.CreateRunspace();
@@ -1582,12 +1679,14 @@ namespace AutomateDownloader
                 catch (Exception e)
                 {
                     LogToFile(e.Message + " at kill process");
-                } finally
+                }
+                finally
                 {
                     LogToFile("could not kill process");
                 }
             }
         }
+        
         private void AddToTrustedHosts(string machine)
         {
             //RunPowershellCommand(machine);
@@ -1667,6 +1766,403 @@ namespace AutomateDownloader
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private List<string> processes = new List<string>
+            {
+                //"CCAgent",
+                //"CCDBUtils",
+                //"CCEClient_x64",
+                //"CCEServer_x64",
+                //"CCProjectMgr",
+                //"CCRemoteService",
+                //"CCPackageMgr",
+                //"CCUCSurrogate",
+                //"CCPerfMon",
+                //"CCDeltaLoader",
+                //"CCLicenseService",
+                //"CCOnScreenKeyboard",
+                //"CCNSInfo2Provider",
+                //"script",
+                //"SDiagRT",
+                //"RedundancyState",
+                //"PassDBRT"
+
+                "apdiag",
+                "asosheartbeatx",
+                "AutoStartRT",
+                "BildAnw",
+                "CAArchiveManagerBackupCopyX",
+                "CADeleteWinCCMessageQueueing",
+                "CAReportMergerX",
+                "CC_DPSRV",
+                "CC_MShh",
+                "ccaeprovider",
+                "CCAgent.exe",
+                "CCAlgIAlarmDataCollector",
+                "CCAlgIAlarmDataProxyServer",
+                "CcAlgRtServer",
+                "CCArchiveConnMon",
+                "CCArchiveManager",
+                "CCAuthorInformation",
+                "CCAuditProviderSrv.exe",
+                "CCAuditTrailServer.exe",
+                "CCAuditViewer",
+                "CCAuditDCV",
+                "CCClientAPIs",
+                "CCCloudConnect",
+                "CCConfigServerMemory",
+                "CCConfigStudio",
+                "CCConfigStudio_x64",
+                "CCCSigRTServer",
+                "CCDBUtils.exe",
+                "CCDeltaLoader",
+                "CCDiagnosisView",
+                "CCDiagRTServer",
+                "CCDMClientHelper",
+                "CCDmIVarProxyServer",
+                "CCDmRtChannelHost",
+                "CCDmRuntimePersistence",
+                "CCEClient_x64",
+                "CCEClient",
+                "CCEmergencyWatchRTServer",
+                "CCEServer_x64",
+                "CCEServer",
+                "CCLBMRTServer",
+                "CCLicenseService",
+                "CCMcpAutServer",
+                "CCMigrator",
+                "CCNSInfo2Provider",
+                "CCOnlCmp",
+                "CCOPCConfigPerm",
+                "CCPackageMgr",
+                "CCPerfMon",
+                "CcPJob",
+                "CCProfileServer" ,
+                "CCProgressDlg",
+                "CCProjectDuplicator",
+                "CCProjectMgr",
+                "CCPtmRTServer",
+                "CCRedCodi",
+                "CCRedundancyAgent",
+                "CCRemoteService.exe",
+                "CCRtsLoader",
+                "CCRtsLoader_x64",
+                "CCRunDTSPackage",
+                "CCRunRedCodiCS",
+                "CCScriptEditor",
+                "CCSplash",
+                "CCSsmRTServer",
+                "CCSyncAgent",
+                "CCSystemDiagnosticsHost",
+                "CCSysTray",
+                "CCSysTrayProxy",
+                "CCTextDistributor",
+                "CCTextServer",
+                "CCTlgArchiveClient",
+                "CCTlgServer",
+                "CCTMConfiguration",
+                "CCTMTimeSync",
+                "CCTMTimeSyncServer",
+                "CCTMTimeSyncServerV5",
+                "CCTMTimeSyncV5",
+                "CCTTRTServer",
+                "CCTxtProxy",
+                "CCUAEditor",
+                "CCUAIUABasicProxyServer",
+                "CCUAIUABasicStubServer",
+                "CCUASetupDCOM",
+                "CCUCSurrogate",
+                "CCUsrAcv",
+                "CCWinCCMTEditor",
+                "CCWinCCStart",
+                "CCWriteArchiveServer",
+                "CCXREF.Presentation.Editor",
+                "ChannelWrapperCS",
+                "DdeServ",
+                "DiagServ",
+                "Grafexe",
+                "gsccs",
+                "gscrt",
+                "HMRT",
+                "HornCS",
+                "imserverx",
+                "LBMS",
+                "MessageCorrectorx",
+                "MSCS",
+                "OPCTags",
+                "OpcUaServerWinCC.exe",
+                "osltmhandlerx",
+                "osstatemachinex",
+                "PassCS",
+                "PassDBRT",
+                "PassReg",
+                "PDLCSApiTest",
+                "PdlRT",
+                "PdlServ",
+                "Print1",
+                "PrintIt",
+                "Projecteditor",
+                "ProtCS",
+                "PrtScr",
+                "PTMCS",
+                "RebootX",
+                "Rd1CS",
+                "RedundancyControl",
+                "RedundancyState",
+                "RptRT",
+                "s7asysvx",
+                "s7aversx",
+                "s7dosTraceControlPanelx",
+                "s7oiehsx" ,
+                "s7otbxsx" ,
+                "s7sninsx",
+                "S7TraceServiceX.exe",
+                "s7tgtopx",
+                "s7ubTstx",
+                "sfcrt",
+                "SAMExportToolx",
+                "script",
+                "SCSDialogX",
+                "SCSDistServiceX.exe",
+                "SCSFsX",
+                "SCSMonitor",
+                "SCSMX.exe",
+                "SDiagRT",
+                "setupdcom",
+                "Siemens.Automation.FrameApplicationLoader",
+                "Siemens.Automation.ObjectFrame.FileStorage.Server",
+                "Siemens.Automation.Portal",
+                "sn_cp1612",
+                "ssc_visual",
+                "SSMSettings",
+                "TagAnw",
+                "textbib",
+                "TextLibrary",
+                "TlgCS",
+                "TouchInputPC",
+                "TrendOnl",
+                "trv",
+                "TTEdit",
+                "WebNavigatorRT",
+                "WinCCChnDiag",
+                "WinCCExplorer",
+                "WinCCWebLicense",
+                "LBMCS",
+                "CCOnScreenKeyboard",
+                "CCCAPHServer",
+                "CalendarAccessProvider.exe",
+                "WinCC_Calendar_Server",
+                "WinCC_Calendar_Viewer",
+                "PlantIntelligenceService.exe",
+                "PMNSInfo2Provider",
+                "CCSESRTSrv",
+                "GfxRTS",
+                "CCKeyboardHook",
+                "CCProjectMgr.exe"
+            };
+
+        private List<string> rebootProcesses = new List<string>
+            {
+                "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
+                "SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
+                "CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
+                "S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
+                "CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
+                "CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
+                "OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
+                "CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
+                "CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
+                "CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
+                "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
+                "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
+            };
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //var processFile = new FileInfo(Application.StartupPath + "\\CCCleaner.xml");
+            //var read = processFile.OpenText();
+
+            var machine = "SpmHmiC08";
+            ResetWinCCProcesses(machine);
+        }
+
+        private void NewDownload()
+        {
+            foreach (var m in checkedListBox1.CheckedItems)
+            {
+                var name = m.ToString();
+                var myIp = ipList.Where(x => x.Contains(m.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+
+                StopWinCCRuntime(name);
+                ResetWinCCProcesses(name);
+                DeleteOldProjectFolder(name);
+                CopyNewProjectFolder(name);
+                OpenRemoteSession(myIp, unTextBox.Text, passTextBox.Text);
+                StartWinCCRuntime(name);
+                CloseRemoteSession(myIp);
+            }
+        }
+
+        public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        {
+            foreach (DirectoryInfo dir in source.GetDirectories())
+                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+            foreach (FileInfo file in source.GetFiles())
+                file.CopyTo(Path.Combine(target.FullName, file.Name));
+        }
+
+        private void ResetWinCCProcesses(string machine)
+        {
+            foreach (var process in processes)
+            {
+                try
+                {
+                    var action = "Stop-Process -Force";
+                    if (rebootProcesses.Contains(process))
+                    {
+                        action = "Restart-Service";
+                    }
+
+                    Runspace runSpace = RunspaceFactory.CreateRunspace();
+                    runSpace.Open();
+                    Pipeline pipeline = runSpace.CreatePipeline();
+
+                    Command invokeScript = new Command("Invoke-Command");
+                    RunspaceInvoke invoke = new RunspaceInvoke();
+                    //Invoke-Command -scriptBlock
+                    ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | " + action + "}")[0].BaseObject as ScriptBlock;
+                    invokeScript.Parameters.Add("computername", machine);
+                    invokeScript.Parameters.Add("scriptBlock", sb);
+
+                    pipeline.Commands.Add(invokeScript);
+                    Collection<PSObject> output = pipeline.Invoke();
+                    foreach (PSObject obj in output)
+                    {
+                        LogToFile(obj.ToString());
+                    }
+                }
+                catch (Exception exc)
+                {
+                    LogToFile(exc.Message + " at kill " + process);
+                }
+                finally
+                {
+                    LogToFile("could not kill " + process);
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var machine = "SpmHmiC08";
+            StopWinCCRuntime(machine);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var machine = "SpmHmiC08";
+            StartWinCCRuntime(machine);
+        }
+
+        private void StartWinCCRuntime(string machine)
+        {
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+
+            //Invoke-Command -scriptBlock
+            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\AutoStart.bat'""}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("ComputerName", machine);
+            invokeScript.Parameters.Add("Credential", cred);
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+        }
+
+        private void StopWinCCRuntime(string machine)
+        {
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+
+            //Invoke-Command -scriptBlock
+            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe'""}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("ComputerName", machine);
+            invokeScript.Parameters.Add("Credential", cred);
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+        }
+
+        private static void DeleteOldProjectFolder(string machine)
+        {
+            var clientPath = @"\\" + machine + @"\\C$\Project\SPM_CLT_2";
+            Directory.Delete(clientPath, true);
+        }
+
+        private static void CopyNewProjectFolder(string machine)
+        {
+
+            //delete files
+            var clientPath = @"\\" + machine + @"\\C$\Project\SPM_CLT_2";
+            var sourcePath = @"C:\Project\SPM_CLT";
+
+            //create folder if it doesn't exist anymore
+            if (!Directory.Exists(clientPath))
+                Directory.CreateDirectory(clientPath);
+
+            //copy files
+            CopyFilesRecursively(new DirectoryInfo(sourcePath), new DirectoryInfo(clientPath));
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+            var machine = "SpmHmiC08";
+            CopyNewProjectFolder(machine);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var machine = "SpmHmiC08";
+
+            DeleteOldProjectFolder(machine);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            NewDownload();
         }
     }
 }

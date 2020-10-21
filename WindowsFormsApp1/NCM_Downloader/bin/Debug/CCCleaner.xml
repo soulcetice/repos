@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<processes>
+  <process name="apdiag.exe"/>
+  <process name="asosheartbeatx.exe"/>
+  <process name="AutoStartRT.exe"/>
+  <process name="BildAnw.exe"/>
+  <process name="CAArchiveManagerBackupCopyX.exe"/>
+  <process name="CADeleteWinCCMessageQueueing.exe"/>
+  <process name="CAReportMergerX.exe"/>
+  <process name="CC_DPSRV.EXE"/>
+  <process name="CC_MShh.exe"/>
+  <process name="ccaeprovider.exe"/>
+  <process name="CCAgent.exe" servicename="CCAgent" restartprio="3" />
+  <process name="CCAlgIAlarmDataCollector.exe"/>
+  <process name="CCAlgIAlarmDataProxyServer.exe"/>
+  <process name="CcAlgRtServer.exe"/>
+  <process name="CCArchiveConnMon.exe"/>
+  <process name="CCArchiveManager.exe"/>
+  <process name="CCAuthorInformation.EXE"/>
+  <process name="CCAuditProviderSrv.exe" restartprio="9" servicename="CCAuditProviderSrv"/>
+  <process name="CCAuditTrailServer.exe" restartprio="8" servicename="CCAuditTrailServer"/>
+  <process name="CCAuditViewer.exe"/>
+  <process name="CCAuditDCV.exe"/>
+  <process name="CCClientAPIs.exe"/>
+  <process name="CCCloudConnect.exe"/>
+  <process name="CCConfigServerMemory.exe"/>
+  <process name="CCConfigStudio.exe"/>
+  <process name="CCConfigStudio_x64.exe"/>
+  <process name="CCCSigRTServer.exe"/>
+  <process name="CCDBUtils.exe" servicename="CCDBUtils" restartprio="5" />
+  <process name="CCDeltaLoader.exe"/>
+  <process name="CCDiagnosisView.exe"/>
+  <process name="CCDiagRTServer.exe"/>
+  <process name="CCDMClientHelper.exe"/>
+  <process name="CCDmIVarProxyServer.exe"/>
+  <process name="CCDmRtChannelHost.exe"/>
+  <process name="CCDmRuntimePersistence.exe"/>
+  <process name="CCEClient_x64.exe"/>
+  <process name="CCEClient.exe"/>
+  <process name="CCEmergencyWatchRTServer.exe"/>
+  <process name="CCEServer_x64.exe"/>
+  <process name="CCEServer.exe"/>
+  <process name="CCLBMRTServer.exe"/>
+  <process name="CCLicenseService.exe"/>
+  <process name="CCMcpAutServer.exe"/>
+  <process name="CCMigrator.exe"/>
+  <process name="CCNSInfo2Provider.exe"/>
+  <process name="CCOnlCmp.exe"/>
+  <process name="CCOPCConfigPerm.exe"/>
+  <process name="CCPackageMgr.exe"/>
+  <process name="CCPerfMon.exe"/>
+  <process name="CcPJob.exe"/>
+  <process name="CCProfileServer.exe" />
+  <process name="CCProgressDlg.exe"/>
+  <process name="CCProjectDuplicator.exe"/>
+  <process name="CCProjectMgr.exe"/>
+  <process name="CCPtmRTServer.exe"/>
+  <process name="CCRedCodi.exe"/>
+  <process name="CCRedundancyAgent.exe"/>
+  <process name="CCRemoteService.exe" servicename="CCRemoteService" restartprio="6" />
+  <process name="CCRtsLoader.exe"/>
+  <process name="CCRtsLoader_x64.exe"/>
+  <process name="CCRunDTSPackage.exe"/>
+  <process name="CCRunRedCodiCS.exe"/>
+  <process name="CCScriptEditor.exe"/>
+  <process name="CCSplash.exe"/>
+  <process name="CCSsmRTServer.exe"/>
+  <process name="CCSyncAgent.exe"/>
+  <process name="CCSystemDiagnosticsHost.exe"/>
+  <process name="CCSysTray.exe"/>
+  <process name="CCSysTrayProxy.exe"/>
+  <process name="CCTextDistributor.exe"/>
+  <process name="CCTextServer.exe"/>
+  <process name="CCTlgArchiveClient.exe"/>
+  <process name="CCTlgServer.exe"/>
+  <process name="CCTMConfiguration.exe"/>
+  <process name="CCTMTimeSync.exe"/>
+  <process name="CCTMTimeSyncServer.exe"/>
+  <process name="CCTMTimeSyncServerV5.exe"/>
+  <process name="CCTMTimeSyncV5.exe"/>
+  <process name="CCTTRTServer.exe"/>
+  <process name="CCTxtProxy.exe"/>
+  <process name="CCUAEditor.exe"/>
+  <process name="CCUAIUABasicProxyServer.exe"/>
+  <process name="CCUAIUABasicStubServer.exe"/>
+  <process name="CCUASetupDCOM.exe"/>
+  <process name="CCUCSurrogate.exe"/>
+  <process name="CCUsrAcv.exe"/>
+  <process name="CCWinCCMTEditor.exe"/>
+  <process name="CCWinCCStart.exe"/>
+  <process name="CCWriteArchiveServer.exe"/>
+  <process name="CCXREF.Presentation.Editor.exe"/>
+  <process name="ChannelWrapperCS.exe"/>
+  <process name="DdeServ.exe"/>
+  <process name="DiagServ.exe"/>
+  <process name="Grafexe.exe"/>
+  <process name="gsccs.exe"/>
+  <process name="gscrt.exe"/>
+  <process name="HMRT.exe"/>
+  <process name="HornCS.exe"/>
+  <process name="imserverx.exe"/>
+  <process name="LBMS.exe"/>
+  <process name="MessageCorrectorx.exe"/>
+  <process name="MSCS.exe"/>
+  <process name="OPCTags.exe"/>
+  <process name="OpcUaServerWinCC.exe" servicename="OpcUaServerWinCC" restartprio="7" />
+  <process name="osltmhandlerx.exe"/>
+  <process name="osstatemachinex.exe"/>
+  <process name="PassCS.exe"/>
+  <process name="PassDBRT.exe"/>
+  <process name="PassReg.exe"/>
+  <process name="PDLCSApiTest.exe"/>
+  <process name="PdlRT.exe"/>
+  <process name="PdlServ.exe"/>
+  <process name="Print1.exe"/>
+  <process name="PrintIt.exe"/>
+  <process name="Projecteditor.exe"/>
+  <process name="ProtCS.exe"/>
+  <process name="PrtScr.exe"/>
+  <process name="PTMCS.exe"/>
+  <process name="RebootX.exe"/>
+  <process name="Rd1CS.exe"/>
+  <process name="RedundancyControl.exe"/>
+  <process name="RedundancyState.exe"/>
+  <process name="RptRT.exe"/>
+  <process name="s7asysvx.exe"/>
+  <process name="s7aversx.exe"/>
+  <process name="s7dosTraceControlPanelx.exe"/>
+  <process name="s7oiehsx.exe" />
+  <process name="s7otbxsx.exe" />
+  <process name="s7sninsx.exe"/>
+  <process name="S7TraceServiceX.exe" servicename="S7TraceServiceX" restartprio="4" />
+  <process name="s7tgtopx.exe"/>
+  <process name="s7ubTstx.exe"/>
+  <process name="sfcrt.exe"/>
+  <process name="SAMExportToolx.exe"/>
+  <process name="script.exe"/>
+  <process name="SCSDialogX.exe"/>
+  <process name="SCSDistServiceX.exe" servicename="SCS Distribution Service" restartprio="2"/>
+  <process name="SCSFsX.exe"/>
+  <process name="SCSMonitor.exe"/>
+  <process name="SCSMX.exe" servicename="SCSMonitor" restartprio="1"/>
+  <process name="SDiagRT.exe"/>
+  <process name="setupdcom.exe"/>
+  <process name="Siemens.Automation.FrameApplicationLoader.exe"/>
+  <process name="Siemens.Automation.ObjectFrame.FileStorage.Server.exe"/>
+  <process name="Siemens.Automation.Portal.exe"/>
+  <process name="sn_cp1612.exe"/>
+  <process name="ssc_visual.exe"/>
+  <process name="SSMSettings.exe"/>
+  <process name="TagAnw.exe"/>
+  <process name="textbib.exe"/>
+  <process name="TextLibrary.exe"/>
+  <process name="TlgCS.exe"/>
+  <process name="TouchInputPC.exe"/>
+  <process name="TrendOnl.exe"/>
+  <process name="trv.exe"/>
+  <process name="TTEdit.exe"/>
+  <process name="WebNavigatorRT.exe"/>
+  <process name="WinCCChnDiag.exe"/>
+  <process name="WinCCExplorer.exe"/>
+  <process name="WinCCWebLicense.exe"/>
+  <process name="LBMCS.exe"/>  
+  <process name="CCOnScreenKeyboard.exe"/>
+  <process name="CCCAPHServer.exe"/>
+  <process name="CalendarAccessProvider.exe" restartprio="10" servicename="CalendarAccessProvider"/>
+  <process name="WinCC_Calendar_Server.exe"/>
+  <process name="WinCC_Calendar_Viewer.exe"/>
+  <process name="PlantIntelligenceService.exe" restartprio="12" servicename="PerformanceMonitor Service"/>
+  <process name="PMNSInfo2Provider.exe"/>
+  <process name="CCSESRTSrv.exe"/>
+  <process name="GfxRTS.exe"/>  
+  <process name="CCKeyboardHook.exe"/>  
+  <process name="CCProjectMgr.exe" restartprio="11" servicename="CCProjectMgr"/>
+ 
+</processes>
