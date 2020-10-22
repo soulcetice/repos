@@ -1988,7 +1988,19 @@ namespace AutomateDownloader
                 "CCSESRTSrv",
                 "GfxRTS",
                 "CCKeyboardHook",
-                "CCProjectMgr.exe"
+                "CCProjectMgr.exe",
+                "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
+                "SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
+                "CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
+                "S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
+                "CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
+                "CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
+                "OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
+                "CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
+                "CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
+                "CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
+                "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
+                "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
             };
 
         private List<string> rebootProcesses = new List<string>
