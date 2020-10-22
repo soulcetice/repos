@@ -16,6 +16,9 @@ using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
 using System.Linq.Expressions;
 using System.Security;
+using System.Security.Principal;
+using toolsforimpersonations;
+using System.Threading.Tasks;
 
 namespace AutomateDownloader
 {
@@ -57,6 +60,10 @@ namespace AutomateDownloader
         private Button button7;
         private Button button8;
         private GroupBox groupBox2;
+        private TextBox destinationPathBox;
+        private TextBox sourcePathBox;
+        private Label label11;
+        private Label label10;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -1155,6 +1162,10 @@ namespace AutomateDownloader
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.destinationPathBox = new System.Windows.Forms.TextBox();
+            this.sourcePathBox = new System.Windows.Forms.TextBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1164,7 +1175,7 @@ namespace AutomateDownloader
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(12, 401);
+            this.button1.Location = new System.Drawing.Point(373, 365);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 23);
             this.button1.TabIndex = 2;
@@ -1205,7 +1216,7 @@ namespace AutomateDownloader
             // 
             this.unTextBox.Location = new System.Drawing.Point(56, 19);
             this.unTextBox.Name = "unTextBox";
-            this.unTextBox.Size = new System.Drawing.Size(238, 20);
+            this.unTextBox.Size = new System.Drawing.Size(98, 20);
             this.unTextBox.TabIndex = 13;
             this.unTextBox.Text = "SDI";
             // 
@@ -1214,7 +1225,7 @@ namespace AutomateDownloader
             this.passTextBox.Location = new System.Drawing.Point(56, 45);
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.PasswordChar = '*';
-            this.passTextBox.Size = new System.Drawing.Size(238, 20);
+            this.passTextBox.Size = new System.Drawing.Size(98, 20);
             this.passTextBox.TabIndex = 14;
             this.passTextBox.Text = "A02460";
             this.passTextBox.UseSystemPasswordChar = true;
@@ -1273,7 +1284,7 @@ namespace AutomateDownloader
             this.rdpBox1.Controls.Add(this.passTextBox);
             this.rdpBox1.Location = new System.Drawing.Point(12, 239);
             this.rdpBox1.Name = "rdpBox1";
-            this.rdpBox1.Size = new System.Drawing.Size(300, 103);
+            this.rdpBox1.Size = new System.Drawing.Size(300, 77);
             this.rdpBox1.TabIndex = 19;
             this.rdpBox1.TabStop = false;
             this.rdpBox1.Text = "Remote Desktop Automation";
@@ -1282,7 +1293,7 @@ namespace AutomateDownloader
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label8.Location = new System.Drawing.Point(180, 75);
+            this.label8.Location = new System.Drawing.Point(171, 23);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
             this.label8.TabIndex = 23;
@@ -1292,7 +1303,7 @@ namespace AutomateDownloader
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label7.Location = new System.Drawing.Point(6, 75);
+            this.label7.Location = new System.Drawing.Point(169, 49);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 22;
@@ -1300,7 +1311,7 @@ namespace AutomateDownloader
             // 
             // topBox
             // 
-            this.topBox.Location = new System.Drawing.Point(264, 71);
+            this.topBox.Location = new System.Drawing.Point(255, 19);
             this.topBox.Name = "topBox";
             this.topBox.Size = new System.Drawing.Size(30, 20);
             this.topBox.TabIndex = 21;
@@ -1308,7 +1319,7 @@ namespace AutomateDownloader
             // 
             // leftBox
             // 
-            this.leftBox.Location = new System.Drawing.Point(228, 71);
+            this.leftBox.Location = new System.Drawing.Point(219, 19);
             this.leftBox.Name = "leftBox";
             this.leftBox.Size = new System.Drawing.Size(30, 20);
             this.leftBox.TabIndex = 20;
@@ -1316,7 +1327,7 @@ namespace AutomateDownloader
             // 
             // heightBox
             // 
-            this.heightBox.Location = new System.Drawing.Point(92, 71);
+            this.heightBox.Location = new System.Drawing.Point(255, 45);
             this.heightBox.Name = "heightBox";
             this.heightBox.Size = new System.Drawing.Size(30, 20);
             this.heightBox.TabIndex = 19;
@@ -1324,7 +1335,7 @@ namespace AutomateDownloader
             // 
             // widthBox
             // 
-            this.widthBox.Location = new System.Drawing.Point(56, 71);
+            this.widthBox.Location = new System.Drawing.Point(219, 45);
             this.widthBox.Name = "widthBox";
             this.widthBox.Size = new System.Drawing.Size(30, 20);
             this.widthBox.TabIndex = 18;
@@ -1356,7 +1367,7 @@ namespace AutomateDownloader
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.Location = new System.Drawing.Point(11, 430);
+            this.statusLabel.Location = new System.Drawing.Point(12, 401);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
@@ -1402,7 +1413,7 @@ namespace AutomateDownloader
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 348);
+            this.groupBox1.Location = new System.Drawing.Point(337, 295);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(300, 47);
             this.groupBox1.TabIndex = 28;
@@ -1453,9 +1464,9 @@ namespace AutomateDownloader
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(114, 19);
+            this.button3.Location = new System.Drawing.Point(72, 417);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(60, 23);
             this.button3.TabIndex = 29;
             this.button3.Text = "Kill CC Procs";
             this.button3.UseVisualStyleBackColor = true;
@@ -1463,9 +1474,9 @@ namespace AutomateDownloader
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 19);
+            this.button4.Location = new System.Drawing.Point(12, 417);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(60, 23);
             this.button4.TabIndex = 30;
             this.button4.Text = "Stop RT";
             this.button4.UseVisualStyleBackColor = true;
@@ -1473,9 +1484,9 @@ namespace AutomateDownloader
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(213, 19);
+            this.button5.Location = new System.Drawing.Point(132, 417);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(60, 23);
             this.button5.TabIndex = 31;
             this.button5.Text = "Start RT";
             this.button5.UseVisualStyleBackColor = true;
@@ -1483,9 +1494,9 @@ namespace AutomateDownloader
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(6, 48);
+            this.button6.Location = new System.Drawing.Point(192, 417);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(60, 23);
             this.button6.TabIndex = 32;
             this.button6.Text = "Delete Remote";
             this.button6.UseVisualStyleBackColor = true;
@@ -1493,51 +1504,89 @@ namespace AutomateDownloader
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(114, 48);
+            this.button7.Location = new System.Drawing.Point(252, 417);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(60, 23);
             this.button7.TabIndex = 33;
-            this.button7.Text = "CopyBack";
+            this.button7.Text = "Copy";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(213, 48);
+            this.button8.Location = new System.Drawing.Point(218, 20);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.Size = new System.Drawing.Size(75, 46);
             this.button8.TabIndex = 34;
-            this.button8.Text = "All";
+            this.button8.Text = "Download";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.destinationPathBox);
+            this.groupBox2.Controls.Add(this.sourcePathBox);
             this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Location = new System.Drawing.Point(12, 446);
+            this.groupBox2.Location = new System.Drawing.Point(13, 322);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(294, 77);
+            this.groupBox2.Size = new System.Drawing.Size(299, 76);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 49);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 13);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Destination";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 23);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Source";
+            // 
+            // destinationPathBox
+            // 
+            this.destinationPathBox.Location = new System.Drawing.Point(70, 46);
+            this.destinationPathBox.Name = "destinationPathBox";
+            this.destinationPathBox.Size = new System.Drawing.Size(142, 20);
+            this.destinationPathBox.TabIndex = 37;
+            this.destinationPathBox.Text = "\\C$\\Project\\SPM_CLT";
+            // 
+            // sourcePathBox
+            // 
+            this.sourcePathBox.Location = new System.Drawing.Point(70, 20);
+            this.sourcePathBox.Name = "sourcePathBox";
+            this.sourcePathBox.Size = new System.Drawing.Size(142, 20);
+            this.sourcePathBox.TabIndex = 36;
+            this.sourcePathBox.Text = "C:\\Project\\SPM_CLT";
+            // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(323, 530);
+            this.ClientSize = new System.Drawing.Size(324, 449);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.rdpCheckBox);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.rdpBox1);
             this.Controls.Add(this.ipTextBox);
             this.Controls.Add(this.pathTextBox);
@@ -1552,13 +1601,14 @@ namespace AutomateDownloader
             this.MaximizeBox = false;
             this.Name = "NCMForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "NCM Manager Automation";
+            this.Text = "HMI Clients Updater";
             this.TopMost = true;
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1686,7 +1736,7 @@ namespace AutomateDownloader
                 }
             }
         }
-        
+
         private void AddToTrustedHosts(string machine)
         {
             //RunPowershellCommand(machine);
@@ -1989,8 +2039,26 @@ namespace AutomateDownloader
 
         private void NewDownload()
         {
+            var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
+            if (!File.Exists(exePath))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please have StopWinCCRuntime.exe in this folder");
+                return;
+            }
+
+            Parallel.ForEach(this.checkedListBox1.CheckedItems.Cast<ListViewItem>(),
+                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                    (CheckedItem) =>
+                    {
+                        //do something
+                    });
+
             foreach (var m in checkedListBox1.CheckedItems)
             {
+                var msg = "Started download process for " + m;
+                statusLabel.Text = msg;
+                LogToFile(msg);
+
                 var name = m.ToString();
                 var myIp = ipList.Where(x => x.Contains(m.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
 
@@ -2001,6 +2069,10 @@ namespace AutomateDownloader
                 OpenRemoteSession(myIp, unTextBox.Text, passTextBox.Text);
                 StartWinCCRuntime(name);
                 CloseRemoteSession(myIp);
+
+                msg = "Finished download process for " + m;
+                statusLabel.Text = msg;
+                LogToFile(msg);
             }
         }
 
@@ -2016,13 +2088,13 @@ namespace AutomateDownloader
         {
             foreach (var process in processes)
             {
+                var action = "Stop-Process -Force";
+                if (rebootProcesses.Contains(process))
+                {
+                    action = "Restart-Service";
+                }
                 try
                 {
-                    var action = "Stop-Process -Force";
-                    if (rebootProcesses.Contains(process))
-                    {
-                        action = "Restart-Service";
-                    }
 
                     Runspace runSpace = RunspaceFactory.CreateRunspace();
                     runSpace.Open();
@@ -2041,16 +2113,21 @@ namespace AutomateDownloader
                     {
                         LogToFile(obj.ToString());
                     }
+                    LogToFile(action + " " + process);
                 }
                 catch (Exception exc)
                 {
-                    LogToFile(exc.Message + " at kill " + process);
+                    LogToFile(exc.Message + " at " + action + " "  + process);
                 }
                 finally
                 {
-                    LogToFile("could not kill " + process);
+                    LogToFile("could not " + action + " " + process);
                 }
             }
+
+            var msg = "Prepared processes on " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -2067,6 +2144,35 @@ namespace AutomateDownloader
 
         private void StartWinCCRuntime(string machine)
         {
+            var command = @"""C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe"" C:\Project\spm_clt\SPM_CLT.mcp /Activ:yes /LANG=ENU /EnableBreak:no";
+            var batchPath = @"C:\Temp\AutoStart.bat";
+            var destPath = @"\\" + machine + @"\C$\Temp\AutoStart.bat";
+            LogToFile("batch path is " + batchPath);
+
+            UserImpersonation impersonator = new UserImpersonation();
+            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
+            try
+            {
+                using (var fileWriter = new StreamWriter(batchPath, true))
+                {
+                    DateTime date = DateTime.UtcNow;
+                    fileWriter.WriteLine(command);
+                    fileWriter.Close();
+                }
+            } catch (Exception exc)
+            {
+                LogToFile(exc.Message);
+            }
+
+            var batchFile = new FileInfo(batchPath);
+            try
+            {
+                batchFile.MoveTo(destPath);
+            } catch (Exception exc)
+            {
+                LogToFile(exc.Message + " at copy bat");
+            }
+
             Runspace runSpace = RunspaceFactory.CreateRunspace();
             runSpace.Open();
             Pipeline pipeline = runSpace.CreatePipeline();
@@ -2093,10 +2199,28 @@ namespace AutomateDownloader
             {
                 LogToFile(obj.ToString());
             }
+
+            var msg = "Started runtime on " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
+            File.Delete(destPath);
+            impersonator.undoimpersonateUser();
         }
 
         private void StopWinCCRuntime(string machine)
         {
+            var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
+            UserImpersonation impersonator = new UserImpersonation();
+            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
+            try
+            {
+                File.Copy(exePath, @"\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe");
+            } catch (Exception exc)
+            {
+                LogToFile(exc.Message);
+            }
+
             Runspace runSpace = RunspaceFactory.CreateRunspace();
             runSpace.Open();
             Pipeline pipeline = runSpace.CreatePipeline();
@@ -2112,7 +2236,8 @@ namespace AutomateDownloader
             var cred = new PSCredential(unTextBox.Text, s);
 
             //Invoke-Command -scriptBlock
-            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe'""}")[0].BaseObject as ScriptBlock;
+            //ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe'""}")[0].BaseObject as ScriptBlock; //same as below
+            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c 'C:\Temp\StopWinCCRuntime.exe'""}")[0].BaseObject as ScriptBlock;
             invokeScript.Parameters.Add("ComputerName", machine);
             invokeScript.Parameters.Add("Credential", cred);
             invokeScript.Parameters.Add("ScriptBlock", sb);
@@ -2123,20 +2248,50 @@ namespace AutomateDownloader
             {
                 LogToFile(obj.ToString());
             }
+
+            var msg = "Stopped runtime on " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
+            File.Delete(@"\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe");
+            impersonator.undoimpersonateUser();
         }
 
-        private static void DeleteOldProjectFolder(string machine)
+        private void DeleteOldProjectFolder(string machine)
         {
-            var clientPath = @"\\" + machine + @"\\C$\Project\SPM_CLT_2";
-            Directory.Delete(clientPath, true);
+            UserImpersonation impersonator = new UserImpersonation();
+            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
+
+            //List<FileInfo> OcDialerlfinfo = null;
+            //OcDialerlfinfo = GetFileList("*", "\\\\10.11.11.122\\shared_folder");
+
+            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
+            //Directory.Delete(clientPath, true);
+
+            System.IO.DirectoryInfo di = new DirectoryInfo(clientPath);
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+            impersonator.undoimpersonateUser();
+
+            var msg = "Cleared files on " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
-        private static void CopyNewProjectFolder(string machine)
+        private void CopyNewProjectFolder(string machine)
         {
+            UserImpersonation impersonator = new UserImpersonation();
+            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
 
-            //delete files
-            var clientPath = @"\\" + machine + @"\\C$\Project\SPM_CLT_2";
-            var sourcePath = @"C:\Project\SPM_CLT";
+            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
+            var sourcePath = sourcePathBox.Text;
 
             //create folder if it doesn't exist anymore
             if (!Directory.Exists(clientPath))
@@ -2144,6 +2299,12 @@ namespace AutomateDownloader
 
             //copy files
             CopyFilesRecursively(new DirectoryInfo(sourcePath), new DirectoryInfo(clientPath));
+
+            impersonator.undoimpersonateUser();
+
+            var msg = "Copied files to " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -2164,5 +2325,139 @@ namespace AutomateDownloader
         {
             NewDownload();
         }
+
+    }
+}
+
+namespace toolsforimpersonations
+{
+    public class Impersonator
+    {
+        #region "Consts"
+
+        public const int LOGON32_LOGON_INTERACTIVE = 2;
+
+        public const int LOGON32_PROVIDER_DEFAULT = 0;
+        #endregion
+
+        #region "External API"
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern bool RevertToSelf();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern int CloseHandle(IntPtr hObject);
+
+        #endregion
+
+        #region "Methods"
+
+        //Public Sub PerformImpersonatedTask(ByVal username As String, ByVal domain As String, ByVal password As String, ByVal logonType As Integer, ByVal logonProvider As Integer, ByVal methodToPerform As Action)
+        public void PerformImpersonatedTask(string username, string domain, string password, int logonType, int logonProvider, Action methodToPerform)
+        {
+            IntPtr token = IntPtr.Zero;
+            if (RevertToSelf())
+            {
+                if (LogonUser(username, domain, password, logonType, logonProvider, ref token) != 0)
+                {
+                    dynamic identity = new WindowsIdentity(token);
+                    dynamic impersonationContext = identity.Impersonate();
+                    if (impersonationContext != null)
+                    {
+                        methodToPerform.Invoke();
+                        impersonationContext.Undo();
+                    }
+                    // do logging
+                }
+                else
+                {
+                }
+            }
+            if (token != IntPtr.Zero)
+            {
+                CloseHandle(token);
+            }
+        }
+
+        #endregion
+    }
+
+    public class UserImpersonation
+    {
+        const int LOGON32_LOGON_INTERACTIVE = 2;
+        const int LOGON32_LOGON_NETWORK = 3;
+        const int LOGON32_LOGON_BATCH = 4;
+        const int LOGON32_LOGON_SERVICE = 5;
+        const int LOGON32_LOGON_UNLOCK = 7;
+        const int LOGON32_LOGON_NETWORK_CLEARTEXT = 8;
+        const int LOGON32_LOGON_NEW_CREDENTIALS = 9;
+        const int LOGON32_PROVIDER_DEFAULT = 0;
+        const int LOGON32_PROVIDER_WINNT35 = 1;
+        const int LOGON32_PROVIDER_WINNT40 = 2;
+        const int LOGON32_PROVIDER_WINNT50 = 3;
+
+        WindowsImpersonationContext impersonationContext;
+        [DllImport("advapi32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern int LogonUserA(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+
+        public static extern int DuplicateToken(IntPtr ExistingTokenHandle, int ImpersonationLevel, ref IntPtr DuplicateTokenHandle);
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+
+        public static extern long RevertToSelf();
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+        public static extern long CloseHandle(IntPtr handle);
+
+        public bool impersonateUser(string userName, string domain, string password)
+        {
+            return impersonateValidUser(userName, domain, password);
+        }
+
+        public void undoimpersonateUser()
+        {
+            undoImpersonation();
+        }
+
+        private bool impersonateValidUser(string userName, string domain, string password)
+        {
+            bool functionReturnValue = false;
+
+            WindowsIdentity tempWindowsIdentity = null;
+            IntPtr token = IntPtr.Zero;
+            IntPtr tokenDuplicate = IntPtr.Zero;
+            functionReturnValue = false;
+
+            //if (RevertToSelf()) {
+            if (LogonUserA(userName, domain, password, LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_PROVIDER_WINNT50, ref token) != 0)
+            {
+                if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
+                {
+                    tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
+                    impersonationContext = tempWindowsIdentity.Impersonate();
+                    if ((impersonationContext != null))
+                    {
+                        functionReturnValue = true;
+                    }
+                }
+            }
+            //}
+            if (!tokenDuplicate.Equals(IntPtr.Zero))
+            {
+                CloseHandle(tokenDuplicate);
+            }
+            if (!token.Equals(IntPtr.Zero))
+            {
+                CloseHandle(token);
+            }
+            return functionReturnValue;
+        }
+
+        private void undoImpersonation()
+        {
+            impersonationContext.Undo();
+        }
+
     }
 }
