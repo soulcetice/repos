@@ -14,7 +14,6 @@ using System.Management;
 using System.Management.Automation;
 using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
-using System.Linq.Expressions;
 using System.Security;
 using System.Security.Principal;
 using toolsforimpersonations;
@@ -64,6 +63,10 @@ namespace AutomateDownloader
         private TextBox sourcePathBox;
         private Label label11;
         private Label label10;
+        private Label label12;
+        private TextBox textBox3;
+        private TextBox mcpPathBox;
+        private Label label13;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -1162,6 +1165,10 @@ namespace AutomateDownloader
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.mcpPathBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.destinationPathBox = new System.Windows.Forms.TextBox();
@@ -1367,7 +1374,7 @@ namespace AutomateDownloader
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.Location = new System.Drawing.Point(12, 401);
+            this.statusLabel.Location = new System.Drawing.Point(12, 422);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
@@ -1464,67 +1471,71 @@ namespace AutomateDownloader
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(72, 417);
+            this.button3.Location = new System.Drawing.Point(72, 448);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(60, 23);
             this.button3.TabIndex = 29;
             this.button3.Text = "Kill CC Procs";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 417);
+            this.button4.Location = new System.Drawing.Point(12, 448);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(60, 23);
             this.button4.TabIndex = 30;
             this.button4.Text = "Stop RT";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(132, 417);
+            this.button5.Location = new System.Drawing.Point(132, 448);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(60, 23);
             this.button5.TabIndex = 31;
             this.button5.Text = "Start RT";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(192, 417);
+            this.button6.Location = new System.Drawing.Point(192, 448);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(60, 23);
             this.button6.TabIndex = 32;
-            this.button6.Text = "Delete Remote";
+            this.button6.Text = "Delete";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(252, 417);
+            this.button7.Location = new System.Drawing.Point(252, 448);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(60, 23);
             this.button7.TabIndex = 33;
             this.button7.Text = "Copy";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Location = new System.Drawing.Point(218, 20);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 46);
+            this.button8.Size = new System.Drawing.Size(75, 20);
             this.button8.TabIndex = 34;
             this.button8.Text = "Download";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.mcpPathBox);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.destinationPathBox);
@@ -1532,10 +1543,44 @@ namespace AutomateDownloader
             this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Location = new System.Drawing.Point(13, 322);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 76);
+            this.groupBox2.Size = new System.Drawing.Size(299, 97);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 76);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.TabIndex = 43;
+            this.label13.Text = "MCP Path";
+            // 
+            // mcpPathBox
+            // 
+            this.mcpPathBox.Location = new System.Drawing.Point(70, 73);
+            this.mcpPathBox.Name = "mcpPathBox";
+            this.mcpPathBox.Size = new System.Drawing.Size(223, 20);
+            this.mcpPathBox.TabIndex = 42;
+            this.mcpPathBox.Text = "C:\\Project\\spm_clt\\SPM_CLT.mcp";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(217, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 13);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "Multi";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(252, 46);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(41, 20);
+            this.textBox3.TabIndex = 40;
+            this.textBox3.Text = "2";
             // 
             // label11
             // 
@@ -1573,7 +1618,7 @@ namespace AutomateDownloader
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 449);
+            this.ClientSize = new System.Drawing.Size(324, 483);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label9);
@@ -1696,7 +1741,7 @@ namespace AutomateDownloader
         {
             try
             {
-                AddToTrustedHosts(machine);
+                AddToTrustedHosts();
             }
             catch (Exception e)
             {
@@ -1737,80 +1782,14 @@ namespace AutomateDownloader
             }
         }
 
-        private void AddToTrustedHosts(string machine)
+        private void AddToTrustedHosts()
         {
-            //RunPowershellCommand(machine);
-            ////Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
-            //try
-            //{
-            //    Runspace runSpace = RunspaceFactory.CreateRunspace();
-            //    runSpace.Open();
-            //    Pipeline pipeline = runSpace.CreatePipeline();
+            //run ps command here
 
-            //    Command invokeScript = new Command("Set-Item");
-            //    RunspaceInvoke invoke = new RunspaceInvoke();
-            //    //Invoke-Command -scriptBlock
-            //    //ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
-            //    invokeScript.Parameters.Add("Path[0]", @"WSMan:\localhost\Client\TrustedHosts");
-            //    invokeScript.Parameters.Add("Value", machine);
 
-            //    pipeline.Commands.Add(invokeScript);
-            //    Collection<PSObject> output = pipeline.Invoke();
-            //    foreach (PSObject obj in output)
-            //    {
-            //        LogToFile(obj.ToString());
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    LogToFile(e.Message + " at add to trusted hosts");
-            //}
 
-            //System.Security.SecureString pass = new System.Security.SecureString();
-            //string strPass = "!sysadmin";
-            //foreach (char c in strPass)
-            //{
-            //    pass.AppendChar(c);
-            //}
-
+            //or run ps file
             System.Diagnostics.Process.Start(Application.StartupPath + "\\StartTrustedHosts.ps1");
-
-        }
-
-        private void RunPowershellCommand(string machine)
-        {
-            try
-            {
-                using (PowerShell PowerShellInst = PowerShell.Create())
-                {
-                    //if trying to read from file
-                    //string path = Application.StartupPath + "\\AddTrustedHosts.ps1";
-                    //if (!string.IsNullOrEmpty(path))
-                    PowerShellInst.AddScript(@"Set-Item WSMan:\localhost\Client\TrustedHosts -Value '" + machine + "' -Force");
-                    //PowerShellInst.addsta
-                    //PowerShellInst.AddCommand("Set-Item");
-                    //PowerShellInst.AddParameter(@"WSMan:\localhost\Client\TrustedHosts");
-                    //PowerShellInst.AddParameter()
-
-
-                    Collection<PSObject> PSOutput = PowerShellInst.Invoke();
-                    foreach (PSObject obj in PSOutput)
-                    {
-                        if (obj != null)
-                        {
-                            LogToFile(obj.Properties["EntryType"].Value.ToString() + " - ");
-                            LogToFile(obj.Properties["Source"].Value.ToString() + " - ");
-                            LogToFile(obj.Properties["Message"].Value.ToString() + " - ");
-                        }
-                    }
-                    LogToFile("Ran Powershell Set-Item command");
-                    //Console.Read();
-                }
-            }
-            catch (Exception e)
-            {
-                LogToFile(e.Message);
-            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -2028,16 +2007,7 @@ namespace AutomateDownloader
                 "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
             };
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //var processFile = new FileInfo(Application.StartupPath + "\\CCCleaner.xml");
-            //var read = processFile.OpenText();
-
-            var machine = "SpmHmiC08";
-            ResetWinCCProcesses(machine);
-        }
-
-        private void NewDownload()
+        private void StartDownloads()
         {
             var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
             if (!File.Exists(exePath))
@@ -2045,35 +2015,66 @@ namespace AutomateDownloader
                 MessageBox.Show(new Form { TopMost = true }, "Please have StopWinCCRuntime.exe in this folder");
                 return;
             }
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items to download to have been selected");
+                return;
+            }
+            if (!Int32.TryParse(textBox3.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
 
-            Parallel.ForEach(this.checkedListBox1.CheckedItems.Cast<ListViewItem>(),
-                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+            AddToTrustedHosts();
+
+            //parallel method
+            var checkedItems = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+            {
+                checkedItems.Add(c.ToString());
+            }
+            Parallel.ForEach(checkedItems,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
                     (CheckedItem) =>
                     {
                         //do something
+                        DownloadSequence(CheckedItem);
+                        Console.WriteLine(CheckedItem);
                     });
 
-            foreach (var m in checkedListBox1.CheckedItems)
+            ////sequential method
+            //foreach (var m in checkedListBox1.CheckedItems)
+            //{
+            //    DownloadSequence(m.ToString());
+            //}
+        }
+
+        private void DownloadSequence(string machine)
+        {
+            if (mcpPathBox.Text == "")
             {
-                var msg = "Started download process for " + m;
-                statusLabel.Text = msg;
-                LogToFile(msg);
-
-                var name = m.ToString();
-                var myIp = ipList.Where(x => x.Contains(m.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
-
-                StopWinCCRuntime(name);
-                ResetWinCCProcesses(name);
-                DeleteOldProjectFolder(name);
-                CopyNewProjectFolder(name);
-                OpenRemoteSession(myIp, unTextBox.Text, passTextBox.Text);
-                StartWinCCRuntime(name);
-                CloseRemoteSession(myIp);
-
-                msg = "Finished download process for " + m;
-                statusLabel.Text = msg;
-                LogToFile(msg);
+                MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
+                return;
             }
+
+            var msg = "Started download process for " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
+            var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+
+            StopWinCCRuntime(machine);
+            ResetWinCCProcesses(machine);
+            DeleteOldProjectFolder(machine);
+            CopyNewProjectFolder(machine);
+            OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
+            StartWinCCRuntime(machine);
+            CloseRemoteSession(ip);
+
+            msg = "Finished download process for " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
         public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
@@ -2117,7 +2118,7 @@ namespace AutomateDownloader
                 }
                 catch (Exception exc)
                 {
-                    LogToFile(exc.Message + " at " + action + " "  + process);
+                    LogToFile(exc.Message + " at " + action + " " + process);
                 }
                 finally
                 {
@@ -2130,24 +2131,17 @@ namespace AutomateDownloader
             LogToFile(msg);
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var machine = "SpmHmiC08";
-            StopWinCCRuntime(machine);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var machine = "SpmHmiC08";
-            StartWinCCRuntime(machine);
-        }
-
         private void StartWinCCRuntime(string machine)
         {
-            var command = @"""C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe"" C:\Project\spm_clt\SPM_CLT.mcp /Activ:yes /LANG=ENU /EnableBreak:no";
+            if (mcpPathBox.Text == "" )
+            {
+                MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
+                return;
+            }
+
+            var command = @"""C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe"" " + mcpPathBox.Text + " /Activ:yes /LANG=ENU /EnableBreak:no";
             var batchPath = @"C:\Temp\AutoStart.bat";
             var destPath = @"\\" + machine + @"\C$\Temp\AutoStart.bat";
-            LogToFile("batch path is " + batchPath);
 
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
@@ -2159,7 +2153,8 @@ namespace AutomateDownloader
                     fileWriter.WriteLine(command);
                     fileWriter.Close();
                 }
-            } catch (Exception exc)
+            }
+            catch (Exception exc)
             {
                 LogToFile(exc.Message);
             }
@@ -2168,7 +2163,8 @@ namespace AutomateDownloader
             try
             {
                 batchFile.MoveTo(destPath);
-            } catch (Exception exc)
+            }
+            catch (Exception exc)
             {
                 LogToFile(exc.Message + " at copy bat");
             }
@@ -2216,7 +2212,8 @@ namespace AutomateDownloader
             try
             {
                 File.Copy(exePath, @"\\" + machine + @"\C$\Temp\StopWinCCRuntime.exe");
-            } catch (Exception exc)
+            }
+            catch (Exception exc)
             {
                 LogToFile(exc.Message);
             }
@@ -2262,11 +2259,7 @@ namespace AutomateDownloader
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
 
-            //List<FileInfo> OcDialerlfinfo = null;
-            //OcDialerlfinfo = GetFileList("*", "\\\\10.11.11.122\\shared_folder");
-
             var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
-            //Directory.Delete(clientPath, true);
 
             System.IO.DirectoryInfo di = new DirectoryInfo(clientPath);
 
@@ -2290,6 +2283,9 @@ namespace AutomateDownloader
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
 
+            if (!destinationPathBox.Text.StartsWith(@"\"))
+                destinationPathBox.Text = @"\" + destinationPathBox.Text;
+
             var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
             var sourcePath = sourcePathBox.Text;
 
@@ -2307,25 +2303,53 @@ namespace AutomateDownloader
             LogToFile(msg);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        #region TestButtons
+        private void Button3_Click(object sender, EventArgs e)
         {
-
-            var machine = "SpmHmiC08";
-            CopyNewProjectFolder(machine);
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+            ResetWinCCProcesses(list[0]);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
-            var machine = "SpmHmiC08";
-
-            DeleteOldProjectFolder(machine);
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+            StopWinCCRuntime(list[0]);
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
-            NewDownload();
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+            StartWinCCRuntime(list[0]);
         }
 
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+            DeleteOldProjectFolder(list[0]);
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+            CopyNewProjectFolder(list[0]);
+        }
+
+        #endregion
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            StartDownloads();
+        }
     }
 }
 

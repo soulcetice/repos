@@ -28,15 +28,10 @@ Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Dow
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.exe
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.pdb
 Z:\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.exe.config
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\AutomateDownloader.NCMForm.resources
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.Properties.Resources.resources
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.GenerateResource.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CoreCompileInputs.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.Windows.Core.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.Windows.Core.xml
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CopyComplete
@@ -61,3 +56,8 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downl
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Management.Infrastructure.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\System.Management.Automation.xml
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\NCM_Downloader.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.pdb

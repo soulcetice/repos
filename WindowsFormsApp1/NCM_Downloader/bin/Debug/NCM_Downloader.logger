@@ -14,3 +14,7 @@ Friday, July 31, 2020 8:07:44 AM UTC : Started actions
 2020/9/29 15:13:4:984 UTC: The term 'Set-Item WSMan:\localhost\Client\TrustedHosts' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
 2020/10/16 13:30:41:410 UTC: could not kill process
 2020/10/16 13:30:58:25 UTC: could not kill process
+2020/10/22 13:7:40:8 UTC: Started download process for HFMHMIC01
+2020/10/22 13:7:48:730 UTC: The network path was not found.
+
+2020/10/22 13:7:51:119 UTC: Stopped runtime on HFMHMIC01
