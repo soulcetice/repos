@@ -41,7 +41,7 @@ namespace WinCC_Timer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(8000);
+            Thread.Sleep(5000);
             RunTasks();
         }
 
@@ -119,7 +119,7 @@ namespace WinCC_Timer
                     {
                         ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(8000); //open tier2 page
+                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(5000); //open tier2 page
                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                         LogToFile(tier2.Pdl, logName);
                         currentPage = tier2.Pdl;
@@ -143,7 +143,7 @@ namespace WinCC_Timer
                                 LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                 ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                 LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(8000); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(5000); //expand tier2 menu or open page
                                 LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
 
                                 LogToFile(tier3.Pdl, logName);
@@ -170,7 +170,7 @@ namespace WinCC_Timer
                                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                         ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                         LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(8000); //expand tier2 menu or open page
+                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(5000); //expand tier2 menu or open page
                                         LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                         LogToFile(tier4.Pdl, logName);
 

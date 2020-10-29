@@ -44,7 +44,7 @@ namespace AutomateDownloader
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private Button button2;
+        private Button killButtton;
         private TextBox textBox1;
         private TextBox textBox2;
         private GroupBox groupBox1;
@@ -64,9 +64,11 @@ namespace AutomateDownloader
         private Label label11;
         private Label label10;
         private Label label12;
-        private TextBox textBox3;
+        private TextBox parallelBox;
         private TextBox mcpPathBox;
         private Label label13;
+        private Button button9;
+        private Button button10;
         private Form frm1 = new Form();
 
         [STAThread]
@@ -79,6 +81,9 @@ namespace AutomateDownloader
 
         private List<string> ipList = new List<string>();
         private List<string> sdList = new List<string>();
+
+        private string computerName = string.Empty;
+        private List<string> selectiveFolders = new List<string>();
 
         public NCMForm()
         {
@@ -109,6 +114,16 @@ namespace AutomateDownloader
             this.DoubleClick += new EventHandler(Form1_DoubleClick);
 
             this.Controls.Add(firstClientIndexBox);
+
+            computerName = Environment.MachineName;
+
+            selectiveFolders = new List<string>
+                {
+                    "Gracs",
+                    "ScriptLib",
+                    "ScriptAct",
+                    "TEXTBIB"
+                };
         }
 
         private void GetInitialValues(string path)
@@ -127,6 +142,10 @@ namespace AutomateDownloader
             if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
             if (fileLen >= 10) leftBox.Text = configFile.ElementAt(9);
             if (fileLen >= 11) topBox.Text = configFile.ElementAt(10);
+            if (fileLen >= 12) parallelBox.Text = configFile.ElementAt(11);
+            if (fileLen >= 13) sourcePathBox.Text = configFile.ElementAt(12);
+            if (fileLen >= 14) destinationPathBox.Text = configFile.ElementAt(13);
+            if (fileLen >= 15) mcpPathBox.Text = configFile.ElementAt(14);
         }
 
         private void RenewIpsOrInit()
@@ -548,6 +567,14 @@ namespace AutomateDownloader
             configFile.WriteLine(heightBox.Text);
             configFile.WriteLine(leftBox.Text);
             configFile.WriteLine(topBox.Text);
+            configFile.WriteLine(parallelBox.Text);
+            configFile.WriteLine(sourcePathBox.Text);
+            configFile.WriteLine(destinationPathBox.Text);
+            configFile.WriteLine(mcpPathBox.Text);
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
             configFile.WriteLine("");
             configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
             configFile.Close();
@@ -575,6 +602,12 @@ namespace AutomateDownloader
 
             var toolTip7 = new System.Windows.Forms.ToolTip();
             toolTip7.SetToolTip(pathTextBox, "Set path to your LOAD.LOG files as specified in readme.");
+
+            var toolTip8 = new System.Windows.Forms.ToolTip();
+            toolTip8.SetToolTip(parallelBox, "Set how many parallel download processes to run");
+
+            var toolTip9 = new System.Windows.Forms.ToolTip();
+            toolTip9.SetToolTip(killButtton, "Kill Task manager on selected machines (for test)");
         }
 
         // Send a series of key presses to the application.
@@ -967,6 +1000,10 @@ namespace AutomateDownloader
 
         private void OpenRemoteSession(string ip, string un, string pw)
         {
+            var msg = "Opening remote session of " + ip + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
             Process rdcProcess = new Process();
             rdcProcess.StartInfo.FileName = Environment.ExpandEnvironmentVariables(@"%SystemRoot%\system32\cmdkey.exe");
             rdcProcess.StartInfo.Arguments = "/generic:TERMSRV/" + ip + " /user:" + un + " /pass:" + pw;
@@ -1009,16 +1046,27 @@ namespace AutomateDownloader
                     System.Threading.Thread.Sleep(1000);
                 }
             } while (myRdp == IntPtr.Zero);
+
+            msg = "Opened remote session of " + ip;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
         private void CloseRemoteSession(string ip)
         {
+            var msg = "Closing remote session of " + ip + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
             IntPtr myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
             if (myRdp != IntPtr.Zero)
             {
                 PInvokeLibrary.SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
                 System.Threading.Thread.Sleep(1000);
             }
+
+            msg = "Closed remote session of " + ip;
+            statusLabel.Text = msg;
+            LogToFile(msg);
         }
 
         private void SendKeyHandled(IntPtr windowHandle, string key)
@@ -1150,7 +1198,7 @@ namespace AutomateDownloader
             this.label6 = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.killButtton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -1166,9 +1214,11 @@ namespace AutomateDownloader
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.mcpPathBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.parallelBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.destinationPathBox = new System.Windows.Forms.TextBox();
@@ -1182,21 +1232,21 @@ namespace AutomateDownloader
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(373, 365);
+            this.button1.Location = new System.Drawing.Point(230, 195);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 23);
+            this.button1.Size = new System.Drawing.Size(92, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Download";
+            this.button1.Text = "NCM Download";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // checkedListBox1
             // 
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.Control;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(68, 65);
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 68);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(244, 139);
+            this.checkedListBox1.Size = new System.Drawing.Size(188, 124);
             this.checkedListBox1.TabIndex = 8;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -1205,7 +1255,7 @@ namespace AutomateDownloader
             this.pathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.pathTextBox.Location = new System.Drawing.Point(68, 11);
             this.pathTextBox.Name = "pathTextBox";
-            this.pathTextBox.Size = new System.Drawing.Size(244, 18);
+            this.pathTextBox.Size = new System.Drawing.Size(258, 18);
             this.pathTextBox.TabIndex = 11;
             this.pathTextBox.Text = "D:\\Project\\SDIB_TCM\\wincproj\\SDIB_TCM_CLT_Ref";
             // 
@@ -1214,7 +1264,7 @@ namespace AutomateDownloader
             this.ipTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.ipTextBox.Location = new System.Drawing.Point(68, 35);
             this.ipTextBox.Name = "ipTextBox";
-            this.ipTextBox.Size = new System.Drawing.Size(244, 18);
+            this.ipTextBox.Size = new System.Drawing.Size(258, 18);
             this.ipTextBox.TabIndex = 12;
             this.ipTextBox.Text = "C:\\Windows\\System32\\drivers\\etc\\lmhosts";
             this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
@@ -1223,7 +1273,7 @@ namespace AutomateDownloader
             // 
             this.unTextBox.Location = new System.Drawing.Point(56, 19);
             this.unTextBox.Name = "unTextBox";
-            this.unTextBox.Size = new System.Drawing.Size(98, 20);
+            this.unTextBox.Size = new System.Drawing.Size(52, 20);
             this.unTextBox.TabIndex = 13;
             this.unTextBox.Text = "SDI";
             // 
@@ -1232,7 +1282,7 @@ namespace AutomateDownloader
             this.passTextBox.Location = new System.Drawing.Point(56, 45);
             this.passTextBox.Name = "passTextBox";
             this.passTextBox.PasswordChar = '*';
-            this.passTextBox.Size = new System.Drawing.Size(98, 20);
+            this.passTextBox.Size = new System.Drawing.Size(52, 20);
             this.passTextBox.TabIndex = 14;
             this.passTextBox.Text = "A02460";
             this.passTextBox.UseSystemPasswordChar = true;
@@ -1270,7 +1320,9 @@ namespace AutomateDownloader
             // rdpCheckBox
             // 
             this.rdpCheckBox.AutoSize = true;
-            this.rdpCheckBox.Location = new System.Drawing.Point(13, 217);
+            this.rdpCheckBox.Checked = true;
+            this.rdpCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.rdpCheckBox.Location = new System.Drawing.Point(12, 209);
             this.rdpCheckBox.Name = "rdpCheckBox";
             this.rdpCheckBox.Size = new System.Drawing.Size(79, 17);
             this.rdpCheckBox.TabIndex = 18;
@@ -1289,18 +1341,18 @@ namespace AutomateDownloader
             this.rdpBox1.Controls.Add(this.label3);
             this.rdpBox1.Controls.Add(this.unTextBox);
             this.rdpBox1.Controls.Add(this.passTextBox);
-            this.rdpBox1.Location = new System.Drawing.Point(12, 239);
+            this.rdpBox1.Location = new System.Drawing.Point(206, 65);
             this.rdpBox1.Name = "rdpBox1";
-            this.rdpBox1.Size = new System.Drawing.Size(300, 77);
+            this.rdpBox1.Size = new System.Drawing.Size(120, 124);
             this.rdpBox1.TabIndex = 19;
             this.rdpBox1.TabStop = false;
-            this.rdpBox1.Text = "Remote Desktop Automation";
+            this.rdpBox1.Text = "Remote Desktop";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label8.Location = new System.Drawing.Point(171, 23);
+            this.label8.Location = new System.Drawing.Point(7, 75);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
             this.label8.TabIndex = 23;
@@ -1310,7 +1362,7 @@ namespace AutomateDownloader
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label7.Location = new System.Drawing.Point(169, 49);
+            this.label7.Location = new System.Drawing.Point(8, 101);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 22;
@@ -1318,7 +1370,7 @@ namespace AutomateDownloader
             // 
             // topBox
             // 
-            this.topBox.Location = new System.Drawing.Point(255, 19);
+            this.topBox.Location = new System.Drawing.Point(78, 71);
             this.topBox.Name = "topBox";
             this.topBox.Size = new System.Drawing.Size(30, 20);
             this.topBox.TabIndex = 21;
@@ -1326,7 +1378,7 @@ namespace AutomateDownloader
             // 
             // leftBox
             // 
-            this.leftBox.Location = new System.Drawing.Point(219, 19);
+            this.leftBox.Location = new System.Drawing.Point(42, 71);
             this.leftBox.Name = "leftBox";
             this.leftBox.Size = new System.Drawing.Size(30, 20);
             this.leftBox.TabIndex = 20;
@@ -1334,7 +1386,7 @@ namespace AutomateDownloader
             // 
             // heightBox
             // 
-            this.heightBox.Location = new System.Drawing.Point(255, 45);
+            this.heightBox.Location = new System.Drawing.Point(78, 97);
             this.heightBox.Name = "heightBox";
             this.heightBox.Size = new System.Drawing.Size(30, 20);
             this.heightBox.TabIndex = 19;
@@ -1342,7 +1394,7 @@ namespace AutomateDownloader
             // 
             // widthBox
             // 
-            this.widthBox.Location = new System.Drawing.Point(219, 45);
+            this.widthBox.Location = new System.Drawing.Point(42, 97);
             this.widthBox.Name = "widthBox";
             this.widthBox.Size = new System.Drawing.Size(30, 20);
             this.widthBox.TabIndex = 18;
@@ -1351,12 +1403,12 @@ namespace AutomateDownloader
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(189, 217);
+            this.checkBox1.Location = new System.Drawing.Point(130, 209);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox1.Size = new System.Drawing.Size(117, 17);
+            this.checkBox1.Size = new System.Drawing.Size(70, 17);
             this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Select/Deselect All";
+            this.checkBox1.Text = "Select All";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -1374,7 +1426,7 @@ namespace AutomateDownloader
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.Location = new System.Drawing.Point(12, 422);
+            this.statusLabel.Location = new System.Drawing.Point(12, 363);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
@@ -1383,20 +1435,20 @@ namespace AutomateDownloader
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(213, 377);
+            this.label9.Location = new System.Drawing.Point(213, 285);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(0, 13);
             this.label9.TabIndex = 24;
             // 
-            // button2
+            // killButtton
             // 
-            this.button2.Location = new System.Drawing.Point(241, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 23);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Kill";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.killButtton.Location = new System.Drawing.Point(301, 363);
+            this.killButtton.Name = "killButtton";
+            this.killButtton.Size = new System.Drawing.Size(25, 11);
+            this.killButtton.TabIndex = 25;
+            this.killButtton.Text = "Kill";
+            this.killButtton.UseVisualStyleBackColor = true;
+            this.killButtton.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
@@ -1411,7 +1463,7 @@ namespace AutomateDownloader
             // 
             this.textBox2.Location = new System.Drawing.Point(114, 19);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
+            this.textBox2.Size = new System.Drawing.Size(135, 20);
             this.textBox2.TabIndex = 27;
             this.textBox2.Text = "Taskmgr";
             // 
@@ -1419,10 +1471,9 @@ namespace AutomateDownloader
             // 
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(337, 295);
+            this.groupBox1.Location = new System.Drawing.Point(14, 387);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 47);
+            this.groupBox1.Size = new System.Drawing.Size(312, 47);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Process Control Test";
@@ -1430,7 +1481,7 @@ namespace AutomateDownloader
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(-71, 68);
+            this.label1.Location = new System.Drawing.Point(361, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -1440,7 +1491,7 @@ namespace AutomateDownloader
             // firstClientIndexBox
             // 
             this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(29, 65);
+            this.firstClientIndexBox.Location = new System.Drawing.Point(461, 65);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
             this.firstClientIndexBox.TabIndex = 1;
@@ -1451,7 +1502,7 @@ namespace AutomateDownloader
             // numClTextBox
             // 
             this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(29, 94);
+            this.numClTextBox.Location = new System.Drawing.Point(461, 94);
             this.numClTextBox.Name = "numClTextBox";
             this.numClTextBox.Size = new System.Drawing.Size(28, 20);
             this.numClTextBox.TabIndex = 9;
@@ -1462,7 +1513,7 @@ namespace AutomateDownloader
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-71, 97);
+            this.label5.Location = new System.Drawing.Point(361, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 10;
@@ -1471,49 +1522,50 @@ namespace AutomateDownloader
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(72, 448);
+            this.button3.Location = new System.Drawing.Point(449, 130);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(60, 23);
+            this.button3.Size = new System.Drawing.Size(40, 23);
             this.button3.TabIndex = 29;
-            this.button3.Text = "Kill CC Procs";
+            this.button3.Text = "Cln";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 448);
+            this.button4.Location = new System.Drawing.Point(6, 99);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 23);
+            this.button4.Size = new System.Drawing.Size(40, 23);
             this.button4.TabIndex = 30;
-            this.button4.Text = "Stop RT";
+            this.button4.Text = "Stop";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(132, 448);
+            this.button5.Location = new System.Drawing.Point(214, 99);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(60, 23);
+            this.button5.Size = new System.Drawing.Size(40, 23);
             this.button5.TabIndex = 31;
-            this.button5.Text = "Start RT";
+            this.button5.Text = "Start";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(192, 448);
+            this.button6.Location = new System.Drawing.Point(58, 99);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(60, 23);
+            this.button6.Size = new System.Drawing.Size(40, 23);
             this.button6.TabIndex = 32;
-            this.button6.Text = "Delete";
+            this.button6.Text = "Del";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(252, 448);
+            this.button7.Location = new System.Drawing.Point(110, 99);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(60, 23);
+            this.button7.Size = new System.Drawing.Size(40, 23);
             this.button7.TabIndex = 33;
             this.button7.Text = "Copy";
             this.button7.UseVisualStyleBackColor = true;
@@ -1521,29 +1573,35 @@ namespace AutomateDownloader
             // 
             // button8
             // 
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(218, 20);
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(218, 19);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 20);
+            this.button8.Size = new System.Drawing.Size(90, 22);
             this.button8.TabIndex = 34;
-            this.button8.Text = "Download";
+            this.button8.Text = "Alt. Download";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.button10);
+            this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.mcpPathBox);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.parallelBox);
             this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.destinationPathBox);
             this.groupBox2.Controls.Add(this.sourcePathBox);
             this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Location = new System.Drawing.Point(13, 322);
+            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Location = new System.Drawing.Point(12, 230);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 97);
+            this.groupBox2.Size = new System.Drawing.Size(314, 130);
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New";
@@ -1557,30 +1615,50 @@ namespace AutomateDownloader
             this.label13.TabIndex = 43;
             this.label13.Text = "MCP Path";
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(266, 99);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(40, 23);
+            this.button10.TabIndex = 37;
+            this.button10.Text = "RDx";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(162, 99);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(40, 23);
+            this.button9.TabIndex = 36;
+            this.button9.Text = "RDc";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // mcpPathBox
             // 
             this.mcpPathBox.Location = new System.Drawing.Point(70, 73);
             this.mcpPathBox.Name = "mcpPathBox";
-            this.mcpPathBox.Size = new System.Drawing.Size(223, 20);
+            this.mcpPathBox.Size = new System.Drawing.Size(238, 20);
             this.mcpPathBox.TabIndex = 42;
-            this.mcpPathBox.Text = "C:\\Project\\spm_clt\\SPM_CLT.mcp";
+            this.mcpPathBox.Text = "D:\\Project\\SDIB_CSP\\wincproj\\SDIB_CSPM_CLT\\SDIB_CSPM_CLT.MCP";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(217, 49);
+            this.label12.Location = new System.Drawing.Point(232, 50);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 13);
             this.label12.TabIndex = 41;
             this.label12.Text = "Multi";
             // 
-            // textBox3
+            // parallelBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(252, 46);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(41, 20);
-            this.textBox3.TabIndex = 40;
-            this.textBox3.Text = "2";
+            this.parallelBox.Location = new System.Drawing.Point(267, 47);
+            this.parallelBox.Name = "parallelBox";
+            this.parallelBox.Size = new System.Drawing.Size(41, 20);
+            this.parallelBox.TabIndex = 40;
+            this.parallelBox.Text = "2";
             // 
             // label11
             // 
@@ -1606,7 +1684,7 @@ namespace AutomateDownloader
             this.destinationPathBox.Name = "destinationPathBox";
             this.destinationPathBox.Size = new System.Drawing.Size(142, 20);
             this.destinationPathBox.TabIndex = 37;
-            this.destinationPathBox.Text = "\\C$\\Project\\SPM_CLT";
+            this.destinationPathBox.Text = "\\C$\\Project\\SDIB_CSPM_CLT";
             // 
             // sourcePathBox
             // 
@@ -1614,27 +1692,24 @@ namespace AutomateDownloader
             this.sourcePathBox.Name = "sourcePathBox";
             this.sourcePathBox.Size = new System.Drawing.Size(142, 20);
             this.sourcePathBox.TabIndex = 36;
-            this.sourcePathBox.Text = "C:\\Project\\SPM_CLT";
+            this.sourcePathBox.Text = "D:\\Project\\SDIB_CSP\\wincproj\\SDIB_CSPM_CLT";
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(324, 483);
+            this.ClientSize = new System.Drawing.Size(340, 384);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.killButtton);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.rdpCheckBox);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.rdpBox1);
             this.Controls.Add(this.ipTextBox);
             this.Controls.Add(this.pathTextBox);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.numClTextBox);
             this.Controls.Add(this.checkedListBox1);
@@ -1647,7 +1722,6 @@ namespace AutomateDownloader
             this.Name = "NCMForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "HMI Clients Updater";
-            this.TopMost = true;
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1692,7 +1766,17 @@ namespace AutomateDownloader
         private void button2_Click(object sender, EventArgs e)
         {
             var id = textBox1.Text;
-            KillProcessViaPowershellOnMachine(id, textBox2.Text);
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            foreach (var c in list)
+                KillProcessViaPowershellOnMachine(c, textBox2.Text);
         }
 
         private void KillTaskInRDP(string ip, string processName)
@@ -1989,22 +2073,24 @@ namespace AutomateDownloader
                 "GfxRTS",
                 "CCKeyboardHook",
                 "CCProjectMgr.exe",
-                "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
-                "SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
-                "CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
-                "S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
-                "CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
-                "CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
-                "OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
-                "CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
-                "CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
-                "CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
-                "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
-                "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
+                //"SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
+                //"SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
+                //"CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
+                //"S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
+                //"CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
+                //"CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
+                //"OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
+                //"CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
+                //"CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
+                //"CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
+                //"CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
+                //"PlantIntelligenceService.exe",// restartprio = "12" servicename = "PerformanceMonitor Service" />
+                //"sqlservr", //"MSSQL$WINCC",
             };
 
         private List<string> rebootProcesses = new List<string>
             {
+                //"sqlservr", //"MSSQL$WINCC",
                 "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
                 "SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
                 "CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
@@ -2032,13 +2118,13 @@ namespace AutomateDownloader
                 MessageBox.Show(new Form { TopMost = true }, "No items to download to have been selected");
                 return;
             }
-            if (!Int32.TryParse(textBox3.Text, out int maxPar))
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             {
                 MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
                 return;
             }
 
-            AddToTrustedHosts();
+            KeepConfig();
 
             //parallel method
             var checkedItems = new List<string>();
@@ -2046,14 +2132,69 @@ namespace AutomateDownloader
             {
                 checkedItems.Add(c.ToString());
             }
+
+            #region first stop rt and reset wincc, delete paralelly
+            var msg = "";
             Parallel.ForEach(checkedItems,
                     new ParallelOptions { MaxDegreeOfParallelism = maxPar },
                     (CheckedItem) =>
                     {
                         //do something
-                        DownloadSequence(CheckedItem);
+                        //var test = checkedListBox1.Items[0].ToString().Substring(0, checkedListBox1.Items[0].ToString().Length - 3) + "E01";
+                        if (mcpPathBox.Text == "")
+                        {
+                            MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
+                            return;
+                        }
+
+                        msg = "Started download process for " + CheckedItem;
+                        statusLabel.Text = msg;
+                        LogToFile(msg);
+
+                        var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+
+                        var clientPath = @"\\" + CheckedItem + "\\" + destinationPathBox.Text;
+                        var sourcePath = sourcePathBox.Text;
+                        if (sourcePath.EndsWith(@"\"))
+                            sourcePath = sourcePath.Substring(0, sourcePath.Length - 1);
+                        if (clientPath.EndsWith(@"\"))
+                            clientPath = clientPath.Substring(0, clientPath.Length - 1);
+
+                        StopWinCCRuntime(CheckedItem);
+                        //ResetWinCCProcesses(CheckedItem); //fux it up, don't use// added siemens reset callup in stopwincc runtime
+                        foreach (var c in selectiveFolders)
+                            DeleteOldProjectFolder(CheckedItem, c);
+                    });
+            #endregion
+
+            #region copy files paralelly
+            var destinations = new List<string>();
+            foreach (var c in checkedItems)
+            {
+                var ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                destinations.Add("\\" + ip + destinationPathBox.Text);
+            }
+            CopyToMultipleDestinations(sourcePathBox.Text, destinations.ToArray());
+            #endregion
+
+            #region remote start, start, close rdp
+            Parallel.ForEach(checkedItems,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (CheckedItem) =>
+                    {
+                        var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+
+                        OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
+                        StartWinCCRuntime(CheckedItem);
+                        CloseRemoteSession(ip);
+
+                        msg = "Finished download process for " + CheckedItem;
+                        statusLabel.Text = msg;
+                        LogToFile(msg);
+
                         Console.WriteLine(CheckedItem);
                     });
+            #endregion
 
             ////sequential method
             //foreach (var m in checkedListBox1.CheckedItems)
@@ -2062,43 +2203,24 @@ namespace AutomateDownloader
             //}
         }
 
-        private void DownloadSequence(string machine)
-        {
-            if (mcpPathBox.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
-                return;
-            }
-
-            var msg = "Started download process for " + machine;
-            statusLabel.Text = msg;
-            LogToFile(msg);
-
-            var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
-
-            StopWinCCRuntime(machine);
-            ResetWinCCProcesses(machine);
-            DeleteOldProjectFolder(machine);
-            CopyNewProjectFolder(machine);
-            OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
-            StartWinCCRuntime(machine);
-            CloseRemoteSession(ip);
-
-            msg = "Finished download process for " + machine;
-            statusLabel.Text = msg;
-            LogToFile(msg);
-        }
-
-        public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        public void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, string machine)
         {
             foreach (DirectoryInfo dir in source.GetDirectories())
-                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+            {
+                CopyFilesRecursively(dir, target.CreateSubdirectory(computerName == dir.Name ? machine : dir.Name), machine);
+            }
             foreach (FileInfo file in source.GetFiles())
+            {
                 file.CopyTo(Path.Combine(target.FullName, file.Name));
+            }
         }
 
         private void ResetWinCCProcesses(string machine)
         {
+            var msg = "Started cleaning processes on " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
             foreach (var process in processes)
             {
                 var action = "Stop-Process -Force";
@@ -2138,18 +2260,21 @@ namespace AutomateDownloader
                 }
             }
 
-            var msg = "Prepared processes on " + machine;
+            msg = "Prepared processes on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
         }
 
         private void StartWinCCRuntime(string machine)
         {
-            if (mcpPathBox.Text == "" )
+            if (mcpPathBox.Text == "")
             {
                 MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
                 return;
             }
+            var msg = "Starting runtime activation on " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
 
             var command = @"""C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe"" " + mcpPathBox.Text + " /Activ:yes /LANG=ENU /EnableBreak:no";
             var batchPath = @"C:\Temp\AutoStart.bat";
@@ -2208,7 +2333,7 @@ namespace AutomateDownloader
                 LogToFile(obj.ToString());
             }
 
-            var msg = "Started runtime on " + machine;
+            msg = "Started runtime on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
 
@@ -2218,6 +2343,10 @@ namespace AutomateDownloader
 
         private void StopWinCCRuntime(string machine)
         {
+            var msg = "Started deactivating runtime on " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+            KeepConfig();
             var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
@@ -2258,7 +2387,7 @@ namespace AutomateDownloader
                 LogToFile(obj.ToString());
             }
 
-            var msg = "Stopped runtime on " + machine;
+            msg = "Stopped runtime on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
 
@@ -2266,51 +2395,82 @@ namespace AutomateDownloader
             impersonator.undoimpersonateUser();
         }
 
-        private void DeleteOldProjectFolder(string machine)
+        private void DeleteOldProjectFolder(string machine, string subf)
         {
+            var msg = "Started deleting project folder on " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
             UserImpersonation impersonator = new UserImpersonation();
+            msg = "Cleared files on " + machine;
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
 
-            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
-
-            System.IO.DirectoryInfo di = new DirectoryInfo(clientPath);
-
-            foreach (FileInfo file in di.GetFiles())
+            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text + @"\" + subf;
+            try
             {
-                file.Delete();
+                if (new DirectoryInfo(clientPath).Exists)
+                {
+                    System.IO.DirectoryInfo di = new DirectoryInfo(clientPath);
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                    foreach (DirectoryInfo dir in di.GetDirectories())
+                    {
+                        dir.Delete(true);
+                    }
+                }
+                else
+                {
+                    msg = "Tried to delete, folder did not exist";
+                }
             }
-            foreach (DirectoryInfo dir in di.GetDirectories())
+            catch (Exception exc)
             {
-                dir.Delete(true);
+                msg = exc.Message;
             }
             impersonator.undoimpersonateUser();
 
-            var msg = "Cleared files on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
         }
 
-        private void CopyNewProjectFolder(string machine)
+        private void CopyNewProjectFolder(string machine, string subf)
         {
+            var msg = "Started copying project folder to " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
 
-            if (!destinationPathBox.Text.StartsWith(@"\"))
-                destinationPathBox.Text = @"\" + destinationPathBox.Text;
+            msg = "Copied files to " + machine;
 
-            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text;
-            var sourcePath = sourcePathBox.Text;
+            try
+            {
+                if (!destinationPathBox.Text.StartsWith(@"\"))
+                    destinationPathBox.Text = @"\" + destinationPathBox.Text;
 
-            //create folder if it doesn't exist anymore
-            if (!Directory.Exists(clientPath))
-                Directory.CreateDirectory(clientPath);
+                var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text + @"\" + subf;
+                var sourcePath = sourcePathBox.Text + @"\" + subf;
 
-            //copy files
-            CopyFilesRecursively(new DirectoryInfo(sourcePath), new DirectoryInfo(clientPath));
+                //create folder if it doesn't exist anymore
+                if (!Directory.Exists(clientPath))
+                    Directory.CreateDirectory(clientPath);
+
+                //copy files
+                //GraCS, ScriptLib, ScriptAct, TEXTBIB
+                CopyFilesRecursively(new DirectoryInfo(sourcePath), new DirectoryInfo(clientPath), machine);
+
+            }
+            catch (Exception exc)
+            {
+                msg = exc.Message;
+            }
 
             impersonator.undoimpersonateUser();
 
-            var msg = "Copied files to " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
         }
@@ -2318,49 +2478,261 @@ namespace AutomateDownloader
         #region TestButtons
         private void Button3_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-            ResetWinCCProcesses(list[0]);
+
+            foreach (var c in list)
+                StopWinCCRuntime(c);
+
+            //if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            //{
+            //    MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+            //    return;
+            //}
+            //Parallel.ForEach(list,
+            //        new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+            //        (c) =>
+            //        {
+            //            //do something
+            //            ResetWinCCProcesses(c);
+            //        });
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-            StopWinCCRuntime(list[0]);
+
+            foreach (var c in list)
+                StopWinCCRuntime(c);
+
+            //if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            //{
+            //    MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+            //    return;
+            //}
+            //Parallel.ForEach(list,
+            //        new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+            //        (c) =>
+            //        {
+            //            //do something
+            //            StopWinCCRuntime(c);
+            //        });
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-            StartWinCCRuntime(list[0]);
+
+            //foreach (var c in list)
+            //    StartWinCCRuntime(c);
+
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        //do something
+                        StartWinCCRuntime(c);
+                    });
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-            DeleteOldProjectFolder(list[0]);
+
+            foreach (var c in list)
+            {
+                foreach (var subf in selectiveFolders)
+                    DeleteOldProjectFolder(c, subf);
+            }
+            //if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            //{
+            //    MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+            //    return;
+            //}
+            //Parallel.ForEach(list,
+            //        new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+            //        (c) =>
+            //        {
+            //            //do something
+            //            foreach (var subf in selectiveFolders)
+            //                DeleteOldProjectFolder(c, subf);
+            //        });
         }
 
         private void Button7_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-            CopyNewProjectFolder(list[0]);
+
+            //foreach (var c in list)
+            //{
+            //    foreach (var subf in selectiveFolders)
+            //        CopyNewProjectFolder(c, subf);
+            //}
+
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        //do something
+                        foreach (var subf in selectiveFolders)
+                            CopyNewProjectFolder(c, subf);
+                    });
         }
 
         #endregion
 
         private void Button8_Click(object sender, EventArgs e)
         {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
             StartDownloads();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            //foreach (var c in list)
+            //{
+            //    var machine = c;
+            //    var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+            //    OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
+            //}
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        var machine = c;
+                        var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                        OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
+                    });
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            //foreach (var c in list)
+            //{
+            //    var machine = c;
+            //    var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+            //    CloseRemoteSession(ip);
+            //}
+
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        var machine = c;
+                        var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                        CloseRemoteSession(ip);
+                    });
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Button4_Click(sender, e);
+            Button3_Click(sender, e);
+        }
+
+        public void CopyToMultipleDestinations(string sourceFilePath, params string[] destinationPaths)
+        {
+            if (string.IsNullOrEmpty(sourceFilePath)) throw new ArgumentException("A source file must be specified.", "sourceFilePath");
+
+            if (destinationPaths == null || destinationPaths.Length == 0) throw new ArgumentException("At least one destination file must be specified.", "destinationPaths");
+
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+
+            Parallel.ForEach(destinationPaths, new ParallelOptions(),
+                             destinationPath =>
+                             {
+                                 using (var source = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                                 using (var destination = new FileStream(destinationPath, FileMode.Create))
+                                 {
+                                     var buffer = new byte[1024];
+                                     int read;
+
+                                     while ((read = source.Read(buffer, 0, buffer.Length)) > 0)
+                                     {
+                                         destination.Write(buffer, 0, read);
+                                     }
+                                 }
+                             });
         }
     }
 }
@@ -2494,6 +2866,5 @@ namespace toolsforimpersonations
         {
             impersonationContext.Undo();
         }
-
     }
 }
