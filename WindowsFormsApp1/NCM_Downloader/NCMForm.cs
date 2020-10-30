@@ -69,7 +69,6 @@ namespace AutomateDownloader
         private Label label13;
         private Button button9;
         private Button button10;
-        private Form frm1 = new Form();
 
         [STAThread]
         public static void Main()
@@ -917,30 +916,6 @@ namespace AutomateDownloader
             }
         }
 
-        private static void TaskKill(string user, string pass, string ip, string processName)
-        {
-            var connectoptions = new ConnectionOptions
-            {
-                Username = user, //@"YourDomainName\UserName";
-                Password = pass //"User Password";
-            };
-
-            string ipAddress = ip; //"192.168.206.53";
-            ManagementScope scope = new ManagementScope(@"\\" + ipAddress + @"\root\cimv2", connectoptions);
-
-            // WMI query
-            var query = new SelectQuery("select * from Win32_process where name = '" + processName + "'");
-
-            using (var searcher = new ManagementObjectSearcher(scope, query))
-            {
-                foreach (ManagementObject process in searcher.Get()) // this is the fixed line
-                {
-                    process.InvokeMethod("Terminate", null);
-                }
-            }
-            Console.ReadLine();
-        }
-
         private void ClickButtonUsingMessage(IntPtr windowHandle, string buttonText, string windowText)
         {
             bool success = true;
@@ -996,7 +971,6 @@ namespace AutomateDownloader
                 }
             }
         }
-
 
         private void OpenRemoteSession(string ip, string un, string pw)
         {
@@ -2105,30 +2079,11 @@ namespace AutomateDownloader
                 "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
             };
 
-        private void StartDownloads()
+        private void StartDownloads(int paralellismDeg)
         {
-            var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
-            if (!File.Exists(exePath))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please have StopWinCCRuntime.exe in this folder");
-                return;
-            }
-            if (checkedListBox1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show(new Form { TopMost = true }, "No items to download to have been selected");
-                return;
-            }
-            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
-                return;
-            }
-
-            KeepConfig();
-
             //parallel method
-            var checkedItems = new List<string>();
-            foreach (var c in checkedListBox1.CheckedItems)
+            List<string> checkedItems = new List<string>();
+            foreach (object c in checkedListBox1.CheckedItems)
             {
                 checkedItems.Add(c.ToString());
             }
@@ -2136,7 +2091,7 @@ namespace AutomateDownloader
             #region first stop rt and reset wincc, delete paralelly
             var msg = "";
             Parallel.ForEach(checkedItems,
-                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    new ParallelOptions { MaxDegreeOfParallelism = paralellismDeg },
                     (CheckedItem) =>
                     {
                         //do something
@@ -2161,25 +2116,23 @@ namespace AutomateDownloader
                             clientPath = clientPath.Substring(0, clientPath.Length - 1);
 
                         StopWinCCRuntime(CheckedItem);
-                        //ResetWinCCProcesses(CheckedItem); //fux it up, don't use// added siemens reset callup in stopwincc runtime
+                        //ResetWinCCProcesses(CheckedItem); //fux it up, don't use// added siemens reset callup in stopwincc runtime function
                         foreach (var c in selectiveFolders)
                             DeleteOldProjectFolder(CheckedItem, c);
                     });
             #endregion
 
             #region copy files paralelly
-            var destinations = new List<string>();
-            foreach (var c in checkedItems)
-            {
-                var ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
-                destinations.Add("\\" + ip + destinationPathBox.Text);
-            }
+            List<string> destinations = new List<string>();
+            destinations.AddRange(from string c in checkedItems
+                                  let ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0]
+                                  select "\\" + ip + destinationPathBox.Text);
             CopyToMultipleDestinations(sourcePathBox.Text, destinations.ToArray());
             #endregion
 
             #region remote start, start, close rdp
             Parallel.ForEach(checkedItems,
-                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    new ParallelOptions { MaxDegreeOfParallelism = paralellismDeg },
                     (CheckedItem) =>
                     {
                         var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
@@ -2196,11 +2149,6 @@ namespace AutomateDownloader
                     });
             #endregion
 
-            ////sequential method
-            //foreach (var m in checkedListBox1.CheckedItems)
-            //{
-            //    DownloadSequence(m.ToString());
-            //}
         }
 
         public void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, string machine)
@@ -2475,6 +2423,35 @@ namespace AutomateDownloader
             LogToFile(msg);
         }
 
+        public void CopyToMultipleDestinations(string sourceFilePath, params string[] destinationPaths)
+        {
+            if (string.IsNullOrEmpty(sourceFilePath)) throw new ArgumentException("A source file must be specified.", "sourceFilePath");
+
+            if (destinationPaths == null || destinationPaths.Length == 0) throw new ArgumentException("At least one destination file must be specified.", "destinationPaths");
+
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+
+            Parallel.ForEach(destinationPaths, new ParallelOptions(),
+                             destinationPath =>
+                             {
+                                 using (var source = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                                 using (var destination = new FileStream(destinationPath, FileMode.Create))
+                                 {
+                                     var buffer = new byte[1024];
+                                     int read;
+
+                                     while ((read = source.Read(buffer, 0, buffer.Length)) > 0)
+                                     {
+                                         destination.Write(buffer, 0, read);
+                                     }
+                                 }
+                             });
+        }
+
         #region TestButtons
         private void Button3_Click(object sender, EventArgs e)
         {
@@ -2632,7 +2609,26 @@ namespace AutomateDownloader
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
                 return;
             }
-            StartDownloads();
+            var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
+            if (!File.Exists(exePath))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please have StopWinCCRuntime.exe in this folder");
+                return;
+            }
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items to download to have been selected");
+                return;
+            }
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+
+            KeepConfig();
+
+            StartDownloads(maxPar);
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -2700,40 +2696,6 @@ namespace AutomateDownloader
                     });
         }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-            Button4_Click(sender, e);
-            Button3_Click(sender, e);
-        }
-
-        public void CopyToMultipleDestinations(string sourceFilePath, params string[] destinationPaths)
-        {
-            if (string.IsNullOrEmpty(sourceFilePath)) throw new ArgumentException("A source file must be specified.", "sourceFilePath");
-
-            if (destinationPaths == null || destinationPaths.Length == 0) throw new ArgumentException("At least one destination file must be specified.", "destinationPaths");
-
-            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
-                return;
-            }
-
-            Parallel.ForEach(destinationPaths, new ParallelOptions(),
-                             destinationPath =>
-                             {
-                                 using (var source = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                                 using (var destination = new FileStream(destinationPath, FileMode.Create))
-                                 {
-                                     var buffer = new byte[1024];
-                                     int read;
-
-                                     while ((read = source.Read(buffer, 0, buffer.Length)) > 0)
-                                     {
-                                         destination.Write(buffer, 0, read);
-                                     }
-                                 }
-                             });
-        }
     }
 }
 

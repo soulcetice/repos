@@ -435,7 +435,7 @@ namespace WinCC_Timer
                 List<PageCpuTime> currentPageData = new List<PageCpuTime>();
                 List<PageCpuTime> tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
 
-                var nonZeroGroups = new List<List<PageCpuTime>>
+                List<List<PageCpuTime>> nonZeroGroups = new List<List<PageCpuTime>>
                 {
                     new List<PageCpuTime>()
                 };
@@ -450,11 +450,17 @@ namespace WinCC_Timer
                         nonZeroGroups.Add(new List<PageCpuTime>());
                     }
                 }
-                var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
-                currentPageData = largestNonZero;
-                var startTime = tempList.Select(c => c.timestamp).Min();
 
-                double loadingTime = (currentPageData.LastOrDefault().timestamp - startTime).TotalMilliseconds;
+                var startTime = tempList.Select(c => c.timestamp).Min();
+                foreach (var c in nonZeroGroups.ToList())
+                {
+                    PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
+                    if ((prim.timestamp - startTime).TotalSeconds > 2)
+                        nonZeroGroups.Remove(c);
+                } //remove groups that start later than 2 seconds
+
+                var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
+                double loadingTime = (largestNonZero.LastOrDefault().timestamp - startTime).TotalMilliseconds;
 
                 PageLoadTimes.Add(new PageTime()
                 {
@@ -462,7 +468,7 @@ namespace WinCC_Timer
                     page = p
                 });
 
-                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms"/* + currentPageData.LastOrDefault().timestamp + ", " + currentPageData.FirstOrDefault().timestamp + ", " + currentPageData.LastOrDefault().cpu + ", " + currentPageData.FirstOrDefault().cpu*/, timerLogName);
+                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms"/* + largestNonZero.LastOrDefault().timestamp + ", " + largestNonZero.FirstOrDefault().timestamp + ", " + largestNonZero.LastOrDefault().cpu + ", " + largestNonZero.FirstOrDefault().cpu*/, timerLogName);
             }
         }
 
@@ -543,43 +549,5 @@ namespace WinCC_Timer
         }
         #endregion
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
-            var filePath = @"C:\Program Files (x86)\Siemens\WinCC\bin\Reset_WinCC.vbs";
-            var remoteScriptCommand = @"Invoke-Command -ComputerName Server01, Server02 -FilePath " + filePath;
-
-            //RESET WINCC REMOTELY - DELETE FILES - START RUNTIME - FOR ALL AT THE SAME TIME INVOKE C#
-
-            #region reset_wincc
-            ////powershell command below runs exe with parameter (button press)
-            //$acommand = '"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe"'
-            //Start-Process $acommand "-terminate"
-            #endregion
-
-            #region delete_files
-            var v = new FileSystemWatcher();
-            
-            #endregion
-
-            #region start_runtime
-            //"C:\Program Files (x86)\SIEMENS\WinCC\bin\AutoStartRT.exe" C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.mcp /Activ:yes /LANG=ENU /EnableBreak:no"
-            //run this batch remotely
-            #endregion
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //inject stop runtime executable to remote station
-            //execute stop runtime
-            //reset wincc 
-            //delete remote data
-            //copy data to remote
-            //autostart batch file
-            //done
-
-            //CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
-            //rt.Stop();
-        }
     }
 }
