@@ -30,6 +30,8 @@ namespace RDApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("SDI-TCM");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("SDI-SPM");
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -38,6 +40,13 @@ namespace RDApp
             // 
             this.treeView1.Location = new System.Drawing.Point(12, 12);
             this.treeView1.Name = "treeView1";
+            treeNode1.Name = "";
+            treeNode1.Text = "SDI-TCM";
+            treeNode2.Name = "";
+            treeNode2.Text = "SDI-SPM";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(333, 391);
             this.treeView1.TabIndex = 5;
             // 
@@ -54,17 +63,12 @@ namespace RDApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 421);
+            this.ClientSize = new System.Drawing.Size(524, 421);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.treeView1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-
-            treeView1.ShowPlusMinus = true;
-            treeView1.Nodes.Add("SDI-TCM");
-            treeView1.Nodes.Add("SDI-SPM");
-
 
         }
 

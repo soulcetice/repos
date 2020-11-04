@@ -1,0 +1,3 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\bin\Debug\bla
+Administrator
+!sysadmin

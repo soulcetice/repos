@@ -121,8 +121,15 @@ namespace AutomateDownloader
                     "Gracs",
                     "ScriptLib",
                     "ScriptAct",
-                    "TEXTBIB"
+                    "TEXTBIB",
+                    "Packages"
                 };
+
+            statusLabel.MaximumSize = new System.Drawing.Size(280, 0);
+            statusLabel.AutoSize = true;
+
+            statusLabel.Text = "I pour a sip on the concrete, for the deceased But no don't weep, Wyclef's in a state of sleep Thinkin' 'bout the robbery, that I did last week. Money in the bag, banker looked like a drag I want to play with pelicans from here to Baghdad";
+            Console.WriteLine(statusLabel.Size.Height / statusLabel.Font.Height);
         }
 
         private void GetInitialValues(string path)
@@ -1240,7 +1247,7 @@ namespace AutomateDownloader
             this.ipTextBox.Name = "ipTextBox";
             this.ipTextBox.Size = new System.Drawing.Size(258, 18);
             this.ipTextBox.TabIndex = 12;
-            this.ipTextBox.Text = "C:\\Windows\\System32\\drivers\\etc\\lmhosts";
+            this.ipTextBox.Text = "C:\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\NCM_Downloader\\bin\\Debug\\lmhosts";
             this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
             // 
             // unTextBox
@@ -1405,6 +1412,7 @@ namespace AutomateDownloader
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
             this.statusLabel.Text = "Ready";
+            this.statusLabel.TextChanged += new System.EventHandler(this.statusLabel_TextChanged);
             // 
             // label9
             // 
@@ -1445,7 +1453,7 @@ namespace AutomateDownloader
             // 
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Location = new System.Drawing.Point(14, 387);
+            this.groupBox1.Location = new System.Drawing.Point(364, 363);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(312, 47);
             this.groupBox1.TabIndex = 28;
@@ -1670,7 +1678,7 @@ namespace AutomateDownloader
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(340, 384);
+            this.ClientSize = new System.Drawing.Size(338, 421);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.killButtton);
@@ -1690,7 +1698,6 @@ namespace AutomateDownloader
             this.Controls.Add(this.button1);
             this.Controls.Add(this.firstClientIndexBox);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "NCMForm";
@@ -2343,6 +2350,74 @@ namespace AutomateDownloader
             impersonator.undoimpersonateUser();
         }
 
+        private void DeleteProjectFolderViaExe(string machine)
+        {
+            var msg = "Started deactivating runtime on " + machine + "...";
+            statusLabel.Text = msg;
+            LogToFile(msg);
+            KeepConfig();
+            var exePath = Application.StartupPath + "\\DeleteProjectFolder.exe";
+
+            var settPath = Application.StartupPath + "\\DeleteProjectFolderSettings.txt";
+            var projPath = destinationPathBox.Text.Substring(1, destinationPathBox.Text.Length).Replace("$", ":");
+            using (var fileWriter = new StreamWriter(settPath, true))
+            {
+                fileWriter.WriteLine(projPath);
+                fileWriter.WriteLine(unTextBox.Text);
+                fileWriter.WriteLine(passTextBox.Text);
+                fileWriter.Close();
+            }
+
+            UserImpersonation impersonator = new UserImpersonation();
+            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
+            try
+            {
+                File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
+                File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
+            }
+            catch (Exception exc)
+            {
+                LogToFile(exc.Message);
+            }
+
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+
+            //Invoke-Command -scriptBlock
+            //ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock; //same as below
+            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c 'C:\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("ComputerName", machine);
+            invokeScript.Parameters.Add("Credential", cred);
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+
+            msg = "Stopped runtime on " + machine;
+            statusLabel.Text = msg;
+            LogToFile(msg);
+
+            File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
+            File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
+            File.Delete(settPath);
+            impersonator.undoimpersonateUser();
+        }
+
         private void DeleteOldProjectFolder(string machine, string subf)
         {
             var msg = "Started deleting project folder on " + machine + "...";
@@ -2550,8 +2625,9 @@ namespace AutomateDownloader
 
             foreach (var c in list)
             {
-                foreach (var subf in selectiveFolders)
-                    DeleteOldProjectFolder(c, subf);
+                DeleteProjectFolderViaExe(c);
+                //foreach (var subf in selectiveFolders)
+                    //DeleteOldProjectFolder(c, subf);
             }
             //if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             //{
@@ -2648,6 +2724,7 @@ namespace AutomateDownloader
             //    var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
             //    OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
             //}
+
             if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             {
                 MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
@@ -2696,6 +2773,11 @@ namespace AutomateDownloader
                     });
         }
 
+        private void statusLabel_TextChanged(object sender, EventArgs e)
+        {
+            //if (NCMForm.ActiveForm.IsAccessible)
+            //    NCMForm.ActiveForm.Height += statusLabel.Size.Height - statusLabel.Font.Height;
+        }
     }
 }
 

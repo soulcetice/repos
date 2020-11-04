@@ -16,8 +16,6 @@ using Interoperability;
 using System.Diagnostics;
 using System.Threading;
 using System.Management;
-using System.Dynamic;
-
 
 namespace WinCC_Timer
 {
@@ -66,13 +64,13 @@ namespace WinCC_Timer
                 {
                     Console.WriteLine("Begin second task...");
                     GetProcessCPUUsage("PdlRt");
-                }, //close second Action
+                } //close second Action
 
-                () =>
-                {
-                    Console.WriteLine("Begin third task...");
-                    UpdatePageLabel();
-                } //close third Action
+                //() =>
+                //{
+                //    Console.WriteLine("Begin third task...");
+                //    UpdatePageLabel();
+                //} //close third Action
 
             ); //close parallel.invoke
 
@@ -93,12 +91,18 @@ namespace WinCC_Timer
 
         private void NavigateHMIMenu()
         {
-            List<MenuRow> lists = GetSQLMenu(refIdBox.Text);
+            List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
 
-            var tier1 = lists.Where(c => c.Layer == "1");
+            var tier1 = lists; //.Where(c => c.Layer == "1");
 
             IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
-            Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
+            if (rt == IntPtr.Zero)
+            {
+                label1.Text = "Please start the WinCC Graphics Runtime!";
+                label1.Refresh();
+                return;
+            }
+            //Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
 
             //"General is 76 * 30
             int x = 25 / 2;
@@ -238,47 +242,68 @@ namespace WinCC_Timer
             }
         }
 
-        private List<MenuRow> GetSQLMenu(string id)
+        private List<MenuRow> GetMenuData(/*string id*/)
         {
-            string connectionString = "Data Source=TCMHMID01\\WINCC;Initial Catalog=SMS_RTDesign;Integrated Security=SSPI";
-            string query = "SELECT * FROM RT_Menu where RefId = " + id;
-            SqlConnection cnn = new SqlConnection(connectionString);
-            try
+            #region sql
+            ////sql connection to fill data 
+            //string connectionString = "Data Source=" + sqlPathBox.Text + "\\WINCC;Initial Catalog=SMS_RTDesign;Integrated Security=SSPI";
+            //string query = "SELECT * FROM RT_Menu where RefId = " + id;
+            //SqlConnection cnn = new SqlConnection(connectionString);
+            //try
+            //{
+            //    cnn.Open();
+            //    //MessageBox.Show("Connection Open ! ");
+            //    SqlCommand cmd = new SqlCommand(query, cnn);
+            //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //    da.Fill(dataTable);
+            //    cnn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogToFile("Can not open connection ! " + ex.Message, logName);
+            //    return null;
+            //}
+            #endregion
+
+            string sqlFile = Application.StartupPath + @"\" + textBox1.Text;
+            var g = new grafexe.Application().ApplicationDataPath;
+
+            //INSERT INTO[SMS_RTDesign].[dbo].[RT_Menu](ID, RefId, Layer, Pos, Parentid, LCID, Caption, Flags, Pdl) VALUES (1000000, 1, 1, 1, 0, 1033, N'General', 3, '')
+            //INSERT INTO[SMS_RTDesign].[dbo].[RT_Menu](ID, RefId, Layer, Pos, Parentid, LCID, Caption, Flags, Pdl) VALUES (1010000, 1, 2, 1, 1000000, 1033, N'Alarms', 1, '@sms_w_Alarmlist')
+
+            var textData = File.ReadAllLines(sqlFile);
+            var manipData = new List<string>();
+            for (int i = 0; i < textData.Length; i++)
             {
-                cnn.Open();
-                //MessageBox.Show("Connection Open ! ");
-                SqlCommand cmd = new SqlCommand(query, cnn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dataTable);
-                cnn.Close();
+                string line = textData[i];
+                if (line.IndexOf("VALUES (") != -1)
+                    manipData.Add(line.Substring(
+                        line.IndexOf("VALUES (") + "VALUES (".Length,
+                        line.Length - 1 - line.IndexOf("VALUES (") - "VALUES (".Length
+                        ));
+            }
 
-                List<MenuRow> myData = new List<MenuRow>();
+            List<MenuRow> myData = new List<MenuRow>();
 
-                for (int i = 0; i < dataTable.Rows.Count; i++)
+            for (int i = 0; i < manipData.Count; i++)
+            {
+                var row = manipData[i].Split(Convert.ToChar(","));
+                myData.Add(new MenuRow()
                 {
-                    var row = dataTable.Rows[i].ItemArray;
-                    myData.Add(new MenuRow()
-                    {
-                        ID = row?.ElementAt(0).ToString(),
-                        RefId = row?.ElementAt(1).ToString(),
-                        Layer = row?.ElementAt(2).ToString(),
-                        Pos = row?.ElementAt(3).ToString(),
-                        LCID = row?.ElementAt(4).ToString(),
-                        ParentId = row?.ElementAt(5).ToString(),
-                        Caption = row?.ElementAt(6).ToString(),
-                        Flags = row?.ElementAt(7).ToString(),
-                        Pdl = row?.ElementAt(8).ToString(),
-                        Parameter = row?.ElementAt(9).ToString(),
-                    });
-                }
+                    ID = row?.ElementAt(0).ToString(),
+                    RefId = row?.ElementAt(1).ToString(),
+                    Layer = row?.ElementAt(2).ToString(),
+                    Pos = row?.ElementAt(3).ToString(),
+                    ParentId = row?.ElementAt(5).ToString(),
+                    LCID = row?.ElementAt(4).ToString(),
+                    Caption = row?.ElementAt(6).ToString().Replace("N'", "").Replace("'",""),
+                    Flags = row?.ElementAt(7).ToString(),
+                    Pdl = row?.ElementAt(8).ToString(),
+                    //Parameter = row?.ElementAt(9)?.ToString(),
+                });
+            }
 
-                return myData;
-            }
-            catch (Exception ex)
-            {
-                LogToFile("Can not open connection ! " + ex.Message, logName);
-                return null;
-            }
+            return myData;
         }
 
         private bool FindObjectInHMI(Bitmap cmp)
@@ -348,7 +373,6 @@ namespace WinCC_Timer
             #region grafexe
             grafexe.Application g = new grafexe.Application();
 
-
             var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
             var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
 
@@ -395,14 +419,20 @@ namespace WinCC_Timer
 
             PerformanceCounter cpu = new PerformanceCounter("Process", "% Processor Time", name, true);
 
-            while (endFlag == false)
+            try
             {
-                DateTime date = DateTime.UtcNow;
-                datetimes.Add(date);
-                perc.Add(cpu.NextValue() / procs);
-                measTime.Add(date.Hour + ":" + date.Minute + ":" + date.Second + "." + date.Millisecond);
-                atPagesList.Add(currentPage);
-                Thread.Sleep(50);
+                while (endFlag == false)
+                {
+                    DateTime date = DateTime.UtcNow;
+                    datetimes.Add(date);
+                    perc.Add(cpu.NextValue() / procs);
+                    measTime.Add(date.Hour + ":" + date.Minute + ":" + date.Second + "." + date.Millisecond);
+                    atPagesList.Add(currentPage);
+                    Thread.Sleep(50);
+                }
+            } catch (Exception exc)
+            {
+                LogToFile(exc.Message,logName);
             }
 
             for (int i = 0; i < perc.Count; i++)
@@ -434,6 +464,7 @@ namespace WinCC_Timer
             {
                 List<PageCpuTime> currentPageData = new List<PageCpuTime>();
                 List<PageCpuTime> tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
+                var startTime = tempList.Select(c => c.timestamp).Min();
 
                 List<List<PageCpuTime>> nonZeroGroups = new List<List<PageCpuTime>>
                 {
@@ -451,7 +482,6 @@ namespace WinCC_Timer
                     }
                 }
 
-                var startTime = tempList.Select(c => c.timestamp).Min();
                 foreach (var c in nonZeroGroups.ToList())
                 {
                     PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
