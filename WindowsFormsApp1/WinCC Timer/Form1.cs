@@ -32,7 +32,6 @@ namespace WinCC_Timer
         public DataTable dataTable = new DataTable();
         public string logName = "\\Screen.logger";
         public string cpuLogName = "\\pdlrt.logger";
-        public string timerLogName = "\\timerData.logger";
 
         public bool endFlag = false;
         public string currentPage = "";
@@ -93,19 +92,20 @@ namespace WinCC_Timer
         {
             List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
 
-            var tier1 = lists; //.Where(c => c.Layer == "1");
+            var tier1 = lists.Where(c => c.Layer == "1").ToList();
 
             IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
             if (rt == IntPtr.Zero)
             {
                 label1.Text = "Please start the WinCC Graphics Runtime!";
                 label1.Refresh();
-                return;
+                //return;
             }
             //Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
+            var singleHeight = 25;
 
             //"General is 76 * 30
-            int x = 25 / 2;
+            int x = singleHeight / 2;
             int y = 0;
             foreach (MenuRow m in tier1)
             {
@@ -115,11 +115,11 @@ namespace WinCC_Timer
                 y = 15;
                 y += 28;
 
-                var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID);
+                var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID).ToList();
                 var tier1Width = GetMenuDropWidth(ChildrenTier1);
                 foreach (var tier2 in ChildrenTier1)
                 {
-                    if (tier2.Pdl != "")
+                    if (tier2.Pdl != "" && tier2.Pdl != "''")
                     {
                         ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
@@ -141,7 +141,7 @@ namespace WinCC_Timer
                         foreach (var tier3 in ChildrenTier2)
                         {
                             int xTier3 = x + tier1Width; // + longest element in tier2's width + some 40 pixels
-                            if (tier3.Pdl != "")
+                            if (tier3.Pdl != "" && tier3.Pdl != "''")
                             {
                                 ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                                 LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
@@ -166,7 +166,7 @@ namespace WinCC_Timer
                                 foreach (var tier4 in ChildrenTier3)
                                 {
                                     int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 20; // + longest element in tier2's width + some 40 pixels
-                                    if (tier4.Pdl != "")
+                                    if (tier4.Pdl != "" && tier4.Pdl != "''")
                                     {
                                         ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                                         LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
@@ -185,17 +185,17 @@ namespace WinCC_Timer
                                     {
                                         //no tier 5 thank god
                                     }
-                                    yTier4 += 25; //if 26 here, then it becomes too much
+                                    yTier4 += singleHeight; //if 26 here, then it becomes too much
                                 }
                             }
-                            yTier3 += 25;
+                            yTier3 += singleHeight;
                         }
                     }
-                    y += 25; //increment tier2 menu or open page
+                    y += singleHeight; //increment tier2 menu or open page
                 }
 
                 x += size.Width / 2;
-                x += 25;
+                x += singleHeight;
 
                 //bool v = FindObjectInHMI(cmp);
                 //still only almost, gets too offset in the end
@@ -294,13 +294,14 @@ namespace WinCC_Timer
                     RefId = row?.ElementAt(1).ToString(),
                     Layer = row?.ElementAt(2).ToString(),
                     Pos = row?.ElementAt(3).ToString(),
-                    ParentId = row?.ElementAt(5).ToString(),
-                    LCID = row?.ElementAt(4).ToString(),
-                    Caption = row?.ElementAt(6).ToString().Replace("N'", "").Replace("'",""),
+                    ParentId = row?.ElementAt(4).ToString(),
+                    LCID = row?.ElementAt(5).ToString(),
+                    Caption = row?.ElementAt(6).ToString().Replace("N'", "").Replace("'", ""),
                     Flags = row?.ElementAt(7).ToString(),
                     Pdl = row?.ElementAt(8).ToString(),
                     //Parameter = row?.ElementAt(9)?.ToString(),
                 });
+                Console.WriteLine("added row");
             }
 
             return myData;
@@ -430,9 +431,10 @@ namespace WinCC_Timer
                     atPagesList.Add(currentPage);
                     Thread.Sleep(50);
                 }
-            } catch (Exception exc)
+            }
+            catch (Exception exc)
             {
-                LogToFile(exc.Message,logName);
+                LogToFile(exc.Message, logName);
             }
 
             for (int i = 0; i < perc.Count; i++)
@@ -440,12 +442,19 @@ namespace WinCC_Timer
                 LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
             }
 
-            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes);
+            try
+            {
+                ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, "current");
+            }
+            catch (Exception exc)
+            {
+                LogToFile(exc.Message, logName);
+            }
 
             return true;
         }
 
-        private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes)
+        private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes, string currentCalc)
         {
             var PageCpuUsageList = new List<PageCpuTime>();
             var PageLoadTimes = new List<PageTime>();
@@ -482,6 +491,8 @@ namespace WinCC_Timer
                     }
                 }
 
+                nonZeroGroups = nonZeroGroups.Where(c => c.Count > 0).ToList();
+
                 foreach (var c in nonZeroGroups.ToList())
                 {
                     PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
@@ -498,7 +509,7 @@ namespace WinCC_Timer
                     page = p
                 });
 
-                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms"/* + largestNonZero.LastOrDefault().timestamp + ", " + largestNonZero.FirstOrDefault().timestamp + ", " + largestNonZero.LastOrDefault().cpu + ", " + largestNonZero.FirstOrDefault().cpu*/, timerLogName);
+                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms", "\\timerData_" + currentCalc + ".logger");
             }
         }
 
@@ -579,5 +590,24 @@ namespace WinCC_Timer
         }
         #endregion
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var file = "cspm4";
+            var textData = File.ReadAllLines(@"\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\results\pdlrt_" + file + ".logger");
+            var perc = new List<float>();
+            var atPagesList = new List<string>();
+            var datetimes = new List<DateTime>();
+
+            for (int i = 0; i < textData.Length; i++)
+            {
+                var data = textData[i].Split(Convert.ToChar(" "))[3];
+                var line = data.Split(Convert.ToChar(","));
+                datetimes.Add(DateTime.Parse(line[0]));
+                perc.Add(float.Parse(line[1]));
+                atPagesList.Add(line[2]);
+            }
+
+            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, file);
+        }
     }
 }

@@ -6183,3 +6183,576 @@
 2020/10/16 14:30:31:497 UTC: For HMI Configuration expand menu, clicked at 411 x, 93 y
 2020/10/16 14:30:39:502 UTC: For PDL Statistics expand menu, clicked at 563 x, 243 y
 2020/10/16 14:30:39:505 UTC: i8Sys_n_PdlStatistics
+2020/11/5 7:4:33:665 UTC: Counter is not single instance, an instance name needs to be specified.
+2020/11/5 7:5:3:453 UTC: 51width, 16height, General
+2020/11/5 7:5:3:458 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:462 UTC: 43width, 16height, Alarms
+2020/11/5 7:5:3:468 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:473 UTC: 40width, 16height, Safety
+2020/11/5 7:5:3:478 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:483 UTC: 58width, 16height, Overview
+2020/11/5 7:5:3:488 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:493 UTC: 124width, 16height, Overview  Floor RM
+2020/11/5 7:5:3:498 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:503 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/5 7:5:3:508 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:513 UTC: 123width, 16height, Overview  Floor FM
+2020/11/5 7:5:3:519 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:524 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/5 7:5:3:528 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:534 UTC: 123width, 16height, Overview  Floor DC
+2020/11/5 7:5:3:539 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:544 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/5 7:5:3:549 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:554 UTC: 87width, 16height, Safety Details
+2020/11/5 7:5:3:558 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:563 UTC: 112width, 16height, Safety Details RM
+2020/11/5 7:5:3:567 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:571 UTC: 111width, 16height, Safety Details FM
+2020/11/5 7:5:3:576 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:581 UTC: 160width, 16height, Safety Details DC Page 1
+2020/11/5 7:5:3:585 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:588 UTC: 160width, 16height, Safety Details DC Page 2
+2020/11/5 7:5:3:594 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:599 UTC: 87width, 16height, Switch On-Off
+2020/11/5 7:5:3:603 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:608 UTC: 38width, 16height, Media
+2020/11/5 7:5:3:611 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:616 UTC: 40width, 16height, Drives
+2020/11/5 7:5:3:620 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:624 UTC: 31width, 16height, MCC
+2020/11/5 7:5:3:628 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:633 UTC: 60width, 16height, Media TF
+2020/11/5 7:5:3:639 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:646 UTC: 127width, 16height, Gas & Air Supply TF1
+2020/11/5 7:5:3:650 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:656 UTC: 146width, 16height, Burner Heating Section
+2020/11/5 7:5:3:661 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:667 UTC: 142width, 16height, Burner Shuttle Section
+2020/11/5 7:5:3:671 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:677 UTC: 127width, 16height, Gas & Air Supply TF2
+2020/11/5 7:5:3:682 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:687 UTC: 146width, 16height, Burner Heating Section
+2020/11/5 7:5:3:691 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:696 UTC: 63width, 16height, Media RM
+2020/11/5 7:5:3:700 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:705 UTC: 115width, 16height, Hydraulic Systems
+2020/11/5 7:5:3:708 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:714 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/5 7:5:3:719 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:723 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/5 7:5:3:727 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:733 UTC: 120width, 16height, Hydrostatic System
+2020/11/5 7:5:3:738 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:744 UTC: 127width, 16height, Lubrication Systems
+2020/11/5 7:5:3:749 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:753 UTC: 129width, 16height, Roll Gap Lubrication
+2020/11/5 7:5:3:757 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:762 UTC: 141width, 16height, Oil Lubrication System
+2020/11/5 7:5:3:767 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:773 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/5 7:5:3:778 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:783 UTC: 97width, 16height, Grease System
+2020/11/5 7:5:3:788 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:792 UTC: 94width, 16height, Water Systems
+2020/11/5 7:5:3:797 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:802 UTC: 149width, 16height, Descaling Entry System
+2020/11/5 7:5:3:806 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:811 UTC: 138width, 16height, Descaling Exit System
+2020/11/5 7:5:3:815 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:820 UTC: 98width, 16height, Cooling Control
+2020/11/5 7:5:3:824 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:831 UTC: 142width, 16height, Cooling Before Stands
+2020/11/5 7:5:3:836 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:841 UTC: 156width, 16height, Stand Interstand Cooling
+2020/11/5 7:5:3:846 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:851 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/5 7:5:3:855 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:859 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:3:863 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:868 UTC: 73width, 16height, Parameters
+2020/11/5 7:5:3:872 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:876 UTC: 62width, 16height, Media FM
+2020/11/5 7:5:3:881 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:886 UTC: 115width, 16height, Hydraulic Systems
+2020/11/5 7:5:3:891 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:896 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/5 7:5:3:901 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:906 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/5 7:5:3:911 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:916 UTC: 120width, 16height, Hydrostatic System
+2020/11/5 7:5:3:921 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:926 UTC: 127width, 16height, Lubrication Systems
+2020/11/5 7:5:3:936 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:941 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/5 7:5:3:946 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:950 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/5 7:5:3:955 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:960 UTC: 141width, 16height, Oil Lubrication System
+2020/11/5 7:5:3:965 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:969 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/5 7:5:3:973 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:978 UTC: 97width, 16height, Grease System
+2020/11/5 7:5:3:983 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:987 UTC: 136width, 16height, Drum Shear Pit Pump
+2020/11/5 7:5:3:992 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:3:997 UTC: 94width, 16height, Water Systems
+2020/11/5 7:5:4:1 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:5 UTC: 149width, 16height, Descaling Entry System
+2020/11/5 7:5:4:11 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:16 UTC: 138width, 16height, Descaling Exit System
+2020/11/5 7:5:4:22 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:26 UTC: 98width, 16height, Cooling Control
+2020/11/5 7:5:4:32 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:37 UTC: 142width, 16height, Cooling Before Stands
+2020/11/5 7:5:4:42 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:48 UTC: 199width, 16height, Stand Interstand Cooling F1-F3
+2020/11/5 7:5:4:52 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:57 UTC: 199width, 16height, Stand Interstand Cooling F4-F6
+2020/11/5 7:5:4:61 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:66 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:4:70 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:75 UTC: 73width, 16height, Parameters
+2020/11/5 7:5:4:79 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:83 UTC: 62width, 16height, Media DC
+2020/11/5 7:5:4:88 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:93 UTC: 115width, 16height, Hydraulic Systems
+2020/11/5 7:5:4:98 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:103 UTC: 110width, 16height, Low Pressure CC
+2020/11/5 7:5:4:107 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:113 UTC: 127width, 16height, Lubrication Systems
+2020/11/5 7:5:4:118 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:122 UTC: 151width, 16height, Compact Oil Lubrication
+2020/11/5 7:5:4:130 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:139 UTC: 127width, 16height, Gear Oil Lubrication
+2020/11/5 7:5:4:144 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:149 UTC: 97width, 16height, Grease System
+2020/11/5 7:5:4:154 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:160 UTC: 104width, 16height, Coiler Pit Pumps
+2020/11/5 7:5:4:168 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:175 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:4:182 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:187 UTC: 73width, 16height, Parameters
+2020/11/5 7:5:4:194 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:201 UTC: 40width, 16height, Drives
+2020/11/5 7:5:4:208 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:215 UTC: 120width, 16height, Power Supply Main
+2020/11/5 7:5:4:219 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:223 UTC: 141width, 16height, Power Supply Auxiliary
+2020/11/5 7:5:4:228 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:234 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/5 7:5:4:241 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:245 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/5 7:5:4:252 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:258 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/5 7:5:4:264 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:269 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/5 7:5:4:275 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:282 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/5 7:5:4:288 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:292 UTC: 100width, 16height, Tunnel Furnace
+2020/11/5 7:5:4:296 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:300 UTC: 58width, 16height, Overview
+2020/11/5 7:5:4:304 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:309 UTC: 143width, 16height, Production Sequences
+2020/11/5 7:5:4:314 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:325 UTC: 130width, 16height, Combustion Settings
+2020/11/5 7:5:4:329 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:335 UTC: 131width, 16height, Machine Preparation
+2020/11/5 7:5:4:338 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:344 UTC: 105width, 16height, Combustion TF1
+2020/11/5 7:5:4:347 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:352 UTC: 105width, 16height, Burner Overview
+2020/11/5 7:5:4:356 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:372 UTC: 71width, 16height, L1 Settings
+2020/11/5 7:5:4:377 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:381 UTC: 138width, 16height, Devices - Combustion
+2020/11/5 7:5:4:387 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:391 UTC: 105width, 16height, Combustion TF2
+2020/11/5 7:5:4:395 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:400 UTC: 105width, 16height, Burner Overview
+2020/11/5 7:5:4:404 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:409 UTC: 71width, 16height, L1 Settings
+2020/11/5 7:5:4:416 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:421 UTC: 138width, 16height, Devices - Combustion
+2020/11/5 7:5:4:425 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:431 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:4:434 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:440 UTC: 104width, 16height, Roller Drive TF1
+2020/11/5 7:5:4:444 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:449 UTC: 64width, 16height, Zones 1-8
+2020/11/5 7:5:4:461 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:466 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/5 7:5:4:472 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:476 UTC: 104width, 16height, Roller Drive TF2
+2020/11/5 7:5:4:481 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:486 UTC: 64width, 16height, Zones 1-7
+2020/11/5 7:5:4:495 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:499 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/5 7:5:4:504 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:508 UTC: 85width, 16height, Roughing Mill
+2020/11/5 7:5:4:513 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:520 UTC: 58width, 16height, Overview
+2020/11/5 7:5:4:528 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:534 UTC: 127width, 16height, Production Planning
+2020/11/5 7:5:4:539 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:544 UTC: 71width, 16height, Sequences
+2020/11/5 7:5:4:550 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:559 UTC: 76width, 16height, Disturbance
+2020/11/5 7:5:4:564 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:568 UTC: 82width, 16height, Primary Data
+2020/11/5 7:5:4:577 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:583 UTC: 98width, 16height, Piece Schedule
+2020/11/5 7:5:4:588 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:597 UTC: 69width, 16height, Piece Data
+2020/11/5 7:5:4:604 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:611 UTC: 78width, 16height, Default Alloy
+2020/11/5 7:5:4:616 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:625 UTC: 73width, 16height, Parameters
+2020/11/5 7:5:4:631 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:635 UTC: 70width, 16height, Calculation
+2020/11/5 7:5:4:640 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:644 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/5 7:5:4:650 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:657 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/5 7:5:4:662 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:667 UTC: 192width, 16height, Transfer Bar Cooling - Current
+2020/11/5 7:5:4:674 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:679 UTC: 70width, 16height, Lubrication
+2020/11/5 7:5:4:685 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:689 UTC: 131width, 16height, Machine Preparation
+2020/11/5 7:5:4:695 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:700 UTC: 68width, 16height, Calibration
+2020/11/5 7:5:4:706 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:713 UTC: 99width, 16height, Calibration - R1
+2020/11/5 7:5:4:717 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:723 UTC: 98width, 16height, Calibration - E1
+2020/11/5 7:5:4:730 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:736 UTC: 99width, 16height, Calibration - R2
+2020/11/5 7:5:4:742 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:747 UTC: 98width, 16height, Calibration - E2
+2020/11/5 7:5:4:753 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:758 UTC: 78width, 16height, Roll Change
+2020/11/5 7:5:4:764 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:770 UTC: 126width, 16height, Roll Change - R1E1
+2020/11/5 7:5:4:776 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:782 UTC: 126width, 16height, Roll Change - R2E2
+2020/11/5 7:5:4:788 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:799 UTC: 58width, 16height, Roll Data
+2020/11/5 7:5:4:810 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:815 UTC: 68width, 16height, Roll Status
+2020/11/5 7:5:4:818 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:823 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:4:829 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:834 UTC: 121width, 16height, Devices - RM Entry
+2020/11/5 7:5:4:843 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:848 UTC: 56width, 16height, Descaler
+2020/11/5 7:5:4:852 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:859 UTC: 112width, 16height, Details - Descaler
+2020/11/5 7:5:4:864 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:870 UTC: 119width, 16height, Devices - Descaler
+2020/11/5 7:5:4:876 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:881 UTC: 77width, 16height, Side Guides
+2020/11/5 7:5:4:886 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:892 UTC: 52width, 16height, RM - R1
+2020/11/5 7:5:4:897 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:902 UTC: 59width, 16height, Stand R1
+2020/11/5 7:5:4:906 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:913 UTC: 55width, 16height, Drive R1
+2020/11/5 7:5:4:917 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:922 UTC: 81width, 16height, Devices - R1
+2020/11/5 7:5:4:927 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:932 UTC: 68width, 16height, Edger - E1
+2020/11/5 7:5:4:938 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:943 UTC: 58width, 16height, Stand E1
+2020/11/5 7:5:4:948 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:955 UTC: 54width, 16height, Drive E1
+2020/11/5 7:5:4:961 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:967 UTC: 80width, 16height, Devices - E1
+2020/11/5 7:5:4:973 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:977 UTC: 52width, 16height, RM - R2
+2020/11/5 7:5:4:983 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:989 UTC: 59width, 16height, Stand R2
+2020/11/5 7:5:4:994 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:4:999 UTC: 55width, 16height, Drive R2
+2020/11/5 7:5:5:5 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:10 UTC: 81width, 16height, Devices - R2
+2020/11/5 7:5:5:14 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:18 UTC: 68width, 16height, Edger - E2
+2020/11/5 7:5:5:22 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:27 UTC: 58width, 16height, Stand E2
+2020/11/5 7:5:5:31 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:34 UTC: 54width, 16height, Drive E2
+2020/11/5 7:5:5:39 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:43 UTC: 80width, 16height, Devices - E2
+2020/11/5 7:5:5:47 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:52 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/5 7:5:5:56 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:63 UTC: 187width, 16height, Details - Transfer Bar Cooling
+2020/11/5 7:5:5:69 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:75 UTC: 119width, 16height, Details - Pinch Roll
+2020/11/5 7:5:5:82 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:88 UTC: 194width, 16height, Devices - Transfer Bar Cooling
+2020/11/5 7:5:5:93 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:99 UTC: 110width, 16height, Devices - RM Exit
+2020/11/5 7:5:5:104 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:110 UTC: 50width, 16height, Reports
+2020/11/5 7:5:5:115 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:119 UTC: 81width, 16height, Finishing Mill
+2020/11/5 7:5:5:123 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:127 UTC: 58width, 16height, Overview
+2020/11/5 7:5:5:132 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:136 UTC: 127width, 16height, Production Planning
+2020/11/5 7:5:5:141 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:145 UTC: 71width, 16height, Sequences
+2020/11/5 7:5:5:149 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:154 UTC: 76width, 16height, Disturbance
+2020/11/5 7:5:5:157 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:162 UTC: 58width, 16height, Overview
+2020/11/5 7:5:5:177 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:181 UTC: 80width, 16height, Current Slab
+2020/11/5 7:5:5:185 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:190 UTC: 87width, 16height, Previous Slab
+2020/11/5 7:5:5:195 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:199 UTC: 82width, 16height, Primary Data
+2020/11/5 7:5:5:203 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:209 UTC: 98width, 16height, Piece Schedule
+2020/11/5 7:5:5:215 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:220 UTC: 69width, 16height, Piece Data
+2020/11/5 7:5:5:224 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:229 UTC: 78width, 16height, Default Alloy
+2020/11/5 7:5:5:233 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:238 UTC: 70width, 16height, Calculation
+2020/11/5 7:5:5:242 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:246 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/5 7:5:5:250 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:257 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/5 7:5:5:262 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:266 UTC: 148width, 16height, Pass Schedule - Fictive
+2020/11/5 7:5:5:271 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:279 UTC: 98width, 16height, Profile Flatness
+2020/11/5 7:5:5:282 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:290 UTC: 70width, 16height, Lubrication
+2020/11/5 7:5:5:295 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:301 UTC: 131width, 16height, Machine Preparation
+2020/11/5 7:5:5:306 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:311 UTC: 68width, 16height, Calibration
+2020/11/5 7:5:5:318 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:324 UTC: 98width, 16height, Calibration - F1
+2020/11/5 7:5:5:329 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:335 UTC: 98width, 16height, Calibration - F2
+2020/11/5 7:5:5:341 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:347 UTC: 98width, 16height, Calibration - F3
+2020/11/5 7:5:5:352 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:356 UTC: 98width, 16height, Calibration - F4
+2020/11/5 7:5:5:360 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:365 UTC: 98width, 16height, Calibration - F5
+2020/11/5 7:5:5:370 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:375 UTC: 98width, 16height, Calibration - F6
+2020/11/5 7:5:5:379 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:395 UTC: 78width, 16height, Roll Change
+2020/11/5 7:5:5:400 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:405 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/5 7:5:5:411 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:415 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/5 7:5:5:419 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:424 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/5 7:5:5:428 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:432 UTC: 58width, 16height, Roll Data
+2020/11/5 7:5:5:436 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:439 UTC: 68width, 16height, Roll Status
+2020/11/5 7:5:5:445 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:448 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:5:452 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:457 UTC: 120width, 16height, Devices - FM Entry
+2020/11/5 7:5:5:461 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:466 UTC: 76width, 16height, Drum Shear
+2020/11/5 7:5:5:470 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:475 UTC: 38width, 16height, Shear
+2020/11/5 7:5:5:478 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:483 UTC: 75width, 16height, Shear Drive
+2020/11/5 7:5:5:487 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:495 UTC: 56width, 16height, Descaler
+2020/11/5 7:5:5:502 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:508 UTC: 17width, 16height, F1
+2020/11/5 7:5:5:513 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:520 UTC: 58width, 16height, Stand F1
+2020/11/5 7:5:5:526 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:533 UTC: 54width, 16height, Drive F1
+2020/11/5 7:5:5:538 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:544 UTC: 80width, 16height, Devices - F1
+2020/11/5 7:5:5:549 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:555 UTC: 17width, 16height, F2
+2020/11/5 7:5:5:561 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:568 UTC: 58width, 16height, Stand F2
+2020/11/5 7:5:5:573 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:579 UTC: 54width, 16height, Drive F2
+2020/11/5 7:5:5:584 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:589 UTC: 80width, 16height, Devices - F2
+2020/11/5 7:5:5:594 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:599 UTC: 17width, 16height, F3
+2020/11/5 7:5:5:603 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:609 UTC: 58width, 16height, Stand F3
+2020/11/5 7:5:5:617 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:624 UTC: 54width, 16height, Drive F3
+2020/11/5 7:5:5:629 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:635 UTC: 80width, 16height, Devices - F3
+2020/11/5 7:5:5:640 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:645 UTC: 17width, 16height, F4
+2020/11/5 7:5:5:650 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:655 UTC: 58width, 16height, Stand F4
+2020/11/5 7:5:5:660 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:665 UTC: 54width, 16height, Drive F4
+2020/11/5 7:5:5:669 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:673 UTC: 80width, 16height, Devices - F4
+2020/11/5 7:5:5:677 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:681 UTC: 17width, 16height, F5
+2020/11/5 7:5:5:685 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:689 UTC: 58width, 16height, Stand F5
+2020/11/5 7:5:5:693 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:696 UTC: 54width, 16height, Drive F5
+2020/11/5 7:5:5:700 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:704 UTC: 80width, 16height, Devices - F5
+2020/11/5 7:5:5:710 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:716 UTC: 17width, 16height, F6
+2020/11/5 7:5:5:724 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:729 UTC: 58width, 16height, Stand F6
+2020/11/5 7:5:5:736 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:741 UTC: 54width, 16height, Drive F6
+2020/11/5 7:5:5:746 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:751 UTC: 80width, 16height, Devices - F6
+2020/11/5 7:5:5:756 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:761 UTC: 109width, 16height, Devices - FM Exit
+2020/11/5 7:5:5:765 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:770 UTC: 50width, 16height, Reports
+2020/11/5 7:5:5:775 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:780 UTC: 76width, 16height, Down Coiler
+2020/11/5 7:5:5:785 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:804 UTC: 58width, 16height, Overview
+2020/11/5 7:5:5:811 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:815 UTC: 143width, 16height, Production Sequences
+2020/11/5 7:5:5:820 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:825 UTC: 131width, 16height, Machine Preparation
+2020/11/5 7:5:5:830 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:835 UTC: 68width, 16height, Calibration
+2020/11/5 7:5:5:855 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:860 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:5:864 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:869 UTC: 93width, 16height, Group Jogging
+2020/11/5 7:5:5:873 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:878 UTC: 96width, 16height, Devices - Entry
+2020/11/5 7:5:5:883 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:888 UTC: 18width, 16height, LC
+2020/11/5 7:5:5:893 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:897 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/5 7:5:5:902 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:907 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/5 7:5:5:911 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:916 UTC: 81width, 16height, Devices - LC
+2020/11/5 7:5:5:921 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:926 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/5 7:5:5:930 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:935 UTC: 108width, 16height, Devices - LC Top
+2020/11/5 7:5:5:941 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:948 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/5 7:5:5:953 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:959 UTC: 28width, 16height, DC1
+2020/11/5 7:5:5:966 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:972 UTC: 69width, 16height, Coiler DC1
+2020/11/5 7:5:5:976 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:984 UTC: 83width, 16height, Mandrel DC1
+2020/11/5 7:5:5:988 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:5:993 UTC: 91width, 16height, Devices - DC1
+2020/11/5 7:5:5:997 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:2 UTC: 28width, 16height, DC2
+2020/11/5 7:5:6:7 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:12 UTC: 69width, 16height, Coiler DC2
+2020/11/5 7:5:6:17 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:21 UTC: 83width, 16height, Mandrel DC2
+2020/11/5 7:5:6:27 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:32 UTC: 91width, 16height, Devices - DC2
+2020/11/5 7:5:6:36 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:41 UTC: 85width, 16height, Devices - Exit
+2020/11/5 7:5:6:45 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:50 UTC: 89width, 16height, Coil Conveyor
+2020/11/5 7:5:6:54 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:59 UTC: 58width, 16height, Overview
+2020/11/5 7:5:6:67 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:73 UTC: 140width, 16height, Coil Inspection Station
+2020/11/5 7:5:6:78 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:83 UTC: 123width, 16height, Logistic Sequences
+2020/11/5 7:5:6:88 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:93 UTC: 81width, 16height, Maintenance
+2020/11/5 7:5:6:98 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:104 UTC: 83width, 16height, Devices - CC
+2020/11/5 7:5:6:109 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:114 UTC: 46width, 16height, System
+2020/11/5 7:5:6:119 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:124 UTC: 77width, 16height, HMI Network
+2020/11/5 7:5:6:129 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:133 UTC: 108width, 16height, Fieldbus Network
+2020/11/5 7:5:6:138 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:143 UTC: 79width, 16height, Fieldbus RM
+2020/11/5 7:5:6:148 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:154 UTC: 78width, 16height, Fieldbus FM
+2020/11/5 7:5:6:158 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:170 UTC: 112width, 16height, HMI Configuration
+2020/11/5 7:5:6:174 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:179 UTC: 77width, 16height, Node Rights
+2020/11/5 7:5:6:183 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:187 UTC: 79width, 16height, Connections
+2020/11/5 7:5:6:192 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:197 UTC: 70width, 16height, Information
+2020/11/5 7:5:6:207 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:224 UTC: 73width, 16height, User Rights
+2020/11/5 7:5:6:229 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:234 UTC: 61width, 16height, Database
+2020/11/5 7:5:6:239 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:243 UTC: 69width, 16height, Application
+2020/11/5 7:5:6:248 UTC: 0 is x width for childrentier2
+2020/11/5 7:5:6:253 UTC: 86width, 16height, PDL Statistics
+2020/11/5 7:5:6:257 UTC: 0 is x width for childrentier2
+2020/11/5 7:7:48:540 UTC: 51width, 16height, General
+2020/11/5 7:7:53:541 UTC: 0 is x width for childrentier2
+2020/11/5 7:8:24:146 UTC: 51width, 16height, General
+2020/11/5 7:8:24:152 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:554 UTC: 51width, 16height, General
+2020/11/5 7:30:13:560 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:567 UTC: 100width, 16height, Tunnel Furnace
+2020/11/5 7:30:13:572 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:581 UTC: 85width, 16height, Roughing Mill
+2020/11/5 7:30:13:586 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:592 UTC: 81width, 16height, Finishing Mill
+2020/11/5 7:30:13:599 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:603 UTC: 76width, 16height, Down Coiler
+2020/11/5 7:30:13:613 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:619 UTC: 89width, 16height, Coil Conveyor
+2020/11/5 7:30:13:626 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:13:632 UTC: 46width, 16height, System
+2020/11/5 7:30:13:637 UTC: 0 is x width for childrentier2
+2020/11/5 7:30:45:482 UTC: 51width, 16height, General
+2020/11/5 7:30:45:488 UTC: 0 is x width for childrentier2
+2020/11/5 7:40:26:323 UTC: 51width, 16height, General
+2020/11/5 7:40:26:329 UTC: 43width, 16height, Alarms
+2020/11/5 7:40:26:334 UTC: Alarms is the caption for which we check width
+2020/11/5 7:40:26:339 UTC: 40width, 16height, Safety
+2020/11/5 7:40:26:343 UTC: 87width, 16height, Switch On-Off
+2020/11/5 7:40:26:348 UTC: Switch On-Off is the caption for which we check width
+2020/11/5 7:40:26:353 UTC: 60width, 16height, Media TF
+2020/11/5 7:40:26:358 UTC: 63width, 16height, Media RM
+2020/11/5 7:40:26:363 UTC: 62width, 16height, Media FM
+2020/11/5 7:40:26:368 UTC: 62width, 16height, Media DC
+2020/11/5 7:40:26:372 UTC: 40width, 16height, Drives
+2020/11/5 7:40:26:377 UTC: 87 is x width for childrentier2
+2020/11/5 7:42:0:429 UTC: 51width, 16height, General
+2020/11/5 7:42:0:434 UTC: 43width, 16height, Alarms
+2020/11/5 7:42:0:438 UTC: Alarms is the caption for which we check width
+2020/11/5 7:42:0:443 UTC: 40width, 16height, Safety
+2020/11/5 7:42:0:447 UTC: 87width, 16height, Switch On-Off
+2020/11/5 7:42:0:452 UTC: Switch On-Off is the caption for which we check width
+2020/11/5 7:42:0:456 UTC: 60width, 16height, Media TF
+2020/11/5 7:42:0:460 UTC: 63width, 16height, Media RM
+2020/11/5 7:42:0:465 UTC: 62width, 16height, Media FM
+2020/11/5 7:42:0:469 UTC: 62width, 16height, Media DC
+2020/11/5 7:42:0:474 UTC: 40width, 16height, Drives
+2020/11/5 7:42:0:479 UTC: 87 is x width for childrentier2

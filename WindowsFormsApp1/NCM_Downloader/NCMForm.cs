@@ -68,6 +68,7 @@ namespace AutomateDownloader
         private TextBox mcpPathBox;
         private Label label13;
         private Button button9;
+        private Button button2;
         private Button button10;
 
         [STAThread]
@@ -127,8 +128,6 @@ namespace AutomateDownloader
 
             statusLabel.MaximumSize = new System.Drawing.Size(280, 0);
             statusLabel.AutoSize = true;
-
-            statusLabel.Text = "I pour a sip on the concrete, for the deceased But no don't weep, Wyclef's in a state of sleep Thinkin' 'bout the robbery, that I did last week. Money in the bag, banker looked like a drag I want to play with pelicans from here to Baghdad";
             Console.WriteLine(statusLabel.Size.Height / statusLabel.Font.Height);
         }
 
@@ -478,8 +477,8 @@ namespace AutomateDownloader
             {
                 if (File.Exists(filePath))
                 {
-                    System.IO.FileStream fs = new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite);
-                    System.IO.StreamReader sr = new System.IO.StreamReader(fs);
+                    FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    StreamReader sr = new StreamReader(fs);
                     List<String> lst = new List<string>();
 
                     while (!sr.EndOfStream)
@@ -612,8 +611,9 @@ namespace AutomateDownloader
             var toolTip8 = new System.Windows.Forms.ToolTip();
             toolTip8.SetToolTip(parallelBox, "Set how many parallel download processes to run");
 
-            var toolTip9 = new System.Windows.Forms.ToolTip();
-            toolTip9.SetToolTip(killButtton, "Kill Task manager on selected machines (for test)");
+            new System.Windows.Forms.ToolTip().SetToolTip(killButtton, "Kill Task manager on selected machines (for test)");
+
+            new System.Windows.Forms.ToolTip().SetToolTip(mcpPathBox, "Set the client mcp file path here please");
         }
 
         // Send a series of key presses to the application.
@@ -765,14 +765,12 @@ namespace AutomateDownloader
                                 else
                                 {
                                     LogToFile("The Ok Button was not found in the deactivation window!");
-
                                     //MessageBox.Show(new Form { TopMost = true }, "The Ok Button was not found!"); //careful to focus on it
                                 }
                             }
                             else
                             {
                                 LogToFile("Did not find target system popup! (runtime was not active on this client)");
-
                                 //MessageBox.Show(new Form { TopMost = true }, "Did not find target system popup!"); //careful to focus on it
                             }
 
@@ -793,7 +791,14 @@ namespace AutomateDownloader
                                     if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS")).Count() > 0) //check if closing project takes too long...
                                     {
                                         LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
-                                        KillProcessViaPowershellOnMachine(clientName, processName);
+                                        try
+                                        {
+                                            KillProcessViaPowershellOnMachine(clientName, processName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            LogToFile(ex.Message);
+                                        }
                                         flagKilled = true;
                                     }
                                     System.Threading.Thread.Sleep(50);
@@ -811,14 +816,14 @@ namespace AutomateDownloader
                             }
 
                             //if Canceled by the user in LOAD.LOG , assume that RT station not obtainable //read load.log here to find canceled by user
-                            PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
+                            _ = PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
                             //var downloadTargetWindowText = ExtractWindowTextByHandle(osDldTgtWndHandle);
 
                             var filePath = pathTextBox.Text + "(" + checkedListBox1.CheckedIndices[i] + 1 + ")\\winccom\\LOAD.LOG";
                             if (File.Exists(filePath))
                             {
-                                System.IO.FileStream fs = new System.IO.FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite);
-                                System.IO.StreamReader sr = new System.IO.StreamReader(fs);
+                                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                                StreamReader sr = new StreamReader(fs);
                                 List<String> lst = new List<string>();
 
                                 while (!sr.EndOfStream)
@@ -1204,6 +1209,7 @@ namespace AutomateDownloader
             this.label10 = new System.Windows.Forms.Label();
             this.destinationPathBox = new System.Windows.Forms.TextBox();
             this.sourcePathBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1219,6 +1225,7 @@ namespace AutomateDownloader
             this.button1.TabIndex = 2;
             this.button1.Text = "NCM Download";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // checkedListBox1
             // 
@@ -1412,7 +1419,6 @@ namespace AutomateDownloader
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
             this.statusLabel.Text = "Ready";
-            this.statusLabel.TextChanged += new System.EventHandler(this.statusLabel_TextChanged);
             // 
             // label9
             // 
@@ -1593,9 +1599,9 @@ namespace AutomateDownloader
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(9, 76);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 13);
+            this.label13.Size = new System.Drawing.Size(84, 13);
             this.label13.TabIndex = 43;
-            this.label13.Text = "MCP Path";
+            this.label13.Text = "Client MCP Path";
             // 
             // button10
             // 
@@ -1619,11 +1625,11 @@ namespace AutomateDownloader
             // 
             // mcpPathBox
             // 
-            this.mcpPathBox.Location = new System.Drawing.Point(70, 73);
+            this.mcpPathBox.Location = new System.Drawing.Point(99, 73);
             this.mcpPathBox.Name = "mcpPathBox";
-            this.mcpPathBox.Size = new System.Drawing.Size(238, 20);
+            this.mcpPathBox.Size = new System.Drawing.Size(209, 20);
             this.mcpPathBox.TabIndex = 42;
-            this.mcpPathBox.Text = "D:\\Project\\SDIB_CSP\\wincproj\\SDIB_CSPM_CLT\\SDIB_CSPM_CLT.MCP";
+            this.mcpPathBox.Text = "D:\\Project\\SDIB_CSPM_CLT\\SDIB_CSPM_CLT.MCP";
             // 
             // label12
             // 
@@ -1666,7 +1672,8 @@ namespace AutomateDownloader
             this.destinationPathBox.Name = "destinationPathBox";
             this.destinationPathBox.Size = new System.Drawing.Size(142, 20);
             this.destinationPathBox.TabIndex = 37;
-            this.destinationPathBox.Text = "\\C$\\Project\\SDIB_CSPM_CLT";
+            this.destinationPathBox.Text = "\\\\vmware-host\\Shared Folders\\C\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\WinCC T" +
+    "imer\\bin\\Debug\\results";
             // 
             // sourcePathBox
             // 
@@ -1674,11 +1681,23 @@ namespace AutomateDownloader
             this.sourcePathBox.Name = "sourcePathBox";
             this.sourcePathBox.Size = new System.Drawing.Size(142, 20);
             this.sourcePathBox.TabIndex = 36;
-            this.sourcePathBox.Text = "D:\\Project\\SDIB_CSP\\wincproj\\SDIB_CSPM_CLT";
+            this.sourcePathBox.Text = "\\\\vmware-host\\Shared Folders\\C\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\WinCC T" +
+    "imer\\bin\\Debug\\results";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(364, 329);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 36;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(338, 421);
+            this.ClientSize = new System.Drawing.Size(337, 421);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.killButtton);
@@ -1758,48 +1777,6 @@ namespace AutomateDownloader
 
             foreach (var c in list)
                 KillProcessViaPowershellOnMachine(c, textBox2.Text);
-        }
-
-        private void KillTaskInRDP(string ip, string processName)
-        {
-            IntPtr myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
-
-            Interoperability.PInvokeLibrary.SetForegroundWindow(myRdp);
-
-            _ = PInvokeLibrary.GetWindowRect(myRdp, out PInvoke.RECT myRdpRect);
-
-
-            ClickInWindowAtXY(myRdp, ((myRdpRect.left + myRdpRect.right) / 2) /*(Convert.ToInt32(widthBox.Text) / 480 * 9)*/, ((myRdpRect.top + myRdpRect.bottom) / 2)/*+ myRdpRect.bottom - (Convert.ToInt32(heightBox.Text) / 480 * 9)*/, 1);
-            LogToFile("Clicked at " + (myRdpRect.left + (Convert.ToInt32(widthBox.Text) / 480 * 9)).ToString() + " width, " + (myRdpRect.top + myRdpRect.bottom - (Convert.ToInt32(heightBox.Text) / 480 * 9)).ToString() + " height");
-            System.Threading.Thread.Sleep(500);
-
-            var cmdString = @"Taskkill / IM " + processName + " / F";
-
-            System.Threading.Thread.Sleep(200);
-            foreach (var c in cmdString)
-            {
-                SendKeyHandled(myRdp, c.ToString());
-            }
-
-            SendKeyHandled(myRdp, "^({ESC})");
-            System.Threading.Thread.Sleep(500);
-
-            SendKeyHandled(myRdp, "c");
-            SendKeyHandled(myRdp, "m");
-            SendKeyHandled(myRdp, "d");
-            System.Threading.Thread.Sleep(200);
-            SendKeyHandled(myRdp, "{ENTER}");
-
-            /*var*/
-            cmdString = @"Taskkill / IM " + processName + " / F";
-
-            System.Threading.Thread.Sleep(200);
-            foreach (var c in cmdString)
-            {
-                SendKeyHandled(myRdp, c.ToString());
-            }
-
-            LogToFile("should have succeeded by now");
         }
 
         private void KillProcessViaPowershellOnMachine(string machine, string process)
@@ -2102,7 +2079,6 @@ namespace AutomateDownloader
                     (CheckedItem) =>
                     {
                         //do something
-                        //var test = checkedListBox1.Items[0].ToString().Substring(0, checkedListBox1.Items[0].ToString().Length - 3) + "E01";
                         if (mcpPathBox.Text == "")
                         {
                             MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
@@ -2123,27 +2099,8 @@ namespace AutomateDownloader
                             clientPath = clientPath.Substring(0, clientPath.Length - 1);
 
                         StopWinCCRuntime(CheckedItem);
-                        //ResetWinCCProcesses(CheckedItem); //fux it up, don't use// added siemens reset callup in stopwincc runtime function
-                        foreach (var c in selectiveFolders)
-                            DeleteOldProjectFolder(CheckedItem, c);
-                    });
-            #endregion
-
-            #region copy files paralelly
-            List<string> destinations = new List<string>();
-            destinations.AddRange(from string c in checkedItems
-                                  let ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0]
-                                  select "\\" + ip + destinationPathBox.Text);
-            CopyToMultipleDestinations(sourcePathBox.Text, destinations.ToArray());
-            #endregion
-
-            #region remote start, start, close rdp
-            Parallel.ForEach(checkedItems,
-                    new ParallelOptions { MaxDegreeOfParallelism = paralellismDeg },
-                    (CheckedItem) =>
-                    {
-                        var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
-
+                        DeleteProjectFolderViaExe(CheckedItem);
+                        Copy(sourcePathBox.Text, @"\\" + ip + @"\" + destinationPathBox.Text, CheckedItem);
                         OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
                         StartWinCCRuntime(CheckedItem);
                         CloseRemoteSession(ip);
@@ -2156,18 +2113,6 @@ namespace AutomateDownloader
                     });
             #endregion
 
-        }
-
-        public void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, string machine)
-        {
-            foreach (DirectoryInfo dir in source.GetDirectories())
-            {
-                CopyFilesRecursively(dir, target.CreateSubdirectory(computerName == dir.Name ? machine : dir.Name), machine);
-            }
-            foreach (FileInfo file in source.GetFiles())
-            {
-                file.CopyTo(Path.Combine(target.FullName, file.Name));
-            }
         }
 
         private void ResetWinCCProcesses(string machine)
@@ -2292,6 +2237,7 @@ namespace AutomateDownloader
             statusLabel.Text = msg;
             LogToFile(msg);
 
+            File.Delete(batchFile.FullName);
             File.Delete(destPath);
             impersonator.undoimpersonateUser();
         }
@@ -2350,181 +2296,127 @@ namespace AutomateDownloader
             impersonator.undoimpersonateUser();
         }
 
+        private void Copytest(string sourceDir, string targetDir, string machine)
+        {
+            Directory.CreateDirectory(targetDir);
+
+            foreach (var file in Directory.GetFiles(sourceDir))
+                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)));
+
+            foreach (var directory in Directory.GetDirectories(sourceDir))
+            {
+                var targetPath = Path.Combine(targetDir, Path.GetFileName(directory));
+                if (targetPath.Contains(Environment.MachineName))
+                {
+                    targetPath = targetPath.Replace(Environment.MachineName, machine);
+                }
+                Copytest(directory, targetPath, machine);
+            }
+        }
+
+        public static void Copy(string sourceDirectory, string targetDirectory, string machine)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget, machine);
+            foreach (FileInfo fi in diSource.GetFiles())
+            {
+                Console.WriteLine(@"Copying {0}\{1}", diTarget.FullName, fi.Name);
+                fi.CopyTo(Path.Combine(diTarget.FullName, fi.Name), true);
+            }
+        }
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target, string machine)
+        {
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                var name = diSourceSubDir.Name;
+                if (name == Environment.MachineName)
+                    name = machine;
+                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(name);
+                CopyAll(diSourceSubDir, nextTargetSubDir, machine);
+            }
+        }
+
         private void DeleteProjectFolderViaExe(string machine)
         {
-            var msg = "Started deactivating runtime on " + machine + "...";
+            var msg = "Started deleting on " + machine + "...";
             statusLabel.Text = msg;
             LogToFile(msg);
             KeepConfig();
-            var exePath = Application.StartupPath + "\\DeleteProjectFolder.exe";
+            //var exePath = Application.StartupPath + "\\DeleteProjectFolder.exe";
 
-            var settPath = Application.StartupPath + "\\DeleteProjectFolderSettings.txt";
-            var projPath = destinationPathBox.Text.Substring(1, destinationPathBox.Text.Length).Replace("$", ":");
-            using (var fileWriter = new StreamWriter(settPath, true))
-            {
-                fileWriter.WriteLine(projPath);
-                fileWriter.WriteLine(unTextBox.Text);
-                fileWriter.WriteLine(passTextBox.Text);
-                fileWriter.Close();
-            }
-
-            UserImpersonation impersonator = new UserImpersonation();
-            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
-            try
-            {
-                File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
-                File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
-            }
-            catch (Exception exc)
-            {
-                LogToFile(exc.Message);
-            }
-
-            Runspace runSpace = RunspaceFactory.CreateRunspace();
-            runSpace.Open();
-            Pipeline pipeline = runSpace.CreatePipeline();
-
-            Command invokeScript = new Command("Invoke-Command");
-            RunspaceInvoke invoke = new RunspaceInvoke();
-
-            var s = new SecureString();
-            foreach (var ch in passTextBox.Text)
-            {
-                s.AppendChar(ch);
-            }
-            var cred = new PSCredential(unTextBox.Text, s);
-
-            //Invoke-Command -scriptBlock
-            //ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock; //same as below
-            ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c 'C:\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock;
-            invokeScript.Parameters.Add("ComputerName", machine);
-            invokeScript.Parameters.Add("Credential", cred);
-            invokeScript.Parameters.Add("ScriptBlock", sb);
-
-            pipeline.Commands.Add(invokeScript);
-            Collection<PSObject> output = pipeline.Invoke();
-            foreach (PSObject obj in output)
-            {
-                LogToFile(obj.ToString());
-            }
-
-            msg = "Stopped runtime on " + machine;
-            statusLabel.Text = msg;
-            LogToFile(msg);
-
-            File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
-            File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
-            File.Delete(settPath);
-            impersonator.undoimpersonateUser();
-        }
-
-        private void DeleteOldProjectFolder(string machine, string subf)
-        {
-            var msg = "Started deleting project folder on " + machine + "...";
-            statusLabel.Text = msg;
-            LogToFile(msg);
-
-            UserImpersonation impersonator = new UserImpersonation();
-            msg = "Cleared files on " + machine;
-            impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
-
-            var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text + @"\" + subf;
-            try
-            {
-                if (new DirectoryInfo(clientPath).Exists)
-                {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(clientPath);
-
-                    foreach (FileInfo file in di.GetFiles())
-                    {
-                        file.Delete();
-                    }
-                    foreach (DirectoryInfo dir in di.GetDirectories())
-                    {
-                        dir.Delete(true);
-                    }
-                }
-                else
-                {
-                    msg = "Tried to delete, folder did not exist";
-                }
-            }
-            catch (Exception exc)
-            {
-                msg = exc.Message;
-            }
-            impersonator.undoimpersonateUser();
-
-            statusLabel.Text = msg;
-            LogToFile(msg);
-        }
-
-        private void CopyNewProjectFolder(string machine, string subf)
-        {
-            var msg = "Started copying project folder to " + machine + "...";
-            statusLabel.Text = msg;
-            LogToFile(msg);
+            //var settPath = Application.StartupPath + "\\DeleteProjectFolderSettings.txt";
+            var projPath = destinationPathBox.Text.Substring(1, destinationPathBox.Text.Length - 1).Replace("$", ":");
+            //using (var fileWriter = new StreamWriter(settPath, true))
+            //{
+            //    fileWriter.WriteLine(projPath);
+            //    fileWriter.WriteLine(unTextBox.Text);
+            //    fileWriter.WriteLine(passTextBox.Text);
+            //    fileWriter.Close();
+            //}
 
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
+            //try
+            //{
+            //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
+            //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
+            //}
+            //catch (Exception exc)
+            //{
+            //    LogToFile(exc.Message);
+            //}
 
-            msg = "Copied files to " + machine;
+            //Runspace runSpace = RunspaceFactory.CreateRunspace();
+            //runSpace.Open();
+            //Pipeline pipeline = runSpace.CreatePipeline();
 
-            try
-            {
-                if (!destinationPathBox.Text.StartsWith(@"\"))
-                    destinationPathBox.Text = @"\" + destinationPathBox.Text;
+            //Command invokeScript = new Command("Invoke-Command");
+            //RunspaceInvoke invoke = new RunspaceInvoke();
 
-                var clientPath = @"\\" + machine + "\\" + destinationPathBox.Text + @"\" + subf;
-                var sourcePath = sourcePathBox.Text + @"\" + subf;
+            //var s = new SecureString();
+            //foreach (var ch in passTextBox.Text)
+            //{
+            //    s.AppendChar(ch);
+            //}
+            //var cred = new PSCredential(unTextBox.Text, s);
 
-                //create folder if it doesn't exist anymore
-                if (!Directory.Exists(clientPath))
-                    Directory.CreateDirectory(clientPath);
+            ////Invoke-Command -scriptBlock
+            ////ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock; //same as below
+            //ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c 'C:\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock;
+            //invokeScript.Parameters.Add("ComputerName", machine);
+            //invokeScript.Parameters.Add("Credential", cred);
+            //invokeScript.Parameters.Add("ScriptBlock", sb);
 
-                //copy files
-                //GraCS, ScriptLib, ScriptAct, TEXTBIB
-                CopyFilesRecursively(new DirectoryInfo(sourcePath), new DirectoryInfo(clientPath), machine);
+            //pipeline.Commands.Add(invokeScript);
+            //Collection<PSObject> output = pipeline.Invoke();
+            //foreach (PSObject obj in output)
+            //{
+            //    LogToFile(obj.ToString());
+            //}
 
-            }
-            catch (Exception exc)
-            {
-                msg = exc.Message;
-            }
+            Directory.Delete(@"\\" + machine + "\\" + destinationPathBox.Text, true);
 
-            impersonator.undoimpersonateUser();
-
+            msg = "Deleted project on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);
-        }
 
-        public void CopyToMultipleDestinations(string sourceFilePath, params string[] destinationPaths)
-        {
-            if (string.IsNullOrEmpty(sourceFilePath)) throw new ArgumentException("A source file must be specified.", "sourceFilePath");
-
-            if (destinationPaths == null || destinationPaths.Length == 0) throw new ArgumentException("At least one destination file must be specified.", "destinationPaths");
-
-            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
-            {
-                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
-                return;
-            }
-
-            Parallel.ForEach(destinationPaths, new ParallelOptions(),
-                             destinationPath =>
-                             {
-                                 using (var source = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                                 using (var destination = new FileStream(destinationPath, FileMode.Create))
-                                 {
-                                     var buffer = new byte[1024];
-                                     int read;
-
-                                     while ((read = source.Read(buffer, 0, buffer.Length)) > 0)
-                                     {
-                                         destination.Write(buffer, 0, read);
-                                     }
-                                 }
-                             });
+            //File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
+            //File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
+            //File.Delete(settPath);
+            impersonator.undoimpersonateUser();
         }
 
         #region TestButtons
@@ -2558,6 +2450,7 @@ namespace AutomateDownloader
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
@@ -2586,6 +2479,7 @@ namespace AutomateDownloader
 
         private void Button5_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
@@ -2614,38 +2508,7 @@ namespace AutomateDownloader
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show(new Form { TopMost = true }, "No items selected");
-                return;
-            }
-            var list = new List<string>();
-            foreach (var c in checkedListBox1.CheckedItems)
-                list.Add(c.ToString());
-
-            foreach (var c in list)
-            {
-                DeleteProjectFolderViaExe(c);
-                //foreach (var subf in selectiveFolders)
-                    //DeleteOldProjectFolder(c, subf);
-            }
-            //if (!Int32.TryParse(parallelBox.Text, out int maxPar))
-            //{
-            //    MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
-            //    return;
-            //}
-            //Parallel.ForEach(list,
-            //        new ParallelOptions { MaxDegreeOfParallelism = maxPar },
-            //        (c) =>
-            //        {
-            //            //do something
-            //            foreach (var subf in selectiveFolders)
-            //                DeleteOldProjectFolder(c, subf);
-            //        });
-        }
-
-        private void Button7_Click(object sender, EventArgs e)
-        {
+            KeepConfig();
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
@@ -2657,9 +2520,45 @@ namespace AutomateDownloader
 
             //foreach (var c in list)
             //{
-            //    foreach (var subf in selectiveFolders)
-            //        CopyNewProjectFolder(c, subf);
+            //    DeleteProjectFolderViaExe(c);
+            //    //foreach (var subf in selectiveFolders)
+            //    //DeleteOldProjectFolder(c, subf);
             //}
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        //do something
+                        //foreach (var subf in selectiveFolders)
+                        //    DeleteOldProjectFolder(c, subf);
+                        DeleteProjectFolderViaExe(c);
+                    });
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            KeepConfig();
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            //foreach (var c in list)
+            //{
+            //    foreach (var subf in selectiveFolders) {
+            //var machine = c;
+            //var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+            //          CopyFiles(ip);
+            //}}
 
             if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             {
@@ -2671,12 +2570,11 @@ namespace AutomateDownloader
                     (c) =>
                     {
                         //do something
-                        foreach (var subf in selectiveFolders)
-                            CopyNewProjectFolder(c, subf);
+                        var machine = c;
+                        var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                        Copy(sourcePathBox.Text, /*@"\\" + ip + @"\" +*/ destinationPathBox.Text, c);
                     });
         }
-
-        #endregion
 
         private void Button8_Click(object sender, EventArgs e)
         {
@@ -2709,6 +2607,7 @@ namespace AutomateDownloader
 
         private void button9_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
@@ -2742,6 +2641,7 @@ namespace AutomateDownloader
 
         private void button10_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
@@ -2773,11 +2673,35 @@ namespace AutomateDownloader
                     });
         }
 
-        private void statusLabel_TextChanged(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
-            //if (NCMForm.ActiveForm.IsAccessible)
-            //    NCMForm.ActiveForm.Height += statusLabel.Size.Height - statusLabel.Font.Height;
+            KeepConfig();
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show(new Form { TopMost = true }, "No items selected");
+                return;
+            }
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            var source = sourcePathBox.Text;
+            var target = destinationPathBox.Text;
+            if (!Int32.TryParse(parallelBox.Text, out int maxPar))
+            {
+                MessageBox.Show(new Form { TopMost = true }, "Please write how many parallel downloads to run in the Multi textbox");
+                return;
+            }
+            Parallel.ForEach(list,
+                    new ParallelOptions { MaxDegreeOfParallelism = maxPar },
+                    (c) =>
+                    {
+                        var machine = c;
+                        var ip = ipList.Where(x => x.Contains(machine.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                        Copy(source, target, machine);
+                    });
         }
+        #endregion
     }
 }
 
