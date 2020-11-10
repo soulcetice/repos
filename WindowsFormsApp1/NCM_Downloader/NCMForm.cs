@@ -2208,7 +2208,7 @@ namespace AutomateDownloader
                 fileWriter.Close();
             }
             LaunchRemoteProcessWithSettingsFile(machine, exe, set);
-
+            // i can has feedback?
             msg = "Started runtime on " + machine;
             statusLabel.Text = msg;
             LogToFile(msg);

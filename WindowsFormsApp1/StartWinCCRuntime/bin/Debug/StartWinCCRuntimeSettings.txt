@@ -1,0 +1,3 @@
+C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.MCP
+C:\Program Files (x86)\Siemens\WinCC\bin\WinCCExplorer.exe
+C:\Program Files (x86)\Siemens\WinCC\bin\PdlRt.exe
