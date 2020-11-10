@@ -391,6 +391,17 @@ namespace WinCC_Timer
 
             #region runtime
             CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+
+            var hmiRtProjectLib = new CCHMIRTPROJECTLib.HMIProject();
+            var hmiRtGraphics = new CCHMIRTGRAPHICS.HMIRTGraphics();
+            //var agentComp = new CCAGENTLib.CCAgentComp().;
+            var configToolImporter = new CCCONFIGTOOLIMPORTERLib.CCConfigToolImporter();
+            var downloadLib = new CCDOWNLOADLib.InitDownload();
+            downloadLib.Initialize(CCDOWNLOADLib.enumWinCCMode.WCM_RT, CCDOWNLOADLib.enumClientType.CLT_WINCC);
+
+            var guiTools = new CCGUITOOLSLib.CCBalloon();
+            guiTools.HideBalloon();           
+
             #endregion
 
             #region configStudio
@@ -608,6 +619,11 @@ namespace WinCC_Timer
             }
 
             ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, file);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

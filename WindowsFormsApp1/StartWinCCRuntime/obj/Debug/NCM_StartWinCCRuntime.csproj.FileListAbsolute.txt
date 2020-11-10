@@ -1,0 +1,6 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\bin\Debug\StartWinCCRuntime.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\bin\Debug\StartWinCCRuntime.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\bin\Debug\StartWinCCRuntime.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\NCM_StartWinCCRuntime.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\StartWinCCRuntime.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\StartWinCCRuntime.pdb

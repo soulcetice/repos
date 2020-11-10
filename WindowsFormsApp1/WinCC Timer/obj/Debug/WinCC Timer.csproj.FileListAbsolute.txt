@@ -17,4 +17,15 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.ResolveComReference.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCConfigStudio.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRTGRAPHICS.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCAGENTLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCCONFIGTOOLIMPORTERLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDATAGRIDCONTROLLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDMRTLOADERLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDOWNLOADLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCGUITOOLSLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRTPROJECTLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCPROJECTMGRLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCSWITCHRUNTIMELib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.IWINCCPROTPROVIDERLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.VARLOGINRTLib.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache

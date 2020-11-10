@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCM_DeleteProjectFolder", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Download", "Download", "{3934042B-8E58-4688-84DE-C4302EF50DCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCM_StartWinCCRuntime", "StartWinCCRuntime\NCM_StartWinCCRuntime.csproj", "{F6995105-D605-4B8F-BDDD-1A8C468BDC65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{09C5F2BA-CB06-4353-923D-533356257690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09C5F2BA-CB06-4353-923D-533356257690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09C5F2BA-CB06-4353-923D-533356257690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6995105-D605-4B8F-BDDD-1A8C468BDC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6995105-D605-4B8F-BDDD-1A8C468BDC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6995105-D605-4B8F-BDDD-1A8C468BDC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6995105-D605-4B8F-BDDD-1A8C468BDC65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{AE77DDDE-88A3-4592-9AC8-8EBEAA5797E7} = {F4FB39BC-172B-44F8-A5DC-70CD4340BC4E}
 		{68F16A02-B880-42B3-B999-C043B657FE63} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
 		{09C5F2BA-CB06-4353-923D-533356257690} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
+		{F6995105-D605-4B8F-BDDD-1A8C468BDC65} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {374158E5-DB04-405D-BB4F-2FFD32D63FDA}
