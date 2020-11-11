@@ -15,7 +15,6 @@ using System.Drawing.Imaging;
 using System.Resources;
 using Tag_Importer.Properties;
 using System.Text.RegularExpressions;
-//using CCConfigStudio;
 
 namespace Tag_Importer
 {

@@ -17,6 +17,7 @@ using System.Security;
 using System.Security.Principal;
 using toolsforimpersonations;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace AutomateDownloader
 {
@@ -1030,8 +1031,9 @@ namespace AutomateDownloader
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 37;
-            this.button11.Text = "button11";
+            this.button11.Text = "MCP test";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // NCMForm
             // 
@@ -1994,7 +1996,7 @@ namespace AutomateDownloader
                             clientPath = clientPath.Substring(0, clientPath.Length - 1);
 
                         StopWinCCRuntime(CheckedItem);
-                        DeleteProjectFolderViaExe(CheckedItem);
+                        DeleteProjectFolder(CheckedItem);
                         Copy(sourcePathBox.Text, @"\\" + ip + @"\" + destinationPathBox.Text, CheckedItem);
                         OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
                         StartWinCCRuntime(CheckedItem);
@@ -2250,6 +2252,12 @@ namespace AutomateDownloader
             // Copy each file into the new directory.
             foreach (FileInfo fi in source.GetFiles())
             {
+                if (fi.Extension == "MCP")
+                {
+                    var data = File.ReadAllText(fi.FullName);
+                    data = data.Replace(Environment.MachineName, machine);
+                    File.WriteAllText(fi.FullName, data);
+                }
                 Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
                 fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
             }
@@ -2265,69 +2273,15 @@ namespace AutomateDownloader
             }
         }
 
-        private void DeleteProjectFolderViaExe(string machine)
+        private void DeleteProjectFolder(string machine)
         {
             var msg = "Started deleting on " + machine + "...";
             statusLabel.Text = msg;
             LogToFile(msg);
             KeepConfig();
-            var projPath = destinationPathBox.Text.Substring(1, destinationPathBox.Text.Length - 1).Replace("$", ":");
-
 
             UserImpersonation impersonator = new UserImpersonation();
             impersonator.impersonateUser(unTextBox.Text, "", passTextBox.Text); //No Domain is required
-
-            #region unused
-            //var exePath = Application.StartupPath + "\\DeleteProjectFolder.exe";
-            //var settPath = Application.StartupPath + "\\DeleteProjectFolderSettings.txt";
-            //using (var fileWriter = new StreamWriter(settPath, true))
-            //{
-            //    fileWriter.WriteLine(projPath);
-            //    fileWriter.WriteLine(unTextBox.Text);
-            //    fileWriter.WriteLine(passTextBox.Text);
-            //    fileWriter.Close();
-            //}
-            //try
-            //{
-            //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
-            //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
-            //}
-            //catch (Exception exc)
-            //{
-            //    LogToFile(exc.Message);
-            //}
-
-            //Runspace runSpace = RunspaceFactory.CreateRunspace();
-            //runSpace.Open();
-            //Pipeline pipeline = runSpace.CreatePipeline();
-
-            //Command invokeScript = new Command("Invoke-Command");
-            //RunspaceInvoke invoke = new RunspaceInvoke();
-
-            //var s = new SecureString();
-            //foreach (var ch in passTextBox.Text)
-            //{
-            //    s.AppendChar(ch);
-            //}
-            //var cred = new PSCredential(unTextBox.Text, s);
-
-            ////Invoke-Command -scriptBlock
-            ////ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c '\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock; //same as below
-            //ScriptBlock sb = invoke.Invoke(@"{Invoke-Expression -Command:""cmd.exe /c 'C:\Temp\DeleteProjectFolder.exe'""}")[0].BaseObject as ScriptBlock;
-            //invokeScript.Parameters.Add("ComputerName", machine);
-            //invokeScript.Parameters.Add("Credential", cred);
-            //invokeScript.Parameters.Add("ScriptBlock", sb);
-
-            //pipeline.Commands.Add(invokeScript);
-            //Collection<PSObject> output = pipeline.Invoke();
-            //foreach (PSObject obj in output)
-            //{
-            //    LogToFile(obj.ToString());
-            //}
-            //File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolder.exe");
-            //File.Delete(@"\\" + machine + @"\C$\Temp\DeleteProjectFolderSettings.txt");
-            //File.Delete(settPath);
-            #endregion
 
             Directory.Delete(@"\\" + machine + "\\" + destinationPathBox.Text, true);
 
@@ -2481,7 +2435,7 @@ namespace AutomateDownloader
                         //do something
                         //foreach (var subf in selectiveFolders)
                         //    DeleteOldProjectFolder(c, subf);
-                        DeleteProjectFolderViaExe(c);
+                        DeleteProjectFolder(c);
                     });
         }
 
@@ -2647,6 +2601,28 @@ namespace AutomateDownloader
                     });
         }
         #endregion
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var machine1 = "TCMHMIC01";
+            var machine2 = "TCMHMIC13";
+            var f = @"\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\SDIB_TCM_CLT.mcp";
+            //var data = File.ReadAllText(f, Encoding.Unicode);
+            var data = File.ReadAllText(f);
+
+            //T\x00C\x00M\x00H\x00M\x00I
+
+            string s = "Go west Life is peaceful there";
+            s = Regex.Replace(s, @"\bwest\b", "something");
+
+            var newData = Regex.Replace(data, @"T\x00C\x00M\x00H\x00M\x00I\x00C\x000\x001", @"T\x00C\x00M\x00H\x00M\x00I\x00C\x000\x009");
+
+            //var newData = data.Replace(machine1, machine2);
+
+            //File.WriteAllText(f, newData, Encoding.GetEncoding("ISO-8859-5"));
+
+            Console.WriteLine("Done");
+        }
     }
 }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowHandle.Properties {
+namespace NCM_Downloader.Properties {
     using System;
     
     
@@ -57,6 +57,36 @@ namespace WindowHandle.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DeleteProjectFolder {
+            get {
+                object obj = ResourceManager.GetObject("DeleteProjectFolder", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] StartWinCCRuntime {
+            get {
+                object obj = ResourceManager.GetObject("StartWinCCRuntime", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] StopWinCCRuntime {
+            get {
+                object obj = ResourceManager.GetObject("StopWinCCRuntime", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

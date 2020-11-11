@@ -85,7 +85,6 @@
     <Compile Include="NCMForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NCMForm.resx">
       <DependentUpon>NCMForm.cs</DependentUpon>
@@ -116,6 +115,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\DeleteProjectFolder.exe" />
+    <None Include="bin\Debug\StartWinCCRuntime.exe" />
+    <None Include="bin\Debug\StopWinCCRuntime.exe" />
     <Content Include="icons8-download-100.ico" />
   </ItemGroup>
   <ItemGroup>

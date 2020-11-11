@@ -23,7 +23,8 @@ namespace StartWinCCRuntime
             var winccex = data[1];
             var pdlrt = data[2];
 
-            Process[] processlist = Process.GetProcesses();
+
+            Process[] processlist = Process.GetProcessesByName("WinCCExplorer");
             Process.Start(winccex, myPath);
             //WinCC Explorer - C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.MCP
             var path = "WinCC Explorer - " + myPath;
@@ -31,7 +32,7 @@ namespace StartWinCCRuntime
             var flag = false;
             do
             {
-                processlist = Process.GetProcesses();
+                processlist = Process.GetProcessesByName("WinCCExplorer");
                 foreach (var proc in processlist)
                 {
                     if (proc.ProcessName == "WinCCExplorer")
