@@ -10,29 +10,38 @@ namespace StopWinCCRuntime
     {
         static void Main(string[] args)
         {
-            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
-            rt.Stop();
-
-            System.Threading.Thread.Sleep(500);
-
-            var anyPopupClass = "#32770"; //usually any popup
-            IntPtr deactivatingPopup = WndSearcher.SearchForWindow(anyPopupClass, "Deactivating -");
-            do
+            try
             {
-                deactivatingPopup = WndSearcher.SearchForWindow(anyPopupClass, "Deactivating -");
-                System.Threading.Thread.Sleep(500);
-            } while (deactivatingPopup != IntPtr.Zero);
+                CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+                rt.Stop();
 
-            //System.Diagnostics.Process.Start(@"cscript //B //Nologo C:\Program Files (x86)\Siemens\WinCC\bin\Reset_WinCC.vbs"); 
-            Process scriptProc = new Process();
-            scriptProc.StartInfo.FileName = @"cscript";
-            scriptProc.StartInfo.WorkingDirectory = @"C:\Program Files (x86)\Siemens\WinCC\bin\"; //<---very important 
-            scriptProc.StartInfo.Arguments = "//B //Nologo Reset_WinCC.vbs";
-            scriptProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; //prevent console window from popping up
-            scriptProc.Start();
-            scriptProc.WaitForExit(); // <-- Optional if you want program running until your script exit
-            scriptProc.Close();
-            //System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe", "-terminate"); //not working uac
+                System.Threading.Thread.Sleep(500);
+            }
+            catch (Exception exc)
+            {
+
+            }
+            finally
+            {
+                var anyPopupClass = "#32770"; //usually any popup
+                IntPtr deactivatingPopup = WndSearcher.SearchForWindow(anyPopupClass, "Deactivating -");
+                do
+                {
+                    deactivatingPopup = WndSearcher.SearchForWindow(anyPopupClass, "Deactivating -");
+                    System.Threading.Thread.Sleep(500);
+                } while (deactivatingPopup != IntPtr.Zero);
+
+                //System.Diagnostics.Process.Start(@"cscript //B //Nologo C:\Program Files (x86)\Siemens\WinCC\bin\Reset_WinCC.vbs"); 
+                Process scriptProc = new Process();
+                scriptProc.StartInfo.FileName = @"cscript";
+                scriptProc.StartInfo.WorkingDirectory = @"C:\Program Files (x86)\Siemens\WinCC\bin\"; //<---very important 
+                scriptProc.StartInfo.Arguments = "//B //Nologo Reset_WinCC.vbs";
+                scriptProc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; //prevent console window from popping up
+                scriptProc.Start();
+                scriptProc.WaitForExit(); // <-- Optional if you want program running until your script exit
+                scriptProc.Close();
+                //System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Siemens\WinCC\bin\CCCleaner.exe", "-terminate"); //not working uac
+            }
         }
 
         public delegate bool EnumedWindow(IntPtr handleWindow, ArrayList handles);

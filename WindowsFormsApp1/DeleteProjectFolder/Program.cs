@@ -34,11 +34,17 @@ namespace DeleteProjectFolder
 
                     foreach (FileInfo file in di.GetFiles())
                     {
-                        file.Delete();
+                        if (!file.Extension.ToLower().Contains("mcp"))
+                        {
+                            file.Delete();
+                        }
                     }
                     foreach (DirectoryInfo dir in di.GetDirectories())
                     {
-                        dir.Delete(true);
+                        if (dir.Name.ToLower() != "sdib_tcm_clt")
+                        {
+                            dir.Delete(true);
+                        }
                     }
                 }
                 else

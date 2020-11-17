@@ -4,7 +4,6 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\PInvoke.Windows.Core.xml
-C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csproj.CoreCompileInputs.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csproj.CopyComplete
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\Magic.dll
@@ -15,4 +14,3 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\Magic.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\Magic.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Magic.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Magic.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache
