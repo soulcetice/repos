@@ -15,11 +15,13 @@ using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
 using System.Security;
 using System.Security.Principal;
-using toolsforimpersonations;
+using Toolsforimpersonations;
+using Encryption;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace AutomateDownloader
 {
@@ -74,8 +76,9 @@ namespace AutomateDownloader
         private Button button11;
         private Button button12;
         private CheckBox checkBox2;
+        private TextBox textBox3;
         private TextBox vpnPassBox;
-        private Button vpnLogonButton;
+        private Button button13;
         private ListBox listBox1;
         private Button button10;
         #endregion
@@ -361,18 +364,30 @@ namespace AutomateDownloader
                 "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
                 "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
             };
+        private string passPhrase = "Hush, little baby, don't say a word " +
+            "And never mind that noise you heard " +
+            "It's just the beasts under your bed " +
+            "In your closet, in your head";
 
         private void GetInitialValues(string path)
         {
             var configFile = File.ReadLines(path);
             var fileLen = configFile.Count();
+            var de = "";
 
             pathTextBox.Text = configFile.ElementAt(0);
             if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
             if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
             if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
             if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
-            if (fileLen >= 6) passTextBox.Text = configFile.ElementAt(5);
+            if (fileLen >= 6)
+            {
+                if (configFile.ElementAt(5) != "")
+                {
+                    de = Encryption.StringCipher.Decrypt(configFile.ElementAt(5), passPhrase);
+                    passTextBox.Text = de;
+                }
+            }
             if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
             if (fileLen >= 8) widthBox.Text = configFile.ElementAt(7);
             if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
@@ -382,6 +397,15 @@ namespace AutomateDownloader
             if (fileLen >= 13) sourcePathBox.Text = configFile.ElementAt(12);
             if (fileLen >= 14) destinationPathBox.Text = configFile.ElementAt(13);
             if (fileLen >= 15) mcpPathBox.Text = configFile.ElementAt(14);
+            if (fileLen >= 16)
+            {
+                if (configFile.ElementAt(15) != "")
+                {
+
+                    de = Encryption.StringCipher.Decrypt(configFile.ElementAt(15), passPhrase);
+                    vpnPassBox.Text = de;
+                }
+            }
         }
 
         private void RenewIpsOrInit()
@@ -447,7 +471,8 @@ namespace AutomateDownloader
             configFile.WriteLine(numClTextBox.Text);
             configFile.WriteLine(ipTextBox.Text);
             configFile.WriteLine(unTextBox.Text);
-            configFile.WriteLine(passTextBox.Text);
+            var en = Encryption.StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString();
+            configFile.WriteLine(en);
             configFile.WriteLine(rdpCheckBox.Checked);
             configFile.WriteLine(widthBox.Text);
             configFile.WriteLine(heightBox.Text);
@@ -457,7 +482,8 @@ namespace AutomateDownloader
             configFile.WriteLine(sourcePathBox.Text);
             configFile.WriteLine(destinationPathBox.Text);
             configFile.WriteLine(mcpPathBox.Text);
-            configFile.WriteLine("");
+            en = Encryption.StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString();
+            configFile.WriteLine(en);
             configFile.WriteLine("");
             configFile.WriteLine("");
             configFile.WriteLine("");
@@ -549,8 +575,9 @@ namespace AutomateDownloader
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.vpnPassBox = new System.Windows.Forms.TextBox();
-            this.vpnLogonButton = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -771,7 +798,7 @@ namespace AutomateDownloader
             // 
             // killButtton
             // 
-            this.killButtton.Location = new System.Drawing.Point(301, 363);
+            this.killButtton.Location = new System.Drawing.Point(295, 356);
             this.killButtton.Name = "killButtton";
             this.killButtton.Size = new System.Drawing.Size(25, 11);
             this.killButtton.TabIndex = 25;
@@ -1044,42 +1071,50 @@ namespace AutomateDownloader
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // vpnPassBox
+            // textBox3
             // 
-            this.vpnPassBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.vpnPassBox.Location = new System.Drawing.Point(170, 11);
-            this.vpnPassBox.Name = "vpnPassBox";
-            this.vpnPassBox.Size = new System.Drawing.Size(100, 18);
+            this.textBox3.Location = new System.Drawing.Point(364, 159);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 44;
+            this.textBox3.Text = "MURA02";
+            // 
+            // textBox4
+            // 
+            this.vpnPassBox.Location = new System.Drawing.Point(169, 9);
+            this.vpnPassBox.Name = "textBox4";
+            this.vpnPassBox.Size = new System.Drawing.Size(100, 20);
             this.vpnPassBox.TabIndex = 45;
             this.vpnPassBox.Text = "Andreea~";
             this.vpnPassBox.UseSystemPasswordChar = true;
             this.vpnPassBox.Visible = false;
             // 
-            // vpnLogonButton
+            // button13
             // 
-            this.vpnLogonButton.Location = new System.Drawing.Point(275, 8);
-            this.vpnLogonButton.Name = "vpnLogonButton";
-            this.vpnLogonButton.Size = new System.Drawing.Size(51, 23);
-            this.vpnLogonButton.TabIndex = 47;
-            this.vpnLogonButton.Text = "VPN";
-            this.vpnLogonButton.UseVisualStyleBackColor = true;
-            this.vpnLogonButton.Visible = false;
-            this.vpnLogonButton.Click += new System.EventHandler(this.button13_Click);
+            this.button13.Location = new System.Drawing.Point(275, 8);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(51, 23);
+            this.button13.TabIndex = 47;
+            this.button13.Text = "VPN";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Visible = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 522);
+            this.listBox1.Location = new System.Drawing.Point(365, 186);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(264, 69);
             this.listBox1.TabIndex = 48;
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(338, 518);
+            this.ClientSize = new System.Drawing.Size(339, 499);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.vpnLogonButton);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.vpnPassBox);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button10);
@@ -2781,6 +2816,7 @@ namespace AutomateDownloader
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
+            var cisco = @"C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client";
             if (checkBox2.Checked == true)
             {
                 button1.Visible = false;
@@ -2832,9 +2868,9 @@ namespace AutomateDownloader
                 button2.Visible = false;
                 button11.Visible = false;
                 button12.Visible = false;
-                //checkBox2.Visible = false;
                 vpnPassBox.Visible = true;
-                vpnLogonButton.Visible = true;
+                button13.Visible = true;
+                //checkBox2.Visible = false;
                 checkedListBox1.Size = new System.Drawing.Size(314, 285);
                 button9.Location = new System.Drawing.Point(246, 375);
                 button10.Location = new System.Drawing.Point(286, 375);
@@ -2891,7 +2927,7 @@ namespace AutomateDownloader
                 button11.Visible = true;
                 button12.Visible = true;
                 vpnPassBox.Visible = false;
-                vpnLogonButton.Visible = false;
+                button13.Visible = false;
                 //checkBox2.Visible = true;
                 checkedListBox1.Size = new System.Drawing.Size(188, 124);
                 button9.Location = new System.Drawing.Point(176, 327);
@@ -2901,6 +2937,7 @@ namespace AutomateDownloader
 
         private void button13_Click(object sender, EventArgs e)
         {
+            KeepConfig();
             var cisco = System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnui.exe");
 
             var anyPopupClass = "#32770"; //usually any popup
@@ -2920,13 +2957,11 @@ namespace AutomateDownloader
             }
             if (data.Contains("Connect"))
             {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(50); 
                 IntPtr parentOfButtons = PInvokeLibrary.FindWindowEx(ciscoWindow, IntPtr.Zero, anyPopupClass, null);
                 IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(parentOfButtons, IntPtr.Zero, "Button", "Connect");
                 if (DlButtonHandle == IntPtr.Zero) return;
                 PInvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-
-                System.Threading.Thread.Sleep(50);
 
                 var logonWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect | SMS group Europe");
                 do
@@ -2935,18 +2970,17 @@ namespace AutomateDownloader
                     System.Threading.Thread.Sleep(50);
                 } while (logonWindow == IntPtr.Zero);
 
-                foreach (var c in vpnPassBox.Text.ToString())
+                foreach (var c in vpnPassBox.Text)
                 {
                     if (c.ToString() != "~")
                     {
                         SendKeyHandled(logonWindow, c.ToString());
-                    } else
+                    }
+                    else
                     {
                         SendKeyHandled(logonWindow, "{~}");
                     }
-                    System.Threading.Thread.Sleep(10);
                 }
-                System.Threading.Thread.Sleep(50); //WTFFFFFFFFFFFFFFFFF
                 SendKeyHandled(logonWindow, "{ENTER}");
 
                 var confirmation = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect");
@@ -2960,13 +2994,13 @@ namespace AutomateDownloader
             }
             if (data.Contains("Disconnect"))
             {
-                //SendKeyHandled(ciscoWindow, "{ENTER}");
+                SendKeyHandled(ciscoWindow, "{ENTER}");
             }
         }
     }
 }
 
-namespace toolsforimpersonations
+namespace Toolsforimpersonations
 {
     public class Impersonator
     {
@@ -3094,6 +3128,105 @@ namespace toolsforimpersonations
         private void undoImpersonation()
         {
             impersonationContext.Undo();
+        }
+    }
+}
+
+namespace Encryption
+{
+    public static class StringCipher
+    {
+        // This constant is used to determine the keysize of the encryption algorithm in bits.
+        // We divide this by 8 within the code below to get the equivalent number of bytes.
+        private const int Keysize = 256;
+
+        // This constant determines the number of iterations for the password bytes generation function.
+        private const int DerivationIterations = 1000;
+
+        public static string Encrypt(string plainText, string passPhrase)
+        {
+            // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
+            // so that the same Salt and IV values can be used when decrypting.  
+            var saltStringBytes = Generate256BitsOfRandomEntropy();
+            var ivStringBytes = Generate256BitsOfRandomEntropy();
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                                cryptoStream.FlushFinalBlock();
+                                // Create the final bytes as a concatenation of the random salt bytes, the random iv bytes and the cipher bytes.
+                                var cipherTextBytes = saltStringBytes;
+                                cipherTextBytes = cipherTextBytes.Concat(ivStringBytes).ToArray();
+                                cipherTextBytes = cipherTextBytes.Concat(memoryStream.ToArray()).ToArray();
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return Convert.ToBase64String(cipherTextBytes);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static string Decrypt(string cipherText, string passPhrase)
+        {
+            // Get the complete stream of bytes that represent:
+            // [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]
+            var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);
+            // Get the saltbytes by extracting the first 32 bytes from the supplied cipherText bytes.
+            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
+            // Get the IV bytes by extracting the next 32 bytes from the supplied cipherText bytes.
+            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
+            // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
+            var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray();
+
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream(cipherTextBytes))
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                var plainTextBytes = new byte[cipherTextBytes.Length];
+                                var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private static byte[] Generate256BitsOfRandomEntropy()
+        {
+            var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                // Fill the array with cryptographically secure random bytes.
+                rngCsp.GetBytes(randomBytes);
+            }
+            return randomBytes;
         }
     }
 }
