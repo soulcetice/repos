@@ -14,3 +14,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\Magic.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\bin\Debug\Magic.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Magic.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Magic.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\ClassLibrary\obj\Debug\Interoperability.csprojAssemblyReference.cache

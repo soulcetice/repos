@@ -27,25 +27,23 @@ namespace WinCC_Timer
         }
 
         [DllImport("msvcrt.dll")]
-        private static extern int memcmp(IntPtr b1, IntPtr b2, long count);
+        private static extern int Memcmp(IntPtr b1, IntPtr b2, long count);
 
         public DataTable dataTable = new DataTable();
         public string logName = "\\Screen.logger";
-        public string cpuLogName = "\\pdlrt.logger";
+        public string pdlrtLogName = "\\pdlrt.logger";
+        public string scriptLogName = "\\script.logger";
 
         public bool endFlag = false;
         public string currentPage = "";
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Thread.Sleep(5000);
             RunTasks();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ManipulateWinCCPrograms();
-        }
+        private void Button2_Click(object sender, EventArgs e) => ManipulateWinCCPrograms();
 
         private void RunTasks()
         {
@@ -62,14 +60,14 @@ namespace WinCC_Timer
                 () =>
                 {
                     Console.WriteLine("Begin second task...");
-                    GetProcessCPUUsage("PdlRt");
-                } //close second Action
+                    GetProcessCPUUsage("PdlRt", pdlrtLogName);
+                }, //close second Action
 
-                //() =>
-                //{
-                //    Console.WriteLine("Begin third task...");
-                //    UpdatePageLabel();
-                //} //close third Action
+                () =>
+                {
+                    Console.WriteLine("Begin third task...");
+                    GetProcessCPUUsage("script", scriptLogName);
+                } //close third Action
 
             ); //close parallel.invoke
 
@@ -81,8 +79,8 @@ namespace WinCC_Timer
         {
             while (endFlag == false)
             {
-                label1.Text = currentPage;
-                label1.Refresh();
+                listBox1.Items.Add(currentPage);
+                listBox1.Refresh();
 
                 new System.Threading.ManualResetEvent(false).WaitOne(50);
             };
@@ -90,16 +88,23 @@ namespace WinCC_Timer
 
         private void NavigateHMIMenu()
         {
+            LogToFile("Starting menu navigation", logName);
+
             List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
+
+            LogToFile(lists.Count + " menu items", logName);
 
             var tier1 = lists.Where(c => c.Layer == "1").ToList();
 
             IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
             if (rt == IntPtr.Zero)
             {
-                label1.Text = "Please start the WinCC Graphics Runtime!";
-                label1.Refresh();
-                //return;
+                var msg = "Please start the WinCC Graphics Runtime!";
+                listBox1.Items.Add(msg);
+                listBox1.Refresh();
+
+                LogToFile(msg, logName);
+                return;
             }
             //Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
             var singleHeight = 25;
@@ -266,7 +271,16 @@ namespace WinCC_Timer
             #endregion
 
             string sqlFile = Application.StartupPath + @"\" + textBox1.Text;
-            var g = new grafexe.Application().ApplicationDataPath;
+
+            var fileInfo = new FileInfo(sqlFile);
+
+            if (!fileInfo.Exists)
+            {
+
+                return new List<MenuRow>();
+            }
+
+            //var g = new grafexe.Application().ApplicationDataPath;
 
             //INSERT INTO[SMS_RTDesign].[dbo].[RT_Menu](ID, RefId, Layer, Pos, Parentid, LCID, Caption, Flags, Pdl) VALUES (1000000, 1, 1, 1, 0, 1033, N'General', 3, '')
             //INSERT INTO[SMS_RTDesign].[dbo].[RT_Menu](ID, RefId, Layer, Pos, Parentid, LCID, Caption, Flags, Pdl) VALUES (1010000, 1, 2, 1, 1000000, 1033, N'Alarms', 1, '@sms_w_Alarmlist')
@@ -332,7 +346,7 @@ namespace WinCC_Timer
                 int stride = bd1.Stride;
                 int len = stride * b1.Height;
 
-                return memcmp(bd1scan0, bd2scan0, len) == 0;
+                return Memcmp(bd1scan0, bd2scan0, len) == 0;
             }
             finally
             {
@@ -341,7 +355,7 @@ namespace WinCC_Timer
             }
         }
 
-        private static void LogToFile(string content, string fname)
+        private void LogToFile(string content, string fname)
         {
             using (var fileWriter = new StreamWriter(Application.StartupPath + fname, true))
             {
@@ -400,7 +414,7 @@ namespace WinCC_Timer
             downloadLib.Initialize(CCDOWNLOADLib.enumWinCCMode.WCM_RT, CCDOWNLOADLib.enumClientType.CLT_WINCC);
 
             var guiTools = new CCGUITOOLSLib.CCBalloon();
-            guiTools.HideBalloon();           
+            guiTools.HideBalloon();
 
             #endregion
 
@@ -410,11 +424,12 @@ namespace WinCC_Timer
             #endregion
         }
 
-        private bool GetProcessCPUUsage(string process)
+        private bool GetProcessCPUUsage(string process, string log)
         {
+            LogToFile("Starting cpu usage gathering", logName);
+
             var name = string.Empty;
             var perc = new List<float>();
-            var pageTimes = new List<double>();
             var measTime = new List<string>();
             var atPagesList = new List<string>();
             var datetimes = new List<DateTime>();
@@ -426,6 +441,7 @@ namespace WinCC_Timer
                 {
                     name = proc.ProcessName;
                     proc.StartInfo.RedirectStandardOutput = true;
+                    LogToFile("Found process with name " + name, logName);
                 }
             }
 
@@ -450,7 +466,7 @@ namespace WinCC_Timer
 
             for (int i = 0; i < perc.Count; i++)
             {
-                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], cpuLogName);
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], log);
             }
 
             try
@@ -601,10 +617,14 @@ namespace WinCC_Timer
         }
         #endregion
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            var file = "cspm4";
-            var textData = File.ReadAllLines(@"\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\results\pdlrt_" + file + ".logger");
+            var file = textBox2.Text;
+
+            var dataFile = new FileInfo(Application.StartupPath + @"\" + file + ".logger");
+            if (!dataFile.Exists) return;
+
+            var textData = File.ReadAllLines(dataFile.FullName);
             var perc = new List<float>();
             var atPagesList = new List<string>();
             var datetimes = new List<DateTime>();
@@ -621,7 +641,7 @@ namespace WinCC_Timer
             ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, file);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
 
         }

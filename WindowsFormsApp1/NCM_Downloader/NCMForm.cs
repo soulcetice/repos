@@ -15,7 +15,7 @@ using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
 using System.Security;
 using System.Security.Principal;
-using Toolsforimpersonations;
+using ImpersonationsTools;
 using Encryption;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
@@ -80,6 +80,7 @@ namespace AutomateDownloader
         private TextBox vpnPassBox;
         private Button button13;
         private ListBox listBox1;
+        private CheckBox includeNonClientsBox;
         private Button button10;
         #endregion
 
@@ -113,7 +114,7 @@ namespace AutomateDownloader
 
             SetTooltips();
 
-            RenewIpsOrInit();
+            RenewIpsOrInit(false);
 
             button1.Click += new EventHandler(Button1_Click);
 
@@ -408,9 +409,9 @@ namespace AutomateDownloader
             }
         }
 
-        private void RenewIpsOrInit()
+        private void RenewIpsOrInit(bool include)
         {
-            GetIpsLmHosts();
+            GetIpsLmHosts(include);
             if (ipList.Count() > 0)
             {
                 checkedListBox1.Items.Clear();
@@ -430,7 +431,7 @@ namespace AutomateDownloader
             checkedListBox1.Refresh();
         }
 
-        private void GetIpsLmHosts()
+        private void GetIpsLmHosts(bool include)
         {
             ipList = new List<string>();
             sdList = new List<string>();
@@ -456,6 +457,10 @@ namespace AutomateDownloader
                         item.IndexOf("HMIS") > 0) &&
                         item.StartsWith("#") == false && item != "")
                     {
+                        if (include)
+                        {
+                            ipList.Add(item);
+                        }
                         sdList.Add(item);
                     }
                 }
@@ -579,6 +584,7 @@ namespace AutomateDownloader
             this.vpnPassBox = new System.Windows.Forms.TextBox();
             this.button13 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.includeNonClientsBox = new System.Windows.Forms.CheckBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -782,7 +788,7 @@ namespace AutomateDownloader
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusLabel.Location = new System.Drawing.Point(20, 433);
+            this.statusLabel.Location = new System.Drawing.Point(9, 507);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(38, 13);
             this.statusLabel.TabIndex = 23;
@@ -1079,11 +1085,12 @@ namespace AutomateDownloader
             this.textBox3.TabIndex = 44;
             this.textBox3.Text = "MURA02";
             // 
-            // textBox4
+            // vpnPassBox
             // 
-            this.vpnPassBox.Location = new System.Drawing.Point(169, 9);
-            this.vpnPassBox.Name = "textBox4";
-            this.vpnPassBox.Size = new System.Drawing.Size(100, 20);
+            this.vpnPassBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.vpnPassBox.Location = new System.Drawing.Point(169, 11);
+            this.vpnPassBox.Name = "vpnPassBox";
+            this.vpnPassBox.Size = new System.Drawing.Size(100, 18);
             this.vpnPassBox.TabIndex = 45;
             this.vpnPassBox.Text = "Andreea~";
             this.vpnPassBox.UseSystemPasswordChar = true;
@@ -1103,14 +1110,26 @@ namespace AutomateDownloader
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(365, 186);
+            this.listBox1.Location = new System.Drawing.Point(12, 435);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(264, 69);
+            this.listBox1.Size = new System.Drawing.Size(314, 69);
             this.listBox1.TabIndex = 48;
+            // 
+            // checkBox3
+            // 
+            this.includeNonClientsBox.AutoSize = true;
+            this.includeNonClientsBox.Location = new System.Drawing.Point(248, 516);
+            this.includeNonClientsBox.Name = "checkBox3";
+            this.includeNonClientsBox.Size = new System.Drawing.Size(80, 17);
+            this.includeNonClientsBox.TabIndex = 49;
+            this.includeNonClientsBox.Text = "checkBox3";
+            this.includeNonClientsBox.UseVisualStyleBackColor = true;
+            this.includeNonClientsBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(339, 499);
+            this.ClientSize = new System.Drawing.Size(339, 539);
+            this.Controls.Add(this.includeNonClientsBox);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.vpnPassBox);
@@ -1984,7 +2003,7 @@ namespace AutomateDownloader
 
         private void ipTextBox_TextChanged(object sender, EventArgs e)
         {
-            RenewIpsOrInit();
+            RenewIpsOrInit(includeNonClientsBox.Checked);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -2816,7 +2835,6 @@ namespace AutomateDownloader
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            var cisco = @"C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client";
             if (checkBox2.Checked == true)
             {
                 button1.Visible = false;
@@ -2941,11 +2959,12 @@ namespace AutomateDownloader
             var cisco = System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpnui.exe");
 
             var anyPopupClass = "#32770"; //usually any popup
-            var ciscoWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect Secure Mobility Client");
+
+            IntPtr ciscoWindow;
             do
             {
                 ciscoWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect Secure Mobility Client");
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(10);
             } while (ciscoWindow == IntPtr.Zero);
 
             PInvokeLibrary.SetForegroundWindow(ciscoWindow);
@@ -2955,19 +2974,18 @@ namespace AutomateDownloader
             {
                 listBox1.Items.Add(c);
             }
+            IntPtr parentOfButtons = PInvokeLibrary.FindWindowEx(ciscoWindow, IntPtr.Zero, anyPopupClass, null);
             if (data.Contains("Connect"))
             {
-                System.Threading.Thread.Sleep(50); 
-                IntPtr parentOfButtons = PInvokeLibrary.FindWindowEx(ciscoWindow, IntPtr.Zero, anyPopupClass, null);
                 IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(parentOfButtons, IntPtr.Zero, "Button", "Connect");
                 if (DlButtonHandle == IntPtr.Zero) return;
                 PInvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
 
-                var logonWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect | SMS group Europe");
+                IntPtr logonWindow;
                 do
                 {
                     logonWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect | SMS group Europe");
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(10);
                 } while (logonWindow == IntPtr.Zero);
 
                 foreach (var c in vpnPassBox.Text)
@@ -2983,24 +3001,29 @@ namespace AutomateDownloader
                 }
                 SendKeyHandled(logonWindow, "{ENTER}");
 
-                var confirmation = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect");
+                IntPtr confirmation;
                 do
                 {
                     confirmation = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect");
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(10);
                 } while (confirmation == IntPtr.Zero);
 
                 SendKeyHandled(confirmation, "{ENTER}");
             }
             if (data.Contains("Disconnect"))
             {
-                SendKeyHandled(ciscoWindow, "{ENTER}");
+                IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(parentOfButtons, IntPtr.Zero, "Button", "Disconnect");                
             }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            RenewIpsOrInit(includeNonClientsBox.Checked);
         }
     }
 }
 
-namespace Toolsforimpersonations
+namespace ImpersonationsTools
 {
     public class Impersonator
     {

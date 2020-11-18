@@ -6756,3 +6756,18 @@
 2020/11/5 7:42:0:469 UTC: 62width, 16height, Media DC
 2020/11/5 7:42:0:474 UTC: 40width, 16height, Drives
 2020/11/5 7:42:0:479 UTC: 87 is x width for childrentier2
+2020/11/18 14:19:36:262 UTC: Starting cpu usage gathering
+2020/11/18 14:19:36:266 UTC: Starting cpu usage gathering
+2020/11/18 14:19:36:410 UTC: Starting menu navigation
+2020/11/18 14:19:40:696 UTC: Counter is not single instance, an instance name needs to be specified.
+2020/11/18 14:19:40:710 UTC: Counter is not single instance, an instance name needs to be specified.
+2020/11/18 14:21:5:122 UTC: Starting cpu usage gathering
+2020/11/18 14:21:5:140 UTC: Starting cpu usage gathering
+2020/11/18 14:21:5:194 UTC: Starting menu navigation
+2020/11/18 14:21:5:274 UTC: 264 menu items
+2020/11/18 14:21:5:286 UTC: Please start the WinCC Graphics Runtime!
+2020/11/18 14:21:7:123 UTC: Counter is not single instance, an instance name needs to be specified.
+2020/11/18 14:21:7:130 UTC: Counter is not single instance, an instance name needs to be specified.
+2020/11/18 14:21:23:287 UTC: Starting menu navigation
+2020/11/18 14:21:23:331 UTC: Starting cpu usage gathering
+2020/11/18 14:23:8:642 UTC: Starting cpu usage gathering
