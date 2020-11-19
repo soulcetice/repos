@@ -19,7 +19,7 @@ namespace StopWinCCRuntime
             }
             catch (Exception exc)
             {
-
+                string ex = exc.Message;
             }
             finally
             {

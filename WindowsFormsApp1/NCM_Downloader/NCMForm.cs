@@ -1,27 +1,26 @@
-using WindowHandle;
-using WindowsUtilities;
+using Encryption;
+using ImpersonationsTools;
+using Interoperability;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Forms;
-using Interoperability;
 using System.Management.Automation;
-using System.Collections.ObjectModel;
 using System.Management.Automation.Runspaces;
+using System.Runtime.InteropServices;
 using System.Security;
-using System.Security.Principal;
-using ImpersonationsTools;
-using Encryption;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-using System.Data.SqlClient;
-using System.Data;
 using System.Security.Cryptography;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WindowHandle;
+using WindowsUtilities;
 
 namespace AutomateDownloader
 {
@@ -81,6 +80,7 @@ namespace AutomateDownloader
         private Button button13;
         private ListBox listBox1;
         private CheckBox includeNonClientsBox;
+        private Button button14;
         private Button button10;
         #endregion
 
@@ -99,13 +99,13 @@ namespace AutomateDownloader
             InitializeComponent();
 
             string configPath = string.Empty;
-            if (File.Exists(Application.StartupPath + "\\NCM_Downloader.ini"))
+            if (File.Exists(Path.Combine(Application.StartupPath, "NCM_Downloader.ini")))
             {
-                configPath = Application.StartupPath + "\\NCM_Downloader.ini";
+                configPath = Path.Combine(Application.StartupPath, "NCM_Downloader.ini");
             }
-            else if (File.Exists(Application.StartupPath + "\\NCM_Downloader.exe.ini"))
+            else if (File.Exists(Path.Combine(Application.StartupPath, "\\NCM_Downloader.exe.ini")))
             {
-                configPath = Application.StartupPath + "\\NCM_Downloader.exe.ini";
+                configPath = Path.Combine(Application.StartupPath, "\\NCM_Downloader.exe.ini");
             }
             if (configPath != string.Empty)
             {
@@ -142,8 +142,8 @@ namespace AutomateDownloader
         private List<string> ipList = new List<string>();
         private List<string> sdList = new List<string>();
         private string computerName = string.Empty;
-        private List<string> selectiveFolders = new List<string>();
-        private List<string> processes = new List<string>
+        private readonly List<string> selectiveFolders = new List<string>();
+        private readonly List<string> processes = new List<string>
             {
                 //"CCAgent",
                 //"CCDBUtils",
@@ -349,7 +349,7 @@ namespace AutomateDownloader
                 //"PlantIntelligenceService.exe",// restartprio = "12" servicename = "PerformanceMonitor Service" />
                 //"sqlservr", //"MSSQL$WINCC",
             };
-        private List<string> rebootProcesses = new List<string>
+        private readonly List<string> rebootProcesses = new List<string>
             {
                 //"sqlservr", //"MSSQL$WINCC",
                 "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
@@ -365,7 +365,7 @@ namespace AutomateDownloader
                 "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
                 "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
             };
-        private string passPhrase = "Hush, little baby, don't say a word " +
+        private readonly string passPhrase = "Hush, little baby, don't say a word " +
             "And never mind that noise you heard " +
             "It's just the beasts under your bed " +
             "In your closet, in your head";
@@ -385,7 +385,7 @@ namespace AutomateDownloader
             {
                 if (configFile.ElementAt(5) != "")
                 {
-                    de = Encryption.StringCipher.Decrypt(configFile.ElementAt(5), passPhrase);
+                    de = StringCipher.Decrypt(configFile.ElementAt(5), passPhrase);
                     passTextBox.Text = de;
                 }
             }
@@ -398,14 +398,27 @@ namespace AutomateDownloader
             if (fileLen >= 13) sourcePathBox.Text = configFile.ElementAt(12);
             if (fileLen >= 14) destinationPathBox.Text = configFile.ElementAt(13);
             if (fileLen >= 15) mcpPathBox.Text = configFile.ElementAt(14);
+
             if (fileLen >= 16)
             {
                 if (configFile.ElementAt(15) != "")
                 {
 
-                    de = Encryption.StringCipher.Decrypt(configFile.ElementAt(15), passPhrase);
+                    de = StringCipher.Decrypt(configFile.ElementAt(15), passPhrase);
                     vpnPassBox.Text = de;
                 }
+            }
+
+            if (fileLen >= 17)
+            {
+                if (Boolean.TryParse(configFile.ElementAt(16), out bool result))
+                    checkBox2.Checked = result;
+            }
+
+            if (fileLen >= 18)
+            {
+                if (Boolean.TryParse(configFile.ElementAt(17), out bool result))
+                    includeNonClientsBox.Checked = result;
             }
         }
 
@@ -476,7 +489,7 @@ namespace AutomateDownloader
             configFile.WriteLine(numClTextBox.Text);
             configFile.WriteLine(ipTextBox.Text);
             configFile.WriteLine(unTextBox.Text);
-            var en = Encryption.StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString();
+            var en = StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString();
             configFile.WriteLine(en);
             configFile.WriteLine(rdpCheckBox.Checked);
             configFile.WriteLine(widthBox.Text);
@@ -487,10 +500,10 @@ namespace AutomateDownloader
             configFile.WriteLine(sourcePathBox.Text);
             configFile.WriteLine(destinationPathBox.Text);
             configFile.WriteLine(mcpPathBox.Text);
-            en = Encryption.StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString();
+            en = StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString();
             configFile.WriteLine(en);
-            configFile.WriteLine("");
-            configFile.WriteLine("");
+            configFile.WriteLine(checkBox2.Checked);
+            configFile.WriteLine(includeNonClientsBox.Checked);
             configFile.WriteLine("");
             configFile.WriteLine("");
             configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
@@ -585,6 +598,7 @@ namespace AutomateDownloader
             this.button13 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.includeNonClientsBox = new System.Windows.Forms.CheckBox();
+            this.button14 = new System.Windows.Forms.Button();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -593,11 +607,11 @@ namespace AutomateDownloader
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(230, 205);
+            this.button1.Location = new System.Drawing.Point(247, 169);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "NCM Download";
+            this.button1.Text = "Download";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -608,7 +622,7 @@ namespace AutomateDownloader
             this.checkedListBox1.Location = new System.Drawing.Point(12, 68);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(188, 124);
+            this.checkedListBox1.Size = new System.Drawing.Size(229, 124);
             this.checkedListBox1.TabIndex = 8;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -684,11 +698,11 @@ namespace AutomateDownloader
             this.rdpCheckBox.AutoSize = true;
             this.rdpCheckBox.Checked = true;
             this.rdpCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rdpCheckBox.Location = new System.Drawing.Point(12, 209);
+            this.rdpCheckBox.Location = new System.Drawing.Point(247, 113);
             this.rdpCheckBox.Name = "rdpCheckBox";
-            this.rdpCheckBox.Size = new System.Drawing.Size(79, 17);
+            this.rdpCheckBox.Size = new System.Drawing.Size(76, 17);
             this.rdpCheckBox.TabIndex = 18;
-            this.rdpCheckBox.Text = "Start RDPs";
+            this.rdpCheckBox.Text = "AutoRDPs";
             this.rdpCheckBox.UseVisualStyleBackColor = true;
             // 
             // rdpBox1
@@ -765,7 +779,8 @@ namespace AutomateDownloader
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(130, 209);
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.Location = new System.Drawing.Point(247, 67);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox1.Size = new System.Drawing.Size(70, 17);
@@ -1054,7 +1069,7 @@ namespace AutomateDownloader
             this.button11.TabIndex = 37;
             this.button11.Text = "MCP test";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.button11.Click += new System.EventHandler(this.Button11_Click);
             // 
             // button12
             // 
@@ -1115,20 +1130,31 @@ namespace AutomateDownloader
             this.listBox1.Size = new System.Drawing.Size(314, 69);
             this.listBox1.TabIndex = 48;
             // 
-            // checkBox3
+            // includeNonClientsBox
             // 
             this.includeNonClientsBox.AutoSize = true;
-            this.includeNonClientsBox.Location = new System.Drawing.Point(248, 516);
-            this.includeNonClientsBox.Name = "checkBox3";
-            this.includeNonClientsBox.Size = new System.Drawing.Size(80, 17);
+            this.includeNonClientsBox.Location = new System.Drawing.Point(247, 90);
+            this.includeNonClientsBox.Name = "includeNonClientsBox";
+            this.includeNonClientsBox.Size = new System.Drawing.Size(79, 17);
             this.includeNonClientsBox.TabIndex = 49;
-            this.includeNonClientsBox.Text = "checkBox3";
+            this.includeNonClientsBox.Text = "Non-clients";
             this.includeNonClientsBox.UseVisualStyleBackColor = true;
             this.includeNonClientsBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(250, 507);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 50;
+            this.button14.Text = "Explorer";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // NCMForm
             // 
             this.ClientSize = new System.Drawing.Size(339, 539);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.includeNonClientsBox);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button13);
@@ -2015,7 +2041,7 @@ namespace AutomateDownloader
 
         private static void LogToFile(string content)
         {
-            using (var fileWriter = new StreamWriter(Application.StartupPath + "\\NCM_Downloader.logger", true))
+            using (var fileWriter = new StreamWriter(Path.Combine(Application.StartupPath, "NCM_Downloader.logger"), true))
             {
                 DateTime date = DateTime.UtcNow;
                 fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
@@ -2072,7 +2098,7 @@ namespace AutomateDownloader
         {
             //run ps command here
             //or run ps file
-            System.Diagnostics.Process.Start(Application.StartupPath + "\\StartTrustedHosts.ps1");
+            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "StartTrustedHosts.ps1"));
         }
 
         private void StartDownloads(int paralellismDeg)
@@ -2615,7 +2641,7 @@ namespace AutomateDownloader
                 MessageBox.Show(new Form { TopMost = true }, "No items selected");
                 return;
             }
-            var exePath = Application.StartupPath + "\\StopWinCCRuntime.exe";
+            var exePath = Path.Combine(Application.StartupPath, "StopWinCCRuntime.exe");
             if (!File.Exists(exePath))
             {
                 MessageBox.Show(new Form { TopMost = true }, "Please have StopWinCCRuntime.exe in this folder");
@@ -2735,7 +2761,7 @@ namespace AutomateDownloader
         }
         #endregion
 
-        private void button11_Click(object sender, EventArgs e)
+        private void Button11_Click(object sender, EventArgs e)
         {
             var machine1 = "T\0C\0M\0H\0M\0I\0D\00\01";
             var machine2 = "T\0C\0M\0H\0M\0I\0C\00\01";
@@ -2795,7 +2821,7 @@ namespace AutomateDownloader
                     rebuiltDBName += c + "\0";
                 }
                 rebuiltDBName = rebuiltDBName.Insert(codedStringIndex, codedString);
-                var areSame = wholeFileDBNameToReplace.Equals(rebuiltDBName);
+                _ = wholeFileDBNameToReplace.Equals(rebuiltDBName);
 
                 LogToFile("Replacing");
                 LogToFile(wholeFileDBNameToReplace); LogToFile(rebuiltDBName);
@@ -2892,6 +2918,7 @@ namespace AutomateDownloader
                 checkedListBox1.Size = new System.Drawing.Size(314, 285);
                 button9.Location = new System.Drawing.Point(246, 375);
                 button10.Location = new System.Drawing.Point(286, 375);
+                includeNonClientsBox.Location = new System.Drawing.Point(165, 510);
             }
             else
             {
@@ -2950,6 +2977,7 @@ namespace AutomateDownloader
                 checkedListBox1.Size = new System.Drawing.Size(188, 124);
                 button9.Location = new System.Drawing.Point(176, 327);
                 button10.Location = new System.Drawing.Point(280, 327);
+                includeNonClientsBox.Location = new System.Drawing.Point(247, 90);
             }
         }
 
@@ -2981,10 +3009,11 @@ namespace AutomateDownloader
                 if (DlButtonHandle == IntPtr.Zero) return;
                 PInvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
 
+
                 IntPtr logonWindow;
                 do
                 {
-                    logonWindow = PInvokeLibrary.FindWindow(anyPopupClass, "Cisco AnyConnect | SMS group Europe");
+                    logonWindow = WndSearcher.SearchForWindow(anyPopupClass, "Cisco AnyConnect | ");
                     System.Threading.Thread.Sleep(10);
                 } while (logonWindow == IntPtr.Zero);
 
@@ -3012,13 +3041,204 @@ namespace AutomateDownloader
             }
             if (data.Contains("Disconnect"))
             {
-                IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(parentOfButtons, IntPtr.Zero, "Button", "Disconnect");                
+                IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(parentOfButtons, IntPtr.Zero, "Button", "Disconnect");
             }
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             RenewIpsOrInit(includeNonClientsBox.Checked);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            KeepConfig();
+            var list = new List<string>();
+            foreach (var c in checkedListBox1.CheckedItems)
+                list.Add(c.ToString());
+
+            foreach (var c in list)
+            {
+                var ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+
+                var pass = new SecureString();
+                foreach (var chr in passTextBox.Text)
+                {
+                    pass.AppendChar(chr);
+                }
+
+                ExtremeMirror.PinvokeWindowsNetworking.connectToRemote(@"\\" + ip + @"\c$\", unTextBox.Text, passTextBox.Text);
+                Process.Start(@"\\" + ip + @"\c$\");
+            }
+        }
+    }
+}
+
+namespace ExtremeMirror
+{
+    public class PinvokeWindowsNetworking
+    {
+        #region Consts
+        const int RESOURCE_CONNECTED = 0x00000001;
+        const int RESOURCE_GLOBALNET = 0x00000002;
+        const int RESOURCE_REMEMBERED = 0x00000003;
+
+        const int RESOURCETYPE_ANY = 0x00000000;
+        const int RESOURCETYPE_DISK = 0x00000001;
+        const int RESOURCETYPE_PRINT = 0x00000002;
+
+        const int RESOURCEDISPLAYTYPE_GENERIC = 0x00000000;
+        const int RESOURCEDISPLAYTYPE_DOMAIN = 0x00000001;
+        const int RESOURCEDISPLAYTYPE_SERVER = 0x00000002;
+        const int RESOURCEDISPLAYTYPE_SHARE = 0x00000003;
+        const int RESOURCEDISPLAYTYPE_FILE = 0x00000004;
+        const int RESOURCEDISPLAYTYPE_GROUP = 0x00000005;
+
+        const int RESOURCEUSAGE_CONNECTABLE = 0x00000001;
+        const int RESOURCEUSAGE_CONTAINER = 0x00000002;
+
+
+        const int CONNECT_INTERACTIVE = 0x00000008;
+        const int CONNECT_PROMPT = 0x00000010;
+        const int CONNECT_REDIRECT = 0x00000080;
+        const int CONNECT_UPDATE_PROFILE = 0x00000001;
+        const int CONNECT_COMMANDLINE = 0x00000800;
+        const int CONNECT_CMD_SAVECRED = 0x00001000;
+
+        const int CONNECT_LOCALDRIVE = 0x00000100;
+        #endregion
+
+        #region Errors
+        const int NO_ERROR = 0;
+
+        const int ERROR_ACCESS_DENIED = 5;
+        const int ERROR_ALREADY_ASSIGNED = 85;
+        const int ERROR_BAD_DEVICE = 1200;
+        const int ERROR_BAD_NET_NAME = 67;
+        const int ERROR_BAD_PROVIDER = 1204;
+        const int ERROR_CANCELLED = 1223;
+        const int ERROR_EXTENDED_ERROR = 1208;
+        const int ERROR_INVALID_ADDRESS = 487;
+        const int ERROR_INVALID_PARAMETER = 87;
+        const int ERROR_INVALID_PASSWORD = 1216;
+        const int ERROR_MORE_DATA = 234;
+        const int ERROR_NO_MORE_ITEMS = 259;
+        const int ERROR_NO_NET_OR_BAD_PATH = 1203;
+        const int ERROR_NO_NETWORK = 1222;
+
+        const int ERROR_BAD_PROFILE = 1206;
+        const int ERROR_CANNOT_OPEN_PROFILE = 1205;
+        const int ERROR_DEVICE_IN_USE = 2404;
+        const int ERROR_NOT_CONNECTED = 2250;
+        const int ERROR_OPEN_FILES = 2401;
+
+        private struct ErrorClass
+        {
+            public int num;
+            public string message;
+            public ErrorClass(int num, string message)
+            {
+                this.num = num;
+                this.message = message;
+            }
+        }
+
+
+        // Created with excel formula:
+        // ="new ErrorClass("&A1&", """&PROPER(SUBSTITUTE(MID(A1,7,LEN(A1)-6), "_", " "))&"""), "
+        private static ErrorClass[] ERROR_LIST = new ErrorClass[] {
+            new ErrorClass(ERROR_ACCESS_DENIED, "Error: Access Denied"),
+            new ErrorClass(ERROR_ALREADY_ASSIGNED, "Error: Already Assigned"),
+            new ErrorClass(ERROR_BAD_DEVICE, "Error: Bad Device"),
+            new ErrorClass(ERROR_BAD_NET_NAME, "Error: Bad Net Name"),
+            new ErrorClass(ERROR_BAD_PROVIDER, "Error: Bad Provider"),
+            new ErrorClass(ERROR_CANCELLED, "Error: Cancelled"),
+            new ErrorClass(ERROR_EXTENDED_ERROR, "Error: Extended Error"),
+            new ErrorClass(ERROR_INVALID_ADDRESS, "Error: Invalid Address"),
+            new ErrorClass(ERROR_INVALID_PARAMETER, "Error: Invalid Parameter"),
+            new ErrorClass(ERROR_INVALID_PASSWORD, "Error: Invalid Password"),
+            new ErrorClass(ERROR_MORE_DATA, "Error: More Data"),
+            new ErrorClass(ERROR_NO_MORE_ITEMS, "Error: No More Items"),
+            new ErrorClass(ERROR_NO_NET_OR_BAD_PATH, "Error: No Net Or Bad Path"),
+            new ErrorClass(ERROR_NO_NETWORK, "Error: No Network"),
+            new ErrorClass(ERROR_BAD_PROFILE, "Error: Bad Profile"),
+            new ErrorClass(ERROR_CANNOT_OPEN_PROFILE, "Error: Cannot Open Profile"),
+            new ErrorClass(ERROR_DEVICE_IN_USE, "Error: Device In Use"),
+            new ErrorClass(ERROR_EXTENDED_ERROR, "Error: Extended Error"),
+            new ErrorClass(ERROR_NOT_CONNECTED, "Error: Not Connected"),
+            new ErrorClass(ERROR_OPEN_FILES, "Error: Open Files"),
+        };
+
+        private static string getErrorForNumber(int errNum)
+        {
+            foreach (ErrorClass er in ERROR_LIST)
+            {
+                if (er.num == errNum) return er.message;
+            }
+            return "Error: Unknown, " + errNum;
+        }
+        #endregion
+
+        [DllImport("Mpr.dll")]
+        private static extern int WNetUseConnection(
+            IntPtr hwndOwner,
+            NETRESOURCE lpNetResource,
+            string lpPassword,
+            string lpUserID,
+            int dwFlags,
+            string lpAccessName,
+            string lpBufferSize,
+            string lpResult
+        );
+
+        [DllImport("Mpr.dll")]
+        private static extern int WNetCancelConnection2(
+            string lpName,
+            int dwFlags,
+            bool fForce
+        );
+
+        [StructLayout(LayoutKind.Sequential)]
+        private class NETRESOURCE
+        {
+            public int dwScope = 0;
+            public int dwType = 0;
+            public int dwDisplayType = 0;
+            public int dwUsage = 0;
+            public string lpLocalName = "";
+            public string lpRemoteName = "";
+            public string lpComment = "";
+            public string lpProvider = "";
+        }
+
+
+        public static string connectToRemote(string remoteUNC, string username, string password)
+        {
+            return connectToRemote(remoteUNC, username, password, false);
+        }
+
+        public static string connectToRemote(string remoteUNC, string username, string password, bool promptUser)
+        {
+            NETRESOURCE nr = new NETRESOURCE();
+            nr.dwType = RESOURCETYPE_DISK;
+            nr.lpRemoteName = remoteUNC;
+            //			nr.lpLocalName = "F:";
+
+            int ret;
+            if (promptUser)
+                ret = WNetUseConnection(IntPtr.Zero, nr, "", "", CONNECT_INTERACTIVE | CONNECT_PROMPT, null, null, null);
+            else
+                ret = WNetUseConnection(IntPtr.Zero, nr, password, username, 0, null, null, null);
+
+            if (ret == NO_ERROR) return null;
+            return getErrorForNumber(ret);
+        }
+
+        public static string disconnectRemote(string remoteUNC)
+        {
+            int ret = WNetCancelConnection2(remoteUNC, CONNECT_UPDATE_PROFILE, false);
+            if (ret == NO_ERROR) return null;
+            return getErrorForNumber(ret);
         }
     }
 }
@@ -3252,4 +3472,53 @@ namespace Encryption
             return randomBytes;
         }
     }
+}
+
+public class WndSearcher
+{
+    public static IntPtr SearchForWindow(string wndclass, string title)
+    {
+        SearchData sd = new SearchData { Wndclass = wndclass, Title = title };
+        EnumWindows(new EnumWindowsProc(EnumProc), ref sd);
+        return sd.hWnd;
+    }
+
+    public static bool EnumProc(IntPtr hWnd, ref SearchData data)
+    {
+        // Check classname and title
+        // This is different from FindWindow() in that the code below allows partial matches
+        StringBuilder sb = new StringBuilder(1024);
+        GetClassName(hWnd, sb, sb.Capacity);
+        if (sb.ToString().StartsWith(data.Wndclass))
+        {
+            sb = new StringBuilder(1024);
+            GetWindowText(hWnd, sb, sb.Capacity);
+            if (sb.ToString().StartsWith(data.Title))
+            {
+                data.hWnd = hWnd;
+                return false;    // Found the wnd, halt enumeration
+            }
+        }
+        return true;
+    }
+
+    public class SearchData
+    {
+        // You can put any dicks or Doms in here...
+        public string Wndclass;
+        public string Title;
+        public IntPtr hWnd;
+    }
+
+    private delegate bool EnumWindowsProc(IntPtr hWnd, ref SearchData data);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, ref SearchData data);
+
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 }

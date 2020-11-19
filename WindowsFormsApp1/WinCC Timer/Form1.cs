@@ -426,7 +426,7 @@ namespace WinCC_Timer
 
         private bool GetProcessCPUUsage(string process, string log)
         {
-            LogToFile("Starting cpu usage gathering", logName);
+            //LogToFile("Starting cpu usage gathering", logName);
 
             var name = string.Empty;
             var perc = new List<float>();
@@ -441,7 +441,7 @@ namespace WinCC_Timer
                 {
                     name = proc.ProcessName;
                     proc.StartInfo.RedirectStandardOutput = true;
-                    LogToFile("Found process with name " + name, logName);
+                    //LogToFile("Found process with name " + name, logName);
                 }
             }
 
@@ -461,7 +461,7 @@ namespace WinCC_Timer
             }
             catch (Exception exc)
             {
-                LogToFile(exc.Message, logName);
+                LogToFile(exc.Message, Path.Combine(Application.StartupPath, "errors.logger"));
             }
 
             for (int i = 0; i < perc.Count; i++)
@@ -475,7 +475,7 @@ namespace WinCC_Timer
             }
             catch (Exception exc)
             {
-                LogToFile(exc.Message, logName);
+                LogToFile(exc.Message, Path.Combine(Application.StartupPath, "errors.logger"));
             }
 
             return true;

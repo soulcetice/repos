@@ -118,7 +118,7 @@ namespace RDApp
 
         private static void LogToFile(string content)
         {
-            using (var fileWriter = new StreamWriter(Application.StartupPath + "\\RDPData.logger", true))
+            using (var fileWriter = new StreamWriter(Path.Combine(Application.StartupPath, "RDPData.logger"), true))
             {
                 DateTime date = DateTime.UtcNow;
                 fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);

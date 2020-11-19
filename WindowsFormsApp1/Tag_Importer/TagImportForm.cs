@@ -24,7 +24,7 @@ namespace Tag_Importer
         {
             InitializeComponent();
 
-            string configFile = Application.StartupPath + "\\Tag_Importer.ini";
+            string configFile = Path.Combine(Application.StartupPath, "Tag_Importer.ini");
             GetInitialValues(configFile);
 
             Files = GetFilteredFilesFromFolder();
@@ -92,7 +92,7 @@ namespace Tag_Importer
 
         private void KeepConfig()
         {
-            string configPath = Application.StartupPath + "\\Tag_Importer.ini";
+            string configPath = Path.Combine(Application.StartupPath, "Tag_Importer.ini");
             var configFile = File.CreateText(configPath);
             configFile.WriteLine(textBox1.Text);
             configFile.WriteLine(textBox2.Text);
@@ -197,7 +197,7 @@ namespace Tag_Importer
 
         private static void RemoveTemporaryOutputs()
         {
-            FileInfo output = new FileInfo(Application.StartupPath + "\\output.png");
+            FileInfo output = new FileInfo(Path.Combine(Application.StartupPath, "output.png"));
             if (output.Exists)
             {
                 output.Delete();
@@ -206,7 +206,7 @@ namespace Tag_Importer
 
         private static void LogToFile(string content)
         {
-            using (var fileWriter = new StreamWriter(Application.StartupPath + "\\Tag_Importer.logger", true))
+            using (var fileWriter = new StreamWriter(Path.Combine(Application.StartupPath, "Tag_Importer.logger"), true))
             {
                 DateTime date = DateTime.UtcNow;
                 fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
