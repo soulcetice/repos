@@ -63,3 +63,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downl
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\System.Management.Automation.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Management.Infrastructure.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\System.Management.Automation.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache

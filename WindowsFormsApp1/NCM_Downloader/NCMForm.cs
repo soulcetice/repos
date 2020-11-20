@@ -607,9 +607,9 @@ namespace AutomateDownloader
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(247, 169);
+            this.button1.Location = new System.Drawing.Point(250, 214);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
+            this.button1.Size = new System.Drawing.Size(73, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Download";
             this.button1.UseVisualStyleBackColor = true;
@@ -622,7 +622,7 @@ namespace AutomateDownloader
             this.checkedListBox1.Location = new System.Drawing.Point(12, 68);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(229, 124);
+            this.checkedListBox1.Size = new System.Drawing.Size(229, 169);
             this.checkedListBox1.TabIndex = 8;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -955,7 +955,7 @@ namespace AutomateDownloader
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Location = new System.Drawing.Point(232, 247);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(90, 22);
+            this.button8.Size = new System.Drawing.Size(91, 22);
             this.button8.TabIndex = 34;
             this.button8.Text = "Alt. Download";
             this.button8.UseVisualStyleBackColor = true;
@@ -1664,14 +1664,13 @@ namespace AutomateDownloader
                     System.Threading.Thread.Sleep(200);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     string clientName = checkedListBox1.CheckedItems[i].ToString();
+                    StopWinCCRuntime(clientName);
                     //
                     //get ip here
                     //
                     var myIp = ipList.Where(x => x.Contains(clientName)).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
                     //
                     //download process starts here - first needs to navigate to correct index
-
-                    StopWinCCRuntime(clientName);
 
                     PInvokeLibrary.SetForegroundWindow(ncmHandle);
                     ResetExpansions(ncmHandle);
@@ -1735,32 +1734,33 @@ namespace AutomateDownloader
                             var user = unTextBox.Text;
                             var pass = passTextBox.Text;
                             var ip = myIp;
-                            IntPtr killGuideHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
-                            if (killGuideHandle != IntPtr.Zero)
-                            {
-                                //Download to target system was completed successfully. do not send enter until this text is present in the window...
-                                bool flagKilled = false;
-                                do
-                                {
-                                    var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
-                                    if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS")).Count() > 0) //check if closing project takes too long...
-                                    {
-                                        //LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
-                                        //try
-                                        //{
-                                        //var processName = "CCOnScreenKeyboard";
-                                        //    KillProcessViaPowershellOnMachine(clientName, processName);
-                                        //}
-                                        //catch (Exception)
-                                        //{
-                                        //    LogToFile("was not able to kill process cconscreenkeyboard");
-                                        //    continue;
-                                        //}
-                                        flagKilled = true;
-                                    }
-                                    System.Threading.Thread.Sleep(50);
-                                } while (flagKilled == false);
-                            }
+                            //IntPtr killGuideHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
+                            //if (killGuideHandle != IntPtr.Zero)
+                            //{
+                            //    //Download to target system was completed successfully. do not send enter until this text is present in the window...
+                            //    bool flagKilled = false;
+                            //    do
+                            //    {
+                            //        var killGuideText = ExtractWindowTextByHandle(killGuideHandle);
+                            //        if (killGuideText.Where(x => x.Contains("Closing project on the Runtime OS")).Count() > 0 || killGuideText.Where(x => x.Contains("Deactivating project on the Runtime OS")).Count() > 0) //check if closing project takes too long...
+                            //        {
+                            //            LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
+                            //            try
+                            //            {
+                            //                var processName = "CCOnScreenKeyboard";
+                            //                KillProcessViaPowershellOnMachine(clientName, processName);
+                            //            }
+                            //            catch (Exception)
+                            //            {
+                            //                LogToFile("was not able to kill process cconscreenkeyboard");
+                            //                continue;
+                            //            }
+                            //            flagKilled = true;
+                            //        }
+                            //        System.Threading.Thread.Sleep(50);
+                            //    } while (flagKilled == false);
+                            //} //this was the  freakin' useless wait
+
 
                             #endregion
 
@@ -1776,18 +1776,21 @@ namespace AutomateDownloader
                             _ = PInvokeLibrary.SetForegroundWindow(osDldTgtWndHandle);
                             //var downloadTargetWindowText = ExtractWindowTextByHandle(osDldTgtWndHandle);
 
-                            var filePath = pathTextBox.Text + "(" + checkedListBox1.CheckedIndices[i] + 1 + ")\\winccom\\LOAD.LOG";
-                            if (File.Exists(filePath))
-                            {
-                                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                                StreamReader sr = new StreamReader(fs);
-                                List<String> lst = new List<string>();
+                            #region reading the load.log file of ncm
+                            //var filePath = pathTextBox.Text + "(" + checkedListBox1.CheckedIndices[i] + 1 + ")\\winccom\\LOAD.LOG";
+                            //if (File.Exists(filePath))
+                            //{
+                            //    FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                            //    StreamReader sr = new StreamReader(fs);
+                            //    List<String> lst = new List<string>();
 
-                                while (!sr.EndOfStream)
-                                    lst.Add(sr.ReadLine());
-                            }
+                            //    while (!sr.EndOfStream)
+                            //        lst.Add(sr.ReadLine());
+                            //}
 
                             //SleepUntilDownloadFeedback(clientIndex + 1);
+                            #endregion
+
                             System.Threading.Thread.Sleep(30000);
 
                             IntPtr dldingTgtHandle = PInvokeLibrary.FindWindow(anyPopupClass, "Downloading to target system");
@@ -1854,6 +1857,11 @@ namespace AutomateDownloader
                             }
                         }
 
+                        #region check here
+                        //StopWinCCRuntime(clientName);
+                        //StartWinCCRuntime(clientName);
+                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
+                        #endregion
                         if (rdpCheckBox.Checked == true)
                         {
                             CloseRemoteSession(myIp);
@@ -1878,7 +1886,6 @@ namespace AutomateDownloader
                     {
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
-                    StartWinCCRuntime(clientName);
                 }
                 LogToFile("Closing logfile");
 
@@ -2285,8 +2292,8 @@ namespace AutomateDownloader
             try
             {
                 File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + exeFileName);
-                if (settingsFileName != "")
-                    File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + settingsFileName);
+                //if (settingsFileName != "")
+                //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + settingsFileName);
             }
             catch (Exception exc)
             {
@@ -2321,8 +2328,8 @@ namespace AutomateDownloader
             }
 
             File.Delete(@"\\" + machine + @"\C$\Temp" + exeFileName);
-            if (settingsFileName != "")
-                File.Delete(@"\\" + machine + @"\C$\Temp" + settingsFileName);
+            //if (settingsFileName != "")
+            //    File.Delete(@"\\" + machine + @"\C$\Temp" + settingsFileName);
             impersonator.undoimpersonateUser();
         }
 
@@ -2343,13 +2350,13 @@ namespace AutomateDownloader
             var exe = "\\StartWinCCRuntime.exe";
             var set = "\\StartWinCCRuntimeSettings.txt";
             var settPath = Application.StartupPath + set;
-            using (var fileWriter = new StreamWriter(settPath, true))
-            {
-                fileWriter.WriteLine(mcpPathBox.Text);
-                fileWriter.WriteLine(winccex);
-                fileWriter.WriteLine(pdlrt);
-                fileWriter.Close();
-            }
+            //using (var fileWriter = new StreamWriter(settPath, true))
+            //{
+            //    fileWriter.WriteLine(mcpPathBox.Text);
+            //    fileWriter.WriteLine(winccex);
+            //    fileWriter.WriteLine(pdlrt);
+            //    fileWriter.Close();
+            //}
             LaunchRemoteProcessWithSettingsFile(machine, exe, set);
             // i can has feedback?
             msg = "Started runtime on " + machine;

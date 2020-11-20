@@ -1,0 +1,2187 @@
+2020/11/19 9:48:31:862 UTC: Starting menu navigation
+2020/11/19 9:48:31:871 UTC: 265 menu items
+2020/11/19 9:48:31:877 UTC: 51width, 16height, General
+2020/11/19 9:48:31:890 UTC: 43width, 16height, Alarms
+2020/11/19 9:48:31:895 UTC: Alarms is the caption for which we check width
+2020/11/19 9:48:31:899 UTC: 40width, 16height, Safety
+2020/11/19 9:48:31:904 UTC: 87width, 16height, Switch On-Off
+2020/11/19 9:48:31:909 UTC: Switch On-Off is the caption for which we check width
+2020/11/19 9:48:31:912 UTC: 60width, 16height, Media TF
+2020/11/19 9:48:31:920 UTC: 63width, 16height, Media RM
+2020/11/19 9:48:31:924 UTC: 62width, 16height, Media FM
+2020/11/19 9:48:31:929 UTC: 62width, 16height, Media DC
+2020/11/19 9:48:31:933 UTC: 40width, 16height, Drives
+2020/11/19 9:48:31:937 UTC: 87 is x width for childrentier2
+2020/11/19 9:48:32:445 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:48:37:455 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2020/11/19 9:48:37:461 UTC: '@sms_w_Alarmlist'
+2020/11/19 9:48:37:467 UTC: 58width, 16height, Overview
+2020/11/19 9:48:37:472 UTC: Overview is the caption for which we check width
+2020/11/19 9:48:37:476 UTC: 87width, 16height, Safety Details
+2020/11/19 9:48:37:479 UTC: Safety Details is the caption for which we check width
+2020/11/19 9:48:37:482 UTC: 87 is x width for childrentier2
+2020/11/19 9:48:37:987 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:48:37:996 UTC: 58width, 16height, Overview
+2020/11/19 9:48:38:0 UTC: Overview is the caption for which we check width
+2020/11/19 9:48:38:5 UTC: 87width, 16height, Safety Details
+2020/11/19 9:48:38:9 UTC: Safety Details is the caption for which we check width
+2020/11/19 9:48:38:13 UTC: 87 is x width for childrentier2
+2020/11/19 9:48:38:17 UTC: 127 is maxwidthtier2
+2020/11/19 9:48:38:522 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:48:38:528 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:48:38:536 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:48:38:540 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:48:38:544 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:48:38:548 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:48:38:552 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:48:38:556 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:48:38:560 UTC: 128 is x width for childrentier2
+2020/11/19 9:48:39:70 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:48:39:576 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:48:40:81 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:48:45:88 UTC: For Overview  Floor RM expand menu, clicked at 352 x, 68 y
+2020/11/19 9:48:45:93 UTC: 'CSPM#06-01-00_n_#SAF-OverviewFloorRM'
+2020/11/19 9:48:45:97 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:48:45:101 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:48:45:105 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:48:45:110 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:48:45:113 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:48:45:117 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:48:45:121 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:48:45:125 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:48:45:130 UTC: 128 is x width for childrentier2
+2020/11/19 9:48:45:636 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:48:46:142 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:48:46:648 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:48:51:656 UTC: For Overview  Cellar RM expand menu, clicked at 352 x, 93 y
+2020/11/19 9:48:51:660 UTC: 'CSPM#06-02-00_n_#SAF-OverviewCellarRM'
+2020/11/19 9:48:51:665 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:48:51:669 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:48:51:673 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:48:51:677 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:48:51:681 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:48:51:685 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:48:51:693 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:48:51:697 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:48:51:701 UTC: 128 is x width for childrentier2
+2020/11/19 9:48:52:216 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:48:52:722 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:48:53:227 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:48:58:233 UTC: For Overview  Floor FM expand menu, clicked at 352 x, 118 y
+2020/11/19 9:48:58:237 UTC: 'CSPM#06-03-00_n_#SAF-OverviewFloorFM'
+2020/11/19 9:48:58:245 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:48:58:251 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:48:58:255 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:48:58:259 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:48:58:263 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:48:58:268 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:48:58:272 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:48:58:276 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:48:58:281 UTC: 128 is x width for childrentier2
+2020/11/19 9:48:58:787 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:48:59:294 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:48:59:801 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:49:4:808 UTC: For Overview  Cellar FM expand menu, clicked at 352 x, 143 y
+2020/11/19 9:49:4:815 UTC: 'CSPM#06-04-00_n_#SAF-OverviewCellarFM'
+2020/11/19 9:49:4:819 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:49:4:824 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:49:4:828 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:49:4:832 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:49:4:836 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:49:4:840 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:49:4:849 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:49:4:853 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:49:4:857 UTC: 128 is x width for childrentier2
+2020/11/19 9:49:5:363 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:5:869 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:6:380 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:49:11:385 UTC: For Overview  Floor DC expand menu, clicked at 352 x, 168 y
+2020/11/19 9:49:11:391 UTC: 'CSPM#06-05-00_n_#SAF-OverviewFloorDC'
+2020/11/19 9:49:11:396 UTC: 124width, 16height, Overview  Floor RM
+2020/11/19 9:49:11:401 UTC: Overview  Floor RM is the caption for which we check width
+2020/11/19 9:49:11:406 UTC: 128width, 16height, Overview  Cellar RM
+2020/11/19 9:49:11:411 UTC: Overview  Cellar RM is the caption for which we check width
+2020/11/19 9:49:11:415 UTC: 123width, 16height, Overview  Floor FM
+2020/11/19 9:49:11:421 UTC: 127width, 16height, Overview  Cellar FM
+2020/11/19 9:49:11:426 UTC: 123width, 16height, Overview  Floor DC
+2020/11/19 9:49:11:432 UTC: 127width, 16height, Overview  Cellar DC
+2020/11/19 9:49:11:441 UTC: 128 is x width for childrentier2
+2020/11/19 9:49:11:946 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:12:452 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:12:957 UTC: For Overview expand menu, clicked at 164 x, 68 y
+2020/11/19 9:49:17:964 UTC: For Overview  Cellar DC expand menu, clicked at 352 x, 193 y
+2020/11/19 9:49:17:969 UTC: 'CSPM#06-06-00_n_#SAF-OverviewCellarDC'
+2020/11/19 9:49:18:477 UTC: 112width, 16height, Safety Details RM
+2020/11/19 9:49:18:482 UTC: Safety Details RM is the caption for which we check width
+2020/11/19 9:49:18:488 UTC: 111width, 16height, Safety Details FM
+2020/11/19 9:49:18:495 UTC: 160width, 16height, Safety Details DC Page 1
+2020/11/19 9:49:18:500 UTC: Safety Details DC Page 1 is the caption for which we check width
+2020/11/19 9:49:18:505 UTC: 160width, 16height, Safety Details DC Page 2
+2020/11/19 9:49:18:509 UTC: 160 is x width for childrentier2
+2020/11/19 9:49:19:16 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:19:521 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:20:27 UTC: For Safety Details expand menu, clicked at 164 x, 93 y
+2020/11/19 9:49:25:36 UTC: For Safety Details RM expand menu, clicked at 384 x, 93 y
+2020/11/19 9:49:25:42 UTC: 'SAF_n_SafetyAreaOverviewRM'
+2020/11/19 9:49:25:48 UTC: 112width, 16height, Safety Details RM
+2020/11/19 9:49:25:52 UTC: Safety Details RM is the caption for which we check width
+2020/11/19 9:49:25:57 UTC: 111width, 16height, Safety Details FM
+2020/11/19 9:49:25:62 UTC: 160width, 16height, Safety Details DC Page 1
+2020/11/19 9:49:25:68 UTC: Safety Details DC Page 1 is the caption for which we check width
+2020/11/19 9:49:25:76 UTC: 160width, 16height, Safety Details DC Page 2
+2020/11/19 9:49:25:81 UTC: 160 is x width for childrentier2
+2020/11/19 9:49:25:588 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:26:94 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:26:601 UTC: For Safety Details expand menu, clicked at 164 x, 93 y
+2020/11/19 9:49:31:607 UTC: For Safety Details FM expand menu, clicked at 384 x, 118 y
+2020/11/19 9:49:31:613 UTC: 'SAF_n_SafetyAreaOverviewFM'
+2020/11/19 9:49:31:619 UTC: 112width, 16height, Safety Details RM
+2020/11/19 9:49:31:625 UTC: Safety Details RM is the caption for which we check width
+2020/11/19 9:49:31:630 UTC: 111width, 16height, Safety Details FM
+2020/11/19 9:49:31:635 UTC: 160width, 16height, Safety Details DC Page 1
+2020/11/19 9:49:31:639 UTC: Safety Details DC Page 1 is the caption for which we check width
+2020/11/19 9:49:31:646 UTC: 160width, 16height, Safety Details DC Page 2
+2020/11/19 9:49:31:654 UTC: 160 is x width for childrentier2
+2020/11/19 9:49:32:160 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:32:666 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:33:172 UTC: For Safety Details expand menu, clicked at 164 x, 93 y
+2020/11/19 9:49:38:181 UTC: For Safety Details DC Page 1 expand menu, clicked at 384 x, 143 y
+2020/11/19 9:49:38:187 UTC: 'SAF_n_SafetyAreaOverviewDCPage1'
+2020/11/19 9:49:38:192 UTC: 112width, 16height, Safety Details RM
+2020/11/19 9:49:38:197 UTC: Safety Details RM is the caption for which we check width
+2020/11/19 9:49:38:205 UTC: 111width, 16height, Safety Details FM
+2020/11/19 9:49:38:210 UTC: 160width, 16height, Safety Details DC Page 1
+2020/11/19 9:49:38:215 UTC: Safety Details DC Page 1 is the caption for which we check width
+2020/11/19 9:49:38:219 UTC: 160width, 16height, Safety Details DC Page 2
+2020/11/19 9:49:38:224 UTC: 160 is x width for childrentier2
+2020/11/19 9:49:38:730 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:39:237 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2020/11/19 9:49:39:743 UTC: For Safety Details expand menu, clicked at 164 x, 93 y
+2020/11/19 9:49:44:751 UTC: For Safety Details DC Page 2 expand menu, clicked at 384 x, 168 y
+2020/11/19 9:49:44:756 UTC: 'SAF_n_SafetyAreaOverviewDCPage2'
+2020/11/19 9:49:44:760 UTC: 38width, 16height, Media
+2020/11/19 9:49:44:765 UTC: Media is the caption for which we check width
+2020/11/19 9:49:44:769 UTC: 40width, 16height, Drives
+2020/11/19 9:49:44:774 UTC: Drives is the caption for which we check width
+2020/11/19 9:49:44:778 UTC: 31width, 16height, MCC
+2020/11/19 9:49:44:782 UTC: 40 is x width for childrentier2
+2020/11/19 9:49:45:287 UTC: For Switch On-Off expand menu, clicked at 37 x, 93 y
+2020/11/19 9:49:45:292 UTC: 38width, 16height, Media
+2020/11/19 9:49:45:297 UTC: Media is the caption for which we check width
+2020/11/19 9:49:45:302 UTC: 40width, 16height, Drives
+2020/11/19 9:49:45:308 UTC: Drives is the caption for which we check width
+2020/11/19 9:49:45:317 UTC: 31width, 16height, MCC
+2020/11/19 9:49:45:322 UTC: 40 is x width for childrentier2
+2020/11/19 9:49:45:326 UTC: 80 is maxwidthtier2
+2020/11/19 9:49:45:832 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:46:338 UTC: For Switch On-Off expand menu, clicked at 37 x, 93 y
+2020/11/19 9:49:51:343 UTC: For Media expand menu, clicked at 164 x, 93 y
+2020/11/19 9:49:51:356 UTC: 'CSPM#02-01-00_n_#GEN-Media'
+2020/11/19 9:49:51:866 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:52:384 UTC: For Switch On-Off expand menu, clicked at 37 x, 93 y
+2020/11/19 9:49:57:392 UTC: For Drives expand menu, clicked at 164 x, 118 y
+2020/11/19 9:49:57:397 UTC: 'CSPM#02-02-00_n_#GEN-Drives'
+2020/11/19 9:49:57:906 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:49:58:411 UTC: For Switch On-Off expand menu, clicked at 37 x, 93 y
+2020/11/19 9:50:3:418 UTC: For MCC expand menu, clicked at 164 x, 143 y
+2020/11/19 9:50:3:424 UTC: 'CSPM#02-03-00_n_#GEN-MCC'
+2020/11/19 9:50:3:429 UTC: 127width, 16height, Gas & Air Supply TF1
+2020/11/19 9:50:3:434 UTC: Gas & Air Supply TF1 is the caption for which we check width
+2020/11/19 9:50:3:439 UTC: 127width, 16height, Gas & Air Supply TF2
+2020/11/19 9:50:3:445 UTC: 127 is x width for childrentier2
+2020/11/19 9:50:3:951 UTC: For Media TF expand menu, clicked at 37 x, 118 y
+2020/11/19 9:50:3:956 UTC: 127width, 16height, Gas & Air Supply TF1
+2020/11/19 9:50:3:961 UTC: Gas & Air Supply TF1 is the caption for which we check width
+2020/11/19 9:50:3:967 UTC: 127width, 16height, Gas & Air Supply TF2
+2020/11/19 9:50:3:972 UTC: 127 is x width for childrentier2
+2020/11/19 9:50:3:977 UTC: 167 is maxwidthtier2
+2020/11/19 9:50:4:487 UTC: 146width, 16height, Burner Heating Section
+2020/11/19 9:50:4:492 UTC: Burner Heating Section is the caption for which we check width
+2020/11/19 9:50:4:499 UTC: 142width, 16height, Burner Shuttle Section
+2020/11/19 9:50:4:504 UTC: 146 is x width for childrentier2
+2020/11/19 9:50:5:10 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:5:517 UTC: For Media TF expand menu, clicked at 37 x, 118 y
+2020/11/19 9:50:6:23 UTC: For Gas & Air Supply TF1 expand menu, clicked at 164 x, 118 y
+2020/11/19 9:50:11:29 UTC: For Burner Heating Section expand menu, clicked at 370 x, 118 y
+2020/11/19 9:50:11:34 UTC: 'CSPTF#67-01-00_w_#MED-BurnerHeatingSection'
+2020/11/19 9:50:11:39 UTC: 146width, 16height, Burner Heating Section
+2020/11/19 9:50:11:45 UTC: Burner Heating Section is the caption for which we check width
+2020/11/19 9:50:11:50 UTC: 142width, 16height, Burner Shuttle Section
+2020/11/19 9:50:11:54 UTC: 146 is x width for childrentier2
+2020/11/19 9:50:11:559 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:12:72 UTC: For Media TF expand menu, clicked at 37 x, 118 y
+2020/11/19 9:50:12:579 UTC: For Gas & Air Supply TF1 expand menu, clicked at 164 x, 118 y
+2020/11/19 9:50:17:585 UTC: For Burner Shuttle Section expand menu, clicked at 370 x, 143 y
+2020/11/19 9:50:17:590 UTC: 'CSPTF#67-02-00_w_#MED-BurnerShuttleSection'
+2020/11/19 9:50:18:96 UTC: 146width, 16height, Burner Heating Section
+2020/11/19 9:50:18:101 UTC: Burner Heating Section is the caption for which we check width
+2020/11/19 9:50:18:106 UTC: 146 is x width for childrentier2
+2020/11/19 9:50:18:613 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:19:123 UTC: For Media TF expand menu, clicked at 37 x, 118 y
+2020/11/19 9:50:19:629 UTC: For Gas & Air Supply TF2 expand menu, clicked at 164 x, 143 y
+2020/11/19 9:50:24:635 UTC: For Burner Heating Section expand menu, clicked at 370 x, 143 y
+2020/11/19 9:50:24:641 UTC: 'CSPTF#67-03-00_w_#MED-BurnerHeatingSection'
+2020/11/19 9:50:24:648 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:50:24:658 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:50:24:671 UTC: 120width, 16height, Hydrostatic System
+2020/11/19 9:50:24:676 UTC: Hydrostatic System is the caption for which we check width
+2020/11/19 9:50:24:682 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:50:24:687 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:50:24:692 UTC: 94width, 16height, Water Systems
+2020/11/19 9:50:24:697 UTC: 98width, 16height, Cooling Control
+2020/11/19 9:50:24:702 UTC: 81width, 16height, Maintenance
+2020/11/19 9:50:24:707 UTC: 127 is x width for childrentier2
+2020/11/19 9:50:25:216 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:25:222 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:50:25:227 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:50:25:232 UTC: 120width, 16height, Hydrostatic System
+2020/11/19 9:50:25:237 UTC: Hydrostatic System is the caption for which we check width
+2020/11/19 9:50:25:242 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:50:25:248 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:50:25:253 UTC: 94width, 16height, Water Systems
+2020/11/19 9:50:25:258 UTC: 98width, 16height, Cooling Control
+2020/11/19 9:50:25:264 UTC: 81width, 16height, Maintenance
+2020/11/19 9:50:25:269 UTC: 127 is x width for childrentier2
+2020/11/19 9:50:25:274 UTC: 167 is maxwidthtier2
+2020/11/19 9:50:25:779 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/19 9:50:25:784 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/11/19 9:50:25:789 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/19 9:50:25:795 UTC: 151 is x width for childrentier2
+2020/11/19 9:50:26:301 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:26:807 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:27:319 UTC: For Hydraulic Systems expand menu, clicked at 164 x, 143 y
+2020/11/19 9:50:32:326 UTC: For High Pressure Hydraulic expand menu, clicked at 375 x, 143 y
+2020/11/19 9:50:32:331 UTC: 'CSPRM#61-01-00_w_#MED-HighPressureHydraulic'
+2020/11/19 9:50:32:336 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/19 9:50:32:341 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/11/19 9:50:32:346 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/19 9:50:32:352 UTC: 151 is x width for childrentier2
+2020/11/19 9:50:32:857 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:33:369 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:33:875 UTC: For Hydraulic Systems expand menu, clicked at 164 x, 143 y
+2020/11/19 9:50:38:890 UTC: For Low Pressure Hydraulic expand menu, clicked at 375 x, 168 y
+2020/11/19 9:50:38:905 UTC: 'CSPRM#62-01-00_w_#MED-LowPressureHydraulic'
+2020/11/19 9:50:39:411 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:39:918 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:44:924 UTC: For Hydrostatic System expand menu, clicked at 164 x, 168 y
+2020/11/19 9:50:44:930 UTC: 'CSPRM#68-01-00_w_#MED-HydrostaticSystem'
+2020/11/19 9:50:45:437 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:50:45:442 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:50:45:457 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:50:45:462 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:50:45:467 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:50:45:473 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:50:45:478 UTC: 97width, 16height, Grease System
+2020/11/19 9:50:45:483 UTC: 179 is x width for childrentier2
+2020/11/19 9:50:45:991 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:46:498 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:47:6 UTC: For Lubrication Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:50:52:13 UTC: For Roll Gap Lubrication Station expand menu, clicked at 403 x, 193 y
+2020/11/19 9:50:52:21 UTC: 'CSPRM#63-01-00_w_#MED-RollGapLubricationStation'
+2020/11/19 9:50:52:26 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:50:52:32 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:50:52:38 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:50:52:45 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:50:52:52 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:50:52:57 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:50:52:62 UTC: 97width, 16height, Grease System
+2020/11/19 9:50:52:69 UTC: 179 is x width for childrentier2
+2020/11/19 9:50:52:577 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:53:87 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:50:53:596 UTC: For Lubrication Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:50:58:602 UTC: For Roll Gap Lubrication Control expand menu, clicked at 403 x, 218 y
+2020/11/19 9:50:58:608 UTC: 'CSPRM#63-03-00_w_#MED-RollGapLubricationControl'
+2020/11/19 9:50:58:614 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:50:58:622 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:50:58:628 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:50:58:633 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:50:58:638 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:50:58:644 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:50:58:653 UTC: 97width, 16height, Grease System
+2020/11/19 9:50:58:659 UTC: 179 is x width for childrentier2
+2020/11/19 9:50:59:165 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:50:59:672 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:0:179 UTC: For Lubrication Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:51:5:186 UTC: For Oil Lubrication System expand menu, clicked at 403 x, 243 y
+2020/11/19 9:51:5:191 UTC: 'CSPRM#63-02-00_w_#MED-OilLubricationSystem'
+2020/11/19 9:51:5:196 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:51:5:201 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:51:5:206 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:51:5:212 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:51:5:218 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:51:5:223 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:51:5:229 UTC: 97width, 16height, Grease System
+2020/11/19 9:51:5:234 UTC: 179 is x width for childrentier2
+2020/11/19 9:51:5:740 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:6:246 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:6:753 UTC: For Lubrication Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:51:11:761 UTC: For Bearing Lubrication System expand menu, clicked at 403 x, 268 y
+2020/11/19 9:51:11:777 UTC: 'CSPRM#64-01-00_w_#MED-BearingLubricationSystem'
+2020/11/19 9:51:11:783 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:51:11:789 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:51:11:794 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:51:11:799 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:51:11:804 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:51:11:808 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:51:11:813 UTC: 97width, 16height, Grease System
+2020/11/19 9:51:11:817 UTC: 179 is x width for childrentier2
+2020/11/19 9:51:12:323 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:12:830 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:13:338 UTC: For Lubrication Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:51:18:346 UTC: For Grease System expand menu, clicked at 403 x, 293 y
+2020/11/19 9:51:18:352 UTC: 'CSPRM#72-01-00_w_#MED-GreaseSystem'
+2020/11/19 9:51:18:860 UTC: 149width, 16height, Descaling Entry System
+2020/11/19 9:51:18:899 UTC: Descaling Entry System is the caption for which we check width
+2020/11/19 9:51:18:908 UTC: 138width, 16height, Descaling Exit System
+2020/11/19 9:51:18:914 UTC: 149 is x width for childrentier2
+2020/11/19 9:51:19:420 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:19:927 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:20:434 UTC: For Water Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:51:25:443 UTC: For Descaling Entry System expand menu, clicked at 373 x, 218 y
+2020/11/19 9:51:25:448 UTC: 'CSPRM#66-01-00_w_#MED-DescalingEntrySystem'
+2020/11/19 9:51:25:455 UTC: 149width, 16height, Descaling Entry System
+2020/11/19 9:51:25:460 UTC: Descaling Entry System is the caption for which we check width
+2020/11/19 9:51:25:465 UTC: 138width, 16height, Descaling Exit System
+2020/11/19 9:51:25:470 UTC: 149 is x width for childrentier2
+2020/11/19 9:51:25:976 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:26:486 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:26:996 UTC: For Water Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:51:32:3 UTC: For Descaling Exit System expand menu, clicked at 373 x, 243 y
+2020/11/19 9:51:32:9 UTC: 'CSPRM#66-02-00_w_#MED-DescalingExitSystem'
+2020/11/19 9:51:32:517 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:51:32:523 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:51:32:530 UTC: 156width, 16height, Stand Interstand Cooling
+2020/11/19 9:51:32:536 UTC: Stand Interstand Cooling is the caption for which we check width
+2020/11/19 9:51:32:541 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/19 9:51:32:548 UTC: 156 is x width for childrentier2
+2020/11/19 9:51:33:54 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:33:560 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:34:68 UTC: For Cooling Control expand menu, clicked at 164 x, 243 y
+2020/11/19 9:51:39:75 UTC: For Cooling Before Stands expand menu, clicked at 380 x, 243 y
+2020/11/19 9:51:39:80 UTC: 'CSPRM#65-03-00_w_#MED-CoolingBeforeStands'
+2020/11/19 9:51:39:85 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:51:39:90 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:51:39:96 UTC: 156width, 16height, Stand Interstand Cooling
+2020/11/19 9:51:39:101 UTC: Stand Interstand Cooling is the caption for which we check width
+2020/11/19 9:51:39:106 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/19 9:51:39:113 UTC: 156 is x width for childrentier2
+2020/11/19 9:51:39:619 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:40:127 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:40:633 UTC: For Cooling Control expand menu, clicked at 164 x, 243 y
+2020/11/19 9:51:45:640 UTC: For Stand Interstand Cooling expand menu, clicked at 380 x, 268 y
+2020/11/19 9:51:45:648 UTC: 'CSPRM#65-01-00_w_#MED-StandInterstandCooling'
+2020/11/19 9:51:45:656 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:51:45:663 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:51:45:670 UTC: 156width, 16height, Stand Interstand Cooling
+2020/11/19 9:51:45:678 UTC: Stand Interstand Cooling is the caption for which we check width
+2020/11/19 9:51:45:683 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/19 9:51:45:690 UTC: 156 is x width for childrentier2
+2020/11/19 9:51:46:197 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:46:702 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:47:221 UTC: For Cooling Control expand menu, clicked at 164 x, 243 y
+2020/11/19 9:51:52:232 UTC: For Transfer Bar Cooling expand menu, clicked at 380 x, 293 y
+2020/11/19 9:51:52:237 UTC: 'CSPRM#65-02-00_w_#MED-TransferBarCooling'
+2020/11/19 9:51:52:744 UTC: 73width, 16height, Parameters
+2020/11/19 9:51:52:750 UTC: Parameters is the caption for which we check width
+2020/11/19 9:51:52:754 UTC: 73 is x width for childrentier2
+2020/11/19 9:51:53:260 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:51:53:767 UTC: For Media RM expand menu, clicked at 37 x, 143 y
+2020/11/19 9:51:54:273 UTC: For Maintenance expand menu, clicked at 164 x, 268 y
+2020/11/19 9:51:59:282 UTC: For Parameters expand menu, clicked at 297 x, 268 y
+2020/11/19 9:51:59:287 UTC: 'CSPRM#60-01-00_w_#MED-Parameters'
+2020/11/19 9:51:59:292 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:51:59:299 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:51:59:303 UTC: 120width, 16height, Hydrostatic System
+2020/11/19 9:51:59:308 UTC: Hydrostatic System is the caption for which we check width
+2020/11/19 9:51:59:313 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:51:59:315 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:51:59:323 UTC: 136width, 16height, Drum Shear Pit Pump
+2020/11/19 9:51:59:328 UTC: Drum Shear Pit Pump is the caption for which we check width
+2020/11/19 9:51:59:333 UTC: 94width, 16height, Water Systems
+2020/11/19 9:51:59:338 UTC: 98width, 16height, Cooling Control
+2020/11/19 9:51:59:342 UTC: 81width, 16height, Maintenance
+2020/11/19 9:51:59:347 UTC: 136 is x width for childrentier2
+2020/11/19 9:51:59:851 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:51:59:857 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:51:59:868 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:51:59:873 UTC: 120width, 16height, Hydrostatic System
+2020/11/19 9:51:59:878 UTC: Hydrostatic System is the caption for which we check width
+2020/11/19 9:51:59:883 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:51:59:895 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:51:59:900 UTC: 136width, 16height, Drum Shear Pit Pump
+2020/11/19 9:51:59:905 UTC: Drum Shear Pit Pump is the caption for which we check width
+2020/11/19 9:51:59:910 UTC: 94width, 16height, Water Systems
+2020/11/19 9:51:59:914 UTC: 98width, 16height, Cooling Control
+2020/11/19 9:51:59:927 UTC: 81width, 16height, Maintenance
+2020/11/19 9:51:59:933 UTC: 136 is x width for childrentier2
+2020/11/19 9:51:59:938 UTC: 176 is maxwidthtier2
+2020/11/19 9:52:0:444 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/19 9:52:0:450 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/11/19 9:52:0:456 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/19 9:52:0:462 UTC: 151 is x width for childrentier2
+2020/11/19 9:52:0:968 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:1:475 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:1:982 UTC: For Hydraulic Systems expand menu, clicked at 164 x, 168 y
+2020/11/19 9:52:6:991 UTC: For High Pressure Hydraulic expand menu, clicked at 375 x, 168 y
+2020/11/19 9:52:6:996 UTC: 'CSPFM#61-01-00_w_#MED-HighPressureHydraulic'
+2020/11/19 9:52:7:2 UTC: 151width, 16height, High Pressure Hydraulic
+2020/11/19 9:52:7:9 UTC: High Pressure Hydraulic is the caption for which we check width
+2020/11/19 9:52:7:15 UTC: 148width, 16height, Low Pressure Hydraulic
+2020/11/19 9:52:7:19 UTC: 151 is x width for childrentier2
+2020/11/19 9:52:7:524 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:8:30 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:8:537 UTC: For Hydraulic Systems expand menu, clicked at 164 x, 168 y
+2020/11/19 9:52:13:544 UTC: For Low Pressure Hydraulic expand menu, clicked at 375 x, 193 y
+2020/11/19 9:52:13:556 UTC: 'CSPFM#62-01-00_w_#MED-LowPressureHydraulic'
+2020/11/19 9:52:14:64 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:14:569 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:19:576 UTC: For Hydrostatic System expand menu, clicked at 164 x, 193 y
+2020/11/19 9:52:19:583 UTC: 'CSPFM#68-01-00_w_#MED-HydrostaticSystem'
+2020/11/19 9:52:20:95 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:52:20:101 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:52:20:105 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:52:20:110 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:52:20:115 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:52:20:120 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:52:20:124 UTC: 97width, 16height, Grease System
+2020/11/19 9:52:20:129 UTC: 179 is x width for childrentier2
+2020/11/19 9:52:20:637 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:21:144 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:21:651 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:52:26:658 UTC: For Roll Gap Lubrication Station expand menu, clicked at 403 x, 218 y
+2020/11/19 9:52:26:663 UTC: 'CSPFM#63-01-00_w_#MED-RollGapLubricationStation'
+2020/11/19 9:52:26:675 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:52:26:680 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:52:26:685 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:52:26:690 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:52:26:695 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:52:26:701 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:52:26:705 UTC: 97width, 16height, Grease System
+2020/11/19 9:52:26:710 UTC: 179 is x width for childrentier2
+2020/11/19 9:52:27:217 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:27:723 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:28:230 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:52:33:238 UTC: For Roll Gap Lubrication Control expand menu, clicked at 403 x, 243 y
+2020/11/19 9:52:33:249 UTC: 'CSPFM#63-03-00_w_#MED-RollGapLubricationControl'
+2020/11/19 9:52:33:257 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:52:33:265 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:52:33:271 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:52:33:275 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:52:33:281 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:52:33:285 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:52:33:290 UTC: 97width, 16height, Grease System
+2020/11/19 9:52:33:294 UTC: 179 is x width for childrentier2
+2020/11/19 9:52:33:800 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:34:307 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:34:816 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:52:39:831 UTC: For Oil Lubrication System expand menu, clicked at 403 x, 268 y
+2020/11/19 9:52:39:837 UTC: 'CSPFM#63-02-00_w_#MED-OilLubricationSystem'
+2020/11/19 9:52:39:842 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:52:39:847 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:52:39:852 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:52:39:859 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:52:39:864 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:52:39:870 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:52:39:875 UTC: 97width, 16height, Grease System
+2020/11/19 9:52:39:881 UTC: 179 is x width for childrentier2
+2020/11/19 9:52:40:392 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:40:909 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:41:429 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:52:46:436 UTC: For Bearing Lubrication System expand menu, clicked at 403 x, 293 y
+2020/11/19 9:52:46:444 UTC: 'CSPFM#64-01-00_w_#MED-BearingLubricationSystem'
+2020/11/19 9:52:46:449 UTC: 177width, 16height, Roll Gap Lubrication Station
+2020/11/19 9:52:46:454 UTC: Roll Gap Lubrication Station is the caption for which we check width
+2020/11/19 9:52:46:458 UTC: 179width, 16height, Roll Gap Lubrication Control
+2020/11/19 9:52:46:464 UTC: Roll Gap Lubrication Control is the caption for which we check width
+2020/11/19 9:52:46:469 UTC: 141width, 16height, Oil Lubrication System
+2020/11/19 9:52:46:474 UTC: 173width, 16height, Bearing Lubrication System
+2020/11/19 9:52:46:481 UTC: 97width, 16height, Grease System
+2020/11/19 9:52:46:487 UTC: 179 is x width for childrentier2
+2020/11/19 9:52:46:993 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:47:503 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:48:11 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:52:53:17 UTC: For Grease System expand menu, clicked at 403 x, 318 y
+2020/11/19 9:52:53:25 UTC: 'CSPFM#72-01-00_w_#MED-GreaseSystem'
+2020/11/19 9:52:53:530 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:52:54:38 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:52:59:45 UTC: For Drum Shear Pit Pump expand menu, clicked at 164 x, 243 y
+2020/11/19 9:52:59:50 UTC: 'CSPFM#69-01-00_w_#MED-DrumShearPitPump'
+2020/11/19 9:52:59:557 UTC: 149width, 16height, Descaling Entry System
+2020/11/19 9:52:59:563 UTC: Descaling Entry System is the caption for which we check width
+2020/11/19 9:52:59:571 UTC: 138width, 16height, Descaling Exit System
+2020/11/19 9:52:59:578 UTC: 149 is x width for childrentier2
+2020/11/19 9:53:0:86 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:0:594 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:1:100 UTC: For Water Systems expand menu, clicked at 164 x, 268 y
+2020/11/19 9:53:6:107 UTC: For Descaling Entry System expand menu, clicked at 373 x, 268 y
+2020/11/19 9:53:6:112 UTC: 'CSPFM#66-01-00_w_#MED-DescalingEntrySystem'
+2020/11/19 9:53:6:119 UTC: 149width, 16height, Descaling Entry System
+2020/11/19 9:53:6:126 UTC: Descaling Entry System is the caption for which we check width
+2020/11/19 9:53:6:132 UTC: 138width, 16height, Descaling Exit System
+2020/11/19 9:53:6:138 UTC: 149 is x width for childrentier2
+2020/11/19 9:53:6:643 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:7:155 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:7:669 UTC: For Water Systems expand menu, clicked at 164 x, 268 y
+2020/11/19 9:53:12:675 UTC: For Descaling Exit System expand menu, clicked at 373 x, 293 y
+2020/11/19 9:53:12:688 UTC: 'CSPFM#66-02-00_w_#MED-DescalingExitSystem'
+2020/11/19 9:53:13:200 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:53:13:205 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:53:13:210 UTC: 199width, 16height, Stand Interstand Cooling F1-F3
+2020/11/19 9:53:13:215 UTC: Stand Interstand Cooling F1-F3 is the caption for which we check width
+2020/11/19 9:53:13:221 UTC: 199width, 16height, Stand Interstand Cooling F4-F6
+2020/11/19 9:53:13:226 UTC: 199 is x width for childrentier2
+2020/11/19 9:53:13:732 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:14:238 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:14:751 UTC: For Cooling Control expand menu, clicked at 164 x, 293 y
+2020/11/19 9:53:19:757 UTC: For Cooling Before Stands expand menu, clicked at 423 x, 293 y
+2020/11/19 9:53:19:762 UTC: 'CSPFM#65-03-00_w_#MED-CoolingBeforeStands'
+2020/11/19 9:53:19:767 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:53:19:771 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:53:19:776 UTC: 199width, 16height, Stand Interstand Cooling F1-F3
+2020/11/19 9:53:19:780 UTC: Stand Interstand Cooling F1-F3 is the caption for which we check width
+2020/11/19 9:53:19:785 UTC: 199width, 16height, Stand Interstand Cooling F4-F6
+2020/11/19 9:53:19:790 UTC: 199 is x width for childrentier2
+2020/11/19 9:53:20:295 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:20:803 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:21:312 UTC: For Cooling Control expand menu, clicked at 164 x, 293 y
+2020/11/19 9:53:26:318 UTC: For Stand Interstand Cooling F1-F3 expand menu, clicked at 423 x, 318 y
+2020/11/19 9:53:26:323 UTC: 'CSPFM#65-01-00_w_#MED-StandInterstandCoolingF1-F3'
+2020/11/19 9:53:26:328 UTC: 142width, 16height, Cooling Before Stands
+2020/11/19 9:53:26:333 UTC: Cooling Before Stands is the caption for which we check width
+2020/11/19 9:53:26:339 UTC: 199width, 16height, Stand Interstand Cooling F1-F3
+2020/11/19 9:53:26:344 UTC: Stand Interstand Cooling F1-F3 is the caption for which we check width
+2020/11/19 9:53:26:348 UTC: 199width, 16height, Stand Interstand Cooling F4-F6
+2020/11/19 9:53:26:353 UTC: 199 is x width for childrentier2
+2020/11/19 9:53:26:858 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:27:365 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:27:871 UTC: For Cooling Control expand menu, clicked at 164 x, 293 y
+2020/11/19 9:53:32:877 UTC: For Stand Interstand Cooling F4-F6 expand menu, clicked at 423 x, 343 y
+2020/11/19 9:53:32:884 UTC: 'CSPFM#65-02-00_w_#MED-StandInterstandCoolingF4-F6'
+2020/11/19 9:53:33:393 UTC: 73width, 16height, Parameters
+2020/11/19 9:53:33:398 UTC: Parameters is the caption for which we check width
+2020/11/19 9:53:33:403 UTC: 73 is x width for childrentier2
+2020/11/19 9:53:33:911 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:34:423 UTC: For Media FM expand menu, clicked at 37 x, 168 y
+2020/11/19 9:53:34:930 UTC: For Maintenance expand menu, clicked at 164 x, 318 y
+2020/11/19 9:53:39:936 UTC: For Parameters expand menu, clicked at 297 x, 318 y
+2020/11/19 9:53:39:941 UTC: 'CSPFM#60-01-00_w_#MED-Parameters'
+2020/11/19 9:53:39:948 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:53:39:952 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:53:39:957 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:53:39:963 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:53:39:968 UTC: 104width, 16height, Coiler Pit Pumps
+2020/11/19 9:53:39:973 UTC: 81width, 16height, Maintenance
+2020/11/19 9:53:39:979 UTC: 127 is x width for childrentier2
+2020/11/19 9:53:40:495 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:53:40:506 UTC: 115width, 16height, Hydraulic Systems
+2020/11/19 9:53:40:514 UTC: Hydraulic Systems is the caption for which we check width
+2020/11/19 9:53:40:530 UTC: 127width, 16height, Lubrication Systems
+2020/11/19 9:53:40:538 UTC: Lubrication Systems is the caption for which we check width
+2020/11/19 9:53:40:547 UTC: 104width, 16height, Coiler Pit Pumps
+2020/11/19 9:53:40:558 UTC: 81width, 16height, Maintenance
+2020/11/19 9:53:40:564 UTC: 127 is x width for childrentier2
+2020/11/19 9:53:40:570 UTC: 167 is maxwidthtier2
+2020/11/19 9:53:41:85 UTC: 110width, 16height, Low Pressure CC
+2020/11/19 9:53:41:94 UTC: Low Pressure CC is the caption for which we check width
+2020/11/19 9:53:41:99 UTC: 110 is x width for childrentier2
+2020/11/19 9:53:41:606 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:42:118 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:53:42:625 UTC: For Hydraulic Systems expand menu, clicked at 164 x, 193 y
+2020/11/19 9:53:47:637 UTC: For Low Pressure CC expand menu, clicked at 334 x, 193 y
+2020/11/19 9:53:47:642 UTC: 'CSPDC#62-01-00_w_#MED-LowPressureCC'
+2020/11/19 9:53:48:152 UTC: 151width, 16height, Compact Oil Lubrication
+2020/11/19 9:53:48:157 UTC: Compact Oil Lubrication is the caption for which we check width
+2020/11/19 9:53:48:162 UTC: 127width, 16height, Gear Oil Lubrication
+2020/11/19 9:53:48:168 UTC: 97width, 16height, Grease System
+2020/11/19 9:53:48:173 UTC: 151 is x width for childrentier2
+2020/11/19 9:53:48:678 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:49:186 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:53:49:694 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:53:54:702 UTC: For Compact Oil Lubrication expand menu, clicked at 375 x, 218 y
+2020/11/19 9:53:54:707 UTC: 'CSPDC#63-01-00_w_#MED-CompactOilLubrication'
+2020/11/19 9:53:54:711 UTC: 151width, 16height, Compact Oil Lubrication
+2020/11/19 9:53:54:717 UTC: Compact Oil Lubrication is the caption for which we check width
+2020/11/19 9:53:54:721 UTC: 127width, 16height, Gear Oil Lubrication
+2020/11/19 9:53:54:726 UTC: 97width, 16height, Grease System
+2020/11/19 9:53:54:732 UTC: 151 is x width for childrentier2
+2020/11/19 9:53:55:237 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:53:55:745 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:53:56:253 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:54:1:262 UTC: For Gear Oil Lubrication expand menu, clicked at 375 x, 243 y
+2020/11/19 9:54:1:268 UTC: 'CSPDC#63-02-00_w_#MED-GearOilLubrication'
+2020/11/19 9:54:1:272 UTC: 151width, 16height, Compact Oil Lubrication
+2020/11/19 9:54:1:277 UTC: Compact Oil Lubrication is the caption for which we check width
+2020/11/19 9:54:1:281 UTC: 127width, 16height, Gear Oil Lubrication
+2020/11/19 9:54:1:286 UTC: 97width, 16height, Grease System
+2020/11/19 9:54:1:290 UTC: 151 is x width for childrentier2
+2020/11/19 9:54:1:797 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:2:303 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:54:2:810 UTC: For Lubrication Systems expand menu, clicked at 164 x, 218 y
+2020/11/19 9:54:7:817 UTC: For Grease System expand menu, clicked at 375 x, 268 y
+2020/11/19 9:54:7:822 UTC: 'CSPDC#72-01-00_w_#MED-GreaseSystem'
+2020/11/19 9:54:8:329 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:8:837 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:54:13:844 UTC: For Coiler Pit Pumps expand menu, clicked at 164 x, 243 y
+2020/11/19 9:54:13:849 UTC: 'CSPDC#69-01-00_w_#MED-CoilerPitPumps'
+2020/11/19 9:54:14:356 UTC: 73width, 16height, Parameters
+2020/11/19 9:54:14:363 UTC: Parameters is the caption for which we check width
+2020/11/19 9:54:14:370 UTC: 73 is x width for childrentier2
+2020/11/19 9:54:14:884 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:15:396 UTC: For Media DC expand menu, clicked at 37 x, 193 y
+2020/11/19 9:54:15:904 UTC: For Maintenance expand menu, clicked at 164 x, 268 y
+2020/11/19 9:54:20:915 UTC: For Parameters expand menu, clicked at 297 x, 268 y
+2020/11/19 9:54:20:920 UTC: 'CSPDC#60-01-00_w_#MED-Parameters'
+2020/11/19 9:54:20:930 UTC: 120width, 16height, Power Supply Main
+2020/11/19 9:54:20:936 UTC: Power Supply Main is the caption for which we check width
+2020/11/19 9:54:20:942 UTC: 141width, 16height, Power Supply Auxiliary
+2020/11/19 9:54:20:946 UTC: Power Supply Auxiliary is the caption for which we check width
+2020/11/19 9:54:20:951 UTC: 141 is x width for childrentier2
+2020/11/19 9:54:21:457 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:21:464 UTC: 120width, 16height, Power Supply Main
+2020/11/19 9:54:21:477 UTC: Power Supply Main is the caption for which we check width
+2020/11/19 9:54:21:484 UTC: 141width, 16height, Power Supply Auxiliary
+2020/11/19 9:54:21:489 UTC: Power Supply Auxiliary is the caption for which we check width
+2020/11/19 9:54:21:496 UTC: 141 is x width for childrentier2
+2020/11/19 9:54:21:502 UTC: 181 is maxwidthtier2
+2020/11/19 9:54:22:8 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:22:515 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:27:523 UTC: For Power Supply Main expand menu, clicked at 164 x, 218 y
+2020/11/19 9:54:27:528 UTC: 'CSPM#51-01-00_w_#DRV-PowerSupplyMain'
+2020/11/19 9:54:28:35 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/19 9:54:28:41 UTC: Power Supply Auxiliary TF is the caption for which we check width
+2020/11/19 9:54:28:46 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/19 9:54:28:52 UTC: Power Supply Auxiliary RM is the caption for which we check width
+2020/11/19 9:54:28:57 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/19 9:54:28:72 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/19 9:54:28:77 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/19 9:54:28:83 UTC: 166 is x width for childrentier2
+2020/11/19 9:54:28:589 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:29:96 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:29:602 UTC: For Power Supply Auxiliary expand menu, clicked at 164 x, 243 y
+2020/11/19 9:54:34:610 UTC: For Power Supply Auxiliary TF expand menu, clicked at 390 x, 243 y
+2020/11/19 9:54:34:616 UTC: 'CSPM#53-01-00_w_#DRV-PowerSupplyAuxiliaryTF'
+2020/11/19 9:54:34:618 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/19 9:54:34:631 UTC: Power Supply Auxiliary TF is the caption for which we check width
+2020/11/19 9:54:34:638 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/19 9:54:34:646 UTC: Power Supply Auxiliary RM is the caption for which we check width
+2020/11/19 9:54:34:652 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/19 9:54:34:656 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/19 9:54:34:664 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/19 9:54:34:669 UTC: 166 is x width for childrentier2
+2020/11/19 9:54:35:175 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:35:681 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:36:186 UTC: For Power Supply Auxiliary expand menu, clicked at 164 x, 243 y
+2020/11/19 9:54:41:193 UTC: For Power Supply Auxiliary RM expand menu, clicked at 390 x, 268 y
+2020/11/19 9:54:41:198 UTC: 'CSPM#53-02-00_w_#DRV-PowerSupplyAuxiliaryRM'
+2020/11/19 9:54:41:202 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/19 9:54:41:207 UTC: Power Supply Auxiliary TF is the caption for which we check width
+2020/11/19 9:54:41:211 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/19 9:54:41:215 UTC: Power Supply Auxiliary RM is the caption for which we check width
+2020/11/19 9:54:41:220 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/19 9:54:41:224 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/19 9:54:41:228 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/19 9:54:41:232 UTC: 166 is x width for childrentier2
+2020/11/19 9:54:41:738 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:42:246 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:42:763 UTC: For Power Supply Auxiliary expand menu, clicked at 164 x, 243 y
+2020/11/19 9:54:47:770 UTC: For Power Supply Auxiliary FM expand menu, clicked at 390 x, 293 y
+2020/11/19 9:54:47:775 UTC: 'CSPM#53-03-00_w_#DRV-PowerSupplyAuxiliaryFM'
+2020/11/19 9:54:47:780 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/19 9:54:47:785 UTC: Power Supply Auxiliary TF is the caption for which we check width
+2020/11/19 9:54:47:791 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/19 9:54:47:796 UTC: Power Supply Auxiliary RM is the caption for which we check width
+2020/11/19 9:54:47:802 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/19 9:54:47:807 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/19 9:54:47:812 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/19 9:54:47:817 UTC: 166 is x width for childrentier2
+2020/11/19 9:54:48:323 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:48:829 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:49:335 UTC: For Power Supply Auxiliary expand menu, clicked at 164 x, 243 y
+2020/11/19 9:54:54:342 UTC: For Power Supply Auxiliary DC expand menu, clicked at 390 x, 318 y
+2020/11/19 9:54:54:347 UTC: 'CSPM#53-04-00_w_#DRV-PowerSupplyAuxiliaryDC'
+2020/11/19 9:54:54:352 UTC: 163width, 16height, Power Supply Auxiliary TF
+2020/11/19 9:54:54:356 UTC: Power Supply Auxiliary TF is the caption for which we check width
+2020/11/19 9:54:54:361 UTC: 166width, 16height, Power Supply Auxiliary RM
+2020/11/19 9:54:54:365 UTC: Power Supply Auxiliary RM is the caption for which we check width
+2020/11/19 9:54:54:369 UTC: 165width, 16height, Power Supply Auxiliary FM
+2020/11/19 9:54:54:373 UTC: 165width, 16height, Power Supply Auxiliary DC
+2020/11/19 9:54:54:378 UTC: 165width, 16height, Power Supply Auxiliary CC
+2020/11/19 9:54:54:382 UTC: 166 is x width for childrentier2
+2020/11/19 9:54:54:890 UTC: For General expand menu, clicked at 37 x, 15 y
+2020/11/19 9:54:55:398 UTC: For Drives expand menu, clicked at 37 x, 218 y
+2020/11/19 9:54:55:906 UTC: For Power Supply Auxiliary expand menu, clicked at 164 x, 243 y
+2020/11/19 9:55:0:912 UTC: For Power Supply Auxiliary CC expand menu, clicked at 390 x, 343 y
+2020/11/19 9:55:0:918 UTC: 'CSPM#53-05-00_w_#DRV-PowerSupplyAuxiliaryCC'
+2020/11/19 9:55:0:923 UTC: 100width, 16height, Tunnel Furnace
+2020/11/19 9:55:0:928 UTC: 58width, 16height, Overview
+2020/11/19 9:55:0:933 UTC: Overview is the caption for which we check width
+2020/11/19 9:55:0:938 UTC: 143width, 16height, Production Sequences
+2020/11/19 9:55:0:944 UTC: Production Sequences is the caption for which we check width
+2020/11/19 9:55:0:949 UTC: 130width, 16height, Combustion Settings
+2020/11/19 9:55:0:954 UTC: 131width, 16height, Machine Preparation
+2020/11/19 9:55:0:959 UTC: 81width, 16height, Maintenance
+2020/11/19 9:55:0:964 UTC: 143 is x width for childrentier2
+2020/11/19 9:55:1:471 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:6:482 UTC: For Overview expand menu, clicked at 137 x, 43 y
+2020/11/19 9:55:6:487 UTC: 'CSPM#01-01-00_n_#TF-Overview'
+2020/11/19 9:55:6:995 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:12:2 UTC: For Production Sequences expand menu, clicked at 137 x, 68 y
+2020/11/19 9:55:12:7 UTC: 'CSPM#19-01-00_n_#TF-ProductionSequences'
+2020/11/19 9:55:12:513 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:17:519 UTC: For Combustion Settings expand menu, clicked at 137 x, 93 y
+2020/11/19 9:55:17:524 UTC: 'CSPM#11-01-00_n_#TF-CombustionSettings'
+2020/11/19 9:55:17:529 UTC: 105width, 16height, Combustion TF1
+2020/11/19 9:55:17:534 UTC: Combustion TF1 is the caption for which we check width
+2020/11/19 9:55:17:539 UTC: 105width, 16height, Combustion TF2
+2020/11/19 9:55:17:544 UTC: 105 is x width for childrentier2
+2020/11/19 9:55:18:51 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:18:58 UTC: 105width, 16height, Combustion TF1
+2020/11/19 9:55:18:63 UTC: Combustion TF1 is the caption for which we check width
+2020/11/19 9:55:18:70 UTC: 105width, 16height, Combustion TF2
+2020/11/19 9:55:18:75 UTC: 105 is x width for childrentier2
+2020/11/19 9:55:18:80 UTC: 145 is maxwidthtier2
+2020/11/19 9:55:18:585 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:18:590 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:18:595 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:18:600 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:18:604 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:18:608 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:19:114 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:19:622 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:20:129 UTC: For Combustion TF1 expand menu, clicked at 320 x, 118 y
+2020/11/19 9:55:25:136 UTC: For Burner Overview expand menu, clicked at 518 x, 118 y
+2020/11/19 9:55:25:141 UTC: 'CSPM#19-02-00_w_#TF-BurnerOverview'
+2020/11/19 9:55:25:146 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:25:151 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:25:157 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:25:162 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:25:168 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:25:173 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:25:680 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:26:186 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:26:692 UTC: For Combustion TF1 expand menu, clicked at 320 x, 118 y
+2020/11/19 9:55:31:706 UTC: For L1 Settings expand menu, clicked at 518 x, 143 y
+2020/11/19 9:55:31:713 UTC: 'CSPM#19-04-00_w_#TF-L1Settings'
+2020/11/19 9:55:31:720 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:31:725 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:31:730 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:31:735 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:31:739 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:31:745 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:32:252 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:32:758 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:33:264 UTC: For Combustion TF1 expand menu, clicked at 320 x, 118 y
+2020/11/19 9:55:38:272 UTC: For Devices - Combustion expand menu, clicked at 518 x, 168 y
+2020/11/19 9:55:38:277 UTC: 'CSPM#18-01-00_n_#TF-Devices-Combustion'
+2020/11/19 9:55:38:784 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:38:789 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:38:794 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:38:798 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:38:803 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:38:807 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:39:313 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:39:823 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:40:330 UTC: For Combustion TF2 expand menu, clicked at 320 x, 143 y
+2020/11/19 9:55:45:338 UTC: For Burner Overview expand menu, clicked at 518 x, 143 y
+2020/11/19 9:55:45:343 UTC: 'CSPM#19-05-00_w_#TF-BurnerOverview'
+2020/11/19 9:55:45:348 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:45:352 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:45:356 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:45:361 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:45:366 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:45:370 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:45:876 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:46:386 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:46:893 UTC: For Combustion TF2 expand menu, clicked at 320 x, 143 y
+2020/11/19 9:55:51:902 UTC: For L1 Settings expand menu, clicked at 518 x, 168 y
+2020/11/19 9:55:51:907 UTC: 'CSPM#19-06-00_w_#TF-L1Settings'
+2020/11/19 9:55:51:912 UTC: 105width, 16height, Burner Overview
+2020/11/19 9:55:51:917 UTC: Burner Overview is the caption for which we check width
+2020/11/19 9:55:51:922 UTC: 71width, 16height, L1 Settings
+2020/11/19 9:55:51:927 UTC: 138width, 16height, Devices - Combustion
+2020/11/19 9:55:51:932 UTC: Devices - Combustion is the caption for which we check width
+2020/11/19 9:55:51:937 UTC: 138 is x width for childrentier2
+2020/11/19 9:55:52:444 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:55:52:952 UTC: For Machine Preparation expand menu, clicked at 137 x, 118 y
+2020/11/19 9:55:53:457 UTC: For Combustion TF2 expand menu, clicked at 320 x, 143 y
+2020/11/19 9:55:58:463 UTC: For Devices - Combustion expand menu, clicked at 518 x, 193 y
+2020/11/19 9:55:58:468 UTC: 'CSPM#18-32-00_n_#TF-Devices-Combustion'
+2020/11/19 9:55:58:473 UTC: 104width, 16height, Roller Drive TF1
+2020/11/19 9:55:58:478 UTC: Roller Drive TF1 is the caption for which we check width
+2020/11/19 9:55:58:482 UTC: 104width, 16height, Roller Drive TF2
+2020/11/19 9:55:58:488 UTC: 104 is x width for childrentier2
+2020/11/19 9:55:58:996 UTC: For Maintenance expand menu, clicked at 137 x, 143 y
+2020/11/19 9:55:59:1 UTC: 104width, 16height, Roller Drive TF1
+2020/11/19 9:55:59:6 UTC: Roller Drive TF1 is the caption for which we check width
+2020/11/19 9:55:59:10 UTC: 104width, 16height, Roller Drive TF2
+2020/11/19 9:55:59:15 UTC: 104 is x width for childrentier2
+2020/11/19 9:55:59:23 UTC: 144 is maxwidthtier2
+2020/11/19 9:55:59:530 UTC: 64width, 16height, Zones 1-8
+2020/11/19 9:55:59:535 UTC: Zones 1-8 is the caption for which we check width
+2020/11/19 9:55:59:540 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/19 9:55:59:544 UTC: Devices - Common Equipment is the caption for which we check width
+2020/11/19 9:55:59:549 UTC: 190 is x width for childrentier2
+2020/11/19 9:56:0:54 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:56:0:560 UTC: For Maintenance expand menu, clicked at 137 x, 143 y
+2020/11/19 9:56:1:68 UTC: For Roller Drive TF1 expand menu, clicked at 320 x, 143 y
+2020/11/19 9:56:6:76 UTC: For Zones 1-8 expand menu, clicked at 570 x, 143 y
+2020/11/19 9:56:6:84 UTC: 'CSPM#26-01-00_w_#TF-Zones1-8'
+2020/11/19 9:56:6:100 UTC: 64width, 16height, Zones 1-8
+2020/11/19 9:56:6:106 UTC: Zones 1-8 is the caption for which we check width
+2020/11/19 9:56:6:110 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/19 9:56:6:115 UTC: Devices - Common Equipment is the caption for which we check width
+2020/11/19 9:56:6:119 UTC: 190 is x width for childrentier2
+2020/11/19 9:56:6:625 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:56:7:137 UTC: For Maintenance expand menu, clicked at 137 x, 143 y
+2020/11/19 9:56:7:647 UTC: For Roller Drive TF1 expand menu, clicked at 320 x, 143 y
+2020/11/19 9:56:12:657 UTC: For Devices - Common Equipment expand menu, clicked at 570 x, 168 y
+2020/11/19 9:56:12:662 UTC: 'CSPM#18-30-00_n_#TF-Devices-CommonEquipment'
+2020/11/19 9:56:13:173 UTC: 64width, 16height, Zones 1-7
+2020/11/19 9:56:13:178 UTC: Zones 1-7 is the caption for which we check width
+2020/11/19 9:56:13:183 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/19 9:56:13:188 UTC: Devices - Common Equipment is the caption for which we check width
+2020/11/19 9:56:13:192 UTC: 190 is x width for childrentier2
+2020/11/19 9:56:13:699 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:56:14:209 UTC: For Maintenance expand menu, clicked at 137 x, 143 y
+2020/11/19 9:56:14:717 UTC: For Roller Drive TF2 expand menu, clicked at 320 x, 168 y
+2020/11/19 9:56:19:724 UTC: For Zones 1-7 expand menu, clicked at 570 x, 168 y
+2020/11/19 9:56:19:729 UTC: 'CSPM#26-02-00_w_#TF-Zones1-7'
+2020/11/19 9:56:19:738 UTC: 64width, 16height, Zones 1-7
+2020/11/19 9:56:19:747 UTC: Zones 1-7 is the caption for which we check width
+2020/11/19 9:56:19:752 UTC: 190width, 16height, Devices - Common Equipment
+2020/11/19 9:56:19:758 UTC: Devices - Common Equipment is the caption for which we check width
+2020/11/19 9:56:19:763 UTC: 190 is x width for childrentier2
+2020/11/19 9:56:20:269 UTC: For Tunnel Furnace expand menu, clicked at 137 x, 15 y
+2020/11/19 9:56:20:774 UTC: For Maintenance expand menu, clicked at 137 x, 143 y
+2020/11/19 9:56:21:280 UTC: For Roller Drive TF2 expand menu, clicked at 320 x, 168 y
+2020/11/19 9:56:26:286 UTC: For Devices - Common Equipment expand menu, clicked at 570 x, 193 y
+2020/11/19 9:56:26:291 UTC: 'CSPM#18-31-00_n_#TF-Devices-CommonEquipment'
+2020/11/19 9:56:26:297 UTC: 85width, 16height, Roughing Mill
+2020/11/19 9:56:26:301 UTC: 58width, 16height, Overview
+2020/11/19 9:56:26:306 UTC: Overview is the caption for which we check width
+2020/11/19 9:56:26:313 UTC: 127width, 16height, Production Planning
+2020/11/19 9:56:26:321 UTC: Production Planning is the caption for which we check width
+2020/11/19 9:56:26:327 UTC: 131width, 16height, Machine Preparation
+2020/11/19 9:56:26:334 UTC: Machine Preparation is the caption for which we check width
+2020/11/19 9:56:26:339 UTC: 81width, 16height, Maintenance
+2020/11/19 9:56:26:345 UTC: 50width, 16height, Reports
+2020/11/19 9:56:26:350 UTC: 131 is x width for childrentier2
+2020/11/19 9:56:26:856 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:31:864 UTC: For Overview expand menu, clicked at 254 x, 43 y
+2020/11/19 9:56:31:871 UTC: 'CSPRM#01-02-00_n_#RM-Overview'
+2020/11/19 9:56:31:876 UTC: 71width, 16height, Sequences
+2020/11/19 9:56:31:883 UTC: Sequences is the caption for which we check width
+2020/11/19 9:56:31:889 UTC: 76width, 16height, Disturbance
+2020/11/19 9:56:31:895 UTC: Disturbance is the caption for which we check width
+2020/11/19 9:56:31:901 UTC: 82width, 16height, Primary Data
+2020/11/19 9:56:31:906 UTC: Primary Data is the caption for which we check width
+2020/11/19 9:56:31:912 UTC: 70width, 16height, Calculation
+2020/11/19 9:56:31:918 UTC: 70width, 16height, Lubrication
+2020/11/19 9:56:31:923 UTC: 82 is x width for childrentier2
+2020/11/19 9:56:32:429 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:32:435 UTC: 71width, 16height, Sequences
+2020/11/19 9:56:32:440 UTC: Sequences is the caption for which we check width
+2020/11/19 9:56:32:456 UTC: 76width, 16height, Disturbance
+2020/11/19 9:56:32:462 UTC: Disturbance is the caption for which we check width
+2020/11/19 9:56:32:467 UTC: 82width, 16height, Primary Data
+2020/11/19 9:56:32:475 UTC: Primary Data is the caption for which we check width
+2020/11/19 9:56:32:476 UTC: 70width, 16height, Calculation
+2020/11/19 9:56:32:486 UTC: 70width, 16height, Lubrication
+2020/11/19 9:56:32:498 UTC: 82 is x width for childrentier2
+2020/11/19 9:56:32:505 UTC: 122 is maxwidthtier2
+2020/11/19 9:56:33:24 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:33:532 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:38:540 UTC: For Sequences expand menu, clicked at 425 x, 68 y
+2020/11/19 9:56:38:546 UTC: 'CSPRM#19-06-00_n_#RM-Sequences'
+2020/11/19 9:56:39:53 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:39:561 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:44:569 UTC: For Disturbance expand menu, clicked at 425 x, 93 y
+2020/11/19 9:56:44:575 UTC: 'CSPRM#08-01-00_w_#RM-Disturbance'
+2020/11/19 9:56:45:82 UTC: 98width, 16height, Piece Schedule
+2020/11/19 9:56:45:87 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 9:56:45:93 UTC: 69width, 16height, Piece Data
+2020/11/19 9:56:45:98 UTC: 78width, 16height, Default Alloy
+2020/11/19 9:56:45:100 UTC: 73width, 16height, Parameters
+2020/11/19 9:56:45:108 UTC: 98 is x width for childrentier2
+2020/11/19 9:56:45:615 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:46:123 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:46:632 UTC: For Primary Data expand menu, clicked at 425 x, 118 y
+2020/11/19 9:56:51:644 UTC: For Piece Schedule expand menu, clicked at 583 x, 118 y
+2020/11/19 9:56:51:661 UTC: 'CSPRM#08-02-00_w_#RM-PieceSchedule'
+2020/11/19 9:56:51:670 UTC: 98width, 16height, Piece Schedule
+2020/11/19 9:56:51:675 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 9:56:51:680 UTC: 69width, 16height, Piece Data
+2020/11/19 9:56:51:685 UTC: 78width, 16height, Default Alloy
+2020/11/19 9:56:51:690 UTC: 73width, 16height, Parameters
+2020/11/19 9:56:51:697 UTC: 98 is x width for childrentier2
+2020/11/19 9:56:52:208 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:52:716 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:53:224 UTC: For Primary Data expand menu, clicked at 425 x, 118 y
+2020/11/19 9:56:58:231 UTC: For Piece Data expand menu, clicked at 583 x, 143 y
+2020/11/19 9:56:58:236 UTC: 'CSPRM#08-03-00_w_#RM-PieceData'
+2020/11/19 9:56:58:243 UTC: 98width, 16height, Piece Schedule
+2020/11/19 9:56:58:249 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 9:56:58:255 UTC: 69width, 16height, Piece Data
+2020/11/19 9:56:58:260 UTC: 78width, 16height, Default Alloy
+2020/11/19 9:56:58:266 UTC: 73width, 16height, Parameters
+2020/11/19 9:56:58:271 UTC: 98 is x width for childrentier2
+2020/11/19 9:56:58:776 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:56:59:283 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:56:59:791 UTC: For Primary Data expand menu, clicked at 425 x, 118 y
+2020/11/19 9:57:4:802 UTC: For Default Alloy expand menu, clicked at 583 x, 168 y
+2020/11/19 9:57:4:808 UTC: 'CSPRM#08-04-00_w_#RM-DefaultAlloy'
+2020/11/19 9:57:4:816 UTC: 98width, 16height, Piece Schedule
+2020/11/19 9:57:4:822 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 9:57:4:828 UTC: 69width, 16height, Piece Data
+2020/11/19 9:57:4:834 UTC: 78width, 16height, Default Alloy
+2020/11/19 9:57:4:839 UTC: 73width, 16height, Parameters
+2020/11/19 9:57:4:844 UTC: 98 is x width for childrentier2
+2020/11/19 9:57:5:350 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:5:856 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:57:6:363 UTC: For Primary Data expand menu, clicked at 425 x, 118 y
+2020/11/19 9:57:11:370 UTC: For Parameters expand menu, clicked at 583 x, 193 y
+2020/11/19 9:57:11:376 UTC: 'CSPRM#08-05-00_w_#RM-Parameters'
+2020/11/19 9:57:11:883 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 9:57:11:891 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 9:57:11:897 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 9:57:11:903 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 9:57:11:908 UTC: 192width, 16height, Transfer Bar Cooling - Current
+2020/11/19 9:57:11:914 UTC: Transfer Bar Cooling - Current is the caption for which we check width
+2020/11/19 9:57:11:920 UTC: 192 is x width for childrentier2
+2020/11/19 9:57:12:428 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:12:935 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:57:13:442 UTC: For Calculation expand menu, clicked at 425 x, 143 y
+2020/11/19 9:57:18:449 UTC: For Pass Schedule Calc - Current expand menu, clicked at 677 x, 143 y
+2020/11/19 9:57:18:455 UTC: 'CSPRM#08-06-00_w_#RM-PassScheduleCalc-Current'
+2020/11/19 9:57:18:462 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 9:57:18:468 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 9:57:18:473 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 9:57:18:483 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 9:57:18:494 UTC: 192width, 16height, Transfer Bar Cooling - Current
+2020/11/19 9:57:18:500 UTC: Transfer Bar Cooling - Current is the caption for which we check width
+2020/11/19 9:57:18:505 UTC: 192 is x width for childrentier2
+2020/11/19 9:57:19:11 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:19:518 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:57:20:25 UTC: For Calculation expand menu, clicked at 425 x, 143 y
+2020/11/19 9:57:25:36 UTC: For Pass Schedule Calc - Preview expand menu, clicked at 677 x, 168 y
+2020/11/19 9:57:25:44 UTC: 'CSPRM#08-07-00_w_#RM-PassScheduleCalc-Preview'
+2020/11/19 9:57:25:49 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 9:57:25:55 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 9:57:25:59 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 9:57:25:65 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 9:57:25:71 UTC: 192width, 16height, Transfer Bar Cooling - Current
+2020/11/19 9:57:25:76 UTC: Transfer Bar Cooling - Current is the caption for which we check width
+2020/11/19 9:57:25:82 UTC: 192 is x width for childrentier2
+2020/11/19 9:57:25:588 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:26:95 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:57:26:603 UTC: For Calculation expand menu, clicked at 425 x, 143 y
+2020/11/19 9:57:31:610 UTC: For Transfer Bar Cooling - Current expand menu, clicked at 677 x, 193 y
+2020/11/19 9:57:31:616 UTC: 'CSPRM#08-26-00_w_#RM-TransferBarCooling-Current'
+2020/11/19 9:57:32:123 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:32:630 UTC: For Production Planning expand menu, clicked at 254 x, 68 y
+2020/11/19 9:57:37:639 UTC: For Lubrication expand menu, clicked at 425 x, 168 y
+2020/11/19 9:57:37:648 UTC: 'CSPRM#08-24-00_w_#RM-Lubrication'
+2020/11/19 9:57:37:655 UTC: 68width, 16height, Calibration
+2020/11/19 9:57:37:665 UTC: Calibration is the caption for which we check width
+2020/11/19 9:57:37:671 UTC: 78width, 16height, Roll Change
+2020/11/19 9:57:37:677 UTC: Roll Change is the caption for which we check width
+2020/11/19 9:57:37:687 UTC: 78 is x width for childrentier2
+2020/11/19 9:57:38:194 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:57:38:200 UTC: 68width, 16height, Calibration
+2020/11/19 9:57:38:205 UTC: Calibration is the caption for which we check width
+2020/11/19 9:57:38:210 UTC: 78width, 16height, Roll Change
+2020/11/19 9:57:38:219 UTC: Roll Change is the caption for which we check width
+2020/11/19 9:57:38:225 UTC: 78 is x width for childrentier2
+2020/11/19 9:57:38:232 UTC: 118 is maxwidthtier2
+2020/11/19 9:57:38:739 UTC: 99width, 16height, Calibration - R1
+2020/11/19 9:57:38:746 UTC: Calibration - R1 is the caption for which we check width
+2020/11/19 9:57:38:751 UTC: 98width, 16height, Calibration - E1
+2020/11/19 9:57:38:756 UTC: 99width, 16height, Calibration - R2
+2020/11/19 9:57:38:761 UTC: 98width, 16height, Calibration - E2
+2020/11/19 9:57:38:767 UTC: 99 is x width for childrentier2
+2020/11/19 9:57:39:273 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:39:782 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:57:40:289 UTC: For Calibration expand menu, clicked at 425 x, 93 y
+2020/11/19 9:57:45:296 UTC: For Calibration - R1 expand menu, clicked at 584 x, 93 y
+2020/11/19 9:57:45:302 UTC: 'CSPRM#16-01-00_w_#RM-Calibration-R1'
+2020/11/19 9:57:45:307 UTC: 99width, 16height, Calibration - R1
+2020/11/19 9:57:45:312 UTC: Calibration - R1 is the caption for which we check width
+2020/11/19 9:57:45:322 UTC: 98width, 16height, Calibration - E1
+2020/11/19 9:57:45:328 UTC: 99width, 16height, Calibration - R2
+2020/11/19 9:57:45:333 UTC: 98width, 16height, Calibration - E2
+2020/11/19 9:57:45:339 UTC: 99 is x width for childrentier2
+2020/11/19 9:57:45:846 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:46:351 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:57:46:859 UTC: For Calibration expand menu, clicked at 425 x, 93 y
+2020/11/19 9:57:51:869 UTC: For Calibration - E1 expand menu, clicked at 584 x, 118 y
+2020/11/19 9:57:51:877 UTC: 'CSPRM#16-02-00_w_#RM-Calibration-E1'
+2020/11/19 9:57:51:887 UTC: 99width, 16height, Calibration - R1
+2020/11/19 9:57:51:894 UTC: Calibration - R1 is the caption for which we check width
+2020/11/19 9:57:51:899 UTC: 98width, 16height, Calibration - E1
+2020/11/19 9:57:51:904 UTC: 99width, 16height, Calibration - R2
+2020/11/19 9:57:51:910 UTC: 98width, 16height, Calibration - E2
+2020/11/19 9:57:51:917 UTC: 99 is x width for childrentier2
+2020/11/19 9:57:52:426 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:52:932 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:57:53:440 UTC: For Calibration expand menu, clicked at 425 x, 93 y
+2020/11/19 9:57:58:448 UTC: For Calibration - R2 expand menu, clicked at 584 x, 143 y
+2020/11/19 9:57:58:453 UTC: 'CSPRM#16-03-00_w_#RM-Calibration-R2'
+2020/11/19 9:57:58:459 UTC: 99width, 16height, Calibration - R1
+2020/11/19 9:57:58:466 UTC: Calibration - R1 is the caption for which we check width
+2020/11/19 9:57:58:473 UTC: 98width, 16height, Calibration - E1
+2020/11/19 9:57:58:478 UTC: 99width, 16height, Calibration - R2
+2020/11/19 9:57:58:485 UTC: 98width, 16height, Calibration - E2
+2020/11/19 9:57:58:492 UTC: 99 is x width for childrentier2
+2020/11/19 9:57:59:0 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:57:59:507 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:58:0:13 UTC: For Calibration expand menu, clicked at 425 x, 93 y
+2020/11/19 9:58:5:30 UTC: For Calibration - E2 expand menu, clicked at 584 x, 168 y
+2020/11/19 9:58:5:35 UTC: 'CSPRM#16-04-00_w_#RM-Calibration-E2'
+2020/11/19 9:58:5:542 UTC: 126width, 16height, Roll Change - R1E1
+2020/11/19 9:58:5:547 UTC: Roll Change - R1E1 is the caption for which we check width
+2020/11/19 9:58:5:553 UTC: 126width, 16height, Roll Change - R2E2
+2020/11/19 9:58:5:558 UTC: 58width, 16height, Roll Data
+2020/11/19 9:58:5:566 UTC: 68width, 16height, Roll Status
+2020/11/19 9:58:5:573 UTC: 126 is x width for childrentier2
+2020/11/19 9:58:6:80 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:6:587 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:58:7:96 UTC: For Roll Change expand menu, clicked at 425 x, 118 y
+2020/11/19 9:58:12:104 UTC: For Roll Change - R1E1 expand menu, clicked at 611 x, 118 y
+2020/11/19 9:58:12:109 UTC: 'CSPRM#14-01-00_w_#RM-RollChange-R1E1'
+2020/11/19 9:58:12:114 UTC: 126width, 16height, Roll Change - R1E1
+2020/11/19 9:58:12:120 UTC: Roll Change - R1E1 is the caption for which we check width
+2020/11/19 9:58:12:125 UTC: 126width, 16height, Roll Change - R2E2
+2020/11/19 9:58:12:130 UTC: 58width, 16height, Roll Data
+2020/11/19 9:58:12:134 UTC: 68width, 16height, Roll Status
+2020/11/19 9:58:12:139 UTC: 126 is x width for childrentier2
+2020/11/19 9:58:12:647 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:13:160 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:58:13:667 UTC: For Roll Change expand menu, clicked at 425 x, 118 y
+2020/11/19 9:58:18:675 UTC: For Roll Change - R2E2 expand menu, clicked at 611 x, 143 y
+2020/11/19 9:58:18:680 UTC: 'CSPRM#14-02-00_w_#RM-RollChange-R2E2'
+2020/11/19 9:58:18:686 UTC: 126width, 16height, Roll Change - R1E1
+2020/11/19 9:58:18:691 UTC: Roll Change - R1E1 is the caption for which we check width
+2020/11/19 9:58:18:696 UTC: 126width, 16height, Roll Change - R2E2
+2020/11/19 9:58:18:701 UTC: 58width, 16height, Roll Data
+2020/11/19 9:58:18:706 UTC: 68width, 16height, Roll Status
+2020/11/19 9:58:18:726 UTC: 126 is x width for childrentier2
+2020/11/19 9:58:19:240 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:19:745 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:58:20:253 UTC: For Roll Change expand menu, clicked at 425 x, 118 y
+2020/11/19 9:58:25:261 UTC: For Roll Data expand menu, clicked at 611 x, 168 y
+2020/11/19 9:58:25:268 UTC: 'CSPRM#08-08-00_w_#RM-RollData'
+2020/11/19 9:58:25:274 UTC: 126width, 16height, Roll Change - R1E1
+2020/11/19 9:58:25:279 UTC: Roll Change - R1E1 is the caption for which we check width
+2020/11/19 9:58:25:284 UTC: 126width, 16height, Roll Change - R2E2
+2020/11/19 9:58:25:289 UTC: 58width, 16height, Roll Data
+2020/11/19 9:58:25:294 UTC: 68width, 16height, Roll Status
+2020/11/19 9:58:25:299 UTC: 126 is x width for childrentier2
+2020/11/19 9:58:25:804 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:26:310 UTC: For Machine Preparation expand menu, clicked at 254 x, 93 y
+2020/11/19 9:58:26:817 UTC: For Roll Change expand menu, clicked at 425 x, 118 y
+2020/11/19 9:58:31:825 UTC: For Roll Status expand menu, clicked at 611 x, 193 y
+2020/11/19 9:58:31:830 UTC: 'CSPRM#08-09-00_w_#RM-RollStatus'
+2020/11/19 9:58:31:834 UTC: 121width, 16height, Devices - RM Entry
+2020/11/19 9:58:31:839 UTC: Devices - RM Entry is the caption for which we check width
+2020/11/19 9:58:31:844 UTC: 56width, 16height, Descaler
+2020/11/19 9:58:31:850 UTC: 77width, 16height, Side Guides
+2020/11/19 9:58:31:857 UTC: 52width, 16height, RM - R1
+2020/11/19 9:58:31:862 UTC: 68width, 16height, Edger - E1
+2020/11/19 9:58:31:869 UTC: 52width, 16height, RM - R2
+2020/11/19 9:58:31:875 UTC: 68width, 16height, Edger - E2
+2020/11/19 9:58:31:879 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/19 9:58:31:885 UTC: Transfer Bar Cooling is the caption for which we check width
+2020/11/19 9:58:31:891 UTC: 110width, 16height, Devices - RM Exit
+2020/11/19 9:58:31:897 UTC: 131 is x width for childrentier2
+2020/11/19 9:58:32:402 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:58:32:407 UTC: 121width, 16height, Devices - RM Entry
+2020/11/19 9:58:32:412 UTC: Devices - RM Entry is the caption for which we check width
+2020/11/19 9:58:32:418 UTC: 56width, 16height, Descaler
+2020/11/19 9:58:32:425 UTC: 77width, 16height, Side Guides
+2020/11/19 9:58:32:430 UTC: 52width, 16height, RM - R1
+2020/11/19 9:58:32:436 UTC: 68width, 16height, Edger - E1
+2020/11/19 9:58:32:447 UTC: 52width, 16height, RM - R2
+2020/11/19 9:58:32:454 UTC: 68width, 16height, Edger - E2
+2020/11/19 9:58:32:459 UTC: 131width, 16height, Transfer Bar Cooling
+2020/11/19 9:58:32:465 UTC: Transfer Bar Cooling is the caption for which we check width
+2020/11/19 9:58:32:471 UTC: 110width, 16height, Devices - RM Exit
+2020/11/19 9:58:32:476 UTC: 131 is x width for childrentier2
+2020/11/19 9:58:32:480 UTC: 171 is maxwidthtier2
+2020/11/19 9:58:32:987 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:33:495 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:58:38:502 UTC: For Devices - RM Entry expand menu, clicked at 425 x, 118 y
+2020/11/19 9:58:38:508 UTC: 'CSPRM#18-06-00_n_#RM-Devices-RMEntry'
+2020/11/19 9:58:39:15 UTC: 112width, 16height, Details - Descaler
+2020/11/19 9:58:39:21 UTC: Details - Descaler is the caption for which we check width
+2020/11/19 9:58:39:26 UTC: 119width, 16height, Devices - Descaler
+2020/11/19 9:58:39:37 UTC: Devices - Descaler is the caption for which we check width
+2020/11/19 9:58:39:42 UTC: 119 is x width for childrentier2
+2020/11/19 9:58:39:550 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:40:61 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:58:40:569 UTC: For Descaler expand menu, clicked at 425 x, 143 y
+2020/11/19 9:58:45:580 UTC: For Details - Descaler expand menu, clicked at 604 x, 143 y
+2020/11/19 9:58:45:586 UTC: 'CSPRM#20-01-00_n_#RM-Details-Descaler'
+2020/11/19 9:58:45:592 UTC: 112width, 16height, Details - Descaler
+2020/11/19 9:58:45:597 UTC: Details - Descaler is the caption for which we check width
+2020/11/19 9:58:45:605 UTC: 119width, 16height, Devices - Descaler
+2020/11/19 9:58:45:612 UTC: Devices - Descaler is the caption for which we check width
+2020/11/19 9:58:45:621 UTC: 119 is x width for childrentier2
+2020/11/19 9:58:46:130 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:46:638 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:58:47:147 UTC: For Descaler expand menu, clicked at 425 x, 143 y
+2020/11/19 9:58:52:154 UTC: For Devices - Descaler expand menu, clicked at 604 x, 168 y
+2020/11/19 9:58:52:160 UTC: 'CSPRM#18-07-00_n_#RM-Devices-Descaler'
+2020/11/19 9:58:52:693 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:53:200 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:58:58:207 UTC: For Side Guides expand menu, clicked at 425 x, 168 y
+2020/11/19 9:58:58:212 UTC: 'CSPRM#25-01-00_w_#RM-SideGuides'
+2020/11/19 9:58:58:719 UTC: 59width, 16height, Stand R1
+2020/11/19 9:58:58:724 UTC: Stand R1 is the caption for which we check width
+2020/11/19 9:58:58:728 UTC: 55width, 16height, Drive R1
+2020/11/19 9:58:58:732 UTC: 81width, 16height, Devices - R1
+2020/11/19 9:58:58:737 UTC: Devices - R1 is the caption for which we check width
+2020/11/19 9:58:58:742 UTC: 81 is x width for childrentier2
+2020/11/19 9:58:59:248 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:58:59:754 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:0:261 UTC: For RM - R1 expand menu, clicked at 425 x, 193 y
+2020/11/19 9:59:5:273 UTC: For Stand R1 expand menu, clicked at 566 x, 193 y
+2020/11/19 9:59:5:278 UTC: 'CSPRM#23-01-00_w_#RM-StandR1'
+2020/11/19 9:59:5:287 UTC: 59width, 16height, Stand R1
+2020/11/19 9:59:5:293 UTC: Stand R1 is the caption for which we check width
+2020/11/19 9:59:5:298 UTC: 55width, 16height, Drive R1
+2020/11/19 9:59:5:303 UTC: 81width, 16height, Devices - R1
+2020/11/19 9:59:5:308 UTC: Devices - R1 is the caption for which we check width
+2020/11/19 9:59:5:313 UTC: 81 is x width for childrentier2
+2020/11/19 9:59:5:820 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:6:326 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:6:836 UTC: For RM - R1 expand menu, clicked at 425 x, 193 y
+2020/11/19 9:59:11:842 UTC: For Drive R1 expand menu, clicked at 566 x, 218 y
+2020/11/19 9:59:11:848 UTC: 'CSPRM#52-01-00_w_#RM-DriveR1'
+2020/11/19 9:59:11:852 UTC: 59width, 16height, Stand R1
+2020/11/19 9:59:11:857 UTC: Stand R1 is the caption for which we check width
+2020/11/19 9:59:11:863 UTC: 55width, 16height, Drive R1
+2020/11/19 9:59:11:871 UTC: 81width, 16height, Devices - R1
+2020/11/19 9:59:11:876 UTC: Devices - R1 is the caption for which we check width
+2020/11/19 9:59:11:881 UTC: 81 is x width for childrentier2
+2020/11/19 9:59:12:390 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:12:898 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:13:405 UTC: For RM - R1 expand menu, clicked at 425 x, 193 y
+2020/11/19 9:59:18:411 UTC: For Devices - R1 expand menu, clicked at 566 x, 243 y
+2020/11/19 9:59:18:419 UTC: 'CSPRM#18-08-00_n_#RM-Devices-R1'
+2020/11/19 9:59:18:926 UTC: 58width, 16height, Stand E1
+2020/11/19 9:59:18:931 UTC: Stand E1 is the caption for which we check width
+2020/11/19 9:59:18:938 UTC: 54width, 16height, Drive E1
+2020/11/19 9:59:18:944 UTC: 80width, 16height, Devices - E1
+2020/11/19 9:59:18:949 UTC: Devices - E1 is the caption for which we check width
+2020/11/19 9:59:18:955 UTC: 80 is x width for childrentier2
+2020/11/19 9:59:19:461 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:19:970 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:20:477 UTC: For Edger - E1 expand menu, clicked at 425 x, 218 y
+2020/11/19 9:59:25:484 UTC: For Stand E1 expand menu, clicked at 565 x, 218 y
+2020/11/19 9:59:25:491 UTC: 'CSPRM#23-02-00_w_#RM-StandE1'
+2020/11/19 9:59:25:510 UTC: 58width, 16height, Stand E1
+2020/11/19 9:59:25:520 UTC: Stand E1 is the caption for which we check width
+2020/11/19 9:59:25:525 UTC: 54width, 16height, Drive E1
+2020/11/19 9:59:25:531 UTC: 80width, 16height, Devices - E1
+2020/11/19 9:59:25:536 UTC: Devices - E1 is the caption for which we check width
+2020/11/19 9:59:25:542 UTC: 80 is x width for childrentier2
+2020/11/19 9:59:26:49 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:26:556 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:27:72 UTC: For Edger - E1 expand menu, clicked at 425 x, 218 y
+2020/11/19 9:59:32:82 UTC: For Drive E1 expand menu, clicked at 565 x, 243 y
+2020/11/19 9:59:32:87 UTC: 'CSPRM#52-02-00_w_#RM-DriveE1'
+2020/11/19 9:59:32:94 UTC: 58width, 16height, Stand E1
+2020/11/19 9:59:32:102 UTC: Stand E1 is the caption for which we check width
+2020/11/19 9:59:32:108 UTC: 54width, 16height, Drive E1
+2020/11/19 9:59:32:114 UTC: 80width, 16height, Devices - E1
+2020/11/19 9:59:32:121 UTC: Devices - E1 is the caption for which we check width
+2020/11/19 9:59:32:126 UTC: 80 is x width for childrentier2
+2020/11/19 9:59:32:631 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:33:137 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:33:644 UTC: For Edger - E1 expand menu, clicked at 425 x, 218 y
+2020/11/19 9:59:38:653 UTC: For Devices - E1 expand menu, clicked at 565 x, 268 y
+2020/11/19 9:59:38:659 UTC: 'CSPRM#18-09-00_n_#RM-Devices-E1'
+2020/11/19 9:59:39:166 UTC: 59width, 16height, Stand R2
+2020/11/19 9:59:39:172 UTC: Stand R2 is the caption for which we check width
+2020/11/19 9:59:39:178 UTC: 55width, 16height, Drive R2
+2020/11/19 9:59:39:184 UTC: 81width, 16height, Devices - R2
+2020/11/19 9:59:39:189 UTC: Devices - R2 is the caption for which we check width
+2020/11/19 9:59:39:194 UTC: 81 is x width for childrentier2
+2020/11/19 9:59:39:701 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:40:207 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:40:713 UTC: For RM - R2 expand menu, clicked at 425 x, 243 y
+2020/11/19 9:59:45:724 UTC: For Stand R2 expand menu, clicked at 566 x, 243 y
+2020/11/19 9:59:45:730 UTC: 'CSPRM#23-03-00_w_#RM-StandR2'
+2020/11/19 9:59:45:735 UTC: 59width, 16height, Stand R2
+2020/11/19 9:59:45:740 UTC: Stand R2 is the caption for which we check width
+2020/11/19 9:59:45:746 UTC: 55width, 16height, Drive R2
+2020/11/19 9:59:45:750 UTC: 81width, 16height, Devices - R2
+2020/11/19 9:59:45:754 UTC: Devices - R2 is the caption for which we check width
+2020/11/19 9:59:45:759 UTC: 81 is x width for childrentier2
+2020/11/19 9:59:46:265 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:46:771 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:47:284 UTC: For RM - R2 expand menu, clicked at 425 x, 243 y
+2020/11/19 9:59:52:296 UTC: For Drive R2 expand menu, clicked at 566 x, 268 y
+2020/11/19 9:59:52:305 UTC: 'CSPRM#52-03-00_w_#RM-DriveR2'
+2020/11/19 9:59:52:334 UTC: 59width, 16height, Stand R2
+2020/11/19 9:59:52:340 UTC: Stand R2 is the caption for which we check width
+2020/11/19 9:59:52:347 UTC: 55width, 16height, Drive R2
+2020/11/19 9:59:52:355 UTC: 81width, 16height, Devices - R2
+2020/11/19 9:59:52:361 UTC: Devices - R2 is the caption for which we check width
+2020/11/19 9:59:52:370 UTC: 81 is x width for childrentier2
+2020/11/19 9:59:52:876 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 9:59:53:388 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 9:59:53:895 UTC: For RM - R2 expand menu, clicked at 425 x, 243 y
+2020/11/19 9:59:58:906 UTC: For Devices - R2 expand menu, clicked at 566 x, 293 y
+2020/11/19 9:59:58:922 UTC: 'CSPRM#18-10-00_n_#RM-Devices-R2'
+2020/11/19 9:59:59:439 UTC: 58width, 16height, Stand E2
+2020/11/19 9:59:59:458 UTC: Stand E2 is the caption for which we check width
+2020/11/19 9:59:59:471 UTC: 54width, 16height, Drive E2
+2020/11/19 9:59:59:481 UTC: 80width, 16height, Devices - E2
+2020/11/19 9:59:59:488 UTC: Devices - E2 is the caption for which we check width
+2020/11/19 9:59:59:498 UTC: 80 is x width for childrentier2
+2020/11/19 10:0:0:9 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:0:518 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:1:30 UTC: For Edger - E2 expand menu, clicked at 425 x, 268 y
+2020/11/19 10:0:6:39 UTC: For Stand E2 expand menu, clicked at 565 x, 268 y
+2020/11/19 10:0:6:45 UTC: 'CSPRM#23-04-00_w_#RM-StandE2'
+2020/11/19 10:0:6:50 UTC: 58width, 16height, Stand E2
+2020/11/19 10:0:6:55 UTC: Stand E2 is the caption for which we check width
+2020/11/19 10:0:6:60 UTC: 54width, 16height, Drive E2
+2020/11/19 10:0:6:69 UTC: 80width, 16height, Devices - E2
+2020/11/19 10:0:6:75 UTC: Devices - E2 is the caption for which we check width
+2020/11/19 10:0:6:80 UTC: 80 is x width for childrentier2
+2020/11/19 10:0:6:588 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:7:103 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:7:610 UTC: For Edger - E2 expand menu, clicked at 425 x, 268 y
+2020/11/19 10:0:12:616 UTC: For Drive E2 expand menu, clicked at 565 x, 293 y
+2020/11/19 10:0:12:623 UTC: 'CSPRM#52-04-00_w_#RM-DriveE2'
+2020/11/19 10:0:12:629 UTC: 58width, 16height, Stand E2
+2020/11/19 10:0:12:635 UTC: Stand E2 is the caption for which we check width
+2020/11/19 10:0:12:640 UTC: 54width, 16height, Drive E2
+2020/11/19 10:0:12:646 UTC: 80width, 16height, Devices - E2
+2020/11/19 10:0:12:653 UTC: Devices - E2 is the caption for which we check width
+2020/11/19 10:0:12:657 UTC: 80 is x width for childrentier2
+2020/11/19 10:0:13:163 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:13:672 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:14:180 UTC: For Edger - E2 expand menu, clicked at 425 x, 268 y
+2020/11/19 10:0:19:189 UTC: For Devices - E2 expand menu, clicked at 565 x, 318 y
+2020/11/19 10:0:19:194 UTC: 'CSPRM#18-11-00_n_#RM-Devices-E2'
+2020/11/19 10:0:19:700 UTC: 187width, 16height, Details - Transfer Bar Cooling
+2020/11/19 10:0:19:707 UTC: Details - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:19:712 UTC: 119width, 16height, Details - Pinch Roll
+2020/11/19 10:0:19:717 UTC: 194width, 16height, Devices - Transfer Bar Cooling
+2020/11/19 10:0:19:722 UTC: Devices - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:19:728 UTC: 194 is x width for childrentier2
+2020/11/19 10:0:20:233 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:20:740 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:21:247 UTC: For Transfer Bar Cooling expand menu, clicked at 425 x, 293 y
+2020/11/19 10:0:26:253 UTC: For Details - Transfer Bar Cooling expand menu, clicked at 679 x, 293 y
+2020/11/19 10:0:26:259 UTC: 'CSPRM#23-05-00_n_#RM-Details-TransferBarCooling'
+2020/11/19 10:0:26:264 UTC: 187width, 16height, Details - Transfer Bar Cooling
+2020/11/19 10:0:26:269 UTC: Details - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:26:275 UTC: 119width, 16height, Details - Pinch Roll
+2020/11/19 10:0:26:280 UTC: 194width, 16height, Devices - Transfer Bar Cooling
+2020/11/19 10:0:26:285 UTC: Devices - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:26:290 UTC: 194 is x width for childrentier2
+2020/11/19 10:0:26:797 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:27:303 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:27:809 UTC: For Transfer Bar Cooling expand menu, clicked at 425 x, 293 y
+2020/11/19 10:0:32:816 UTC: For Details - Pinch Roll expand menu, clicked at 679 x, 318 y
+2020/11/19 10:0:32:822 UTC: 'CSPRM#23-06-00_n_#RM-Details-PinchRoll'
+2020/11/19 10:0:32:827 UTC: 187width, 16height, Details - Transfer Bar Cooling
+2020/11/19 10:0:32:833 UTC: Details - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:32:838 UTC: 119width, 16height, Details - Pinch Roll
+2020/11/19 10:0:32:845 UTC: 194width, 16height, Devices - Transfer Bar Cooling
+2020/11/19 10:0:32:850 UTC: Devices - Transfer Bar Cooling is the caption for which we check width
+2020/11/19 10:0:32:856 UTC: 194 is x width for childrentier2
+2020/11/19 10:0:33:363 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:33:870 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:34:377 UTC: For Transfer Bar Cooling expand menu, clicked at 425 x, 293 y
+2020/11/19 10:0:39:384 UTC: For Devices - Transfer Bar Cooling expand menu, clicked at 679 x, 343 y
+2020/11/19 10:0:39:390 UTC: 'CSPRM#18-33-00_n_#RM-Devices-TransferBarCooling'
+2020/11/19 10:0:39:896 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:40:404 UTC: For Maintenance expand menu, clicked at 254 x, 118 y
+2020/11/19 10:0:45:412 UTC: For Devices - RM Exit expand menu, clicked at 425 x, 318 y
+2020/11/19 10:0:45:417 UTC: 'CSPRM#18-26-00_n_#RM-Devices-RMExit'
+2020/11/19 10:0:45:929 UTC: For Roughing Mill expand menu, clicked at 254 x, 15 y
+2020/11/19 10:0:50:935 UTC: For Reports expand menu, clicked at 254 x, 143 y
+2020/11/19 10:0:50:941 UTC: 'CSPRM#08-10-00_w_#RM-Reports'
+2020/11/19 10:0:50:947 UTC: 81width, 16height, Finishing Mill
+2020/11/19 10:0:50:953 UTC: 58width, 16height, Overview
+2020/11/19 10:0:50:959 UTC: Overview is the caption for which we check width
+2020/11/19 10:0:50:964 UTC: 127width, 16height, Production Planning
+2020/11/19 10:0:50:970 UTC: Production Planning is the caption for which we check width
+2020/11/19 10:0:50:975 UTC: 131width, 16height, Machine Preparation
+2020/11/19 10:0:50:980 UTC: Machine Preparation is the caption for which we check width
+2020/11/19 10:0:50:994 UTC: 81width, 16height, Maintenance
+2020/11/19 10:0:50:995 UTC: 50width, 16height, Reports
+2020/11/19 10:0:51:6 UTC: 131 is x width for childrentier2
+2020/11/19 10:0:51:522 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:0:56:528 UTC: For Overview expand menu, clicked at 361 x, 43 y
+2020/11/19 10:0:56:534 UTC: 'CSPM#01-03-00_n_#FM-Overview'
+2020/11/19 10:0:56:539 UTC: 71width, 16height, Sequences
+2020/11/19 10:0:56:545 UTC: Sequences is the caption for which we check width
+2020/11/19 10:0:56:550 UTC: 76width, 16height, Disturbance
+2020/11/19 10:0:56:555 UTC: Disturbance is the caption for which we check width
+2020/11/19 10:0:56:560 UTC: 58width, 16height, Overview
+2020/11/19 10:0:56:567 UTC: 82width, 16height, Primary Data
+2020/11/19 10:0:56:574 UTC: Primary Data is the caption for which we check width
+2020/11/19 10:0:56:580 UTC: 70width, 16height, Calculation
+2020/11/19 10:0:56:586 UTC: 70width, 16height, Lubrication
+2020/11/19 10:0:56:591 UTC: 82 is x width for childrentier2
+2020/11/19 10:0:57:98 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:0:57:104 UTC: 71width, 16height, Sequences
+2020/11/19 10:0:57:110 UTC: Sequences is the caption for which we check width
+2020/11/19 10:0:57:115 UTC: 76width, 16height, Disturbance
+2020/11/19 10:0:57:120 UTC: Disturbance is the caption for which we check width
+2020/11/19 10:0:57:125 UTC: 58width, 16height, Overview
+2020/11/19 10:0:57:130 UTC: 82width, 16height, Primary Data
+2020/11/19 10:0:57:135 UTC: Primary Data is the caption for which we check width
+2020/11/19 10:0:57:142 UTC: 70width, 16height, Calculation
+2020/11/19 10:0:57:148 UTC: 70width, 16height, Lubrication
+2020/11/19 10:0:57:153 UTC: 82 is x width for childrentier2
+2020/11/19 10:0:57:158 UTC: 122 is maxwidthtier2
+2020/11/19 10:0:57:673 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:0:58:180 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:3:187 UTC: For Sequences expand menu, clicked at 532 x, 68 y
+2020/11/19 10:1:3:193 UTC: 'CSPM#19-07-00_n_#FM-Sequences'
+2020/11/19 10:1:3:699 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:4:206 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:9:212 UTC: For Disturbance expand menu, clicked at 532 x, 93 y
+2020/11/19 10:1:9:218 UTC: 'CSPM#08-11-00_w_#FM-Disturbance'
+2020/11/19 10:1:9:725 UTC: 80width, 16height, Current Slab
+2020/11/19 10:1:9:731 UTC: Current Slab is the caption for which we check width
+2020/11/19 10:1:9:736 UTC: 87width, 16height, Previous Slab
+2020/11/19 10:1:9:744 UTC: Previous Slab is the caption for which we check width
+2020/11/19 10:1:9:750 UTC: 87 is x width for childrentier2
+2020/11/19 10:1:10:258 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:10:765 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:11:272 UTC: For Overview expand menu, clicked at 532 x, 118 y
+2020/11/19 10:1:16:279 UTC: For Current Slab expand menu, clicked at 679 x, 118 y
+2020/11/19 10:1:16:286 UTC: 'CSPM#08-12-00_w_#FM-CurrentSlab'
+2020/11/19 10:1:16:291 UTC: 80width, 16height, Current Slab
+2020/11/19 10:1:16:297 UTC: Current Slab is the caption for which we check width
+2020/11/19 10:1:16:302 UTC: 87width, 16height, Previous Slab
+2020/11/19 10:1:16:306 UTC: Previous Slab is the caption for which we check width
+2020/11/19 10:1:16:311 UTC: 87 is x width for childrentier2
+2020/11/19 10:1:16:818 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:17:325 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:17:832 UTC: For Overview expand menu, clicked at 532 x, 118 y
+2020/11/19 10:1:22:838 UTC: For Previous Slab expand menu, clicked at 679 x, 143 y
+2020/11/19 10:1:22:843 UTC: 'CSPM#08-13-00_w_#FM-PreviousSlab'
+2020/11/19 10:1:23:351 UTC: 98width, 16height, Piece Schedule
+2020/11/19 10:1:23:358 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 10:1:23:364 UTC: 69width, 16height, Piece Data
+2020/11/19 10:1:23:370 UTC: 78width, 16height, Default Alloy
+2020/11/19 10:1:23:375 UTC: 98 is x width for childrentier2
+2020/11/19 10:1:23:881 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:24:390 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:24:897 UTC: For Primary Data expand menu, clicked at 532 x, 143 y
+2020/11/19 10:1:29:903 UTC: For Piece Schedule expand menu, clicked at 690 x, 143 y
+2020/11/19 10:1:29:913 UTC: 'CSPM#08-14-00_w_#FM-PieceSchedule'
+2020/11/19 10:1:29:919 UTC: 98width, 16height, Piece Schedule
+2020/11/19 10:1:29:924 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 10:1:29:929 UTC: 69width, 16height, Piece Data
+2020/11/19 10:1:29:938 UTC: 78width, 16height, Default Alloy
+2020/11/19 10:1:29:943 UTC: 98 is x width for childrentier2
+2020/11/19 10:1:30:451 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:30:957 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:31:463 UTC: For Primary Data expand menu, clicked at 532 x, 143 y
+2020/11/19 10:1:36:469 UTC: For Piece Data expand menu, clicked at 690 x, 168 y
+2020/11/19 10:1:36:475 UTC: 'CSPM#08-15-00_w_#FM-PieceData'
+2020/11/19 10:1:36:481 UTC: 98width, 16height, Piece Schedule
+2020/11/19 10:1:36:488 UTC: Piece Schedule is the caption for which we check width
+2020/11/19 10:1:36:496 UTC: 69width, 16height, Piece Data
+2020/11/19 10:1:36:502 UTC: 78width, 16height, Default Alloy
+2020/11/19 10:1:36:507 UTC: 98 is x width for childrentier2
+2020/11/19 10:1:37:14 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:37:521 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:38:27 UTC: For Primary Data expand menu, clicked at 532 x, 143 y
+2020/11/19 10:1:43:33 UTC: For Default Alloy expand menu, clicked at 690 x, 193 y
+2020/11/19 10:1:43:40 UTC: 'CSPM#08-16-00_w_#FM-DefaultAlloy'
+2020/11/19 10:1:43:547 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 10:1:43:553 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 10:1:43:558 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 10:1:43:563 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 10:1:43:567 UTC: 148width, 16height, Pass Schedule - Fictive
+2020/11/19 10:1:43:574 UTC: 98width, 16height, Profile Flatness
+2020/11/19 10:1:43:578 UTC: 188 is x width for childrentier2
+2020/11/19 10:1:44:90 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:44:598 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:45:105 UTC: For Calculation expand menu, clicked at 532 x, 168 y
+2020/11/19 10:1:50:111 UTC: For Pass Schedule Calc - Current expand menu, clicked at 780 x, 168 y
+2020/11/19 10:1:50:117 UTC: 'CSPM#08-17-00_w_#FM-PassScheduleCalc-Current'
+2020/11/19 10:1:50:121 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 10:1:50:126 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 10:1:50:133 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 10:1:50:138 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 10:1:50:143 UTC: 148width, 16height, Pass Schedule - Fictive
+2020/11/19 10:1:50:149 UTC: 98width, 16height, Profile Flatness
+2020/11/19 10:1:50:154 UTC: 188 is x width for childrentier2
+2020/11/19 10:1:50:662 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:51:170 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:51:678 UTC: For Calculation expand menu, clicked at 532 x, 168 y
+2020/11/19 10:1:56:685 UTC: For Pass Schedule Calc - Preview expand menu, clicked at 780 x, 193 y
+2020/11/19 10:1:56:691 UTC: 'CSPM#08-18-00_w_#FM-PassScheduleCalc-Preview'
+2020/11/19 10:1:56:697 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 10:1:56:702 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 10:1:56:708 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 10:1:56:717 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 10:1:56:723 UTC: 148width, 16height, Pass Schedule - Fictive
+2020/11/19 10:1:56:728 UTC: 98width, 16height, Profile Flatness
+2020/11/19 10:1:56:733 UTC: 188 is x width for childrentier2
+2020/11/19 10:1:57:239 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:1:57:748 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:1:58:255 UTC: For Calculation expand menu, clicked at 532 x, 168 y
+2020/11/19 10:2:3:261 UTC: For Pass Schedule - Fictive expand menu, clicked at 780 x, 218 y
+2020/11/19 10:2:3:266 UTC: 'CSPM#08-19-00_w_#FM-PassSchedule-Fictive'
+2020/11/19 10:2:3:271 UTC: 187width, 16height, Pass Schedule Calc - Current
+2020/11/19 10:2:3:276 UTC: Pass Schedule Calc - Current is the caption for which we check width
+2020/11/19 10:2:3:282 UTC: 188width, 16height, Pass Schedule Calc - Preview
+2020/11/19 10:2:3:287 UTC: Pass Schedule Calc - Preview is the caption for which we check width
+2020/11/19 10:2:3:292 UTC: 148width, 16height, Pass Schedule - Fictive
+2020/11/19 10:2:3:299 UTC: 98width, 16height, Profile Flatness
+2020/11/19 10:2:3:304 UTC: 188 is x width for childrentier2
+2020/11/19 10:2:3:810 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:4:319 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:2:4:827 UTC: For Calculation expand menu, clicked at 532 x, 168 y
+2020/11/19 10:2:9:845 UTC: For Profile Flatness expand menu, clicked at 780 x, 243 y
+2020/11/19 10:2:9:850 UTC: 'CSPM#08-20-00_w_#FM-ProfileFlatness'
+2020/11/19 10:2:10:358 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:10:868 UTC: For Production Planning expand menu, clicked at 361 x, 68 y
+2020/11/19 10:2:15:875 UTC: For Lubrication expand menu, clicked at 532 x, 193 y
+2020/11/19 10:2:15:881 UTC: 'CSPM#08-21-00_w_#FM-Lubrication'
+2020/11/19 10:2:15:887 UTC: 68width, 16height, Calibration
+2020/11/19 10:2:15:893 UTC: Calibration is the caption for which we check width
+2020/11/19 10:2:15:898 UTC: 78width, 16height, Roll Change
+2020/11/19 10:2:15:903 UTC: Roll Change is the caption for which we check width
+2020/11/19 10:2:15:910 UTC: 78 is x width for childrentier2
+2020/11/19 10:2:16:416 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:16:424 UTC: 68width, 16height, Calibration
+2020/11/19 10:2:16:429 UTC: Calibration is the caption for which we check width
+2020/11/19 10:2:16:435 UTC: 78width, 16height, Roll Change
+2020/11/19 10:2:16:441 UTC: Roll Change is the caption for which we check width
+2020/11/19 10:2:16:446 UTC: 78 is x width for childrentier2
+2020/11/19 10:2:16:452 UTC: 118 is maxwidthtier2
+2020/11/19 10:2:16:958 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:16:964 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:16:971 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:16:977 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:16:982 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:16:988 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:16:994 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:17:0 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:17:507 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:18:14 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:18:527 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:23:533 UTC: For Calibration - F1 expand menu, clicked at 690 x, 93 y
+2020/11/19 10:2:23:539 UTC: 'CSPM#16-03-00_w_#FM-Calibration-F1'
+2020/11/19 10:2:23:544 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:23:550 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:23:557 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:23:567 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:23:574 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:23:585 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:23:592 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:23:597 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:24:104 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:24:611 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:25:118 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:30:126 UTC: For Calibration - F2 expand menu, clicked at 690 x, 118 y
+2020/11/19 10:2:30:132 UTC: 'CSPM#16-04-00_w_#FM-Calibration-F2'
+2020/11/19 10:2:30:137 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:30:142 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:30:147 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:30:152 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:30:156 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:30:162 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:30:169 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:30:175 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:30:681 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:31:191 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:31:699 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:36:707 UTC: For Calibration - F3 expand menu, clicked at 690 x, 143 y
+2020/11/19 10:2:36:713 UTC: 'CSPM#16-05-00_w_#FM-Calibration-F3'
+2020/11/19 10:2:36:718 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:36:723 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:36:728 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:36:733 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:36:737 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:36:741 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:36:746 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:36:750 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:37:255 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:37:762 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:38:290 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:43:302 UTC: For Calibration - F4 expand menu, clicked at 690 x, 168 y
+2020/11/19 10:2:43:324 UTC: 'CSPM#16-06-00_w_#FM-Calibration-F4'
+2020/11/19 10:2:43:337 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:43:345 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:43:350 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:43:357 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:43:363 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:43:371 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:43:380 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:43:393 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:43:902 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:44:409 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:44:916 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:49:923 UTC: For Calibration - F5 expand menu, clicked at 690 x, 193 y
+2020/11/19 10:2:49:931 UTC: 'CSPM#16-07-00_w_#FM-Calibration-F5'
+2020/11/19 10:2:49:937 UTC: 98width, 16height, Calibration - F1
+2020/11/19 10:2:49:943 UTC: Calibration - F1 is the caption for which we check width
+2020/11/19 10:2:49:948 UTC: 98width, 16height, Calibration - F2
+2020/11/19 10:2:49:954 UTC: 98width, 16height, Calibration - F3
+2020/11/19 10:2:49:959 UTC: 98width, 16height, Calibration - F4
+2020/11/19 10:2:49:964 UTC: 98width, 16height, Calibration - F5
+2020/11/19 10:2:49:969 UTC: 98width, 16height, Calibration - F6
+2020/11/19 10:2:49:974 UTC: 98 is x width for childrentier2
+2020/11/19 10:2:50:480 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:50:988 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:51:496 UTC: For Calibration expand menu, clicked at 532 x, 93 y
+2020/11/19 10:2:56:503 UTC: For Calibration - F6 expand menu, clicked at 690 x, 218 y
+2020/11/19 10:2:56:509 UTC: 'CSPM#16-08-00_w_#FM-Calibration-F6'
+2020/11/19 10:2:57:16 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/19 10:2:57:21 UTC: Roll Change - F1F2 is the caption for which we check width
+2020/11/19 10:2:57:27 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/19 10:2:57:32 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/19 10:2:57:38 UTC: 58width, 16height, Roll Data
+2020/11/19 10:2:57:43 UTC: 68width, 16height, Roll Status
+2020/11/19 10:2:57:48 UTC: 125 is x width for childrentier2
+2020/11/19 10:2:57:555 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:2:58:67 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:2:58:575 UTC: For Roll Change expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:3:582 UTC: For Roll Change - F1F2 expand menu, clicked at 717 x, 118 y
+2020/11/19 10:3:3:588 UTC: 'CSPM#14-03-00_w_#FM-RollChange-F1F2'
+2020/11/19 10:3:3:594 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/19 10:3:3:599 UTC: Roll Change - F1F2 is the caption for which we check width
+2020/11/19 10:3:3:604 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/19 10:3:3:609 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/19 10:3:3:613 UTC: 58width, 16height, Roll Data
+2020/11/19 10:3:3:618 UTC: 68width, 16height, Roll Status
+2020/11/19 10:3:3:623 UTC: 125 is x width for childrentier2
+2020/11/19 10:3:4:129 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:4:636 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:3:5:143 UTC: For Roll Change expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:10:149 UTC: For Roll Change - F3F4 expand menu, clicked at 717 x, 143 y
+2020/11/19 10:3:10:156 UTC: 'CSPM#14-04-00_w_#FM-RollChange-F3F4'
+2020/11/19 10:3:10:161 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/19 10:3:10:169 UTC: Roll Change - F1F2 is the caption for which we check width
+2020/11/19 10:3:10:174 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/19 10:3:10:180 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/19 10:3:10:186 UTC: 58width, 16height, Roll Data
+2020/11/19 10:3:10:194 UTC: 68width, 16height, Roll Status
+2020/11/19 10:3:10:199 UTC: 125 is x width for childrentier2
+2020/11/19 10:3:10:705 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:11:212 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:3:11:719 UTC: For Roll Change expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:16:726 UTC: For Roll Change - F5F6 expand menu, clicked at 717 x, 168 y
+2020/11/19 10:3:16:732 UTC: 'CSPM#14-05-00_w_#FM-RollChange-F5F6'
+2020/11/19 10:3:16:737 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/19 10:3:16:743 UTC: Roll Change - F1F2 is the caption for which we check width
+2020/11/19 10:3:16:753 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/19 10:3:16:758 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/19 10:3:16:762 UTC: 58width, 16height, Roll Data
+2020/11/19 10:3:16:767 UTC: 68width, 16height, Roll Status
+2020/11/19 10:3:16:773 UTC: 125 is x width for childrentier2
+2020/11/19 10:3:17:279 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:17:786 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:3:18:293 UTC: For Roll Change expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:23:301 UTC: For Roll Data expand menu, clicked at 717 x, 193 y
+2020/11/19 10:3:23:306 UTC: 'CSPM#08-22-00_w_#FM-RollData'
+2020/11/19 10:3:23:312 UTC: 125width, 16height, Roll Change - F1F2
+2020/11/19 10:3:23:318 UTC: Roll Change - F1F2 is the caption for which we check width
+2020/11/19 10:3:23:324 UTC: 125width, 16height, Roll Change - F3F4
+2020/11/19 10:3:23:330 UTC: 125width, 16height, Roll Change - F5F6
+2020/11/19 10:3:23:337 UTC: 58width, 16height, Roll Data
+2020/11/19 10:3:23:342 UTC: 68width, 16height, Roll Status
+2020/11/19 10:3:23:347 UTC: 125 is x width for childrentier2
+2020/11/19 10:3:23:853 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:24:360 UTC: For Machine Preparation expand menu, clicked at 361 x, 93 y
+2020/11/19 10:3:24:868 UTC: For Roll Change expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:29:875 UTC: For Roll Status expand menu, clicked at 717 x, 218 y
+2020/11/19 10:3:29:880 UTC: 'CSPM#08-23-00_w_#FM-RollStatus'
+2020/11/19 10:3:29:887 UTC: 120width, 16height, Devices - FM Entry
+2020/11/19 10:3:29:892 UTC: Devices - FM Entry is the caption for which we check width
+2020/11/19 10:3:29:899 UTC: 76width, 16height, Drum Shear
+2020/11/19 10:3:29:905 UTC: 56width, 16height, Descaler
+2020/11/19 10:3:29:911 UTC: 17width, 16height, F1
+2020/11/19 10:3:29:917 UTC: 17width, 16height, F2
+2020/11/19 10:3:29:926 UTC: 17width, 16height, F3
+2020/11/19 10:3:29:932 UTC: 17width, 16height, F4
+2020/11/19 10:3:29:939 UTC: 17width, 16height, F5
+2020/11/19 10:3:29:944 UTC: 17width, 16height, F6
+2020/11/19 10:3:29:951 UTC: 109width, 16height, Devices - FM Exit
+2020/11/19 10:3:29:956 UTC: 120 is x width for childrentier2
+2020/11/19 10:3:30:463 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:30:468 UTC: 120width, 16height, Devices - FM Entry
+2020/11/19 10:3:30:474 UTC: Devices - FM Entry is the caption for which we check width
+2020/11/19 10:3:30:480 UTC: 76width, 16height, Drum Shear
+2020/11/19 10:3:30:486 UTC: 56width, 16height, Descaler
+2020/11/19 10:3:30:492 UTC: 17width, 16height, F1
+2020/11/19 10:3:30:505 UTC: 17width, 16height, F2
+2020/11/19 10:3:30:513 UTC: 17width, 16height, F3
+2020/11/19 10:3:30:524 UTC: 17width, 16height, F4
+2020/11/19 10:3:30:530 UTC: 17width, 16height, F5
+2020/11/19 10:3:30:536 UTC: 17width, 16height, F6
+2020/11/19 10:3:30:541 UTC: 109width, 16height, Devices - FM Exit
+2020/11/19 10:3:30:546 UTC: 120 is x width for childrentier2
+2020/11/19 10:3:30:551 UTC: 160 is maxwidthtier2
+2020/11/19 10:3:31:60 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:31:567 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:36:577 UTC: For Devices - FM Entry expand menu, clicked at 532 x, 118 y
+2020/11/19 10:3:36:583 UTC: 'CSPM#18-13-00_n_#FM-Devices-FMEntry'
+2020/11/19 10:3:37:91 UTC: 38width, 16height, Shear
+2020/11/19 10:3:37:97 UTC: Shear is the caption for which we check width
+2020/11/19 10:3:37:102 UTC: 75width, 16height, Shear Drive
+2020/11/19 10:3:37:107 UTC: Shear Drive is the caption for which we check width
+2020/11/19 10:3:37:112 UTC: 75 is x width for childrentier2
+2020/11/19 10:3:37:622 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:38:141 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:38:648 UTC: For Drum Shear expand menu, clicked at 532 x, 143 y
+2020/11/19 10:3:43:664 UTC: For Shear expand menu, clicked at 667 x, 143 y
+2020/11/19 10:3:43:675 UTC: 'CSPM#30-01-00_n_#FM-Shear'
+2020/11/19 10:3:43:680 UTC: 38width, 16height, Shear
+2020/11/19 10:3:43:685 UTC: Shear is the caption for which we check width
+2020/11/19 10:3:43:691 UTC: 75width, 16height, Shear Drive
+2020/11/19 10:3:43:697 UTC: Shear Drive is the caption for which we check width
+2020/11/19 10:3:43:703 UTC: 75 is x width for childrentier2
+2020/11/19 10:3:44:209 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:44:717 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:45:224 UTC: For Drum Shear expand menu, clicked at 532 x, 143 y
+2020/11/19 10:3:50:230 UTC: For Shear Drive expand menu, clicked at 667 x, 168 y
+2020/11/19 10:3:50:236 UTC: 'CSPM#52-05-00_w_#FM-ShearDrive'
+2020/11/19 10:3:50:743 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:51:249 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:56:256 UTC: For Descaler expand menu, clicked at 532 x, 168 y
+2020/11/19 10:3:56:265 UTC: 'CSPM#20-02-00_n_#FM-Descaler'
+2020/11/19 10:3:56:772 UTC: 58width, 16height, Stand F1
+2020/11/19 10:3:56:777 UTC: Stand F1 is the caption for which we check width
+2020/11/19 10:3:56:783 UTC: 54width, 16height, Drive F1
+2020/11/19 10:3:56:788 UTC: 80width, 16height, Devices - F1
+2020/11/19 10:3:56:793 UTC: Devices - F1 is the caption for which we check width
+2020/11/19 10:3:56:797 UTC: 80 is x width for childrentier2
+2020/11/19 10:3:57:303 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:3:57:810 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:3:58:317 UTC: For F1 expand menu, clicked at 532 x, 193 y
+2020/11/19 10:4:3:326 UTC: For Stand F1 expand menu, clicked at 672 x, 193 y
+2020/11/19 10:4:3:332 UTC: 'CSPM#23-06-00_w_#FM-StandF1'
+2020/11/19 10:4:3:338 UTC: 58width, 16height, Stand F1
+2020/11/19 10:4:3:345 UTC: Stand F1 is the caption for which we check width
+2020/11/19 10:4:3:350 UTC: 54width, 16height, Drive F1
+2020/11/19 10:4:3:350 UTC: 80width, 16height, Devices - F1
+2020/11/19 10:4:3:362 UTC: Devices - F1 is the caption for which we check width
+2020/11/19 10:4:3:367 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:3:879 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:4:392 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:4:905 UTC: For F1 expand menu, clicked at 532 x, 193 y
+2020/11/19 10:4:9:914 UTC: For Drive F1 expand menu, clicked at 672 x, 218 y
+2020/11/19 10:4:9:919 UTC: 'CSPM#52-06-00_w_#FM-DriveF1'
+2020/11/19 10:4:9:924 UTC: 58width, 16height, Stand F1
+2020/11/19 10:4:9:930 UTC: Stand F1 is the caption for which we check width
+2020/11/19 10:4:9:935 UTC: 54width, 16height, Drive F1
+2020/11/19 10:4:9:942 UTC: 80width, 16height, Devices - F1
+2020/11/19 10:4:9:946 UTC: Devices - F1 is the caption for which we check width
+2020/11/19 10:4:9:953 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:10:459 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:10:966 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:11:473 UTC: For F1 expand menu, clicked at 532 x, 193 y
+2020/11/19 10:4:16:480 UTC: For Devices - F1 expand menu, clicked at 672 x, 243 y
+2020/11/19 10:4:16:489 UTC: 'CSPM#18-14-00_n_#FM-Devices-F1'
+2020/11/19 10:4:17:1 UTC: 58width, 16height, Stand F2
+2020/11/19 10:4:17:9 UTC: Stand F2 is the caption for which we check width
+2020/11/19 10:4:17:15 UTC: 54width, 16height, Drive F2
+2020/11/19 10:4:17:20 UTC: 80width, 16height, Devices - F2
+2020/11/19 10:4:17:26 UTC: Devices - F2 is the caption for which we check width
+2020/11/19 10:4:17:31 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:17:538 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:18:46 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:18:553 UTC: For F2 expand menu, clicked at 532 x, 218 y
+2020/11/19 10:4:23:560 UTC: For Stand F2 expand menu, clicked at 672 x, 218 y
+2020/11/19 10:4:23:567 UTC: 'CSPM#23-07-00_w_#FM-StandF2'
+2020/11/19 10:4:23:572 UTC: 58width, 16height, Stand F2
+2020/11/19 10:4:23:578 UTC: Stand F2 is the caption for which we check width
+2020/11/19 10:4:23:583 UTC: 54width, 16height, Drive F2
+2020/11/19 10:4:23:588 UTC: 80width, 16height, Devices - F2
+2020/11/19 10:4:23:594 UTC: Devices - F2 is the caption for which we check width
+2020/11/19 10:4:23:599 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:24:111 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:24:617 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:25:124 UTC: For F2 expand menu, clicked at 532 x, 218 y
+2020/11/19 10:4:30:130 UTC: For Drive F2 expand menu, clicked at 672 x, 243 y
+2020/11/19 10:4:30:135 UTC: 'CSPM#52-07-00_w_#FM-DriveF2'
+2020/11/19 10:4:30:141 UTC: 58width, 16height, Stand F2
+2020/11/19 10:4:30:146 UTC: Stand F2 is the caption for which we check width
+2020/11/19 10:4:30:151 UTC: 54width, 16height, Drive F2
+2020/11/19 10:4:30:156 UTC: 80width, 16height, Devices - F2
+2020/11/19 10:4:30:160 UTC: Devices - F2 is the caption for which we check width
+2020/11/19 10:4:30:165 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:30:671 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:31:182 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:31:689 UTC: For F2 expand menu, clicked at 532 x, 218 y
+2020/11/19 10:4:36:695 UTC: For Devices - F2 expand menu, clicked at 672 x, 268 y
+2020/11/19 10:4:36:702 UTC: 'CSPM#18-15-00_n_#FM-Devices-F2'
+2020/11/19 10:4:37:210 UTC: 58width, 16height, Stand F3
+2020/11/19 10:4:37:218 UTC: Stand F3 is the caption for which we check width
+2020/11/19 10:4:37:225 UTC: 54width, 16height, Drive F3
+2020/11/19 10:4:37:231 UTC: 80width, 16height, Devices - F3
+2020/11/19 10:4:37:236 UTC: Devices - F3 is the caption for which we check width
+2020/11/19 10:4:37:242 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:37:750 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:38:258 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:38:766 UTC: For F3 expand menu, clicked at 532 x, 243 y
+2020/11/19 10:4:43:774 UTC: For Stand F3 expand menu, clicked at 672 x, 243 y
+2020/11/19 10:4:43:780 UTC: 'CSPM#23-08-00_w_#FM-StandF3'
+2020/11/19 10:4:43:785 UTC: 58width, 16height, Stand F3
+2020/11/19 10:4:43:790 UTC: Stand F3 is the caption for which we check width
+2020/11/19 10:4:43:796 UTC: 54width, 16height, Drive F3
+2020/11/19 10:4:43:802 UTC: 80width, 16height, Devices - F3
+2020/11/19 10:4:43:807 UTC: Devices - F3 is the caption for which we check width
+2020/11/19 10:4:43:812 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:44:327 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:44:834 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:45:342 UTC: For F3 expand menu, clicked at 532 x, 243 y
+2020/11/19 10:4:50:349 UTC: For Drive F3 expand menu, clicked at 672 x, 268 y
+2020/11/19 10:4:50:359 UTC: 'CSPM#52-08-00_w_#FM-DriveF3'
+2020/11/19 10:4:50:365 UTC: 58width, 16height, Stand F3
+2020/11/19 10:4:50:370 UTC: Stand F3 is the caption for which we check width
+2020/11/19 10:4:50:384 UTC: 54width, 16height, Drive F3
+2020/11/19 10:4:50:390 UTC: 80width, 16height, Devices - F3
+2020/11/19 10:4:50:395 UTC: Devices - F3 is the caption for which we check width
+2020/11/19 10:4:50:400 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:50:906 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:51:412 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:51:919 UTC: For F3 expand menu, clicked at 532 x, 243 y
+2020/11/19 10:4:56:927 UTC: For Devices - F3 expand menu, clicked at 672 x, 293 y
+2020/11/19 10:4:56:933 UTC: 'CSPM#18-16-00_n_#FM-Devices-F3'
+2020/11/19 10:4:57:439 UTC: 58width, 16height, Stand F4
+2020/11/19 10:4:57:445 UTC: Stand F4 is the caption for which we check width
+2020/11/19 10:4:57:452 UTC: 54width, 16height, Drive F4
+2020/11/19 10:4:57:458 UTC: 80width, 16height, Devices - F4
+2020/11/19 10:4:57:466 UTC: Devices - F4 is the caption for which we check width
+2020/11/19 10:4:57:471 UTC: 80 is x width for childrentier2
+2020/11/19 10:4:57:977 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:4:58:484 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:4:58:994 UTC: For F4 expand menu, clicked at 532 x, 268 y
+2020/11/19 10:5:4:0 UTC: For Stand F4 expand menu, clicked at 672 x, 268 y
+2020/11/19 10:5:4:5 UTC: 'CSPM#23-09-00_w_#FM-StandF4'
+2020/11/19 10:5:4:11 UTC: 58width, 16height, Stand F4
+2020/11/19 10:5:4:16 UTC: Stand F4 is the caption for which we check width
+2020/11/19 10:5:4:20 UTC: 54width, 16height, Drive F4
+2020/11/19 10:5:4:26 UTC: 80width, 16height, Devices - F4
+2020/11/19 10:5:4:31 UTC: Devices - F4 is the caption for which we check width
+2020/11/19 10:5:4:36 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:4:542 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:5:49 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:5:556 UTC: For F4 expand menu, clicked at 532 x, 268 y
+2020/11/19 10:5:10:567 UTC: For Drive F4 expand menu, clicked at 672 x, 293 y
+2020/11/19 10:5:10:573 UTC: 'CSPM#52-09-00_w_#FM-DriveF4'
+2020/11/19 10:5:10:578 UTC: 58width, 16height, Stand F4
+2020/11/19 10:5:10:583 UTC: Stand F4 is the caption for which we check width
+2020/11/19 10:5:10:589 UTC: 54width, 16height, Drive F4
+2020/11/19 10:5:10:594 UTC: 80width, 16height, Devices - F4
+2020/11/19 10:5:10:598 UTC: Devices - F4 is the caption for which we check width
+2020/11/19 10:5:10:603 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:11:109 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:11:617 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:12:126 UTC: For F4 expand menu, clicked at 532 x, 268 y
+2020/11/19 10:5:17:135 UTC: For Devices - F4 expand menu, clicked at 672 x, 318 y
+2020/11/19 10:5:17:141 UTC: 'CSPM#18-17-00_n_#FM-Devices-F4'
+2020/11/19 10:5:17:651 UTC: 58width, 16height, Stand F5
+2020/11/19 10:5:17:657 UTC: Stand F5 is the caption for which we check width
+2020/11/19 10:5:17:662 UTC: 54width, 16height, Drive F5
+2020/11/19 10:5:17:676 UTC: 80width, 16height, Devices - F5
+2020/11/19 10:5:17:682 UTC: Devices - F5 is the caption for which we check width
+2020/11/19 10:5:17:688 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:18:194 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:18:703 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:19:212 UTC: For F5 expand menu, clicked at 532 x, 293 y
+2020/11/19 10:5:24:220 UTC: For Stand F5 expand menu, clicked at 672 x, 293 y
+2020/11/19 10:5:24:225 UTC: 'CSPM#23-10-00_w_#FM-StandF5'
+2020/11/19 10:5:24:231 UTC: 58width, 16height, Stand F5
+2020/11/19 10:5:24:237 UTC: Stand F5 is the caption for which we check width
+2020/11/19 10:5:24:243 UTC: 54width, 16height, Drive F5
+2020/11/19 10:5:24:250 UTC: 80width, 16height, Devices - F5
+2020/11/19 10:5:24:255 UTC: Devices - F5 is the caption for which we check width
+2020/11/19 10:5:24:259 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:24:765 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:25:271 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:25:778 UTC: For F5 expand menu, clicked at 532 x, 293 y
+2020/11/19 10:5:30:784 UTC: For Drive F5 expand menu, clicked at 672 x, 318 y
+2020/11/19 10:5:30:790 UTC: 'CSPM#52-10-00_w_#FM-DriveF5'
+2020/11/19 10:5:30:795 UTC: 58width, 16height, Stand F5
+2020/11/19 10:5:30:801 UTC: Stand F5 is the caption for which we check width
+2020/11/19 10:5:30:806 UTC: 54width, 16height, Drive F5
+2020/11/19 10:5:30:810 UTC: 80width, 16height, Devices - F5
+2020/11/19 10:5:30:819 UTC: Devices - F5 is the caption for which we check width
+2020/11/19 10:5:30:823 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:31:330 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:31:837 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:32:344 UTC: For F5 expand menu, clicked at 532 x, 293 y
+2020/11/19 10:5:37:350 UTC: For Devices - F5 expand menu, clicked at 672 x, 343 y
+2020/11/19 10:5:37:358 UTC: 'CSPM#18-18-00_n_#FM-Devices-F5'
+2020/11/19 10:5:37:866 UTC: 58width, 16height, Stand F6
+2020/11/19 10:5:37:872 UTC: Stand F6 is the caption for which we check width
+2020/11/19 10:5:37:876 UTC: 54width, 16height, Drive F6
+2020/11/19 10:5:37:894 UTC: 80width, 16height, Devices - F6
+2020/11/19 10:5:37:900 UTC: Devices - F6 is the caption for which we check width
+2020/11/19 10:5:37:906 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:38:412 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:38:919 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:39:427 UTC: For F6 expand menu, clicked at 532 x, 318 y
+2020/11/19 10:5:44:433 UTC: For Stand F6 expand menu, clicked at 672 x, 318 y
+2020/11/19 10:5:44:438 UTC: 'CSPM#23-11-00_w_#FM-StandF6'
+2020/11/19 10:5:44:444 UTC: 58width, 16height, Stand F6
+2020/11/19 10:5:44:450 UTC: Stand F6 is the caption for which we check width
+2020/11/19 10:5:44:456 UTC: 54width, 16height, Drive F6
+2020/11/19 10:5:44:461 UTC: 80width, 16height, Devices - F6
+2020/11/19 10:5:44:466 UTC: Devices - F6 is the caption for which we check width
+2020/11/19 10:5:44:472 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:44:979 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:45:485 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:45:992 UTC: For F6 expand menu, clicked at 532 x, 318 y
+2020/11/19 10:5:51:11 UTC: For Drive F6 expand menu, clicked at 672 x, 343 y
+2020/11/19 10:5:51:16 UTC: 'CSPM#52-11-00_w_#FM-DriveF6'
+2020/11/19 10:5:51:22 UTC: 58width, 16height, Stand F6
+2020/11/19 10:5:51:27 UTC: Stand F6 is the caption for which we check width
+2020/11/19 10:5:51:32 UTC: 54width, 16height, Drive F6
+2020/11/19 10:5:51:38 UTC: 80width, 16height, Devices - F6
+2020/11/19 10:5:51:44 UTC: Devices - F6 is the caption for which we check width
+2020/11/19 10:5:51:48 UTC: 80 is x width for childrentier2
+2020/11/19 10:5:51:556 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:52:63 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:5:52:572 UTC: For F6 expand menu, clicked at 532 x, 318 y
+2020/11/19 10:5:57:579 UTC: For Devices - F6 expand menu, clicked at 672 x, 368 y
+2020/11/19 10:5:57:581 UTC: 'CSPM#18-24-00_n_#FM-Devices-F6'
+2020/11/19 10:5:58:96 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:5:58:602 UTC: For Maintenance expand menu, clicked at 361 x, 118 y
+2020/11/19 10:6:3:609 UTC: For Devices - FM Exit expand menu, clicked at 532 x, 343 y
+2020/11/19 10:6:3:612 UTC: 'CSPM#18-19-00_n_#FM-Devices-FMExit'
+2020/11/19 10:6:4:121 UTC: For Finishing Mill expand menu, clicked at 361 x, 15 y
+2020/11/19 10:6:9:128 UTC: For Reports expand menu, clicked at 361 x, 143 y
+2020/11/19 10:6:9:134 UTC: 'CSPM#08-10-00_w_#FM-Reports'
+2020/11/19 10:6:9:139 UTC: 76width, 16height, Down Coiler
+2020/11/19 10:6:9:145 UTC: 58width, 16height, Overview
+2020/11/19 10:6:9:150 UTC: Overview is the caption for which we check width
+2020/11/19 10:6:9:155 UTC: 143width, 16height, Production Sequences
+2020/11/19 10:6:9:160 UTC: Production Sequences is the caption for which we check width
+2020/11/19 10:6:9:165 UTC: 131width, 16height, Machine Preparation
+2020/11/19 10:6:9:170 UTC: 81width, 16height, Maintenance
+2020/11/19 10:6:9:175 UTC: 143 is x width for childrentier2
+2020/11/19 10:6:9:681 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:14:689 UTC: For Overview expand menu, clicked at 464 x, 43 y
+2020/11/19 10:6:14:696 UTC: 'CSPM#01-04-00_n_#DC-Overview'
+2020/11/19 10:6:15:202 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:20:209 UTC: For Production Sequences expand menu, clicked at 464 x, 68 y
+2020/11/19 10:6:20:214 UTC: 'CSPM#19-08-00_n_#DC-ProductionSequences'
+2020/11/19 10:6:20:220 UTC: 68width, 16height, Calibration
+2020/11/19 10:6:20:225 UTC: Calibration is the caption for which we check width
+2020/11/19 10:6:20:230 UTC: 68 is x width for childrentier2
+2020/11/19 10:6:20:737 UTC: For Machine Preparation expand menu, clicked at 464 x, 93 y
+2020/11/19 10:6:20:744 UTC: 68width, 16height, Calibration
+2020/11/19 10:6:20:751 UTC: Calibration is the caption for which we check width
+2020/11/19 10:6:20:756 UTC: 68 is x width for childrentier2
+2020/11/19 10:6:20:763 UTC: 108 is maxwidthtier2
+2020/11/19 10:6:21:276 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:21:782 UTC: For Machine Preparation expand menu, clicked at 464 x, 93 y
+2020/11/19 10:6:26:790 UTC: For Calibration expand menu, clicked at 647 x, 93 y
+2020/11/19 10:6:26:796 UTC: 'CSPM#16-09-00_w_#DC-Calibration'
+2020/11/19 10:6:26:802 UTC: 93width, 16height, Group Jogging
+2020/11/19 10:6:26:807 UTC: Group Jogging is the caption for which we check width
+2020/11/19 10:6:26:813 UTC: 96width, 16height, Devices - Entry
+2020/11/19 10:6:26:819 UTC: Devices - Entry is the caption for which we check width
+2020/11/19 10:6:26:824 UTC: 18width, 16height, LC
+2020/11/19 10:6:26:829 UTC: 28width, 16height, DC1
+2020/11/19 10:6:26:830 UTC: 28width, 16height, DC2
+2020/11/19 10:6:26:839 UTC: 85width, 16height, Devices - Exit
+2020/11/19 10:6:26:845 UTC: 96 is x width for childrentier2
+2020/11/19 10:6:27:351 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:27:356 UTC: 93width, 16height, Group Jogging
+2020/11/19 10:6:27:361 UTC: Group Jogging is the caption for which we check width
+2020/11/19 10:6:27:369 UTC: 96width, 16height, Devices - Entry
+2020/11/19 10:6:27:375 UTC: Devices - Entry is the caption for which we check width
+2020/11/19 10:6:27:381 UTC: 18width, 16height, LC
+2020/11/19 10:6:27:389 UTC: 28width, 16height, DC1
+2020/11/19 10:6:27:394 UTC: 28width, 16height, DC2
+2020/11/19 10:6:27:400 UTC: 85width, 16height, Devices - Exit
+2020/11/19 10:6:27:405 UTC: 96 is x width for childrentier2
+2020/11/19 10:6:27:411 UTC: 136 is maxwidthtier2
+2020/11/19 10:6:27:917 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:28:424 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:33:436 UTC: For Group Jogging expand menu, clicked at 647 x, 118 y
+2020/11/19 10:6:33:448 UTC: 'CSPM#54-01-00_n_#DC-GroupJogging'
+2020/11/19 10:6:33:955 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:34:462 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:39:471 UTC: For Devices - Entry expand menu, clicked at 647 x, 143 y
+2020/11/19 10:6:39:476 UTC: 'CSPM#18-27-00_n_#DC-Devices-Entry'
+2020/11/19 10:6:39:983 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:6:39:988 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:6:39:995 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:6:40:2 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:6:40:8 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:6:40:10 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:6:40:18 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:6:40:24 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:6:40:32 UTC: 174 is x width for childrentier2
+2020/11/19 10:6:40:541 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:41:49 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:41:555 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:6:46:563 UTC: For Details - Laminar Cooling expand menu, clicked at 881 x, 168 y
+2020/11/19 10:6:46:570 UTC: 'CSPM#65-01-00_n_#DC-Details-LaminarCooling'
+2020/11/19 10:6:46:575 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:6:46:589 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:6:46:595 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:6:46:601 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:6:46:607 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:6:46:611 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:6:46:618 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:6:46:624 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:6:46:629 UTC: 174 is x width for childrentier2
+2020/11/19 10:6:47:141 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:47:647 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:48:155 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:6:53:168 UTC: For Setup - Laminar Cooling expand menu, clicked at 881 x, 193 y
+2020/11/19 10:6:53:174 UTC: 'CSPM#65-02-00_w_#DC-Setup-LaminarCooling'
+2020/11/19 10:6:53:179 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:6:53:185 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:6:53:190 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:6:53:196 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:6:53:201 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:6:53:207 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:6:53:214 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:6:53:218 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:6:53:224 UTC: 174 is x width for childrentier2
+2020/11/19 10:6:53:731 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:6:54:239 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:6:54:745 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:6:59:752 UTC: For Devices - LC expand menu, clicked at 881 x, 218 y
+2020/11/19 10:6:59:760 UTC: 'CSPM#18-28-00_n_#DC-Devices-LC'
+2020/11/19 10:6:59:766 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:6:59:774 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:6:59:780 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:6:59:786 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:6:59:791 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:6:59:796 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:6:59:801 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:6:59:806 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:6:59:812 UTC: 174 is x width for childrentier2
+2020/11/19 10:7:0:318 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:0:846 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:1:353 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:7:6:361 UTC: For Devices - LC Edge Masking expand menu, clicked at 881 x, 243 y
+2020/11/19 10:7:6:366 UTC: 'CSPM#18-29-00_n_#DC-Devices-LCEdgeMasking'
+2020/11/19 10:7:6:371 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:7:6:375 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:7:6:380 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:7:6:388 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:7:6:394 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:7:6:399 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:7:6:404 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:7:6:409 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:7:6:414 UTC: 174 is x width for childrentier2
+2020/11/19 10:7:6:920 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:7:435 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:7:942 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:7:12:950 UTC: For Devices - LC Top expand menu, clicked at 881 x, 268 y
+2020/11/19 10:7:12:957 UTC: 'CSPM#18-25-00_n_#DC-Devices-LCTop'
+2020/11/19 10:7:12:963 UTC: 159width, 16height, Details - Laminar Cooling
+2020/11/19 10:7:12:967 UTC: Details - Laminar Cooling is the caption for which we check width
+2020/11/19 10:7:12:972 UTC: 153width, 16height, Setup - Laminar Cooling
+2020/11/19 10:7:12:977 UTC: 81width, 16height, Devices - LC
+2020/11/19 10:7:12:991 UTC: 174width, 16height, Devices - LC Edge Masking
+2020/11/19 10:7:12:998 UTC: Devices - LC Edge Masking is the caption for which we check width
+2020/11/19 10:7:13:4 UTC: 108width, 16height, Devices - LC Top
+2020/11/19 10:7:13:26 UTC: 129width, 16height, Devices - LC Bottom
+2020/11/19 10:7:13:39 UTC: 174 is x width for childrentier2
+2020/11/19 10:7:13:545 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:14:51 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:14:561 UTC: For LC expand menu, clicked at 647 x, 168 y
+2020/11/19 10:7:19:569 UTC: For Devices - LC Bottom expand menu, clicked at 881 x, 293 y
+2020/11/19 10:7:19:575 UTC: 'CSPM#18-26-00_n_#DC-Devices-LCBottom'
+2020/11/19 10:7:20:82 UTC: 69width, 16height, Coiler DC1
+2020/11/19 10:7:20:88 UTC: Coiler DC1 is the caption for which we check width
+2020/11/19 10:7:20:93 UTC: 83width, 16height, Mandrel DC1
+2020/11/19 10:7:20:98 UTC: Mandrel DC1 is the caption for which we check width
+2020/11/19 10:7:20:103 UTC: 91width, 16height, Devices - DC1
+2020/11/19 10:7:20:108 UTC: Devices - DC1 is the caption for which we check width
+2020/11/19 10:7:20:115 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:20:621 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:21:128 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:21:640 UTC: For DC1 expand menu, clicked at 647 x, 193 y
+2020/11/19 10:7:26:651 UTC: For Coiler DC1 expand menu, clicked at 798 x, 193 y
+2020/11/19 10:7:26:658 UTC: 'CSPM#23-12-00_w_#DC-CoilerDC1'
+2020/11/19 10:7:26:664 UTC: 69width, 16height, Coiler DC1
+2020/11/19 10:7:26:670 UTC: Coiler DC1 is the caption for which we check width
+2020/11/19 10:7:26:675 UTC: 83width, 16height, Mandrel DC1
+2020/11/19 10:7:26:680 UTC: Mandrel DC1 is the caption for which we check width
+2020/11/19 10:7:26:688 UTC: 91width, 16height, Devices - DC1
+2020/11/19 10:7:26:694 UTC: Devices - DC1 is the caption for which we check width
+2020/11/19 10:7:26:700 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:27:209 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:27:716 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:28:223 UTC: For DC1 expand menu, clicked at 647 x, 193 y
+2020/11/19 10:7:33:230 UTC: For Mandrel DC1 expand menu, clicked at 798 x, 218 y
+2020/11/19 10:7:33:235 UTC: 'CSPM#52-12-00_w_#DC-MandrelDC1'
+2020/11/19 10:7:33:241 UTC: 69width, 16height, Coiler DC1
+2020/11/19 10:7:33:246 UTC: Coiler DC1 is the caption for which we check width
+2020/11/19 10:7:33:251 UTC: 83width, 16height, Mandrel DC1
+2020/11/19 10:7:33:256 UTC: Mandrel DC1 is the caption for which we check width
+2020/11/19 10:7:33:262 UTC: 91width, 16height, Devices - DC1
+2020/11/19 10:7:33:267 UTC: Devices - DC1 is the caption for which we check width
+2020/11/19 10:7:33:272 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:33:778 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:34:287 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:34:794 UTC: For DC1 expand menu, clicked at 647 x, 193 y
+2020/11/19 10:7:39:802 UTC: For Devices - DC1 expand menu, clicked at 798 x, 243 y
+2020/11/19 10:7:39:807 UTC: 'CSPM#18-20-00_n_#DC-Devices-DC1'
+2020/11/19 10:7:40:313 UTC: 69width, 16height, Coiler DC2
+2020/11/19 10:7:40:319 UTC: Coiler DC2 is the caption for which we check width
+2020/11/19 10:7:40:324 UTC: 83width, 16height, Mandrel DC2
+2020/11/19 10:7:40:328 UTC: Mandrel DC2 is the caption for which we check width
+2020/11/19 10:7:40:336 UTC: 91width, 16height, Devices - DC2
+2020/11/19 10:7:40:340 UTC: Devices - DC2 is the caption for which we check width
+2020/11/19 10:7:40:347 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:40:852 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:41:359 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:41:869 UTC: For DC2 expand menu, clicked at 647 x, 218 y
+2020/11/19 10:7:46:938 UTC: For Coiler DC2 expand menu, clicked at 798 x, 218 y
+2020/11/19 10:7:46:945 UTC: 'CSPM#23-13-00_w_#DC-CoilerDC2'
+2020/11/19 10:7:46:951 UTC: 69width, 16height, Coiler DC2
+2020/11/19 10:7:46:958 UTC: Coiler DC2 is the caption for which we check width
+2020/11/19 10:7:46:965 UTC: 83width, 16height, Mandrel DC2
+2020/11/19 10:7:46:982 UTC: Mandrel DC2 is the caption for which we check width
+2020/11/19 10:7:46:990 UTC: 91width, 16height, Devices - DC2
+2020/11/19 10:7:46:995 UTC: Devices - DC2 is the caption for which we check width
+2020/11/19 10:7:47:1 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:47:507 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:48:14 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:48:520 UTC: For DC2 expand menu, clicked at 647 x, 218 y
+2020/11/19 10:7:53:527 UTC: For Mandrel DC2 expand menu, clicked at 798 x, 243 y
+2020/11/19 10:7:53:532 UTC: 'CSPM#52-13-00_w_#DC-MandrelDC2'
+2020/11/19 10:7:53:537 UTC: 69width, 16height, Coiler DC2
+2020/11/19 10:7:53:543 UTC: Coiler DC2 is the caption for which we check width
+2020/11/19 10:7:53:548 UTC: 83width, 16height, Mandrel DC2
+2020/11/19 10:7:53:553 UTC: Mandrel DC2 is the caption for which we check width
+2020/11/19 10:7:53:558 UTC: 91width, 16height, Devices - DC2
+2020/11/19 10:7:53:562 UTC: Devices - DC2 is the caption for which we check width
+2020/11/19 10:7:53:568 UTC: 91 is x width for childrentier2
+2020/11/19 10:7:54:75 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:7:54:583 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:7:55:93 UTC: For DC2 expand menu, clicked at 647 x, 218 y
+2020/11/19 10:8:0:100 UTC: For Devices - DC2 expand menu, clicked at 798 x, 268 y
+2020/11/19 10:8:0:106 UTC: 'CSPM#18-21-00_n_#DC-Devices-DC2'
+2020/11/19 10:8:0:616 UTC: For Down Coiler expand menu, clicked at 464 x, 15 y
+2020/11/19 10:8:1:123 UTC: For Maintenance expand menu, clicked at 464 x, 118 y
+2020/11/19 10:8:6:129 UTC: For Devices - Exit expand menu, clicked at 647 x, 243 y
+2020/11/19 10:8:6:134 UTC: 'CSPM#18-22-00_n_#DC-Devices-Exit'
+2020/11/19 10:8:6:141 UTC: 89width, 16height, Coil Conveyor
+2020/11/19 10:8:6:146 UTC: 58width, 16height, Overview
+2020/11/19 10:8:6:151 UTC: Overview is the caption for which we check width
+2020/11/19 10:8:6:156 UTC: 140width, 16height, Coil Inspection Station
+2020/11/19 10:8:6:161 UTC: Coil Inspection Station is the caption for which we check width
+2020/11/19 10:8:6:167 UTC: 123width, 16height, Logistic Sequences
+2020/11/19 10:8:6:172 UTC: 81width, 16height, Maintenance
+2020/11/19 10:8:6:177 UTC: 140 is x width for childrentier2
+2020/11/19 10:8:6:683 UTC: For Coil Conveyor expand menu, clicked at 571 x, 15 y
+2020/11/19 10:8:11:692 UTC: For Overview expand menu, clicked at 571 x, 43 y
+2020/11/19 10:8:11:697 UTC: 'CSPM#01-05-00_n_#CC-Overview'
+2020/11/19 10:8:12:206 UTC: For Coil Conveyor expand menu, clicked at 571 x, 15 y
+2020/11/19 10:8:17:214 UTC: For Coil Inspection Station expand menu, clicked at 571 x, 68 y
+2020/11/19 10:8:17:220 UTC: 'CSPM#23-16-00_n_#CC-CoilInspectionStation'
+2020/11/19 10:8:17:729 UTC: For Coil Conveyor expand menu, clicked at 571 x, 15 y
+2020/11/19 10:8:22:738 UTC: For Logistic Sequences expand menu, clicked at 571 x, 93 y
+2020/11/19 10:8:22:744 UTC: 'CSPM#16-11-00_w_#CC-LogisticSequences'
+2020/11/19 10:8:22:755 UTC: 83width, 16height, Devices - CC
+2020/11/19 10:8:22:760 UTC: Devices - CC is the caption for which we check width
+2020/11/19 10:8:22:765 UTC: 83 is x width for childrentier2
+2020/11/19 10:8:23:273 UTC: For Maintenance expand menu, clicked at 571 x, 118 y
+2020/11/19 10:8:23:278 UTC: 83width, 16height, Devices - CC
+2020/11/19 10:8:23:284 UTC: Devices - CC is the caption for which we check width
+2020/11/19 10:8:23:289 UTC: 83 is x width for childrentier2
+2020/11/19 10:8:23:293 UTC: 123 is maxwidthtier2
+2020/11/19 10:8:23:799 UTC: For Coil Conveyor expand menu, clicked at 571 x, 15 y
+2020/11/19 10:8:24:306 UTC: For Maintenance expand menu, clicked at 571 x, 118 y
+2020/11/19 10:8:29:312 UTC: For Devices - CC expand menu, clicked at 751 x, 118 y
+2020/11/19 10:8:29:319 UTC: 'CSPM#18-34-00_n_#CC-Devices-CC'
+2020/11/19 10:8:29:325 UTC: 46width, 16height, System
+2020/11/19 10:8:29:330 UTC: 77width, 16height, HMI Network
+2020/11/19 10:8:29:335 UTC: HMI Network is the caption for which we check width
+2020/11/19 10:8:29:339 UTC: 108width, 16height, Fieldbus Network
+2020/11/19 10:8:29:344 UTC: Fieldbus Network is the caption for which we check width
+2020/11/19 10:8:29:349 UTC: 112width, 16height, HMI Configuration
+2020/11/19 10:8:29:354 UTC: HMI Configuration is the caption for which we check width
+2020/11/19 10:8:29:359 UTC: 112 is x width for childrentier2
+2020/11/19 10:8:29:865 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:8:34:876 UTC: For HMI Network expand menu, clicked at 663 x, 43 y
+2020/11/19 10:8:34:883 UTC: 'i8Sys_w_Environment#Network'
+2020/11/19 10:8:34:891 UTC: 79width, 16height, Fieldbus RM
+2020/11/19 10:8:34:897 UTC: Fieldbus RM is the caption for which we check width
+2020/11/19 10:8:34:902 UTC: 78width, 16height, Fieldbus FM
+2020/11/19 10:8:34:907 UTC: 79 is x width for childrentier2
+2020/11/19 10:8:35:413 UTC: For Fieldbus Network expand menu, clicked at 663 x, 68 y
+2020/11/19 10:8:35:418 UTC: 79width, 16height, Fieldbus RM
+2020/11/19 10:8:35:423 UTC: Fieldbus RM is the caption for which we check width
+2020/11/19 10:8:35:428 UTC: 78width, 16height, Fieldbus FM
+2020/11/19 10:8:35:433 UTC: 79 is x width for childrentier2
+2020/11/19 10:8:35:439 UTC: 119 is maxwidthtier2
+2020/11/19 10:8:35:946 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:8:36:453 UTC: For Fieldbus Network expand menu, clicked at 663 x, 68 y
+2020/11/19 10:8:41:460 UTC: For Fieldbus RM expand menu, clicked at 815 x, 68 y
+2020/11/19 10:8:41:468 UTC: 'i8Sys_w_Environment_Fieldbus_Network_RM'
+2020/11/19 10:8:41:976 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:8:42:485 UTC: For Fieldbus Network expand menu, clicked at 663 x, 68 y
+2020/11/19 10:8:47:492 UTC: For Fieldbus FM expand menu, clicked at 815 x, 93 y
+2020/11/19 10:8:47:497 UTC: 'i8Sys_w_Environment_Fieldbus_Network_FM'
+2020/11/19 10:8:47:502 UTC: 77width, 16height, Node Rights
+2020/11/19 10:8:47:507 UTC: Node Rights is the caption for which we check width
+2020/11/19 10:8:47:512 UTC: 79width, 16height, Connections
+2020/11/19 10:8:47:517 UTC: Connections is the caption for which we check width
+2020/11/19 10:8:47:522 UTC: 70width, 16height, Information
+2020/11/19 10:8:47:528 UTC: 73width, 16height, User Rights
+2020/11/19 10:8:47:534 UTC: 61width, 16height, Database
+2020/11/19 10:8:47:540 UTC: 69width, 16height, Application
+2020/11/19 10:8:47:546 UTC: 86width, 16height, PDL Statistics
+2020/11/19 10:8:47:550 UTC: PDL Statistics is the caption for which we check width
+2020/11/19 10:8:47:556 UTC: 86 is x width for childrentier2
+2020/11/19 10:8:48:63 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:8:48:71 UTC: 77width, 16height, Node Rights
+2020/11/19 10:8:48:77 UTC: Node Rights is the caption for which we check width
+2020/11/19 10:8:48:82 UTC: 79width, 16height, Connections
+2020/11/19 10:8:48:82 UTC: Connections is the caption for which we check width
+2020/11/19 10:8:48:107 UTC: 70width, 16height, Information
+2020/11/19 10:8:48:114 UTC: 73width, 16height, User Rights
+2020/11/19 10:8:48:125 UTC: 61width, 16height, Database
+2020/11/19 10:8:48:131 UTC: 69width, 16height, Application
+2020/11/19 10:8:48:136 UTC: 86width, 16height, PDL Statistics
+2020/11/19 10:8:48:142 UTC: PDL Statistics is the caption for which we check width
+2020/11/19 10:8:48:148 UTC: 86 is x width for childrentier2
+2020/11/19 10:8:48:153 UTC: 126 is maxwidthtier2
+2020/11/19 10:8:48:660 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:8:49:166 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:8:54:180 UTC: For Node Rights expand menu, clicked at 815 x, 93 y
+2020/11/19 10:8:54:185 UTC: 'i8Sys_w_NodeRights'
+2020/11/19 10:8:54:691 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:8:55:198 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:0:205 UTC: For Connections expand menu, clicked at 815 x, 118 y
+2020/11/19 10:9:0:210 UTC: 'i8App_n_Connections'
+2020/11/19 10:9:0:717 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:9:1:222 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:6:229 UTC: For Information expand menu, clicked at 815 x, 143 y
+2020/11/19 10:9:6:235 UTC: 'i8Sys_n_Information'
+2020/11/19 10:9:6:742 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:9:7:252 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:12:259 UTC: For User Rights expand menu, clicked at 815 x, 168 y
+2020/11/19 10:9:12:265 UTC: 'i8Sys_w_UserRights'
+2020/11/19 10:9:12:771 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:9:13:278 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:18:286 UTC: For Database expand menu, clicked at 815 x, 193 y
+2020/11/19 10:9:18:292 UTC: 'i8Sys_n_Database'
+2020/11/19 10:9:18:799 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:9:19:305 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:24:312 UTC: For Application expand menu, clicked at 815 x, 218 y
+2020/11/19 10:9:24:317 UTC: 'i8Sys_n_Application'
+2020/11/19 10:9:24:823 UTC: For System expand menu, clicked at 663 x, 15 y
+2020/11/19 10:9:25:330 UTC: For HMI Configuration expand menu, clicked at 663 x, 93 y
+2020/11/19 10:9:30:337 UTC: For PDL Statistics expand menu, clicked at 815 x, 243 y
+2020/11/19 10:9:30:343 UTC: 'i8Sys_n_PdlStatistics'
