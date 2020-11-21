@@ -1858,8 +1858,9 @@ namespace AutomateDownloader
                         }
 
                         #region check here
-                        //StopWinCCRuntime(clientName);
-                        //StartWinCCRuntime(clientName);
+                        StopWinCCRuntime(clientName);
+                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
+                        StartWinCCRuntime(clientName);
                         //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
                         #endregion
                         if (rdpCheckBox.Checked == true)
@@ -2348,7 +2349,7 @@ namespace AutomateDownloader
 
 
             var exe = "\\StartWinCCRuntime.exe";
-            var set = "\\StartWinCCRuntimeSettings.txt";
+            var set = ""; // "\\StartWinCCRuntimeSettings.txt"; remove this issue and automatically find the mcp in the start exe
             var settPath = Application.StartupPath + set;
             //using (var fileWriter = new StreamWriter(settPath, true))
             //{
@@ -2358,6 +2359,8 @@ namespace AutomateDownloader
             //    fileWriter.Close();
             //}
             LaunchRemoteProcessWithSettingsFile(machine, exe, set);
+
+            //KillProcessViaPowershellOnMachine(machine, "StartWinCCRuntime");
             // i can has feedback?
             msg = "Started runtime on " + machine;
             statusLabel.Text = msg;
@@ -2466,7 +2469,7 @@ namespace AutomateDownloader
             // Send the enter key to the button, which raises the click
             // event for the button. This works because the tab stop of
             // the button is 0.
-            SendKeys.Send("{ENTER}");
+            //SendKeys.Send("{ENTER}");
         }
 
         private void button2_Click(object sender, EventArgs e)

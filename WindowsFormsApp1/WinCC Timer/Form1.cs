@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,8 +9,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using WinCC_Timer.Properties;
 using Interoperability;
 using System.Diagnostics;
 using System.Threading;
@@ -24,6 +21,59 @@ namespace WinCC_Timer
         public Form1()
         {
             InitializeComponent();
+
+
+            ////
+            //// This is the first node in the view.
+            ////
+            TreeNode treeNode = new TreeNode("Windows");
+            //treeView1.Nodes.Add(treeNode);
+            ////
+            //// Another node following the first node.
+            ////
+            //treeNode = new TreeNode("Linux");
+            //treeView1.Nodes.Add(treeNode);
+            ////
+            //// Create two child nodes and put them in an array.
+            //// ... Add the third node, and specify these as its children.
+            ////
+            TreeNode node2 = new TreeNode("C#");
+            TreeNode node3 = new TreeNode("VB.NET");
+            TreeNode[] array = new TreeNode[] { node2, node3 };
+            ////
+            //// Final node.
+            ////
+            //treeNode = new TreeNode("Dot Net Perls", array);
+            //treeView1.Nodes.Add(treeNode);
+
+            List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
+            var tier1 = lists.Where(c => c.Layer == "1").ToList();
+
+            foreach (MenuRow m in tier1)
+            {
+                treeNode = new TreeNode(m.Caption);
+                var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID).ToList();
+                array = new TreeNode[ChildrenTier1.Count];
+                for (int i = 0; i < ChildrenTier1.Count; i++)
+                {
+                    MenuRow child1 = ChildrenTier1[i];
+
+                    var ChildrenTier2 = lists.Where(c => c.ParentId == child1.ID).ToList();
+                    TreeNode[] array1 = new TreeNode[ChildrenTier2.Count];
+                    for (int i1 = 0; i1 < ChildrenTier2.Count; i1++)
+                    {
+                        MenuRow child2 = ChildrenTier2[i1];
+                        array1[i1] = new TreeNode(child2.Caption);
+                    }
+
+                    array[i] = new TreeNode(child1.Caption,array1);
+                }
+                treeNode = new TreeNode(m.Caption, array);
+                treeView1.Nodes.Add(treeNode);
+            }
+
+            treeView1.ExpandAll();
+            treeView1.CheckBoxes = true;
         }
 
         [DllImport("msvcrt.dll")]
@@ -60,14 +110,14 @@ namespace WinCC_Timer
                 () =>
                 {
                     Console.WriteLine("Begin second task...");
-                    GetProcessCPUUsage("PdlRt", pdlrtLogName);
-                }, //close second Action
+                    GatherProcessCPUUsage("PdlRt", pdlrtLogName);
+                } //close second Action
 
-                () =>
-                {
-                    Console.WriteLine("Begin third task...");
-                    GetProcessCPUUsage("script", scriptLogName);
-                } //close third Action
+                //() =>
+                //{
+                //    Console.WriteLine("Begin third task...");
+                //    GetProcessCPUUsage("script", scriptLogName);
+                //} //close third Action
 
             ); //close parallel.invoke
 
@@ -424,7 +474,7 @@ namespace WinCC_Timer
             #endregion
         }
 
-        private bool GetProcessCPUUsage(string process, string log)
+        private bool GatherProcessCPUUsage(string process, string log)
         {
             //LogToFile("Starting cpu usage gathering", logName);
 

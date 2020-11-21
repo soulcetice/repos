@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace StartWinCCRuntime
 {
@@ -13,40 +16,64 @@ namespace StartWinCCRuntime
 
         static void Actions()
         {
-            var currentPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var exeName = System.AppDomain.CurrentDomain.FriendlyName;
-            currentPath = currentPath.Substring(0, currentPath.Length - exeName.Length);
-            var dataFile = currentPath + @"StartWinCCRuntimeSettings.txt";
+            var c = new DirectoryInfo(@"C:\Project\");
+            var d = new DirectoryInfo(@"D:\Project\");
+            DirectoryInfo cltDir = null;
+            bool dirFlag = false;
+            while (dirFlag == false)
+            {
+                if (c.Exists)
+                {
+                    FindClientFolder(c, ref cltDir, ref dirFlag);
+                }
+                else if (d.Exists)
+                {
+                    FindClientFolder(d, ref cltDir, ref dirFlag);
+                }
+            }
 
-            List<string> data = GetData(dataFile);
-            var myPath = data[0];
-            var winccex = data[1];
-            var pdlrt = data[2];
+            var myPath = "";
+            foreach (var file in cltDir.GetFiles())
+            {
+                if (file.Extension.ToLower() == ".mcp")
+                {
+                    myPath = file.FullName;
+                }
+            }
 
+            //var myPath = @"C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.mcp";
+
+            var winccex = @"C:\Program Files (x86)\Siemens\WinCC\bin\WinCCExplorer.exe";
+            var pdlrt = @"C:\Program Files (x86)\Siemens\WinCC\bin\PdlRt.exe";
 
             Process[] processlist = Process.GetProcessesByName("WinCCExplorer");
-            Process.Start(winccex, myPath);
-            //WinCC Explorer - C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.MCP
-            var path = "WinCC Explorer - " + myPath;
-            System.Diagnostics.Debug.WriteLine(path);
-            var flag = false;
-            do
-            {
-                processlist = Process.GetProcessesByName("WinCCExplorer");
-                foreach (var proc in processlist)
-                {
-                    if (proc.ProcessName == "WinCCExplorer")
-                    {
-                        if (proc.MainWindowTitle == path)
-                        {
-                            flag = true;
-                        }
-                    }
-                }
-                System.Threading.Thread.Sleep(1000);
-            } while (flag == false);
 
-            Process.Start(pdlrt);
+            Process.Start(new ProcessStartInfo { Arguments = "/C " + @"""" + winccex + @""" " + myPath, FileName = "cmd", WindowStyle = ProcessWindowStyle.Hidden });
+
+            //IntPtr explorerWindow;
+            //do
+            //{
+            //    explorerWindow = WndSearcher.SearchForWindow("WinCCExplorerFrameWndClass", "WinCC Explorer -");
+            //    System.Threading.Thread.Sleep(1000);
+            //} while (explorerWindow == IntPtr.Zero);
+
+            System.Threading.Thread.Sleep(15000);
+
+            Process.Start(new ProcessStartInfo { Arguments = "/C " + @"""" + pdlrt + @"""", FileName = "cmd", WindowStyle = ProcessWindowStyle.Hidden });
+
+        }
+
+        private static void FindClientFolder(DirectoryInfo c, ref DirectoryInfo cltDir, ref bool dirFlag)
+        {
+            var dirs = c.GetDirectories();
+            foreach (var dir in dirs)
+            {
+                if (dir.Name.ToLower().EndsWith("_clt"))
+                {
+                    cltDir = dir;
+                    dirFlag = true;
+                }
+            }
         }
 
         private static List<string> GetData(string settingsFile)
@@ -61,4 +88,54 @@ namespace StartWinCCRuntime
             return data;
         }
     }
+}
+
+
+public class WndSearcher
+{
+    public static IntPtr SearchForWindow(string wndclass, string title)
+    {
+        SearchData sd = new SearchData { Wndclass = wndclass, Title = title };
+        EnumWindows(new EnumWindowsProc(EnumProc), ref sd);
+        return sd.hWnd;
+    }
+
+    public static bool EnumProc(IntPtr hWnd, ref SearchData data)
+    {
+        // Check classname and title
+        // This is different from FindWindow() in that the code below allows partial matches
+        StringBuilder sb = new StringBuilder(1024);
+        GetClassName(hWnd, sb, sb.Capacity);
+        if (sb.ToString().StartsWith(data.Wndclass))
+        {
+            sb = new StringBuilder(1024);
+            GetWindowText(hWnd, sb, sb.Capacity);
+            if (sb.ToString().StartsWith(data.Title))
+            {
+                data.hWnd = hWnd;
+                return false;    // Found the wnd, halt enumeration
+            }
+        }
+        return true;
+    }
+
+    public class SearchData
+    {
+        // You can put any dicks or Doms in here...
+        public string Wndclass;
+        public string Title;
+        public IntPtr hWnd;
+    }
+
+    private delegate bool EnumWindowsProc(IntPtr hWnd, ref SearchData data);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, ref SearchData data);
+
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 }
