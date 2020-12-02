@@ -114,7 +114,7 @@ namespace AutomateDownloader
 
             SetTooltips();
 
-            RenewIpsOrInit(false);
+            //RenewIpsOrInit(true);
 
             button1.Click += new EventHandler(Button1_Click);
 
@@ -419,6 +419,7 @@ namespace AutomateDownloader
             {
                 if (Boolean.TryParse(configFile.ElementAt(17), out bool result))
                     includeNonClientsBox.Checked = result;
+                RenewIpsOrInit(result);
             }
         }
 
@@ -618,6 +619,7 @@ namespace AutomateDownloader
             // checkedListBox1
             // 
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 68);
             this.checkedListBox1.Name = "checkedListBox1";
@@ -642,7 +644,8 @@ namespace AutomateDownloader
             this.ipTextBox.Name = "ipTextBox";
             this.ipTextBox.Size = new System.Drawing.Size(258, 18);
             this.ipTextBox.TabIndex = 12;
-            this.ipTextBox.Text = "C:\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\NCM_Downloader\\bin\\Debug\\lmhosts";
+            this.ipTextBox.Text = "\\\\vmware-host\\Shared Folders\\C\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\NCM_Dow" +
+    "nloader\\bin\\Debug\\lmhosts";
             this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
             // 
             // unTextBox
@@ -1149,6 +1152,7 @@ namespace AutomateDownloader
             this.button14.TabIndex = 50;
             this.button14.Text = "Explorer";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Visible = false;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // NCMForm
@@ -1665,6 +1669,7 @@ namespace AutomateDownloader
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     string clientName = checkedListBox1.CheckedItems[i].ToString();
                     StopWinCCRuntime(clientName);
+                    System.Threading.Thread.Sleep(10000);
                     //
                     //get ip here
                     //
@@ -1833,7 +1838,7 @@ namespace AutomateDownloader
                                         }
                                         LogToFile("Error on download to client " + clientIndex + 1);
 
-                                        continue;
+                                        //continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
@@ -1841,7 +1846,7 @@ namespace AutomateDownloader
                                         LogToFile("Client " + clientIndex + " download canceled - RT station not obtainable");
 
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
-                                        continue;
+                                        //continue;
                                     }
 
                                     System.Threading.Thread.Sleep(1000);
@@ -1859,9 +1864,9 @@ namespace AutomateDownloader
 
                         #region check here
                         StopWinCCRuntime(clientName);
-                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
+                        System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
                         StartWinCCRuntime(clientName);
-                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
+                        System.Threading.Thread.Sleep(20000); //sleep before closing remote desktop
                         #endregion
                         if (rdpCheckBox.Checked == true)
                         {
@@ -1888,6 +1893,7 @@ namespace AutomateDownloader
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
+
                 LogToFile("Closing logfile");
 
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
@@ -2283,7 +2289,7 @@ namespace AutomateDownloader
             LogToFile(msg);
         }
 
-        private void LaunchRemoteProcessWithSettingsFile(string machine, string exeFileName, string settingsFileName)
+        private void LaunchRemoteProcess(string machine, string exeFileName)
         {
             var exePath = Application.StartupPath + exeFileName;
 
@@ -2293,8 +2299,6 @@ namespace AutomateDownloader
             try
             {
                 File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + exeFileName);
-                //if (settingsFileName != "")
-                //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + settingsFileName);
             }
             catch (Exception exc)
             {
@@ -2329,8 +2333,6 @@ namespace AutomateDownloader
             }
 
             File.Delete(@"\\" + machine + @"\C$\Temp" + exeFileName);
-            //if (settingsFileName != "")
-            //    File.Delete(@"\\" + machine + @"\C$\Temp" + settingsFileName);
             impersonator.undoimpersonateUser();
         }
 
@@ -2344,21 +2346,10 @@ namespace AutomateDownloader
             var msg = "Starting runtime activation on " + machine + "...";
             statusLabel.Text = msg;
             LogToFile(msg);
-            var pdlrt = @"C:\Program Files (x86)\Siemens\WinCC\bin\PdlRt.exe";
-            var winccex = @"C:\Program Files (x86)\Siemens\WinCC\bin\WinCCExplorer.exe";
-
 
             var exe = "\\StartWinCCRuntime.exe";
-            var set = ""; // "\\StartWinCCRuntimeSettings.txt"; remove this issue and automatically find the mcp in the start exe
-            var settPath = Application.StartupPath + set;
-            //using (var fileWriter = new StreamWriter(settPath, true))
-            //{
-            //    fileWriter.WriteLine(mcpPathBox.Text);
-            //    fileWriter.WriteLine(winccex);
-            //    fileWriter.WriteLine(pdlrt);
-            //    fileWriter.Close();
-            //}
-            LaunchRemoteProcessWithSettingsFile(machine, exe, set);
+
+            LaunchRemoteProcess(machine, exe);
 
             //KillProcessViaPowershellOnMachine(machine, "StartWinCCRuntime");
             // i can has feedback?
@@ -2375,8 +2366,7 @@ namespace AutomateDownloader
             KeepConfig();
 
             var exe = "\\StopWinCCRuntime.exe";
-            var set = "";
-            LaunchRemoteProcessWithSettingsFile(machine, exe, set);
+            LaunchRemoteProcess(machine, exe);
 
             msg = "Stopped runtime on " + machine;
             statusLabel.Text = msg;
@@ -2557,8 +2547,8 @@ namespace AutomateDownloader
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
 
-            //foreach (var c in list)
-            //    StartWinCCRuntime(c);
+
+
 
             if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             {
@@ -2928,7 +2918,7 @@ namespace AutomateDownloader
                 checkedListBox1.Size = new System.Drawing.Size(314, 285);
                 button9.Location = new System.Drawing.Point(246, 375);
                 button10.Location = new System.Drawing.Point(286, 375);
-                includeNonClientsBox.Location = new System.Drawing.Point(165, 510);
+                includeNonClientsBox.Location = new System.Drawing.Point(68, 12);
             }
             else
             {
@@ -3060,6 +3050,12 @@ namespace AutomateDownloader
             RenewIpsOrInit(includeNonClientsBox.Checked);
         }
 
+        private void ExtractResource(string resName, string fName)
+        {
+            object ob = NCM_Downloader.Properties.Resources.ResourceManager.GetObject(resName);
+            //ob.
+        }
+
         private void button14_Click(object sender, EventArgs e)
         {
             KeepConfig();
@@ -3080,6 +3076,32 @@ namespace AutomateDownloader
                 ExtremeMirror.PinvokeWindowsNetworking.connectToRemote(@"\\" + ip + @"\c$\", unTextBox.Text, passTextBox.Text);
                 Process.Start(@"\\" + ip + @"\c$\");
             }
+
+            var secClass = @"Credential Dialog Xaml Host";
+            var secTitle = @"Windows Security";
+
+            double wait = 0;
+            bool flag = false;
+            IntPtr explorerWindow;
+            do
+            {
+                explorerWindow = WndSearcher.SearchForWindow(secClass, secTitle);
+                if (wait > 15000 || explorerWindow != IntPtr.Zero)
+                    flag = true;
+                System.Threading.Thread.Sleep(1000);
+                wait += 1000;
+            } while (flag == false);
+
+            PInvokeLibrary.SetForegroundWindow(explorerWindow);
+            foreach (var c in unTextBox.Text)
+                SendKeyHandled(explorerWindow, c.ToString());
+
+            SendKeyHandled(explorerWindow, "{TAB}");
+
+            foreach (var c in passTextBox.Text)
+                SendKeyHandled(explorerWindow, c.ToString());
+
+            SendKeyHandled(explorerWindow, "{ENTER}");
         }
     }
 }
@@ -3532,3 +3554,4 @@ public class WndSearcher
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 }
+

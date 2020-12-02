@@ -117,6 +117,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\StopWinCCRuntime.exe" />
+    <None Include="Resources\StartWinCCRuntime.exe" />
     <None Include="bin\Debug\DeleteProjectFolder.exe" />
     <None Include="bin\Debug\StartWinCCRuntime.exe" />
     <None Include="bin\Debug\StopWinCCRuntime.exe" />

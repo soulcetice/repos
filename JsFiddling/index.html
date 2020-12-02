@@ -38,6 +38,40 @@
             //if (index==="0") {
                 grid.data.values=[ [23,15,12, 8,39,50,34],
                                 [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
                                 [ 1,26,18,39,20, 6,11]
                                 ];
                                 
@@ -58,22 +92,24 @@
 
             $(function() {
                 $('#add').click(function () {
-				//push
-                    Chart1.series.items[0].data.values[0].push(Math.random() * 100);
-                    Chart1.series.items[0].data.values[1].push(Math.random() * 100);
-                    Chart1.series.items[0].data.values[2].push(Math.random() * 100);
-				//splice
-                    if (Chart1.series.items[0].data.values[0].length > 50) {
-						Chart1.series.items[0].data.values[0].splice(0, 1);
-						Chart1.series.items[0].data.values[1].splice(0, 1);
-						Chart1.series.items[0].data.values[2].splice(0, 1);
+                //push
+                for (k = 0; k < 5; k++) {
+                    for (i = 0; i < 37; i++) {
+                        Chart1.series.items[0].data.values[i].push(Math.random() * 100);
                     }
-				//min max
-                    grid.chart.axes.top.setMinMax(Chart1.series.items[0].data.values[0].length - 50, Chart1.series.items[0].data.values[0].length - 1);
-                    grid.chart.axes.bottom.setMinMax(Chart1.series.items[0].data.values[0].length - 50, Chart1.series.items[0].data.values[0].length - 1);
-				//redraw
-					grid.dataChanged=true;
-					Chart1.draw();
+                    //splice
+                    if (Chart1.series.items[0].data.values[0].length > 500) {
+                        for (i = 0; i < 37; i++) {
+                            Chart1.series.items[0].data.values[0].splice(0, 1);
+                        }
+                    }
+                    //min max
+                    grid.chart.axes.top.setMinMax(Chart1.series.items[0].data.values[0].length - 500, Chart1.series.items[0].data.values[0].length - 1);
+                    grid.chart.axes.bottom.setMinMax(Chart1.series.items[0].data.values[0].length - 500, Chart1.series.items[0].data.values[0].length - 1);
+                    //redraw
+                    grid.dataChanged=true;
+                    Chart1.draw();
+                }
             }
             );
             

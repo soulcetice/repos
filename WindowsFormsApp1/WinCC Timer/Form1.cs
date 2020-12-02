@@ -18,10 +18,17 @@ namespace WinCC_Timer
 {
     public partial class Form1 : Form
     {
+        public bool collapsed = true;
+
         public Form1()
         {
             InitializeComponent();
 
+            InitTreeView();
+        }
+
+        private void InitTreeView()
+        {
 
             ////
             //// This is the first node in the view.
@@ -54,25 +61,44 @@ namespace WinCC_Timer
                 treeNode = new TreeNode(m.Caption);
                 var ChildrenTier1 = lists.Where(c => c.ParentId == m.ID).ToList();
                 array = new TreeNode[ChildrenTier1.Count];
+
                 for (int i = 0; i < ChildrenTier1.Count; i++)
                 {
                     MenuRow child1 = ChildrenTier1[i];
-
                     var ChildrenTier2 = lists.Where(c => c.ParentId == child1.ID).ToList();
                     TreeNode[] array1 = new TreeNode[ChildrenTier2.Count];
+
                     for (int i1 = 0; i1 < ChildrenTier2.Count; i1++)
                     {
                         MenuRow child2 = ChildrenTier2[i1];
-                        array1[i1] = new TreeNode(child2.Caption);
+                        var ChildrenTier3 = lists.Where(c => c.ParentId == child2.ID).ToList();
+                        TreeNode[] array2 = new TreeNode[ChildrenTier3.Count];
+
+                        for (int i2 = 0; i2 < ChildrenTier3.Count; i2++)
+                        {
+                            MenuRow child3 = ChildrenTier3[i2];
+                            var ChildrenTier4 = lists.Where(c => c.ParentId == child3.ID).ToList();
+                            TreeNode[] array3 = new TreeNode[ChildrenTier4.Count];
+
+                            for (int i3 = 0; i3 < ChildrenTier4.Count; i3++)
+                            {
+                                MenuRow child4 = ChildrenTier4[i3];
+                                array3[i3] = new TreeNode(child4.Caption);
+                            }
+
+                            array2[i2] = new TreeNode(child3.Caption, array3);
+                        }
+
+                        array1[i1] = new TreeNode(child2.Caption, array2);
                     }
 
-                    array[i] = new TreeNode(child1.Caption,array1);
+                    array[i] = new TreeNode(child1.Caption, array1);
                 }
                 treeNode = new TreeNode(m.Caption, array);
                 treeView1.Nodes.Add(treeNode);
             }
 
-            treeView1.ExpandAll();
+            //treeView1.ExpandAll();
             treeView1.CheckBoxes = true;
         }
 
@@ -136,6 +162,22 @@ namespace WinCC_Timer
             };
         }
 
+        private List<string> selectedNodes = new List<string>();
+
+        public void GetCheckedNodes(TreeNodeCollection nodes)
+        {
+            foreach (System.Windows.Forms.TreeNode aNode in nodes)
+            {
+                if (!aNode.Checked)
+                    continue;
+
+                selectedNodes.Add(aNode.Text);
+
+                if (aNode.Nodes.Count != 0)
+                    GetCheckedNodes(aNode.Nodes);
+            }
+        }
+
         private void NavigateHMIMenu()
         {
             LogToFile("Starting menu navigation", logName);
@@ -143,6 +185,8 @@ namespace WinCC_Timer
             List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
 
             LogToFile(lists.Count + " menu items", logName);
+
+            GetCheckedNodes(treeView1.Nodes);
 
             var tier1 = lists.Where(c => c.Layer == "1").ToList();
 
@@ -156,7 +200,6 @@ namespace WinCC_Timer
                 LogToFile(msg, logName);
                 return;
             }
-            //Bitmap cmp = (Bitmap)Resources.ResourceManager.GetObject("s");
             var singleHeight = 25;
 
             //"General is 76 * 30
@@ -176,13 +219,16 @@ namespace WinCC_Timer
                 {
                     if (tier2.Pdl != "" && tier2.Pdl != "''")
                     {
-                        ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
-                        LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(5000); //open tier2 page
-                        LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                        LogToFile(tier2.Pdl, logName);
-                        currentPage = tier2.Pdl;
-                        //_ = FindObjectInHMI(cmp);
+                        if (!selectedNodes.Contains(tier2.Pdl))
+                        {
+                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                            LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
+                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(5000); //open tier2 page
+                            LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
+                            LogToFile(tier2.Pdl, logName);
+
+                            currentPage = tier2.Pdl;
+                        }
                     }
                     else
                     {
@@ -198,18 +244,18 @@ namespace WinCC_Timer
                             int xTier3 = x + tier1Width; // + longest element in tier2's width + some 40 pixels
                             if (tier3.Pdl != "" && tier3.Pdl != "''")
                             {
-                                ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
-                                LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
-                                LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(5000); //expand tier2 menu or open page
-                                LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
+                                if (!selectedNodes.Contains(tier3.Pdl))
+                                {
+                                    ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                                    LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
+                                    ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                    LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
+                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(5000); //expand tier2 menu or open page
+                                    LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
+                                    LogToFile(tier3.Pdl, logName);
 
-                                LogToFile(tier3.Pdl, logName);
-
-                                currentPage = tier3.Pdl;
-
-                                //_ = FindObjectInHMI(cmp);
+                                    currentPage = tier3.Pdl;
+                                }
                             }
                             else
                             {
@@ -220,21 +266,23 @@ namespace WinCC_Timer
                                 int yTier4 = yTier3;
                                 foreach (var tier4 in ChildrenTier3)
                                 {
-                                    int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 20; // + longest element in tier2's width + some 40 pixels
+                                    int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 40; // + longest element in tier2's width + some 40 pixels
                                     if (tier4.Pdl != "" && tier4.Pdl != "''")
                                     {
-                                        ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
-                                        LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                        ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
-                                        LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
-                                        LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                        ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(5000); //expand tier2 menu or open page
-                                        LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
-                                        LogToFile(tier4.Pdl, logName);
+                                        if (!selectedNodes.Contains(tier4.Pdl))
+                                        {
+                                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                                            LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
+                                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                            LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
+                                            ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                            LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
+                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(5000); //expand tier2 menu or open page
+                                            LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
+                                            LogToFile(tier4.Pdl, logName);
 
-                                        currentPage = tier4.Pdl;
-                                        //_ = FindObjectInHMI(cmp);
+                                            currentPage = tier4.Pdl;
+                                        }
                                     }
                                     else
                                     {
@@ -252,7 +300,6 @@ namespace WinCC_Timer
                 x += size.Width / 2;
                 x += singleHeight;
 
-                //bool v = FindObjectInHMI(cmp);
                 //still only almost, gets too offset in the end
             }
             endFlag = true;
@@ -693,7 +740,54 @@ namespace WinCC_Timer
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            NavigateHMIMenu();
+        }
 
+        private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            Debug.Print(e.Node.Text);
+            foreach (TreeNode node in e.Node.Nodes)
+            {
+                if (e.Node.Checked)
+                    node.Checked = true;
+                else
+                    node.Checked = false;
+            }
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (collapsed)
+            {
+                treeView1.ExpandAll();
+                collapsed = false;
+            }
+            else
+            {
+                treeView1.CollapseAll();
+                collapsed = true;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (TreeNode node in treeView1.Nodes)
+            {
+                node.Checked = checkBox2.Checked;
+                foreach (TreeNode node2 in node.Nodes)
+                {
+                    node2.Checked = checkBox2.Checked;
+                    foreach (TreeNode node3 in node2.Nodes)
+                    {
+                        node3.Checked = checkBox2.Checked;
+                        foreach (TreeNode node4 in node3.Nodes)
+                        {
+                            node4.Checked = checkBox2.Checked;
+                        }
+                    }
+                }
+            }
         }
     }
 }

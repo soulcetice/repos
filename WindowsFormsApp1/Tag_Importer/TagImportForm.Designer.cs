@@ -70,6 +70,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(307, 139);
             this.checkedListBox1.TabIndex = 2;
+            this.checkedListBox1.CheckOnClick = true;
             // 
             // checkBox1
             // 

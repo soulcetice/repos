@@ -63,16 +63,6 @@ namespace NCM_Downloader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] DeleteProjectFolder {
-            get {
-                object obj = ResourceManager.GetObject("DeleteProjectFolder", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] StartWinCCRuntime {
             get {
                 object obj = ResourceManager.GetObject("StartWinCCRuntime", resourceCulture);
