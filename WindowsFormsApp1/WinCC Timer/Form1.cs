@@ -228,6 +228,7 @@ namespace WinCC_Timer
                             LogToFile(tier2.Pdl, logName);
 
                             currentPage = tier2.Pdl;
+                            ScreenshotAndSave();
                         }
                     }
                     else
@@ -255,6 +256,7 @@ namespace WinCC_Timer
                                     LogToFile(tier3.Pdl, logName);
 
                                     currentPage = tier3.Pdl;
+                                    ScreenshotAndSave();
                                 }
                             }
                             else
@@ -282,6 +284,7 @@ namespace WinCC_Timer
                                             LogToFile(tier4.Pdl, logName);
 
                                             currentPage = tier4.Pdl;
+                                            ScreenshotAndSave();
                                         }
                                     }
                                     else
@@ -303,6 +306,12 @@ namespace WinCC_Timer
                 //still only almost, gets too offset in the end
             }
             endFlag = true;
+        }
+
+        private void ScreenshotAndSave()
+        {
+            Bitmap bmp = TakeScreenShot(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            bmp.Save(Application.StartupPath + "\\" + currentPage + ".png");
         }
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
@@ -421,7 +430,7 @@ namespace WinCC_Timer
         private bool FindObjectInHMI(Bitmap cmp)
         {
             DateTime start = DateTime.UtcNow;
-            Bitmap bmp = TakeScreenShot(1681, 1004);
+            Bitmap bmp = TakeScreenShot(1681, 1004, 5, 5);
             bool t = CompareMemCmp(bmp, cmp);
             LogToFile((DateTime.UtcNow - start).TotalMilliseconds.ToString() + "ms", logName);
             return t;
@@ -462,10 +471,8 @@ namespace WinCC_Timer
             }
         }
 
-        private Bitmap TakeScreenShot(int left, int top)
+        private Bitmap TakeScreenShot(int left, int top, int width, int height)
         {
-            int width = 5;
-            int height = 5;
             Bitmap bmp = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(bmp))
             {

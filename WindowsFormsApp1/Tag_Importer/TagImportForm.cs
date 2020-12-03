@@ -9,12 +9,13 @@ using System.Windows.Forms;
 using WindowHandle;
 using WindowsUtilities;
 using Interoperability;
-using PInvoke;
+//using pin;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Resources;
 using Tag_Importer.Properties;
 using System.Text.RegularExpressions;
+using PInvoke;
 
 namespace Tag_Importer
 {
