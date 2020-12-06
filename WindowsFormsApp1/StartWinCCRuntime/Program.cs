@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 
 namespace StartWinCCRuntime
@@ -32,6 +33,9 @@ namespace StartWinCCRuntime
                 }
             }
 
+            if (cltDir == null)
+                return;
+
             var myPath = "";
             foreach (var file in cltDir.GetFiles())
             {
@@ -41,26 +45,44 @@ namespace StartWinCCRuntime
                 }
             }
 
-            //var myPath = @"C:\Users\admin\Downloads\Projects\ELV-HFM\wincproj\ELVAL_HFM_CLT\ELVAL_HFM_CLT.mcp";
+            if (myPath == null)
+                return;
 
             var winccex = @"C:\Program Files (x86)\Siemens\WinCC\bin\WinCCExplorer.exe";
             var pdlrt = @"C:\Program Files (x86)\Siemens\WinCC\bin\PdlRt.exe";
 
-            Process[] processlist = Process.GetProcessesByName("WinCCExplorer");
+            Debug.Print(myPath);
 
-            Process.Start(new ProcessStartInfo { Arguments = "/C " + @"""" + winccex + @""" " + myPath, FileName = "cmd", WindowStyle = ProcessWindowStyle.Hidden });
+            Process.Start(new ProcessStartInfo
+            {
+                Arguments = "/C " + @"""" + winccex + @""" " + myPath,
+                FileName = "cmd",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                WorkingDirectory = @"C:\Program Files (x86)\Siemens\WinCC\bin\" //<---very important
+            });
 
+            //double wait = 0;
+            //bool flag = false;
             //IntPtr explorerWindow;
             //do
             //{
             //    explorerWindow = WndSearcher.SearchForWindow("WinCCExplorerFrameWndClass", "WinCC Explorer -");
+            //    if (wait > 15000 || explorerWindow != IntPtr.Zero)
+            //        flag = true;
             //    System.Threading.Thread.Sleep(1000);
-            //} while (explorerWindow == IntPtr.Zero);
+            //    wait += 1000;
+            //} while (flag == false);
 
             System.Threading.Thread.Sleep(15000);
 
-            Process.Start(new ProcessStartInfo { Arguments = "/C " + @"""" + pdlrt + @"""", FileName = "cmd", WindowStyle = ProcessWindowStyle.Hidden });
-
+            Process.Start(new ProcessStartInfo
+            {
+                Arguments = "/C " + @"""" + pdlrt + @"""",
+                FileName = "cmd",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                WorkingDirectory = @"C:\Program Files (x86)\Siemens\WinCC\bin\" //<---very important
+            });
+            //impersonator.undoimpersonateUser();
         }
 
         private static void FindClientFolder(DirectoryInfo c, ref DirectoryInfo cltDir, ref bool dirFlag)

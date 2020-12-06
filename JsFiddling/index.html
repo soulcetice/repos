@@ -1,0 +1,181 @@
+<HTML>
+
+    <HEAD>            
+        <script src="three.js"></script>
+        <script src="teechart.js"></script>
+        <script src="teechart-3d.js"></script>
+        <script src="jquery-3.5.1.min.js"></script>
+        <script>            
+            var Chart1, grid;
+
+            function draw() {
+            Chart1=new Tee.Chart("canvas");
+
+            grid = Chart1.addSeries(new Tee.ColorGrid());
+
+            grid.horizAxis="both";
+            grid.vertAxis="both";
+
+            addSampleData(0);
+
+            Chart1.title.text="TeeChart Color Grid (Heatmap)";
+
+            Chart1.panel.transparent=true;
+            Chart1.axes.left.grid.centered=true;
+            Chart1.axes.bottom.grid.centered=true;
+            
+            Chart1.axes.left.labels.fixedDecimals=true;
+            Chart1.axes.left.labels.decimals = 2;
+            Chart1.axes.right.labels.fixedDecimals=true;
+            Chart1.axes.right.labels.decimals = 2;
+
+            Chart1.tools.add(new Tee.ToolTip(Chart1));
+
+            Chart1.draw();
+            }
+
+            function addSampleData(index) {
+            //if (index==="0") {
+                grid.data.values=[ [23,15,12, 8,39,50,34],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [19, 7,31,23,12,40,27],
+                                [ 1,26,18,39,20, 6,11]
+                                ];
+                                
+                grid.dataChanged=true;
+                grid.decimals = 2;
+            //}
+            /*else
+            if (index==="1")
+                grid.addRandom(200);  // 200x200
+            else
+            if (index==="2")
+                grid.addRandom(400);  // 400x400
+            else
+                grid.addRandom(100,50);  // 100x50 */
+
+            grid.chart.zoom.reset();
+            }    
+
+            $(function() {
+                $('#add').click(function () {
+                //push
+                for (k = 0; k < 5; k++) {
+                    for (i = 0; i < 37; i++) {
+                        Chart1.series.items[0].data.values[i].push(Math.random() * 100);
+                    }
+                    //splice
+                    if (Chart1.series.items[0].data.values[0].length > 500) {
+                        for (i = 0; i < 37; i++) {
+                            Chart1.series.items[0].data.values[0].splice(0, 1);
+                        }
+                    }
+                    //min max
+                    grid.chart.axes.top.setMinMax(Chart1.series.items[0].data.values[0].length - 500, Chart1.series.items[0].data.values[0].length - 1);
+                    grid.chart.axes.bottom.setMinMax(Chart1.series.items[0].data.values[0].length - 500, Chart1.series.items[0].data.values[0].length - 1);
+                    //redraw
+                    grid.dataChanged=true;
+                    Chart1.draw();
+                }
+            }
+            );
+            
+			draw();
+            });        
+        </script>
+    </HEAD>
+    
+    <BODY>
+        <div class="right_col" role="main">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>TeeChart for JavaScript <span class="smallLetters">Color Grid</span></h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        
+            <div class="row">
+                <div class="x_panel">
+                <div class="x_title">
+                    <h2>Options <span class="smallLetters">Change the aspect of the Chart</span></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link" onclick="showHide(this)"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <input type="checkbox" name="smooth" onclick="grid.smooth= this.checked; Chart1.draw();" checked>Smooth
+                    <input type="checkbox" name="smooth" onclick="grid.format.stroke.fill= this.checked ? 'black':''; Chart1.draw();">Grid
+                    <input type="checkbox" name="legend" onclick="Chart1.legend.visible= !Chart1.legend.visible; Chart1.draw();" checked>Legend
+                    <input type="checkbox" name="grayscale" onclick="grid.palette.grayScale=this.checked; grid.dataChanged=true; Chart1.draw();">Gray Scale
+                    <input type="checkbox" name="invcolors" onclick="grid.palette.inverted=this.checked; grid.dataChanged=true; Chart1.draw();">Inverted Palette
+                    <input type="checkbox" name="invlegend" onclick="Chart1.legend.inverted=this.checked; Chart1.draw();">Inverted Legend
+                    
+                    <br/>
+                    <b>Axes:</b><br/>
+                    <input type="checkbox" name="invV" onclick="Chart1.axes.left.inverted=Chart1.axes.right.inverted=this.checked; Chart1.draw();">Inverted Vert.
+                    <input type="checkbox" name="invH" onclick="Chart1.axes.bottom.inverted=Chart1.axes.top.inverted=this.checked; Chart1.draw();">Inverted Horiz.
+                    <br/>
+                    <b>Sample data:</b><br/>
+                    <form action="">
+                      <input type="radio" name="data" id="data0" value="0" onchange="addSampleData(this.value); Chart1.draw();" checked/><label for="data0">7x3</label>
+                    </form>
+                    <br/>
+                    <button id="add">AddButton</button>
+                </div>					
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><span class="smallLetters">Color Grid</span></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link" onclick="showHide(this)"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                    <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <canvas id="canvas" height="500" width="1600">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </BODY>    
+    </HTML>

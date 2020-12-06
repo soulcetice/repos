@@ -1,6 +1,7 @@
 using Encryption;
 using ImpersonationsTools;
 using Interoperability;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,6 +82,9 @@ namespace AutomateDownloader
         private ListBox listBox1;
         private CheckBox includeNonClientsBox;
         private Button button14;
+        private Button button15;
+        private CheckBox useRemotes;
+        private CheckBox killKeyCheckBox;
         private Button button10;
         #endregion
 
@@ -114,7 +118,7 @@ namespace AutomateDownloader
 
             SetTooltips();
 
-            RenewIpsOrInit(false);
+            //RenewIpsOrInit(true);
 
             button1.Click += new EventHandler(Button1_Click);
 
@@ -419,6 +423,7 @@ namespace AutomateDownloader
             {
                 if (Boolean.TryParse(configFile.ElementAt(17), out bool result))
                     includeNonClientsBox.Checked = result;
+                RenewIpsOrInit(result);
             }
         }
 
@@ -434,11 +439,11 @@ namespace AutomateDownloader
                 }
                 numClTextBox.Text = Convert.ToString(ipList.Count());
                 firstClientIndexBox.Text = Convert.ToString(sdList.Count() + 1);
-                statusLabel.Text = "Ready";
+                listBox1.Items.Add("Ready");
             }
             else
             {
-                statusLabel.Text = "Status: Did not find LmHosts file, please check path";
+                listBox1.Items.Add("Status: Did not find LmHosts file, please check path");
             }
             statusLabel.Refresh();
             checkedListBox1.Refresh();
@@ -599,6 +604,9 @@ namespace AutomateDownloader
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.includeNonClientsBox = new System.Windows.Forms.CheckBox();
             this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.useRemotes = new System.Windows.Forms.CheckBox();
+            this.killKeyCheckBox = new System.Windows.Forms.CheckBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -607,9 +615,9 @@ namespace AutomateDownloader
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(250, 214);
+            this.button1.Location = new System.Drawing.Point(250, 289);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(73, 23);
+            this.button1.Size = new System.Drawing.Size(76, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Download";
             this.button1.UseVisualStyleBackColor = true;
@@ -618,11 +626,12 @@ namespace AutomateDownloader
             // checkedListBox1
             // 
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 68);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(229, 169);
+            this.checkedListBox1.Size = new System.Drawing.Size(229, 244);
             this.checkedListBox1.TabIndex = 8;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -642,7 +651,8 @@ namespace AutomateDownloader
             this.ipTextBox.Name = "ipTextBox";
             this.ipTextBox.Size = new System.Drawing.Size(258, 18);
             this.ipTextBox.TabIndex = 12;
-            this.ipTextBox.Text = "C:\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\NCM_Downloader\\bin\\Debug\\lmhosts";
+            this.ipTextBox.Text = "\\\\vmware-host\\Shared Folders\\C\\Users\\MURA02\\source\\repos\\WindowsFormsApp1\\NCM_Dow" +
+    "nloader\\bin\\Debug\\lmhosts";
             this.ipTextBox.TextChanged += new System.EventHandler(this.ipTextBox_TextChanged);
             // 
             // unTextBox
@@ -805,9 +815,8 @@ namespace AutomateDownloader
             this.statusLabel.BackColor = System.Drawing.Color.Transparent;
             this.statusLabel.Location = new System.Drawing.Point(9, 507);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(38, 13);
+            this.statusLabel.Size = new System.Drawing.Size(0, 13);
             this.statusLabel.TabIndex = 23;
-            this.statusLabel.Text = "Ready";
             // 
             // label9
             // 
@@ -847,7 +856,7 @@ namespace AutomateDownloader
             // 
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Location = new System.Drawing.Point(364, 363);
+            this.groupBox1.Location = new System.Drawing.Point(463, 379);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(312, 47);
             this.groupBox1.TabIndex = 28;
@@ -857,7 +866,7 @@ namespace AutomateDownloader
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(361, 68);
+            this.label1.Location = new System.Drawing.Point(373, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -867,7 +876,7 @@ namespace AutomateDownloader
             // firstClientIndexBox
             // 
             this.firstClientIndexBox.Enabled = false;
-            this.firstClientIndexBox.Location = new System.Drawing.Point(461, 65);
+            this.firstClientIndexBox.Location = new System.Drawing.Point(473, 11);
             this.firstClientIndexBox.Name = "firstClientIndexBox";
             this.firstClientIndexBox.Size = new System.Drawing.Size(28, 20);
             this.firstClientIndexBox.TabIndex = 1;
@@ -878,7 +887,7 @@ namespace AutomateDownloader
             // numClTextBox
             // 
             this.numClTextBox.Enabled = false;
-            this.numClTextBox.Location = new System.Drawing.Point(461, 94);
+            this.numClTextBox.Location = new System.Drawing.Point(473, 40);
             this.numClTextBox.Name = "numClTextBox";
             this.numClTextBox.Size = new System.Drawing.Size(28, 20);
             this.numClTextBox.TabIndex = 9;
@@ -889,7 +898,7 @@ namespace AutomateDownloader
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(361, 97);
+            this.label5.Location = new System.Drawing.Point(373, 43);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 10;
@@ -898,7 +907,7 @@ namespace AutomateDownloader
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(449, 130);
+            this.button3.Location = new System.Drawing.Point(461, 66);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(40, 23);
             this.button3.TabIndex = 29;
@@ -909,7 +918,7 @@ namespace AutomateDownloader
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(20, 327);
+            this.button4.Location = new System.Drawing.Point(15, 327);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(40, 23);
             this.button4.TabIndex = 30;
@@ -919,7 +928,7 @@ namespace AutomateDownloader
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(228, 327);
+            this.button5.Location = new System.Drawing.Point(137, 327);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(40, 23);
             this.button5.TabIndex = 31;
@@ -930,41 +939,44 @@ namespace AutomateDownloader
             // button6
             // 
             this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(72, 327);
+            this.button6.Location = new System.Drawing.Point(522, 347);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(40, 23);
             this.button6.TabIndex = 32;
             this.button6.Text = "Del";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(124, 327);
+            this.button7.Location = new System.Drawing.Point(574, 347);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(40, 23);
             this.button7.TabIndex = 33;
             this.button7.Text = "Copy";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // button8
             // 
             this.button8.Enabled = false;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(232, 247);
+            this.button8.Location = new System.Drawing.Point(669, 265);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(91, 22);
             this.button8.TabIndex = 34;
             this.button8.Text = "Alt. Download";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             this.button8.Click += new System.EventHandler(this.Button8_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(23, 304);
+            this.label13.Location = new System.Drawing.Point(460, 322);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 13);
             this.label13.TabIndex = 43;
@@ -972,7 +984,7 @@ namespace AutomateDownloader
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(280, 327);
+            this.button10.Location = new System.Drawing.Point(198, 327);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(40, 23);
             this.button10.TabIndex = 37;
@@ -982,7 +994,7 @@ namespace AutomateDownloader
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(176, 327);
+            this.button9.Location = new System.Drawing.Point(76, 327);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(40, 23);
             this.button9.TabIndex = 36;
@@ -992,7 +1004,7 @@ namespace AutomateDownloader
             // 
             // mcpPathBox
             // 
-            this.mcpPathBox.Location = new System.Drawing.Point(113, 301);
+            this.mcpPathBox.Location = new System.Drawing.Point(550, 319);
             this.mcpPathBox.Name = "mcpPathBox";
             this.mcpPathBox.Size = new System.Drawing.Size(209, 20);
             this.mcpPathBox.TabIndex = 42;
@@ -1001,7 +1013,7 @@ namespace AutomateDownloader
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(246, 278);
+            this.label12.Location = new System.Drawing.Point(244, 332);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(29, 13);
             this.label12.TabIndex = 41;
@@ -1009,7 +1021,7 @@ namespace AutomateDownloader
             // 
             // parallelBox
             // 
-            this.parallelBox.Location = new System.Drawing.Point(281, 275);
+            this.parallelBox.Location = new System.Drawing.Point(279, 329);
             this.parallelBox.Name = "parallelBox";
             this.parallelBox.Size = new System.Drawing.Size(41, 20);
             this.parallelBox.TabIndex = 40;
@@ -1018,7 +1030,7 @@ namespace AutomateDownloader
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 277);
+            this.label11.Location = new System.Drawing.Point(457, 295);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(60, 13);
             this.label11.TabIndex = 39;
@@ -1027,7 +1039,7 @@ namespace AutomateDownloader
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 251);
+            this.label10.Location = new System.Drawing.Point(474, 269);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 38;
@@ -1035,7 +1047,7 @@ namespace AutomateDownloader
             // 
             // destinationPathBox
             // 
-            this.destinationPathBox.Location = new System.Drawing.Point(84, 274);
+            this.destinationPathBox.Location = new System.Drawing.Point(521, 292);
             this.destinationPathBox.Name = "destinationPathBox";
             this.destinationPathBox.Size = new System.Drawing.Size(142, 20);
             this.destinationPathBox.TabIndex = 37;
@@ -1044,7 +1056,7 @@ namespace AutomateDownloader
             // 
             // sourcePathBox
             // 
-            this.sourcePathBox.Location = new System.Drawing.Point(84, 248);
+            this.sourcePathBox.Location = new System.Drawing.Point(521, 266);
             this.sourcePathBox.Name = "sourcePathBox";
             this.sourcePathBox.Size = new System.Drawing.Size(142, 20);
             this.sourcePathBox.TabIndex = 36;
@@ -1094,7 +1106,7 @@ namespace AutomateDownloader
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(364, 159);
+            this.textBox3.Location = new System.Drawing.Point(401, 95);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 44;
@@ -1125,6 +1137,8 @@ namespace AutomateDownloader
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Ready"});
             this.listBox1.Location = new System.Drawing.Point(12, 435);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(314, 69);
@@ -1143,17 +1157,55 @@ namespace AutomateDownloader
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(250, 507);
+            this.button14.Location = new System.Drawing.Point(364, 387);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 23);
             this.button14.TabIndex = 50;
             this.button14.Text = "Explorer";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Visible = false;
             this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(364, 358);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 51;
+            this.button15.Text = "Firewall";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // useRemotes
+            // 
+            this.useRemotes.AutoSize = true;
+            this.useRemotes.Checked = true;
+            this.useRemotes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useRemotes.Location = new System.Drawing.Point(250, 270);
+            this.useRemotes.Name = "useRemotes";
+            this.useRemotes.Size = new System.Drawing.Size(68, 17);
+            this.useRemotes.TabIndex = 52;
+            this.useRemotes.Text = "Remotes";
+            this.useRemotes.UseVisualStyleBackColor = true;
+            // 
+            // killKeyCheckBox
+            // 
+            this.killKeyCheckBox.AutoSize = true;
+            this.killKeyCheckBox.Checked = true;
+            this.killKeyCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.killKeyCheckBox.Location = new System.Drawing.Point(249, 247);
+            this.killKeyCheckBox.Name = "killKeyCheckBox";
+            this.killKeyCheckBox.Size = new System.Drawing.Size(60, 17);
+            this.killKeyCheckBox.TabIndex = 53;
+            this.killKeyCheckBox.Text = "Kill Key";
+            this.killKeyCheckBox.UseVisualStyleBackColor = true;
             // 
             // NCMForm
             // 
-            this.ClientSize = new System.Drawing.Size(339, 539);
+            this.ClientSize = new System.Drawing.Size(340, 516);
+            this.Controls.Add(this.killKeyCheckBox);
+            this.Controls.Add(this.useRemotes);
+            this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.includeNonClientsBox);
             this.Controls.Add(this.listBox1);
@@ -1236,7 +1288,7 @@ namespace AutomateDownloader
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            statusLabel.Text = "";
+            listBox1.Items.Add("");
             //
             // check inputs
             //
@@ -1248,11 +1300,24 @@ namespace AutomateDownloader
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 //MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
-                statusLabel.Text = "Status: You have not checked any clients to download to!";
+                listBox1.Items.Add("Status: You have not checked any clients to download to!");
                 statusLabel.Refresh();
                 return;
             }
             KeepConfig();
+
+            EnablePSRemoting();
+            if (useRemotes.Checked)
+            {
+                string clientsString = string.Empty;
+                foreach (var c in checkedListBox1.CheckedItems)
+                {
+                    clientsString += c.ToString() + ",";
+                }
+                clientsString = clientsString.Substring(0, clientsString.Length - 1);
+                AddToTrustedHosts(clientsString);
+            }
+
             DownloadProcess();
         }
 
@@ -1664,7 +1729,16 @@ namespace AutomateDownloader
                     System.Threading.Thread.Sleep(200);
                     int clientIndex = checkedListBox1.CheckedIndices[i];
                     string clientName = checkedListBox1.CheckedItems[i].ToString();
-                    StopWinCCRuntime(clientName);
+
+                    if (useRemotes.Checked)
+                    {
+                        EnableFirewallRule(clientName, "Remote Event Log Management");
+                        EnableFirewallRule(clientName, "Remote Event Monitor");
+                        EnableFirewallRule(clientName, "Remote Scheduled Tasks Management");
+                        StopWinCCRuntime(clientName);
+                        System.Threading.Thread.Sleep(6000);
+                    }
+
                     //
                     //get ip here
                     //
@@ -1680,7 +1754,7 @@ namespace AutomateDownloader
                     DownloadToCurrentIndex(clientIndex, ncmHandle);
 
                     LogToFile("Attempting download to client " + clientName);
-                    statusLabel.Text = "Downloading to " + clientName + "...";
+                    listBox1.Items.Add("Downloading to " + clientName + "...");
                     statusLabel.Refresh();
 
 
@@ -1747,8 +1821,13 @@ namespace AutomateDownloader
                             //            LogToFile("Attempting to kill " + processName + " at " + ip + " with username " + user + " and password " + pass + " on client " + clientName);
                             //            try
                             //            {
-                            //                var processName = "CCOnScreenKeyboard";
-                            //                KillProcessViaPowershellOnMachine(clientName, processName);
+
+                            if (killKeyCheckBox.Checked)
+                            {
+                                var processName = "CCOnScreenKeyboard";
+                                KillProcessViaPowershellOnMachine(clientName, processName);
+                            }
+
                             //            }
                             //            catch (Exception)
                             //            {
@@ -1833,7 +1912,7 @@ namespace AutomateDownloader
                                         }
                                         LogToFile("Error on download to client " + clientIndex + 1);
 
-                                        continue;
+                                        //continue;
                                     }
 
                                     if (dldingTgtText.Where(x => x.Contains("Canceled:")).Count() > 0)
@@ -1841,7 +1920,7 @@ namespace AutomateDownloader
                                         LogToFile("Client " + clientIndex + " download canceled - RT station not obtainable");
 
                                         MessageBox.Show(new Form { TopMost = true }, " Client " + clientIndex + " download canceled - RT station not obtainable - will continue to next client download");
-                                        continue;
+                                        //continue;
                                     }
 
                                     System.Threading.Thread.Sleep(1000);
@@ -1858,10 +1937,13 @@ namespace AutomateDownloader
                         }
 
                         #region check here
-                        StopWinCCRuntime(clientName);
-                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
-                        StartWinCCRuntime(clientName);
-                        //System.Threading.Thread.Sleep(15000); //sleep before closing remote desktop
+                        if (useRemotes.Checked)
+                        {
+                            StopWinCCRuntime(clientName);
+                            System.Threading.Thread.Sleep(6000); //sleep before closing remote desktop
+                            StartWinCCRuntime(clientName);
+                            System.Threading.Thread.Sleep(5000); //sleep before closing remote desktop
+                        }
                         #endregion
                         if (rdpCheckBox.Checked == true)
                         {
@@ -1869,8 +1951,8 @@ namespace AutomateDownloader
                         }
 
                         //progressBar1.Value = clientProg * (i + 1);
-                        //statusLabel.Text = "Progress: " + progressBar1.Value.ToString() + "%";
-                        //statusLabel.Text = "Progress: " + clientName;
+                        //listBox1.Items.Add("Progress: " + progressBar1.Value.ToString() + "%";
+                        //listBox1.Items.Add("Progress: " + clientName;
                         var ended = DateTime.Now;
                         var secElapsed = Math.Round((ended - started).TotalSeconds, 2);
                         LogToFile(DateTime.UtcNow.ToLongDateString() + " " + DateTime.UtcNow.ToLongTimeString() +
@@ -1888,6 +1970,7 @@ namespace AutomateDownloader
                         MessageBox.Show(new Form { TopMost = true }, "Could not focus on download popup!"); //careful to focus on it
                     }
                 }
+
                 LogToFile("Closing logfile");
 
                 MessageBox.Show(new Form { TopMost = true }, "The NCM download process has been finished!"); //careful to focus on it
@@ -2059,54 +2142,145 @@ namespace AutomateDownloader
 
         private void KillProcessViaPowershellOnMachine(string machine, string process)
         {
-            try
-            {
-                AddToTrustedHosts();
-            }
-            catch (Exception e)
-            {
-                LogToFile(e.Message);
-            }
-            finally
-            {
-                //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
-                //kill these:
-                try
-                {
-                    Runspace runSpace = RunspaceFactory.CreateRunspace();
-                    runSpace.Open();
-                    Pipeline pipeline = runSpace.CreatePipeline();
+            //try
+            //{
+            AddToTrustedHosts(machine);
+            //}
+            //catch (Exception e)
+            //{
+            //    LogToFile(e.Message);
+            //}
+            //finally
+            //{
+            //    //Invoke-command -computername "TcmHmiC05" {Get-Process | ? {$_.name -match 'CCOnScreenKeyboard'} | Stop-Process -Force}
+            //    //kill these:
+            //    try
+            //    {
 
-                    Command invokeScript = new Command("Invoke-Command");
-                    RunspaceInvoke invoke = new RunspaceInvoke();
-                    //Invoke-Command -scriptBlock
-                    ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
-                    invokeScript.Parameters.Add("computername", machine);
-                    invokeScript.Parameters.Add("scriptBlock", sb);
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
 
-                    pipeline.Commands.Add(invokeScript);
-                    Collection<PSObject> output = pipeline.Invoke();
-                    foreach (PSObject obj in output)
-                    {
-                        LogToFile(obj.ToString());
-                    }
-                }
-                catch (Exception e)
-                {
-                    LogToFile(e.Message + " at kill process");
-                }
-                finally
-                {
-                    LogToFile("could not kill process");
-                }
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+            //Invoke-Command -scriptBlock
+            ScriptBlock sb = invoke.Invoke("{Get-Process | ? {$_.name -match '" + process + "'} | Stop-Process -Force}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("computername", machine);
+            invokeScript.Parameters.Add("scriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
             }
+
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        LogToFile(e.Message + " at kill process");
+            //    }
+            //    finally
+            //    {
+            //        LogToFile("could not kill process");
+            //    }
+            //}
         }
 
-        private void AddToTrustedHosts()
+        private void EnableFirewallRule(string machine, string rule)
+        {
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+            //#warning VERY IMPORTANT TO RUN AS ADMIN
+            ScriptBlock sb = invoke.Invoke("{Set-NetFirewallRule -DisplayGroup '" + rule + "' -Enabled True -PassThru |select DisplayName, Enabled}")[0].BaseObject as ScriptBlock;
+            if (machine != Environment.MachineName)
+            {
+                invokeScript.Parameters.Add("ComputerName", machine);
+                invokeScript.Parameters.Add("Credential", cred);
+            }
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+            LogToFile("Enabled firewall rule with displayname " + rule);
+        }
+
+        private void EnablePSRemoting()
         {
             //run ps command here
             //or run ps file
-            System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "StartTrustedHosts.ps1"));
+            //System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "StartTrustedHosts.ps1"));
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+            //#warning VERY IMPORTANT TO RUN AS ADMIN
+            ScriptBlock sb = invoke.Invoke("{Enable-PSRemoting}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+            LogToFile("Enabled PSremoting locally");
+        }
+
+        private void AddToTrustedHosts(string clients)
+        {
+            //run ps command here
+            //or run ps file
+            //System.Diagnostics.Process.Start(Path.Combine(Application.StartupPath, "StartTrustedHosts.ps1"));
+            Runspace runSpace = RunspaceFactory.CreateRunspace();
+            runSpace.Open();
+            Pipeline pipeline = runSpace.CreatePipeline();
+
+            Command invokeScript = new Command("Invoke-Command");
+            RunspaceInvoke invoke = new RunspaceInvoke();
+
+            var s = new SecureString();
+            foreach (var ch in passTextBox.Text)
+            {
+                s.AppendChar(ch);
+            }
+            var cred = new PSCredential(unTextBox.Text, s);
+            //#warning VERY IMPORTANT TO RUN AS ADMIN
+
+            ScriptBlock sb = invoke.Invoke(@"{Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value '" + clients + "' -Force}")[0].BaseObject as ScriptBlock;
+            invokeScript.Parameters.Add("ScriptBlock", sb);
+
+            pipeline.Commands.Add(invokeScript);
+            Collection<PSObject> output = pipeline.Invoke();
+            foreach (PSObject obj in output)
+            {
+                LogToFile(obj.ToString());
+            }
+            LogToFile("Enabled PSremoting locally");
         }
 
         private void StartDownloads(int paralellismDeg)
@@ -2132,7 +2306,7 @@ namespace AutomateDownloader
                     {
                         //do something
                         msg = "Started download process for " + CheckedItem;
-                        statusLabel.Text = msg;
+                        listBox1.Items.Add(msg);
                         LogToFile(msg);
 
                         var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
@@ -2152,7 +2326,7 @@ namespace AutomateDownloader
                         CloseRemoteSession(ip);
 
                         msg = "Finished download process for " + CheckedItem;
-                        statusLabel.Text = msg;
+                        listBox1.Items.Add(msg);
                         LogToFile(msg);
 
                         Console.WriteLine(CheckedItem);
@@ -2165,7 +2339,7 @@ namespace AutomateDownloader
         private void OpenRemoteSession(string ip, string un, string pw)
         {
             var msg = "Opening remote session of " + ip + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
 
             Process rdcProcess = new Process();
@@ -2212,14 +2386,14 @@ namespace AutomateDownloader
             } while (myRdp == IntPtr.Zero);
 
             msg = "Opened remote session of " + ip;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
         }
 
         private void CloseRemoteSession(string ip)
         {
             var msg = "Closing remote session of " + ip + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
             IntPtr myRdp = PInvokeLibrary.FindWindow("TscShellContainerClass", ip + " - Remote Desktop Connection");
             if (myRdp != IntPtr.Zero)
@@ -2229,14 +2403,14 @@ namespace AutomateDownloader
             }
 
             msg = "Closed remote session of " + ip;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
         }
 
         private void ResetWinCCProcesses(string machine)
         {
             var msg = "Started cleaning processes on " + machine + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
 
             foreach (var process in processes)
@@ -2279,11 +2453,11 @@ namespace AutomateDownloader
             }
 
             msg = "Prepared processes on " + machine;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
         }
 
-        private void LaunchRemoteProcessWithSettingsFile(string machine, string exeFileName, string settingsFileName)
+        private void LaunchRemoteProcess(string machine, string exeFileName)
         {
             var exePath = Application.StartupPath + exeFileName;
 
@@ -2293,8 +2467,6 @@ namespace AutomateDownloader
             try
             {
                 File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + exeFileName);
-                //if (settingsFileName != "")
-                //    File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + settingsFileName);
             }
             catch (Exception exc)
             {
@@ -2329,8 +2501,6 @@ namespace AutomateDownloader
             }
 
             File.Delete(@"\\" + machine + @"\C$\Temp" + exeFileName);
-            //if (settingsFileName != "")
-            //    File.Delete(@"\\" + machine + @"\C$\Temp" + settingsFileName);
             impersonator.undoimpersonateUser();
         }
 
@@ -2342,44 +2512,74 @@ namespace AutomateDownloader
                 return;
             }
             var msg = "Starting runtime activation on " + machine + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
-            var pdlrt = @"C:\Program Files (x86)\Siemens\WinCC\bin\PdlRt.exe";
-            var winccex = @"C:\Program Files (x86)\Siemens\WinCC\bin\WinCCExplorer.exe";
-
 
             var exe = "\\StartWinCCRuntime.exe";
-            var set = ""; // "\\StartWinCCRuntimeSettings.txt"; remove this issue and automatically find the mcp in the start exe
-            var settPath = Application.StartupPath + set;
-            //using (var fileWriter = new StreamWriter(settPath, true))
-            //{
-            //    fileWriter.WriteLine(mcpPathBox.Text);
-            //    fileWriter.WriteLine(winccex);
-            //    fileWriter.WriteLine(pdlrt);
-            //    fileWriter.Close();
-            //}
-            LaunchRemoteProcessWithSettingsFile(machine, exe, set);
 
-            //KillProcessViaPowershellOnMachine(machine, "StartWinCCRuntime");
-            // i can has feedback?
+            LaunchRemoteTaskSched(machine, exe);
+
             msg = "Started runtime on " + machine;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
+        }
+
+        private void LaunchRemoteTaskSched(string machine, string exe)
+        {
+            var exePath = Application.StartupPath + exe;
+            try
+            {
+                File.Copy(exePath, @"\\" + machine + @"\C$\Temp" + exe);
+            }
+            catch (Exception exc)
+            {
+                LogToFile(exc.Message);
+            }
+
+            //// Get the service on the remote machine
+            //using (TaskService ts = new TaskService(machine, machine + "\\" + unTextBox.Text, machine, passTextBox.Text))
+            //{
+            //    // Create a new task definition and assign properties
+            //    TaskDefinition td = ts.NewTask();
+            //    td.RegistrationInfo.Description = "Does something!";                
+
+            //    // Create a trigger that will fire the task at this time every other day
+            //    td.Triggers.Add(new DailyTrigger { DaysInterval = 1 });
+
+            //    // Create an action that will launch Notepad whenever the trigger fires
+            //    td.Actions.Add(new ExecAction(@"C:\Temp\StartWinCCRuntime.exe"));
+
+            //    // Register the task in the root folder
+            //    ts.RootFolder.RegisterTaskDefinition(@"Test", td);
+            //}
+
+            using (TaskService ts = new TaskService())
+            {
+
+                string task = "StartWinCCRuntime";
+                ts.TargetServer = machine;
+
+                Microsoft.Win32.TaskScheduler.Task t = ts.FindTask(task);
+                if (t != null)
+                    t.Run();
+
+            }
+
+            //File.Delete(@"\\" + machine + @"\C$\Temp" + exe);
         }
 
         private void StopWinCCRuntime(string machine)
         {
             var msg = "Started deactivating runtime on " + machine + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
             KeepConfig();
 
             var exe = "\\StopWinCCRuntime.exe";
-            var set = "";
-            LaunchRemoteProcessWithSettingsFile(machine, exe, set);
+            LaunchRemoteProcess(machine, exe);
 
             msg = "Stopped runtime on " + machine;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
         }
 
@@ -2445,7 +2645,7 @@ namespace AutomateDownloader
         private void DeleteProjectFolder(string machine)
         {
             var msg = "Started deleting on " + machine + "...";
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
             KeepConfig();
 
@@ -2455,7 +2655,7 @@ namespace AutomateDownloader
             Directory.Delete(@"\\" + machine + "\\" + destinationPathBox.Text, true);
 
             msg = "Deleted project on " + machine;
-            statusLabel.Text = msg;
+            listBox1.Items.Add(msg);
             LogToFile(msg);
 
             impersonator.undoimpersonateUser();
@@ -2556,9 +2756,6 @@ namespace AutomateDownloader
             var list = new List<string>();
             foreach (var c in checkedListBox1.CheckedItems)
                 list.Add(c.ToString());
-
-            //foreach (var c in list)
-            //    StartWinCCRuntime(c);
 
             if (!Int32.TryParse(parallelBox.Text, out int maxPar))
             {
@@ -2905,9 +3102,9 @@ namespace AutomateDownloader
                 button3.Visible = false;
                 button4.Visible = false;
                 button5.Visible = false;
-                button6.Visible = false;
-                button7.Visible = false;
-                button8.Visible = false;
+                //button6.Visible = false;
+                //button7.Visible = false;
+                //button8.Visible = false;
                 //groupBox2.Visible = false;
                 label13.Visible = false;
                 //button10.Visible = false;
@@ -2922,13 +3119,16 @@ namespace AutomateDownloader
                 button2.Visible = false;
                 button11.Visible = false;
                 button12.Visible = false;
+                useRemotes.Visible = false;
+
                 vpnPassBox.Visible = true;
                 button13.Visible = true;
                 //checkBox2.Visible = false;
+
                 checkedListBox1.Size = new System.Drawing.Size(314, 285);
                 button9.Location = new System.Drawing.Point(246, 375);
                 button10.Location = new System.Drawing.Point(286, 375);
-                includeNonClientsBox.Location = new System.Drawing.Point(165, 510);
+                includeNonClientsBox.Location = new System.Drawing.Point(68, 12);
             }
             else
             {
@@ -2964,9 +3164,9 @@ namespace AutomateDownloader
                 button3.Visible = true;
                 button4.Visible = true;
                 button5.Visible = true;
-                button6.Visible = true;
-                button7.Visible = true;
-                button8.Visible = true;
+                //button6.Visible = true;
+                //button7.Visible = true;
+                //button8.Visible = true;
                 //groupBox2.Visible = true;
                 label13.Visible = true;
                 //button10.Visible = true;
@@ -2974,17 +3174,20 @@ namespace AutomateDownloader
                 mcpPathBox.Visible = true;
                 label12.Visible = true;
                 parallelBox.Visible = true;
-                label11.Visible = true;
-                label10.Visible = true;
-                destinationPathBox.Visible = true;
-                sourcePathBox.Visible = true;
                 button2.Visible = true;
                 button11.Visible = true;
                 button12.Visible = true;
+                useRemotes.Visible = true;
+
                 vpnPassBox.Visible = false;
                 button13.Visible = false;
+                label11.Visible = false;
+                label10.Visible = false;
+                destinationPathBox.Visible = false;
+                sourcePathBox.Visible = false;
                 //checkBox2.Visible = true;
-                checkedListBox1.Size = new System.Drawing.Size(188, 124);
+
+                checkedListBox1.Size = new System.Drawing.Size(229, 244);
                 button9.Location = new System.Drawing.Point(176, 327);
                 button10.Location = new System.Drawing.Point(280, 327);
                 includeNonClientsBox.Location = new System.Drawing.Point(247, 90);
@@ -3060,6 +3263,12 @@ namespace AutomateDownloader
             RenewIpsOrInit(includeNonClientsBox.Checked);
         }
 
+        private void ExtractResource(string resName, string fName)
+        {
+            object ob = NCM_Downloader.Properties.Resources.ResourceManager.GetObject(resName);
+            //ob.
+        }
+
         private void button14_Click(object sender, EventArgs e)
         {
             KeepConfig();
@@ -3080,6 +3289,47 @@ namespace AutomateDownloader
                 ExtremeMirror.PinvokeWindowsNetworking.connectToRemote(@"\\" + ip + @"\c$\", unTextBox.Text, passTextBox.Text);
                 Process.Start(@"\\" + ip + @"\c$\");
             }
+
+            var secClass = @"Credential Dialog Xaml Host";
+            var secTitle = @"Windows Security";
+
+            double wait = 0;
+            bool flag = false;
+            IntPtr explorerWindow;
+            do
+            {
+                explorerWindow = WndSearcher.SearchForWindow(secClass, secTitle);
+                if (wait > 15000 || explorerWindow != IntPtr.Zero)
+                    flag = true;
+                System.Threading.Thread.Sleep(1000);
+                wait += 1000;
+            } while (flag == false);
+
+            PInvokeLibrary.SetForegroundWindow(explorerWindow);
+            foreach (var c in unTextBox.Text)
+                SendKeyHandled(explorerWindow, c.ToString());
+
+            SendKeyHandled(explorerWindow, "{TAB}");
+
+            foreach (var c in passTextBox.Text)
+                SendKeyHandled(explorerWindow, c.ToString());
+
+            SendKeyHandled(explorerWindow, "{ENTER}");
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            string clientsString = string.Empty;
+            foreach (var c in checkedListBox1.CheckedItems)
+            {
+                clientsString += c.ToString() + ",";
+            }
+            clientsString = clientsString.Substring(0, clientsString.Length - 1);
+            AddToTrustedHosts(clientsString);
+
+            EnableFirewallRule(Environment.MachineName, "Remote Event Log Management");
+            EnableFirewallRule(Environment.MachineName, "Remote Event Monitor");
+            EnableFirewallRule(Environment.MachineName, "Remote Scheduled Tasks Management");
         }
     }
 }
@@ -3279,7 +3529,7 @@ namespace ImpersonationsTools
         #region "Methods"
 
         //Public Sub PerformImpersonatedTask(ByVal username As String, ByVal domain As String, ByVal password As String, ByVal logonType As Integer, ByVal logonProvider As Integer, ByVal methodToPerform As Action)
-        public void PerformImpersonatedTask(string username, string domain, string password, int logonType, int logonProvider, Action methodToPerform)
+        public void PerformImpersonatedTask(string username, string domain, string password, int logonType, int logonProvider, System.Action methodToPerform)
         {
             IntPtr token = IntPtr.Zero;
             if (RevertToSelf())
@@ -3532,3 +3782,4 @@ public class WndSearcher
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 }
+

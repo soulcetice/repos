@@ -1,6 +1,0 @@
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\bin\Debug\DeleteProjectFolder.exe.config
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\bin\Debug\DeleteProjectFolder.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\bin\Debug\DeleteProjectFolder.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\obj\Debug\NCM_DeleteProjectFolder.csproj.CoreCompileInputs.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\obj\Debug\DeleteProjectFolder.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DeleteProjectFolder\obj\Debug\DeleteProjectFolder.pdb

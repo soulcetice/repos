@@ -78,6 +78,7 @@ namespace Deploy_Files
             this.checkedListBox1.ScrollAlwaysVisible = true;
             this.checkedListBox1.Size = new System.Drawing.Size(298, 184);
             this.checkedListBox1.TabIndex = 4;
+            this.checkedListBox1.CheckOnClick = true;
             // 
             // dateTimePicker1
             // 
