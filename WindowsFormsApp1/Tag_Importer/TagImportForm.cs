@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WindowHandle;
 using WindowsUtilities;
-using Interoperability;
+using CommonInterops;
 //using pin;
 using System.IO;
 using System.Drawing.Imaging;
@@ -616,90 +616,90 @@ namespace Tag_Importer
             return 0; //inconclusive
         }
 
-        private List<MyFunctions.PosLetter> GetCharactersInHandle(IntPtr handle)
+        private List<TheMagic.PosLetter> GetCharactersInHandle(IntPtr handle)
         {
             //only works for white background for now!!!
             MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
-            Bitmap img = MyFunctions.GetPngByHandle(handle);
-            List<MyFunctions.PosLetter> allCharsFound = new List<MyFunctions.PosLetter>();
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_A")), "A"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_B")), "B"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_C")), "C"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_D")), "D"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_E")), "E"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_F")), "F"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_G")), "G"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_H")), "H"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_I")), "I"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_J")), "J"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_K")), "K"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_L")), "L"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_M")), "M"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_N")), "N"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_O")), "O"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_P")), "P"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Q")), "Q"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_R")), "R"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_S")), "S"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_T")), "T"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_U")), "U"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_V")), "V"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_W")), "W"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_X")), "X"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Y")), "Y"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Z")), "Z"));
+            Bitmap img = TheMagic.GetPngByHandle(handle);
+            List<TheMagic.PosLetter> allCharsFound = new List<TheMagic.PosLetter>();
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_A")), "A"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_B")), "B"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_C")), "C"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_D")), "D"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_E")), "E"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_F")), "F"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_G")), "G"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_H")), "H"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_I")), "I"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_J")), "J"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_K")), "K"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_L")), "L"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_M")), "M"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_N")), "N"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_O")), "O"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_P")), "P"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Q")), "Q"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_R")), "R"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_S")), "S"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_T")), "T"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_U")), "U"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_V")), "V"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_W")), "W"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_X")), "X"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Y")), "Y"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Z")), "Z"));
 
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_a")), "a"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_b")), "b"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_c")), "c"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_d")), "d"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_e")), "e"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_f")), "f"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_g")), "g"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_h")), "h"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_i")), "i"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_j")), "j"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_k")), "k"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_l")), "l"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_m")), "m"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_n")), "n"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_o")), "o"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_p")), "p"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_q")), "q"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_r")), "r"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_s")), "s"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_t")), "t"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_u")), "u"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_v")), "v"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_w")), "w"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_x")), "x"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_y")), "y"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_z")), "z"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rf")), "rf"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_a")), "a"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_b")), "b"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_c")), "c"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_d")), "d"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_e")), "e"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_f")), "f"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_g")), "g"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_h")), "h"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_i")), "i"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_j")), "j"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_k")), "k"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_l")), "l"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_m")), "m"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_n")), "n"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_o")), "o"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_p")), "p"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_q")), "q"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_r")), "r"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_s")), "s"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_t")), "t"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_u")), "u"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_v")), "v"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_w")), "w"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_x")), "x"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_y")), "y"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_z")), "z"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rf")), "rf"));
             //allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rt")), "rt"));
             //allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("txt")), ".txt"));
 
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("underscore")), "_"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("arond")), "@"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dot")), "."));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_#")), "#"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_1")), "1"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_2")), "2"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_3")), "3"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_4")), "4"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_5")), "5"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_6")), "6"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_7")), "7"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_8")), "8"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_9")), "9"));
-            allCharsFound.AddRange(Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_0")), "0"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("underscore")), "_"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("arond")), "@"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dot")), "."));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_#")), "#"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_1")), "1"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_2")), "2"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_3")), "3"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_4")), "4"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_5")), "5"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_6")), "6"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_7")), "7"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_8")), "8"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_9")), "9"));
+            allCharsFound.AddRange(Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_0")), "0"));
 
             return allCharsFound;
         }
 
         private void ScrollDownOnePage(IntPtr trHandle, RECT trRect, bool up)
         {
-            var img = MyFunctions.GetPngByHandle(trHandle);
+            var img = TheMagic.GetPngByHandle(trHandle);
             var scrollState = GetHandleScrollState(img);
             //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
 
@@ -734,7 +734,7 @@ namespace Tag_Importer
                         var goHere = Find(img, scrollDn).FirstOrDefault();
                         ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
                     }
-                    img = MyFunctions.GetPngByHandle(trHandle);
+                    img = TheMagic.GetPngByHandle(trHandle);
 
                     scrollState = GetHandleScrollState(img);
                     img.Dispose();
@@ -745,7 +745,7 @@ namespace Tag_Importer
 
         private void ScrollAllTheWayUp(IntPtr trHandle, RECT trRect, bool up)
         {
-            var img = MyFunctions.GetPngByHandle(trHandle);
+            var img = TheMagic.GetPngByHandle(trHandle);
             var scrollState = GetHandleScrollState(img);
             Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
             Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
@@ -779,7 +779,7 @@ namespace Tag_Importer
                         var goHere = Find(img, scrollDn).FirstOrDefault();
                         ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
                     }
-                    img = MyFunctions.GetPngByHandle(trHandle);
+                    img = TheMagic.GetPngByHandle(trHandle);
 
                     scrollState = GetHandleScrollState(img);
                     System.Threading.Thread.Sleep(10);
@@ -848,7 +848,7 @@ namespace Tag_Importer
         private Point? TextHasExpandOrHide(IntPtr trHandle, WordWithLocation foundElem, bool expand)
         {
             Bitmap find = expand != true ? (Bitmap)Resources.ResourceManager.GetObject("minus") : (Bitmap)Resources.ResourceManager.GetObject("plus");
-            var img = MyFunctions.GetPngByHandle(trHandle);
+            var img = TheMagic.GetPngByHandle(trHandle);
             var foundExpandButtons = Find(img, find);
             foreach (var c in foundExpandButtons)
             {
@@ -1007,7 +1007,7 @@ namespace Tag_Importer
             var sorted = new List<dynamic>();
             var toSort = GetCharactersInHandle(fileListParent).OrderBy(elem => elem.y).ToList();
 
-            var yList = (from MyFunctions.PosLetter c in toSort
+            var yList = (from TheMagic.PosLetter c in toSort
                          select c.y).ToList();
             List<int> yDifs = new List<int>();
             for (int i = 1; i < yList.Count; i++)
@@ -1016,14 +1016,14 @@ namespace Tag_Importer
             }
 
             //find y bands and group by band
-            var sortedList = new List<List<MyFunctions.PosLetter>>();
+            var sortedList = new List<List<TheMagic.PosLetter>>();
             int j = -1;
             for (int i = 0; i < yDifs.Count; i++)
             {
                 //add first element and first character
                 if (sortedList.Count == 0)
                 {
-                    sortedList.Add(new List<MyFunctions.PosLetter>());
+                    sortedList.Add(new List<TheMagic.PosLetter>());
                     j++;
                     sortedList[j].Add(toSort[i]);
                 }
@@ -1031,7 +1031,7 @@ namespace Tag_Importer
                 {
                     if (yDifs[i] > 7) //the yband tolerance
                     {
-                        sortedList.Add(new List<MyFunctions.PosLetter>());
+                        sortedList.Add(new List<TheMagic.PosLetter>());
                         sortedList[j].Add(toSort[i]);
                         j++;
                     }
@@ -1057,11 +1057,11 @@ namespace Tag_Importer
             int iter = 0;
             for (int i = 0; i < sortedList.Count; i++)
             {
-                List<MyFunctions.PosLetter> word = sortedList[i];
+                List<TheMagic.PosLetter> word = sortedList[i];
                 words.Add(new WordWithLocation());
                 for (int i1 = 0; i1 < word.Count; i1++)
                 {
-                    MyFunctions.PosLetter c = word[i1];
+                    TheMagic.PosLetter c = word[i1];
                     words[iter].word += c.letter;
                     words[iter].x += c.x;
                     words[iter].y += c.y;
@@ -1116,7 +1116,7 @@ namespace Tag_Importer
                     select firstLineMatchPoint).ToList();
         }
 
-        public List<MyFunctions.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
+        public List<TheMagic.PosLetter> Find(Bitmap haystack, Bitmap needle, string l)
         {
             if (null == haystack || null == needle)
             {
@@ -1129,13 +1129,13 @@ namespace Tag_Importer
 
             var haystackArray = GetPixelArray(haystack);
             var needleArray = GetPixelArray(needle);
-            var list = new List<MyFunctions.PosLetter>();
+            var list = new List<TheMagic.PosLetter>();
 
             foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
             {
                 if (IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1))
                 {
-                    list.Add(new MyFunctions.PosLetter()
+                    list.Add(new TheMagic.PosLetter()
                     {
                         letter = l,
                         x = firstLineMatchPoint.X,

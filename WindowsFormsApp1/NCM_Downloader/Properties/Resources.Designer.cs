@@ -59,25 +59,5 @@ namespace NCM_Downloader.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] StartWinCCRuntime {
-            get {
-                object obj = ResourceManager.GetObject("StartWinCCRuntime", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] StopWinCCRuntime {
-            get {
-                object obj = ResourceManager.GetObject("StopWinCCRuntime", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

@@ -31,6 +31,8 @@ namespace StopWinCCRuntime
                     System.Threading.Thread.Sleep(500);
                 } while (deactivatingPopup != IntPtr.Zero);
 
+                System.Threading.Thread.Sleep(5000);
+
                 //System.Diagnostics.Process.Start(@"cscript //B //Nologo C:\Program Files (x86)\Siemens\WinCC\bin\Reset_WinCC.vbs"); 
                 Process scriptProc = new Process();
                 scriptProc.StartInfo.FileName = @"cscript";

@@ -142,15 +142,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="CCDATAGRIDCONTROLLib">
-      <Guid>{F945CBCB-8733-46B0-84BF-0D337ACA2280}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="CCDMRTLOADERLib">
       <Guid>{C64A5A11-D377-11D1-AEB4-006097662572}</Guid>
       <VersionMajor>1</VersionMajor>

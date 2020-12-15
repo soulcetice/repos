@@ -12,8 +12,11 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Drawing.Imaging;
 using System.Xml;
+using System.Security.Principal;
+using System.Security.Cryptography;
+using System.IO;
 
-namespace Interoperability
+namespace CommonInterops
 {
     public class MouseOperations
     {
@@ -527,7 +530,7 @@ namespace Interoperability
         #endregion
     }
 
-    public class MyFunctions
+    public class TheMagic
     {
         public static PInvokeLibrary.WINDOWPLACEMENT GetPlacementByHandle(IntPtr handle)
         {
@@ -816,6 +819,455 @@ namespace Interoperability
             public int x;
             public int y;
             public string letter;
+        }
+    }
+
+    public class WndSearcher
+    {
+        public static IntPtr SearchForWindow(string wndclass, string title)
+        {
+            SearchData sd = new SearchData { Wndclass = wndclass, Title = title };
+            EnumWindows(new EnumWindowsProc(EnumProc), ref sd);
+            return sd.hWnd;
+        }
+
+        public static bool EnumProc(IntPtr hWnd, ref SearchData data)
+        {
+            // Check classname and title
+            // This is different from FindWindow() in that the code below allows partial matches
+            StringBuilder sb = new StringBuilder(1024);
+            GetClassName(hWnd, sb, sb.Capacity);
+            if (sb.ToString().StartsWith(data.Wndclass))
+            {
+                sb = new StringBuilder(1024);
+                GetWindowText(hWnd, sb, sb.Capacity);
+                if (sb.ToString().StartsWith(data.Title))
+                {
+                    data.hWnd = hWnd;
+                    return false;    // Found the wnd, halt enumeration
+                }
+            }
+            return true;
+        }
+
+        public class SearchData
+        {
+            // You can put any dicks or Doms in here...
+            public string Wndclass;
+            public string Title;
+            public IntPtr hWnd;
+        }
+
+        private delegate bool EnumWindowsProc(IntPtr hWnd, ref SearchData data);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, ref SearchData data);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+    }
+}
+
+namespace ExtremeMirror
+{
+    public class PinvokeWindowsNetworking
+    {
+        #region Consts
+        const int RESOURCE_CONNECTED = 0x00000001;
+        const int RESOURCE_GLOBALNET = 0x00000002;
+        const int RESOURCE_REMEMBERED = 0x00000003;
+
+        const int RESOURCETYPE_ANY = 0x00000000;
+        const int RESOURCETYPE_DISK = 0x00000001;
+        const int RESOURCETYPE_PRINT = 0x00000002;
+
+        const int RESOURCEDISPLAYTYPE_GENERIC = 0x00000000;
+        const int RESOURCEDISPLAYTYPE_DOMAIN = 0x00000001;
+        const int RESOURCEDISPLAYTYPE_SERVER = 0x00000002;
+        const int RESOURCEDISPLAYTYPE_SHARE = 0x00000003;
+        const int RESOURCEDISPLAYTYPE_FILE = 0x00000004;
+        const int RESOURCEDISPLAYTYPE_GROUP = 0x00000005;
+
+        const int RESOURCEUSAGE_CONNECTABLE = 0x00000001;
+        const int RESOURCEUSAGE_CONTAINER = 0x00000002;
+
+
+        const int CONNECT_INTERACTIVE = 0x00000008;
+        const int CONNECT_PROMPT = 0x00000010;
+        const int CONNECT_REDIRECT = 0x00000080;
+        const int CONNECT_UPDATE_PROFILE = 0x00000001;
+        const int CONNECT_COMMANDLINE = 0x00000800;
+        const int CONNECT_CMD_SAVECRED = 0x00001000;
+
+        const int CONNECT_LOCALDRIVE = 0x00000100;
+        #endregion
+
+        #region Errors
+        const int NO_ERROR = 0;
+
+        const int ERROR_ACCESS_DENIED = 5;
+        const int ERROR_ALREADY_ASSIGNED = 85;
+        const int ERROR_BAD_DEVICE = 1200;
+        const int ERROR_BAD_NET_NAME = 67;
+        const int ERROR_BAD_PROVIDER = 1204;
+        const int ERROR_CANCELLED = 1223;
+        const int ERROR_EXTENDED_ERROR = 1208;
+        const int ERROR_INVALID_ADDRESS = 487;
+        const int ERROR_INVALID_PARAMETER = 87;
+        const int ERROR_INVALID_PASSWORD = 1216;
+        const int ERROR_MORE_DATA = 234;
+        const int ERROR_NO_MORE_ITEMS = 259;
+        const int ERROR_NO_NET_OR_BAD_PATH = 1203;
+        const int ERROR_NO_NETWORK = 1222;
+
+        const int ERROR_BAD_PROFILE = 1206;
+        const int ERROR_CANNOT_OPEN_PROFILE = 1205;
+        const int ERROR_DEVICE_IN_USE = 2404;
+        const int ERROR_NOT_CONNECTED = 2250;
+        const int ERROR_OPEN_FILES = 2401;
+
+        private struct ErrorClass
+        {
+            public int num;
+            public string message;
+            public ErrorClass(int num, string message)
+            {
+                this.num = num;
+                this.message = message;
+            }
+        }
+
+
+        // Created with excel formula:
+        // ="new ErrorClass("&A1&", """&PROPER(SUBSTITUTE(MID(A1,7,LEN(A1)-6), "_", " "))&"""), "
+        private static ErrorClass[] ERROR_LIST = new ErrorClass[] {
+            new ErrorClass(ERROR_ACCESS_DENIED, "Error: Access Denied"),
+            new ErrorClass(ERROR_ALREADY_ASSIGNED, "Error: Already Assigned"),
+            new ErrorClass(ERROR_BAD_DEVICE, "Error: Bad Device"),
+            new ErrorClass(ERROR_BAD_NET_NAME, "Error: Bad Net Name"),
+            new ErrorClass(ERROR_BAD_PROVIDER, "Error: Bad Provider"),
+            new ErrorClass(ERROR_CANCELLED, "Error: Cancelled"),
+            new ErrorClass(ERROR_EXTENDED_ERROR, "Error: Extended Error"),
+            new ErrorClass(ERROR_INVALID_ADDRESS, "Error: Invalid Address"),
+            new ErrorClass(ERROR_INVALID_PARAMETER, "Error: Invalid Parameter"),
+            new ErrorClass(ERROR_INVALID_PASSWORD, "Error: Invalid Password"),
+            new ErrorClass(ERROR_MORE_DATA, "Error: More Data"),
+            new ErrorClass(ERROR_NO_MORE_ITEMS, "Error: No More Items"),
+            new ErrorClass(ERROR_NO_NET_OR_BAD_PATH, "Error: No Net Or Bad Path"),
+            new ErrorClass(ERROR_NO_NETWORK, "Error: No Network"),
+            new ErrorClass(ERROR_BAD_PROFILE, "Error: Bad Profile"),
+            new ErrorClass(ERROR_CANNOT_OPEN_PROFILE, "Error: Cannot Open Profile"),
+            new ErrorClass(ERROR_DEVICE_IN_USE, "Error: Device In Use"),
+            new ErrorClass(ERROR_EXTENDED_ERROR, "Error: Extended Error"),
+            new ErrorClass(ERROR_NOT_CONNECTED, "Error: Not Connected"),
+            new ErrorClass(ERROR_OPEN_FILES, "Error: Open Files"),
+        };
+
+        private static string getErrorForNumber(int errNum)
+        {
+            foreach (ErrorClass er in ERROR_LIST)
+            {
+                if (er.num == errNum) return er.message;
+            }
+            return "Error: Unknown, " + errNum;
+        }
+        #endregion
+
+        [DllImport("Mpr.dll")]
+        private static extern int WNetUseConnection(
+            IntPtr hwndOwner,
+            NETRESOURCE lpNetResource,
+            string lpPassword,
+            string lpUserID,
+            int dwFlags,
+            string lpAccessName,
+            string lpBufferSize,
+            string lpResult
+        );
+
+        [DllImport("Mpr.dll")]
+        private static extern int WNetCancelConnection2(
+            string lpName,
+            int dwFlags,
+            bool fForce
+        );
+
+        [StructLayout(LayoutKind.Sequential)]
+        private class NETRESOURCE
+        {
+            public int dwScope = 0;
+            public int dwType = 0;
+            public int dwDisplayType = 0;
+            public int dwUsage = 0;
+            public string lpLocalName = "";
+            public string lpRemoteName = "";
+            public string lpComment = "";
+            public string lpProvider = "";
+        }
+
+
+        public static string connectToRemote(string remoteUNC, string username, string password)
+        {
+            return connectToRemote(remoteUNC, username, password, false);
+        }
+
+        public static string connectToRemote(string remoteUNC, string username, string password, bool promptUser)
+        {
+            NETRESOURCE nr = new NETRESOURCE();
+            nr.dwType = RESOURCETYPE_DISK;
+            nr.lpRemoteName = remoteUNC;
+            //			nr.lpLocalName = "F:";
+
+            int ret;
+            if (promptUser)
+                ret = WNetUseConnection(IntPtr.Zero, nr, "", "", CONNECT_INTERACTIVE | CONNECT_PROMPT, null, null, null);
+            else
+                ret = WNetUseConnection(IntPtr.Zero, nr, password, username, 0, null, null, null);
+
+            if (ret == NO_ERROR) return null;
+            return getErrorForNumber(ret);
+        }
+
+        public static string disconnectRemote(string remoteUNC)
+        {
+            int ret = WNetCancelConnection2(remoteUNC, CONNECT_UPDATE_PROFILE, false);
+            if (ret == NO_ERROR) return null;
+            return getErrorForNumber(ret);
+        }
+    }
+}
+
+namespace ImpersonationsTools
+{
+    public class Impersonator
+    {
+        #region "Consts"
+
+        public const int LOGON32_LOGON_INTERACTIVE = 2;
+
+        public const int LOGON32_PROVIDER_DEFAULT = 0;
+        #endregion
+
+        #region "External API"
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+
+        [DllImport("advapi32.dll", SetLastError = true)]
+        public static extern bool RevertToSelf();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern int CloseHandle(IntPtr hObject);
+
+        #endregion
+
+        #region "Methods"
+
+        //Public Sub PerformImpersonatedTask(ByVal username As String, ByVal domain As String, ByVal password As String, ByVal logonType As Integer, ByVal logonProvider As Integer, ByVal methodToPerform As Action)
+        public void PerformImpersonatedTask(string username, string domain, string password, int logonType, int logonProvider, System.Action methodToPerform)
+        {
+            IntPtr token = IntPtr.Zero;
+            if (RevertToSelf())
+            {
+                if (LogonUser(username, domain, password, logonType, logonProvider, ref token) != 0)
+                {
+                    dynamic identity = new WindowsIdentity(token);
+                    dynamic impersonationContext = identity.Impersonate();
+                    if (impersonationContext != null)
+                    {
+                        methodToPerform.Invoke();
+                        impersonationContext.Undo();
+                    }
+                    // do logging
+                }
+                else
+                {
+                }
+            }
+            if (token != IntPtr.Zero)
+            {
+                CloseHandle(token);
+            }
+        }
+
+        #endregion
+    }
+
+    public class UserImpersonation
+    {
+        const int LOGON32_LOGON_INTERACTIVE = 2;
+        const int LOGON32_LOGON_NETWORK = 3;
+        const int LOGON32_LOGON_BATCH = 4;
+        const int LOGON32_LOGON_SERVICE = 5;
+        const int LOGON32_LOGON_UNLOCK = 7;
+        const int LOGON32_LOGON_NETWORK_CLEARTEXT = 8;
+        const int LOGON32_LOGON_NEW_CREDENTIALS = 9;
+        const int LOGON32_PROVIDER_DEFAULT = 0;
+        const int LOGON32_PROVIDER_WINNT35 = 1;
+        const int LOGON32_PROVIDER_WINNT40 = 2;
+        const int LOGON32_PROVIDER_WINNT50 = 3;
+
+        WindowsImpersonationContext impersonationContext;
+        [DllImport("advapi32.dll", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern int LogonUserA(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+
+        public static extern int DuplicateToken(IntPtr ExistingTokenHandle, int ImpersonationLevel, ref IntPtr DuplicateTokenHandle);
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+
+        public static extern long RevertToSelf();
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+        public static extern long CloseHandle(IntPtr handle);
+
+        public bool impersonateUser(string userName, string domain, string password)
+        {
+            return impersonateValidUser(userName, domain, password);
+        }
+
+        public void undoimpersonateUser()
+        {
+            undoImpersonation();
+        }
+
+        private bool impersonateValidUser(string userName, string domain, string password)
+        {
+            bool functionReturnValue = false;
+
+            WindowsIdentity tempWindowsIdentity = null;
+            IntPtr token = IntPtr.Zero;
+            IntPtr tokenDuplicate = IntPtr.Zero;
+            functionReturnValue = false;
+
+            //if (RevertToSelf()) {
+            if (LogonUserA(userName, domain, password, LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_PROVIDER_WINNT50, ref token) != 0)
+            {
+                if (DuplicateToken(token, 2, ref tokenDuplicate) != 0)
+                {
+                    tempWindowsIdentity = new WindowsIdentity(tokenDuplicate);
+                    impersonationContext = tempWindowsIdentity.Impersonate();
+                    if ((impersonationContext != null))
+                    {
+                        functionReturnValue = true;
+                    }
+                }
+            }
+            //}
+            if (!tokenDuplicate.Equals(IntPtr.Zero))
+            {
+                CloseHandle(tokenDuplicate);
+            }
+            if (!token.Equals(IntPtr.Zero))
+            {
+                CloseHandle(token);
+            }
+            return functionReturnValue;
+        }
+
+        private void undoImpersonation()
+        {
+            impersonationContext.Undo();
+        }
+    }
+}
+
+namespace Encryption
+{
+    public static class StringCipher
+    {
+        // This constant is used to determine the keysize of the encryption algorithm in bits.
+        // We divide this by 8 within the code below to get the equivalent number of bytes.
+        private const int Keysize = 256;
+
+        // This constant determines the number of iterations for the password bytes generation function.
+        private const int DerivationIterations = 1000;
+
+        public static string Encrypt(string plainText, string passPhrase)
+        {
+            // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
+            // so that the same Salt and IV values can be used when decrypting.  
+            var saltStringBytes = Generate256BitsOfRandomEntropy();
+            var ivStringBytes = Generate256BitsOfRandomEntropy();
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                                cryptoStream.FlushFinalBlock();
+                                // Create the final bytes as a concatenation of the random salt bytes, the random iv bytes and the cipher bytes.
+                                var cipherTextBytes = saltStringBytes;
+                                cipherTextBytes = cipherTextBytes.Concat(ivStringBytes).ToArray();
+                                cipherTextBytes = cipherTextBytes.Concat(memoryStream.ToArray()).ToArray();
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return Convert.ToBase64String(cipherTextBytes);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static string Decrypt(string cipherText, string passPhrase)
+        {
+            // Get the complete stream of bytes that represent:
+            // [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]
+            var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);
+            // Get the saltbytes by extracting the first 32 bytes from the supplied cipherText bytes.
+            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
+            // Get the IV bytes by extracting the next 32 bytes from the supplied cipherText bytes.
+            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
+            // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
+            var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray();
+
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream(cipherTextBytes))
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                var plainTextBytes = new byte[cipherTextBytes.Length];
+                                var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private static byte[] Generate256BitsOfRandomEntropy()
+        {
+            var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                // Fill the array with cryptographically secure random bytes.
+                rngCsp.GetBytes(randomBytes);
+            }
+            return randomBytes;
         }
     }
 }

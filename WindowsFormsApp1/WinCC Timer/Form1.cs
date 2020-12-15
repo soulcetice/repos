@@ -9,10 +9,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Interoperability;
+using CommonInterops;
 using System.Diagnostics;
 using System.Threading;
 using System.Management;
+using WindowsUtilities;
+using System.Drawing.Drawing2D;
 
 namespace WinCC_Timer
 {
@@ -25,6 +27,10 @@ namespace WinCC_Timer
             InitializeComponent();
 
             InitTreeView();
+
+            textBox3.Text = Application.StartupPath + "\\Measurements";
+
+
         }
 
         private void InitTreeView()
@@ -137,12 +143,13 @@ namespace WinCC_Timer
                 {
                     Console.WriteLine("Begin second task...");
                     GatherProcessCPUUsage("PdlRt", pdlrtLogName);
-                } //close second Action
+                }
+                //}, //close second Action
 
                 //() =>
                 //{
                 //    Console.WriteLine("Begin third task...");
-                //    GetProcessCPUUsage("script", scriptLogName);
+                //    CloseSoftwareWarnings();
                 //} //close third Action
 
             ); //close parallel.invoke
@@ -150,6 +157,28 @@ namespace WinCC_Timer
             Console.WriteLine("Returned from Parallel.Invoke");
             #endregion
         }
+
+        private void CloseSoftwareWarnings()
+        {
+            var anyPopupClass = "#32770"; //usually any popup
+            while (endFlag == false)
+            {
+                IntPtr wrg = PInvokeLibrary.FindWindow(anyPopupClass, "WinCC Information");
+                if (wrg != IntPtr.Zero)
+                {
+                    PInvokeLibrary.SetForegroundWindow(wrg);
+
+                    IntPtr DlButtonHandle = PInvokeLibrary.FindWindowEx(wrg, IntPtr.Zero, "Button", "OK");
+                    if (DlButtonHandle != IntPtr.Zero)
+                    {
+                        PInvokeLibrary.SendMessage(DlButtonHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                    }
+                }
+                Thread.Sleep(100);
+            }
+
+        }
+
 
         private void UpdatePageLabel()
         {
@@ -268,6 +297,8 @@ namespace WinCC_Timer
                                 int yTier4 = yTier3;
                                 foreach (var tier4 in ChildrenTier3)
                                 {
+                                    var tier4Width = GetTextSize(tier4.Caption, "Arial", 10.0f).Width / 2 + 20;
+                                    LogToFile(tier4.Caption + "'s click position in pixels would be " + tier4Width.ToString(), logName);
                                     int xTier4 = xTier3 + GetMenuDropWidth(ChildrenTier3) + 40; // + longest element in tier2's width + some 40 pixels
                                     if (tier4.Pdl != "" && tier4.Pdl != "''")
                                     {
@@ -634,13 +665,15 @@ namespace WinCC_Timer
                 var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
                 double loadingTime = (largestNonZero.LastOrDefault().timestamp - startTime).TotalMilliseconds;
 
-                PageLoadTimes.Add(new PageTime()
+                var pageTime = new PageTime()
                 {
                     load = loadingTime,
                     page = p
-                });
+                };
 
-                LogToFile(PageLoadTimes.LastOrDefault().page + "," + PageLoadTimes.LastOrDefault().load + " ms", "\\timerData_" + currentCalc + ".logger");
+                PageLoadTimes.Add(pageTime);
+
+                LogToFile(pageTime.page + "," + pageTime.load + " ms", "\\timerData_" + currentCalc + ".logger");
             }
         }
 
@@ -795,6 +828,159 @@ namespace WinCC_Timer
                     }
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var d = new DirectoryInfo(textBox3.Text);
+            List<List<PageTime>> alldata;
+            List<string> fileList;
+            GetGatheredDatasets(d, out alldata, out fileList);
+            List<PageTime> list = ComputeTimesFromDatasets(alldata, fileList);
+
+
+            listView1.Columns.Add("Pdl", 230);
+            listView1.Columns.Add("Loading Time [ms]", 110);
+            listView1.View = View.Details;
+            foreach (var c in list)
+            {
+                //LogToFile(c.page + ", " + c.load + " ms", "\\stdDevTimerData.logger");
+                var item1 = new ListViewItem(new[] { c.page, Math.Round(c.load, 2).ToString() });
+                item1.Text = c.page;
+                listView1.Items.Add(item1);
+            }
+            listView1.Refresh();
+            checkBox3.Checked = true;
+        }
+
+        private static void GetGatheredDatasets(DirectoryInfo d, out List<List<PageTime>> alldata, out List<string> fileList)
+        {
+            alldata = new List<List<PageTime>>();
+            fileList = new List<string>();
+            var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
+            var timerFiles = textFiles.Where(c => c.Contains("timer")).ToList();
+
+            foreach (var file in timerFiles)
+            {
+                AddData(alldata, File.ReadAllLines(file));
+            }
+
+            foreach (var dir in d.GetDirectories())
+            {
+                var files = dir.GetFiles();
+                var timerFile = files.FirstOrDefault(c => c.Name.StartsWith("timerData"));
+                if (timerFile != null)
+                    AddData(alldata, File.ReadAllLines(timerFile.FullName));
+            }
+            fileList = alldata.OrderByDescending(c => c.Count).FirstOrDefault().Select(c => c.page).Distinct().ToList();
+        }
+
+        private List<PageTime> ComputeTimesFromDatasets(List<List<PageTime>> alldata, List<string> fileList)
+        {
+            var list = new List<PageTime>();
+            foreach (var pdl in fileList)
+            {
+                var pdlData = new List<PageTime>();
+                foreach (var dataset in alldata)
+                {
+                    var hasPage = dataset.FirstOrDefault(c => c.page == pdl);
+                    if (hasPage != null)
+                        pdlData.Add(hasPage);
+                }
+
+                List<double> theDoubles = pdlData.Select(c => c.load).ToList();
+                double average = theDoubles.Average();
+
+                var sdev = StdDev(theDoubles);
+
+                var someDoubles = theDoubles.Where(c => c > average - sdev && c < average + sdev).OrderBy(c => c).ToList();
+                var selectiveAverage = someDoubles.Average();
+
+                list.Add(new PageTime()
+                {
+                    page = pdl,
+                    load = selectiveAverage
+                });
+            }
+
+            return list;
+        }
+
+        private double StdDev(List<double> values)
+        {
+            double ret = 0;
+            int count = values.Count();
+            if (count > 1)
+            {
+                //Compute the Average
+                double avg = values.Average();
+
+                //Perform the Sum of (value-avg)^2
+                double sum = values.Sum(d => (d - avg) * (d - avg));
+
+                //Put it all together
+                ret = Math.Sqrt(sum / count);
+            }
+            return ret;
+        }
+
+        private static void AddData(List<List<PageTime>> alldata, string[] rawdata)
+        {
+            var data = new List<PageTime>();
+            foreach (var line in rawdata)
+            {
+                var myline = line.Split(Convert.ToChar(","));
+                var pageTime = new PageTime()
+                {
+                    page = myline[0].Split(Convert.ToChar("'"))[1],
+                    load = double.Parse(myline[1].Replace(" ms", ""))
+                };
+                data.Add(pageTime);
+            }
+
+            alldata.Add(data);
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            listView1.Visible = checkBox3.Checked;
+
+            if (!checkBox3.Checked)
+            {
+                ActiveForm.Width = 406;
+            }
+            else
+            {
+                ActiveForm.Width = 791;
+            }
+        }
+    }
+}
+
+
+public class MyCheckBox : CheckBox
+{
+    public MyCheckBox()
+    {
+        SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+        Padding = new Padding(6);
+    }
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        this.OnPaintBackground(e);
+        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        using (var path = new GraphicsPath())
+        {
+            var d = Padding.All;
+            var r = this.Height - 2 * d;
+            path.AddArc(d, d, r, r, 90, 180);
+            path.AddArc(this.Width - r - d, d, r, r, -90, 180);
+            path.CloseFigure();
+            e.Graphics.FillPath(Checked ? Brushes.White : Brushes.White, path);
+            r = Height - 1;
+            var rect = Checked ? new Rectangle(Width - r - 1, 0, r, r)
+                               : new Rectangle(0, 0, r, r);
+            e.Graphics.FillEllipse(Checked ? Brushes.Blue : Brushes.Gray, rect);
         }
     }
 }

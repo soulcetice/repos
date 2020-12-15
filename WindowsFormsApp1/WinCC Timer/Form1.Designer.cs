@@ -42,6 +42,10 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.checkBox3 = new MyCheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -56,7 +60,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(496, 12);
+            this.button2.Location = new System.Drawing.Point(801, 90);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 23);
             this.button2.TabIndex = 2;
@@ -67,7 +71,7 @@
             // 
             // refIdBox
             // 
-            this.refIdBox.Location = new System.Drawing.Point(532, 35);
+            this.refIdBox.Location = new System.Drawing.Point(837, 35);
             this.refIdBox.Name = "refIdBox";
             this.refIdBox.Size = new System.Drawing.Size(26, 20);
             this.refIdBox.TabIndex = 4;
@@ -77,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(493, 38);
+            this.label2.Location = new System.Drawing.Point(798, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 5;
@@ -86,7 +90,7 @@
             // 
             // sqlPathBox
             // 
-            this.sqlPathBox.Location = new System.Drawing.Point(564, 35);
+            this.sqlPathBox.Location = new System.Drawing.Point(869, 35);
             this.sqlPathBox.Name = "sqlPathBox";
             this.sqlPathBox.Size = new System.Drawing.Size(74, 20);
             this.sqlPathBox.TabIndex = 6;
@@ -97,13 +101,13 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(73, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 20);
+            this.textBox1.Size = new System.Drawing.Size(120, 20);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "SDI_CSPM_1-1033.sql";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(223, 11);
+            this.button3.Location = new System.Drawing.Point(199, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
@@ -113,7 +117,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(399, 12);
+            this.button4.Location = new System.Drawing.Point(801, 61);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 9;
@@ -123,9 +127,9 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(304, 12);
+            this.textBox2.Location = new System.Drawing.Point(280, 12);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
+            this.textBox2.Size = new System.Drawing.Size(93, 20);
             this.textBox2.TabIndex = 10;
             this.textBox2.Text = "pdlrt_cspm_3";
             // 
@@ -139,9 +143,9 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 41);
+            this.treeView1.Location = new System.Drawing.Point(12, 70);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(367, 220);
+            this.treeView1.Size = new System.Drawing.Size(361, 191);
             this.treeView1.TabIndex = 12;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             // 
@@ -167,11 +171,50 @@
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(199, 38);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "StdDev";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(13, 40);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(180, 20);
+            this.textBox3.TabIndex = 16;
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(398, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(363, 298);
+            this.listView1.TabIndex = 17;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.Location = new System.Drawing.Point(327, 38);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Padding = new System.Windows.Forms.Padding(6);
+            this.checkBox3.Size = new System.Drawing.Size(46, 24);
+            this.checkBox3.TabIndex = 0;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 324);
+            this.ClientSize = new System.Drawing.Size(384, 324);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.treeView1);
@@ -210,6 +253,10 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ListView listView1;
+        private MyCheckBox checkBox3;
     }
 }
 

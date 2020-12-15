@@ -1,0 +1,11 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\EnablePSRemoting.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\EnablePSRemoting.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\EnablePSRemoting.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\System.Management.Automation.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\Microsoft.Management.Infrastructure.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\bin\Debug\System.Management.Automation.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.pdb

@@ -19,6 +19,7 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\bin\Debug\PInvoke.Windows.Core.dll
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\bin\Debug\Magic.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\bin\Debug\PInvoke.Windows.Core.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.csprojAssemblyReference.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.Form1.resources
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.Properties.Resources.resources
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.csproj.GenerateResource.cache
@@ -26,4 +27,3 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.csproj.CopyComplete
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\RDApp\obj\Debug\RDApp.csprojAssemblyReference.cache

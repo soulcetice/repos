@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="269" Width="500" ResizeMode="NoResize">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Time!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TreeView HorizontalAlignment="Left" Height="195" Margin="10,35,0,0" VerticalAlignment="Top" Width="353"/>
 
     </Grid>
 </Window>
