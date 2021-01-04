@@ -492,12 +492,17 @@ namespace WinCC_Timer
             }
         }
 
-        private void LogToFile(string content, string fname)
+        private void LogToFile(string content, string fname, bool useDate = true)
         {
             using (var fileWriter = new StreamWriter(Application.StartupPath + fname, true))
             {
                 DateTime date = DateTime.UtcNow;
-                fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
+                if (useDate)
+                {
+                    content = date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content;
+                } 
+
+                fileWriter.WriteLine(content);
                 fileWriter.Close();
             }
         }
@@ -663,7 +668,7 @@ namespace WinCC_Timer
                 } //remove groups that start later than 2 seconds
 
                 var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
-                double loadingTime = (largestNonZero.LastOrDefault().timestamp - startTime).TotalMilliseconds;
+                double loadingTime = (largestNonZero.OrderByDescending(c => c.cpu).FirstOrDefault().timestamp - startTime).TotalMilliseconds;
 
                 var pageTime = new PageTime()
                 {
@@ -845,7 +850,8 @@ namespace WinCC_Timer
             foreach (var c in list)
             {
                 //LogToFile(c.page + ", " + c.load + " ms", "\\stdDevTimerData.logger");
-                var item1 = new ListViewItem(new[] { c.page, Math.Round(c.load, 2).ToString() });
+                string[] row = { c.page, Math.Round(c.load, 2).ToString() };
+                var item1 = new ListViewItem(row);
                 item1.Text = c.page;
                 listView1.Items.Add(item1);
             }
@@ -952,6 +958,21 @@ namespace WinCC_Timer
             else
             {
                 ActiveForm.Width = 791;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + "\\ProcessedTimesExport.csv";
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            var items = listView1.Items;
+            LogToFile("Page name,Measured loading time [ms]", "\\ProcessedTimesExport.csv", false);
+            foreach (ListViewItem item in items)
+            {
+                LogToFile(item.SubItems[0].Text + "," + item.SubItems[1].Text, "\\ProcessedTimesExport.csv", false);
             }
         }
     }

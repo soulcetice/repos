@@ -46,6 +46,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.checkBox3 = new MyCheckBox();
+            this.export = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -206,11 +207,22 @@
             this.checkBox3.TabIndex = 0;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
+            // button6
+            // 
+            this.export.Location = new System.Drawing.Point(280, 37);
+            this.export.Name = "button6";
+            this.export.Size = new System.Drawing.Size(41, 23);
+            this.export.TabIndex = 18;
+            this.export.Text = "Export";
+            this.export.UseVisualStyleBackColor = true;
+            this.export.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 324);
+            this.ClientSize = new System.Drawing.Size(386, 324);
+            this.Controls.Add(this.export);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox3);
@@ -257,6 +269,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListView listView1;
         private MyCheckBox checkBox3;
+        private System.Windows.Forms.Button export;
     }
 }
 
