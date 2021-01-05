@@ -47,6 +47,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.checkBox3 = new MyCheckBox();
             this.export = new System.Windows.Forms.Button();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -132,7 +133,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(93, 20);
             this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "pdlrt_cspm_3";
+            this.textBox2.Text = "pdlrt";
             // 
             // listBox1
             // 
@@ -184,9 +185,9 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(13, 40);
+            this.textBox3.Location = new System.Drawing.Point(73, 39);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 20);
+            this.textBox3.Size = new System.Drawing.Size(120, 20);
             this.textBox3.TabIndex = 16;
             // 
             // listView1
@@ -207,21 +208,33 @@
             this.checkBox3.TabIndex = 0;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
-            // button6
+            // export
             // 
             this.export.Location = new System.Drawing.Point(280, 37);
-            this.export.Name = "button6";
+            this.export.Name = "export";
             this.export.Size = new System.Drawing.Size(41, 23);
             this.export.TabIndex = 18;
             this.export.Text = "Export";
             this.export.UseVisualStyleBackColor = true;
             this.export.Click += new System.EventHandler(this.button6_Click);
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(12, 41);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(60, 17);
+            this.checkBox4.TabIndex = 19;
+            this.checkBox4.Text = "Screen";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 324);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.export);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.listView1);
@@ -245,6 +258,7 @@
             this.Name = "Form1";
             this.Text = "WinCC Timer";
             this.TopMost = true;
+            this.DoubleClick += new System.EventHandler(this.Form1_DoubleClicked);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +284,7 @@
         private System.Windows.Forms.ListView listView1;
         private MyCheckBox checkBox3;
         private System.Windows.Forms.Button export;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
 

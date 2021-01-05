@@ -121,7 +121,8 @@ namespace WinCC_Timer
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
+            endFlag = false;
+            Thread.Sleep(4000);
             RunTasks();
         }
 
@@ -252,12 +253,13 @@ namespace WinCC_Timer
                         {
                             ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
                             LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(5000); //open tier2 page
+                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(4000); //open tier2 page
                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                             LogToFile(tier2.Pdl, logName);
 
                             currentPage = tier2.Pdl;
-                            ScreenshotAndSave();
+                            if (checkBox4.Checked)
+                                ScreenshotAndSave();
                         }
                     }
                     else
@@ -280,12 +282,13 @@ namespace WinCC_Timer
                                     LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                     ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                     LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(5000); //expand tier2 menu or open page
+                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(4000); //expand tier2 menu or open page
                                     LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
                                     LogToFile(tier3.Pdl, logName);
 
                                     currentPage = tier3.Pdl;
-                                    ScreenshotAndSave();
+                                    if (checkBox4.Checked)
+                                        ScreenshotAndSave();
                                 }
                             }
                             else
@@ -310,12 +313,13 @@ namespace WinCC_Timer
                                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                             ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
                                             LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(5000); //expand tier2 menu or open page
+                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(4000); //expand tier2 menu or open page
                                             LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                             LogToFile(tier4.Pdl, logName);
 
                                             currentPage = tier4.Pdl;
-                                            ScreenshotAndSave();
+                                            if (checkBox4.Checked)
+                                                ScreenshotAndSave();
                                         }
                                     }
                                     else
@@ -500,7 +504,7 @@ namespace WinCC_Timer
                 if (useDate)
                 {
                     content = date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content;
-                } 
+                }
 
                 fileWriter.WriteLine(content);
                 fileWriter.Close();
@@ -658,28 +662,52 @@ namespace WinCC_Timer
                     }
                 }
 
-                nonZeroGroups = nonZeroGroups.Where(c => c.Count > 0).ToList();
+                nonZeroGroups = removeIrrelevantCpuGroups(startTime, nonZeroGroups);
 
-                foreach (var c in nonZeroGroups.ToList())
+                if (nonZeroGroups.Count > 0)
                 {
-                    PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
-                    if ((prim.timestamp - startTime).TotalSeconds > 2)
-                        nonZeroGroups.Remove(c);
-                } //remove groups that start later than 2 seconds
+                    var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
 
-                var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
-                double loadingTime = (largestNonZero.OrderByDescending(c => c.cpu).FirstOrDefault().timestamp - startTime).TotalMilliseconds;
+                    var difs = new List<double>();
+                    int maxSlopeEnd = 0;
+                    if (largestNonZero.Count > 1)
+                    {
+                        for (int i = 0; i < largestNonZero.Count - 1; i++)
+                        {
+                            difs.Add(largestNonZero[i + 1].cpu - largestNonZero[i].cpu);
+                        }
 
-                var pageTime = new PageTime()
-                {
-                    load = loadingTime,
-                    page = p
-                };
+                        maxSlopeEnd = difs.IndexOf(difs.Max()) + 1;
+                    }
 
-                PageLoadTimes.Add(pageTime);
+                    double loadingTime = (largestNonZero[maxSlopeEnd].timestamp - startTime).TotalMilliseconds;
+                    //not the max but actually the point after the steepest slope we got !
 
-                LogToFile(pageTime.page + "," + pageTime.load + " ms", "\\timerData_" + currentCalc + ".logger");
+                    var pageTime = new PageTime()
+                    {
+                        load = loadingTime,
+                        page = p
+                    };
+
+                    PageLoadTimes.Add(pageTime);
+
+                    LogToFile(pageTime.page + "," + pageTime.load + " ms", "\\timerData_" + currentCalc + ".logger");
+                }
             }
+        }
+
+        private static List<List<PageCpuTime>> removeIrrelevantCpuGroups(DateTime startTime, List<List<PageCpuTime>> nonZeroGroups)
+        {
+            nonZeroGroups = nonZeroGroups.Where(c => c.Count > 0).ToList();
+
+            foreach (var c in nonZeroGroups.ToList())
+            {
+                PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
+                if ((prim.timestamp - startTime).TotalSeconds > 1)
+                    nonZeroGroups.Remove(c);
+            } //remove groups that start later than 2 seconds
+
+            return nonZeroGroups;
         }
 
         public class PageTime
@@ -841,13 +869,16 @@ namespace WinCC_Timer
             List<List<PageTime>> alldata;
             List<string> fileList;
             GetGatheredDatasets(d, out alldata, out fileList);
-            List<PageTime> list = ComputeTimesFromDatasets(alldata, fileList);
+
+            List<PageTime> computed = removeOutliersForEachPage(alldata, fileList);
+
+            //List<PageTime> list = ComputeTimesFromDatasets(alldata, fileList);
 
 
             listView1.Columns.Add("Pdl", 230);
             listView1.Columns.Add("Loading Time [ms]", 110);
             listView1.View = View.Details;
-            foreach (var c in list)
+            foreach (var c in computed)
             {
                 //LogToFile(c.page + ", " + c.load + " ms", "\\stdDevTimerData.logger");
                 string[] row = { c.page, Math.Round(c.load, 2).ToString() };
@@ -857,6 +888,45 @@ namespace WinCC_Timer
             }
             listView1.Refresh();
             checkBox3.Checked = true;
+        }
+
+        private List<PageTime> removeOutliersForEachPage(List<List<PageTime>> alldata, List<string> fileList)
+        {
+            List<PageTime> stdDevs = new List<PageTime>();
+            foreach (var page in fileList)
+            {
+                var loadingTimes = new List<double>();
+                foreach (var dataset in alldata)
+                {
+
+                    PageTime pageTime = dataset.FirstOrDefault(c => c.page == page);
+                    if (pageTime != null)
+                    {
+                        loadingTimes.Add(pageTime.load);
+                    }
+                }
+
+                if (loadingTimes.Count > 0)
+                {
+
+                    var stdDev = StdDev(loadingTimes);
+
+                    double average = loadingTimes.Average();
+                    var someDoubles = loadingTimes.Where(c => c > average - stdDev && c < average + stdDev).OrderBy(c => c).ToList();
+                    if (someDoubles.Count > 0)
+                    {
+                        var selectiveAverage = someDoubles.Average();
+
+                        stdDevs.Add(new PageTime()
+                        {
+                            page = page,
+                            load = selectiveAverage
+                        });
+                    }
+                }
+            }
+
+            return stdDevs;
         }
 
         private static void GetGatheredDatasets(DirectoryInfo d, out List<List<PageTime>> alldata, out List<string> fileList)
@@ -916,6 +986,8 @@ namespace WinCC_Timer
         {
             double ret = 0;
             int count = values.Count();
+
+            // i suppose i must get a std dev for each page in the list of values, therefore, the values list must be a list of lists
             if (count > 1)
             {
                 //Compute the Average
@@ -973,6 +1045,33 @@ namespace WinCC_Timer
             foreach (ListViewItem item in items)
             {
                 LogToFile(item.SubItems[0].Text + "," + item.SubItems[1].Text, "\\ProcessedTimesExport.csv", false);
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_DoubleClicked(object sender, EventArgs e)
+        {
+            if (ActiveForm.Width != 215)
+            {
+                ActiveForm.Width = 215;
+                ActiveForm.Height = 107;
+            }
+            else
+            {
+                if (checkBox3.Checked)
+                {
+                    ActiveForm.Width = 791;
+                    ActiveForm.Height = 363;
+                }
+                else
+                {
+                    ActiveForm.Width = 406;
+                    ActiveForm.Height = 363;
+                }
             }
         }
     }
