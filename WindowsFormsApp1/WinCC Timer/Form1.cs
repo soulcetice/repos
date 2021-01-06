@@ -627,6 +627,8 @@ namespace WinCC_Timer
 
         private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes, string currentCalc)
         {
+            DeletePreviousCalculatedTimesInFolder();
+
             var PageCpuUsageList = new List<PageCpuTime>();
             var PageLoadTimes = new List<PageTime>();
             for (int i = 0; i < perc.Count; i++)
@@ -643,7 +645,7 @@ namespace WinCC_Timer
             foreach (string p in pagesNavigated)
             {
                 List<PageCpuTime> currentPageData = new List<PageCpuTime>();
-                List<PageCpuTime> tempList = PageCpuUsageList.Where(c => c.page == p).OrderBy(c => c.timestamp).ToList();
+                List<PageCpuTime> tempList = PageCpuUsageList.Where(c => c.page == p).ToList();
                 var startTime = tempList.Select(c => c.timestamp).Min();
 
                 List<List<PageCpuTime>> nonZeroGroups = new List<List<PageCpuTime>>
@@ -666,7 +668,7 @@ namespace WinCC_Timer
 
                 if (nonZeroGroups.Count > 0)
                 {
-                    var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).OrderBy(c => c.timestamp).ToList();
+                    var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).ToList();
 
                     var difs = new List<double>();
                     int maxSlopeEnd = 0;
@@ -680,7 +682,15 @@ namespace WinCC_Timer
                         maxSlopeEnd = difs.IndexOf(difs.Max()) + 1;
                     }
 
-                    double loadingTime = (largestNonZero[maxSlopeEnd].timestamp - startTime).TotalMilliseconds;
+                    //largest three compounded steps is the big spike
+                    //which is really the point where the datamanager requests and wincc shows the data
+                    //aka the loading time as the eye sees it
+
+                    float maxCompoundSlope = 0;
+                    difs = difs.Select(x => (x < 0 ? 0 : x)).ToList();
+                    GetConsecutiveSum(largestNonZero.Select(c => c.cpu).ToArray(), out maxCompoundSlope, out int index);
+
+                    double loadingTime = (largestNonZero[index].timestamp - startTime).TotalMilliseconds;
                     //not the max but actually the point after the steepest slope we got !
 
                     var pageTime = new PageTime()
@@ -694,6 +704,40 @@ namespace WinCC_Timer
                     LogToFile(pageTime.page + "," + pageTime.load + " ms", "\\timerData_" + currentCalc + ".logger");
                 }
             }
+        }
+
+        private static void DeletePreviousCalculatedTimesInFolder()
+        {
+            List<string> f = Directory.GetFiles(Application.StartupPath).Where(c => new FileInfo(c).Name.StartsWith("timerData")).ToList();
+            foreach (var c in f)
+            {
+                var file = new FileInfo(c);
+                file.Delete();
+            }
+        }
+
+        private static void GetConsecutiveSum(float[] values, out float maximumSum, out int startIndex)
+        {
+            maximumSum = 0;
+            startIndex = -1;
+            for (int i = 0; i < values.Length - 2; i++)
+            {
+                float prev = 0;
+                if (i == 0)
+                    prev = 0;
+                else
+                    prev = values[i - 1];
+
+                float sequenceSum = values[i] + values[i + 1] + values[i + 2] - prev * 3; //- i - 1 to remove start point
+                if (sequenceSum > maximumSum)
+                {
+                    maximumSum = sequenceSum;
+                    startIndex = i + 2;
+                }
+            }
+
+            if (startIndex == -1)
+                startIndex = values.Count() - 1;
         }
 
         private static List<List<PageCpuTime>> removeIrrelevantCpuGroups(DateTime startTime, List<List<PageCpuTime>> nonZeroGroups)
@@ -807,6 +851,7 @@ namespace WinCC_Timer
                 perc.Add(float.Parse(line[1]));
                 atPagesList.Add(line[2]);
             }
+
 
             ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, file);
         }

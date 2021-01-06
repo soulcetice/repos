@@ -1,0 +1,439 @@
+2021/1/6 8:8:20:783 UTC: Starting menu navigation
+2021/1/6 8:8:20:785 UTC: 68 menu items
+2021/1/6 8:8:20:790 UTC: 51width, 16height, General
+2021/1/6 8:8:20:790 UTC: 43width, 16height, Alarms
+2021/1/6 8:8:20:790 UTC: Alarms is the caption for which we check width
+2021/1/6 8:8:20:791 UTC: 153width, 16height, Overview - Coil Tracking
+2021/1/6 8:8:20:791 UTC: Overview - Coil Tracking is the caption for which we check width
+2021/1/6 8:8:20:791 UTC: 40width, 16height, Safety
+2021/1/6 8:8:20:791 UTC: 86width, 16height, Switch On/Off
+2021/1/6 8:8:20:791 UTC: 95width, 16height, Media Systems
+2021/1/6 8:8:20:792 UTC: 40width, 16height, Drives
+2021/1/6 8:8:20:792 UTC: 153 is x width for childrentier2
+2021/1/6 8:8:21:295 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:25:298 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/1/6 8:8:25:298 UTC: '@sms_w_Alarmlist'
+2021/1/6 8:8:25:799 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:29:801 UTC: For Overview - Coil Tracking expand menu, clicked at 37 x, 68 y
+2021/1/6 8:8:29:801 UTC: 'SPM#12-01-00_n_#GEN-OverviewCoilTracking'
+2021/1/6 8:8:29:802 UTC: 33width, 16height, Floor
+2021/1/6 8:8:29:802 UTC: Floor is the caption for which we check width
+2021/1/6 8:8:29:803 UTC: 37width, 16height, Cellar
+2021/1/6 8:8:29:803 UTC: Cellar is the caption for which we check width
+2021/1/6 8:8:29:803 UTC: 43width, 16height, Details
+2021/1/6 8:8:29:803 UTC: Details is the caption for which we check width
+2021/1/6 8:8:29:803 UTC: 43 is x width for childrentier2
+2021/1/6 8:8:30:305 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2021/1/6 8:8:30:305 UTC: 33width, 16height, Floor
+2021/1/6 8:8:30:305 UTC: Floor is the caption for which we check width
+2021/1/6 8:8:30:305 UTC: 37width, 16height, Cellar
+2021/1/6 8:8:30:306 UTC: Cellar is the caption for which we check width
+2021/1/6 8:8:30:306 UTC: 43width, 16height, Details
+2021/1/6 8:8:30:306 UTC: Details is the caption for which we check width
+2021/1/6 8:8:30:306 UTC: 43 is x width for childrentier2
+2021/1/6 8:8:30:306 UTC: 83 is maxwidthtier2
+2021/1/6 8:8:30:808 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:31:309 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2021/1/6 8:8:35:311 UTC: For Floor expand menu, clicked at 230 x, 93 y
+2021/1/6 8:8:35:311 UTC: 'SPM#06-01-00_n_#SAF-OverviewFloor'
+2021/1/6 8:8:35:814 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:36:317 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2021/1/6 8:8:40:321 UTC: For Cellar expand menu, clicked at 230 x, 118 y
+2021/1/6 8:8:40:321 UTC: 'SPM#06-02-00_n_#SAF-OverviewCellar'
+2021/1/6 8:8:40:825 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:41:325 UTC: For Safety expand menu, clicked at 37 x, 93 y
+2021/1/6 8:8:45:335 UTC: For Details expand menu, clicked at 230 x, 143 y
+2021/1/6 8:8:45:335 UTC: 'SAF1_n_SafetyAreaOverview'
+2021/1/6 8:8:45:335 UTC: 38width, 16height, Media
+2021/1/6 8:8:45:335 UTC: Media is the caption for which we check width
+2021/1/6 8:8:45:336 UTC: 40width, 16height, Drives
+2021/1/6 8:8:45:336 UTC: Drives is the caption for which we check width
+2021/1/6 8:8:45:336 UTC: 40 is x width for childrentier2
+2021/1/6 8:8:45:837 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2021/1/6 8:8:45:837 UTC: 38width, 16height, Media
+2021/1/6 8:8:45:837 UTC: Media is the caption for which we check width
+2021/1/6 8:8:45:838 UTC: 40width, 16height, Drives
+2021/1/6 8:8:45:838 UTC: Drives is the caption for which we check width
+2021/1/6 8:8:45:838 UTC: 40 is x width for childrentier2
+2021/1/6 8:8:45:838 UTC: 80 is maxwidthtier2
+2021/1/6 8:8:46:339 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:46:840 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2021/1/6 8:8:50:841 UTC: For Media expand menu, clicked at 230 x, 118 y
+2021/1/6 8:8:50:841 UTC: 'SPM#02-01-00_n_#GEN-Media'
+2021/1/6 8:8:51:343 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:51:844 UTC: For Switch On/Off expand menu, clicked at 37 x, 118 y
+2021/1/6 8:8:55:845 UTC: For Drives expand menu, clicked at 230 x, 143 y
+2021/1/6 8:8:55:845 UTC: 'SPM#02-02-00_n_#GEN-Drives'
+2021/1/6 8:8:55:845 UTC: 115width, 16height, Hydraulic Systems
+2021/1/6 8:8:55:845 UTC: Hydraulic Systems is the caption for which we check width
+2021/1/6 8:8:55:846 UTC: 127width, 16height, Lubrication Systems
+2021/1/6 8:8:55:846 UTC: Lubrication Systems is the caption for which we check width
+2021/1/6 8:8:55:846 UTC: 140width, 16height, Fume Exhaust System
+2021/1/6 8:8:55:846 UTC: Fume Exhaust System is the caption for which we check width
+2021/1/6 8:8:55:846 UTC: 126width, 16height, Wet Temper System
+2021/1/6 8:8:55:846 UTC: 81width, 16height, Maintenance
+2021/1/6 8:8:55:847 UTC: 140 is x width for childrentier2
+2021/1/6 8:8:56:348 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:8:56:354 UTC: 115width, 16height, Hydraulic Systems
+2021/1/6 8:8:56:355 UTC: Hydraulic Systems is the caption for which we check width
+2021/1/6 8:8:56:355 UTC: 127width, 16height, Lubrication Systems
+2021/1/6 8:8:56:355 UTC: Lubrication Systems is the caption for which we check width
+2021/1/6 8:8:56:355 UTC: 140width, 16height, Fume Exhaust System
+2021/1/6 8:8:56:355 UTC: Fume Exhaust System is the caption for which we check width
+2021/1/6 8:8:56:356 UTC: 126width, 16height, Wet Temper System
+2021/1/6 8:8:56:356 UTC: 81width, 16height, Maintenance
+2021/1/6 8:8:56:356 UTC: 140 is x width for childrentier2
+2021/1/6 8:8:56:356 UTC: 180 is maxwidthtier2
+2021/1/6 8:8:56:858 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:8:57:361 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:1:369 UTC: For Hydraulic Systems expand menu, clicked at 230 x, 143 y
+2021/1/6 8:9:1:370 UTC: 'SPM#61-01-00_w_#MED-HydraulicSystem'
+2021/1/6 8:9:1:873 UTC: 91width, 16height, Oil Lubrication
+2021/1/6 8:9:1:873 UTC: Oil Lubrication's click position in pixels would be 65
+2021/1/6 8:9:1:873 UTC: 91width, 16height, Oil Lubrication
+2021/1/6 8:9:1:874 UTC: Oil Lubrication is the caption for which we check width
+2021/1/6 8:9:1:874 UTC: 111width, 16height, Oil Air Lubrication
+2021/1/6 8:9:1:874 UTC: Oil Air Lubrication is the caption for which we check width
+2021/1/6 8:9:1:874 UTC: 111 is x width for childrentier2
+2021/1/6 8:9:2:378 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:2:882 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:3:386 UTC: For Lubrication Systems expand menu, clicked at 230 x, 168 y
+2021/1/6 8:9:7:392 UTC: For Oil Lubrication expand menu, clicked at 421 x, 168 y
+2021/1/6 8:9:7:394 UTC: 'SPM#63-01-00_w_#MED-OilLubrication'
+2021/1/6 8:9:7:395 UTC: 111width, 16height, Oil Air Lubrication
+2021/1/6 8:9:7:395 UTC: Oil Air Lubrication's click position in pixels would be 75
+2021/1/6 8:9:7:396 UTC: 91width, 16height, Oil Lubrication
+2021/1/6 8:9:7:396 UTC: Oil Lubrication is the caption for which we check width
+2021/1/6 8:9:7:397 UTC: 111width, 16height, Oil Air Lubrication
+2021/1/6 8:9:7:397 UTC: Oil Air Lubrication is the caption for which we check width
+2021/1/6 8:9:7:397 UTC: 111 is x width for childrentier2
+2021/1/6 8:9:7:899 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:8:400 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:8:901 UTC: For Lubrication Systems expand menu, clicked at 230 x, 168 y
+2021/1/6 8:9:12:903 UTC: For Oil Air Lubrication expand menu, clicked at 421 x, 193 y
+2021/1/6 8:9:12:903 UTC: 'SPM#63-02-00_w_#MED-OilAirLubrication'
+2021/1/6 8:9:13:408 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:13:911 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:17:913 UTC: For Fume Exhaust System expand menu, clicked at 230 x, 193 y
+2021/1/6 8:9:17:913 UTC: 'SPM#70-01-00_w_#MED-FumeExhaust'
+2021/1/6 8:9:18:416 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:18:920 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:22:926 UTC: For Wet Temper System expand menu, clicked at 230 x, 218 y
+2021/1/6 8:9:22:926 UTC: 'SPM#74-01-00_n_#MED-WetSkinPassSystem'
+2021/1/6 8:9:23:429 UTC: 93width, 16height, Media Settings
+2021/1/6 8:9:23:429 UTC: Media Settings's click position in pixels would be 66
+2021/1/6 8:9:23:429 UTC: 93width, 16height, Media Settings
+2021/1/6 8:9:23:430 UTC: Media Settings is the caption for which we check width
+2021/1/6 8:9:23:430 UTC: 93 is x width for childrentier2
+2021/1/6 8:9:23:935 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:24:439 UTC: For Media Systems expand menu, clicked at 37 x, 143 y
+2021/1/6 8:9:24:945 UTC: For Maintenance expand menu, clicked at 230 x, 243 y
+2021/1/6 8:9:28:949 UTC: For Media Settings expand menu, clicked at 403 x, 243 y
+2021/1/6 8:9:28:949 UTC: 'SPM#60-01-00_w_#MED-Parameters'
+2021/1/6 8:9:28:950 UTC: 120width, 16height, Power Supply Main
+2021/1/6 8:9:28:950 UTC: Power Supply Main is the caption for which we check width
+2021/1/6 8:9:28:950 UTC: 141width, 16height, Power Supply Auxiliary
+2021/1/6 8:9:28:950 UTC: Power Supply Auxiliary is the caption for which we check width
+2021/1/6 8:9:28:950 UTC: 74width, 16height, Main Drives
+2021/1/6 8:9:28:951 UTC: 96width, 16height, Auxiliary Drives
+2021/1/6 8:9:28:951 UTC: 93width, 16height, Group Jogging
+2021/1/6 8:9:28:951 UTC: 141 is x width for childrentier2
+2021/1/6 8:9:29:452 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:29:452 UTC: 120width, 16height, Power Supply Main
+2021/1/6 8:9:29:452 UTC: Power Supply Main is the caption for which we check width
+2021/1/6 8:9:29:452 UTC: 141width, 16height, Power Supply Auxiliary
+2021/1/6 8:9:29:452 UTC: Power Supply Auxiliary is the caption for which we check width
+2021/1/6 8:9:29:452 UTC: 74width, 16height, Main Drives
+2021/1/6 8:9:29:453 UTC: 96width, 16height, Auxiliary Drives
+2021/1/6 8:9:29:453 UTC: 93width, 16height, Group Jogging
+2021/1/6 8:9:29:453 UTC: 141 is x width for childrentier2
+2021/1/6 8:9:29:453 UTC: 181 is maxwidthtier2
+2021/1/6 8:9:29:955 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:30:455 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:34:461 UTC: For Power Supply Main expand menu, clicked at 230 x, 168 y
+2021/1/6 8:9:34:461 UTC: 'SPM#51-01-00_w_#DRV-PowerSupplyMain'
+2021/1/6 8:9:34:964 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:35:468 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:39:469 UTC: For Power Supply Auxiliary expand menu, clicked at 230 x, 193 y
+2021/1/6 8:9:39:470 UTC: 'SPM#53-01-00_w_#DRV-PowerSupplyAuxiliary'
+2021/1/6 8:9:39:976 UTC: 81width, 16height, Pay-Off Reel
+2021/1/6 8:9:39:976 UTC: Pay-Off Reel's click position in pixels would be 60
+2021/1/6 8:9:39:976 UTC: 81width, 16height, Pay-Off Reel
+2021/1/6 8:9:39:976 UTC: Pay-Off Reel is the caption for which we check width
+2021/1/6 8:9:39:977 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:9:39:977 UTC: 82width, 16height, Tension Reel
+2021/1/6 8:9:39:977 UTC: Tension Reel is the caption for which we check width
+2021/1/6 8:9:39:978 UTC: 82 is x width for childrentier2
+2021/1/6 8:9:40:481 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:40:984 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:41:486 UTC: For Main Drives expand menu, clicked at 230 x, 218 y
+2021/1/6 8:9:45:492 UTC: For Pay-Off Reel expand menu, clicked at 392 x, 218 y
+2021/1/6 8:9:45:493 UTC: 'SPM#52-01-00_n_#DRV-DrivePayOffReel'
+2021/1/6 8:9:45:493 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:9:45:493 UTC: Mill Stand's click position in pixels would be 50
+2021/1/6 8:9:45:493 UTC: 81width, 16height, Pay-Off Reel
+2021/1/6 8:9:45:493 UTC: Pay-Off Reel is the caption for which we check width
+2021/1/6 8:9:45:494 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:9:45:494 UTC: 82width, 16height, Tension Reel
+2021/1/6 8:9:45:494 UTC: Tension Reel is the caption for which we check width
+2021/1/6 8:9:45:494 UTC: 82 is x width for childrentier2
+2021/1/6 8:9:45:997 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:46:501 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:47:2 UTC: For Main Drives expand menu, clicked at 230 x, 218 y
+2021/1/6 8:9:51:6 UTC: For Mill Stand expand menu, clicked at 392 x, 243 y
+2021/1/6 8:9:51:7 UTC: 'SPM#52-02-00_n_#DRV-DriveStandC1'
+2021/1/6 8:9:51:7 UTC: 82width, 16height, Tension Reel
+2021/1/6 8:9:51:7 UTC: Tension Reel's click position in pixels would be 61
+2021/1/6 8:9:51:7 UTC: 81width, 16height, Pay-Off Reel
+2021/1/6 8:9:51:8 UTC: Pay-Off Reel is the caption for which we check width
+2021/1/6 8:9:51:8 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:9:51:8 UTC: 82width, 16height, Tension Reel
+2021/1/6 8:9:51:8 UTC: Tension Reel is the caption for which we check width
+2021/1/6 8:9:51:9 UTC: 82 is x width for childrentier2
+2021/1/6 8:9:51:512 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:52:15 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:52:518 UTC: For Main Drives expand menu, clicked at 230 x, 218 y
+2021/1/6 8:9:56:525 UTC: For Tension Reel expand menu, clicked at 392 x, 268 y
+2021/1/6 8:9:56:526 UTC: 'SPM#52-03-00_n_#DRV-DriveTensionReel'
+2021/1/6 8:9:57:30 UTC: 71width, 16height, Bridle Rolls
+2021/1/6 8:9:57:31 UTC: Bridle Rolls's click position in pixels would be 55
+2021/1/6 8:9:57:31 UTC: 71width, 16height, Bridle Rolls
+2021/1/6 8:9:57:31 UTC: Bridle Rolls is the caption for which we check width
+2021/1/6 8:9:57:32 UTC: 85width, 16height, Deflector Roll
+2021/1/6 8:9:57:32 UTC: Deflector Roll is the caption for which we check width
+2021/1/6 8:9:57:32 UTC: 85 is x width for childrentier2
+2021/1/6 8:9:57:535 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:9:58:40 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:9:58:544 UTC: For Auxiliary Drives expand menu, clicked at 230 x, 243 y
+2021/1/6 8:10:2:546 UTC: For Bridle Rolls expand menu, clicked at 395 x, 243 y
+2021/1/6 8:10:2:546 UTC: 'SPM#52-13-00_n_#DRV-DrivesBriddleRolls'
+2021/1/6 8:10:2:546 UTC: 85width, 16height, Deflector Roll
+2021/1/6 8:10:2:547 UTC: Deflector Roll's click position in pixels would be 62
+2021/1/6 8:10:2:547 UTC: 71width, 16height, Bridle Rolls
+2021/1/6 8:10:2:547 UTC: Bridle Rolls is the caption for which we check width
+2021/1/6 8:10:2:547 UTC: 85width, 16height, Deflector Roll
+2021/1/6 8:10:2:548 UTC: Deflector Roll is the caption for which we check width
+2021/1/6 8:10:2:548 UTC: 85 is x width for childrentier2
+2021/1/6 8:10:3:49 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:10:3:550 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:10:4:52 UTC: For Auxiliary Drives expand menu, clicked at 230 x, 243 y
+2021/1/6 8:10:8:88 UTC: For Deflector Roll expand menu, clicked at 395 x, 268 y
+2021/1/6 8:10:8:89 UTC: 'SPM#52-14-00_n_#DRV-DrivesDeflectorRolls'
+2021/1/6 8:10:8:590 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/1/6 8:10:9:91 UTC: For Drives expand menu, clicked at 37 x, 168 y
+2021/1/6 8:10:13:93 UTC: For Group Jogging expand menu, clicked at 230 x, 268 y
+2021/1/6 8:10:13:93 UTC: 'SPM#54-01-00_n_#DRV-DrivesGroupJogging'
+2021/1/6 8:10:13:93 UTC: 66width, 16height, Entry Area
+2021/1/6 8:10:13:93 UTC: 181width, 16height, Overview - Coil Prep. Station
+2021/1/6 8:10:13:93 UTC: Overview - Coil Prep. Station is the caption for which we check width
+2021/1/6 8:10:13:94 UTC: 103width, 16height, Coil Car Deposit
+2021/1/6 8:10:13:94 UTC: 112width, 16height, Pup Coil Handling
+2021/1/6 8:10:13:94 UTC: 81width, 16height, Maintenance
+2021/1/6 8:10:13:94 UTC: 181 is x width for childrentier2
+2021/1/6 8:10:13:598 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/1/6 8:10:17:599 UTC: For Overview - Coil Prep. Station expand menu, clicked at 120 x, 43 y
+2021/1/6 8:10:17:599 UTC: 'SPM#03-02-00_n_#SPM-OverviewCoilPreparationStation'
+2021/1/6 8:10:18:100 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/1/6 8:10:22:111 UTC: For Coil Car Deposit expand menu, clicked at 120 x, 68 y
+2021/1/6 8:10:22:112 UTC: 'SPM#03-01-00_n_#SPM-OverviewCoilTransportEntry'
+2021/1/6 8:10:22:613 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/1/6 8:10:26:615 UTC: For Pup Coil Handling expand menu, clicked at 120 x, 93 y
+2021/1/6 8:10:26:615 UTC: 'SPM#03-03-00_n_#SPM-OverviewPupCoilHandling'
+2021/1/6 8:10:26:616 UTC: 87width, 16height, Devices Entry
+2021/1/6 8:10:26:616 UTC: Devices Entry is the caption for which we check width
+2021/1/6 8:10:26:616 UTC: 87 is x width for childrentier2
+2021/1/6 8:10:27:117 UTC: For Maintenance expand menu, clicked at 120 x, 118 y
+2021/1/6 8:10:27:118 UTC: 87width, 16height, Devices Entry
+2021/1/6 8:10:27:118 UTC: Devices Entry is the caption for which we check width
+2021/1/6 8:10:27:118 UTC: 87 is x width for childrentier2
+2021/1/6 8:10:27:118 UTC: 127 is maxwidthtier2
+2021/1/6 8:10:27:621 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/1/6 8:10:28:124 UTC: For Maintenance expand menu, clicked at 120 x, 118 y
+2021/1/6 8:10:32:128 UTC: For Devices Entry expand menu, clicked at 341 x, 118 y
+2021/1/6 8:10:32:128 UTC: 'SPM#03-10-00_n_#SPM-DeviceTestEntry'
+2021/1/6 8:10:32:129 UTC: 86width, 16height, Skin Pass Mill
+2021/1/6 8:10:32:129 UTC: 157width, 16height, Overview - Skin Pass Mill
+2021/1/6 8:10:32:129 UTC: Overview - Skin Pass Mill is the caption for which we check width
+2021/1/6 8:10:32:129 UTC: 124width, 16height, Tracking Correction
+2021/1/6 8:10:32:130 UTC: 81width, 16height, Pay-Off Reel
+2021/1/6 8:10:32:130 UTC: 82width, 16height, Tension Reel
+2021/1/6 8:10:32:130 UTC: 71width, 16height, Setup Data
+2021/1/6 8:10:32:130 UTC: 157width, 16height, Machine Prep. Functions
+2021/1/6 8:10:32:130 UTC: 81width, 16height, Maintenance
+2021/1/6 8:10:32:131 UTC: 157 is x width for childrentier2
+2021/1/6 8:10:32:632 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:36:633 UTC: For Overview - Skin Pass Mill expand menu, clicked at 221 x, 43 y
+2021/1/6 8:10:36:633 UTC: 'SPM#01-01-00_n_#SPM-Overview-SPM'
+2021/1/6 8:10:37:136 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:41:142 UTC: For Tracking Correction expand menu, clicked at 221 x, 68 y
+2021/1/6 8:10:41:143 UTC: 'SPM#01-02-00_n_#SPM-OverviewTrackingCorrection'
+2021/1/6 8:10:41:644 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:45:645 UTC: For Pay-Off Reel expand menu, clicked at 221 x, 93 y
+2021/1/6 8:10:45:645 UTC: 'SPM#01-03-00_n_#SPM-OverviewPayOffReel'
+2021/1/6 8:10:46:146 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:50:150 UTC: For Tension Reel expand menu, clicked at 221 x, 118 y
+2021/1/6 8:10:50:150 UTC: 'SPM#01-04-00_n_#SPM-OverviewTensionReel'
+2021/1/6 8:10:50:652 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:54:654 UTC: For Setup Data expand menu, clicked at 221 x, 143 y
+2021/1/6 8:10:54:654 UTC: 'SPM#08-02-00_n_#SPM-SetupData'
+2021/1/6 8:10:54:654 UTC: 88width, 16height, BUR Cleaning
+2021/1/6 8:10:54:655 UTC: BUR Cleaning is the caption for which we check width
+2021/1/6 8:10:54:655 UTC: 68width, 16height, Calibration
+2021/1/6 8:10:54:655 UTC: 78width, 16height, Roll Change
+2021/1/6 8:10:54:655 UTC: 106width, 16height, Stand Rolls Data
+2021/1/6 8:10:54:655 UTC: Stand Rolls Data is the caption for which we check width
+2021/1/6 8:10:54:655 UTC: 126width, 16height, Deflector Rolls Data
+2021/1/6 8:10:54:656 UTC: Deflector Rolls Data is the caption for which we check width
+2021/1/6 8:10:54:656 UTC: 126 is x width for childrentier2
+2021/1/6 8:10:55:157 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:10:55:163 UTC: 88width, 16height, BUR Cleaning
+2021/1/6 8:10:55:163 UTC: BUR Cleaning is the caption for which we check width
+2021/1/6 8:10:55:163 UTC: 68width, 16height, Calibration
+2021/1/6 8:10:55:164 UTC: 78width, 16height, Roll Change
+2021/1/6 8:10:55:164 UTC: 106width, 16height, Stand Rolls Data
+2021/1/6 8:10:55:164 UTC: Stand Rolls Data is the caption for which we check width
+2021/1/6 8:10:55:164 UTC: 126width, 16height, Deflector Rolls Data
+2021/1/6 8:10:55:164 UTC: Deflector Rolls Data is the caption for which we check width
+2021/1/6 8:10:55:165 UTC: 126 is x width for childrentier2
+2021/1/6 8:10:55:165 UTC: 166 is maxwidthtier2
+2021/1/6 8:10:55:667 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:10:56:172 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:11:0:173 UTC: For BUR Cleaning expand menu, clicked at 418 x, 168 y
+2021/1/6 8:11:0:174 UTC: 'SPM#16-01-00_n_#SPM-WarmUp'
+2021/1/6 8:11:0:677 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:1:180 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:11:5:181 UTC: For Calibration expand menu, clicked at 418 x, 193 y
+2021/1/6 8:11:5:181 UTC: 'SPM#16-02-00_n_#SPM-Calibration'
+2021/1/6 8:11:5:685 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:6:188 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:11:10:193 UTC: For Roll Change expand menu, clicked at 418 x, 218 y
+2021/1/6 8:11:10:193 UTC: 'SPM#16-03-00_n_#SPM-RollChange'
+2021/1/6 8:11:10:695 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:11:196 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:11:15:197 UTC: For Stand Rolls Data expand menu, clicked at 418 x, 243 y
+2021/1/6 8:11:15:197 UTC: 'SPM#16-04-00_n_#SPM-StandRollData'
+2021/1/6 8:11:15:699 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:16:203 UTC: For Machine Prep. Functions expand menu, clicked at 221 x, 168 y
+2021/1/6 8:11:20:205 UTC: For Deflector Rolls Data expand menu, clicked at 418 x, 268 y
+2021/1/6 8:11:20:205 UTC: 'SPM#16-05-00_n_#SPM-DeflectorRollData'
+2021/1/6 8:11:20:205 UTC: 111width, 16height, Devices Mill Entry
+2021/1/6 8:11:20:205 UTC: Devices Mill Entry is the caption for which we check width
+2021/1/6 8:11:20:206 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:11:20:206 UTC: 132width, 16height, Devices Roll Change
+2021/1/6 8:11:20:206 UTC: Devices Roll Change is the caption for which we check width
+2021/1/6 8:11:20:207 UTC: 100width, 16height, Devices Mill Exit
+2021/1/6 8:11:20:207 UTC: 143width, 16height, Measurement Systems
+2021/1/6 8:11:20:207 UTC: Measurement Systems is the caption for which we check width
+2021/1/6 8:11:20:207 UTC: 143 is x width for childrentier2
+2021/1/6 8:11:20:710 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:20:710 UTC: 111width, 16height, Devices Mill Entry
+2021/1/6 8:11:20:710 UTC: Devices Mill Entry is the caption for which we check width
+2021/1/6 8:11:20:710 UTC: 61width, 16height, Mill Stand
+2021/1/6 8:11:20:711 UTC: 132width, 16height, Devices Roll Change
+2021/1/6 8:11:20:711 UTC: Devices Roll Change is the caption for which we check width
+2021/1/6 8:11:20:711 UTC: 100width, 16height, Devices Mill Exit
+2021/1/6 8:11:20:711 UTC: 143width, 16height, Measurement Systems
+2021/1/6 8:11:20:711 UTC: Measurement Systems is the caption for which we check width
+2021/1/6 8:11:20:711 UTC: 143 is x width for childrentier2
+2021/1/6 8:11:20:711 UTC: 183 is maxwidthtier2
+2021/1/6 8:11:21:215 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:21:720 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:25:721 UTC: For Devices Mill Entry expand menu, clicked at 418 x, 193 y
+2021/1/6 8:11:25:721 UTC: 'SPM#25-01-00_n_#SPM-DeviceTestMillEntry'
+2021/1/6 8:11:26:222 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:26:724 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:30:725 UTC: For Mill Stand expand menu, clicked at 418 x, 218 y
+2021/1/6 8:11:30:725 UTC: 'SPM#25-02-00_w_#SPM-MillStand'
+2021/1/6 8:11:31:227 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:31:731 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:35:735 UTC: For Devices Roll Change expand menu, clicked at 418 x, 243 y
+2021/1/6 8:11:35:735 UTC: 'SPM#25-03-00_n_#SPM-DeviceTestRollChange'
+2021/1/6 8:11:36:237 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:36:744 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:40:744 UTC: For Devices Mill Exit expand menu, clicked at 418 x, 268 y
+2021/1/6 8:11:40:744 UTC: 'SPM#25-04-00_n_#SPM-DeviceTestMillExit'
+2021/1/6 8:11:41:246 UTC: For Skin Pass Mill expand menu, clicked at 221 x, 15 y
+2021/1/6 8:11:41:747 UTC: For Maintenance expand menu, clicked at 221 x, 193 y
+2021/1/6 8:11:45:757 UTC: For Measurement Systems expand menu, clicked at 418 x, 293 y
+2021/1/6 8:11:45:758 UTC: 'SPM#25-10-00_n_#SPM-MeasurementSystems'
+2021/1/6 8:11:45:758 UTC: 55width, 16height, Exit Area
+2021/1/6 8:11:45:758 UTC: 160width, 16height, Overview - Walking Beam
+2021/1/6 8:11:45:759 UTC: Overview - Walking Beam is the caption for which we check width
+2021/1/6 8:11:45:759 UTC: 81width, 16height, Maintenance
+2021/1/6 8:11:45:759 UTC: 160 is x width for childrentier2
+2021/1/6 8:11:46:262 UTC: For Exit Area expand menu, clicked at 316 x, 15 y
+2021/1/6 8:11:50:263 UTC: For Overview - Walking Beam expand menu, clicked at 316 x, 43 y
+2021/1/6 8:11:50:263 UTC: 'SPM#04-02-00_n_#SPM-WalkingBeamExit'
+2021/1/6 8:11:50:263 UTC: 76width, 16height, Devices Exit
+2021/1/6 8:11:50:264 UTC: Devices Exit is the caption for which we check width
+2021/1/6 8:11:50:264 UTC: 76 is x width for childrentier2
+2021/1/6 8:11:50:765 UTC: For Maintenance expand menu, clicked at 316 x, 68 y
+2021/1/6 8:11:50:765 UTC: 76width, 16height, Devices Exit
+2021/1/6 8:11:50:765 UTC: Devices Exit is the caption for which we check width
+2021/1/6 8:11:50:765 UTC: 76 is x width for childrentier2
+2021/1/6 8:11:50:765 UTC: 116 is maxwidthtier2
+2021/1/6 8:11:51:269 UTC: For Exit Area expand menu, clicked at 316 x, 15 y
+2021/1/6 8:11:51:770 UTC: For Maintenance expand menu, clicked at 316 x, 68 y
+2021/1/6 8:11:55:772 UTC: For Devices Exit expand menu, clicked at 516 x, 68 y
+2021/1/6 8:11:55:772 UTC: 'SPM#04-10-00_n_#SPM-DeviceTestExit'
+2021/1/6 8:11:55:772 UTC: 46width, 16height, System
+2021/1/6 8:11:55:773 UTC: 50width, 16height, Network
+2021/1/6 8:11:55:773 UTC: Network is the caption for which we check width
+2021/1/6 8:11:55:773 UTC: 112width, 16height, HMI Configuration
+2021/1/6 8:11:55:773 UTC: HMI Configuration is the caption for which we check width
+2021/1/6 8:11:55:773 UTC: 112 is x width for childrentier2
+2021/1/6 8:11:56:275 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:0:277 UTC: For Network expand menu, clicked at 391 x, 43 y
+2021/1/6 8:12:0:277 UTC: 'i8Sys_w_Environment'
+2021/1/6 8:12:0:277 UTC: 77width, 16height, Node Rights
+2021/1/6 8:12:0:277 UTC: Node Rights is the caption for which we check width
+2021/1/6 8:12:0:278 UTC: 79width, 16height, Connections
+2021/1/6 8:12:0:278 UTC: Connections is the caption for which we check width
+2021/1/6 8:12:0:278 UTC: 70width, 16height, Information
+2021/1/6 8:12:0:278 UTC: 73width, 16height, User Rights
+2021/1/6 8:12:0:278 UTC: 61width, 16height, Database
+2021/1/6 8:12:0:279 UTC: 69width, 16height, Application
+2021/1/6 8:12:0:279 UTC: 86width, 16height, PDL Statistics
+2021/1/6 8:12:0:279 UTC: PDL Statistics is the caption for which we check width
+2021/1/6 8:12:0:279 UTC: 86 is x width for childrentier2
+2021/1/6 8:12:0:780 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:0:780 UTC: 77width, 16height, Node Rights
+2021/1/6 8:12:0:780 UTC: Node Rights is the caption for which we check width
+2021/1/6 8:12:0:780 UTC: 79width, 16height, Connections
+2021/1/6 8:12:0:781 UTC: Connections is the caption for which we check width
+2021/1/6 8:12:0:781 UTC: 70width, 16height, Information
+2021/1/6 8:12:0:781 UTC: 73width, 16height, User Rights
+2021/1/6 8:12:0:781 UTC: 61width, 16height, Database
+2021/1/6 8:12:0:782 UTC: 69width, 16height, Application
+2021/1/6 8:12:0:782 UTC: 86width, 16height, PDL Statistics
+2021/1/6 8:12:0:782 UTC: PDL Statistics is the caption for which we check width
+2021/1/6 8:12:0:782 UTC: 86 is x width for childrentier2
+2021/1/6 8:12:0:782 UTC: 126 is maxwidthtier2
+2021/1/6 8:12:1:283 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:1:786 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:5:791 UTC: For Node Rights expand menu, clicked at 543 x, 68 y
+2021/1/6 8:12:5:791 UTC: 'i8Sys_w_NodeRights'
+2021/1/6 8:12:6:293 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:6:795 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:10:799 UTC: For Connections expand menu, clicked at 543 x, 93 y
+2021/1/6 8:12:10:800 UTC: 'i8App_n_Connections'
+2021/1/6 8:12:11:303 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:11:806 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:15:810 UTC: For Information expand menu, clicked at 543 x, 118 y
+2021/1/6 8:12:15:810 UTC: 'i8Sys_n_Information'
+2021/1/6 8:12:16:313 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:16:817 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:20:821 UTC: For User Rights expand menu, clicked at 543 x, 143 y
+2021/1/6 8:12:20:821 UTC: 'i8Sys_w_UserRights'
+2021/1/6 8:12:21:323 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:21:824 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:25:826 UTC: For Database expand menu, clicked at 543 x, 168 y
+2021/1/6 8:12:25:826 UTC: 'i8Sys_n_Database'
+2021/1/6 8:12:26:329 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:26:832 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:30:839 UTC: For Application expand menu, clicked at 543 x, 193 y
+2021/1/6 8:12:30:840 UTC: 'i8Sys_n_Application'
+2021/1/6 8:12:31:341 UTC: For System expand menu, clicked at 391 x, 15 y
+2021/1/6 8:12:31:854 UTC: For HMI Configuration expand menu, clicked at 391 x, 68 y
+2021/1/6 8:12:35:859 UTC: For PDL Statistics expand menu, clicked at 543 x, 218 y
+2021/1/6 8:12:35:859 UTC: 'i8Sys_n_PdlStatistics'
