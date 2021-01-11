@@ -37,7 +37,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -48,6 +47,11 @@
             this.checkBox3 = new MyCheckBox();
             this.export = new System.Windows.Forms.Button();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.numberOfMeasurements = new System.Windows.Forms.TextBox();
+            this.timeInterval = new System.Windows.Forms.TextBox();
+            this.hoursToRun = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.snapBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -106,14 +110,15 @@
             this.textBox1.Size = new System.Drawing.Size(120, 20);
             this.textBox1.TabIndex = 7;
             this.textBox1.Text = "SDI_CSPM_1-1033.sql";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(199, 12);
+            this.button3.Location = new System.Drawing.Point(279, 39);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(60, 23);
             this.button3.TabIndex = 8;
-            this.button3.Text = "Recalculate";
+            this.button3.Text = "CalcTimes";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
@@ -127,20 +132,12 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(280, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(93, 20);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.Text = "pdlrt";
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(11, 267);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(301, 43);
+            this.listBox1.Size = new System.Drawing.Size(235, 43);
             this.listBox1.TabIndex = 11;
             // 
             // treeView1
@@ -192,6 +189,7 @@
             // 
             // listView1
             // 
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(398, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(363, 298);
@@ -201,7 +199,7 @@
             // 
             // checkBox3
             // 
-            this.checkBox3.Location = new System.Drawing.Point(327, 38);
+            this.checkBox3.Location = new System.Drawing.Point(327, 10);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Padding = new System.Windows.Forms.Padding(6);
             this.checkBox3.Size = new System.Drawing.Size(46, 24);
@@ -210,9 +208,9 @@
             // 
             // export
             // 
-            this.export.Location = new System.Drawing.Point(280, 37);
+            this.export.Location = new System.Drawing.Point(279, 12);
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(41, 23);
+            this.export.Size = new System.Drawing.Size(46, 23);
             this.export.TabIndex = 18;
             this.export.Text = "Export";
             this.export.UseVisualStyleBackColor = true;
@@ -229,11 +227,61 @@
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
+            // numberOfMeasurements
+            // 
+            this.numberOfMeasurements.Location = new System.Drawing.Point(226, 12);
+            this.numberOfMeasurements.Name = "numberOfMeasurements";
+            this.numberOfMeasurements.Size = new System.Drawing.Size(20, 20);
+            this.numberOfMeasurements.TabIndex = 20;
+            this.numberOfMeasurements.Text = "16";
+            // 
+            // timeInterval
+            // 
+            this.timeInterval.Location = new System.Drawing.Point(253, 12);
+            this.timeInterval.Name = "timeInterval";
+            this.timeInterval.Size = new System.Drawing.Size(20, 20);
+            this.timeInterval.TabIndex = 21;
+            this.timeInterval.Text = "30";
+            // 
+            // hoursToRun
+            // 
+            this.hoursToRun.Location = new System.Drawing.Point(199, 12);
+            this.hoursToRun.Name = "hoursToRun";
+            this.hoursToRun.Size = new System.Drawing.Size(20, 20);
+            this.hoursToRun.TabIndex = 22;
+            this.hoursToRun.Text = "8";
+            this.hoursToRun.TextChanged += new System.EventHandler(this.hoursToRun_TextChanged);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(345, 38);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(28, 23);
+            this.button6.TabIndex = 23;
+            this.button6.Text = "XL";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // snapBox
+            // 
+            this.snapBox.AutoSize = true;
+            this.snapBox.Location = new System.Drawing.Point(253, 267);
+            this.snapBox.Name = "snapBox";
+            this.snapBox.Size = new System.Drawing.Size(51, 17);
+            this.snapBox.TabIndex = 24;
+            this.snapBox.Text = "Snap";
+            this.snapBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 324);
+            this.Controls.Add(this.snapBox);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.hoursToRun);
+            this.Controls.Add(this.timeInterval);
+            this.Controls.Add(this.numberOfMeasurements);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.export);
             this.Controls.Add(this.checkBox3);
@@ -244,7 +292,6 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
@@ -274,7 +321,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -285,6 +331,11 @@
         private MyCheckBox checkBox3;
         private System.Windows.Forms.Button export;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.TextBox numberOfMeasurements;
+        private System.Windows.Forms.TextBox timeInterval;
+        private System.Windows.Forms.TextBox hoursToRun;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox snapBox;
     }
 }
 

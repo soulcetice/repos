@@ -28,3 +28,23 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.ResolveComReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Form1.resources
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Properties.Resources.resources
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.GenerateResource.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CoreCompileInputs.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe.config
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete

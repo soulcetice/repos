@@ -15,6 +15,8 @@ using System.Threading;
 using System.Management;
 using WindowsUtilities;
 using System.Drawing.Drawing2D;
+using System.Data.OleDb;
+using System.Reflection;
 
 namespace WinCC_Timer
 {
@@ -28,9 +30,44 @@ namespace WinCC_Timer
 
             InitTreeView();
 
-            textBox3.Text = Application.StartupPath + "\\Measurements";
+            textBox3.Text = "CSPM-Measurements";
 
+            SetTooltips();
 
+            var d = new DirectoryInfo(Application.StartupPath);
+            var sqlFiles = new FileInfo(Directory.GetFiles(d.FullName, "*.sql", SearchOption.TopDirectoryOnly).FirstOrDefault());
+            textBox1.Text = sqlFiles.Name;
+        }
+
+        private void UpdateFileDate()
+        {
+            DateTime date = DateTime.Now;
+            var month = date.Month < 10 ? "0" + date.Month.ToString() : date.Month.ToString();
+            var day = date.Day < 10 ? "0" + date.Day.ToString() : date.Day.ToString();
+            var hour = date.Hour < 10 ? "0" + date.Hour.ToString() : date.Hour.ToString();
+            var minute = date.Minute < 10 ? "0" + date.Minute.ToString() : date.Minute.ToString();
+            var second = date.Second < 10 ? "0" + date.Second.ToString() : date.Second.ToString();
+            formattedDate = date.Year.ToString().Substring(2) + month + day + hour + minute + second;
+            Directory.CreateDirectory(Application.StartupPath + "\\" + formattedDate);
+        }
+
+        private void SetTooltips()
+        {
+            var tooltip1 = new System.Windows.Forms.ToolTip();
+            tooltip1.SetToolTip(numberOfMeasurements, "Set the number of measurements to take");
+            tooltip1.InitialDelay = 50;
+
+            var tooltip2 = new System.Windows.Forms.ToolTip();
+            tooltip2.SetToolTip(timeInterval, "Set the time interval between measurements (around 2 * pagesNo [minutes])");
+            tooltip2.InitialDelay = 50;
+
+            var tooltip3 = new System.Windows.Forms.ToolTip();
+            tooltip3.SetToolTip(button1, "Run the set number of measurements at the set minutes interval!");
+            tooltip3.InitialDelay = 50;
+
+            var tooltip4 = new System.Windows.Forms.ToolTip();
+            tooltip4.SetToolTip(button1, "Run the set number of measurements at the set minutes interval!");
+            tooltip4.InitialDelay = 50;
         }
 
         private void InitTreeView()
@@ -58,8 +95,8 @@ namespace WinCC_Timer
             ////
             //treeNode = new TreeNode("Dot Net Perls", array);
             //treeView1.Nodes.Add(treeNode);
-
             List<MenuRow> lists = GetMenuData(/*(refIdBox.Text*/);
+
             var tier1 = lists.Where(c => c.Layer == "1").ToList();
 
             foreach (MenuRow m in tier1)
@@ -104,8 +141,8 @@ namespace WinCC_Timer
                 treeView1.Nodes.Add(treeNode);
             }
 
-            //treeView1.ExpandAll();
             treeView1.CheckBoxes = true;
+
         }
 
         [DllImport("msvcrt.dll")]
@@ -113,23 +150,26 @@ namespace WinCC_Timer
 
         public DataTable dataTable = new DataTable();
         public string logName = "\\Screen.logger";
-        public string pdlrtLogName = "\\pdlrt.logger";
-        public string scriptLogName = "\\script.logger";
 
         public bool endFlag = false;
         public string currentPage = "";
+        public string formattedDate = "";
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            endFlag = false;
-            Thread.Sleep(4000);
-            RunTasks();
+            for (var i = 0; i < Int32.Parse(numberOfMeasurements.Text); i++)
+            {
+                endFlag = false;
+                Thread.Sleep(4000);
+                RunTasks();
+            }
         }
 
         private void Button2_Click(object sender, EventArgs e) => ManipulateWinCCPrograms();
 
         private void RunTasks()
         {
+            UpdateFileDate();
             #region ParallelTasks
             // Perform tasks in parallel
             Parallel.Invoke(
@@ -143,7 +183,7 @@ namespace WinCC_Timer
                 () =>
                 {
                     Console.WriteLine("Begin second task...");
-                    GatherProcessCPUUsage("PdlRt", pdlrtLogName);
+                    GatherProcessCPUUsage("PdlRt", "\\pdlrt_" + formattedDate + ".logger");
                 }
                 //}, //close second Action
 
@@ -251,13 +291,12 @@ namespace WinCC_Timer
                     {
                         if (!selectedNodes.Contains(tier2.Pdl))
                         {
-                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(1000); //expand tier1 menu
                             LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(4000); //open tier2 page
+                            ClickInWindowAtXY(rt, x, y, 1); currentPage = tier2.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //open tier2 page
                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                             LogToFile(tier2.Pdl, logName);
 
-                            currentPage = tier2.Pdl;
                             if (checkBox4.Checked)
                                 ScreenshotAndSave();
                         }
@@ -265,7 +304,7 @@ namespace WinCC_Timer
                     else
                     {
                         var ChildrenTier2 = lists.Where(c => c.ParentId == tier2.ID);
-                        ClickInWindowAtXY(rt, GetMenuDropWidth(ChildrenTier2), y, 1); Thread.Sleep(500); //expand tier2 menu
+                        ClickInWindowAtXY(rt, GetMenuDropWidth(ChildrenTier2), y, 1); Thread.Sleep(1000); //expand tier2 menu
                         LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
 
                         int yTier3 = y;
@@ -278,15 +317,14 @@ namespace WinCC_Timer
                             {
                                 if (!selectedNodes.Contains(tier3.Pdl))
                                 {
-                                    ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                                    ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(1000); //expand tier1 menu
                                     LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                    ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                    ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(1000); //expand tier2 menu or open page
                                     LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(4000); //expand tier2 menu or open page
+                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); currentPage = tier3.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //expand tier2 menu or open page
                                     LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
                                     LogToFile(tier3.Pdl, logName);
 
-                                    currentPage = tier3.Pdl;
                                     if (checkBox4.Checked)
                                         ScreenshotAndSave();
                                 }
@@ -295,7 +333,7 @@ namespace WinCC_Timer
                             {
                                 //there is also a tier4....
                                 var ChildrenTier3 = lists.Where(c => c.ParentId == tier3.ID);
-                                ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(1000); //expand tier2 menu or open page
 
                                 int yTier4 = yTier3;
                                 foreach (var tier4 in ChildrenTier3)
@@ -307,17 +345,17 @@ namespace WinCC_Timer
                                     {
                                         if (!selectedNodes.Contains(tier4.Pdl))
                                         {
-                                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(500); //expand tier1 menu
+                                            ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(1000); //expand tier1 menu
                                             LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                            ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(1000); //expand tier2 menu or open page
                                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                            ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(500); //expand tier2 menu or open page
+                                            ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(1000); //expand tier2 menu or open page
                                             LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); Thread.Sleep(4000); //expand tier2 menu or open page
+                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); currentPage = tier4.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //expand tier2 menu or open page
                                             LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                             LogToFile(tier4.Pdl, logName);
 
-                                            currentPage = tier4.Pdl;
+
                                             if (checkBox4.Checked)
                                                 ScreenshotAndSave();
                                         }
@@ -346,7 +384,7 @@ namespace WinCC_Timer
         private void ScreenshotAndSave()
         {
             Bitmap bmp = TakeScreenShot(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            bmp.Save(Application.StartupPath + "\\" + currentPage + ".png");
+            bmp.Save(Application.StartupPath + "\\" + formattedDate + "\\" + currentPage + ".png");
         }
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
@@ -459,7 +497,12 @@ namespace WinCC_Timer
                 Console.WriteLine("added row");
             }
 
+            var recommendedIntervalMins = myData.Where(c => c.Pdl != "''").Count() / 10 * 1.5;
+            timeInterval.Text = recommendedIntervalMins.ToString();
+            numberOfMeasurements.Text = (Math.Floor(Double.Parse(hoursToRun.Text) * 60 / recommendedIntervalMins)).ToString();
+
             return myData;
+
         }
 
         private bool FindObjectInHMI(Bitmap cmp)
@@ -529,43 +572,43 @@ namespace WinCC_Timer
 
         private static void ManipulateWinCCPrograms()
         {
-            #region grafexe
-            grafexe.Application g = new grafexe.Application();
+            //#region grafexe
+            //grafexe.Application g = new grafexe.Application();
 
-            var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
-            var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+            //var file = @"C:\Project\sdib_tcm_clt\GraCS\TCM#01-01-01_n_#TCM-OverviewTCM.pdl";
+            //var grf = g.Documents.Open(file, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
 
-            g.DisableVBAEvents = false;
+            //g.DisableVBAEvents = false;
 
-            var myobjects = grf.HMIObjects.Find("HMIRectangle");
-            var count = myobjects.Count;
+            //var myobjects = grf.HMIObjects.Find("HMIRectangle");
+            //var count = myobjects.Count;
 
-            grafexe.HMIObjects objs = grf.HMIObjects;
-            foreach (grafexe.HMIObject obj in objs)
-            {
-                var t = obj.ObjectName;
-            }
-            #endregion
+            //grafexe.HMIObjects objs = grf.HMIObjects;
+            //foreach (grafexe.HMIObject obj in objs)
+            //{
+            //    var t = obj.ObjectName;
+            //}
+            //#endregion
 
-            #region runtime
-            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            //#region runtime
+            //CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
 
-            var hmiRtProjectLib = new CCHMIRTPROJECTLib.HMIProject();
-            var hmiRtGraphics = new CCHMIRTGRAPHICS.HMIRTGraphics();
-            //var agentComp = new CCAGENTLib.CCAgentComp().;
-            var configToolImporter = new CCCONFIGTOOLIMPORTERLib.CCConfigToolImporter();
-            var downloadLib = new CCDOWNLOADLib.InitDownload();
-            downloadLib.Initialize(CCDOWNLOADLib.enumWinCCMode.WCM_RT, CCDOWNLOADLib.enumClientType.CLT_WINCC);
+            //var hmiRtProjectLib = new CCHMIRTPROJECTLib.HMIProject();
+            //var hmiRtGraphics = new CCHMIRTGRAPHICS.HMIRTGraphics();
+            ////var agentComp = new CCAGENTLib.CCAgentComp().;
+            //var configToolImporter = new CCCONFIGTOOLIMPORTERLib.CCConfigToolImporter();
+            //var downloadLib = new CCDOWNLOADLib.InitDownload();
+            //downloadLib.Initialize(CCDOWNLOADLib.enumWinCCMode.WCM_RT, CCDOWNLOADLib.enumClientType.CLT_WINCC);
 
-            var guiTools = new CCGUITOOLSLib.CCBalloon();
-            guiTools.HideBalloon();
+            //var guiTools = new CCGUITOOLSLib.CCBalloon();
+            //guiTools.HideBalloon();
 
-            #endregion
+            //#endregion
 
-            #region configStudio
-            var tag = new CCConfigStudio.Application();
-            tag.Editors[1].FileOpen("");
-            #endregion
+            //#region configStudio
+            //var tag = new CCConfigStudio.Application();
+            //tag.Editors[1].FileOpen("");
+            //#endregion
         }
 
         private bool GatherProcessCPUUsage(string process, string log)
@@ -605,30 +648,28 @@ namespace WinCC_Timer
             }
             catch (Exception exc)
             {
-                LogToFile(exc.Message, Path.Combine(Application.StartupPath, "errors.logger"));
+                LogToFile(exc.Message, "\\errors.logger");
             }
 
             for (int i = 0; i < perc.Count; i++)
             {
-                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], log);
+                LogToFile(measTime[i] + "," + perc[i].ToString() + "," + atPagesList[i], "\\" + formattedDate + "\\" + log);
             }
 
             try
             {
-                ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, "current");
+                ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, formattedDate);
             }
             catch (Exception exc)
             {
-                LogToFile(exc.Message, Path.Combine(Application.StartupPath, "errors.logger"));
+                LogToFile(exc.Message, "\\errors.logger");
             }
 
             return true;
         }
 
-        private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes, string currentCalc)
+        private void ProcessGatheredCpuUsageData(List<float> perc, List<string> atPagesList, List<DateTime> datetimes, string currentCalc, string directory = "")
         {
-            DeletePreviousCalculatedTimesInFolder();
-
             var PageCpuUsageList = new List<PageCpuTime>();
             var PageLoadTimes = new List<PageTime>();
             for (int i = 0; i < perc.Count; i++)
@@ -671,24 +712,21 @@ namespace WinCC_Timer
                     var largestNonZero = nonZeroGroups.OrderByDescending(c => c.Count()).ElementAt(0).ToList();
 
                     var difs = new List<double>();
-                    int maxSlopeEnd = 0;
+
                     if (largestNonZero.Count > 1)
                     {
                         for (int i = 0; i < largestNonZero.Count - 1; i++)
                         {
                             difs.Add(largestNonZero[i + 1].cpu - largestNonZero[i].cpu);
                         }
-
-                        maxSlopeEnd = difs.IndexOf(difs.Max()) + 1;
                     }
 
                     //largest three compounded steps is the big spike
                     //which is really the point where the datamanager requests and wincc shows the data
                     //aka the loading time as the eye sees it
 
-                    float maxCompoundSlope = 0;
                     difs = difs.Select(x => (x < 0 ? 0 : x)).ToList();
-                    GetConsecutiveSum(largestNonZero.Select(c => c.cpu).ToArray(), out maxCompoundSlope, out int index);
+                    GetConsecutiveSum(largestNonZero.Select(c => c.cpu).ToArray(), out float maxCompoundSlope, out int index);
 
                     double loadingTime = (largestNonZero[index].timestamp - startTime).TotalMilliseconds;
                     //not the max but actually the point after the steepest slope we got !
@@ -698,10 +736,8 @@ namespace WinCC_Timer
                         load = loadingTime,
                         page = p
                     };
-
                     PageLoadTimes.Add(pageTime);
-
-                    LogToFile(pageTime.page + "," + pageTime.load + " ms", "\\timerData_" + currentCalc + ".logger");
+                    LogToFile(pageTime.page + "," + pageTime.load + " ms", directory.Replace(Application.StartupPath, "") + "\\timerData_" + currentCalc + ".logger");
                 }
             }
         }
@@ -749,7 +785,7 @@ namespace WinCC_Timer
                 PageCpuTime prim = c.OrderBy(x => x.timestamp).FirstOrDefault();
                 if ((prim.timestamp - startTime).TotalSeconds > 1)
                     nonZeroGroups.Remove(c);
-            } //remove groups that start later than 2 seconds
+            } //remove groups that start later than 1 second from menu click
 
             return nonZeroGroups;
         }
@@ -758,6 +794,8 @@ namespace WinCC_Timer
         {
             public string page;
             public double load;
+            public double min;
+            public double max;
         }
 
         public class PageCpuTime
@@ -833,16 +871,39 @@ namespace WinCC_Timer
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            var file = textBox2.Text;
+            var d = new DirectoryInfo(Path.Combine(Application.StartupPath, textBox3.Text));
+            var loggerFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
+            var cpuDataFiles = loggerFiles.Where(c => c.Contains("pdlrt")).ToList();
 
-            var dataFile = new FileInfo(Application.StartupPath + @"\" + file + ".logger");
-            if (!dataFile.Exists) return;
+            foreach (var file in cpuDataFiles)
+            {
+                GetCPUFileData(file, out FileInfo dataFile, out List<float> percentagesList, out List<string> pagesList, out List<DateTime> dateTimesList, out List<PageCpuTime> pageCpuTimes);
 
+                var terminus = "";
+                if (dataFile.Name != "pdlrt.logger")
+                    terminus = dataFile.Name.Replace(dataFile.Extension, "").Substring(6);
+                else
+                    terminus = "current";
+
+                var oldtimerFiles = Directory.GetFiles(dataFile.DirectoryName, "timerData*", SearchOption.TopDirectoryOnly);
+                foreach (var c in oldtimerFiles)
+                {
+                    var oldTimerFile = new FileInfo(c);
+                    oldTimerFile.Delete();
+                }
+
+                ProcessGatheredCpuUsageData(percentagesList, pagesList, dateTimesList, terminus, dataFile.DirectoryName);
+            }
+        }
+
+        private static void GetCPUFileData(string file, out FileInfo dataFile, out List<float> perc, out List<string> atPagesList, out List<DateTime> datetimes, out List<PageCpuTime> pageCpuTimes)
+        {
+            dataFile = new FileInfo(file);
             var textData = File.ReadAllLines(dataFile.FullName);
-            var perc = new List<float>();
-            var atPagesList = new List<string>();
-            var datetimes = new List<DateTime>();
-
+            perc = new List<float>();
+            atPagesList = new List<string>();
+            datetimes = new List<DateTime>();
+            pageCpuTimes = new List<PageCpuTime>();
             for (int i = 0; i < textData.Length; i++)
             {
                 var data = textData[i].Split(Convert.ToChar(" "))[3];
@@ -850,10 +911,13 @@ namespace WinCC_Timer
                 datetimes.Add(DateTime.Parse(line[0]));
                 perc.Add(float.Parse(line[1]));
                 atPagesList.Add(line[2]);
+                pageCpuTimes.Add(new PageCpuTime()
+                {
+                    cpu = float.Parse(line[1]),
+                    page = line[2],
+                    timestamp = DateTime.Parse(line[0])
+                });
             }
-
-
-            ProcessGatheredCpuUsageData(perc, atPagesList, datetimes, file);
         }
 
         private void Button4_Click(object sender, EventArgs e)
@@ -910,7 +974,11 @@ namespace WinCC_Timer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var d = new DirectoryInfo(textBox3.Text);
+            var d = new DirectoryInfo(Path.Combine(Application.StartupPath, textBox3.Text));
+
+            var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
+            var timerFiles = textFiles.Where(c => c.Contains("timer")).ToList();
+
             List<List<PageTime>> alldata;
             List<string> fileList;
             GetGatheredDatasets(d, out alldata, out fileList);
@@ -919,14 +987,15 @@ namespace WinCC_Timer
 
             //List<PageTime> list = ComputeTimesFromDatasets(alldata, fileList);
 
-
             listView1.Columns.Add("Pdl", 230);
             listView1.Columns.Add("Loading Time [ms]", 110);
+            listView1.Columns.Add("Min Time [ms]", 110);
+            listView1.Columns.Add("Max Time [ms]", 110);
             listView1.View = View.Details;
             foreach (var c in computed)
             {
                 //LogToFile(c.page + ", " + c.load + " ms", "\\stdDevTimerData.logger");
-                string[] row = { c.page, Math.Round(c.load, 2).ToString() };
+                string[] row = { c.page, Math.Round(c.load, 2).ToString(), c.min.ToString(), c.max.ToString() };
                 var item1 = new ListViewItem(row);
                 item1.Text = c.page;
                 listView1.Items.Add(item1);
@@ -948,6 +1017,7 @@ namespace WinCC_Timer
                     if (pageTime != null)
                     {
                         loadingTimes.Add(pageTime.load);
+                        LogToFile(page + "," + pageTime.load, "\\test.logger");
                     }
                 }
 
@@ -965,7 +1035,9 @@ namespace WinCC_Timer
                         stdDevs.Add(new PageTime()
                         {
                             page = page,
-                            load = selectiveAverage
+                            load = selectiveAverage,
+                            min = loadingTimes.Min(),
+                            max = loadingTimes.Max(),
                         });
                     }
                 }
@@ -1089,7 +1161,7 @@ namespace WinCC_Timer
             LogToFile("Page name,Measured loading time [ms]", "\\ProcessedTimesExport.csv", false);
             foreach (ListViewItem item in items)
             {
-                LogToFile(item.SubItems[0].Text + "," + item.SubItems[1].Text, "\\ProcessedTimesExport.csv", false);
+                LogToFile(item.SubItems[0].Text + "," + item.SubItems[1].Text + "," + item.SubItems[2].Text + "," + item.SubItems[3].Text, "\\ProcessedTimesExport.csv", false);
             }
         }
 
@@ -1118,6 +1190,209 @@ namespace WinCC_Timer
                     ActiveForm.Height = 363;
                 }
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            treeView1.Nodes.Clear();
+            InitTreeView();
+        }
+
+        private void hoursToRun_TextChanged(object sender, EventArgs e)
+        {
+            GetMenuData();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            var excel = new Microsoft.Office.Interop.Excel.Application();
+
+            string fileName = @"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Book1.xlsm";
+
+            var d = new DirectoryInfo(@"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\SPM-1-Measurements");
+            var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
+            var cpuFiles = textFiles.Where(c => c.Contains("pdlrt")).ToList();
+
+            Microsoft.Office.Interop.Excel.Application oXL;
+            Microsoft.Office.Interop.Excel._Workbook oWB;
+            Microsoft.Office.Interop.Excel._Worksheet oSheet;
+            Microsoft.Office.Interop.Excel._Worksheet oWS;
+
+            try
+            {
+
+
+                //Start Excel and get Application object.
+                oXL = new Microsoft.Office.Interop.Excel.Application();
+                oXL.Visible = true;
+
+                //Get a new workbook.
+                oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+                oSheet = (Microsoft.Office.Interop.Excel._Worksheet)oWB.ActiveSheet;
+                int i = 0;
+
+                var allCpuData = new List<List<float>>();
+                var allPageData = new List<List<string>>();
+                var allDateTimeData = new List<List<DateTime>>();
+                var allPageCpuTimes = new List<List<PageCpuTime>>();
+                foreach (var file in cpuFiles)
+                {
+                    GetCPUFileData(file, out FileInfo dataFile, out List<float> percentagesList, out List<string> pagesList, out List<DateTime> dateTimesList, out List<PageCpuTime> pageCpuTimes);
+                    allCpuData.Add(percentagesList);
+                    allPageData.Add(pagesList);
+                    allDateTimeData.Add(dateTimesList);
+                    allPageCpuTimes.Add(pageCpuTimes);
+
+                    i++;
+                    oSheet.get_Range("A" + i).Value2 = "Page";
+                    oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
+                    i++;
+                    oSheet.get_Range("A" + i).Value2 = "Time";
+                    oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
+                    oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
+                    i++;
+                    oSheet.get_Range("A" + i).Value2 = "CPU";
+                    oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
+                }
+
+                var distinctPages = new List<string>();
+                foreach (var list in allPageData)
+                {
+                    distinctPages.AddRange(list);
+                }
+                distinctPages = distinctPages.Distinct().Where(c => c != "").ToList();
+
+                var pageData = new List<List<PageCpuTime>>();
+                var sortedDataByPage = new List<List<List<PageCpuTime>>>();
+                foreach (var page in distinctPages)
+                {
+                    pageData = (from data in allPageCpuTimes
+                                select data.Where(c => c.page == page).ToList()).ToList();
+                    sortedDataByPage.Add(pageData);
+                }
+
+
+                foreach (var c in sortedDataByPage[0])
+                {
+                    //i++;
+                    //oSheet.get_Range("A" + i).Value2 = "Page";
+                    //oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
+                    //i++;
+                    //oSheet.get_Range("A" + i).Value2 = "Time";
+                    //oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
+                    //oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
+                    //i++;
+                    //oSheet.get_Range("A" + i).Value2 = "CPU";
+                    //oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
+                }
+
+                oXL.Visible = true;
+                oXL.UserControl = true;
+            }
+            catch (Exception theException)
+            {
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, theException.Message);
+                errorMessage = String.Concat(errorMessage, " Line: ");
+                errorMessage = String.Concat(errorMessage, theException.Source);
+
+                MessageBox.Show(errorMessage, "Error");
+            }
+        }
+
+        private void DisplayQuarterlySales(Microsoft.Office.Interop.Excel._Worksheet oWS)
+        {
+            Microsoft.Office.Interop.Excel._Workbook oWB;
+            Microsoft.Office.Interop.Excel.Series oSeries;
+            Microsoft.Office.Interop.Excel.Range oResizeRange;
+            Microsoft.Office.Interop.Excel._Chart oChart;
+            String sMsg;
+            int iNumQtrs;
+
+            //Determine how many quarters to display data for.
+            for (iNumQtrs = 4; iNumQtrs >= 2; iNumQtrs--)
+            {
+                sMsg = "Enter sales data for ";
+                sMsg = String.Concat(sMsg, iNumQtrs);
+                sMsg = String.Concat(sMsg, " quarter(s)?");
+
+                DialogResult iRet = MessageBox.Show(sMsg, "Quarterly Sales?",
+                MessageBoxButtons.YesNo);
+                if (iRet == DialogResult.Yes)
+                    break;
+            }
+
+            sMsg = "Displaying data for ";
+            sMsg = String.Concat(sMsg, iNumQtrs);
+            sMsg = String.Concat(sMsg, " quarter(s).");
+
+            MessageBox.Show(sMsg, "Quarterly Sales");
+
+            //Starting at E1, fill headers for the number of columns selected.
+            oResizeRange = oWS.get_Range("E1", "E1").get_Resize(Missing.Value, iNumQtrs);
+            oResizeRange.Formula = "=\"Q\" & COLUMN()-4 & CHAR(10) & \"Sales\"";
+
+            //Change the Orientation and WrapText properties for the headers.
+            oResizeRange.Orientation = 38;
+            oResizeRange.WrapText = true;
+
+            //Fill the interior color of the headers.
+            oResizeRange.Interior.ColorIndex = 36;
+
+            //Fill the columns with a formula and apply a number format.
+            oResizeRange = oWS.get_Range("E2", "E6").get_Resize(Missing.Value, iNumQtrs);
+            oResizeRange.Formula = "=RAND()*100";
+            oResizeRange.NumberFormat = "$0.00";
+
+            //Apply borders to the Sales data and headers.
+            oResizeRange = oWS.get_Range("E1", "E6").get_Resize(Missing.Value, iNumQtrs);
+            oResizeRange.Borders.Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+
+            //Add a Totals formula for the sales data and apply a border.
+            oResizeRange = oWS.get_Range("E8", "E8").get_Resize(Missing.Value, iNumQtrs);
+            oResizeRange.Formula = "=SUM(E2:E6)";
+            oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).LineStyle
+            = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
+            oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).Weight
+            = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThick;
+
+            CreateChart(oWS, out oWB, out oSeries, out oResizeRange, out oChart, iNumQtrs);
+
+        }
+
+        private static void CreateChart(Microsoft.Office.Interop.Excel._Worksheet oWS, out Microsoft.Office.Interop.Excel._Workbook oWB, out Microsoft.Office.Interop.Excel.Series oSeries, out Microsoft.Office.Interop.Excel.Range oResizeRange, out Microsoft.Office.Interop.Excel._Chart oChart, int iNumQtrs = 0)
+        {
+            //Add a Chart for the selected data.
+            oWB = (Microsoft.Office.Interop.Excel._Workbook)oWS.Parent;
+            oChart = (Microsoft.Office.Interop.Excel._Chart)oWB.Charts.Add(Missing.Value, Missing.Value,
+            Missing.Value, Missing.Value);
+
+            //Use the ChartWizard to create a new chart from the selected data.
+            oResizeRange = oWS.get_Range("E2:E6", Missing.Value).get_Resize(
+            Missing.Value, iNumQtrs);
+            oChart.ChartWizard(oResizeRange, Microsoft.Office.Interop.Excel.XlChartType.xl3DColumn, Missing.Value,
+            Microsoft.Office.Interop.Excel.XlRowCol.xlColumns, Missing.Value, Missing.Value, Missing.Value,
+            Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+            oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(1);
+            oSeries.XValues = oWS.get_Range("A2", "A6");
+            for (int iRet = 1; iRet <= iNumQtrs; iRet++)
+            {
+                oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(iRet);
+                String seriesName;
+                seriesName = "=\"Q";
+                seriesName = String.Concat(seriesName, iRet);
+                seriesName = String.Concat(seriesName, "\"");
+                oSeries.Name = seriesName;
+            }
+
+            oChart.Location(Microsoft.Office.Interop.Excel.XlChartLocation.xlLocationAsObject, oWS.Name);
+
+            //Move the chart so as not to cover your data.
+            oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Rows.get_Item(10, Missing.Value);
+            oWS.Shapes.Item("Chart 1").Top = (float)(double)oResizeRange.Top;
+            oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Columns.get_Item(2, Missing.Value);
+            oWS.Shapes.Item("Chart 1").Left = (float)(double)oResizeRange.Left;
         }
     }
 }
