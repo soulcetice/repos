@@ -30,13 +30,24 @@ namespace WinCC_Timer
 
             InitTreeView();
 
-            textBox3.Text = "CSPM-Measurements";
-
             SetTooltips();
 
+            FileInfo sqlFiles = FindSQLFile();
+            if (sqlFiles != null)
+                textBox1.Text = sqlFiles.Name;
+        }
+
+        private FileInfo FindSQLFile()
+        {
             var d = new DirectoryInfo(Application.StartupPath);
-            var sqlFiles = new FileInfo(Directory.GetFiles(d.FullName, "*.sql", SearchOption.TopDirectoryOnly).FirstOrDefault());
-            textBox1.Text = sqlFiles.Name;
+            var sqlFiles = Directory.GetFiles(d.FullName, "*.sql", SearchOption.TopDirectoryOnly).ToList();
+            if (sqlFiles.Count > 0)
+                return new FileInfo(sqlFiles.FirstOrDefault());
+            else
+            {
+                listBox1.Items.Add("No .sql file was found in the folder!");
+                return null;
+            }
         }
 
         private void UpdateFileDate()
@@ -53,21 +64,31 @@ namespace WinCC_Timer
 
         private void SetTooltips()
         {
-            var tooltip1 = new System.Windows.Forms.ToolTip();
-            tooltip1.SetToolTip(numberOfMeasurements, "Set the number of measurements to take");
-            tooltip1.InitialDelay = 50;
+            SetTooltip("Set the number of measurements to take", numberOfMeasurements);
+            SetTooltip("Time interval between measurements", timeInterval); // (around 2 * pagesNo [minutes])
+            SetTooltip("Number of hours the runs will take", hoursToRun);
+            SetTooltip("Run the set number of measurements at the set minutes interval!", button1);
+            SetTooltip("Include screenshots in the calculations' folders", checkBox4);
+            SetTooltip(@"Take screenshot after 1.5 seconds (found in the ""Screenshots"" Folder)", snapBox);
+            SetTooltip("Expand/Collapse all tree elements", checkBox1);
+            SetTooltip("Select/Deselect all tree elements", checkBox2);
+            SetTooltip("Calculate averages on the gathered datasets using SD calculation", button5);
+            SetTooltip("Menu SQL file reflecting current menu state on the machine", textBox1);
+            SetTooltip("Folder containing calculations to use for generating averaged measurements", textBox3);
+            SetTooltip("Show/Hide calculations panel", checkBox3);
+            SetTooltip(@"Export viewable data as a "".csv."" file", export);
+            SetTooltip("Regenerate timer data files in the calculations folder (from the pdlrt files)", button3);
+            SetTooltip("Show data for the selected pages in an excel workbook (in progress)", button6);
+            SetTooltip("Feedback messages", listBox1);
+        }
 
-            var tooltip2 = new System.Windows.Forms.ToolTip();
-            tooltip2.SetToolTip(timeInterval, "Set the time interval between measurements (around 2 * pagesNo [minutes])");
-            tooltip2.InitialDelay = 50;
-
-            var tooltip3 = new System.Windows.Forms.ToolTip();
-            tooltip3.SetToolTip(button1, "Run the set number of measurements at the set minutes interval!");
-            tooltip3.InitialDelay = 50;
-
-            var tooltip4 = new System.Windows.Forms.ToolTip();
-            tooltip4.SetToolTip(button1, "Run the set number of measurements at the set minutes interval!");
-            tooltip4.InitialDelay = 50;
+        private static void SetTooltip(string msg, dynamic obj)
+        {
+            var tooltip = new System.Windows.Forms.ToolTip();
+            tooltip.SetToolTip(obj, msg);
+            tooltip.InitialDelay = 50;
+            tooltip.ReshowDelay = 100;
+            tooltip.UseFading = true;
         }
 
         private void InitTreeView()
@@ -143,6 +164,7 @@ namespace WinCC_Timer
 
             treeView1.CheckBoxes = true;
 
+            SelectOrDeselectAllTree(false);
         }
 
         [DllImport("msvcrt.dll")]
@@ -154,9 +176,15 @@ namespace WinCC_Timer
         public bool endFlag = false;
         public string currentPage = "";
         public string formattedDate = "";
+        public bool firstRunHasEnded = false;
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            FileInfo sqlFiles = FindSQLFile();
+            if (sqlFiles == null)
+            {
+                return;
+            }
             for (var i = 0; i < Int32.Parse(numberOfMeasurements.Text); i++)
             {
                 endFlag = false;
@@ -217,19 +245,6 @@ namespace WinCC_Timer
                 }
                 Thread.Sleep(100);
             }
-
-        }
-
-
-        private void UpdatePageLabel()
-        {
-            while (endFlag == false)
-            {
-                listBox1.Items.Add(currentPage);
-                listBox1.Refresh();
-
-                new System.Threading.ManualResetEvent(false).WaitOne(50);
-            };
         }
 
         private List<string> selectedNodes = new List<string>();
@@ -293,7 +308,13 @@ namespace WinCC_Timer
                         {
                             ClickInWindowAtXY(rt, x, 15, 1); Thread.Sleep(1000); //expand tier1 menu
                             LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
-                            ClickInWindowAtXY(rt, x, y, 1); currentPage = tier2.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //open tier2 page
+
+                            ClickInWindowAtXY(rt, x, y, 1); currentPage = tier2.Pdl;
+                            Thread.Sleep(1500);
+                            if (snapBox.Checked && !firstRunHasEnded)
+                                ScreenshotAndSave(true);
+                            Thread.Sleep(2500); //open tier2 page
+
                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                             LogToFile(tier2.Pdl, logName);
 
@@ -321,7 +342,13 @@ namespace WinCC_Timer
                                     LogToFile("For " + m.Caption + " expand menu, clicked at " + x + " x, " + 15 + " y", logName);
                                     ClickInWindowAtXY(rt, x, y, 1); Thread.Sleep(1000); //expand tier2 menu or open page
                                     LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
-                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); currentPage = tier3.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //expand tier2 menu or open page
+
+                                    ClickInWindowAtXY(rt, xTier3, yTier3, 1); currentPage = tier3.Pdl;
+                                    Thread.Sleep(1500);
+                                    if (snapBox.Checked && !firstRunHasEnded)
+                                        ScreenshotAndSave(true);
+                                    Thread.Sleep(2500); //expand tier2 menu or open page
+
                                     LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
                                     LogToFile(tier3.Pdl, logName);
 
@@ -351,10 +378,15 @@ namespace WinCC_Timer
                                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                                             ClickInWindowAtXY(rt, xTier3, yTier3, 1); Thread.Sleep(1000); //expand tier2 menu or open page
                                             LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
-                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); currentPage = tier4.Pdl; Thread.Sleep(1500); if (snapBox.Checked) ScreenshotAndSave(); Thread.Sleep(2500); //expand tier2 menu or open page
+
+                                            ClickInWindowAtXY(rt, xTier4, yTier4, 1); currentPage = tier4.Pdl;
+                                            Thread.Sleep(1500);
+                                            if (snapBox.Checked && !firstRunHasEnded)
+                                                ScreenshotAndSave(true);
+                                            Thread.Sleep(2500); //expand tier2 menu or open page
+
                                             LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                             LogToFile(tier4.Pdl, logName);
-
 
                                             if (checkBox4.Checked)
                                                 ScreenshotAndSave();
@@ -379,12 +411,23 @@ namespace WinCC_Timer
                 //still only almost, gets too offset in the end
             }
             endFlag = true;
+            firstRunHasEnded = true;
         }
 
-        private void ScreenshotAndSave()
+        private void ScreenshotAndSave(bool flatFolder = false)
         {
             Bitmap bmp = TakeScreenShot(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            bmp.Save(Application.StartupPath + "\\" + formattedDate + "\\" + currentPage + ".png");
+            string path = "";
+            if (!flatFolder)
+            {
+                path = Application.StartupPath + "\\" + formattedDate + "\\" + currentPage + ".png";
+            }
+            else
+            {
+                path = Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + ".png";
+            }
+
+            bmp.Save(path);
         }
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
@@ -499,7 +542,8 @@ namespace WinCC_Timer
 
             var recommendedIntervalMins = myData.Where(c => c.Pdl != "''").Count() / 10 * 1.5;
             timeInterval.Text = recommendedIntervalMins.ToString();
-            numberOfMeasurements.Text = (Math.Floor(Double.Parse(hoursToRun.Text) * 60 / recommendedIntervalMins)).ToString();
+            //numberOfMeasurements.Text = (Math.Floor(Double.Parse(hoursToRun.Text) * 60 / recommendedIntervalMins)).ToString();
+            hoursToRun.Text = Math.Round((recommendedIntervalMins * Double.Parse(numberOfMeasurements.Text)) / 60, 1).ToString();
 
             return myData;
 
@@ -954,18 +998,29 @@ namespace WinCC_Timer
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
+            SelectOrDeselectAllTree();
+        }
+
+        private void SelectOrDeselectAllTree(bool useCheckbox = true)
+        {
+            bool myBool;
+            if (useCheckbox)
+                myBool = checkBox2.Checked;
+            else
+                myBool = true;
+
             foreach (TreeNode node in treeView1.Nodes)
             {
-                node.Checked = checkBox2.Checked;
+                node.Checked = myBool;
                 foreach (TreeNode node2 in node.Nodes)
                 {
-                    node2.Checked = checkBox2.Checked;
+                    node2.Checked = myBool;
                     foreach (TreeNode node3 in node2.Nodes)
                     {
-                        node3.Checked = checkBox2.Checked;
+                        node3.Checked = myBool;
                         foreach (TreeNode node4 in node3.Nodes)
                         {
-                            node4.Checked = checkBox2.Checked;
+                            node4.Checked = myBool;
                         }
                     }
                 }
@@ -975,6 +1030,11 @@ namespace WinCC_Timer
         private void button5_Click(object sender, EventArgs e)
         {
             var d = new DirectoryInfo(Path.Combine(Application.StartupPath, textBox3.Text));
+            if (!d.Exists)
+            {
+                listBox1.Items.Add("The folder " + d.Name + " was not found!");
+                return;
+            }
 
             var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
             var timerFiles = textFiles.Where(c => c.Contains("timer")).ToList();
@@ -1172,9 +1232,9 @@ namespace WinCC_Timer
 
         private void Form1_DoubleClicked(object sender, EventArgs e)
         {
-            if (ActiveForm.Width != 215)
+            if (ActiveForm.Width != 112)
             {
-                ActiveForm.Width = 215;
+                ActiveForm.Width = 112;
                 ActiveForm.Height = 107;
             }
             else
@@ -1200,7 +1260,6 @@ namespace WinCC_Timer
 
         private void hoursToRun_TextChanged(object sender, EventArgs e)
         {
-            GetMenuData();
         }
 
         private void button6_Click_1(object sender, EventArgs e)
@@ -1394,6 +1453,21 @@ namespace WinCC_Timer
             oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Columns.get_Item(2, Missing.Value);
             oWS.Shapes.Item("Chart 1").Left = (float)(double)oResizeRange.Left;
         }
+
+        private void snapBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numberOfMeasurements_TextChanged(object sender, EventArgs e)
+        {
+            GetMenuData();
+        }
     }
 }
 
@@ -1413,8 +1487,8 @@ public class MyCheckBox : CheckBox
         {
             var d = Padding.All;
             var r = this.Height - 2 * d;
-            path.AddArc(d, d, r, r, 90, 180);
-            path.AddArc(this.Width - r - d, d, r, r, -90, 180);
+            path.AddArc(d, d, r, r, 60, 120);
+            path.AddArc(this.Width - r - d, d, r, r, -60, 120);
             path.CloseFigure();
             e.Graphics.FillPath(Checked ? Brushes.White : Brushes.White, path);
             r = Height - 1;

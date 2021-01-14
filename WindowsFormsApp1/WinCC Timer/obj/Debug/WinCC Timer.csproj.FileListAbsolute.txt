@@ -42,9 +42,7 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.dll
-C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
-C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete
