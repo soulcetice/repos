@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using WindowsUtilities;
-using CommonInterops;
-using System.Text;
 
 namespace Deploy_Files
 {
@@ -17,7 +14,7 @@ namespace Deploy_Files
         {
             InitializeComponent();
 
-            textBox5_TextChanged(textBox5, new System.EventArgs());
+            GetIpsLmHosts(false);
 
             if (File.Exists(Application.ExecutablePath + @".ini"))
             {
@@ -25,13 +22,14 @@ namespace Deploy_Files
                 var ips = data[3].Split(Convert.ToChar(","));
                 foreach (var item in ips)
                 {
-                    if (item != string.Empty) checkedListBox2.Items.Add(item);
+                    //if (item != string.Empty) ipList.Items.Add(item);
                 }
 
-                textBox2.Text = data[4];
+
+                textBox1.Text = data[4];
                 textBox3.Text = data[5];
-                textBox4.Text = data[0];
-                textBox6.Text = data[1];
+                //textBox4.Text = data[0];
+                //textBox6.Text = data[1];
             }
         }
 
@@ -40,176 +38,267 @@ namespace Deploy_Files
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-        }
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.InitialDirectory = textBox1.Text;
+            openFileDialog1.Title = "Select files to copy to selected clients";
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-            dateTimePicker1.Value = dateTimePicker2.Value.AddHours(Convert.ToDouble(textBox5.Text));
-        }
+            System.IO.Stream myStream;
+            var fileList = new List<string>();
 
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            fullFiles.AddRange(openFileDialog1.FileNames);
-            safeFiles.AddRange(openFileDialog1.SafeFileNames);
-            foreach (var item in safeFiles)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                checkedListBox1.Items.Add(item);
-            }
-            Console.WriteLine("nice");
-        }
-
-        private void SendKey(IntPtr key, IntPtr handle)
-        {
-            CommonInterops.PInvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYDOWN, key, IntPtr.Zero);
-            CommonInterops.PInvokeLibrary.PostMessage(handle, (uint)WindowsMessages.WM_KEYUP, key, IntPtr.Zero);
-        }
-
-        private void SendKeyHandled(IntPtr ncm, string key)
-        {
-            CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-            bool success;
-            do
-            {
-                try
+                foreach (String file in openFileDialog1.FileNames)
                 {
-                    SendKeys.Send(key);
-                    success = true;
+                    try
+                    {
+                        if ((myStream = openFileDialog1.OpenFile()) != null)
+                        {
+                            using (myStream)
+                            {
+                                fileList.Add(file);
+                                checkedListBox1.Items.Add(file);
+                                checkedListBox1.SetItemCheckState(checkedListBox1.Items.Count - 1, CheckState.Checked);
+                            }
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    }
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                    success = false;
-                }
-            } while (success == false);
+                checkedListBox1.Refresh();
+            }
+            Console.WriteLine("test");
         }
 
-        private void ResetExpansions(IntPtr ncm)
+        private void GetIpsLmHosts(bool include)
         {
-            System.Threading.Thread.Sleep(1000);
-            int num = 12;
-            for (int i = 0; i < num; i++) //go up
+            string lmhostPath = Path.Combine(Application.StartupPath, "lmhosts");
+            if (File.Exists(lmhostPath))
             {
-                CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-                SendKeyHandled(ncm, "{UP}");
-            }
-            for (int i = 0; i < num; i++) //expand all
-            {
-                CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-                SendKeyHandled(ncm, "{DOWN}");
-                for (int j = 0; j < 6; j++)
+                var lmHosts = File.ReadLines(lmhostPath);
+                foreach (var item in lmHosts)
                 {
-                    CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-                    SendKeyHandled(ncm, "{RIGHT}");
+                    if (item.IndexOf("HMIC") > 0
+                        || item.IndexOf("HmiC") > 0
+                        || ((item.IndexOf("HmiE01") < 0 && item.IndexOf("HmiE0") > 0)
+                        || (item.IndexOf("HMIE01") < 0 && item.IndexOf("HMIE0") > 0))
+                        && item.StartsWith("#") == false && item != "")
+                    {
+                        clientData.Items.Add(item);
+                    }
+                    if ((item.IndexOf("HMID01") > 0 ||
+                        item.IndexOf("HmiD01") > 0 ||
+                        item.IndexOf("HMIE01") > 0 ||
+                        item.IndexOf("HmiE01") > 0 ||
+                        item.IndexOf("HmiS") > 0 ||
+                        item.IndexOf("HMIS") > 0) &&
+                        item.StartsWith("#") == false && item != "")
+                    {
+                        if (include)
+                        {
+                            clientData.Items.Add(item);
+                        }
+                    }
                 }
             }
-            for (int i = 0; i < num; i++) //back to compact
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-                    SendKeyHandled(ncm, "{LEFT}");
-                }
-                CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-                SendKeyHandled(ncm, "{UP}");
-            }
-            CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-            SendKeyHandled(ncm, "{RIGHT}");
-            CommonInterops.PInvokeLibrary.SetForegroundWindow(ncm);
-            SendKeyHandled(ncm, "{DOWN}"); //go to first dev station or whatever in the list
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //tests();
             Start();
         }
 
-        private void tests()
+        public void Start()
         {
-            var ncmWndClass = "s7tgtopx"; //ncm manager main window
-            var anyPopupClass = "#32770"; //usually any popup
+            //"C:\Project\ALCCRM\wincproj\CRM_CLT" to "\\10.6.151.41\D$\Project\CRM_CLT\"
+            currentClient = "";
+            currentFile = "";
 
-            IntPtr ncmHandle = CommonInterops.PInvokeLibrary.FindWindow(ncmWndClass, null);
-            IntPtr tgtWndHandle = CommonInterops.PInvokeLibrary.FindWindow(anyPopupClass, null);
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                return;
+            }
+            if (clientData.CheckedItems.Count == 0)
+            {
+                return;
+            }
+            string sep = "\t";
+            string partialPath = textBox3.Text;
+            if (partialPath.Last().ToString() != @"\")
+            {
+                partialPath = partialPath + @"\";
+            }
 
-            //    IntPtr myRdp = FindWindow("TscShellContainerClass", "10.127.2.166 - Remote Desktop Connection");
-            //    SendMessage(myRdp, (int)WindowsMessages.WM_CLOSE, (int)IntPtr.Zero, IntPtr.Zero);
-            //    IntPtr rdpPopup = FindWindow("#32770", "Remote Desktop Connection");
-            //    //SetForegroundWindow(rdpPopup);
-            //    //System.Threading.Thread.Sleep(50);
-            //    //SendKeys.Send("{ENTER}");
+            foreach (string client in clientData.CheckedItems)
+            {
+                currentClient = client;
+                string[] splitContent = client.Split(sep.ToCharArray());
+                string ip = splitContent[0];
+                string machineName = splitContent[1];
+                foreach (var file in checkedListBox1.CheckedItems)
+                {
+                    currentFile = file.ToString();
+                    string originFile = file.ToString();
+                    var extraPath = file.ToString().Replace(textBox1.Text, "".ToString());
+                    var fileData = new FileInfo((string)file);
+                    var destinationFile = @"\\" + machineName + @"\" + partialPath + extraPath;
 
-            //    //IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", null);
-            //    SendMessage(IntPtr.Zero, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
+                    var destinationDirectory = new DirectoryInfo(destinationFile.Replace(fileData.Name, ""));
+                    if (destinationDirectory.Exists)
+                    {
+                        try
+                        {
+                            RobustCopy(originFile, destinationFile);
+                        }
+                        catch (Exception exc)
+                        {
+                            listBox1.Items.Add("For " + currentClient + " and file " + currentFile + " - " + exc.Message);
+                        }
 
-            //IntPtr rdpPopup = FindWindow("#32770", "Download OS");
-            //SetForegroundWindow(rdpPopup);
-            ////System.Threading.Thread.Sleep(50);
-            ////SendKeys.Send("{ENTER}");
+                    }
+                    else
+                    {
+                        listBox1.Items.Add("The directory " + destinationDirectory.FullName + " did not exist or was not accessible");
+                    }
+                    listBox1.Refresh();
+                }
+            }
 
-            ////IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", null);
-            //IntPtr btnHandle = FindWindowEx(rdpPopup, IntPtr.Zero, "Button", "OK");
-            //SendMessage(btnHandle, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, IntPtr.Zero);
-
-
-            //IntPtr dldingTgtHandle = FindWindow("#32770", "Downloading to target system");
-            //SetForegroundWindow(dldingTgtHandle);
-            //IntPtr OkButton = FindWindowEx(dldingTgtHandle, IntPtr.Zero, "Button", "OK");
-            //SendMessage(OkButton, (int)WindowsMessages.BM_CLICK, (int)IntPtr.Zero, OkButton);
-
-            CommonInterops.PInvokeLibrary.SetForegroundWindow(ncmHandle);
-            System.Threading.Thread.Sleep(500);
-            ResetExpansions(ncmHandle);
         }
 
-        //Define TreeView Flags and Messages
-        private const int BN_CLICKED = 0xF5;
-        private const int TV_FIRST = 0x1100;
-        private const int TVGN_ROOT = 0x0;
-        private const int TVGN_NEXT = 0x1;
-        private const int TVGN_CHILD = 0x4;
-        private const int TVGN_FIRSTVISIBLE = 0x5;
-        private const int TVGN_NEXTVISIBLE = 0x6;
-        private const int TVGN_CARET = 0x9;
-        private const int TVM_SELECTITEM = (TV_FIRST + 11);
-        private const int TVM_GETNEXTITEM = (TV_FIRST + 10);
-        private const int TVM_GETITEM = (TV_FIRST + 12);
+        private string currentClient;
+        private string currentFile;
 
-        public static void Start()
+        public void BufferCopy(String oldPath, String newPath)
         {
-            //Handle variables
-            IntPtr hwnd = IntPtr.Zero;
-            //int treeItem = 0;
-            IntPtr hwndChild = IntPtr.Zero;
-            IntPtr treeChild = IntPtr.Zero;
-            var ncmWndClass = "s7tgtopx"; //ncm manager main window
-            var anyPopupClass = "#32770"; //usually any popup
-
-
-            hwnd = CommonInterops.PInvokeLibrary.FindWindow(ncmWndClass, null);
-
-            if (hwnd != IntPtr.Zero)
+            FileStream input = null;
+            FileStream output = null;
+            try
             {
-                //Select TreeView Item
-                var parent3 = CommonInterops.PInvokeLibrary.FindWindowEx(hwnd, IntPtr.Zero, "MDIClient", null);
-                var parent2 = CommonInterops.PInvokeLibrary.FindWindowEx(parent3, IntPtr.Zero, "Afx:400000:b:10003:6:7fde068d", null);
-                var parent1 = CommonInterops.PInvokeLibrary.FindWindowEx(parent2, IntPtr.Zero, "AfxFrameOrView42", null);
-                var parent = CommonInterops.PInvokeLibrary.FindWindowEx(parent1, IntPtr.Zero, anyPopupClass, null);
-                var treeHandle = CommonInterops.PInvokeLibrary.FindWindowEx(parent, IntPtr.Zero, "SysTreeView32", null);
-                treeChild = treeHandle;
+                input = new FileStream(oldPath, FileMode.Open);
+                output = new FileStream(newPath, FileMode.Create, FileAccess.ReadWrite);
 
-                var t = new StringBuilder();
-                int b = 0;
-                var treeItem = CommonInterops.PInvokeLibrary.SendMessage(treeChild, (int)WindowsMessages.TVM_GETCOUNT, 0, (IntPtr)b);
-                //treeItem = Interoperability.PInvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_NEXT, (IntPtr)treeItem);
-                //treeItem = Interoperability.PInvokeLibrary.SendMessage((int)treeChild, TVM_GETNEXTITEM, TVGN_CHILD, (IntPtr)treeItem);
-                //Interoperability.PInvokeLibrary.SendMessage((int)treeChild, TVM_SELECTITEM, TVGN_CARET, (IntPtr)treeItem);
-
-
-                // ...Continue with my automation...
+                byte[] buffer = new byte[32768];
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    output.Write(buffer, 0, read);
+                }
             }
-        }//END Scan
+            catch (Exception e)
+            {
+                listBox1.Items.Add("For " + currentClient + " and file " + currentFile + " - " + e.Message);
+            }
+            finally
+            {
+                input.Close();
+                input.Dispose();
+                output.Close();
+                output.Dispose();
+            }
+        }
+
+        private void RobustCopy(string originFile, string destinationFile)
+        {
+            listBox1.Items.Add("Attempting to copy " + originFile + " to " + destinationFile);
+            File.Copy(originFile, destinationFile, true);
+            if (File.Exists(destinationFile))
+            {
+                listBox1.Items.Add("Copied " + originFile + " to " + destinationFile);
+            }
+            else
+            {
+                listBox1.Items.Add("Attempting to copy via buffer method " + originFile + " to " + destinationFile);
+                BufferCopy(originFile, destinationFile);
+                if (File.Exists(destinationFile))
+                {
+                    listBox1.Items.Add("Copied via buffer method " + originFile + " to " + destinationFile);
+                }
+                else
+                {
+                    listBox1.Items.Add("Could not copy with either method " + originFile + " to " + destinationFile);
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < clientData.Items.Count; i++)
+            {
+                clientData.SetItemCheckState(i, checkBox1.CheckState);
+            }
+        }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.C)
+            {
+                string s = listBox1.SelectedItem.ToString();
+                Clipboard.SetData(DataFormats.StringFormat, s);
+            }
+        }
+
+        private void clientData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            checkedListBox1.Items.Clear();
+
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            button4.Visible = checkBox2.Checked;
+            //DialogResult result = DialogResult.None;
+            if (checkBox2.Checked == true)
+            {
+                //result = MessageBox.Show("Do you want to make the app 'little bit bigger'?", "", MessageBoxButtons.OKCancel );
+
+                //if (result == DialogResult.Yes)
+                //{
+                Size = new Size() { Height = 518, Width = 603 };
+                //}
+                //else if (result == DialogResult.No)
+                //{
+                //    //...
+                //}
+                //else
+                //{
+                //    //...
+                //}
+            }
+            else
+            {
+                Size = new Size() { Height = 294, Width = 603 };
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (var item in listBox1.Items)
+            {
+                LogToFile(item.ToString());
+            }
+            listBox1.Items.Clear();
+        }
+
+        private static void LogToFile(string content)
+        {
+            using (var fileWriter = new StreamWriter(Path.Combine(Application.StartupPath, "DeployForm.logger"), true))
+            {
+                DateTime date = DateTime.UtcNow;
+                fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
+                fileWriter.Close();
+            }
+        }
     }
 }

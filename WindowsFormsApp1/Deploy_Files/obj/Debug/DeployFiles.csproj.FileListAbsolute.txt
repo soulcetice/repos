@@ -13,3 +13,18 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\DeployFiles.csproj.CopyComplete
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe.config
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Deploy_Files.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Magic.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\PInvoke.Windows.Core.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\Magic.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\bin\Debug\PInvoke.Windows.Core.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\DeployFiles.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.DeployForm.resources
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.Properties.Resources.resources
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\DeployFiles.csproj.GenerateResource.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\DeployFiles.csproj.CoreCompileInputs.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\DeployFiles.csproj.CopyComplete
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\Deploy_Files\obj\Debug\Deploy_Files.pdb

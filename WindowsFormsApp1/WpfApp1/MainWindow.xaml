@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="269" Width="500" ResizeMode="NoResize">
-    <Grid>
-        <Button Content="Time!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TreeView HorizontalAlignment="Left" Height="195" Margin="10,35,0,0" VerticalAlignment="Top" Width="353"/>
+        Title="Deploy Files to Clients" Height="340" Width="519" ResizeMode="NoResize">
+    <Grid Margin="0,0,4,22">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="243*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Deploy!" HorizontalAlignment="Left" Margin="126,262,0,0" VerticalAlignment="Top" Width="101" Click="Button_Click" Grid.Column="1"/>
+        <ListBox HorizontalAlignment="Left" Height="272" Margin="10,10,0,0" VerticalAlignment="Top" Width="131"/>
+        <ListBox HorizontalAlignment="Left" Height="191" Margin="146,66,0,0" VerticalAlignment="Top" Width="340" Grid.ColumnSpan="2"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="146,262,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,10,0,0" TextWrapping="Wrap" Text="D:\Project\SDIB_TCM\wincproj\SDIB_TCM_CLT" VerticalAlignment="Top" Width="340" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,38,0,0" TextWrapping="Wrap" Text="D:\Project\SDIB_TCM\wincproj\SDIB_TCM_CLT" VerticalAlignment="Top" Width="340" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

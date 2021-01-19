@@ -1284,6 +1284,7 @@ namespace HMIUpdater
             this.Name = "HMIUpdateForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "HMI Clients Updater";
+            this.Load += new System.EventHandler(this.HMIUpdateForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -3261,6 +3262,11 @@ namespace HMIUpdater
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void HMIUpdateForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
