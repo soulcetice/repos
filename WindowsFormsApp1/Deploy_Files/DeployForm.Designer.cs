@@ -49,7 +49,7 @@ namespace Deploy_Files
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Browse";
+            this.button1.Text = "Add Files...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -68,9 +68,9 @@ namespace Deploy_Files
             this.checkedListBox1.HorizontalScrollbar = true;
             this.checkedListBox1.Location = new System.Drawing.Point(214, 38);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.ScrollAlwaysVisible = true;
             this.checkedListBox1.Size = new System.Drawing.Size(362, 184);
             this.checkedListBox1.TabIndex = 4;
+            this.checkedListBox1.ThreeDCheckBoxes = true;
             // 
             // textBox3
             // 
@@ -82,9 +82,9 @@ namespace Deploy_Files
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(449, 228);
+            this.button2.Location = new System.Drawing.Point(401, 228);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 23);
+            this.button2.Size = new System.Drawing.Size(175, 23);
             this.button2.TabIndex = 10;
             this.button2.Text = "Deploy Files";
             this.button2.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@ namespace Deploy_Files
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox2.Location = new System.Drawing.Point(373, 231);
+            this.checkBox2.Location = new System.Drawing.Point(325, 231);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(70, 17);
             this.checkBox2.TabIndex = 18;

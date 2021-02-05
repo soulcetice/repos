@@ -44,9 +44,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 347);
+            this.button1.Location = new System.Drawing.Point(232, 294);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(307, 23);
+            this.button1.Size = new System.Drawing.Size(87, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Import";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,19 +63,19 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 207);
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 164);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(307, 139);
+            this.checkedListBox1.Size = new System.Drawing.Size(307, 124);
             this.checkedListBox1.TabIndex = 2;
-            this.checkedListBox1.CheckOnClick = true;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 184);
+            this.checkBox1.Location = new System.Drawing.Point(12, 298);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(117, 17);
             this.checkBox1.TabIndex = 3;
@@ -114,7 +114,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(15, 121);
+            this.dateTimePicker1.Location = new System.Drawing.Point(15, 108);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(119, 147);
+            this.dateTimePicker2.Location = new System.Drawing.Point(15, 134);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 9;
@@ -130,7 +130,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(255, 121);
+            this.textBox3.Location = new System.Drawing.Point(255, 108);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(64, 20);
             this.textBox3.TabIndex = 10;
@@ -139,9 +139,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(197, 178);
+            this.button2.Location = new System.Drawing.Point(232, 134);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 23);
+            this.button2.Size = new System.Drawing.Size(87, 23);
             this.button2.TabIndex = 11;
             this.button2.Text = "Refresh Files";
             this.button2.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(229, 124);
+            this.label2.Location = new System.Drawing.Point(229, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 12;
@@ -160,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 382);
+            this.ClientSize = new System.Drawing.Size(331, 324);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);

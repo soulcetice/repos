@@ -19,11 +19,11 @@ namespace Deploy_Files
             if (File.Exists(Application.ExecutablePath + @".ini"))
             {
                 List<string> data = File.ReadLines(Application.ExecutablePath + @".ini").Skip(19).Take(7).ToList();
-                var ips = data[3].Split(Convert.ToChar(","));
-                foreach (var item in ips)
-                {
+                //var ips = data[3].Split(Convert.ToChar(","));
+                //foreach (var item in ips)
+                //{
                     //if (item != string.Empty) ipList.Items.Add(item);
-                }
+                //}
 
 
                 textBox1.Text = data[4];
@@ -104,6 +104,24 @@ namespace Deploy_Files
                     }
                 }
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.P | Keys.Control))
+            {
+                //do my prank
+                for (int i = 0; i < 100; i++)
+                {
+                    Size = new Size { Height = Size.Height + 1, Width = Size.Width + 1 };
+
+                    listBox1.Items.Add("Made the app a little bit bigger");
+                    listBox1.Refresh();
+                }
+
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void button2_Click(object sender, EventArgs e)

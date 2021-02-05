@@ -36,7 +36,6 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.W
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Magic.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\PInvoke.Windows.Core.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
-C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\AutomateDownloader.NCMForm.resources
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.Properties.Resources.resources
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.GenerateResource.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CoreCompileInputs.cache
@@ -73,3 +72,13 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\System.Ma
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.pdb
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Win32.TaskScheduler.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Win32.TaskScheduler.xml
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\de\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\es\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\fr\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\it\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\pl\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\ru\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\zh-CN\Microsoft.Win32.TaskScheduler.resources.dll
+C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\HMIUpdater.HMIUpdateForm.resources

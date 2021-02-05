@@ -6,3 +6,8 @@
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csproj.ResolveComReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csproj.CoreCompileInputs.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.pdb

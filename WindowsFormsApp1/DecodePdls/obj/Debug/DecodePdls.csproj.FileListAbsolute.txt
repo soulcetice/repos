@@ -1,0 +1,9 @@
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.exe.config
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csprojAssemblyReference.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.Properties.Resources.resources
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.GenerateResource.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.CoreCompileInputs.cache
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.exe
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.pdb

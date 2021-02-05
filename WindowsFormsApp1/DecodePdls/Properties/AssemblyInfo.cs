@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RDApp")]
+[assembly: AssemblyTitle("DecodePdls")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RDApp")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("SMS group")]
+[assembly: AssemblyProduct("DecodePdls")]
+[assembly: AssemblyCopyright("Copyright © SMS group 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f9216eb9-ae14-46d1-bef3-dc6d7d44f55f")]
+[assembly: Guid("7aa1515f-50fb-4ab4-bec3-3096be1e0af6")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RDApp.Properties
+namespace DecodePdls.Properties
 {
 
 

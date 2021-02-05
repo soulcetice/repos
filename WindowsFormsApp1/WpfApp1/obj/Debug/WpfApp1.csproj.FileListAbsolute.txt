@@ -16,7 +16,6 @@
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\bin\Debug\WpfApp1.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\obj\Debug\MainWindow.g.cs
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\obj\Debug\App.g.cs
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache

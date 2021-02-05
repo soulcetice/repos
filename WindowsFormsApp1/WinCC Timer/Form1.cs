@@ -1202,11 +1202,19 @@ namespace WinCC_Timer
 
             if (!checkBox3.Checked)
             {
-                ActiveForm.Width = 406;
+                Size = new Size()
+                {
+                    Height = 403,
+                    Width = 406
+                };
             }
             else
             {
-                ActiveForm.Width = 791;
+                Size = new Size()
+                {
+                    Height = 403,
+                    Width = 791
+                };
             }
         }
 
@@ -1232,22 +1240,31 @@ namespace WinCC_Timer
 
         private void Form1_DoubleClicked(object sender, EventArgs e)
         {
-            if (ActiveForm.Width != 112)
+            if (Size.Width != 112)
             {
-                ActiveForm.Width = 112;
-                ActiveForm.Height = 107;
+                Size = new Size()
+                {
+                    Width = 112,
+                    Height = 107
+                };
             }
             else
             {
                 if (checkBox3.Checked)
                 {
-                    ActiveForm.Width = 791;
-                    ActiveForm.Height = 363;
+                    Size = new Size()
+                    {
+                        Width = 791,
+                        Height = 363
+                    };
                 }
                 else
                 {
-                    ActiveForm.Width = 406;
-                    ActiveForm.Height = 363;
+                    Size = new Size()
+                    {
+                        Width = 406,
+                        Height = 363
+                    };
                 }
             }
         }
