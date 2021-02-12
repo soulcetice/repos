@@ -17,6 +17,9 @@ using WindowsUtilities;
 using System.Drawing.Drawing2D;
 using System.Data.OleDb;
 using System.Reflection;
+using System.Resources;
+using WinCC_Timer.Properties;
+using CCHMIRUNTIME;
 
 namespace WinCC_Timer
 {
@@ -52,6 +55,12 @@ namespace WinCC_Timer
 
         private void UpdateFileDate()
         {
+            SetDateString();
+            Directory.CreateDirectory(Application.StartupPath + "\\" + formattedDate);
+        }
+
+        private void SetDateString()
+        {
             DateTime date = DateTime.Now;
             var month = date.Month < 10 ? "0" + date.Month.ToString() : date.Month.ToString();
             var day = date.Day < 10 ? "0" + date.Day.ToString() : date.Day.ToString();
@@ -59,7 +68,6 @@ namespace WinCC_Timer
             var minute = date.Minute < 10 ? "0" + date.Minute.ToString() : date.Minute.ToString();
             var second = date.Second < 10 ? "0" + date.Second.ToString() : date.Second.ToString();
             formattedDate = date.Year.ToString().Substring(2) + month + day + hour + minute + second;
-            Directory.CreateDirectory(Application.StartupPath + "\\" + formattedDate);
         }
 
         private void SetTooltips()
@@ -177,6 +185,7 @@ namespace WinCC_Timer
         public string currentPage = "";
         public string formattedDate = "";
         public bool firstRunHasEnded = false;
+        public string currentActiveScreen = "";
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -189,13 +198,13 @@ namespace WinCC_Timer
             {
                 endFlag = false;
                 Thread.Sleep(4000);
-                RunTasks();
+                RunTasksForTiming();
             }
         }
 
         private void Button2_Click(object sender, EventArgs e) => ManipulateWinCCPrograms();
 
-        private void RunTasks()
+        private void RunTasksForTiming()
         {
             UpdateFileDate();
             #region ParallelTasks
@@ -205,21 +214,45 @@ namespace WinCC_Timer
                 () =>
                 {
                     Console.WriteLine("Begin first task...");
-                    NavigateHMIMenu();
+                    NavigateHMIMenu(scour: false);
                 },  // close first Action
 
                 () =>
                 {
                     Console.WriteLine("Begin second task...");
                     GatherProcessCPUUsage("PdlRt", "\\pdlrt_" + formattedDate + ".logger");
-                }
-                //}, //close second Action
+                }, //close second Action
 
-                //() =>
-                //{
-                //    Console.WriteLine("Begin third task...");
-                //    CloseSoftwareWarnings();
-                //} //close third Action
+                () =>
+                {
+                    Console.WriteLine("Begin third task...");
+                    CloseSoftwareWarnings();
+                } //close third Action
+
+            ); //close parallel.invoke
+
+            Console.WriteLine("Returned from Parallel.Invoke");
+            #endregion
+        }
+
+        private void RunTasksForScreenshots()
+        {
+            UpdateFileDate();
+            #region ParallelTasks
+            // Perform tasks in parallel
+            Parallel.Invoke(
+
+                () =>
+                {
+                    Console.WriteLine("Begin first task...");
+                    NavigateHMIMenu(scour: true);
+                },  // close first Action
+
+                () =>
+                {
+                    Console.WriteLine("Begin third task...");
+                    CloseSoftwareWarnings();
+                } //close third Action
 
             ); //close parallel.invoke
 
@@ -263,7 +296,7 @@ namespace WinCC_Timer
             }
         }
 
-        private void NavigateHMIMenu()
+        private void NavigateHMIMenu(bool scour = false)
         {
             LogToFile("Starting menu navigation", logName);
 
@@ -274,15 +307,9 @@ namespace WinCC_Timer
             GetCheckedNodes(treeView1.Nodes);
 
             var tier1 = lists.Where(c => c.Layer == "1").ToList();
-
-            IntPtr rt = PInvokeLibrary.FindWindow("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+            IntPtr rt = GetRtHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
             if (rt == IntPtr.Zero)
             {
-                var msg = "Please start the WinCC Graphics Runtime!";
-                listBox1.Items.Add(msg);
-                listBox1.Refresh();
-
-                LogToFile(msg, logName);
                 return;
             }
             var singleHeight = 25;
@@ -311,7 +338,7 @@ namespace WinCC_Timer
 
                             ClickInWindowAtXY(rt, x, y, 1); currentPage = tier2.Pdl;
                             Thread.Sleep(1500);
-                            if (snapBox.Checked && !firstRunHasEnded)
+                            if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                 ScreenshotAndSave(true);
                             Thread.Sleep(2500); //open tier2 page
 
@@ -320,6 +347,9 @@ namespace WinCC_Timer
 
                             if (checkBox4.Checked)
                                 ScreenshotAndSave();
+
+                            if (scour)
+                                ScourPage();
                         }
                     }
                     else
@@ -345,7 +375,7 @@ namespace WinCC_Timer
 
                                     ClickInWindowAtXY(rt, xTier3, yTier3, 1); currentPage = tier3.Pdl;
                                     Thread.Sleep(1500);
-                                    if (snapBox.Checked && !firstRunHasEnded)
+                                    if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                         ScreenshotAndSave(true);
                                     Thread.Sleep(2500); //expand tier2 menu or open page
 
@@ -354,6 +384,9 @@ namespace WinCC_Timer
 
                                     if (checkBox4.Checked)
                                         ScreenshotAndSave();
+
+                                    if (scour)
+                                        ScourPage();
                                 }
                             }
                             else
@@ -381,7 +414,7 @@ namespace WinCC_Timer
 
                                             ClickInWindowAtXY(rt, xTier4, yTier4, 1); currentPage = tier4.Pdl;
                                             Thread.Sleep(1500);
-                                            if (snapBox.Checked && !firstRunHasEnded)
+                                            if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                                 ScreenshotAndSave(true);
                                             Thread.Sleep(2500); //expand tier2 menu or open page
 
@@ -390,6 +423,9 @@ namespace WinCC_Timer
 
                                             if (checkBox4.Checked)
                                                 ScreenshotAndSave();
+
+                                            if (scour)
+                                                ScourPage();
                                         }
                                     }
                                     else
@@ -414,6 +450,21 @@ namespace WinCC_Timer
             firstRunHasEnded = true;
         }
 
+        private IntPtr GetRtHandle(string className, string windowName)
+        {
+            IntPtr rt = PInvokeLibrary.FindWindow(className, windowName); ;
+            if (rt == IntPtr.Zero)
+            {
+                var msg = "Please start the WinCC Graphics Runtime!";
+                listBox1.Items.Add(msg);
+                listBox1.Refresh();
+
+                LogToFile(msg, logName);
+            }
+
+            return rt;
+        }
+
         private void ScreenshotAndSave(bool flatFolder = false)
         {
             Bitmap bmp = TakeScreenShot(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
@@ -424,6 +475,8 @@ namespace WinCC_Timer
             }
             else
             {
+                if (new DirectoryInfo(Application.StartupPath + "\\" + "Screenshots").Exists == false)
+                    Directory.CreateDirectory(Application.StartupPath + "\\" + "Screenshots");
                 path = Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + ".png";
             }
 
@@ -462,11 +515,15 @@ namespace WinCC_Timer
             for (int i = 0; i < repeat; i++)
             {
                 PInvokeLibrary.SetForegroundWindow(handle);
-
-                MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                ClickAtXY(x, y);
             }
+        }
+
+        private static void ClickAtXY(int? x, int? y)
+        {
+            MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
         }
 
         private List<MenuRow> GetMenuData(/*string id*/)
@@ -1233,11 +1290,6 @@ namespace WinCC_Timer
             }
         }
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_DoubleClicked(object sender, EventArgs e)
         {
             if (Size.Width != 112)
@@ -1275,215 +1327,420 @@ namespace WinCC_Timer
             InitTreeView();
         }
 
-        private void hoursToRun_TextChanged(object sender, EventArgs e)
-        {
-        }
+        #region comment
+        //private void button6_Click_1(object sender, EventArgs e)
+        //{
+        //    var excel = new Microsoft.Office.Interop.Excel.Application();
 
-        private void button6_Click_1(object sender, EventArgs e)
-        {
-            var excel = new Microsoft.Office.Interop.Excel.Application();
+        //    string fileName = @"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Book1.xlsm";
 
-            string fileName = @"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Book1.xlsm";
+        //    var d = new DirectoryInfo(@"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\SPM-1-Measurements");
+        //    var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
+        //    var cpuFiles = textFiles.Where(c => c.Contains("pdlrt")).ToList();
 
-            var d = new DirectoryInfo(@"C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\SPM-1-Measurements");
-            var textFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
-            var cpuFiles = textFiles.Where(c => c.Contains("pdlrt")).ToList();
+        //    Microsoft.Office.Interop.Excel.Application oXL;
+        //    Microsoft.Office.Interop.Excel._Workbook oWB;
+        //    Microsoft.Office.Interop.Excel._Worksheet oSheet;
+        //    Microsoft.Office.Interop.Excel._Worksheet oWS;
 
-            Microsoft.Office.Interop.Excel.Application oXL;
-            Microsoft.Office.Interop.Excel._Workbook oWB;
-            Microsoft.Office.Interop.Excel._Worksheet oSheet;
-            Microsoft.Office.Interop.Excel._Worksheet oWS;
-
-            try
-            {
+        //    try
+        //    {
 
 
-                //Start Excel and get Application object.
-                oXL = new Microsoft.Office.Interop.Excel.Application();
-                oXL.Visible = true;
+        //        //Start Excel and get Application object.
+        //        oXL = new Microsoft.Office.Interop.Excel.Application();
+        //        oXL.Visible = true;
 
-                //Get a new workbook.
-                oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
-                oSheet = (Microsoft.Office.Interop.Excel._Worksheet)oWB.ActiveSheet;
-                int i = 0;
+        //        //Get a new workbook.
+        //        oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Add(Missing.Value));
+        //        oSheet = (Microsoft.Office.Interop.Excel._Worksheet)oWB.ActiveSheet;
+        //        int i = 0;
 
-                var allCpuData = new List<List<float>>();
-                var allPageData = new List<List<string>>();
-                var allDateTimeData = new List<List<DateTime>>();
-                var allPageCpuTimes = new List<List<PageCpuTime>>();
-                foreach (var file in cpuFiles)
-                {
-                    GetCPUFileData(file, out FileInfo dataFile, out List<float> percentagesList, out List<string> pagesList, out List<DateTime> dateTimesList, out List<PageCpuTime> pageCpuTimes);
-                    allCpuData.Add(percentagesList);
-                    allPageData.Add(pagesList);
-                    allDateTimeData.Add(dateTimesList);
-                    allPageCpuTimes.Add(pageCpuTimes);
+        //        var allCpuData = new List<List<float>>();
+        //        var allPageData = new List<List<string>>();
+        //        var allDateTimeData = new List<List<DateTime>>();
+        //        var allPageCpuTimes = new List<List<PageCpuTime>>();
+        //        foreach (var file in cpuFiles)
+        //        {
+        //            GetCPUFileData(file, out FileInfo dataFile, out List<float> percentagesList, out List<string> pagesList, out List<DateTime> dateTimesList, out List<PageCpuTime> pageCpuTimes);
+        //            allCpuData.Add(percentagesList);
+        //            allPageData.Add(pagesList);
+        //            allDateTimeData.Add(dateTimesList);
+        //            allPageCpuTimes.Add(pageCpuTimes);
 
-                    i++;
-                    oSheet.get_Range("A" + i).Value2 = "Page";
-                    oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
-                    i++;
-                    oSheet.get_Range("A" + i).Value2 = "Time";
-                    oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
-                    oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
-                    i++;
-                    oSheet.get_Range("A" + i).Value2 = "CPU";
-                    oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
-                }
+        //            i++;
+        //            oSheet.get_Range("A" + i).Value2 = "Page";
+        //            oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
+        //            i++;
+        //            oSheet.get_Range("A" + i).Value2 = "Time";
+        //            oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
+        //            oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
+        //            i++;
+        //            oSheet.get_Range("A" + i).Value2 = "CPU";
+        //            oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
+        //        }
 
-                var distinctPages = new List<string>();
-                foreach (var list in allPageData)
-                {
-                    distinctPages.AddRange(list);
-                }
-                distinctPages = distinctPages.Distinct().Where(c => c != "").ToList();
+        //        var distinctPages = new List<string>();
+        //        foreach (var list in allPageData)
+        //        {
+        //            distinctPages.AddRange(list);
+        //        }
+        //        distinctPages = distinctPages.Distinct().Where(c => c != "").ToList();
 
-                var pageData = new List<List<PageCpuTime>>();
-                var sortedDataByPage = new List<List<List<PageCpuTime>>>();
-                foreach (var page in distinctPages)
-                {
-                    pageData = (from data in allPageCpuTimes
-                                select data.Where(c => c.page == page).ToList()).ToList();
-                    sortedDataByPage.Add(pageData);
-                }
+        //        var pageData = new List<List<PageCpuTime>>();
+        //        var sortedDataByPage = new List<List<List<PageCpuTime>>>();
+        //        foreach (var page in distinctPages)
+        //        {
+        //            pageData = (from data in allPageCpuTimes
+        //                        select data.Where(c => c.page == page).ToList()).ToList();
+        //            sortedDataByPage.Add(pageData);
+        //        }
 
 
-                foreach (var c in sortedDataByPage[0])
-                {
-                    //i++;
-                    //oSheet.get_Range("A" + i).Value2 = "Page";
-                    //oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
-                    //i++;
-                    //oSheet.get_Range("A" + i).Value2 = "Time";
-                    //oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
-                    //oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
-                    //i++;
-                    //oSheet.get_Range("A" + i).Value2 = "CPU";
-                    //oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
-                }
+        //        foreach (var c in sortedDataByPage[0])
+        //        {
+        //            //i++;
+        //            //oSheet.get_Range("A" + i).Value2 = "Page";
+        //            //oSheet.get_Range("B" + i).get_Resize(1, pagesList.Count()).Value2 = pagesList.ToArray();
+        //            //i++;
+        //            //oSheet.get_Range("A" + i).Value2 = "Time";
+        //            //oSheet.get_Range("B" + i).get_Resize(1, dateTimesList.Count()).Value2 = dateTimesList.ToArray();
+        //            //oSheet.get_Range(i + ":" + i).NumberFormat = "hh:mm:ss.000";
+        //            //i++;
+        //            //oSheet.get_Range("A" + i).Value2 = "CPU";
+        //            //oSheet.get_Range("B" + i).get_Resize(1, percentagesList.Count()).Value2 = percentagesList.ToArray();
+        //        }
 
-                oXL.Visible = true;
-                oXL.UserControl = true;
-            }
-            catch (Exception theException)
-            {
-                String errorMessage;
-                errorMessage = "Error: ";
-                errorMessage = String.Concat(errorMessage, theException.Message);
-                errorMessage = String.Concat(errorMessage, " Line: ");
-                errorMessage = String.Concat(errorMessage, theException.Source);
+        //        oXL.Visible = true;
+        //        oXL.UserControl = true;
+        //    }
+        //    catch (Exception theException)
+        //    {
+        //        String errorMessage;
+        //        errorMessage = "Error: ";
+        //        errorMessage = String.Concat(errorMessage, theException.Message);
+        //        errorMessage = String.Concat(errorMessage, " Line: ");
+        //        errorMessage = String.Concat(errorMessage, theException.Source);
 
-                MessageBox.Show(errorMessage, "Error");
-            }
-        }
+        //        MessageBox.Show(errorMessage, "Error");
+        //    }
+        //}
 
-        private void DisplayQuarterlySales(Microsoft.Office.Interop.Excel._Worksheet oWS)
-        {
-            Microsoft.Office.Interop.Excel._Workbook oWB;
-            Microsoft.Office.Interop.Excel.Series oSeries;
-            Microsoft.Office.Interop.Excel.Range oResizeRange;
-            Microsoft.Office.Interop.Excel._Chart oChart;
-            String sMsg;
-            int iNumQtrs;
+        //private void DisplayQuarterlySales(Microsoft.Office.Interop.Excel._Worksheet oWS)
+        //{
+        //    Microsoft.Office.Interop.Excel._Workbook oWB;
+        //    Microsoft.Office.Interop.Excel.Series oSeries;
+        //    Microsoft.Office.Interop.Excel.Range oResizeRange;
+        //    Microsoft.Office.Interop.Excel._Chart oChart;
+        //    String sMsg;
+        //    int iNumQtrs;
 
-            //Determine how many quarters to display data for.
-            for (iNumQtrs = 4; iNumQtrs >= 2; iNumQtrs--)
-            {
-                sMsg = "Enter sales data for ";
-                sMsg = String.Concat(sMsg, iNumQtrs);
-                sMsg = String.Concat(sMsg, " quarter(s)?");
+        //    //Determine how many quarters to display data for.
+        //    for (iNumQtrs = 4; iNumQtrs >= 2; iNumQtrs--)
+        //    {
+        //        sMsg = "Enter sales data for ";
+        //        sMsg = String.Concat(sMsg, iNumQtrs);
+        //        sMsg = String.Concat(sMsg, " quarter(s)?");
 
-                DialogResult iRet = MessageBox.Show(sMsg, "Quarterly Sales?",
-                MessageBoxButtons.YesNo);
-                if (iRet == DialogResult.Yes)
-                    break;
-            }
+        //        DialogResult iRet = MessageBox.Show(sMsg, "Quarterly Sales?",
+        //        MessageBoxButtons.YesNo);
+        //        if (iRet == DialogResult.Yes)
+        //            break;
+        //    }
 
-            sMsg = "Displaying data for ";
-            sMsg = String.Concat(sMsg, iNumQtrs);
-            sMsg = String.Concat(sMsg, " quarter(s).");
+        //    sMsg = "Displaying data for ";
+        //    sMsg = String.Concat(sMsg, iNumQtrs);
+        //    sMsg = String.Concat(sMsg, " quarter(s).");
 
-            MessageBox.Show(sMsg, "Quarterly Sales");
+        //    MessageBox.Show(sMsg, "Quarterly Sales");
 
-            //Starting at E1, fill headers for the number of columns selected.
-            oResizeRange = oWS.get_Range("E1", "E1").get_Resize(Missing.Value, iNumQtrs);
-            oResizeRange.Formula = "=\"Q\" & COLUMN()-4 & CHAR(10) & \"Sales\"";
+        //    //Starting at E1, fill headers for the number of columns selected.
+        //    oResizeRange = oWS.get_Range("E1", "E1").get_Resize(Missing.Value, iNumQtrs);
+        //    oResizeRange.Formula = "=\"Q\" & COLUMN()-4 & CHAR(10) & \"Sales\"";
 
-            //Change the Orientation and WrapText properties for the headers.
-            oResizeRange.Orientation = 38;
-            oResizeRange.WrapText = true;
+        //    //Change the Orientation and WrapText properties for the headers.
+        //    oResizeRange.Orientation = 38;
+        //    oResizeRange.WrapText = true;
 
-            //Fill the interior color of the headers.
-            oResizeRange.Interior.ColorIndex = 36;
+        //    //Fill the interior color of the headers.
+        //    oResizeRange.Interior.ColorIndex = 36;
 
-            //Fill the columns with a formula and apply a number format.
-            oResizeRange = oWS.get_Range("E2", "E6").get_Resize(Missing.Value, iNumQtrs);
-            oResizeRange.Formula = "=RAND()*100";
-            oResizeRange.NumberFormat = "$0.00";
+        //    //Fill the columns with a formula and apply a number format.
+        //    oResizeRange = oWS.get_Range("E2", "E6").get_Resize(Missing.Value, iNumQtrs);
+        //    oResizeRange.Formula = "=RAND()*100";
+        //    oResizeRange.NumberFormat = "$0.00";
 
-            //Apply borders to the Sales data and headers.
-            oResizeRange = oWS.get_Range("E1", "E6").get_Resize(Missing.Value, iNumQtrs);
-            oResizeRange.Borders.Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
+        //    //Apply borders to the Sales data and headers.
+        //    oResizeRange = oWS.get_Range("E1", "E6").get_Resize(Missing.Value, iNumQtrs);
+        //    oResizeRange.Borders.Weight = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin;
 
-            //Add a Totals formula for the sales data and apply a border.
-            oResizeRange = oWS.get_Range("E8", "E8").get_Resize(Missing.Value, iNumQtrs);
-            oResizeRange.Formula = "=SUM(E2:E6)";
-            oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).LineStyle
-            = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
-            oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).Weight
-            = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThick;
+        //    //Add a Totals formula for the sales data and apply a border.
+        //    oResizeRange = oWS.get_Range("E8", "E8").get_Resize(Missing.Value, iNumQtrs);
+        //    oResizeRange.Formula = "=SUM(E2:E6)";
+        //    oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).LineStyle
+        //    = Microsoft.Office.Interop.Excel.XlLineStyle.xlDouble;
+        //    oResizeRange.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).Weight
+        //    = Microsoft.Office.Interop.Excel.XlBorderWeight.xlThick;
 
-            CreateChart(oWS, out oWB, out oSeries, out oResizeRange, out oChart, iNumQtrs);
+        //    CreateChart(oWS, out oWB, out oSeries, out oResizeRange, out oChart, iNumQtrs);
 
-        }
+        //}
 
-        private static void CreateChart(Microsoft.Office.Interop.Excel._Worksheet oWS, out Microsoft.Office.Interop.Excel._Workbook oWB, out Microsoft.Office.Interop.Excel.Series oSeries, out Microsoft.Office.Interop.Excel.Range oResizeRange, out Microsoft.Office.Interop.Excel._Chart oChart, int iNumQtrs = 0)
-        {
-            //Add a Chart for the selected data.
-            oWB = (Microsoft.Office.Interop.Excel._Workbook)oWS.Parent;
-            oChart = (Microsoft.Office.Interop.Excel._Chart)oWB.Charts.Add(Missing.Value, Missing.Value,
-            Missing.Value, Missing.Value);
+        //private static void CreateChart(Microsoft.Office.Interop.Excel._Worksheet oWS, out Microsoft.Office.Interop.Excel._Workbook oWB, out Microsoft.Office.Interop.Excel.Series oSeries, out Microsoft.Office.Interop.Excel.Range oResizeRange, out Microsoft.Office.Interop.Excel._Chart oChart, int iNumQtrs = 0)
+        //{
+        //    //Add a Chart for the selected data.
+        //    oWB = (Microsoft.Office.Interop.Excel._Workbook)oWS.Parent;
+        //    oChart = (Microsoft.Office.Interop.Excel._Chart)oWB.Charts.Add(Missing.Value, Missing.Value,
+        //    Missing.Value, Missing.Value);
 
-            //Use the ChartWizard to create a new chart from the selected data.
-            oResizeRange = oWS.get_Range("E2:E6", Missing.Value).get_Resize(
-            Missing.Value, iNumQtrs);
-            oChart.ChartWizard(oResizeRange, Microsoft.Office.Interop.Excel.XlChartType.xl3DColumn, Missing.Value,
-            Microsoft.Office.Interop.Excel.XlRowCol.xlColumns, Missing.Value, Missing.Value, Missing.Value,
-            Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-            oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(1);
-            oSeries.XValues = oWS.get_Range("A2", "A6");
-            for (int iRet = 1; iRet <= iNumQtrs; iRet++)
-            {
-                oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(iRet);
-                String seriesName;
-                seriesName = "=\"Q";
-                seriesName = String.Concat(seriesName, iRet);
-                seriesName = String.Concat(seriesName, "\"");
-                oSeries.Name = seriesName;
-            }
+        //    //Use the ChartWizard to create a new chart from the selected data.
+        //    oResizeRange = oWS.get_Range("E2:E6", Missing.Value).get_Resize(
+        //    Missing.Value, iNumQtrs);
+        //    oChart.ChartWizard(oResizeRange, Microsoft.Office.Interop.Excel.XlChartType.xl3DColumn, Missing.Value,
+        //    Microsoft.Office.Interop.Excel.XlRowCol.xlColumns, Missing.Value, Missing.Value, Missing.Value,
+        //    Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+        //    oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(1);
+        //    oSeries.XValues = oWS.get_Range("A2", "A6");
+        //    for (int iRet = 1; iRet <= iNumQtrs; iRet++)
+        //    {
+        //        oSeries = (Microsoft.Office.Interop.Excel.Series)oChart.SeriesCollection(iRet);
+        //        String seriesName;
+        //        seriesName = "=\"Q";
+        //        seriesName = String.Concat(seriesName, iRet);
+        //        seriesName = String.Concat(seriesName, "\"");
+        //        oSeries.Name = seriesName;
+        //    }
 
-            oChart.Location(Microsoft.Office.Interop.Excel.XlChartLocation.xlLocationAsObject, oWS.Name);
+        //    oChart.Location(Microsoft.Office.Interop.Excel.XlChartLocation.xlLocationAsObject, oWS.Name);
 
-            //Move the chart so as not to cover your data.
-            oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Rows.get_Item(10, Missing.Value);
-            oWS.Shapes.Item("Chart 1").Top = (float)(double)oResizeRange.Top;
-            oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Columns.get_Item(2, Missing.Value);
-            oWS.Shapes.Item("Chart 1").Left = (float)(double)oResizeRange.Left;
-        }
-
-        private void snapBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        //    //Move the chart so as not to cover your data.
+        //    oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Rows.get_Item(10, Missing.Value);
+        //    oWS.Shapes.Item("Chart 1").Top = (float)(double)oResizeRange.Top;
+        //    oResizeRange = (Microsoft.Office.Interop.Excel.Range)oWS.Columns.get_Item(2, Missing.Value);
+        //    oWS.Shapes.Item("Chart 1").Left = (float)(double)oResizeRange.Left;
+        //}
+        #endregion
 
         private void numberOfMeasurements_TextChanged(object sender, EventArgs e)
         {
             GetMenuData();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            RunTasksForScreenshots();
+        }
+
+        private void ScourPage()
+        {
+            IntPtr handle = GetRtHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+            if (handle == IntPtr.Zero)
+            {
+                handle = WndSearcher.SearchForWindow("GRAFClass", "Graphics Designer - "); //partial search for window
+                if (handle == IntPtr.Zero)
+                    return;
+            }
+
+            Bitmap img = TheMagic.GetPngByHandle(handle);
+
+            //take screenshot here of page
+            SetDateString();
+            currentPage = formattedDate;
+            ScreenshotAndSave(true);
+
+            img = FindOpenClosePopups(handle, img);
+
+            img = FindOpenCloseDropDowns(handle, img);
+
+            img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+
+            img = FindSwitchVerticalTabs(handle, img);
+        }
+
+        private Bitmap FindSwitchVerticalTabs(IntPtr handle, Bitmap img)
+        {
+            List<TheMagic.PosBitmap> FoundTabsUp = new List<TheMagic.PosBitmap>();
+            List<TheMagic.PosBitmap> FoundTabsDown = new List<TheMagic.PosBitmap>();
+            List<TheMagic.PosBitmap> FoundTabsBoth = new List<TheMagic.PosBitmap>();
+
+            var clickedEmbeddeds = new List<Point>();
+            FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
+            for (int i = 0; i < FoundTabsDown.Count; i++)
+            {
+                TheMagic.PosBitmap d = FoundTabsDown[i];
+
+                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == d.x && c.Y == d.y);
+
+                if (clickedAlready == null || (d.x != clickedAlready.X && d.y != clickedAlready.Y))
+                    ClickInWindowAtXY(handle, d.x + 10, d.y + 5, 1);
+                clickedEmbeddeds.Add(new Point() { X = d.x, Y = d.y });
+
+                Thread.Sleep(3000);
+
+                //take screenshot here
+                SetDateString();
+                currentPage = formattedDate;
+                ScreenshotAndSave(true);
+
+                img = TheMagic.GetPngByHandle(handle);
+
+                //Thread.Sleep(3000);
+
+                FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
+
+                //FoundTabsDown.Remove(FoundTabsDown.FirstOrDefault(c => c.x == d.x && c.y == d.y));
+            }
+
+            img = TheMagic.GetPngByHandle(handle);
+
+            return img;
+
+            //FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
+            //FoundTabsUp.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_up")), "tabbed_up"));
+            //FoundTabsBoth.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_both")), "tabbed_both"));
+        }
+
+        private Bitmap FindOpenCloseDropDowns(IntPtr handle, Bitmap img)
+        {
+            List<TheMagic.PosBitmap> FoundDropDowns = new List<TheMagic.PosBitmap>();
+            FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dropdown")), "dropdown"));
+            FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dropdown2")), "dropdown"));
+            FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("framedropdown")), "dropdown"));
+
+            foreach (TheMagic.PosBitmap drop in FoundDropDowns)
+            {
+                var current = Resources.ResourceManager.GetObject("dropdown");
+
+                ClickInWindowAtXY(handle, drop.x, drop.y, 1);
+                Thread.Sleep(3000);
+
+                //take screenshot here
+                SetDateString();
+                currentPage = formattedDate;
+                ScreenshotAndSave(true);
+
+                ClickInWindowAtXY(handle, drop.x, drop.y, 1);
+                Thread.Sleep(3000);
+            }
+
+            return img;
+        }
+
+        private Bitmap FindOpenClosePopups(IntPtr handle, Bitmap img)
+        {
+            List<TheMagic.PosBitmap> FoundPopups = new List<TheMagic.PosBitmap>();
+            FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup")), "popup"));
+
+            IHMIScreens screens;
+            IHMIScreen activeScreen;
+
+            foreach (TheMagic.PosBitmap p in FoundPopups)
+            {
+                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
+
+                ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
+
+                GetRuntimeScreens(out screens, out activeScreen);
+                //take screenshot here
+                SetDateString();
+                currentPage = formattedDate;
+                ScreenshotAndSave(true);
+
+                img = TheMagic.GetPngByHandle(handle);
+                List<TheMagic.PosBitmap> closes = TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("close")), "close");
+                foreach (var c in closes)
+                {
+                    ClickAtXY(c.x, c.y); Thread.Sleep(1000);
+                }
+
+                currentActiveScreen = ""; Thread.Sleep(1000);
+            }
+
+            return img;
+        }
+
+        private Bitmap FindSwitchEmbeddeds(IntPtr handle, Bitmap img)
+        {
+            img = TheMagic.GetPngByHandle(handle);
+            List<TheMagic.PosBitmap> FoundEmbeddeds = new List<TheMagic.PosBitmap>();
+            FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded")), "embedded"));
+            FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded2")), "embedded"));
+
+            var clickedEmbeddeds = new List<Point>();
+            for (int i = 0; i < FoundEmbeddeds.Count; i++)
+            {
+                TheMagic.PosBitmap p = FoundEmbeddeds[i];
+                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
+
+                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == p.x && c.Y == p.y);
+
+                if (clickedAlready == null || (p.x != clickedAlready.X && p.y != clickedAlready.Y))
+                    ClickInWindowAtXY(handle, p.x, p.y, 1);
+                clickedEmbeddeds.Add(new Point() { X = p.x, Y = p.y });
+
+                Thread.Sleep(3000);
+
+                //take screenshot here
+                SetDateString();
+                currentPage = formattedDate;
+                ScreenshotAndSave(true);
+
+                img = TheMagic.GetPngByHandle(handle);
+                FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded")), "embedded"));
+                FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded2")), "embedded"));
+
+                FoundEmbeddeds.Remove(FoundEmbeddeds.FirstOrDefault(c => c.x == p.x && c.y == p.y));
+            }
+            return img;
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            ScourPage();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Q | Keys.Control))
+            {
+                Environment.Exit(0);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            IHMIScreens screens;
+            IHMIScreen activeScreen;
+            GetRuntimeScreens(out screens, out activeScreen);
+
+            LogToFile(activeScreen.AccessPath, "\\Screens.txt", false);
+
+            foreach (CCHMIRUNTIME.IHMIScreen s in screens)
+            {
+                listBox1.Items.Add(s.AccessPath);
+
+                LogToFile(s.AccessPath, "\\Screens.txt", false);
+            }
+            listBox1.Refresh();
+
+            //CCHMIRTWNDOBJ.HMIPictureWindow window = new CCHMIRTWNDOBJ.HMIPictureWindow();
+
+            //listBox1.Items.Add(window.ScreenName);
+            //LogToFile(window.ScreenName, "\\Screens.txt", false);  
+        }
+
+        private void GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen)
+        {
+            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            CCHMIRTGRAPHICS.HMIRTGraphics graphics = new CCHMIRTGRAPHICS.HMIRTGraphics();
+
+            screens = rt.Screens;
+            activeScreen = rt.ActiveScreen;
+
+            currentActiveScreen = activeScreen.ToString();
         }
     }
 }

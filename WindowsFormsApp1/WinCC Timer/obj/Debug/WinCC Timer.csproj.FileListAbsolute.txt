@@ -1,35 +1,3 @@
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe.config
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCAGENTLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCConfigStudio.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCCONFIGTOOLIMPORTERLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDMRTLOADERLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDOWNLOADLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCGUITOOLSLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRTGRAPHICS.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRTPROJECTLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRUNTIME.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCPROJECTMGRLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCSWITCHRUNTIMELib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.grafexe.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.IWINCCPROTPROVIDERLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.VARLOGINRTLib.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.ResolveComReference.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Form1.resources
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Properties.Resources.resources
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.GenerateResource.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CoreCompileInputs.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.dll
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\OxyPlot.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.ResolveComReference.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Form1.resources
@@ -46,3 +14,26 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Wind
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCAGENTLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCConfigStudio.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCDOWNLOADLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCGUITOOLSLib.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRTGRAPHICS.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.CCHMIRUNTIME.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\Interop.grafexe.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.ResolveComReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Form1.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC_Timer.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\WinCC Timer.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.dll
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\Magic.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\bin\Debug\PInvoke.Windows.Core.xml
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.csproj.CopyComplete
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WinCC Timer\obj\Debug\WinCC Timer.pdb

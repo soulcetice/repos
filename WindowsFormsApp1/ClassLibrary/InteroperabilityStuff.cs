@@ -530,7 +530,7 @@ namespace CommonInterops
         #endregion
     }
 
-    public class TheMagic
+    public static class TheMagic
     {
         public static PInvokeLibrary.WINDOWPLACEMENT GetPlacementByHandle(IntPtr handle)
         {
@@ -706,7 +706,7 @@ namespace CommonInterops
             return pointsList;
         }
 
-        private static List<PosLetter> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
+        public static List<PosBitmap> FindLetters(Bitmap sourceBitmap, Bitmap searchingBitmap, [Optional] string myLetter)
         {
             #region Arguments check
             if (sourceBitmap.PixelFormat != searchingBitmap.PixelFormat)
@@ -742,7 +742,7 @@ namespace CommonInterops
             Marshal.Copy(searchingBitmapData.Scan0, searchingBytes, 0, searchingBitmapBytesLength);
             searchingBitmap.UnlockBits(searchingBitmapData);
 
-            var pointsList = new List<PosLetter>();
+            var pointsList = new List<PosBitmap>();
 
             // Serching entries
             // minimazing searching zone
@@ -807,19 +807,131 @@ namespace CommonInterops
 
                     if (!isStop)
                     {// searching bitmap is found!!
-                        pointsList.Add(new PosLetter() { x = mainX, y = mainY, letter = myLetter });
+                        pointsList.Add(new PosBitmap() { x = mainX, y = mainY, signifies = myLetter });
                     }
                 }
             }
             return pointsList;
         }
 
-        public class PosLetter
+        public class PosBitmap
         {
             public int x;
             public int y;
-            public string letter;
+            public string signifies;
         }
+
+
+        #region OptimumBitmapFind
+
+        public static List<Point> Find(Bitmap haystack, Bitmap needle)
+        {
+            if (null == haystack || null == needle)
+            {
+                return null;
+            }
+            if (haystack.Width < needle.Width || haystack.Height < needle.Height)
+            {
+                return null;
+            }
+
+            var haystackArray = GetPixelArray(haystack);
+            var needleArray = GetPixelArray(needle);
+            return (from firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0])
+                    where IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1)
+                    select firstLineMatchPoint).ToList();
+        }
+
+        public static List<TheMagic.PosBitmap> Find(Bitmap haystack, Bitmap needle, string l)
+        {
+            if (null == haystack || null == needle)
+            {
+                return null;
+            }
+            if (haystack.Width < needle.Width || haystack.Height < needle.Height)
+            {
+                return null;
+            }
+
+            var haystackArray = GetPixelArray(haystack);
+            var needleArray = GetPixelArray(needle);
+            var list = new List<TheMagic.PosBitmap>();
+
+            foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
+            {
+                if (IsNeedlePresentAtLocation(haystackArray, needleArray, firstLineMatchPoint, 1))
+                {
+                    list.Add(new TheMagic.PosBitmap()
+                    {
+                        signifies = l,
+                        x = firstLineMatchPoint.X,
+                        y = firstLineMatchPoint.Y
+                    });
+                }
+            }
+
+            return list;
+        }
+
+        public static int[][] GetPixelArray(Bitmap bitmap)
+        {
+            var result = new int[bitmap.Height][];
+            var bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly,
+                PixelFormat.Format32bppArgb);
+
+            for (int y = 0; y < bitmap.Height; ++y)
+            {
+                result[y] = new int[bitmap.Width];
+                Marshal.Copy(bitmapData.Scan0 + y * bitmapData.Stride, result[y], 0, result[y].Length);
+            }
+
+            bitmap.UnlockBits(bitmapData);
+
+            return result;
+        }
+
+        private static IEnumerable<Point> FindMatch(IEnumerable<int[]> haystackLines, int[] needleLine)
+        {
+            var y = 0;
+            foreach (var haystackLine in haystackLines)
+            {
+                for (int x = 0, n = haystackLine.Length - needleLine.Length; x < n; ++x)
+                {
+                    if (ContainSameElements(haystackLine, x, needleLine, 0, needleLine.Length))
+                    {
+                        yield return new Point(x, y);
+                    }
+                }
+                y += 1;
+            }
+        }
+
+        private static bool ContainSameElements(int[] first, int firstStart, int[] second, int secondStart, int length)
+        {
+            for (int i = 0; i < length; ++i)
+            {
+                if (first[i + firstStart] != second[i + secondStart])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool IsNeedlePresentAtLocation(int[][] haystack, int[][] needle, Point point, int alreadyVerified)
+        {
+            //we already know that "alreadyVerified" lines already match, so skip them
+            for (int y = alreadyVerified; y < needle.Length; ++y)
+            {
+                if (!ContainSameElements(haystack[y + point.Y], point.X, needle[y], 0, needle[y].Length))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #endregion
     }
 
     public class WndSearcher

@@ -133,24 +133,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="CCCONFIGTOOLIMPORTERLib">
-      <Guid>{B8925B30-D47B-43B4-AF5C-9BD9D9E3247B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="CCDMRTLOADERLib">
-      <Guid>{C64A5A11-D377-11D1-AEB4-006097662572}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="CCDOWNLOADLib">
       <Guid>{91673A2E-C231-49C4-96BD-5F2F69923BED}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -178,15 +160,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="CCHMIRTPROJECTLib">
-      <Guid>{5C51ED54-1783-484C-9C6E-0D811A28EB2A}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="CCHMIRUNTIME">
       <Guid>{1BB46049-5331-4AC5-B09B-194199F07FA6}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -196,35 +169,8 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="CCPROJECTMGRLib">
-      <Guid>{52AF2321-2F3C-11D1-8DE0-00A0247305D1}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="CCSWITCHRUNTIMELib">
-      <Guid>{2788DAA2-B450-11D2-959C-006097662572}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="grafexe">
       <Guid>{0B7466A1-3457-11CE-9E08-0020AF363645}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="IWINCCPROTPROVIDERLib">
-      <Guid>{97BECB8D-6B09-4BFD-826B-CF614C6856C2}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
@@ -250,33 +196,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VARLOGINRTLib">
-      <Guid>{30886A88-7486-11D2-AECD-00104B87AF18}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -291,6 +210,20 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\2021-02-08 13_59_20-Graphics Designer - TCM#02-02-10_e_#GEN-DrivesPage1.pdl.png" />
+    <None Include="Resources\2021-02-08 14_02_06-Graphics Designer - TCM#01-04-60_e_#TCM-OverviewTensionReelProcessClass3.pdl.png" />
+    <None Include="Resources\2021-02-11 10_48_49-Graphics Designer - CSPRM#20-01-00_n_#RM-DetailsDescaler.pdl.png" />
+    <None Include="Resources\2021-02-11 10_59_33-Graphics Designer - TCM#53-01-10_e_#DRV-PowerSupplyAuxiliaryPage1.pdl.png" />
+    <None Include="Resources\2021-02-11 11_16_12-Graphics Designer - %40default_p_BlackAmodal.pdl.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\2021-02-11 12_26_40-Window.png" />
+    <None Include="Resources\2021-02-11 12_27_59-Window.png" />
+    <None Include="Resources\2021-02-11 12_33_11-Window.png" />
+    <None Include="Resources\2021-02-11 12_32_34-Window.png" />
+    <None Include="Resources\2021-02-11 12_32_09-Window.png" />
+    <None Include="Resources\2021-02-11 12_49_57-Window.png" />
+    <None Include="Resources\2021-02-11 15_05_37-Untitled - Paint.png" />
+    <None Include="Resources\tabbed_down.png" />
     <Content Include="timer.ico" />
   </ItemGroup>
   <ItemGroup>

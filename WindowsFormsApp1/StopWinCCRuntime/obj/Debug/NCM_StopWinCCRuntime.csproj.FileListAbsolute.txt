@@ -11,3 +11,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_Sto
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csproj.CoreCompileInputs.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\StopWinCCRuntime.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StopWinCCRuntime\obj\Debug\NCM_StopWinCCRuntime.csprojAssemblyReference.cache

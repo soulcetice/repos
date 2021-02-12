@@ -86,6 +86,8 @@ namespace HMIUpdater
         private GroupBox groupBox2;
         private Button button16;
         private Button button17;
+        private Button button18;
+        private CheckBox checkBox3;
         private Button button10;
         #endregion
 
@@ -613,6 +615,8 @@ namespace HMIUpdater
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -622,7 +626,7 @@ namespace HMIUpdater
             // 
             this.button1.AutoSize = true;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(7, 61);
+            this.button1.Location = new System.Drawing.Point(7, 118);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 23);
             this.button1.TabIndex = 2;
@@ -1201,12 +1205,14 @@ namespace HMIUpdater
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox3);
+            this.groupBox2.Controls.Add(this.button18);
             this.groupBox2.Controls.Add(this.killKeyCheckBox);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.useRemotes);
-            this.groupBox2.Location = new System.Drawing.Point(244, 221);
+            this.groupBox2.Location = new System.Drawing.Point(244, 162);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(103, 91);
+            this.groupBox2.Size = new System.Drawing.Size(103, 150);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             // 
@@ -1229,6 +1235,26 @@ namespace HMIUpdater
             this.button17.Text = "Generate Tasks to Machines";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(7, 89);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(76, 23);
+            this.button18.TabIndex = 57;
+            this.button18.Text = "Global.PDT";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(6, 66);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(90, 17);
+            this.checkBox3.TabIndex = 58;
+            this.checkBox3.Text = "Update Tools";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // HMIUpdateForm
             // 
@@ -1284,7 +1310,6 @@ namespace HMIUpdater
             this.Name = "HMIUpdateForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "HMI Clients Updater";
-            this.Load += new System.EventHandler(this.HMIUpdateForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1317,7 +1342,7 @@ namespace HMIUpdater
         }
         #endregion
 
-        #region Old NCM Download
+        #region NCM Download
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -1903,6 +1928,7 @@ namespace HMIUpdater
                         Copy(sourcePathBox.Text, @"\\" + ip + @"\" + destinationPathBox.Text, CheckedItem);
                         OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
                         StartWinCCRuntime(CheckedItem);
+                        System.Threading.Thread.Sleep(10000);
                         CloseRemoteSession(ip);
 
                         msg = "Finished download process for " + CheckedItem;
@@ -1974,6 +2000,10 @@ namespace HMIUpdater
                         StopWinCCRuntime(ip);
                         //System.Threading.Thread.Sleep(20000); //should replace with feedback check (write logfile on the remote from the stop exe)
                     }
+
+
+
+                    UpdateWinCCToolbarInClients(ip);
 
                     //get ip here
 
@@ -3259,14 +3289,32 @@ namespace HMIUpdater
         }
         #endregion
 
+        private void UpdateWinCCToolbarInClients(string ip)
+        {
+            var templates = new DirectoryInfo(@"C:\Program Files (x86)\Siemens\WinCC\Templates");
+            var files = templates.GetFiles();
+
+            var global = files.FirstOrDefault(c => c.Name.ToUpper() == "@GLOBAL.PDT".ToUpper());
+            if (global.Exists)
+            {
+                global.CopyTo(@"\\" + ip + @"\c$\Program Files (x86)\Siemens\WinCC\Templates\@GLOBAL.PDT");
+            }
+        }
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Refresh();
         }
 
-        private void HMIUpdateForm_Load(object sender, EventArgs e)
+        private void button18_Click(object sender, EventArgs e)
         {
+            List<string> list = CheckListGet();
 
+            foreach (var c in list)
+            {
+                var ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
+                UpdateWinCCToolbarInClients(ip);
+            }
         }
     }
 }

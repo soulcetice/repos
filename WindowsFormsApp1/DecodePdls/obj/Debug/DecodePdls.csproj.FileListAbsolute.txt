@@ -7,3 +7,14 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.cs
 C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.CoreCompileInputs.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.pdb
+C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.Form1.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\bin\Debug\DecodePdls.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.Form1.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.Properties.Resources.resources
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.GenerateResource.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csprojAssemblyReference.cache

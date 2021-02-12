@@ -118,7 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 12_26_40-Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropdown2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 12_27_59-Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="embedded" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-08 13_59_20-Graphics Designer - TCM#02-02-10_e_#GEN-DrivesPage1.pdl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="embedded2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 15_05_37-Untitled - Paint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="framedropdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 12_33_11-Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="popup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 10_48_49-Graphics Designer - CSPRM#20-01-00_n_#RM-DetailsDescaler.pdl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tabbed_both" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 12_32_34-Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tabbed_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tabbed_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tabbed_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2021-02-11 12_49_57-Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
