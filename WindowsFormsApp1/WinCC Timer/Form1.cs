@@ -1674,8 +1674,8 @@ namespace WinCC_Timer
                         if (o.Left == 100 && o.Top == 100)
                         {
                             selo = o;
-                            //var grafexe = new grafexe();
-                            //var lines = File.ReadAllLines(f.FullName, Encoding.UTF8).ToList();
+
+                            FindRtObjectInGrafexe(selo);
 
                         }
                     }
@@ -1702,6 +1702,21 @@ namespace WinCC_Timer
             }
 
             return img;
+        }
+
+        private void FindRtObjectInGrafexe(IHMIScreenItem selo)
+        {
+            string seldocfullname = g.ApplicationDataPath + "\\" + currentActiveScreen;
+
+            grafexe.Application g = new grafexe.Application();
+
+            grafexe.Document seldoc = g.Documents.Open(seldocfullname);
+
+            grafexe.HMIObjects selos = seldoc.HMIObjects;
+
+            grafexe.HMIObject go = selos.Find(ObjectName: selo.ObjectName)[0];
+
+            var lines = File.ReadAllLines(seldocfullname, Encoding.UTF8).ToList();
         }
 
         private Bitmap FindSwitchEmbeddeds(IntPtr handle, Bitmap img)
