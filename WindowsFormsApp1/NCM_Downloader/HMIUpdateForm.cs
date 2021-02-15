@@ -613,10 +613,10 @@ namespace HMIUpdater
             this.useRemotes = new System.Windows.Forms.CheckBox();
             this.killKeyCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.button18 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.rdpBox1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1216,6 +1216,26 @@ namespace HMIUpdater
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(6, 66);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(90, 17);
+            this.checkBox3.TabIndex = 58;
+            this.checkBox3.Text = "Update Tools";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(7, 89);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(76, 23);
+            this.button18.TabIndex = 57;
+            this.button18.Text = "Global.PDT";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
             // button16
             // 
             this.button16.Location = new System.Drawing.Point(358, 451);
@@ -1235,26 +1255,6 @@ namespace HMIUpdater
             this.button17.Text = "Generate Tasks to Machines";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(7, 89);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(76, 23);
-            this.button18.TabIndex = 57;
-            this.button18.Text = "Global.PDT";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 66);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(90, 17);
-            this.checkBox3.TabIndex = 58;
-            this.checkBox3.Text = "Update Tools";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // HMIUpdateForm
             // 
@@ -1309,7 +1309,7 @@ namespace HMIUpdater
             this.MaximizeBox = false;
             this.Name = "HMIUpdateForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "HMI Clients Updater";
+            this.Text = "HMI Manager";
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

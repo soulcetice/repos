@@ -307,11 +307,14 @@ namespace WinCC_Timer
             GetCheckedNodes(treeView1.Nodes);
 
             var tier1 = lists.Where(c => c.Layer == "1").ToList();
-            IntPtr rt = GetRtHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+            IntPtr rt = GetHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
             if (rt == IntPtr.Zero)
             {
                 return;
             }
+
+            FindOpenCloseDropDowns(rt, TheMagic.GetPngByHandle(rt)); //first run, run only once this way
+
             var singleHeight = 25;
 
             //"General is 76 * 30
@@ -450,7 +453,7 @@ namespace WinCC_Timer
             firstRunHasEnded = true;
         }
 
-        private IntPtr GetRtHandle(string className, string windowName)
+        private IntPtr GetHandle(string className, string windowName)
         {
             IntPtr rt = PInvokeLibrary.FindWindow(className, windowName); ;
             if (rt == IntPtr.Zero)
@@ -1533,7 +1536,7 @@ namespace WinCC_Timer
 
         private void ScourPage()
         {
-            IntPtr handle = GetRtHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
+            IntPtr handle = GetHandle("PDLRTisAliveAndWaitsForYou", "WinCC-Runtime - ");
             if (handle == IntPtr.Zero)
             {
                 handle = WndSearcher.SearchForWindow("GRAFClass", "Graphics Designer - "); //partial search for window
@@ -1542,19 +1545,35 @@ namespace WinCC_Timer
             }
 
             Bitmap img = TheMagic.GetPngByHandle(handle);
+            string mainScreen = GetMainScreen();
 
             //take screenshot here of page
             SetDateString();
-            currentPage = formattedDate;
+            currentPage = mainScreen;
             ScreenshotAndSave(true);
 
             img = FindOpenClosePopups(handle, img);
 
-            img = FindOpenCloseDropDowns(handle, img);
+            img = FindOpenCloseDropDowns(handle, img, false);
 
             img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
 
             img = FindSwitchVerticalTabs(handle, img);
+        }
+
+        private string GetMainScreen()
+        {
+            var list = new List<string>();
+            GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen);
+            foreach (IHMIScreen s in screens)
+            {
+                list.Add(s.ObjectName);
+            }
+            var currentNormal = list?.FirstOrDefault(c => c.ToUpper().Contains("_n_".ToUpper()));
+            var currentWide = list?.FirstOrDefault(c => c.ToUpper().Contains("_w_".ToUpper()));
+
+            var mainScreen = currentNormal != null ? currentNormal : currentWide;
+            return mainScreen;
         }
 
         private Bitmap FindSwitchVerticalTabs(IntPtr handle, Bitmap img)
@@ -1576,6 +1595,8 @@ namespace WinCC_Timer
                 clickedEmbeddeds.Add(new Point() { X = d.x, Y = d.y });
 
                 Thread.Sleep(3000);
+
+                ReadActiveScreen();
 
                 //take screenshot here
                 SetDateString();
@@ -1600,12 +1621,15 @@ namespace WinCC_Timer
             //FoundTabsBoth.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_both")), "tabbed_both"));
         }
 
-        private Bitmap FindOpenCloseDropDowns(IntPtr handle, Bitmap img)
+        private Bitmap FindOpenCloseDropDowns(IntPtr handle, Bitmap img, bool first = true)
         {
             List<TheMagic.PosBitmap> FoundDropDowns = new List<TheMagic.PosBitmap>();
             FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dropdown")), "dropdown"));
             FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dropdown2")), "dropdown"));
             FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("framedropdown")), "dropdown"));
+
+            if (first)
+                FoundDropDowns.RemoveAll(c => c.y < 181); //remove items that are in the header of the hmi
 
             foreach (TheMagic.PosBitmap drop in FoundDropDowns)
             {
@@ -1613,6 +1637,8 @@ namespace WinCC_Timer
 
                 ClickInWindowAtXY(handle, drop.x, drop.y, 1);
                 Thread.Sleep(3000);
+
+                ReadActiveScreen();
 
                 //take screenshot here
                 SetDateString();
@@ -1631,16 +1657,35 @@ namespace WinCC_Timer
             List<TheMagic.PosBitmap> FoundPopups = new List<TheMagic.PosBitmap>();
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup")), "popup"));
 
-            IHMIScreens screens;
-            IHMIScreen activeScreen;
+            //IHMIScreens screens;
+            //IHMIScreen activeScreen;
 
             foreach (TheMagic.PosBitmap p in FoundPopups)
             {
                 listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
 
+                GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
+                foreach (IHMIScreen s in screens)
+                {
+                    IHMIScreenItems objs = s.ScreenItems;
+                    IHMIScreenItem selo;
+                    foreach (IHMIScreenItem o in objs)
+                    {
+                        if (o.Left == 100 && o.Top == 100)
+                        {
+                            selo = o;
+                            //var grafexe = new grafexe();
+                            //var lines = File.ReadAllLines(f.FullName, Encoding.UTF8).ToList();
+
+                        }
+                    }
+
+                }
+
                 ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
 
-                GetRuntimeScreens(out screens, out activeScreen);
+                ReadActiveScreen();
+
                 //take screenshot here
                 SetDateString();
                 currentPage = formattedDate;
@@ -1680,6 +1725,8 @@ namespace WinCC_Timer
 
                 Thread.Sleep(3000);
 
+                ReadActiveScreen();
+
                 //take screenshot here
                 SetDateString();
                 currentPage = formattedDate;
@@ -1716,13 +1763,20 @@ namespace WinCC_Timer
             IHMIScreen activeScreen;
             GetRuntimeScreens(out screens, out activeScreen);
 
+            var screenlist = new List<string>();
+
             LogToFile(activeScreen.AccessPath, "\\Screens.txt", false);
+            //listBox1.Items.Add(activeScreen.AccessPath);
+            listBox1.Items.Add(activeScreen.ObjectName);
 
             foreach (CCHMIRUNTIME.IHMIScreen s in screens)
             {
-                listBox1.Items.Add(s.AccessPath);
+                LogToFile(s.ObjectName, "\\Screens.txt", false);
 
-                LogToFile(s.AccessPath, "\\Screens.txt", false);
+                //listBox1.Items.Add(s.AccessPath);
+                //listBox1.Items.Add(s.ObjectName);
+
+                screenlist.Add(s.ObjectName);
             }
             listBox1.Refresh();
 
@@ -1741,6 +1795,19 @@ namespace WinCC_Timer
             activeScreen = rt.ActiveScreen;
 
             currentActiveScreen = activeScreen.ToString();
+            currentPage = currentActiveScreen;
+        }
+
+        private void ReadActiveScreen()
+        {
+            CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
+            currentActiveScreen = rt.ActiveScreen.ObjectName;
+            currentPage = currentActiveScreen;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(GetMainScreen());
         }
     }
 }

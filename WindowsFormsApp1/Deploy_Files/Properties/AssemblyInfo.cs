@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Deploy_Files")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SMS group")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Deploy_Files")]
-[assembly: AssemblyCopyright("Copyright © SMS group 2020")]
+[assembly: AssemblyCopyright("Copyright © SMS 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -19,4 +19,3 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnableP
 C:\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.csproj.CopyComplete
 C:\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\EnablePSRemoting\obj\Debug\EnablePSRemoting.csprojAssemblyReference.cache

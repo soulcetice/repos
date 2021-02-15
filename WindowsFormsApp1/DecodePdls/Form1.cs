@@ -21,10 +21,10 @@ namespace DecodePdls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<FileInfo> files = GetFiles();
+            List<FileInfo> files = GetFiles().Where(c => c.Name.Contains("TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry")).ToList();
 
-            GetData(files, out List<string> lefts2, contain: "Position X", encoding: Encoding.Unicode);
-            GetData(files, out List<string> pdlsCalled, contain: "pdlName = ", notContain: "pdlName = \"\"", encoding: Encoding.Unicode);
+            GetData(files, out List<string> search, contain: "CoilData", encoding: Encoding.Unicode);
+            //GetData(files, out List<string> pdlsCalled, contain: "pdlName = ", notContain: "pdlName = \"\"", encoding: Encoding.Unicode);
 
             Console.WriteLine("end");
         }
@@ -35,20 +35,20 @@ namespace DecodePdls
 
             foreach (var f in files)
             {
-                //var lines = File.ReadAllLines(f.FullName, encoding).ToList();
-                var lines1 = File.ReadAllLines(f.FullName, Encoding.UTF8).ToList();
+                var lines = File.ReadAllLines(f.FullName, encoding).ToList();
+                //var lines1 = File.ReadAllLines(f.FullName, Encoding.UTF8).ToList();
                 //var lines2 = File.ReadAllLines(f.FullName, Encoding.ASCII).ToList();
                 //var lines3 = File.ReadAllLines(f.FullName, Encoding.BigEndianUnicode).ToList();
                 //var lines4 = File.ReadAllLines(f.FullName, Encoding.UTF32).ToList();
                 //var lines5 = File.ReadAllLines(f.FullName, Encoding.UTF7).ToList();
 
 
-                for (int i = 0; i < lines1.Count; i++)
+                for (int i = 0; i < lines.Count; i++)
                 {
-                    lines1[i] = lines1[i].Replace("\0", "");
+                    lines[i] = lines[i].Replace("\0", "");
                 }
 
-                var pdl = lines1.Where(c => c.Contains(contain)).ToList();
+                var pdl = lines.Where(c => c.Contains(contain)).ToList();
 
                 if (pdl.Count > 0)
                 {

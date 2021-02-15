@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WinCC Timer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SMS group")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WinCC Timer")]
-[assembly: AssemblyCopyright("Copyright © SMS group 2020")]
+[assembly: AssemblyCopyright("Copyright © SMS 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

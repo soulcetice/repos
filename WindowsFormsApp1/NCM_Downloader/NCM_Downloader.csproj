@@ -7,7 +7,7 @@
     <ProjectGuid>{651717BE-647E-4E71-A97C-579EDCB1CD9D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>NCM_Downloader</RootNamespace>
-    <AssemblyName>NCM_Downloader</AssemblyName>
+    <AssemblyName>HMI_Manager</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
