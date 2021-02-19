@@ -2002,8 +2002,8 @@ namespace HMIUpdater
                     }
 
 
-
-                    UpdateWinCCToolbarInClients(ip);
+                    if (checkBox3.Checked)
+                        UpdateWinCCToolbarInClients(ip);
 
                     //get ip here
 

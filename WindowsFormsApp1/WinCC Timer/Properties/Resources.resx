@@ -139,6 +139,12 @@
   <data name="popup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2021-02-11 10_48_49-Graphics Designer - CSPRM#20-01-00_n_#RM-DetailsDescaler.pdl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="popup3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\popup3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="popup4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\popup4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -224,6 +224,8 @@
     <None Include="Resources\2021-02-11 12_49_57-Window.png" />
     <None Include="Resources\2021-02-11 15_05_37-Untitled - Paint.png" />
     <None Include="Resources\tabbed_down.png" />
+    <None Include="Resources\popup3.png" />
+    <None Include="Resources\popup4.png" />
     <Content Include="timer.ico" />
   </ItemGroup>
   <ItemGroup>

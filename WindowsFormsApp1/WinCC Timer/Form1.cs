@@ -42,7 +42,7 @@ namespace WinCC_Timer
 
         private FileInfo FindSQLFile()
         {
-            var d = new DirectoryInfo(Application.StartupPath);
+            var d = new DirectoryInfo(System.Windows.Forms.Application.StartupPath);
             var sqlFiles = Directory.GetFiles(d.FullName, "*.sql", SearchOption.TopDirectoryOnly).ToList();
             if (sqlFiles.Count > 0)
                 return new FileInfo(sqlFiles.FirstOrDefault());
@@ -56,7 +56,7 @@ namespace WinCC_Timer
         private void UpdateFileDate()
         {
             SetDateString();
-            Directory.CreateDirectory(Application.StartupPath + "\\" + formattedDate);
+            Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\" + formattedDate);
         }
 
         private void SetDateString()
@@ -474,13 +474,13 @@ namespace WinCC_Timer
             string path = "";
             if (!flatFolder)
             {
-                path = Application.StartupPath + "\\" + formattedDate + "\\" + currentPage + ".png";
+                path = System.Windows.Forms.Application.StartupPath + "\\" + formattedDate + "\\" + currentPage + ".png";
             }
             else
             {
-                if (new DirectoryInfo(Application.StartupPath + "\\" + "Screenshots").Exists == false)
-                    Directory.CreateDirectory(Application.StartupPath + "\\" + "Screenshots");
-                path = Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + ".png";
+                if (new DirectoryInfo(System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots").Exists == false)
+                    Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots");
+                path = System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + ".png";
             }
 
             bmp.Save(path);
@@ -552,7 +552,7 @@ namespace WinCC_Timer
             //}
             #endregion
 
-            string sqlFile = Application.StartupPath + @"\" + textBox1.Text;
+            string sqlFile = System.Windows.Forms.Application.StartupPath + @"\" + textBox1.Text;
 
             var fileInfo = new FileInfo(sqlFile);
 
@@ -645,7 +645,7 @@ namespace WinCC_Timer
 
         private void LogToFile(string content, string fname, bool useDate = true)
         {
-            using (var fileWriter = new StreamWriter(Application.StartupPath + fname, true))
+            using (var fileWriter = new StreamWriter(System.Windows.Forms.Application.StartupPath + fname, true))
             {
                 DateTime date = DateTime.UtcNow;
                 if (useDate)
@@ -841,14 +841,14 @@ namespace WinCC_Timer
                         page = p
                     };
                     PageLoadTimes.Add(pageTime);
-                    LogToFile(pageTime.page + "," + pageTime.load + " ms", directory.Replace(Application.StartupPath, "") + "\\timerData_" + currentCalc + ".logger");
+                    LogToFile(pageTime.page + "," + pageTime.load + " ms", directory.Replace(System.Windows.Forms.Application.StartupPath, "") + "\\timerData_" + currentCalc + ".logger");
                 }
             }
         }
 
         private static void DeletePreviousCalculatedTimesInFolder()
         {
-            List<string> f = Directory.GetFiles(Application.StartupPath).Where(c => new FileInfo(c).Name.StartsWith("timerData")).ToList();
+            List<string> f = Directory.GetFiles(System.Windows.Forms.Application.StartupPath).Where(c => new FileInfo(c).Name.StartsWith("timerData")).ToList();
             foreach (var c in f)
             {
                 var file = new FileInfo(c);
@@ -975,7 +975,7 @@ namespace WinCC_Timer
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            var d = new DirectoryInfo(Path.Combine(Application.StartupPath, textBox3.Text));
+            var d = new DirectoryInfo(Path.Combine(System.Windows.Forms.Application.StartupPath, textBox3.Text));
             var loggerFiles = Directory.GetFiles(d.FullName, "*.logger", SearchOption.AllDirectories);
             var cpuDataFiles = loggerFiles.Where(c => c.Contains("pdlrt")).ToList();
 
@@ -1089,7 +1089,7 @@ namespace WinCC_Timer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var d = new DirectoryInfo(Path.Combine(Application.StartupPath, textBox3.Text));
+            var d = new DirectoryInfo(Path.Combine(System.Windows.Forms.Application.StartupPath, textBox3.Text));
             if (!d.Exists)
             {
                 listBox1.Items.Add("The folder " + d.Name + " was not found!");
@@ -1280,7 +1280,7 @@ namespace WinCC_Timer
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string path = Application.StartupPath + "\\ProcessedTimesExport.csv";
+            string path = System.Windows.Forms.Application.StartupPath + "\\ProcessedTimesExport.csv";
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -1554,11 +1554,11 @@ namespace WinCC_Timer
 
             img = FindOpenClosePopups(handle, img);
 
-            img = FindOpenCloseDropDowns(handle, img, false);
+            //img = FindOpenCloseDropDowns(handle, img, false);
 
-            img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+            //img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
 
-            img = FindSwitchVerticalTabs(handle, img);
+            //img = FindSwitchVerticalTabs(handle, img);
         }
 
         private string GetMainScreen()
@@ -1656,6 +1656,8 @@ namespace WinCC_Timer
         {
             List<TheMagic.PosBitmap> FoundPopups = new List<TheMagic.PosBitmap>();
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup")), "popup"));
+            FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup3")), "popup"));
+            FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup4")), "popup"));
 
             //IHMIScreens screens;
             //IHMIScreen activeScreen;
@@ -1663,26 +1665,44 @@ namespace WinCC_Timer
             foreach (TheMagic.PosBitmap p in FoundPopups)
             {
                 listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
+                LogToFile(p.signifies + " at " + p.x + ", " + p.y, "\\Screen.log", false);
 
                 GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
                 foreach (IHMIScreen s in screens)
                 {
+                    //this used to yield error. check for alternative to find picture window position in the frame
+                    try
+                    {
+                        LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top, "\\Screen.log", false);
+                    }catch (Exception ex)
+                    {
+                        LogToFile(ex.Message, "\\Screen.log", false);
+                    }
+
+                    //ReadActiveScreen();
+
                     IHMIScreenItems objs = s.ScreenItems;
-                    IHMIScreenItem selo;
                     foreach (IHMIScreenItem o in objs)
                     {
-                        if (o.Left == 100 && o.Top == 100)
-                        {
-                            selo = o;
+                        var g = new grafexe.Application();
+                        var obj = FindObjectProperties(s.ObjectName, o.ObjectName, g.ApplicationDataPath, g);
 
-                            FindRtObjectInGrafexe(selo);
+                        if (obj != null)
+                        {
+                            listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
+
+                            var left = o.Parent.Parent.Left;
+                            var top = o.Parent.Parent.Top;
+
+                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
+                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + left + "," + top, "\\Screen.log", false);
+
 
                         }
                     }
-
                 }
 
-                ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
+                //ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
 
                 ReadActiveScreen();
 
@@ -1704,19 +1724,34 @@ namespace WinCC_Timer
             return img;
         }
 
-        private void FindRtObjectInGrafexe(IHMIScreenItem selo)
+        private Point FindRtObjectInGrafexe(IHMIScreenItem selo)
         {
-            string seldocfullname = g.ApplicationDataPath + "\\" + currentActiveScreen;
-
             grafexe.Application g = new grafexe.Application();
 
-            grafexe.Document seldoc = g.Documents.Open(seldocfullname);
+            string seldocfullname = Path.Combine(g.ApplicationDataPath, currentActiveScreen + ".pdl");
 
-            grafexe.HMIObjects selos = seldoc.HMIObjects;
+            if (!currentActiveScreen.StartsWith("@"))
+            {
+                listBox1.Items.Add(seldocfullname);
 
-            grafexe.HMIObject go = selos.Find(ObjectName: selo.ObjectName)[0];
+                grafexe.Document seldoc = g.Documents.Open(seldocfullname, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
 
-            var lines = File.ReadAllLines(seldocfullname, Encoding.UTF8).ToList();
+                grafexe.HMIObjects selos = seldoc.HMIObjects;
+
+                grafexe.HMICollection foundCol = selos.Find(ObjectName: selo.ObjectName);
+                grafexe.HMIObject go = foundCol.Count > 0 ? foundCol[1] : null;
+
+                //go.Left.value = 200;
+                //go.Top.value = 200;
+
+                if (go != null)
+                {
+                    listBox1.Items.Add(go.ObjectName.value + ", " + go.Left.value + ", " + go.Top.value);
+                }
+
+                return new Point() { X = go.Left.value, Y = go.Top.value };
+            }
+            return new Point() { X = -1, Y = -1 };
         }
 
         private Bitmap FindSwitchEmbeddeds(IntPtr handle, Bitmap img)
@@ -1809,7 +1844,7 @@ namespace WinCC_Timer
             screens = rt.Screens;
             activeScreen = rt.ActiveScreen;
 
-            currentActiveScreen = activeScreen.ToString();
+            currentActiveScreen = activeScreen.ObjectName;
             currentPage = currentActiveScreen;
         }
 
@@ -1823,6 +1858,48 @@ namespace WinCC_Timer
         private void button10_Click(object sender, EventArgs e)
         {
             listBox1.Items.Add(GetMainScreen());
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+            var pdlName = "TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry2";
+            string objName = "@V3_SMS_Pb_PupNoModal(167+1)1";
+            string path = @"C:\Project\sdib_tcm_clt\gracs";
+            grafexe.Application g = new grafexe.Application();
+
+            var obj = FindObjectProperties(pdlName, objName, path, g);
+
+            //var lines = File.ReadAllLines(seldocfullname, Encoding.UTF8).ToList();
+        }
+
+        private grafexe.HMIObject FindObjectProperties(string pdlName, string objName, string path, grafexe.Application g)
+        {
+            string seldocfullname = Path.Combine(path, pdlName + ".pdl");
+
+            listBox1.Items.Add("Opening... " + seldocfullname);
+
+            grafexe.HMIObject go = null;
+
+            if (!pdlName.StartsWith("@"))
+            {
+                grafexe.Document seldoc = g.Documents.Open(seldocfullname, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+                grafexe.HMIObjects selos = seldoc.HMIObjects;
+
+                go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;
+
+                //go.Left.value = 200;
+                //go.Top.value = 200;
+
+                //go.Selected = true;
+
+                if (go != null)
+                {
+                    listBox1.Items.Add(go.ObjectName.value);
+                }
+            }
+
+            return go;
         }
     }
 }
