@@ -11,3 +11,4 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\NCM_St
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\StartWinCCRuntime.exe
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\StartWinCCRuntime.pdb
 C:\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\NCM_StartWinCCRuntime.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\StartWinCCRuntime\obj\Debug\NCM_StartWinCCRuntime.csprojAssemblyReference.cache

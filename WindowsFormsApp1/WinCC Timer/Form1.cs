@@ -1659,48 +1659,53 @@ namespace WinCC_Timer
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup3")), "popup"));
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup4")), "popup"));
 
-            //IHMIScreens screens;
-            //IHMIScreen activeScreen;
+            var objects = GetScreensData("HMIButton", out List<objectOffset> offsetsList);
 
             foreach (TheMagic.PosBitmap p in FoundPopups)
             {
-                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
-                LogToFile(p.signifies + " at " + p.x + ", " + p.y, "\\Screen.log", false);
+                //var data = objects.FirstOrDefault(c =>
+                //c.Left.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetLeft <= p.x &&
+                //c.Left.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetLeft + c.Width.value >= p.x &&
+                //c.Top.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetTop <= p.y &&
+                //c.Top.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetTop + c.Height.value <= p.y);
 
-                GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
-                foreach (IHMIScreen s in screens)
+
+                grafexe.HMIObject selObj = null;
+                foreach (var obj in from c in objects
+                                  let offsetData = offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value)
+                                  where c.Left.value + offsetData.OffsetLeft <= p.x &&
+                                        c.Left.value + offsetData.OffsetLeft + c.Width.value >= p.x &&
+                                        c.Top.value + offsetData.OffsetTop <= p.y &&
+                                        c.Top.value + offsetData.OffsetTop + c.Height.value <= p.y
+                                  select c)
                 {
-                    //this used to yield error. check for alternative to find picture window position in the frame
-                    try
-                    {
-                        LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top, "\\Screen.log", false);
-                    }catch (Exception ex)
-                    {
-                        LogToFile(ex.Message, "\\Screen.log", false);
-                    }
+                    selObj = obj;
+                    continue;
+                }
 
-                    //ReadActiveScreen();
-
-                    IHMIScreenItems objs = s.ScreenItems;
-                    foreach (IHMIScreenItem o in objs)
+                if (selObj != null)
+                {
+                    foreach (grafexe.HMIEvent ev in selObj.Events)
                     {
-                        var g = new grafexe.Application();
-                        var obj = FindObjectProperties(s.ObjectName, o.ObjectName, g.ApplicationDataPath, g);
-
-                        if (obj != null)
+                        if (ev.Actions.Count > 0)
                         {
-                            listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
+                            foreach (grafexe.HMIScriptInfo act in ev.Actions)
+                            {
+                                string vb = act.SourceCode;
+                                var pdlRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
+                                string targetPdl = pdlRow.Replace("Const pdlName = ", "");
 
-                            var left = o.Parent.Parent.Left;
-                            var top = o.Parent.Parent.Top;
-
-                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
-                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + left + "," + top, "\\Screen.log", false);
-
-
+                                listBox1.Items.Add(targetPdl);
+                                LogToFile(selObj.ObjectName + " calls " + targetPdl, "\\PdlCalls.log", false);
+                            }
                         }
                     }
                 }
+                //var evData = data.Events.("OnLButtonUp")
+
+
+                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
+                LogToFile(p.signifies + " at " + p.x + ", " + p.y, "\\Screen.log", false);
 
                 //ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
 
@@ -1722,6 +1727,101 @@ namespace WinCC_Timer
             }
 
             return img;
+        }
+
+        public class objectOffset
+        {
+            public int OffsetLeft;
+            public int OffsetTop;
+            public int LeftBound;
+            public int TopBound;
+            public int RightBound;
+            public int BottomBound;
+            public string Page;
+            public string ObjectName;
+        }
+
+        private List<grafexe.HMIObject> GetScreensData(string type, out List<objectOffset> offsetsList)
+        {
+            var objects = new List<grafexe.HMIObject>();
+
+            GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
+
+            offsetsList = new List<objectOffset>();
+
+            foreach (IHMIScreen s in screens)
+            {
+                if (!s.ObjectName.StartsWith("@") && (s.ObjectName.Contains("_e_") || s.ObjectName.Contains("_w_") || s.ObjectName.Contains("_n_") || s.ObjectName.Contains("_f_")))
+                {
+                    //this used to yield error. check for alternative to find picture window position in the frame
+                    try
+                    {
+                        LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top + ", " + s.Parent.Width + ", " + s.Parent.Height, "\\Screen.log", false);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogToFile(ex.Message, "\\Screen.log", false);
+                    }
+
+                    ReadActiveScreen();
+
+                    IHMIScreenItems objs = s.ScreenItems;
+
+                    var left = s.Parent.Left;
+                    var top = s.Parent.Top;
+                    var offsetTop = 161;
+                    var offsetLeft = 0;
+                    if (currentActiveScreen.ToUpper().Contains("_n_".ToUpper()))
+                    {
+                        offsetLeft = 175;
+                    }
+                    else if (currentActiveScreen.ToUpper().Contains("_w_".ToUpper()))
+                    {
+
+                    }
+
+                    //if the main screen is _n_ then offset the pageLeft by ....
+                    //if the main screen is _w_ there is no data class 1, no need to offset
+
+                    foreach (IHMIScreenItem o in objs)
+                    {
+                        if (o.Type == type)
+                        {
+                            var g = new grafexe.Application();
+                            var obj = FindObjectProperties(s.ObjectName, o.ObjectName, g);
+
+                            if (obj != null)
+                            {
+                                listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
+
+                                LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
+                                LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
+                                    (offsetLeft + left + obj.Left.value) + "," +
+                                    (top + obj.Top.value + offsetTop) + "," +
+                                    (offsetLeft + left + obj.Left.value + obj.Width.value) + "," +
+                                    (top + obj.Top.value + offsetTop + obj.Height.value), "\\Screen.log", false);
+
+                                objects.Add(obj);
+
+                                offsetsList.Add(new objectOffset()
+                                {
+                                    LeftBound = offsetLeft + left + obj.Left.value,
+                                    RightBound = offsetLeft + left + obj.Left.value + obj.Width.value,
+                                    TopBound = top + obj.Top.value + offsetTop,
+                                    BottomBound = top + obj.Top.value + offsetTop + obj.Height.value,
+
+                                    OffsetLeft = offsetLeft + left,
+                                    OffsetTop = top + offsetTop,
+                                    ObjectName = obj.ObjectName.value,
+                                    Page = s.ObjectName
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return objects;
         }
 
         private Point FindRtObjectInGrafexe(IHMIScreenItem selo)
@@ -1863,19 +1963,38 @@ namespace WinCC_Timer
         private void button11_Click(object sender, EventArgs e)
         {
 
-            var pdlName = "TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry2";
-            string objName = "@V3_SMS_Pb_PupNoModal(167+1)1";
-            string path = @"C:\Project\sdib_tcm_clt\gracs";
+            var pdlName = "TCM#02-01-00_n_#GEN-Media";
+            string objName = "@V3_SMS_Pb_PupNoModal(205+1)5";
             grafexe.Application g = new grafexe.Application();
 
-            var obj = FindObjectProperties(pdlName, objName, path, g);
+            grafexe.HMIObject obj = FindObjectProperties(pdlName, objName, g, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+
+            if (obj != null)
+            {
+
+                foreach (grafexe.HMIEvent ev in obj.Events)
+                {
+                    if (ev.Actions.Count > 0)
+                    {
+                        foreach (dynamic act in ev.Actions)
+                        {
+                            string vb = act.SourceCode;
+                            bool callsPdl = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = ")) != null;
+
+                            //var targetPdl = rows.Replace("Const pdlName = ", "");
+
+                            Console.Write("done");
+                        }
+                    }
+                }
+            }
 
             //var lines = File.ReadAllLines(seldocfullname, Encoding.UTF8).ToList();
         }
 
-        private grafexe.HMIObject FindObjectProperties(string pdlName, string objName, string path, grafexe.Application g)
+        private grafexe.HMIObject FindObjectProperties(string pdlName, string objName, grafexe.Application g, grafexe.HMIOpenDocumentType openType = grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible)
         {
-            string seldocfullname = Path.Combine(path, pdlName + ".pdl");
+            string seldocfullname = Path.Combine(g.ApplicationDataPath, pdlName + ".pdl");
 
             listBox1.Items.Add("Opening... " + seldocfullname);
 
@@ -1883,7 +2002,7 @@ namespace WinCC_Timer
 
             if (!pdlName.StartsWith("@"))
             {
-                grafexe.Document seldoc = g.Documents.Open(seldocfullname, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
+                grafexe.Document seldoc = g.Documents.Open(seldocfullname, openType);
                 grafexe.HMIObjects selos = seldoc.HMIObjects;
 
                 go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;

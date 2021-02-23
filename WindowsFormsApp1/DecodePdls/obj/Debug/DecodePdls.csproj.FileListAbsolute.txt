@@ -17,4 +17,3 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.Fo
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.exe
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.pdb
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\DecodePdls\obj\Debug\DecodePdls.csprojAssemblyReference.cache

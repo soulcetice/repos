@@ -66,7 +66,6 @@ C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\System.Ma
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.GenerateResource.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CoreCompileInputs.cache
 \\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csproj.CopyComplete
-\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\obj\Debug\NCM_Downloader.csprojAssemblyReference.cache
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Win32.TaskScheduler.dll
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\Microsoft.Win32.TaskScheduler.xml
 C:\Users\MURA02\source\repos\WindowsFormsApp1\NCM_Downloader\bin\Debug\de\Microsoft.Win32.TaskScheduler.resources.dll

@@ -398,7 +398,13 @@ namespace HMIUpdater
                     passTextBox.Text = de;
                 }
             }
-            if (fileLen >= 7) rdpCheckBox.Checked = Convert.ToBoolean(configFile.ElementAt(6));
+
+            if (fileLen >= 7)
+            {
+                if (Boolean.TryParse(configFile.ElementAt(6), out bool result))
+                    rdpCheckBox.Checked = result;
+            }
+
             if (fileLen >= 8) widthBox.Text = configFile.ElementAt(7);
             if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
             if (fileLen >= 10) leftBox.Text = configFile.ElementAt(9);
@@ -429,6 +435,18 @@ namespace HMIUpdater
                 if (Boolean.TryParse(configFile.ElementAt(17), out bool result))
                     includeNonClientsBox.Checked = result;
                 RenewIpsOrInit(result);
+            }
+
+            if (fileLen >= 19)
+            {
+                if (Boolean.TryParse(configFile.ElementAt(18), out bool result))
+                    killKeyCheckBox.Checked = result;
+            }
+
+            if (fileLen >= 20)
+            {
+                if (Boolean.TryParse(configFile.ElementAt(19), out bool result))
+                    useRemotes.Checked = result;
             }
         }
 
@@ -499,8 +517,7 @@ namespace HMIUpdater
             configFile.WriteLine(numClTextBox.Text);
             configFile.WriteLine(ipTextBox.Text);
             configFile.WriteLine(unTextBox.Text);
-            var en = StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString();
-            configFile.WriteLine(en);
+            configFile.WriteLine(StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString());
             configFile.WriteLine(rdpCheckBox.Checked);
             configFile.WriteLine(widthBox.Text);
             configFile.WriteLine(heightBox.Text);
@@ -510,10 +527,19 @@ namespace HMIUpdater
             configFile.WriteLine(sourcePathBox.Text);
             configFile.WriteLine(destinationPathBox.Text);
             configFile.WriteLine(mcpPathBox.Text);
-            en = StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString();
-            configFile.WriteLine(en);
+            configFile.WriteLine(StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString());
             configFile.WriteLine(checkBox2.Checked);
             configFile.WriteLine(includeNonClientsBox.Checked);
+            configFile.WriteLine(killKeyCheckBox.Checked);
+            configFile.WriteLine(useRemotes.Checked);
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
+            configFile.WriteLine("");
             configFile.WriteLine("");
             configFile.WriteLine("");
             configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
@@ -1310,6 +1336,7 @@ namespace HMIUpdater
             this.Name = "HMIUpdateForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "HMI Manager";
+            this.Load += new System.EventHandler(this.HMIUpdateForm_Load);
             this.rdpBox1.ResumeLayout(false);
             this.rdpBox1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -3315,6 +3342,11 @@ namespace HMIUpdater
                 var ip = ipList.Where(x => x.Contains(c.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
                 UpdateWinCCToolbarInClients(ip);
             }
+        }
+
+        private void HMIUpdateForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
