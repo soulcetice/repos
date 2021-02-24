@@ -1005,10 +1005,10 @@ namespace Tag_Importer
             //then in these ranges, add all elements to the first letter to get the word
 
             var sorted = new List<dynamic>();
-            var toSort = GetCharactersInHandle(fileListParent).OrderBy(elem => elem.y).ToList();
+            var toSort = GetCharactersInHandle(fileListParent).OrderBy(elem => elem.Top).ToList();
 
             var yList = (from TheMagic.PosBitmap c in toSort
-                         select c.y).ToList();
+                         select c.Top).ToList();
             List<int> yDifs = new List<int>();
             for (int i = 1; i < yList.Count; i++)
             {
@@ -1049,7 +1049,7 @@ namespace Tag_Importer
             //sort
             for (int i = 0; i < sortedList.Count; i++)
             {
-                sortedList[i] = sortedList[i].OrderBy(c => c.x).ToList();
+                sortedList[i] = sortedList[i].OrderBy(c => c.Left).ToList();
             }
 
             //group characters into words
@@ -1063,8 +1063,8 @@ namespace Tag_Importer
                 {
                     TheMagic.PosBitmap c = word[i1];
                     words[iter].word += c.signifies;
-                    words[iter].x += c.x;
-                    words[iter].y += c.y;
+                    words[iter].x += c.Left;
+                    words[iter].y += c.Top;
                 }
                 words[iter].x = words[iter].x / words[iter].word.Length;
                 words[iter].y = words[iter].y / words[iter].word.Length;

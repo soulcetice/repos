@@ -807,7 +807,7 @@ namespace CommonInterops
 
                     if (!isStop)
                     {// searching bitmap is found!!
-                        pointsList.Add(new PosBitmap() { x = mainX, y = mainY, signifies = myLetter });
+                        pointsList.Add(new PosBitmap() { Left = mainX, Top = mainY, signifies = myLetter });
                     }
                 }
             }
@@ -816,8 +816,8 @@ namespace CommonInterops
 
         public class PosBitmap
         {
-            public int x;
-            public int y;
+            public int Left;
+            public int Top;
             public string signifies;
         }
 
@@ -864,8 +864,8 @@ namespace CommonInterops
                     list.Add(new TheMagic.PosBitmap()
                     {
                         signifies = l,
-                        x = firstLineMatchPoint.X,
-                        y = firstLineMatchPoint.Y
+                        Left = firstLineMatchPoint.X,
+                        Top = firstLineMatchPoint.Y
                     });
                 }
             }

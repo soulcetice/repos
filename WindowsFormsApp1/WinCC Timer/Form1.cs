@@ -1588,11 +1588,11 @@ namespace WinCC_Timer
             {
                 TheMagic.PosBitmap d = FoundTabsDown[i];
 
-                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == d.x && c.Y == d.y);
+                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == d.Left && c.Y == d.Top);
 
-                if (clickedAlready == null || (d.x != clickedAlready.X && d.y != clickedAlready.Y))
-                    ClickInWindowAtXY(handle, d.x + 10, d.y + 5, 1);
-                clickedEmbeddeds.Add(new Point() { X = d.x, Y = d.y });
+                if (clickedAlready == null || (d.Left != clickedAlready.X && d.Top != clickedAlready.Y))
+                    ClickInWindowAtXY(handle, d.Left + 10, d.Top + 5, 1);
+                clickedEmbeddeds.Add(new Point() { X = d.Left, Y = d.Top });
 
                 Thread.Sleep(3000);
 
@@ -1629,13 +1629,13 @@ namespace WinCC_Timer
             FoundDropDowns.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("framedropdown")), "dropdown"));
 
             if (first)
-                FoundDropDowns.RemoveAll(c => c.y < 181); //remove items that are in the header of the hmi
+                FoundDropDowns.RemoveAll(c => c.Top < 181); //remove items that are in the header of the hmi
 
             foreach (TheMagic.PosBitmap drop in FoundDropDowns)
             {
                 var current = Resources.ResourceManager.GetObject("dropdown");
 
-                ClickInWindowAtXY(handle, drop.x, drop.y, 1);
+                ClickInWindowAtXY(handle, drop.Left, drop.Top, 1);
                 Thread.Sleep(3000);
 
                 ReadActiveScreen();
@@ -1645,7 +1645,7 @@ namespace WinCC_Timer
                 currentPage = formattedDate;
                 ScreenshotAndSave(true);
 
-                ClickInWindowAtXY(handle, drop.x, drop.y, 1);
+                ClickInWindowAtXY(handle, drop.Left, drop.Top, 1);
                 Thread.Sleep(3000);
             }
 
@@ -1659,29 +1659,18 @@ namespace WinCC_Timer
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup3")), "popup"));
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup4")), "popup"));
 
-            var objects = GetScreensData("HMIButton", out List<objectOffset> offsetsList);
+            var objects = GetScreensData("HMIButton", out List<objectData> extractedData);
 
             foreach (TheMagic.PosBitmap p in FoundPopups)
             {
-                //var data = objects.FirstOrDefault(c =>
-                //c.Left.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetLeft <= p.x &&
-                //c.Left.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetLeft + c.Width.value >= p.x &&
-                //c.Top.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetTop <= p.y &&
-                //c.Top.value + offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value).OffsetTop + c.Height.value <= p.y);
-
 
                 grafexe.HMIObject selObj = null;
-                foreach (var obj in from c in objects
-                                  let offsetData = offsetsList.FirstOrDefault(x => x.ObjectName == c.ObjectName.value)
-                                  where c.Left.value + offsetData.OffsetLeft <= p.x &&
-                                        c.Left.value + offsetData.OffsetLeft + c.Width.value >= p.x &&
-                                        c.Top.value + offsetData.OffsetTop <= p.y &&
-                                        c.Top.value + offsetData.OffsetTop + c.Height.value <= p.y
-                                  select c)
-                {
-                    selObj = obj;
-                    continue;
-                }
+
+                var matchedObj = extractedData.FirstOrDefault(c => c.Left <= p.Left && c.Right >= p.Left && c.Top <= p.Top && c.Bottom >= p.Top);
+                var page = matchedObj.Page;
+                var myObj = matchedObj.ObjectName;
+
+                selObj = FindObjectProperties(page, myObj, new grafexe.Application(), grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
 
                 if (selObj != null)
                 {
@@ -1693,10 +1682,12 @@ namespace WinCC_Timer
                             {
                                 string vb = act.SourceCode;
                                 var pdlRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
-                                string targetPdl = pdlRow.Replace("Const pdlName = ", "");
+                                if (pdlRow != null) {
+                                    string targetPdl = pdlRow?.Replace("Const pdlName = ", "");
 
-                                listBox1.Items.Add(targetPdl);
-                                LogToFile(selObj.ObjectName + " calls " + targetPdl, "\\PdlCalls.log", false);
+                                    listBox1.Items.Add(targetPdl);
+                                    LogToFile(selObj.ObjectName.value + " calls " + targetPdl, "\\PdlCalls.log", false);
+                                }
                             }
                         }
                     }
@@ -1704,8 +1695,8 @@ namespace WinCC_Timer
                 //var evData = data.Events.("OnLButtonUp")
 
 
-                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
-                LogToFile(p.signifies + " at " + p.x + ", " + p.y, "\\Screen.log", false);
+                listBox1.Items.Add(p.signifies + " at " + p.Left + ", " + p.Top);
+                LogToFile(p.signifies + " at " + p.Left + ", " + p.Top, "\\Screen.log", false);
 
                 //ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
 
@@ -1720,7 +1711,7 @@ namespace WinCC_Timer
                 List<TheMagic.PosBitmap> closes = TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("close")), "close");
                 foreach (var c in closes)
                 {
-                    ClickAtXY(c.x, c.y); Thread.Sleep(1000);
+                    ClickAtXY(c.Left, c.Top); Thread.Sleep(1000);
                 }
 
                 currentActiveScreen = ""; Thread.Sleep(1000);
@@ -1729,25 +1720,25 @@ namespace WinCC_Timer
             return img;
         }
 
-        public class objectOffset
+        public class objectData
         {
             public int OffsetLeft;
             public int OffsetTop;
-            public int LeftBound;
-            public int TopBound;
-            public int RightBound;
-            public int BottomBound;
+            public int Left; //relative to whole screen
+            public int Top; //relative to whole screen
+            public int Right; //relative to whole screen
+            public int Bottom; //relative to whole screen
             public string Page;
             public string ObjectName;
         }
 
-        private List<grafexe.HMIObject> GetScreensData(string type, out List<objectOffset> offsetsList)
+        private List<grafexe.HMIObject> GetScreensData(string type, out List<objectData> dataList)
         {
             var objects = new List<grafexe.HMIObject>();
 
             GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
 
-            offsetsList = new List<objectOffset>();
+            dataList = new List<objectData>();
 
             foreach (IHMIScreen s in screens)
             {
@@ -1803,12 +1794,12 @@ namespace WinCC_Timer
 
                                 objects.Add(obj);
 
-                                offsetsList.Add(new objectOffset()
+                                dataList.Add(new objectData()
                                 {
-                                    LeftBound = offsetLeft + left + obj.Left.value,
-                                    RightBound = offsetLeft + left + obj.Left.value + obj.Width.value,
-                                    TopBound = top + obj.Top.value + offsetTop,
-                                    BottomBound = top + obj.Top.value + offsetTop + obj.Height.value,
+                                    Left = offsetLeft + left + obj.Left.value,
+                                    Right = offsetLeft + left + obj.Left.value + obj.Width.value,
+                                    Top = top + obj.Top.value + offsetTop,
+                                    Bottom = top + obj.Top.value + offsetTop + obj.Height.value,
 
                                     OffsetLeft = offsetLeft + left,
                                     OffsetTop = top + offsetTop,
@@ -1865,13 +1856,13 @@ namespace WinCC_Timer
             for (int i = 0; i < FoundEmbeddeds.Count; i++)
             {
                 TheMagic.PosBitmap p = FoundEmbeddeds[i];
-                listBox1.Items.Add(p.signifies + " at " + p.x + ", " + p.y);
+                listBox1.Items.Add(p.signifies + " at " + p.Left + ", " + p.Top);
 
-                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == p.x && c.Y == p.y);
+                var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == p.Left && c.Y == p.Top);
 
-                if (clickedAlready == null || (p.x != clickedAlready.X && p.y != clickedAlready.Y))
-                    ClickInWindowAtXY(handle, p.x, p.y, 1);
-                clickedEmbeddeds.Add(new Point() { X = p.x, Y = p.y });
+                if (clickedAlready == null || (p.Left != clickedAlready.X && p.Top != clickedAlready.Y))
+                    ClickInWindowAtXY(handle, p.Left, p.Top, 1);
+                clickedEmbeddeds.Add(new Point() { X = p.Left, Y = p.Top });
 
                 Thread.Sleep(3000);
 
@@ -1886,7 +1877,7 @@ namespace WinCC_Timer
                 FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded")), "embedded"));
                 FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded2")), "embedded"));
 
-                FoundEmbeddeds.Remove(FoundEmbeddeds.FirstOrDefault(c => c.x == p.x && c.y == p.y));
+                FoundEmbeddeds.Remove(FoundEmbeddeds.FirstOrDefault(c => c.Left == p.Left && c.Top == p.Top));
             }
             return img;
         }

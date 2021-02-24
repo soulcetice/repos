@@ -176,6 +176,7 @@ namespace Deploy_Files
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DeployForm";
             this.Text = "Deploy Files to Clients";
             this.ResumeLayout(false);
