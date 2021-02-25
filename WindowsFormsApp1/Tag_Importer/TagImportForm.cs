@@ -1,21 +1,18 @@
-﻿using System;
+﻿using CommonInterops;
+using PInvoke;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Forms;
-using WindowHandle;
-using WindowsUtilities;
-using CommonInterops;
 //using pin;
 using System.IO;
-using System.Drawing.Imaging;
-using System.Resources;
-using Tag_Importer.Properties;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using PInvoke;
+using System.Windows.Forms;
+using Tag_Importer.Properties;
+using WindowHandle;
+using WindowsUtilities;
 
 namespace Tag_Importer
 {

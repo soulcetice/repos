@@ -1,20 +1,18 @@
 ﻿using PInvoke;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.ComponentModel;
-using System.Drawing.Imaging;
-using System.Xml;
-using System.Security.Principal;
 using System.Security.Cryptography;
-using System.IO;
+using System.Security.Principal;
+using System.Text;
 
 namespace CommonInterops
 {
@@ -818,6 +816,8 @@ namespace CommonInterops
         {
             public int Left;
             public int Top;
+            public int Width;
+            public int Height;
             public string signifies;
         }
 
@@ -855,7 +855,7 @@ namespace CommonInterops
 
             var haystackArray = GetPixelArray(haystack);
             var needleArray = GetPixelArray(needle);
-            var list = new List<TheMagic.PosBitmap>();
+            var list = new List<TheMagic.PosBitmap>();            
 
             foreach (var firstLineMatchPoint in FindMatch(haystackArray.Take(haystack.Height - needle.Height), needleArray[0]))
             {
@@ -865,7 +865,9 @@ namespace CommonInterops
                     {
                         signifies = l,
                         Left = firstLineMatchPoint.X,
-                        Top = firstLineMatchPoint.Y
+                        Top = firstLineMatchPoint.Y,
+                        Height = needle.Height,
+                        Width = needle.Width                        
                     });
                 }
             }

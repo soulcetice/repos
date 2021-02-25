@@ -1,25 +1,22 @@
-﻿using System;
+﻿using CCHMIRUNTIME;
+using CommonInterops;
+using grafexe;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CommonInterops;
-using System.Diagnostics;
-using System.Threading;
-using System.Management;
-using WindowsUtilities;
-using System.Drawing.Drawing2D;
-using System.Data.OleDb;
-using System.Reflection;
-using System.Resources;
 using WinCC_Timer.Properties;
-using CCHMIRUNTIME;
+using WindowsUtilities;
 
 namespace WinCC_Timer
 {
@@ -609,40 +606,6 @@ namespace WinCC_Timer
 
         }
 
-        private bool FindObjectInHMI(Bitmap cmp)
-        {
-            DateTime start = DateTime.UtcNow;
-            Bitmap bmp = TakeScreenShot(1681, 1004, 5, 5);
-            bool t = CompareMemCmp(bmp, cmp);
-            LogToFile((DateTime.UtcNow - start).TotalMilliseconds.ToString() + "ms", logName);
-            return t;
-        }
-
-        public static bool CompareMemCmp(Bitmap b1, Bitmap b2)
-        {
-            if ((b1 == null) != (b2 == null)) return false;
-            if (b1.Size != b2.Size) return false;
-
-            var bd1 = b1.LockBits(new Rectangle(new Point(0, 0), b1.Size), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            var bd2 = b2.LockBits(new Rectangle(new Point(0, 0), b2.Size), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-
-            try
-            {
-                IntPtr bd1scan0 = bd1.Scan0;
-                IntPtr bd2scan0 = bd2.Scan0;
-
-                int stride = bd1.Stride;
-                int len = stride * b1.Height;
-
-                return Memcmp(bd1scan0, bd2scan0, len) == 0;
-            }
-            finally
-            {
-                b1.UnlockBits(bd1);
-                b2.UnlockBits(bd2);
-            }
-        }
-
         private void LogToFile(string content, string fname, bool useDate = true)
         {
             using (var fileWriter = new StreamWriter(System.Windows.Forms.Application.StartupPath + fname, true))
@@ -846,16 +809,6 @@ namespace WinCC_Timer
             }
         }
 
-        private static void DeletePreviousCalculatedTimesInFolder()
-        {
-            List<string> f = Directory.GetFiles(System.Windows.Forms.Application.StartupPath).Where(c => new FileInfo(c).Name.StartsWith("timerData")).ToList();
-            foreach (var c in f)
-            {
-                var file = new FileInfo(c);
-                file.Delete();
-            }
-        }
-
         private static void GetConsecutiveSum(float[] values, out float maximumSum, out int startIndex)
         {
             maximumSum = 0;
@@ -893,85 +846,6 @@ namespace WinCC_Timer
 
             return nonZeroGroups;
         }
-
-        public class PageTime
-        {
-            public string page;
-            public double load;
-            public double min;
-            public double max;
-        }
-
-        public class PageCpuTime
-        {
-            public string page;
-            public float cpu;
-            public DateTime timestamp;
-        }
-
-        public class MenuRow
-        {
-            public string ID;
-            public string RefId;
-            public string Layer;
-            public string Pos;
-            public string LCID;
-            public string ParentId;
-            public string Caption;
-            public string Flags;
-            public string Pdl;
-            public string Parameter;
-        }
-
-        #region TestingWMI
-        private static void WMIQueryForCPUUsage()
-        {
-            //Get CPU usage values using a WMI query
-            for (int i = 0; i < 3; i++)
-            {
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfProc_Process WHERE Name = 'Taskmgr'");
-
-                foreach (ManagementObject queryObj in searcher.Get())
-                {
-                    Console.WriteLine("Name: {0}", queryObj["Name"]);
-                    Console.WriteLine("PercentProcessorTime: {0}", queryObj["PercentProcessorTime"]);
-
-                }
-            }
-        }
-
-        private static int lineCount = 0;
-        private static StringBuilder output = new StringBuilder();
-        public static void ReadProcessOutputTest()
-        {
-            Process process = Process.GetProcessesByName("Taskmgr")[0];
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
-            process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
-            {
-                // Prepend line numbers to each line of the output.
-                if (!String.IsNullOrEmpty(e.Data))
-                {
-                    lineCount++;
-                    output.Append("\n[" + lineCount + "]: " + e.Data);
-                }
-            });
-
-            // Asynchronously read the standard output of the spawned process.
-            // This raises OutputDataReceived events for each line of output.
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-
-            // Write the redirected output to this application's window.
-            Console.WriteLine(output);
-
-            process.WaitForExit();
-            process.Close();
-
-            Console.WriteLine("\n\nPress any key to exit.");
-            Console.ReadLine();
-        }
-        #endregion
 
         private void Button3_Click(object sender, EventArgs e)
         {
@@ -1186,37 +1060,6 @@ namespace WinCC_Timer
                     AddData(alldata, File.ReadAllLines(timerFile.FullName));
             }
             fileList = alldata.OrderByDescending(c => c.Count).FirstOrDefault().Select(c => c.page).Distinct().ToList();
-        }
-
-        private List<PageTime> ComputeTimesFromDatasets(List<List<PageTime>> alldata, List<string> fileList)
-        {
-            var list = new List<PageTime>();
-            foreach (var pdl in fileList)
-            {
-                var pdlData = new List<PageTime>();
-                foreach (var dataset in alldata)
-                {
-                    var hasPage = dataset.FirstOrDefault(c => c.page == pdl);
-                    if (hasPage != null)
-                        pdlData.Add(hasPage);
-                }
-
-                List<double> theDoubles = pdlData.Select(c => c.load).ToList();
-                double average = theDoubles.Average();
-
-                var sdev = StdDev(theDoubles);
-
-                var someDoubles = theDoubles.Where(c => c > average - sdev && c < average + sdev).OrderBy(c => c).ToList();
-                var selectiveAverage = someDoubles.Average();
-
-                list.Add(new PageTime()
-                {
-                    page = pdl,
-                    load = selectiveAverage
-                });
-            }
-
-            return list;
         }
 
         private double StdDev(List<double> values)
@@ -1554,11 +1397,11 @@ namespace WinCC_Timer
 
             img = FindOpenClosePopups(handle, img);
 
-            //img = FindOpenCloseDropDowns(handle, img, false);
+            img = FindOpenCloseDropDowns(handle, img, false);
 
-            //img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+            img = FindSwitchEmbeddeds(handle, img); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
 
-            //img = FindSwitchVerticalTabs(handle, img);
+            img = FindSwitchVerticalTabs(handle, img);
         }
 
         private string GetMainScreen()
@@ -1631,12 +1474,20 @@ namespace WinCC_Timer
             if (first)
                 FoundDropDowns.RemoveAll(c => c.Top < 181); //remove items that are in the header of the hmi
 
-            foreach (TheMagic.PosBitmap drop in FoundDropDowns)
+            var objects = GetRuntimeObjects("HMIButton", out List<objectData> extractedData);
+
+            var openedPdls = new List<string>();
+
+            foreach (TheMagic.PosBitmap d in FoundDropDowns)
             {
                 var current = Resources.ResourceManager.GetObject("dropdown");
 
-                ClickInWindowAtXY(handle, drop.Left, drop.Top, 1);
-                Thread.Sleep(3000);
+                int midPointX = d.Left + d.Width / 2;
+                int midPointY = d.Top + d.Height / 2;
+
+                var matchedObj = extractedData.FirstOrDefault(c => c.RealLeft <= midPointX && c.RealRight >= midPointX && c.RealTop <= midPointY && c.RealBottom >= midPointY);
+
+                ClickInWindowAtXY(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
 
                 ReadActiveScreen();
 
@@ -1645,7 +1496,7 @@ namespace WinCC_Timer
                 currentPage = formattedDate;
                 ScreenshotAndSave(true);
 
-                ClickInWindowAtXY(handle, drop.Left, drop.Top, 1);
+                ClickInWindowAtXY(handle, midPointX, midPointY, 1);
                 Thread.Sleep(3000);
             }
 
@@ -1659,154 +1510,155 @@ namespace WinCC_Timer
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup3")), "popup"));
             FoundPopups.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("popup4")), "popup"));
 
-            var objects = GetScreensData("HMIButton", out List<objectData> extractedData);
+            var objects = GetRuntimeObjects("HMIButton", out List<objectData> extractedData);
+
+            var openedPdls = new List<string>();
 
             foreach (TheMagic.PosBitmap p in FoundPopups)
             {
+                grafexe.HMIObject obj = null;
 
-                grafexe.HMIObject selObj = null;
+                int midPointX = (p.Left + p.Width / 2);
+                int midPointY = (p.Top + p.Height / 2);
 
-                var matchedObj = extractedData.FirstOrDefault(c => c.Left <= p.Left && c.Right >= p.Left && c.Top <= p.Top && c.Bottom >= p.Top);
-                var page = matchedObj.Page;
-                var myObj = matchedObj.ObjectName;
+                var matchedObj = extractedData.FirstOrDefault(c => c.RealLeft <= midPointX && c.RealRight >= midPointX && c.RealTop <= midPointY && c.RealBottom >= midPointY);
 
-                selObj = FindObjectProperties(page, myObj, new grafexe.Application(), grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
-
-                if (selObj != null)
+                if (openedPdls.FirstOrDefault(c => c == matchedObj.Page) == null)
                 {
-                    foreach (grafexe.HMIEvent ev in selObj.Events)
-                    {
-                        if (ev.Actions.Count > 0)
-                        {
-                            foreach (grafexe.HMIScriptInfo act in ev.Actions)
-                            {
-                                string vb = act.SourceCode;
-                                var pdlRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
-                                if (pdlRow != null) {
-                                    string targetPdl = pdlRow?.Replace("Const pdlName = ", "");
+                    obj = RetrieveObjectProperties(matchedObj.Page,
+                                                      matchedObj.ObjectName,
+                                                      new grafexe.Application());
 
-                                    listBox1.Items.Add(targetPdl);
-                                    LogToFile(selObj.ObjectName.value + " calls " + targetPdl, "\\PdlCalls.log", false);
-                                }
-                            }
-                        }
+                    string calledPdl = GetSetCalledPdl(obj, matchedObj);
+
+                    if (!calledPdl.StartsWith("\"SYS#") && !calledPdl.StartsWith("\"MED#") && !calledPdl.StartsWith("\"@sms"))
+                    {
+                        listBox1.Items.Add(p.signifies + " at " + p.Left + ", " + p.Top);
+                        LogToFile(p.signifies + " at " + p.Left + ", " + p.Top, "\\Screen.log", false);
+
+                        ClickInWindowAtXY(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+
+                        ReadActiveScreen();
+                        openedPdls.Add(currentActiveScreen);
+
+                        //take screenshot here
+                        SetDateString();
+                        currentPage = formattedDate;
+                        ScreenshotAndSave(true);
+
+                        img = ClosePopup(handle);
+
+                        currentActiveScreen = ""; Thread.Sleep(1000);
                     }
                 }
-                //var evData = data.Events.("OnLButtonUp")
-
-
-                listBox1.Items.Add(p.signifies + " at " + p.Left + ", " + p.Top);
-                LogToFile(p.signifies + " at " + p.Left + ", " + p.Top, "\\Screen.log", false);
-
-                //ClickInWindowAtXY(handle, p.x, p.y, 1); Thread.Sleep(3000);
-
-                ReadActiveScreen();
-
-                //take screenshot here
-                SetDateString();
-                currentPage = formattedDate;
-                ScreenshotAndSave(true);
-
-                img = TheMagic.GetPngByHandle(handle);
-                List<TheMagic.PosBitmap> closes = TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("close")), "close");
-                foreach (var c in closes)
-                {
-                    ClickAtXY(c.Left, c.Top); Thread.Sleep(1000);
-                }
-
-                currentActiveScreen = ""; Thread.Sleep(1000);
             }
 
             return img;
         }
 
-        public class objectData
+        private static Bitmap ClosePopup(IntPtr handle)
         {
-            public int OffsetLeft;
-            public int OffsetTop;
-            public int Left; //relative to whole screen
-            public int Top; //relative to whole screen
-            public int Right; //relative to whole screen
-            public int Bottom; //relative to whole screen
-            public string Page;
-            public string ObjectName;
+            Bitmap img = TheMagic.GetPngByHandle(handle);
+            List<TheMagic.PosBitmap> closes = TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("close")), "close");
+            foreach (var c in closes)
+            {
+                int midPointX = c.Left + c.Width / 2;
+                int midPointY = c.Top + c.Height / 2;
+                ClickAtXY(midPointX, midPointY); Thread.Sleep(1000);
+            }
+
+            return img;
         }
 
-        private List<grafexe.HMIObject> GetScreensData(string type, out List<objectData> dataList)
+        private string GetSetCalledPdl(HMIObject obj, objectData objData)
+        {
+            if (obj == null)
+            {
+                return "";
+            }
+
+            foreach (var pdlRow in from grafexe.HMIEvent ev in obj.Events
+                                   where ev.Actions.Count > 0
+                                   from grafexe.HMIScriptInfo act in ev.Actions
+                                   let vb = act.SourceCode
+                                   let pdlRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "))
+                                   where pdlRow != null
+                                   select pdlRow)
+            {
+                objData.CallsPdl = pdlRow?.Replace("Const pdlName = ", "");
+
+                LogToFile(obj.ObjectName.value + " calls " + objData.CallsPdl, "\\PdlCalls.log", false);
+            }
+
+            return objData.CallsPdl;
+        }
+
+        private List<grafexe.HMIObject> GetRuntimeObjects(string type, out List<objectData> dataList)
         {
             var objects = new List<grafexe.HMIObject>();
+            dataList = new List<objectData>();
+            var g = new grafexe.Application();
 
             GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
 
-            dataList = new List<objectData>();
-
-            foreach (IHMIScreen s in screens)
+            foreach (var s in from IHMIScreen s in screens
+                              where !s.ObjectName.StartsWith("@") &&
+                              (s.ObjectName.Contains("_e_") || s.ObjectName.Contains("_w_") || s.ObjectName.Contains("_n_") || s.ObjectName.Contains("_f_"))
+                              select s)
             {
-                if (!s.ObjectName.StartsWith("@") && (s.ObjectName.Contains("_e_") || s.ObjectName.Contains("_w_") || s.ObjectName.Contains("_n_") || s.ObjectName.Contains("_f_")))
+                //this used to yield error. check for alternative to find picture window position in the frame
+                try
                 {
-                    //this used to yield error. check for alternative to find picture window position in the frame
-                    try
+                    LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top + ", " + s.Parent.Width + ", " + s.Parent.Height, "\\Screen.log", false);
+                }
+                catch (Exception ex)
+                {
+                    LogToFile(ex.Message, "\\Screen.log", false);
+                }
+
+                ReadActiveScreen();
+
+                var left = s.Parent.Left;
+                var top = s.Parent.Top;
+                var offsetTop = 161; //header height, find a way to properly not hardcode this
+                var offsetLeft = currentActiveScreen.ToUpper().Contains("_n_".ToUpper()) ? 175 : 0;
+
+                //if the main screen is _n_ then offset the pageLeft by ....
+                //if the main screen is _w_ there is no data class 1, no need to offset
+                //has nothing to do with dc3
+
+                foreach (IHMIScreenItem o in s.ScreenItems) //screenitems is rt objects
+                {
+                    if (o.Type == type)
                     {
-                        LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top + ", " + s.Parent.Width + ", " + s.Parent.Height, "\\Screen.log", false);
-                    }
-                    catch (Exception ex)
-                    {
-                        LogToFile(ex.Message, "\\Screen.log", false);
-                    }
+                        var obj = RetrieveObjectProperties(s.ObjectName, o.ObjectName, g);
 
-                    ReadActiveScreen();
-
-                    IHMIScreenItems objs = s.ScreenItems;
-
-                    var left = s.Parent.Left;
-                    var top = s.Parent.Top;
-                    var offsetTop = 161;
-                    var offsetLeft = 0;
-                    if (currentActiveScreen.ToUpper().Contains("_n_".ToUpper()))
-                    {
-                        offsetLeft = 175;
-                    }
-                    else if (currentActiveScreen.ToUpper().Contains("_w_".ToUpper()))
-                    {
-
-                    }
-
-                    //if the main screen is _n_ then offset the pageLeft by ....
-                    //if the main screen is _w_ there is no data class 1, no need to offset
-
-                    foreach (IHMIScreenItem o in objs)
-                    {
-                        if (o.Type == type)
+                        if (obj != null)
                         {
-                            var g = new grafexe.Application();
-                            var obj = FindObjectProperties(s.ObjectName, o.ObjectName, g);
+                            listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
 
-                            if (obj != null)
+                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
+                            LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
+                                (offsetLeft + left + obj.Left.value) + "," +
+                                (top + obj.Top.value + offsetTop) + "," +
+                                (offsetLeft + left + obj.Left.value + obj.Width.value) + "," +
+                                (top + obj.Top.value + offsetTop + obj.Height.value), "\\Screen.log", false);
+
+                            objects.Add(obj);
+
+                            dataList.Add(new objectData()
                             {
-                                listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
+                                RealLeft = offsetLeft + left + obj.Left.value,
+                                RealRight = offsetLeft + left + obj.Left.value + obj.Width.value,
+                                RealTop = top + obj.Top.value + offsetTop,
+                                RealBottom = top + obj.Top.value + offsetTop + obj.Height.value,
 
-                                LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
-                                LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
-                                    (offsetLeft + left + obj.Left.value) + "," +
-                                    (top + obj.Top.value + offsetTop) + "," +
-                                    (offsetLeft + left + obj.Left.value + obj.Width.value) + "," +
-                                    (top + obj.Top.value + offsetTop + obj.Height.value), "\\Screen.log", false);
-
-                                objects.Add(obj);
-
-                                dataList.Add(new objectData()
-                                {
-                                    Left = offsetLeft + left + obj.Left.value,
-                                    Right = offsetLeft + left + obj.Left.value + obj.Width.value,
-                                    Top = top + obj.Top.value + offsetTop,
-                                    Bottom = top + obj.Top.value + offsetTop + obj.Height.value,
-
-                                    OffsetLeft = offsetLeft + left,
-                                    OffsetTop = top + offsetTop,
-                                    ObjectName = obj.ObjectName.value,
-                                    Page = s.ObjectName
-                                });
-                            }
+                                OffsetLeft = offsetLeft + left,
+                                OffsetTop = top + offsetTop,
+                                ObjectName = obj.ObjectName.value,
+                                Page = s.ObjectName,
+                                CallsPdl = ""
+                            });
                         }
                     }
                 }
@@ -1815,42 +1667,14 @@ namespace WinCC_Timer
             return objects;
         }
 
-        private Point FindRtObjectInGrafexe(IHMIScreenItem selo)
-        {
-            grafexe.Application g = new grafexe.Application();
-
-            string seldocfullname = Path.Combine(g.ApplicationDataPath, currentActiveScreen + ".pdl");
-
-            if (!currentActiveScreen.StartsWith("@"))
-            {
-                listBox1.Items.Add(seldocfullname);
-
-                grafexe.Document seldoc = g.Documents.Open(seldocfullname, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
-
-                grafexe.HMIObjects selos = seldoc.HMIObjects;
-
-                grafexe.HMICollection foundCol = selos.Find(ObjectName: selo.ObjectName);
-                grafexe.HMIObject go = foundCol.Count > 0 ? foundCol[1] : null;
-
-                //go.Left.value = 200;
-                //go.Top.value = 200;
-
-                if (go != null)
-                {
-                    listBox1.Items.Add(go.ObjectName.value + ", " + go.Left.value + ", " + go.Top.value);
-                }
-
-                return new Point() { X = go.Left.value, Y = go.Top.value };
-            }
-            return new Point() { X = -1, Y = -1 };
-        }
-
         private Bitmap FindSwitchEmbeddeds(IntPtr handle, Bitmap img)
         {
             img = TheMagic.GetPngByHandle(handle);
             List<TheMagic.PosBitmap> FoundEmbeddeds = new List<TheMagic.PosBitmap>();
             FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded")), "embedded"));
             FoundEmbeddeds.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("embedded2")), "embedded"));
+
+            var objects = GetRuntimeObjects("HMIButton", out List<objectData> extractedData);
 
             var clickedEmbeddeds = new List<Point>();
             for (int i = 0; i < FoundEmbeddeds.Count; i++)
@@ -1861,10 +1685,15 @@ namespace WinCC_Timer
                 var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == p.Left && c.Y == p.Top);
 
                 if (clickedAlready == null || (p.Left != clickedAlready.X && p.Top != clickedAlready.Y))
-                    ClickInWindowAtXY(handle, p.Left, p.Top, 1);
-                clickedEmbeddeds.Add(new Point() { X = p.Left, Y = p.Top });
-
-                Thread.Sleep(3000);
+                {
+                    int midPointX = p.Left + p.Width / 2;
+                    int midPointY = p.Top + p.Height; /// 2;
+                    ClickInWindowAtXY(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+                }
+                else
+                {
+                    clickedEmbeddeds.Add(new Point() { X = p.Left, Y = p.Top });
+                }
 
                 ReadActiveScreen();
 
@@ -1897,8 +1726,12 @@ namespace WinCC_Timer
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-
         private void button9_Click(object sender, EventArgs e)
+        {
+            GetCurrentRuntimeFilelist();
+        }
+
+        private void GetCurrentRuntimeFilelist()
         {
             IHMIScreens screens;
             IHMIScreen activeScreen;
@@ -1907,24 +1740,18 @@ namespace WinCC_Timer
             var screenlist = new List<string>();
 
             LogToFile(activeScreen.AccessPath, "\\Screens.txt", false);
-            //listBox1.Items.Add(activeScreen.AccessPath);
+
             listBox1.Items.Add(activeScreen.ObjectName);
 
             foreach (CCHMIRUNTIME.IHMIScreen s in screens)
             {
                 LogToFile(s.ObjectName, "\\Screens.txt", false);
 
-                //listBox1.Items.Add(s.AccessPath);
-                //listBox1.Items.Add(s.ObjectName);
+                listBox1.Items.Add(s.ObjectName);
 
                 screenlist.Add(s.ObjectName);
             }
             listBox1.Refresh();
-
-            //CCHMIRTWNDOBJ.HMIPictureWindow window = new CCHMIRTWNDOBJ.HMIPictureWindow();
-
-            //listBox1.Items.Add(window.ScreenName);
-            //LogToFile(window.ScreenName, "\\Screens.txt", false);  
         }
 
         private void GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen)
@@ -1939,11 +1766,13 @@ namespace WinCC_Timer
             currentPage = currentActiveScreen;
         }
 
-        private void ReadActiveScreen()
+        private string ReadActiveScreen()
         {
             CCHMIRUNTIME.HMIRuntime rt = new CCHMIRUNTIME.HMIRuntime();
             currentActiveScreen = rt.ActiveScreen.ObjectName;
             currentPage = currentActiveScreen;
+
+            return currentActiveScreen;
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -1951,39 +1780,7 @@ namespace WinCC_Timer
             listBox1.Items.Add(GetMainScreen());
         }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-            var pdlName = "TCM#02-01-00_n_#GEN-Media";
-            string objName = "@V3_SMS_Pb_PupNoModal(205+1)5";
-            grafexe.Application g = new grafexe.Application();
-
-            grafexe.HMIObject obj = FindObjectProperties(pdlName, objName, g, grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible);
-
-            if (obj != null)
-            {
-
-                foreach (grafexe.HMIEvent ev in obj.Events)
-                {
-                    if (ev.Actions.Count > 0)
-                    {
-                        foreach (dynamic act in ev.Actions)
-                        {
-                            string vb = act.SourceCode;
-                            bool callsPdl = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = ")) != null;
-
-                            //var targetPdl = rows.Replace("Const pdlName = ", "");
-
-                            Console.Write("done");
-                        }
-                    }
-                }
-            }
-
-            //var lines = File.ReadAllLines(seldocfullname, Encoding.UTF8).ToList();
-        }
-
-        private grafexe.HMIObject FindObjectProperties(string pdlName, string objName, grafexe.Application g, grafexe.HMIOpenDocumentType openType = grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeVisible)
+        private grafexe.HMIObject RetrieveObjectProperties(string pdlName, string objName, grafexe.Application g, grafexe.HMIOpenDocumentType openType = grafexe.HMIOpenDocumentType.hmiOpenDocumentTypeInvisible)
         {
             string seldocfullname = Path.Combine(g.ApplicationDataPath, pdlName + ".pdl");
 
@@ -2014,6 +1811,47 @@ namespace WinCC_Timer
     }
 }
 
+public class objectData
+{
+    public int OffsetLeft;
+    public int OffsetTop;
+    public int RealLeft; //relative to whole screen
+    public int RealTop; //relative to whole screen
+    public int RealRight; //relative to whole screen
+    public int RealBottom; //relative to whole screen
+    public string Page;
+    public string ObjectName;
+    public string CallsPdl;
+}
+
+public class PageTime
+{
+    public string page;
+    public double load;
+    public double min;
+    public double max;
+}
+
+public class PageCpuTime
+{
+    public string page;
+    public float cpu;
+    public DateTime timestamp;
+}
+
+public class MenuRow
+{
+    public string ID;
+    public string RefId;
+    public string Layer;
+    public string Pos;
+    public string LCID;
+    public string ParentId;
+    public string Caption;
+    public string Flags;
+    public string Pdl;
+    public string Parameter;
+}
 
 public class MyCheckBox : CheckBox
 {
