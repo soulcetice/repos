@@ -56,6 +56,9 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.popupsCheckbox = new System.Windows.Forms.CheckBox();
+            this.dropCheckbox = new System.Windows.Forms.CheckBox();
+            this.horizEmbeddedCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -143,7 +146,7 @@
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(11, 228);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(281, 82);
+            this.listBox1.Size = new System.Drawing.Size(186, 82);
             this.listBox1.TabIndex = 11;
             // 
             // treeView1
@@ -323,11 +326,50 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // popupsCheckbox
+            // 
+            this.popupsCheckbox.AutoSize = true;
+            this.popupsCheckbox.Checked = true;
+            this.popupsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.popupsCheckbox.Location = new System.Drawing.Point(212, 228);
+            this.popupsCheckbox.Name = "popupsCheckbox";
+            this.popupsCheckbox.Size = new System.Drawing.Size(62, 17);
+            this.popupsCheckbox.TabIndex = 29;
+            this.popupsCheckbox.Text = "Popups";
+            this.popupsCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // dropCheckbox
+            // 
+            this.dropCheckbox.AutoSize = true;
+            this.dropCheckbox.Checked = true;
+            this.dropCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dropCheckbox.Location = new System.Drawing.Point(212, 251);
+            this.dropCheckbox.Name = "dropCheckbox";
+            this.dropCheckbox.Size = new System.Drawing.Size(80, 17);
+            this.dropCheckbox.TabIndex = 30;
+            this.dropCheckbox.Text = "Dropdowns";
+            this.dropCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // horizEmbeddedCheckbox
+            // 
+            this.horizEmbeddedCheckbox.AutoSize = true;
+            this.horizEmbeddedCheckbox.Checked = true;
+            this.horizEmbeddedCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.horizEmbeddedCheckbox.Location = new System.Drawing.Point(212, 274);
+            this.horizEmbeddedCheckbox.Name = "horizEmbeddedCheckbox";
+            this.horizEmbeddedCheckbox.Size = new System.Drawing.Size(82, 17);
+            this.horizEmbeddedCheckbox.TabIndex = 31;
+            this.horizEmbeddedCheckbox.Text = "Embeddeds";
+            this.horizEmbeddedCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(387, 324);
+            this.Controls.Add(this.horizEmbeddedCheckbox);
+            this.Controls.Add(this.dropCheckbox);
+            this.Controls.Add(this.popupsCheckbox);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -395,6 +437,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.CheckBox popupsCheckbox;
+        private System.Windows.Forms.CheckBox dropCheckbox;
+        private System.Windows.Forms.CheckBox horizEmbeddedCheckbox;
     }
 }
 

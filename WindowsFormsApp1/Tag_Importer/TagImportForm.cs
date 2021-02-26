@@ -527,10 +527,10 @@ namespace Tag_Importer
 
             try
             {
-                ClickInWindowAtXY(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
+                RobustClick(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
                 LogToFile("Clicked on treehandle for " + connData.name + " " + connData.connection + " " + myGroup.word.ToString());
                 //now delete the tags
-                ClickInWindowAtXY(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
+                RobustClick(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
                 System.Threading.Thread.Sleep(100);
                 SendKeyHandled(dataGridHandle, "^(a)");
                 System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
@@ -587,7 +587,7 @@ namespace Tag_Importer
             }
         }
 
-        private void ClickInWindowAtXY(IntPtr handle, int? x, int? y, int repeat)
+        private void RobustClick(IntPtr handle, int? x, int? y, int repeat)
         {
             for (int i = 0; i < repeat; i++)
             {
@@ -724,12 +724,12 @@ namespace Tag_Importer
                     if (up == true)
                     {
                         var goHere = TheMagic.Find(img, scrollUp).FirstOrDefault();
-                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
+                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
                     }
                     else
                     {
                         var goHere = TheMagic.Find(img, scrollDn).FirstOrDefault();
-                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
+                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
                     }
                     img = TheMagic.GetPngByHandle(trHandle);
 
@@ -769,12 +769,12 @@ namespace Tag_Importer
                     if (up == true)
                     {
                         var goHere = TheMagic.Find(img, scrollUp).FirstOrDefault();
-                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 50);
+                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 50);
                     }
                     else
                     {
                         var goHere = TheMagic.Find(img, scrollDn).FirstOrDefault();
-                        ClickInWindowAtXY(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
+                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
                     }
                     img = TheMagic.GetPngByHandle(trHandle);
 
@@ -826,7 +826,7 @@ namespace Tag_Importer
                 var getElement = TextHasExpandOrHide(trHandle, foundElem, expand);
                 if (getElement != null)
                 {
-                    ClickInWindowAtXY(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y, 1);
+                    RobustClick(trHandle, trRect.left + getElement?.X, trRect.top + getElement?.Y, 1);
                     return true;
                 }
                 else
@@ -897,7 +897,7 @@ namespace Tag_Importer
 
             WordWithLocation tagFile = RobustFileChoice(f, filesInDialog);
 
-            ClickInWindowAtXY(fileList, fileListRect.left + tagFile.x, fileListRect.top + tagFile.y, 1);
+            RobustClick(fileList, fileListRect.left + tagFile.x, fileListRect.top + tagFile.y, 1);
             SendKeyHandled(fileList, "{ENTER}");
             System.Threading.Thread.Sleep(1000);
 
