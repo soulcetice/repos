@@ -312,7 +312,7 @@ namespace WinCC_Timer
 
             if (scour)
             {
-                GetRuntimeObjects("HMIButton", out List<ObjectData> extractedData, "@");
+                GetRuntimeInfo("HMIButton", out List<ObjectData> extractedData, "@");
                 FindOpenCloseFlyouts(rt, extractedData); //first run, run only once this way
             }
 
@@ -1396,26 +1396,33 @@ namespace WinCC_Timer
             currentPage = mainScreen;
             ScreenshotAndSave(true);
 
-            GetRuntimeObjects("HMIButton", out List<ObjectData> extractedData, "@");
+            var extractedData = new List<ObjectData>();
 
             if (popupsCheckbox.Checked)
             {
-                FindOpenClosePopups(handle, extractedData);
+                GetRuntimeInfo("HMIButton", out extractedData, "@");
+
+                FindOpenClosePopups(handle, extractedData.Where(c => !c.CallsPdl.Contains("_e_")).ToList());
             }
 
             if (dropCheckbox.Checked)
             {
-                FindOpenCloseFlyouts(handle, extractedData, false);
+                if (extractedData.Count == 0)
+                {
+                    GetRuntimeInfo("HMIButton", out extractedData, "FlyoutButton");
+                }
+
+                FindOpenCloseFlyouts(handle, extractedData.Where(c => c.ObjectName.Contains("FlyoutButton") && !c.CallsPdl.Contains("_e_")).ToList(), false);
             }
 
-            if (horizEmbeddedCheckbox.Checked)
+            if (embeddedsBox.Checked)
             {
-                //FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
-            }
+                if (extractedData.Count == 0)
+                {
+                    GetRuntimeInfo("HMIButton", out extractedData, "@");
+                }
 
-            if (horizEmbeddedCheckbox.Checked)
-            {
-                //FindSwitchVerticalTabs(handle, extractedData);
+                FindSwitchEmbeddeds(handle, extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList()); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
             }
         }
 
@@ -1476,8 +1483,6 @@ namespace WinCC_Timer
 
         private void FindOpenCloseFlyouts(IntPtr handle, List<ObjectData> extractedData, bool first = true)
         {
-            extractedData = extractedData.Where(c => c.ObjectName.StartsWith("@SMS_Flyout")).ToList();
-
             foreach (ObjectData p in extractedData)
             {
                 int midPointX = (p.RealLeft + p.RealRight) / 2;
@@ -1489,13 +1494,17 @@ namespace WinCC_Timer
                 var s = screens.Cast<IHMIScreen>();
                 IHMIScreen activePopup = s.FirstOrDefault(c => c.ObjectName.Contains("_p_"));
 
-                //take screenshot here
-                SetDateString();
-                currentPage = activePopup.ObjectName;
-                ScreenshotAndSave(true);
+                if (activePopup != null)
+                {
+                    bool isMyPage = p.CallsPdl.Contains(activePopup?.ObjectName);
+                    //take screenshot here
+                    SetDateString();
+                    currentPage = activePopup.ObjectName;
+                    ScreenshotAndSave(true);
 
-                RobustClick(handle, midPointX, midPointY, 1);
-                Thread.Sleep(3000);
+                    RobustClick(handle, midPointX, midPointY, 1);
+                    Thread.Sleep(3000);
+                }
             }
         }
 
@@ -1504,9 +1513,9 @@ namespace WinCC_Timer
             var openedPdls = new List<string>();
 
             var relevantData = extractedData.Where(c => c.ObjectName.StartsWith("@V3_SMS") &&
-            !c.CallsPdl.StartsWith("\"SYS#") &&
-            !c.CallsPdl.StartsWith("\"MED#") &&
-            !c.CallsPdl.StartsWith("\"@sms"));
+            !c.CallsPdl.StartsWith("SYS#") &&
+            !c.CallsPdl.StartsWith("MED#") &&
+            !c.CallsPdl.StartsWith("@sms"));
 
             foreach (var p in relevantData)
             {
@@ -1519,15 +1528,24 @@ namespace WinCC_Timer
                 var s = screens.Cast<IHMIScreen>();
                 IHMIScreen activePopup = s.FirstOrDefault(c => c.ObjectName.Contains("_p_"));
 
-                openedPdls.Add(activePopup.ObjectName);
+                if (activePopup != null)
+                {
+                    bool isMyPage = p.CallsPdl.Contains(activePopup?.ObjectName);
 
-                //take screenshot here
-                currentPage = activePopup.ObjectName;
-                ScreenshotAndSave(true);
+                    openedPdls.Add(activePopup?.ObjectName);
 
-                ClosePopup(handle);
+                    //take screenshot here
+                    currentPage = activePopup.ObjectName;
+                    ScreenshotAndSave(true);
 
-                currentActiveScreen = ""; Thread.Sleep(1000);
+                    ClosePopup(handle);
+
+                    currentActiveScreen = ""; Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.WriteLine("Failed to open popup " + p.Page);
+                }
             }
         }
 
@@ -1545,40 +1563,22 @@ namespace WinCC_Timer
             //return img;
         }
 
-        private void GetRuntimeObjects(string type, out List<ObjectData> dataList, string nameContains = "")
+        private void GetRuntimeInfo(string type, out List<ObjectData> dataList, string nameContains = "")
         {
             var objects = new List<grafexe.HMIObject>();
             dataList = new List<ObjectData>();
+
+            GetScreenInfo(out List<IHMIScreen> filteredScreens, out List<WindowData> windowData);
+
+            dataList = GetObjectsInfo(type, nameContains, filteredScreens, windowData);
+        }
+
+        private List<ObjectData> GetObjectsInfo(string type, string nameContains, List<IHMIScreen> filteredScreens, List<WindowData> windowData)
+        {
             var g = new grafexe.Application();
+            var dataList = new List<ObjectData>();
 
-            GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
-
-            var screensList = screens.Cast<IHMIScreen>().ToList();
-
-            var screenNames = screensList.Select(c => c.ObjectName).ToList();
-
-            var screenWindowsQuery = screensList.Where(c => c.Parent != null).Select(c => c.Parent).ToList();
-
-            var windowData = new List<WindowData>();
-            foreach (var s in screenWindowsQuery)
-            {
-                windowData.Add(new WindowData()
-                {
-                    Width = s.Width,
-                    Top = s.Top,
-                    Height = s.Height,
-                    Left = s.Left,
-                    Name = s.ObjectName,
-                    Visible = s.Visible,
-                    Type = s.Type,
-                    Layer = s.Layer,
-                    Enabled = s.Enabled
-                });
-            }
-
-            //where (s.ObjectName.Contains("_e_") || s.ObjectName.Contains("_w_") || s.ObjectName.Contains("_n_") || s.ObjectName.Contains("_f_"))
-
-            foreach (var s in screensList)
+            foreach (var s in filteredScreens)
             {
                 //this used to yield error. check for alternative to find picture window position in the frame
                 try
@@ -1592,14 +1592,11 @@ namespace WinCC_Timer
 
                 var mainScreen = GetMainScreen();
 
-                var left = s.Parent.Left;
-                var top = s.Parent.Top;
-                var offsetTop = 161; //header height, find a way to properly not hardcode this
-                var offsetLeft = mainScreen.ToUpper().Contains("_n_".ToUpper()) ? 175 : 0;
-
-                //if the main screen is _n_ then offset the pageLeft by ....
-                //if the main screen is _w_ there is no data class 1, no need to offset
-                //has nothing to do with dc3
+                var screenData = windowData.FirstOrDefault(c => c.Name == s.Parent.ObjectName);
+                var left = screenData.ScreenLeft;
+                var top = screenData.ScreenTop;
+                //var offsetTop = 161; //header height, find a way to properly not hardcode this
+                //var offsetLeft = left; // mainScreen.ToUpper().Contains("_n_".ToUpper()) ? 175 : 0;
 
                 var screenItems = s.ScreenItems.Cast<IHMIScreenItem>();
                 var query = screenItems.Where(o => o.ObjectName.Contains(nameContains) && o.Type == type).ToList();
@@ -1614,53 +1611,196 @@ namespace WinCC_Timer
 
                         LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
                         LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
-                            (offsetLeft + left + obj.Left.value) + "," +
-                            (top + obj.Top.value + offsetTop) + "," +
-                            (offsetLeft + left + obj.Left.value + obj.Width.value) + "," +
-                            (top + obj.Top.value + offsetTop + obj.Height.value), "\\Screen.log", false);
+                            (left + obj.Left.value) + "," +
+                            (top + obj.Top.value) + "," +
+                            (left + obj.Left.value + obj.Width.value) + "," +
+                            (top + obj.Top.value + obj.Height.value), "\\Screen.log", false);
 
                         dataList.Add(new ObjectData()
                         {
-                            RealLeft = offsetLeft + left + obj.Left.value,
-                            RealRight = offsetLeft + left + obj.Left.value + obj.Width.value,
-                            RealTop = top + obj.Top.value + offsetTop,
-                            RealBottom = top + obj.Top.value + offsetTop + obj.Height.value,
+                            RealLeft = left + obj.Left.value,
+                            RealRight = left + obj.Left.value + obj.Width.value,
+                            RealTop = top + obj.Top.value,
+                            RealBottom = top + obj.Top.value + obj.Height.value,
 
-                            OffsetLeft = offsetLeft + left,
-                            OffsetTop = top + offsetTop,
+                            OffsetLeft = left,
+                            OffsetTop = top,
                             ObjectName = obj.ObjectName.value,
                             Page = s.ObjectName,
                             CallsPdl = ""
                         });
 
                         var events = obj.Events.Cast<HMIEvent>();
-                        List<grafexe.HMIEvent> evs = events.Where(e => e.Actions.Count > 0).ToList();
+                        HMIEvent evs = events.FirstOrDefault(e => e.EventName == "OnLButtonUp" && e.Actions.Count > 0);
 
-                        foreach (var pdlRow in from grafexe.HMIEvent ev in evs
-                                               where ev.Actions.Count > 0
-                                               from HMIScriptInfo act in ev.Actions
-                                               let vb = act.SourceCode
-                                               let pdlRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "))
-                                               where pdlRow != null
-                                               select pdlRow)
+                        if (evs == null)
+                            break;
+
+                        HMIActions acts = evs.Actions;
+
+                        string pdl = "";
+                        foreach (HMIScriptInfo act in acts)
                         {
-                            dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdlRow?.Replace("Const pdlName = ", "");
+                            if (pdl == "")
+                            {
+                                var vb = act.SourceCode;
 
-                            LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
+                                var callingRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
+                                pdl = callingRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
+
+                                var embeddedRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains(".PictureName = "));
+                                if (embeddedRow != null)
+                                {
+                                    Console.WriteLine("test");
+                                    pdl = embeddedRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
+                                }
+                                if (pdl != "")
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != null ? pdl : "";
+
+                        LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
+                    }
+                }
+            }
+
+            dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null).ToList();
+            return dataList;
+        }
+
+        private void GetScreenInfo(out List<IHMIScreen> relevantScreens, out List<WindowData> windowData)
+        {
+            relevantScreens = new List<IHMIScreen>();
+
+            GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen screen);
+
+            List<IHMIScreen> screensList = screens.Cast<IHMIScreen>().ToList();
+
+            IEnumerable<IHMIScreenItem> parents = screensList.Where(c => c.Parent != null).Select(c => c.Parent);
+            IEnumerable<string> accessPaths = screensList.Where(c => c.Parent != null).Select(c => c.AccessPath);
+
+            string mainscreen = GetMainScreen();
+
+            //relevantScreens = screensList.Where(c => c.Parent != null && (c.Parent.ObjectName.StartsWith("@DataClass") || c.Parent.ObjectName == "@ProcAreaLight"));
+            foreach (IHMIScreen s in screensList)
+            {
+                if (s.Parent != null)
+                {
+                    if (s.Parent.ObjectName == "@DataClass1" || s.Parent.ObjectName == "@DataClass2")
+                    {
+                        if (s.Parent.Parent.ObjectName == "@frame_s_content")
+                        {
+                            relevantScreens.Add(s);
                         }
                     }
+                    else if (s.Parent.ObjectName == "@DataClass3" && s.Parent.Parent.ObjectName == mainscreen)
+                    {
+                        relevantScreens.Add(s);
+                    }
+
+                    if (s.Parent.ObjectName == "@ProcAreaLight")
+                    {
+                        relevantScreens.Add(s);
+                    }
+                }
+            }
+
+            var result = from c in relevantScreens
+                         join c2 in relevantScreens on c.Parent.ObjectName equals c2.Parent.ObjectName
+                         where c != c2
+                         select c;
+            if (result.Count() > 0)
+            {
+                Console.WriteLine("Found some duplicates at c.parent.objectname boss");
+            }
+
+            var screenNames = relevantScreens.Select(c => c.ObjectName).ToList();
+
+            var screenWindowsQuery = relevantScreens.Select(c => c.Parent).ToList();
+            windowData = GetWindowData(screenWindowsQuery);
+        }
+
+        private static List<WindowData> GetWindowData(List<IHMIScreenItem> screenWindowsQuery)
+        {
+            List<WindowData> windowData = new List<WindowData>();
+            foreach (IHMIScreenItem s in screenWindowsQuery)
+            {
+                int recLeft = 0;
+                int recTop = 0;
+                GetPositionRec(ref recLeft, ref recTop, s);
+
+                windowData.Add(new WindowData()
+                {
+                    Width = s.Width,
+                    Top = s.Top,
+                    Height = s.Height,
+                    Left = s.Left,
+                    Name = s.ObjectName,
+                    Visible = s.Visible,
+                    Type = s.Type,
+                    Layer = s.Layer,
+                    Parent = s.Parent.ObjectName,
+                    ScreenLeft = recLeft,
+                    ScreenTop = recTop,
+                    Enabled = s.Enabled
+                });
+            }
+
+            return windowData;
+        }
+
+        private static void GetPositionRec(ref int recLeft, ref int recTop, IHMIScreenItem screenWindow)
+        {
+            if (screenWindow != null)
+            {
+                recLeft += screenWindow.Left;
+                recTop += screenWindow.Top;
+                if (screenWindow.Parent.Parent != null)
+                {
+                    GetPositionRec(ref recLeft, ref recTop, screenWindow.Parent.Parent);
                 }
             }
         }
 
         private void FindSwitchEmbeddeds(IntPtr handle, List<ObjectData> extractedData)
         {
-            foreach (ObjectData p in extractedData)
+            var init = GetCurrentRuntimeFilelist();
+            foreach (ObjectData o in extractedData)
             {
-                int midPointX = (p.RealLeft + p.RealRight) / 2;
-                int midPointY = (p.RealTop + p.RealBottom) / 2;
+                int midPointX = (o.RealLeft + o.RealRight) / 2;
+                int midPointY = (o.RealTop + o.RealBottom) / 2;
 
                 RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+
+                //GetScreenInfo(out List<IHMIScreen> afterscreens, out List<WindowData> afterwindows);
+                var after = GetCurrentRuntimeFilelist();
+                var result = after.Where(w => init.All(w2 => w2 != w));
+
+                //var prevembedded = init.FirstOrDefault(w => result.All(w2 => w2.ObjectName == w.ObjectName));
+                var newembedded = after.FirstOrDefault(w => result.All(w2 => w2.ObjectName == w.ObjectName));
+
+                var filteredScreens = new List<IHMIScreen>();
+                filteredScreens.Add(newembedded);
+
+
+
+                var windowData = GetWindowData(filteredScreens.Select(c => c.Parent).ToList());
+                var dataList = GetObjectsInfo("HMIButton", "", filteredScreens, windowData);
+                if (o.RealRight == newembedded.Parent.Left + newembedded.Width + o.OffsetLeft)
+                {
+                    //is vertical button embedded switch
+                    dataList = dataList.Where(c => c.RealRight < newembedded.Parent.Left + newembedded.Width + o.OffsetLeft).ToList();
+                    //FindSwitchEmbeddeds(handle, dataList);
+                } 
+                else if (o.RealTop == newembedded.Parent.Top + o.OffsetTop)
+                {
+                    //is horizontal button embedded switch
+                    dataList = dataList.Where(c => c.RealTop > newembedded.Parent.Top + o.OffsetTop).ToList();
+                    //FindSwitchEmbeddeds(handle, dataList);
+                }
 
                 ReadActiveScreen();
 
@@ -1691,13 +1831,13 @@ namespace WinCC_Timer
             GetCurrentRuntimeFilelist();
         }
 
-        private void GetCurrentRuntimeFilelist()
+        private List<IHMIScreen> GetCurrentRuntimeFilelist()
         {
             IHMIScreens screens;
             IHMIScreen activeScreen;
             GetRuntimeScreens(out screens, out activeScreen);
 
-            var screenlist = new List<string>();
+            var screenlist = new List<IHMIScreen>();
 
             LogToFile(activeScreen.AccessPath, "\\Screens.txt", false);
 
@@ -1707,11 +1847,13 @@ namespace WinCC_Timer
             {
                 LogToFile(s.ObjectName, "\\Screens.txt", false);
 
-                listBox1.Items.Add(s.ObjectName);
+                //listBox1.Items.Add(s.ObjectName);
 
-                screenlist.Add(s.ObjectName);
+                screenlist.Add(s);
             }
-            listBox1.Refresh();
+            //listBox1.Refresh();
+
+            return screenlist;
         }
 
         private void GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen)
@@ -1748,22 +1890,20 @@ namespace WinCC_Timer
 
             grafexe.HMIObject go = null;
 
-            if (!pdlName.StartsWith("@"))
+            grafexe.Document seldoc = g.Documents.Open(seldocfullname, openType);
+            grafexe.HMIObjects selos = seldoc.HMIObjects;
+
+            go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;
+
+            if (go != null)
             {
-                grafexe.Document seldoc = g.Documents.Open(seldocfullname, openType);
-                grafexe.HMIObjects selos = seldoc.HMIObjects;
+                if (go.Visible.value == false && go.Visible.DynamicStateType == HMIDynamicStateType.hmiDynamicStateTypeNoDynamic)
+                    go = null;
+            }
 
-                go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;
-
-                //go.Left.value = 200;
-                //go.Top.value = 200;
-
-                //go.Selected = true;
-
-                if (go != null)
-                {
-                    listBox1.Items.Add(go.ObjectName.value);
-                }
+            if (go != null)
+            {
+                listBox1.Items.Add(go.ObjectName.value);
             }
 
             return go;
@@ -1773,15 +1913,15 @@ namespace WinCC_Timer
 
 public class ObjectData
 {
-    public int OffsetLeft;
-    public int OffsetTop;
-    public int RealLeft; //relative to whole screen
-    public int RealTop; //relative to whole screen
-    public int RealRight; //relative to whole screen
-    public int RealBottom; //relative to whole screen
-    public string Page;
-    public string ObjectName;
-    public string CallsPdl;
+    public int OffsetLeft { get; internal set; }
+    public int OffsetTop { get; internal set; }
+    public int RealLeft { get; internal set; } //relative to whole screen
+    public int RealTop { get; internal set; } //relative to whole screen
+    public int RealRight { get; internal set; } //relative to whole screen
+    public int RealBottom { get; internal set; } //relative to whole screen
+    public string Page { get; internal set; }
+    public string ObjectName { get; internal set; }
+    public string CallsPdl { get; internal set; }
 }
 
 public class WindowData
@@ -1795,35 +1935,38 @@ public class WindowData
     public string Type { get; internal set; }
     public int Layer { get; internal set; }
     public bool Enabled { get; internal set; }
+    public string Parent { get; internal set; }
+    public int ScreenLeft { get; internal set; }
+    public int ScreenTop { get; internal set; }
 }
 
 public class PageTime
 {
-    public string page;
-    public double load;
-    public double min;
-    public double max;
+    public string page { get; internal set; }
+    public double load { get; internal set; }
+    public double min { get; internal set; }
+    public double max { get; internal set; }
 }
 
 public class PageCpuTime
 {
-    public string page;
-    public float cpu;
-    public DateTime timestamp;
+    public string page { get; internal set; }
+    public float cpu { get; internal set; }
+    public DateTime timestamp { get; internal set; }
 }
 
 public class MenuRow
 {
-    public string ID;
-    public string RefId;
-    public string Layer;
-    public string Pos;
-    public string LCID;
-    public string ParentId;
-    public string Caption;
-    public string Flags;
-    public string Pdl;
-    public string Parameter;
+    public string ID { get; internal set; }
+    public string RefId { get; internal set; }
+    public string Layer { get; internal set; }
+    public string Pos { get; internal set; }
+    public string LCID { get; internal set; }
+    public string ParentId { get; internal set; }
+    public string Caption { get; internal set; }
+    public string Flags { get; internal set; }
+    public string Pdl { get; internal set; }
+    public string Parameter { get; internal set; }
 }
 
 public class MyCheckBox : CheckBox

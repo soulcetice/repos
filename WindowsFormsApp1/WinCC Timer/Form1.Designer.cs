@@ -58,7 +58,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.popupsCheckbox = new System.Windows.Forms.CheckBox();
             this.dropCheckbox = new System.Windows.Forms.CheckBox();
-            this.horizEmbeddedCheckbox = new System.Windows.Forms.CheckBox();
+            this.embeddedsBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
@@ -352,22 +352,22 @@
             // 
             // horizEmbeddedCheckbox
             // 
-            this.horizEmbeddedCheckbox.AutoSize = true;
-            this.horizEmbeddedCheckbox.Checked = true;
-            this.horizEmbeddedCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.horizEmbeddedCheckbox.Location = new System.Drawing.Point(212, 274);
-            this.horizEmbeddedCheckbox.Name = "horizEmbeddedCheckbox";
-            this.horizEmbeddedCheckbox.Size = new System.Drawing.Size(82, 17);
-            this.horizEmbeddedCheckbox.TabIndex = 31;
-            this.horizEmbeddedCheckbox.Text = "Embeddeds";
-            this.horizEmbeddedCheckbox.UseVisualStyleBackColor = true;
+            this.embeddedsBox.AutoSize = true;
+            this.embeddedsBox.Checked = true;
+            this.embeddedsBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.embeddedsBox.Location = new System.Drawing.Point(212, 274);
+            this.embeddedsBox.Name = "horizEmbeddedCheckbox";
+            this.embeddedsBox.Size = new System.Drawing.Size(82, 17);
+            this.embeddedsBox.TabIndex = 31;
+            this.embeddedsBox.Text = "Embeddeds";
+            this.embeddedsBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(387, 324);
-            this.Controls.Add(this.horizEmbeddedCheckbox);
+            this.Controls.Add(this.embeddedsBox);
             this.Controls.Add(this.dropCheckbox);
             this.Controls.Add(this.popupsCheckbox);
             this.Controls.Add(this.button10);
@@ -439,7 +439,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.CheckBox popupsCheckbox;
         private System.Windows.Forms.CheckBox dropCheckbox;
-        private System.Windows.Forms.CheckBox horizEmbeddedCheckbox;
+        private System.Windows.Forms.CheckBox embeddedsBox;
     }
 }
 
