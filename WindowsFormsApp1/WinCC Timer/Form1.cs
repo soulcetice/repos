@@ -1392,6 +1392,8 @@ namespace WinCC_Timer
             }
 
             //Bitmap img = TheMagic.GetPngByHandle(handle);
+
+            PInvokeLibrary.SetForegroundWindow(handle);
             string mainScreen = GetMainScreen();
             currentPage = mainScreen;
             ScreenshotAndSave(true);
@@ -1441,46 +1443,6 @@ namespace WinCC_Timer
             return mainScreen;
         }
 
-        private void FindSwitchVerticalTabs(IntPtr handle, List<ObjectData> extractedData)
-        {
-            //FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
-            //for (int i = 0; i < FoundTabsDown.Count; i++)
-            //{
-            //    TheMagic.PosBitmap d = FoundTabsDown[i];
-
-            //    var clickedAlready = clickedEmbeddeds.FirstOrDefault(c => c.X == d.Left && c.Y == d.Top);
-
-            //    if (clickedAlready == null || (d.Left != clickedAlready.X && d.Top != clickedAlready.Y))
-            //        RobustClick(handle, d.Left + 10, d.Top + 5, 1);
-            //    clickedEmbeddeds.Add(new Point() { X = d.Left, Y = d.Top });
-
-            //    Thread.Sleep(3000);
-
-            //    ReadActiveScreen();
-
-            //    //take screenshot here
-            //    SetDateString();
-            //    currentPage = formattedDate;
-            //    ScreenshotAndSave(true);
-
-            //    img = TheMagic.GetPngByHandle(handle);
-
-            //    //Thread.Sleep(3000);
-
-            //    FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
-
-            //    //FoundTabsDown.Remove(FoundTabsDown.FirstOrDefault(c => c.x == d.x && c.y == d.y));
-            //}
-
-            //img = TheMagic.GetPngByHandle(handle);
-
-            //return img;
-
-            //FoundTabsDown.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_down")), "tabbed_down"));
-            //FoundTabsUp.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_up")), "tabbed_up"));
-            //FoundTabsBoth.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("tabbed_both")), "tabbed_both"));
-        }
-
         private void FindOpenCloseFlyouts(IntPtr handle, List<ObjectData> extractedData, bool first = true)
         {
             foreach (ObjectData p in extractedData)
@@ -1489,6 +1451,7 @@ namespace WinCC_Timer
                 int midPointY = (p.RealTop + p.RealBottom) / 2;
 
                 RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+                navigatedPages.Add(p.CallsPdl);
 
                 GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen);
                 var s = screens.Cast<IHMIScreen>();
@@ -1500,6 +1463,7 @@ namespace WinCC_Timer
                     //take screenshot here
                     SetDateString();
                     currentPage = activePopup.ObjectName;
+                    PInvokeLibrary.SetForegroundWindow(handle);
                     ScreenshotAndSave(true);
 
                     RobustClick(handle, midPointX, midPointY, 1);
@@ -1523,6 +1487,7 @@ namespace WinCC_Timer
                 int midPointY = (p.RealTop + p.RealBottom) / 2;
 
                 RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+                navigatedPages.Add(p.CallsPdl);
 
                 GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen);
                 var s = screens.Cast<IHMIScreen>();
@@ -1536,6 +1501,7 @@ namespace WinCC_Timer
 
                     //take screenshot here
                     currentPage = activePopup.ObjectName;
+                    PInvokeLibrary.SetForegroundWindow(handle);
                     ScreenshotAndSave(true);
 
                     ClosePopup(handle);
@@ -1660,6 +1626,9 @@ namespace WinCC_Timer
                                 }
                             }
                         }
+
+                        pdl = pdl != null ? pdl.Replace(".pdl", "") : "";
+
                         dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != null ? pdl : "";
 
                         LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
@@ -1667,7 +1636,7 @@ namespace WinCC_Timer
                 }
             }
 
-            dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null).ToList();
+            dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null && !navigatedPages.Contains(c.CallsPdl)).ToList();
             return dataList;
         }
 
@@ -1680,6 +1649,7 @@ namespace WinCC_Timer
             List<IHMIScreen> screensList = screens.Cast<IHMIScreen>().ToList();
 
             IEnumerable<IHMIScreenItem> parents = screensList.Where(c => c.Parent != null).Select(c => c.Parent);
+            IEnumerable<IHMIScreenItem> menus = screensList.Where(c => c.Parent != null && c.Parent.ObjectName.Contains("menu")).Select(c => c.Parent);
             IEnumerable<string> accessPaths = screensList.Where(c => c.Parent != null).Select(c => c.AccessPath);
 
             string mainscreen = GetMainScreen();
@@ -1765,51 +1735,67 @@ namespace WinCC_Timer
             }
         }
 
-        private void FindSwitchEmbeddeds(IntPtr handle, List<ObjectData> extractedData)
+        private void FindSwitchEmbeddeds(IntPtr handle, List<ObjectData> extractedData, bool innerEmbeeddeds = false)
         {
             var init = GetCurrentRuntimeFilelist();
-            foreach (ObjectData o in extractedData)
+
+            var prevActivePages = new List<string>();
+            var afterActivePages = new List<string>();
+
+            ObjectData o = extractedData.FirstOrDefault();
+
+            int midPointX = (o.RealLeft + o.RealRight) / 2;
+            int midPointY = (o.RealTop + o.RealBottom) / 2;
+
+            var prevActScreen = ReadActiveScreen();
+            prevActivePages.Add(prevActScreen);
+
+            RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+            navigatedPages.Add(o.CallsPdl);
+
+            var newActScreen = ReadActiveScreen();
+            afterActivePages.Add(newActScreen);
+
+            var after = GetCurrentRuntimeFilelist();
+            var result = after.Where(w => init.All(w2 => w2 != w));
+
+            var resultstring = result.Select(c => c.ObjectName);
+            var afterstring = after.Select(c => c.ObjectName);
+
+            //var newembedded = after.Where(w => result.Any(w2 => w2.ObjectName == w.ObjectName)).FirstOrDefault();
+            var newembedded = after.FirstOrDefault(c => c.ObjectName == o.CallsPdl);
+
+            var test = afterstring.Where(w2 => resultstring.All(w => w2.Contains(w))).ToList();
+
+            var result2 = after.Where(p => result.Any(p2 => p2.ObjectName == p.ObjectName));
+
+            var filteredScreens = new List<IHMIScreen>();
+            filteredScreens.Add(newembedded);
+
+            if (newembedded == null)
             {
-                int midPointX = (o.RealLeft + o.RealRight) / 2;
-                int midPointY = (o.RealTop + o.RealBottom) / 2;
+                Console.WriteLine("yep");
+            }
 
-                RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
+            var windowData = GetWindowData(filteredScreens?.Where(c => c.Parent != null)?.Select(c => c.Parent)?.ToList());
+            var dataList = GetObjectsInfo("HMIButton", "", filteredScreens, windowData);
+            dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null && !navigatedPages.Contains(c.CallsPdl)).ToList();
 
-                //GetScreenInfo(out List<IHMIScreen> afterscreens, out List<WindowData> afterwindows);
-                var after = GetCurrentRuntimeFilelist();
-                var result = after.Where(w => init.All(w2 => w2 != w));
+            ReadActiveScreen();
 
-                //var prevembedded = init.FirstOrDefault(w => result.All(w2 => w2.ObjectName == w.ObjectName));
-                var newembedded = after.FirstOrDefault(w => result.All(w2 => w2.ObjectName == w.ObjectName));
+            //take screenshot here
+            SetDateString();
+            currentPage = o.CallsPdl;
+            PInvokeLibrary.SetForegroundWindow(handle);
+            ScreenshotAndSave(true);
 
-                var filteredScreens = new List<IHMIScreen>();
-                filteredScreens.Add(newembedded);
-
-
-
-                var windowData = GetWindowData(filteredScreens.Select(c => c.Parent).ToList());
-                var dataList = GetObjectsInfo("HMIButton", "", filteredScreens, windowData);
-                if (o.RealRight == newembedded.Parent.Left + newembedded.Width + o.OffsetLeft)
-                {
-                    //is vertical button embedded switch
-                    dataList = dataList.Where(c => c.RealRight < newembedded.Parent.Left + newembedded.Width + o.OffsetLeft).ToList();
-                    //FindSwitchEmbeddeds(handle, dataList);
-                } 
-                else if (o.RealTop == newembedded.Parent.Top + o.OffsetTop)
-                {
-                    //is horizontal button embedded switch
-                    dataList = dataList.Where(c => c.RealTop > newembedded.Parent.Top + o.OffsetTop).ToList();
-                    //FindSwitchEmbeddeds(handle, dataList);
-                }
-
-                ReadActiveScreen();
-
-                //take screenshot here
-                SetDateString();
-                currentPage = formattedDate;
-                ScreenshotAndSave(true);
+            if (dataList.Count > 0)
+            {
+                FindSwitchEmbeddeds(handle, dataList, true);
             }
         }
+
+        private List<string> navigatedPages = new List<string>();
 
         private void button8_Click_1(object sender, EventArgs e)
         {
@@ -1837,11 +1823,22 @@ namespace WinCC_Timer
             IHMIScreen activeScreen;
             GetRuntimeScreens(out screens, out activeScreen);
 
-            var screenlist = new List<IHMIScreen>();
+            var foundScreens = new List<IHMIScreen>();
 
             LogToFile(activeScreen.AccessPath, "\\Screens.txt", false);
 
             listBox1.Items.Add(activeScreen.ObjectName);
+
+            var rt = new CCHMIRUNTIME.HMIRuntime();
+
+            var screensList = screens.Cast<IHMIScreen>();
+            List<CCHMIRUNTIME.IHMIDataSet> datasets = screensList.
+                Where(c => c.Parent != null).
+                Where(c => c.Parent.ObjectName.StartsWith("@DataClass")).
+                Select(c => c.DataSet).
+                ToList();
+
+            var sssss = screensList.FirstOrDefault(c => c.ObjectName == "TCM#01-01-01_n_#TCM-OverviewTCM");
 
             foreach (CCHMIRUNTIME.IHMIScreen s in screens)
             {
@@ -1849,11 +1846,11 @@ namespace WinCC_Timer
 
                 //listBox1.Items.Add(s.ObjectName);
 
-                screenlist.Add(s);
+                foundScreens.Add(s);
             }
             //listBox1.Refresh();
 
-            return screenlist;
+            return foundScreens;
         }
 
         private void GetRuntimeScreens(out IHMIScreens screens, out IHMIScreen activeScreen)

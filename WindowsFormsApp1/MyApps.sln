@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnablePSRemoting", "EnableP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecodePdls", "DecodePdls\DecodePdls.csproj", "{7AA1515F-50FB-4AB4-BEC3-3096BE1E0AF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsService1", "WindowsService1\WindowsService1.csproj", "{C7676B17-1EBE-4AEA-8DCA-5F928002327F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{7AA1515F-50FB-4AB4-BEC3-3096BE1E0AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AA1515F-50FB-4AB4-BEC3-3096BE1E0AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AA1515F-50FB-4AB4-BEC3-3096BE1E0AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7676B17-1EBE-4AEA-8DCA-5F928002327F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7676B17-1EBE-4AEA-8DCA-5F928002327F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7676B17-1EBE-4AEA-8DCA-5F928002327F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7676B17-1EBE-4AEA-8DCA-5F928002327F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{F6995105-D605-4B8F-BDDD-1A8C468BDC65} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
 		{9A566482-C3FB-4EAD-9914-2F4143A5F92B} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
 		{7AA1515F-50FB-4AB4-BEC3-3096BE1E0AF6} = {F4FB39BC-172B-44F8-A5DC-70CD4340BC4E}
+		{C7676B17-1EBE-4AEA-8DCA-5F928002327F} = {3934042B-8E58-4688-84DE-C4302EF50DCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {374158E5-DB04-405D-BB4F-2FFD32D63FDA}

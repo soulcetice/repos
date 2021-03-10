@@ -1,0 +1,7 @@
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\obj\Debug\WindowsService1.csprojAssemblyReference.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\obj\Debug\WindowsService1.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\bin\Debug\MyNewService.exe.config
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\bin\Debug\MyNewService.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\bin\Debug\MyNewService.pdb
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\obj\Debug\MyNewService.exe
+\\vmware-host\Shared Folders\C\Users\MURA02\source\repos\WindowsFormsApp1\WindowsService1\obj\Debug\MyNewService.pdb

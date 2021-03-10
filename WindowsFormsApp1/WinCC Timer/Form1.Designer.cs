@@ -350,13 +350,13 @@
             this.dropCheckbox.Text = "Dropdowns";
             this.dropCheckbox.UseVisualStyleBackColor = true;
             // 
-            // horizEmbeddedCheckbox
+            // embeddedsBox
             // 
             this.embeddedsBox.AutoSize = true;
             this.embeddedsBox.Checked = true;
             this.embeddedsBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.embeddedsBox.Location = new System.Drawing.Point(212, 274);
-            this.embeddedsBox.Name = "horizEmbeddedCheckbox";
+            this.embeddedsBox.Name = "embeddedsBox";
             this.embeddedsBox.Size = new System.Drawing.Size(82, 17);
             this.embeddedsBox.TabIndex = 31;
             this.embeddedsBox.Text = "Embeddeds";
@@ -401,7 +401,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "WinCC Timer";
-            this.TopMost = true;
             this.DoubleClick += new System.EventHandler(this.Form1_DoubleClicked);
             this.ResumeLayout(false);
             this.PerformLayout();
