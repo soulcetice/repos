@@ -1427,12 +1427,19 @@ namespace WinCC_Timer
 
             if (embeddedsBox.Checked)
             {
+                List<ObjectData> extractedData2 = new List<ObjectData>();
                 if (extractedData.Count == 0)
                 {
-                    GetRuntimeInfo("HMIButton", out extractedData, "@");
+                    GetRuntimeInfo("HMIButton", out extractedData);
+                    GetRuntimeInfo("HMIGroup", out extractedData2);
                 }
 
-                FindSwitchEmbeddeds(handle, extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList()); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+                extractedData = extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+                extractedData2 = extractedData2.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+
+                extractedData = extractedData.Concat(extractedData2).ToList();
+
+                FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
             }
         }
         private List<string> navigatedPages = new List<string>();
@@ -1586,8 +1593,19 @@ namespace WinCC_Timer
                 }
 
                 var mainScreen = GetMainScreen();
+                WindowData screenData = new WindowData();
 
-                var screenData = windowData.FirstOrDefault(c => c.Name == s.Parent.ObjectName);
+                var mainScreenData = windowData.FirstOrDefault(c => c.Parent == mainScreen);
+                if (mainScreenData == null)
+                {
+                    screenData = windowData.FirstOrDefault(c => c.Name == s.Parent.ObjectName);
+                }
+                else
+                {
+                    screenData = windowData.FirstOrDefault(c => c.Parent == mainScreen);
+                }
+
+
                 var left = screenData.ScreenLeft;
                 var top = screenData.ScreenTop;
 
@@ -1626,29 +1644,35 @@ namespace WinCC_Timer
                         var events = obj.Events.Cast<HMIEvent>();
                         HMIEvent evs = events.FirstOrDefault(e => e.EventName == "OnLButtonUp" && e.Actions.Count > 0);
 
-                        if (evs == null)
-                            break;
-
-                        HMIActions acts = evs.Actions;
-
                         string pdl = "";
-                        foreach (HMIScriptInfo act in acts)
+
+                        if (evs == null)
                         {
-                            if (pdl == "")
+                            //break;
+                        }
+                        else
+                        {
+
+                            HMIActions acts = evs.Actions;
+
+                            foreach (HMIScriptInfo act in acts)
                             {
-                                var vb = act.SourceCode;
-
-                                var callingRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
-                                pdl = callingRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
-
-                                var embeddedRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains(".PictureName = "));
-                                if (embeddedRow != null)
+                                if (pdl == "")
                                 {
-                                    pdl = embeddedRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
-                                }
-                                if (pdl != "")
-                                {
-                                    break;
+                                    var vb = act.SourceCode;
+
+                                    var callingRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains("pdlName = "));
+                                    pdl = callingRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
+
+                                    var embeddedRow = vb.Split("\r\n".ToCharArray()).FirstOrDefault(c => c.Contains(".PictureName = "));
+                                    if (embeddedRow != null)
+                                    {
+                                        pdl = embeddedRow?.Split("\"".ToCharArray())?.ElementAtOrDefault(1);
+                                    }
+                                    if (pdl != "")
+                                    {
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -1687,10 +1711,10 @@ namespace WinCC_Timer
                 {
                     if (s.Parent.ObjectName == "@DataClass1" || s.Parent.ObjectName == "@DataClass2")
                     {
-                        if (s.Parent.Parent.ObjectName == "@frame_s_content")
-                        {
-                            relevantScreens.Add(s);
-                        }
+                        //if (s.Parent.Parent.ObjectName == "@frame_s_content")
+                        //{
+                        relevantScreens.Add(s);
+                        //}
                     }
                     else if (s.Parent.ObjectName == "@DataClass3" && s.Parent.Parent.ObjectName == mainscreen)
                     {
@@ -1722,6 +1746,9 @@ namespace WinCC_Timer
         private static List<WindowData> GetWindowData(List<IHMIScreenItem> screenWindowsQuery)
         {
             List<WindowData> windowData = new List<WindowData>();
+
+            var t = screenWindowsQuery.Where(c => c.Parent != null).Where(c => c.Parent.Parent != null).Select(c => c.Parent.Parent).ToList();
+
             foreach (IHMIScreenItem s in screenWindowsQuery)
             {
                 int recLeft = 0;
@@ -1756,6 +1783,10 @@ namespace WinCC_Timer
                 recTop += screenWindow.Top;
                 if (screenWindow.Parent.Parent != null)
                 {
+                    if (screenWindow.ObjectName == screenWindow.Parent.Parent.ObjectName)
+                    {
+                        recLeft -= 175;
+                    }
                     GetPositionRec(ref recLeft, ref recTop, screenWindow.Parent.Parent);
                 }
             }
@@ -1763,57 +1794,65 @@ namespace WinCC_Timer
 
         private void FindSwitchEmbeddeds(IntPtr handle, List<ObjectData> extractedData, bool innerEmbeeddeds = false)
         {
-            //var init = GetCurrentRuntimeFilelist();
-            //var init = RuntimeFunctions.GetCurrentRuntimeFilelist();
-
             ObjectData o = extractedData.FirstOrDefault();
 
-            int midPointX = (o.RealLeft + o.RealRight) / 2;
-            int midPointY = (o.RealTop + o.RealBottom) / 2;            
-
-            RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(3000);
-            navigatedPages.Add(o.CallsPdl);
-
-            var after = GetCurrentRuntimeFilelist();
-            //var after = RuntimeFunctions.GetCurrentRuntimeFilelist();
-
-            var newembedded = after.FirstOrDefault(c => c.ObjectName == o.CallsPdl);
-
-            var filteredScreens = new List<IHMIScreen>();
-            filteredScreens.Add(newembedded);
-
-            if (newembedded == null)
+            if (o != null)
             {
-                Console.WriteLine("yep");
-            }
 
-            var windowData = GetWindowData(filteredScreens?.Where(c => c.Parent != null)?.Select(c => c.Parent)?.ToList());
-            var dataList = GetObjectsInfo("HMIButton", "", filteredScreens, windowData);
-            dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null && !navigatedPages.Contains(c.CallsPdl)).ToList();
+                int midPointX = (o.RealLeft + o.RealRight) / 2;
+                int midPointY = (o.RealTop + o.RealBottom) / 2;
 
-            ReadActiveScreen();
+                RobustClick(handle, midPointX, midPointY, 1); Thread.Sleep(2000);
+                navigatedPages.Add(o.CallsPdl);
 
-            //take screenshot here
-            SetDateString();
-            currentPage = o.CallsPdl;
+                var after = GetCurrentRuntimeFilelist();
+                //var after = RuntimeFunctions.GetCurrentRuntimeFilelist();
 
-            var embdata = windowData.FirstOrDefault();
+                var emb = after.FirstOrDefault(c => c.ObjectName == o.CallsPdl);
 
-            PInvokeLibrary.SetForegroundWindow(handle);
-
-            ScreenshotAndSave(
-                true,
-                new Rectangle()
+                if (emb == null)
                 {
-                    Width = embdata.Width,
-                    Height = embdata.Height,
-                    X = embdata.ScreenLeft,
-                    Y = embdata.ScreenTop
-                });
+                    Console.WriteLine("yep");
+                }
+                else
+                {
+                    var filteredScreens = new List<IHMIScreen>();
+                    filteredScreens.Add(emb);
 
-            if (dataList.Count > 0)
-            {
-                FindSwitchEmbeddeds(handle, dataList, true);
+                    var windowData = GetWindowData(filteredScreens?.Where(c => c.Parent != null)?.Select(c => c.Parent)?.ToList());
+                    var dataList = GetObjectsInfo("HMIButton", "", filteredScreens, windowData);
+                    var dataList2 = GetObjectsInfo("HMIGroup", "", filteredScreens, windowData);
+                    dataList = dataList.Concat(dataList2).ToList();
+
+                    dataList = dataList.Where(c => c.CallsPdl != "" && c.CallsPdl != null && !navigatedPages.Contains(c.CallsPdl))
+                                       .Where(c => c.CallsPdl.ToUpper().Contains("_e_".ToUpper()))
+                                       .ToList();
+
+                    ReadActiveScreen();
+
+                    //take screenshot here
+                    SetDateString();
+                    currentPage = o.CallsPdl;
+
+                    var embdata = windowData.FirstOrDefault();
+
+                    PInvokeLibrary.SetForegroundWindow(handle);
+
+                    ScreenshotAndSave(
+                        true,
+                        new Rectangle()
+                        {
+                            Width = embdata.Width,
+                            Height = embdata.Height,
+                            X = embdata.ScreenLeft,
+                            Y = embdata.ScreenTop
+                        });
+
+                    if (dataList.Count > 0)
+                    {
+                        FindSwitchEmbeddeds(handle, dataList, true);
+                    }
+                }
             }
         }
 
