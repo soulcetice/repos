@@ -73,13 +73,12 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(801, 90);
+            this.button2.Location = new System.Drawing.Point(199, 199);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Manip Grafexe";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // refIdBox
@@ -366,7 +365,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 324);
+            this.ClientSize = new System.Drawing.Size(386, 324);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.embeddedsBox);
             this.Controls.Add(this.dropCheckbox);
             this.Controls.Add(this.popupsCheckbox);
@@ -395,7 +395,6 @@
             this.Controls.Add(this.sqlPathBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.refIdBox);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

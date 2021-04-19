@@ -5,3 +5,754 @@
 2021/2/9 15:16:22:606 UTC: Please start the WinCC Graphics Runtime!
 2021/2/10 7:3:56:713 UTC: Please start the WinCC Graphics Runtime!
 2021/3/2 11:10:48:119 UTC: Please start the WinCC Graphics Runtime!
+2021/3/15 8:2:50:579 UTC: Starting menu navigation
+2021/3/15 8:2:50:614 UTC: 265 menu items
+2021/3/15 8:5:56:912 UTC: Starting menu navigation
+2021/3/15 8:5:56:946 UTC: 118 menu items
+2021/3/15 8:7:7:482 UTC: 51width, 16height, General
+2021/3/15 8:7:7:495 UTC: 43width, 16height, Alarms
+2021/3/15 8:7:7:506 UTC: Alarms is the caption for which we check width
+2021/3/15 8:7:7:522 UTC: 40width, 16height, Safety
+2021/3/15 8:7:7:532 UTC: 86width, 16height, Switch On/Off
+2021/3/15 8:7:7:548 UTC: Switch On/Off is the caption for which we check width
+2021/3/15 8:7:7:565 UTC: 95width, 16height, Media Systems
+2021/3/15 8:7:7:572 UTC: Media Systems is the caption for which we check width
+2021/3/15 8:7:7:586 UTC: 40width, 16height, Drives
+2021/3/15 8:7:7:596 UTC: 95 is x width for childrentier2
+2021/3/15 8:7:8:710 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:7:12:755 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/15 8:7:12:808 UTC: '@sms_w_Alarmlist'
+2021/3/15 8:10:53:991 UTC: Starting menu navigation
+2021/3/15 8:10:54:30 UTC: 118 menu items
+2021/3/15 8:11:41:649 UTC: 51width, 16height, General
+2021/3/15 8:11:41:669 UTC: 43width, 16height, Alarms
+2021/3/15 8:11:41:697 UTC: Alarms is the caption for which we check width
+2021/3/15 8:11:41:737 UTC: 40width, 16height, Safety
+2021/3/15 8:11:41:747 UTC: 86width, 16height, Switch On/Off
+2021/3/15 8:11:41:759 UTC: Switch On/Off is the caption for which we check width
+2021/3/15 8:11:41:769 UTC: 95width, 16height, Media Systems
+2021/3/15 8:11:41:781 UTC: Media Systems is the caption for which we check width
+2021/3/15 8:11:41:793 UTC: 40width, 16height, Drives
+2021/3/15 8:11:41:807 UTC: 95 is x width for childrentier2
+2021/3/15 8:11:42:948 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:11:46:992 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/15 8:11:47:6 UTC: '@sms_w_Alarmlist'
+2021/3/15 8:13:3:472 UTC: 33width, 16height, Floor
+2021/3/15 8:13:3:486 UTC: Floor is the caption for which we check width
+2021/3/15 8:13:3:503 UTC: 37width, 16height, Cellar
+2021/3/15 8:13:3:519 UTC: Cellar is the caption for which we check width
+2021/3/15 8:13:3:529 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 8:13:3:541 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 8:13:3:595 UTC: 43width, 16height, Details
+2021/3/15 8:13:3:618 UTC: 140 is x width for childrentier2
+2021/3/15 8:13:4:675 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 8:13:4:689 UTC: 33width, 16height, Floor
+2021/3/15 8:13:4:706 UTC: Floor is the caption for which we check width
+2021/3/15 8:13:4:732 UTC: 37width, 16height, Cellar
+2021/3/15 8:13:4:758 UTC: Cellar is the caption for which we check width
+2021/3/15 8:13:4:776 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 8:13:4:788 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 8:13:4:797 UTC: 43width, 16height, Details
+2021/3/15 8:13:4:810 UTC: 140 is x width for childrentier2
+2021/3/15 8:13:4:820 UTC: 180 is maxwidthtier2
+2021/3/15 8:13:5:850 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:13:6:897 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 8:13:10:947 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/3/15 8:13:10:965 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/3/15 8:23:14:811 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:23:15:842 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 8:23:19:876 UTC: For Cellar expand menu, clicked at 172 x, 93 y
+2021/3/15 8:23:19:885 UTC: 'TCM#06-02-00_n_#SAF-Overview-Cellar'
+2021/3/15 8:33:34:316 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:33:35:351 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 8:33:39:369 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 118 y
+2021/3/15 8:33:39:381 UTC: 'TCM#06-03-00_n_#SAF-Overview-FES'
+2021/3/15 8:43:56:360 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:43:57:400 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 8:44:1:453 UTC: For Details expand menu, clicked at 172 x, 143 y
+2021/3/15 8:44:1:471 UTC: 'SAF2_n_SafetyAreaOverview'
+2021/3/15 8:54:12:682 UTC: 38width, 16height, Media
+2021/3/15 8:54:12:697 UTC: Media is the caption for which we check width
+2021/3/15 8:54:12:714 UTC: 40width, 16height, Drives
+2021/3/15 8:54:12:735 UTC: Drives is the caption for which we check width
+2021/3/15 8:54:12:747 UTC: 40 is x width for childrentier2
+2021/3/15 8:54:13:784 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/15 8:54:13:793 UTC: 38width, 16height, Media
+2021/3/15 8:54:13:814 UTC: Media is the caption for which we check width
+2021/3/15 8:54:13:825 UTC: 40width, 16height, Drives
+2021/3/15 8:54:13:839 UTC: Drives is the caption for which we check width
+2021/3/15 8:54:13:850 UTC: 40 is x width for childrentier2
+2021/3/15 8:54:13:863 UTC: 80 is maxwidthtier2
+2021/3/15 8:54:14:904 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 8:54:15:948 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/15 8:54:19:978 UTC: For Media expand menu, clicked at 172 x, 93 y
+2021/3/15 8:54:19:994 UTC: 'TCM#02-01-00_n_#GEN-Media'
+2021/3/15 9:4:36:714 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 9:4:37:751 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/15 9:4:41:772 UTC: For Drives expand menu, clicked at 172 x, 118 y
+2021/3/15 9:4:41:781 UTC: 'TCM#02-02-00_n_#GEN-Drives'
+2021/3/15 9:14:57:350 UTC: 115width, 16height, Hydraulic Systems
+2021/3/15 9:14:57:363 UTC: Hydraulic Systems is the caption for which we check width
+2021/3/15 9:14:57:373 UTC: 127width, 16height, Lubrication Systems
+2021/3/15 9:14:57:402 UTC: Lubrication Systems is the caption for which we check width
+2021/3/15 9:14:57:443 UTC: 114width, 16height, Emulsion Systems
+2021/3/15 9:14:57:460 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 9:14:57:480 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 9:14:57:494 UTC: 106width, 16height, Cellar Ventilation
+2021/3/15 9:14:57:542 UTC: 81width, 16height, Maintenance
+2021/3/15 9:14:57:559 UTC: 140 is x width for childrentier2
+2021/3/15 9:14:58:603 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/15 9:14:58:618 UTC: 115width, 16height, Hydraulic Systems
+2021/3/15 9:14:58:630 UTC: Hydraulic Systems is the caption for which we check width
+2021/3/15 9:14:58:648 UTC: 127width, 16height, Lubrication Systems
+2021/3/15 9:14:58:666 UTC: Lubrication Systems is the caption for which we check width
+2021/3/15 9:14:58:686 UTC: 114width, 16height, Emulsion Systems
+2021/3/15 9:14:58:716 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 9:14:58:729 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 9:14:58:744 UTC: 106width, 16height, Cellar Ventilation
+2021/3/15 9:14:58:758 UTC: 81width, 16height, Maintenance
+2021/3/15 9:14:58:768 UTC: 140 is x width for childrentier2
+2021/3/15 9:14:58:777 UTC: 180 is maxwidthtier2
+2021/3/15 9:14:59:809 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/15 9:14:59:825 UTC: High Pressure Hydraulic's click position in pixels would be 95
+2021/3/15 9:14:59:852 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/15 9:14:59:869 UTC: High Pressure Hydraulic is the caption for which we check width
+2021/3/15 9:14:59:882 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/15 9:14:59:889 UTC: 151 is x width for childrentier2
+2021/3/15 9:15:0:928 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 9:15:1:966 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/15 9:15:3:3 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 118 y
+2021/3/15 9:15:7:40 UTC: For High Pressure Hydraulic expand menu, clicked at 403 x, 118 y
+2021/3/15 9:15:7:54 UTC: 'TCM#61-01-00_w_#MED-HighPressureHydraulic'
+2021/3/15 9:26:16:752 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/15 9:26:16:762 UTC: Low Pressure Hydraulic's click position in pixels would be 94
+2021/3/15 9:26:16:774 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/15 9:26:16:790 UTC: High Pressure Hydraulic is the caption for which we check width
+2021/3/15 9:26:16:811 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/15 9:26:16:825 UTC: 151 is x width for childrentier2
+2021/3/15 9:26:17:858 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 9:26:18:902 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/15 9:26:19:923 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 118 y
+2021/3/15 9:26:23:976 UTC: For Low Pressure Hydraulic expand menu, clicked at 403 x, 143 y
+2021/3/15 9:26:23:992 UTC: 'TCM#62-01-00_w_#MED-LowPressureHydraulic'
+2021/3/15 9:28:53:650 UTC: Starting menu navigation
+2021/3/15 9:50:46:930 UTC: Starting menu navigation
+2021/3/15 9:50:46:961 UTC: 118 menu items
+2021/3/15 9:52:27:831 UTC: 51width, 16height, General
+2021/3/15 9:52:27:854 UTC: 43width, 16height, Alarms
+2021/3/15 9:52:27:878 UTC: Alarms is the caption for which we check width
+2021/3/15 9:52:27:887 UTC: 40width, 16height, Safety
+2021/3/15 9:52:27:916 UTC: 86width, 16height, Switch On/Off
+2021/3/15 9:52:27:928 UTC: Switch On/Off is the caption for which we check width
+2021/3/15 9:52:27:944 UTC: 95width, 16height, Media Systems
+2021/3/15 9:52:27:959 UTC: Media Systems is the caption for which we check width
+2021/3/15 9:52:27:968 UTC: 40width, 16height, Drives
+2021/3/15 9:52:27:980 UTC: 95 is x width for childrentier2
+2021/3/15 9:52:29:58 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 9:52:35:652 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/15 9:52:35:666 UTC: '@sms_w_Alarmlist'
+2021/3/15 10:5:1:541 UTC: Starting menu navigation
+2021/3/15 10:5:1:568 UTC: 118 menu items
+2021/3/15 10:14:47:367 UTC: 51width, 16height, General
+2021/3/15 10:14:47:384 UTC: 43width, 16height, Alarms
+2021/3/15 10:14:47:444 UTC: Alarms is the caption for which we check width
+2021/3/15 10:14:47:462 UTC: 40width, 16height, Safety
+2021/3/15 10:14:47:477 UTC: 86width, 16height, Switch On/Off
+2021/3/15 10:14:47:492 UTC: Switch On/Off is the caption for which we check width
+2021/3/15 10:14:47:506 UTC: 95width, 16height, Media Systems
+2021/3/15 10:14:47:520 UTC: Media Systems is the caption for which we check width
+2021/3/15 10:14:47:536 UTC: 40width, 16height, Drives
+2021/3/15 10:14:47:548 UTC: 95 is x width for childrentier2
+2021/3/15 10:14:48:791 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 10:14:55:311 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/15 10:14:55:331 UTC: '@sms_w_Alarmlist'
+2021/3/15 10:16:19:12 UTC: Starting menu navigation
+2021/3/15 10:16:19:45 UTC: 118 menu items
+2021/3/15 10:16:19:749 UTC: 51width, 16height, General
+2021/3/15 10:16:19:761 UTC: 43width, 16height, Alarms
+2021/3/15 10:16:19:772 UTC: Alarms is the caption for which we check width
+2021/3/15 10:16:19:784 UTC: 40width, 16height, Safety
+2021/3/15 10:16:19:794 UTC: 86width, 16height, Switch On/Off
+2021/3/15 10:16:19:806 UTC: Switch On/Off is the caption for which we check width
+2021/3/15 10:16:19:817 UTC: 95width, 16height, Media Systems
+2021/3/15 10:16:19:824 UTC: Media Systems is the caption for which we check width
+2021/3/15 10:16:19:830 UTC: 40width, 16height, Drives
+2021/3/15 10:16:19:857 UTC: 95 is x width for childrentier2
+2021/3/15 10:16:21:146 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 10:16:28:139 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/15 10:16:28:154 UTC: '@sms_w_Alarmlist'
+2021/3/15 10:16:28:189 UTC: 33width, 16height, Floor
+2021/3/15 10:16:28:222 UTC: Floor is the caption for which we check width
+2021/3/15 10:16:28:237 UTC: 37width, 16height, Cellar
+2021/3/15 10:16:28:247 UTC: Cellar is the caption for which we check width
+2021/3/15 10:16:28:278 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 10:16:28:323 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 10:16:28:335 UTC: 43width, 16height, Details
+2021/3/15 10:16:28:431 UTC: 140 is x width for childrentier2
+2021/3/15 10:16:29:489 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 10:16:29:506 UTC: 33width, 16height, Floor
+2021/3/15 10:16:29:557 UTC: Floor is the caption for which we check width
+2021/3/15 10:16:29:577 UTC: 37width, 16height, Cellar
+2021/3/15 10:16:29:596 UTC: Cellar is the caption for which we check width
+2021/3/15 10:16:29:613 UTC: 140width, 16height, Fume Exhaust System
+2021/3/15 10:16:29:654 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/15 10:16:29:674 UTC: 43width, 16height, Details
+2021/3/15 10:16:29:687 UTC: 140 is x width for childrentier2
+2021/3/15 10:16:29:711 UTC: 180 is maxwidthtier2
+2021/3/15 10:16:30:887 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 10:16:31:964 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/15 10:16:38:680 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/3/15 10:16:38:701 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/3/15 10:16:39:745 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/15 10:16:40:807 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:24:18:798 UTC: Starting menu navigation
+2021/3/16 7:24:18:813 UTC: 118 menu items
+2021/3/16 7:24:18:878 UTC: 51width, 16height, General
+2021/3/16 7:24:18:882 UTC: 43width, 16height, Alarms
+2021/3/16 7:24:18:885 UTC: Alarms is the caption for which we check width
+2021/3/16 7:24:18:888 UTC: 40width, 16height, Safety
+2021/3/16 7:24:18:891 UTC: 86width, 16height, Switch On/Off
+2021/3/16 7:24:18:894 UTC: Switch On/Off is the caption for which we check width
+2021/3/16 7:24:18:897 UTC: 95width, 16height, Media Systems
+2021/3/16 7:24:18:900 UTC: Media Systems is the caption for which we check width
+2021/3/16 7:24:18:904 UTC: 40width, 16height, Drives
+2021/3/16 7:24:18:907 UTC: 95 is x width for childrentier2
+2021/3/16 7:24:19:971 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:24:24:27 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/16 7:24:24:30 UTC: '@sms_w_Alarmlist'
+2021/3/16 7:24:24:33 UTC: 33width, 16height, Floor
+2021/3/16 7:24:24:36 UTC: Floor is the caption for which we check width
+2021/3/16 7:24:24:40 UTC: 37width, 16height, Cellar
+2021/3/16 7:24:24:43 UTC: Cellar is the caption for which we check width
+2021/3/16 7:24:24:45 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:24:24:49 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:24:24:51 UTC: 43width, 16height, Details
+2021/3/16 7:24:24:55 UTC: 140 is x width for childrentier2
+2021/3/16 7:24:25:65 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:24:25:69 UTC: 33width, 16height, Floor
+2021/3/16 7:24:25:74 UTC: Floor is the caption for which we check width
+2021/3/16 7:24:25:80 UTC: 37width, 16height, Cellar
+2021/3/16 7:24:25:86 UTC: Cellar is the caption for which we check width
+2021/3/16 7:24:25:91 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:24:25:95 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:24:25:100 UTC: 43width, 16height, Details
+2021/3/16 7:24:25:106 UTC: 140 is x width for childrentier2
+2021/3/16 7:24:25:110 UTC: 180 is maxwidthtier2
+2021/3/16 7:24:26:135 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:24:27:147 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:24:31:166 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/3/16 7:24:31:169 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/3/16 7:24:32:209 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:24:33:234 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:24:37:262 UTC: For Cellar expand menu, clicked at 172 x, 93 y
+2021/3/16 7:24:37:266 UTC: 'TCM#06-02-00_n_#SAF-Overview-Cellar'
+2021/3/16 7:24:38:436 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:24:39:499 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:25:1:194 UTC: Starting menu navigation
+2021/3/16 7:25:1:206 UTC: 118 menu items
+2021/3/16 7:25:49:639 UTC: 51width, 16height, General
+2021/3/16 7:25:49:643 UTC: 43width, 16height, Alarms
+2021/3/16 7:25:49:647 UTC: Alarms is the caption for which we check width
+2021/3/16 7:25:49:649 UTC: 40width, 16height, Safety
+2021/3/16 7:25:49:656 UTC: 86width, 16height, Switch On/Off
+2021/3/16 7:25:49:661 UTC: Switch On/Off is the caption for which we check width
+2021/3/16 7:25:49:665 UTC: 95width, 16height, Media Systems
+2021/3/16 7:25:49:668 UTC: Media Systems is the caption for which we check width
+2021/3/16 7:25:49:672 UTC: 40width, 16height, Drives
+2021/3/16 7:25:49:676 UTC: 95 is x width for childrentier2
+2021/3/16 7:25:50:696 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:25:54:720 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/16 7:25:54:723 UTC: '@sms_w_Alarmlist'
+2021/3/16 7:26:10:279 UTC: 33width, 16height, Floor
+2021/3/16 7:26:10:283 UTC: Floor is the caption for which we check width
+2021/3/16 7:26:10:286 UTC: 37width, 16height, Cellar
+2021/3/16 7:26:10:290 UTC: Cellar is the caption for which we check width
+2021/3/16 7:26:10:293 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:26:10:296 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:26:10:301 UTC: 43width, 16height, Details
+2021/3/16 7:26:10:304 UTC: 140 is x width for childrentier2
+2021/3/16 7:26:11:332 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:26:11:341 UTC: 33width, 16height, Floor
+2021/3/16 7:26:11:344 UTC: Floor is the caption for which we check width
+2021/3/16 7:26:11:349 UTC: 37width, 16height, Cellar
+2021/3/16 7:26:11:352 UTC: Cellar is the caption for which we check width
+2021/3/16 7:26:11:356 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:26:11:360 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:26:11:363 UTC: 43width, 16height, Details
+2021/3/16 7:26:11:366 UTC: 140 is x width for childrentier2
+2021/3/16 7:26:11:372 UTC: 180 is maxwidthtier2
+2021/3/16 7:26:12:391 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:26:13:422 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:26:17:449 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/3/16 7:26:17:452 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/3/16 7:28:46:134 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:28:47:145 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:28:51:179 UTC: For Cellar expand menu, clicked at 172 x, 93 y
+2021/3/16 7:28:51:185 UTC: 'TCM#06-02-00_n_#SAF-Overview-Cellar'
+2021/3/16 7:29:35:77 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:29:36:97 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:29:40:114 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 118 y
+2021/3/16 7:29:40:120 UTC: 'TCM#06-03-00_n_#SAF-Overview-FES'
+2021/3/16 7:30:27:758 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:30:28:770 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:30:32:788 UTC: For Details expand menu, clicked at 172 x, 143 y
+2021/3/16 7:30:32:792 UTC: 'SAF2_n_SafetyAreaOverview'
+2021/3/16 7:31:39:177 UTC: 38width, 16height, Media
+2021/3/16 7:31:39:183 UTC: Media is the caption for which we check width
+2021/3/16 7:31:39:187 UTC: 40width, 16height, Drives
+2021/3/16 7:31:39:190 UTC: Drives is the caption for which we check width
+2021/3/16 7:31:39:194 UTC: 40 is x width for childrentier2
+2021/3/16 7:31:40:233 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:31:40:236 UTC: 38width, 16height, Media
+2021/3/16 7:31:40:239 UTC: Media is the caption for which we check width
+2021/3/16 7:31:40:244 UTC: 40width, 16height, Drives
+2021/3/16 7:31:40:248 UTC: Drives is the caption for which we check width
+2021/3/16 7:31:40:250 UTC: 40 is x width for childrentier2
+2021/3/16 7:31:40:254 UTC: 80 is maxwidthtier2
+2021/3/16 7:31:41:264 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:31:42:298 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:31:46:387 UTC: For Media expand menu, clicked at 172 x, 93 y
+2021/3/16 7:31:46:392 UTC: 'TCM#02-01-00_n_#GEN-Media'
+2021/3/16 7:32:37:968 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:32:38:990 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:32:43:13 UTC: For Drives expand menu, clicked at 172 x, 118 y
+2021/3/16 7:32:43:17 UTC: 'TCM#02-02-00_n_#GEN-Drives'
+2021/3/16 7:35:6:658 UTC: Starting menu navigation
+2021/3/16 7:35:6:668 UTC: 118 menu items
+2021/3/16 7:36:3:67 UTC: 51width, 16height, General
+2021/3/16 7:36:3:71 UTC: 43width, 16height, Alarms
+2021/3/16 7:36:3:76 UTC: Alarms is the caption for which we check width
+2021/3/16 7:36:3:79 UTC: 40width, 16height, Safety
+2021/3/16 7:36:3:82 UTC: 86width, 16height, Switch On/Off
+2021/3/16 7:36:3:85 UTC: Switch On/Off is the caption for which we check width
+2021/3/16 7:36:3:89 UTC: 95width, 16height, Media Systems
+2021/3/16 7:36:3:94 UTC: Media Systems is the caption for which we check width
+2021/3/16 7:36:3:100 UTC: 40width, 16height, Drives
+2021/3/16 7:36:3:104 UTC: 95 is x width for childrentier2
+2021/3/16 7:36:4:138 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:36:8:171 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/3/16 7:36:8:175 UTC: '@sms_w_Alarmlist'
+2021/3/16 7:36:22:591 UTC: 33width, 16height, Floor
+2021/3/16 7:36:22:593 UTC: Floor is the caption for which we check width
+2021/3/16 7:36:22:597 UTC: 37width, 16height, Cellar
+2021/3/16 7:36:22:599 UTC: Cellar is the caption for which we check width
+2021/3/16 7:36:22:602 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:36:22:605 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:36:22:609 UTC: 43width, 16height, Details
+2021/3/16 7:36:22:613 UTC: 140 is x width for childrentier2
+2021/3/16 7:36:23:628 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:36:23:633 UTC: 33width, 16height, Floor
+2021/3/16 7:36:23:637 UTC: Floor is the caption for which we check width
+2021/3/16 7:36:23:640 UTC: 37width, 16height, Cellar
+2021/3/16 7:36:23:643 UTC: Cellar is the caption for which we check width
+2021/3/16 7:36:23:647 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:36:23:651 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:36:23:659 UTC: 43width, 16height, Details
+2021/3/16 7:36:23:666 UTC: 140 is x width for childrentier2
+2021/3/16 7:36:23:670 UTC: 180 is maxwidthtier2
+2021/3/16 7:36:24:694 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:36:25:705 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:36:29:720 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/3/16 7:36:29:724 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/3/16 7:39:1:450 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:39:2:462 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:39:6:479 UTC: For Cellar expand menu, clicked at 172 x, 93 y
+2021/3/16 7:39:6:484 UTC: 'TCM#06-02-00_n_#SAF-Overview-Cellar'
+2021/3/16 7:39:49:607 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:39:50:615 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:39:54:635 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 118 y
+2021/3/16 7:39:54:638 UTC: 'TCM#06-03-00_n_#SAF-Overview-FES'
+2021/3/16 7:40:42:635 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:40:43:649 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/3/16 7:40:47:668 UTC: For Details expand menu, clicked at 172 x, 143 y
+2021/3/16 7:40:47:670 UTC: 'SAF2_n_SafetyAreaOverview'
+2021/3/16 7:41:54:509 UTC: 38width, 16height, Media
+2021/3/16 7:41:54:514 UTC: Media is the caption for which we check width
+2021/3/16 7:41:54:517 UTC: 40width, 16height, Drives
+2021/3/16 7:41:54:521 UTC: Drives is the caption for which we check width
+2021/3/16 7:41:54:528 UTC: 40 is x width for childrentier2
+2021/3/16 7:41:55:549 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:41:55:552 UTC: 38width, 16height, Media
+2021/3/16 7:41:55:557 UTC: Media is the caption for which we check width
+2021/3/16 7:41:55:560 UTC: 40width, 16height, Drives
+2021/3/16 7:41:55:563 UTC: Drives is the caption for which we check width
+2021/3/16 7:41:55:565 UTC: 40 is x width for childrentier2
+2021/3/16 7:41:55:568 UTC: 80 is maxwidthtier2
+2021/3/16 7:41:56:589 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:41:57:605 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:42:1:641 UTC: For Media expand menu, clicked at 172 x, 93 y
+2021/3/16 7:42:1:677 UTC: 'TCM#02-01-00_n_#GEN-Media'
+2021/3/16 7:42:43:697 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:42:44:720 UTC: For Switch On/Off expand menu, clicked at 37 x, 93 y
+2021/3/16 7:42:48:739 UTC: For Drives expand menu, clicked at 172 x, 118 y
+2021/3/16 7:42:48:743 UTC: 'TCM#02-02-00_n_#GEN-Drives'
+2021/3/16 7:44:38:971 UTC: 115width, 16height, Hydraulic Systems
+2021/3/16 7:44:38:976 UTC: Hydraulic Systems is the caption for which we check width
+2021/3/16 7:44:38:982 UTC: 127width, 16height, Lubrication Systems
+2021/3/16 7:44:38:986 UTC: Lubrication Systems is the caption for which we check width
+2021/3/16 7:44:39:2 UTC: 114width, 16height, Emulsion Systems
+2021/3/16 7:44:39:7 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:44:39:11 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:44:39:14 UTC: 106width, 16height, Cellar Ventilation
+2021/3/16 7:44:39:18 UTC: 81width, 16height, Maintenance
+2021/3/16 7:44:39:20 UTC: 140 is x width for childrentier2
+2021/3/16 7:44:40:41 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:44:40:44 UTC: 115width, 16height, Hydraulic Systems
+2021/3/16 7:44:40:46 UTC: Hydraulic Systems is the caption for which we check width
+2021/3/16 7:44:40:49 UTC: 127width, 16height, Lubrication Systems
+2021/3/16 7:44:40:52 UTC: Lubrication Systems is the caption for which we check width
+2021/3/16 7:44:40:55 UTC: 114width, 16height, Emulsion Systems
+2021/3/16 7:44:40:59 UTC: 140width, 16height, Fume Exhaust System
+2021/3/16 7:44:40:63 UTC: Fume Exhaust System is the caption for which we check width
+2021/3/16 7:44:40:65 UTC: 106width, 16height, Cellar Ventilation
+2021/3/16 7:44:40:69 UTC: 81width, 16height, Maintenance
+2021/3/16 7:44:40:71 UTC: 140 is x width for childrentier2
+2021/3/16 7:44:40:75 UTC: 180 is maxwidthtier2
+2021/3/16 7:44:41:85 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/16 7:44:41:87 UTC: High Pressure Hydraulic's click position in pixels would be 95
+2021/3/16 7:44:41:91 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/16 7:44:41:95 UTC: High Pressure Hydraulic is the caption for which we check width
+2021/3/16 7:44:41:98 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/16 7:44:41:101 UTC: 151 is x width for childrentier2
+2021/3/16 7:44:42:116 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:44:43:131 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:44:44:144 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 118 y
+2021/3/16 7:44:48:203 UTC: For High Pressure Hydraulic expand menu, clicked at 403 x, 118 y
+2021/3/16 7:44:48:206 UTC: 'TCM#61-01-00_w_#MED-HighPressureHydraulic'
+2021/3/16 7:45:5:170 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/16 7:45:5:173 UTC: Low Pressure Hydraulic's click position in pixels would be 94
+2021/3/16 7:45:5:176 UTC: 151width, 16height, High Pressure Hydraulic
+2021/3/16 7:45:5:179 UTC: High Pressure Hydraulic is the caption for which we check width
+2021/3/16 7:45:5:183 UTC: 148width, 16height, Low Pressure Hydraulic
+2021/3/16 7:45:5:187 UTC: 151 is x width for childrentier2
+2021/3/16 7:45:6:208 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:45:7:245 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:45:8:258 UTC: For Hydraulic Systems expand menu, clicked at 172 x, 118 y
+2021/3/16 7:45:12:295 UTC: For Low Pressure Hydraulic expand menu, clicked at 403 x, 143 y
+2021/3/16 7:45:12:298 UTC: 'TCM#62-01-00_w_#MED-LowPressureHydraulic'
+2021/3/16 7:45:30:864 UTC: 91width, 16height, Oil Lubrication
+2021/3/16 7:45:30:867 UTC: Oil Lubrication's click position in pixels would be 65
+2021/3/16 7:45:30:872 UTC: 91width, 16height, Oil Lubrication
+2021/3/16 7:45:30:876 UTC: Oil Lubrication is the caption for which we check width
+2021/3/16 7:45:30:879 UTC: 111width, 16height, Oil Air Lubrication
+2021/3/16 7:45:30:882 UTC: Oil Air Lubrication is the caption for which we check width
+2021/3/16 7:45:30:886 UTC: 111 is x width for childrentier2
+2021/3/16 7:45:31:896 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:45:32:909 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:45:33:926 UTC: For Lubrication Systems expand menu, clicked at 172 x, 143 y
+2021/3/16 7:45:38:8 UTC: For Oil Lubrication expand menu, clicked at 363 x, 143 y
+2021/3/16 7:45:38:11 UTC: 'TCM#63-01-00_w_#MED-OilLubrication'
+2021/3/16 7:45:54:602 UTC: 111width, 16height, Oil Air Lubrication
+2021/3/16 7:45:54:605 UTC: Oil Air Lubrication's click position in pixels would be 75
+2021/3/16 7:45:54:609 UTC: 91width, 16height, Oil Lubrication
+2021/3/16 7:45:54:612 UTC: Oil Lubrication is the caption for which we check width
+2021/3/16 7:45:54:615 UTC: 111width, 16height, Oil Air Lubrication
+2021/3/16 7:45:54:619 UTC: Oil Air Lubrication is the caption for which we check width
+2021/3/16 7:45:54:622 UTC: 111 is x width for childrentier2
+2021/3/16 7:45:55:636 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:45:56:649 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:45:57:661 UTC: For Lubrication Systems expand menu, clicked at 172 x, 143 y
+2021/3/16 7:46:1:677 UTC: For Oil Air Lubrication expand menu, clicked at 363 x, 168 y
+2021/3/16 7:46:1:681 UTC: 'TCM#63-02-00_w_#MED-OilAirLubrication'
+2021/3/16 7:46:56:78 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:46:56:82 UTC: Emulsion Preparation's click position in pixels would be 87
+2021/3/16 7:46:56:84 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:46:56:87 UTC: Emulsion Preparation is the caption for which we check width
+2021/3/16 7:46:56:92 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:46:56:95 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:46:56:98 UTC: Water and Oil Systems is the caption for which we check width
+2021/3/16 7:46:56:101 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:46:56:105 UTC: Collecting Sludge Tank is the caption for which we check width
+2021/3/16 7:46:56:108 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:46:56:110 UTC: 144 is x width for childrentier2
+2021/3/16 7:46:57:132 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:46:58:150 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:46:59:165 UTC: For Emulsion Systems expand menu, clicked at 172 x, 168 y
+2021/3/16 7:47:3:190 UTC: For Emulsion Preparation expand menu, clicked at 396 x, 168 y
+2021/3/16 7:47:3:194 UTC: 'TCM#64-01-00_w_#MED-EmulsionPreparation'
+2021/3/16 7:47:47:428 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:47:47:431 UTC: Filter Circuit's click position in pixels would be 58
+2021/3/16 7:47:47:436 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:47:47:440 UTC: Emulsion Preparation is the caption for which we check width
+2021/3/16 7:47:47:442 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:47:47:447 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:47:47:451 UTC: Water and Oil Systems is the caption for which we check width
+2021/3/16 7:47:47:454 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:47:47:457 UTC: Collecting Sludge Tank is the caption for which we check width
+2021/3/16 7:47:47:461 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:47:47:464 UTC: 144 is x width for childrentier2
+2021/3/16 7:47:48:480 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:47:49:491 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:47:50:505 UTC: For Emulsion Systems expand menu, clicked at 172 x, 168 y
+2021/3/16 7:47:54:564 UTC: For Filter Circuit expand menu, clicked at 396 x, 193 y
+2021/3/16 7:47:54:580 UTC: 'TCM#64-02-00_w_#MED-FilterCircuit'
+2021/3/16 7:50:5:452 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:50:5:461 UTC: Water and Oil Systems's click position in pixels would be 91
+2021/3/16 7:50:5:473 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:50:5:506 UTC: Emulsion Preparation is the caption for which we check width
+2021/3/16 7:50:5:518 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:50:5:544 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:50:5:548 UTC: Water and Oil Systems is the caption for which we check width
+2021/3/16 7:50:5:560 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:50:5:565 UTC: Collecting Sludge Tank is the caption for which we check width
+2021/3/16 7:50:5:571 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:50:5:578 UTC: 144 is x width for childrentier2
+2021/3/16 7:50:6:591 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:50:7:612 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:50:8:623 UTC: For Emulsion Systems expand menu, clicked at 172 x, 168 y
+2021/3/16 7:50:12:709 UTC: For Water and Oil Systems expand menu, clicked at 396 x, 218 y
+2021/3/16 7:50:12:716 UTC: 'TCM#64-04-00_w_#MED-WaterandOilSystems'
+2021/3/16 7:50:30:80 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:50:30:84 UTC: Collecting Sludge Tank's click position in pixels would be 92
+2021/3/16 7:50:30:88 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:50:30:93 UTC: Emulsion Preparation is the caption for which we check width
+2021/3/16 7:50:30:97 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:50:30:102 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:50:30:106 UTC: Water and Oil Systems is the caption for which we check width
+2021/3/16 7:50:30:110 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:50:30:114 UTC: Collecting Sludge Tank is the caption for which we check width
+2021/3/16 7:50:30:117 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:50:30:123 UTC: 144 is x width for childrentier2
+2021/3/16 7:50:31:135 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:50:32:160 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:50:33:170 UTC: For Emulsion Systems expand menu, clicked at 172 x, 168 y
+2021/3/16 7:50:37:202 UTC: For Collecting Sludge Tank expand menu, clicked at 396 x, 243 y
+2021/3/16 7:50:37:209 UTC: 'TCM#64-05-00_w_#MED-CollectingTank'
+2021/3/16 7:50:51:279 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:50:51:287 UTC: Cooling Spray's click position in pixels would be 64
+2021/3/16 7:50:51:293 UTC: 135width, 16height, Emulsion Preparation
+2021/3/16 7:50:51:301 UTC: Emulsion Preparation is the caption for which we check width
+2021/3/16 7:50:51:308 UTC: 76width, 16height, Filter Circuit
+2021/3/16 7:50:51:312 UTC: 143width, 16height, Water and Oil Systems
+2021/3/16 7:50:51:316 UTC: Water and Oil Systems is the caption for which we check width
+2021/3/16 7:50:51:320 UTC: 144width, 16height, Collecting Sludge Tank
+2021/3/16 7:50:51:326 UTC: Collecting Sludge Tank is the caption for which we check width
+2021/3/16 7:50:51:332 UTC: 89width, 16height, Cooling Spray
+2021/3/16 7:50:51:349 UTC: 144 is x width for childrentier2
+2021/3/16 7:50:52:372 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:50:53:382 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:50:54:406 UTC: For Emulsion Systems expand menu, clicked at 172 x, 168 y
+2021/3/16 7:50:58:443 UTC: For Cooling Spray expand menu, clicked at 396 x, 268 y
+2021/3/16 7:50:58:447 UTC: 'TCM#64-03-00_w_#MED-CoolingSpray'
+2021/3/16 7:52:40:112 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:52:41:127 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:52:45:159 UTC: For Fume Exhaust System expand menu, clicked at 172 x, 193 y
+2021/3/16 7:52:45:163 UTC: 'TCM#70-01-00_w_#MED-FumeExhaust'
+2021/3/16 7:53:29:855 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:53:30:877 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:53:34:892 UTC: For Cellar Ventilation expand menu, clicked at 172 x, 218 y
+2021/3/16 7:53:34:897 UTC: 'TCM#68-01-00_w_#MED-CellarVentilation'
+2021/3/16 7:54:7:160 UTC: 93width, 16height, Media Settings
+2021/3/16 7:54:7:163 UTC: Media Settings's click position in pixels would be 66
+2021/3/16 7:54:7:167 UTC: 93width, 16height, Media Settings
+2021/3/16 7:54:7:172 UTC: Media Settings is the caption for which we check width
+2021/3/16 7:54:7:177 UTC: 93 is x width for childrentier2
+2021/3/16 7:54:8:205 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:54:9:225 UTC: For Media Systems expand menu, clicked at 37 x, 118 y
+2021/3/16 7:54:10:245 UTC: For Maintenance expand menu, clicked at 172 x, 243 y
+2021/3/16 7:54:14:284 UTC: For Media Settings expand menu, clicked at 345 x, 243 y
+2021/3/16 7:54:14:288 UTC: 'TCM#60-01-00_w_#MED-Parameters'
+2021/3/16 7:58:47:695 UTC: 120width, 16height, Power Supply Main
+2021/3/16 7:58:47:703 UTC: Power Supply Main is the caption for which we check width
+2021/3/16 7:58:47:709 UTC: 141width, 16height, Power Supply Auxiliary
+2021/3/16 7:58:47:714 UTC: Power Supply Auxiliary is the caption for which we check width
+2021/3/16 7:58:47:720 UTC: 74width, 16height, Main Drives
+2021/3/16 7:58:47:726 UTC: 96width, 16height, Auxiliary Drives
+2021/3/16 7:58:47:736 UTC: 141 is x width for childrentier2
+2021/3/16 7:58:48:756 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 7:58:48:760 UTC: 120width, 16height, Power Supply Main
+2021/3/16 7:58:48:762 UTC: Power Supply Main is the caption for which we check width
+2021/3/16 7:58:48:766 UTC: 141width, 16height, Power Supply Auxiliary
+2021/3/16 7:58:48:769 UTC: Power Supply Auxiliary is the caption for which we check width
+2021/3/16 7:58:48:774 UTC: 74width, 16height, Main Drives
+2021/3/16 7:58:48:780 UTC: 96width, 16height, Auxiliary Drives
+2021/3/16 7:58:48:784 UTC: 141 is x width for childrentier2
+2021/3/16 7:58:48:789 UTC: 181 is maxwidthtier2
+2021/3/16 7:58:49:801 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 7:58:50:815 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 7:58:54:843 UTC: For Power Supply Main expand menu, clicked at 172 x, 143 y
+2021/3/16 7:58:54:847 UTC: 'TCM#51-01-00_w_#DRV-PowerSupplyMain'
+2021/3/16 8:0:0:428 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:0:1:440 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:0:5:470 UTC: For Power Supply Auxiliary expand menu, clicked at 172 x, 168 y
+2021/3/16 8:0:5:476 UTC: 'TCM#53-01-00_w_#DRV-PowerSupplyAuxiliary'
+2021/3/16 8:4:53:80 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:4:53:85 UTC: Pay Off Reel's click position in pixels would be 60
+2021/3/16 8:4:53:89 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:4:53:93 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:4:53:97 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:4:53:100 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:4:53:107 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:4:53:113 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:4:53:123 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:4:53:127 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:4:53:130 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:4:53:134 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:4:53:142 UTC: 96 is x width for childrentier2
+2021/3/16 8:4:54:162 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:4:55:186 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:4:56:213 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:5:0:259 UTC: For Pay Off Reel expand menu, clicked at 348 x, 193 y
+2021/3/16 8:5:0:266 UTC: 'TCM#52-00-00_n_#DRV-DrivePayOffReel'
+2021/3/16 8:6:23:846 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:6:23:850 UTC: Drive Stand C1's click position in pixels would be 68
+2021/3/16 8:6:23:860 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:6:23:865 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:6:23:875 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:6:23:880 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:6:23:884 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:6:23:893 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:6:23:897 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:6:23:910 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:6:23:919 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:6:23:923 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:6:23:928 UTC: 96 is x width for childrentier2
+2021/3/16 8:6:24:954 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:6:25:971 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:6:26:995 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:6:31:13 UTC: For Drive Stand C1 expand menu, clicked at 348 x, 218 y
+2021/3/16 8:6:31:17 UTC: 'TCM#52-01-00_n_#DRV-DriveStandC1'
+2021/3/16 8:7:32:642 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:7:32:645 UTC: Drive Stand C2's click position in pixels would be 68
+2021/3/16 8:7:32:650 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:7:32:659 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:7:32:667 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:7:32:672 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:7:32:676 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:7:32:680 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:7:32:684 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:7:32:689 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:7:32:694 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:7:32:700 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:7:32:704 UTC: 96 is x width for childrentier2
+2021/3/16 8:7:33:717 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:7:34:731 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:7:35:751 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:7:39:787 UTC: For Drive Stand C2 expand menu, clicked at 348 x, 243 y
+2021/3/16 8:7:39:791 UTC: 'TCM#52-02-00_n_#DRV-DriveStandC2'
+2021/3/16 8:8:38:522 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:8:38:539 UTC: Drive Stand C3's click position in pixels would be 68
+2021/3/16 8:8:38:545 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:8:38:549 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:8:38:554 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:8:38:558 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:8:38:564 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:8:38:568 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:8:38:572 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:8:38:578 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:8:38:582 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:8:38:587 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:8:38:592 UTC: 96 is x width for childrentier2
+2021/3/16 8:8:39:602 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:8:40:618 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:8:41:645 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:8:45:678 UTC: For Drive Stand C3 expand menu, clicked at 348 x, 268 y
+2021/3/16 8:8:45:684 UTC: 'TCM#52-03-00_n_#DRV-DriveStandC3'
+2021/3/16 8:9:42:935 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:9:42:940 UTC: Drive Stand C4's click position in pixels would be 68
+2021/3/16 8:9:42:943 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:9:42:949 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:9:42:952 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:9:42:956 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:9:42:960 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:9:42:964 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:9:42:968 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:9:42:973 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:9:42:977 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:9:42:981 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:9:42:984 UTC: 96 is x width for childrentier2
+2021/3/16 8:9:44:14 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:9:45:37 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:9:46:53 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:9:50:64 UTC: For Drive Stand C4 expand menu, clicked at 348 x, 293 y
+2021/3/16 8:9:50:67 UTC: 'TCM#52-04-00_n_#DRV-DriveStandC4'
+2021/3/16 8:10:44:844 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:10:44:849 UTC: Drive Stand C5's click position in pixels would be 68
+2021/3/16 8:10:44:854 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:10:44:857 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:10:44:862 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:10:44:865 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:10:44:868 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:10:44:873 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:10:44:878 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:10:44:882 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:10:44:886 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:10:44:890 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:10:44:895 UTC: 96 is x width for childrentier2
+2021/3/16 8:10:45:916 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:10:46:924 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:10:47:940 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:10:51:956 UTC: For Drive Stand C5 expand menu, clicked at 348 x, 318 y
+2021/3/16 8:10:51:962 UTC: 'TCM#52-05-00_n_#DRV-DriveStandC5'
+2021/3/16 8:11:49:89 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:11:49:94 UTC: Tension Reel 1's click position in pixels would be 67
+2021/3/16 8:11:49:98 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:11:49:101 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:11:49:107 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:11:49:110 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:11:49:115 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:11:49:121 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:11:49:125 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:11:49:130 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:11:49:134 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:11:49:166 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:11:49:171 UTC: 96 is x width for childrentier2
+2021/3/16 8:11:50:187 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:11:51:217 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:11:52:248 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:11:56:262 UTC: For Tension Reel 1 expand menu, clicked at 348 x, 343 y
+2021/3/16 8:11:56:267 UTC: 'TCM#52-06-00_n_#DRV-DriveTensionReel1'
+2021/3/16 8:12:53:139 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:12:53:145 UTC: Tension Reel 2's click position in pixels would be 67
+2021/3/16 8:12:53:164 UTC: 80width, 16height, Pay Off Reel
+2021/3/16 8:12:53:172 UTC: Pay Off Reel is the caption for which we check width
+2021/3/16 8:12:53:176 UTC: 96width, 16height, Drive Stand C1
+2021/3/16 8:12:53:182 UTC: Drive Stand C1 is the caption for which we check width
+2021/3/16 8:12:53:187 UTC: 96width, 16height, Drive Stand C2
+2021/3/16 8:12:53:191 UTC: 96width, 16height, Drive Stand C3
+2021/3/16 8:12:53:197 UTC: 96width, 16height, Drive Stand C4
+2021/3/16 8:12:53:206 UTC: 96width, 16height, Drive Stand C5
+2021/3/16 8:12:53:211 UTC: 94width, 16height, Tension Reel 1
+2021/3/16 8:12:53:215 UTC: 94width, 16height, Tension Reel 2
+2021/3/16 8:12:53:221 UTC: 96 is x width for childrentier2
+2021/3/16 8:12:54:244 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:12:55:263 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:12:56:281 UTC: For Main Drives expand menu, clicked at 172 x, 193 y
+2021/3/16 8:13:0:299 UTC: For Tension Reel 2 expand menu, clicked at 348 x, 368 y
+2021/3/16 8:13:0:303 UTC: 'TCM#52-07-00_n_#DRV-DriveTensionReel2'
+2021/3/16 8:13:59:169 UTC: 71width, 16height, Bridle Rolls
+2021/3/16 8:13:59:173 UTC: Bridle Rolls's click position in pixels would be 55
+2021/3/16 8:13:59:176 UTC: 71width, 16height, Bridle Rolls
+2021/3/16 8:13:59:181 UTC: Bridle Rolls is the caption for which we check width
+2021/3/16 8:13:59:186 UTC: 85width, 16height, Deflector Roll
+2021/3/16 8:13:59:192 UTC: Deflector Roll is the caption for which we check width
+2021/3/16 8:13:59:195 UTC: 85 is x width for childrentier2
+2021/3/16 8:14:0:217 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:14:1:246 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:14:2:267 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 218 y
+2021/3/16 8:14:6:293 UTC: For Bridle Rolls expand menu, clicked at 337 x, 218 y
+2021/3/16 8:14:6:297 UTC: 'TCM#55-01-00_n_#DRV-DrivesBridleRolls'
+2021/3/16 8:15:21:175 UTC: 85width, 16height, Deflector Roll
+2021/3/16 8:15:21:179 UTC: Deflector Roll's click position in pixels would be 62
+2021/3/16 8:15:21:182 UTC: 71width, 16height, Bridle Rolls
+2021/3/16 8:15:21:188 UTC: Bridle Rolls is the caption for which we check width
+2021/3/16 8:15:21:192 UTC: 85width, 16height, Deflector Roll
+2021/3/16 8:15:21:196 UTC: Deflector Roll is the caption for which we check width
+2021/3/16 8:15:21:200 UTC: 85 is x width for childrentier2
+2021/3/16 8:15:22:209 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/3/16 8:15:23:240 UTC: For Drives expand menu, clicked at 37 x, 143 y
+2021/3/16 8:15:24:265 UTC: For Auxiliary Drives expand menu, clicked at 172 x, 218 y
+2021/3/16 8:15:28:298 UTC: For Deflector Roll expand menu, clicked at 337 x, 243 y
+2021/3/16 8:15:28:303 UTC: 'TCM#55-02-00_n_#DRV-DrivesDeflectorRolls'
+2021/3/16 8:16:11:251 UTC: 66width, 16height, Entry Area
+2021/3/16 8:16:11:255 UTC: 197width, 16height, Overview - Coil Transport Entry
+2021/3/16 8:16:11:258 UTC: Overview - Coil Transport Entry is the caption for which we check width
+2021/3/16 8:16:11:263 UTC: 181width, 16height, Overview - Coil Prep. Station
+2021/3/16 8:16:11:268 UTC: 81width, 16height, Maintenance
+2021/3/16 8:16:11:272 UTC: 197 is x width for childrentier2
+2021/3/16 8:16:12:285 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/3/16 8:16:16:339 UTC: For Overview - Coil Transport Entry expand menu, clicked at 120 x, 43 y
+2021/3/16 8:16:16:348 UTC: 'TCM#03-01-00_n_#TCM-OverviewCoilTransportEntry'
+2021/3/16 8:16:37:972 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
+2021/3/16 8:16:41:989 UTC: For Overview - Coil Prep. Station expand menu, clicked at 120 x, 68 y
+2021/3/16 8:16:41:997 UTC: 'TCM#03-02-00_n_#TCM-OverviewCPS'

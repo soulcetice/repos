@@ -685,8 +685,17 @@ namespace WinCC_Timer
             //#endregion
 
             //#region configStudio
-            //var tag = new CCConfigStudio.Application();
-            //tag.Editors[1].FileOpen("");
+            var ed = new CCConfigStudio.Application();
+            var editors = ed.Editors.Cast<CCConfigStudio.Editor>().ToList();
+            //tm[1].FileOpen("");
+
+            CCConfigStudio.Editor tm = editors.FirstOrDefault(c => c.Name == "Tag Management");
+
+            //tm.Select().
+
+            //tm.Select(tree)
+
+            Console.WriteLine("");
             //#endregion
         }
 
@@ -1425,22 +1434,22 @@ namespace WinCC_Timer
                 FindOpenCloseFlyouts(handle, extractedData.Where(c => c.ObjectName.Contains("FlyoutButton") && !c.CallsPdl.Contains("_e_")).ToList(), false);
             }
 
-            if (embeddedsBox.Checked)
-            {
-                List<ObjectData> extractedData2 = new List<ObjectData>();
-                if (extractedData.Count == 0)
-                {
-                    GetRuntimeInfo("HMIButton", out extractedData);
-                    GetRuntimeInfo("HMIGroup", out extractedData2);
-                }
+            //if (embeddedsBox.Checked)
+            //{
+            //    List<ObjectData> extractedData2 = new List<ObjectData>();
+            //    if (extractedData.Count == 0)
+            //    {
+            //        GetRuntimeInfo("HMIButton", out extractedData);
+            //        GetRuntimeInfo("HMIGroup", out extractedData2);
+            //    }
 
-                extractedData = extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList();
-                extractedData2 = extractedData2.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+            //    extractedData = extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+            //    extractedData2 = extractedData2.Where(c => c.CallsPdl.Contains("_e_")).ToList();
 
-                extractedData = extractedData.Concat(extractedData2).ToList();
+            //    extractedData = extractedData.Concat(extractedData2).ToList();
 
-                FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
-            }
+            //    FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+            //}
         }
         private List<string> navigatedPages = new List<string>();
 
@@ -1677,9 +1686,9 @@ namespace WinCC_Timer
                             }
                         }
 
-                        pdl = pdl != null ? pdl.Replace(".pdl", "") : "";
+                        pdl = pdl != "" ? pdl.Replace(".pdl", "") : "";
 
-                        dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != null ? pdl : "";
+                        dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != "" ? pdl : "";
 
                         LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
                     }
@@ -1770,6 +1779,21 @@ namespace WinCC_Timer
                     ScreenTop = recTop,
                     Enabled = s.Enabled
                 });
+            }
+
+            var dc1 = windowData.FirstOrDefault(c => c.Name == "@DataClass1");
+            var dc2 = windowData.FirstOrDefault(c => c.Name == "@DataClass2");
+            var dc3 = windowData.FirstOrDefault(c => c.Name == "@DataClass3");
+
+            if (dc2.Width == 1920)
+            {
+                dc2.Left -= dc1.Width;
+                dc2.ScreenLeft -= dc1.Width;
+                if (dc3 != null)
+                {
+                    dc3.Left -= dc1.Width;
+                    dc3.ScreenLeft -= dc1.Width;
+                }
             }
 
             return windowData;
