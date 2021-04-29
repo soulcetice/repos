@@ -756,3 +756,158 @@
 2021/3/16 8:16:37:972 UTC: For Entry Area expand menu, clicked at 120 x, 15 y
 2021/3/16 8:16:41:989 UTC: For Overview - Coil Prep. Station expand menu, clicked at 120 x, 68 y
 2021/3/16 8:16:41:997 UTC: 'TCM#03-02-00_n_#TCM-OverviewCPS'
+2021/4/20 8:51:21:31 UTC: Starting menu navigation
+2021/4/20 8:51:21:51 UTC: 118 menu items
+2021/4/20 8:53:23:40 UTC: Starting menu navigation
+2021/4/20 8:53:23:55 UTC: 118 menu items
+2021/4/20 8:54:35:560 UTC: 51width, 16height, General
+2021/4/20 8:54:35:568 UTC: 43width, 16height, Alarms
+2021/4/20 8:54:35:572 UTC: Alarms is the caption for which we check width
+2021/4/20 8:54:35:577 UTC: 40width, 16height, Safety
+2021/4/20 8:54:35:580 UTC: 86width, 16height, Switch On/Off
+2021/4/20 8:54:35:585 UTC: Switch On/Off is the caption for which we check width
+2021/4/20 8:54:35:589 UTC: 95width, 16height, Media Systems
+2021/4/20 8:54:35:592 UTC: Media Systems is the caption for which we check width
+2021/4/20 8:54:35:595 UTC: 40width, 16height, Drives
+2021/4/20 8:54:35:600 UTC: 95 is x width for childrentier2
+2021/4/20 8:54:36:629 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/20 8:54:40:687 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/4/20 8:54:40:718 UTC: '@sms_w_Alarmlist'
+2021/4/20 8:54:41:95 UTC: 33width, 16height, Floor
+2021/4/20 8:54:41:120 UTC: Floor is the caption for which we check width
+2021/4/20 8:54:41:129 UTC: 37width, 16height, Cellar
+2021/4/20 8:54:41:152 UTC: Cellar is the caption for which we check width
+2021/4/20 8:54:41:169 UTC: 140width, 16height, Fume Exhaust System
+2021/4/20 8:54:41:177 UTC: Fume Exhaust System is the caption for which we check width
+2021/4/20 8:54:41:185 UTC: 43width, 16height, Details
+2021/4/20 8:54:41:198 UTC: 140 is x width for childrentier2
+2021/4/20 8:54:42:223 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/20 8:54:42:240 UTC: 33width, 16height, Floor
+2021/4/20 8:54:42:245 UTC: Floor is the caption for which we check width
+2021/4/20 8:54:42:248 UTC: 37width, 16height, Cellar
+2021/4/20 8:54:42:252 UTC: Cellar is the caption for which we check width
+2021/4/20 8:54:42:255 UTC: 140width, 16height, Fume Exhaust System
+2021/4/20 8:54:42:260 UTC: Fume Exhaust System is the caption for which we check width
+2021/4/20 8:54:42:263 UTC: 43width, 16height, Details
+2021/4/20 8:54:42:274 UTC: 140 is x width for childrentier2
+2021/4/20 8:54:42:278 UTC: 180 is maxwidthtier2
+2021/4/20 8:54:43:342 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/20 8:54:44:360 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/20 8:54:48:370 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/4/20 8:54:48:377 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/4/20 8:54:49:627 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/20 8:54:50:644 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/20 8:54:54:664 UTC: For Cellar expand menu, clicked at 172 x, 93 y
+2021/4/20 8:54:54:669 UTC: 'TCM#06-02-00_n_#SAF-Overview-Cellar'
+2021/4/20 8:54:56:165 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/20 8:54:57:187 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/21 6:10:50:576 UTC: Starting menu navigation
+2021/4/21 6:10:50:593 UTC: 118 menu items
+2021/4/21 6:11:28:378 UTC: 51width, 16height, General
+2021/4/21 6:11:28:391 UTC: 43width, 16height, Alarms
+2021/4/21 6:11:28:396 UTC: Alarms is the caption for which we check width
+2021/4/21 6:11:28:435 UTC: 40width, 16height, Safety
+2021/4/21 6:11:28:444 UTC: 86width, 16height, Switch On/Off
+2021/4/21 6:11:28:449 UTC: Switch On/Off is the caption for which we check width
+2021/4/21 6:11:28:453 UTC: 95width, 16height, Media Systems
+2021/4/21 6:11:28:456 UTC: Media Systems is the caption for which we check width
+2021/4/21 6:11:28:461 UTC: 40width, 16height, Drives
+2021/4/21 6:11:28:465 UTC: 95 is x width for childrentier2
+2021/4/21 6:11:29:490 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/21 6:11:36:30 UTC: For Alarms expand menu, clicked at 37 x, 43 y
+2021/4/21 6:11:36:34 UTC: '@sms_w_Alarmlist'
+2021/4/21 6:12:57:610 UTC: 33width, 16height, Floor
+2021/4/21 6:12:57:617 UTC: Floor is the caption for which we check width
+2021/4/21 6:12:57:621 UTC: 37width, 16height, Cellar
+2021/4/21 6:12:57:625 UTC: Cellar is the caption for which we check width
+2021/4/21 6:12:57:629 UTC: 140width, 16height, Fume Exhaust System
+2021/4/21 6:12:57:639 UTC: Fume Exhaust System is the caption for which we check width
+2021/4/21 6:12:57:644 UTC: 43width, 16height, Details
+2021/4/21 6:12:57:709 UTC: 140 is x width for childrentier2
+2021/4/21 6:12:58:808 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/21 6:12:58:813 UTC: 33width, 16height, Floor
+2021/4/21 6:12:58:821 UTC: Floor is the caption for which we check width
+2021/4/21 6:12:58:824 UTC: 37width, 16height, Cellar
+2021/4/21 6:12:58:827 UTC: Cellar is the caption for which we check width
+2021/4/21 6:12:58:832 UTC: 140width, 16height, Fume Exhaust System
+2021/4/21 6:12:58:836 UTC: Fume Exhaust System is the caption for which we check width
+2021/4/21 6:12:58:842 UTC: 43width, 16height, Details
+2021/4/21 6:12:58:849 UTC: 140 is x width for childrentier2
+2021/4/21 6:12:58:853 UTC: 180 is maxwidthtier2
+2021/4/21 6:12:59:902 UTC: For General expand menu, clicked at 37 x, 15 y
+2021/4/21 6:13:0:981 UTC: For Safety expand menu, clicked at 37 x, 68 y
+2021/4/21 6:13:7:507 UTC: For Floor expand menu, clicked at 172 x, 68 y
+2021/4/21 6:13:7:510 UTC: 'TCM#06-01-00_n_#SAF-Overview-Floor'
+2021/4/23 7:34:34:601 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:36:26 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:37:456 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:38:658 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:40:134 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:41:490 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:42:890 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:44:230 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:45:582 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:46:965 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:48:241 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:49:549 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:50:936 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:52:263 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:53:538 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:54:957 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:56:224 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:57:527 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:34:58:906 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:0:304 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:1:613 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:2:999 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:4:464 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:5:792 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:7:168 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:8:531 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:9:921 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:11:321 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:12:632 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:14:4 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:15:270 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:16:603 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:18:3 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:19:455 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:20:816 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:22:127 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:23:505 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:24:799 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:26:161 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:27:522 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:28:926 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:30:277 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:31:566 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:32:960 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:34:295 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:35:619 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:36:965 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:38:244 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:39:566 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:41:61 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:42:480 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:43:715 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:45:53 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:46:423 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:47:704 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:49:25 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:50:404 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:51:693 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:35:53:17 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:6:71 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:7:858 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:9:635 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:11:123 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:12:830 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:14:729 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:16:526 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:17:919 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:19:437 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:20:804 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:22:320 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:23:707 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:25:83 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.
+2021/4/23 7:44:37:794 UTC: Error HRESULT E_FAIL has been returned from a call to a COM component.

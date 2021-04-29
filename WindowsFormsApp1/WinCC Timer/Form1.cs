@@ -345,7 +345,7 @@ namespace WinCC_Timer
                             Thread.Sleep(1500);
                             if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                 ScreenshotAndSave(true);
-                            Thread.Sleep(2500); //open tier2 page
+                            Thread.Sleep(5000); //open tier2 page
 
                             LogToFile("For " + tier2.Caption + " expand menu, clicked at " + x + " x, " + y + " y", logName);
                             LogToFile(tier2.Pdl, logName);
@@ -382,7 +382,7 @@ namespace WinCC_Timer
                                     Thread.Sleep(1500);
                                     if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                         ScreenshotAndSave(true);
-                                    Thread.Sleep(2500); //expand tier2 menu or open page
+                                    Thread.Sleep(5000); //expand tier2 menu or open page
 
                                     LogToFile("For " + tier3.Caption + " expand menu, clicked at " + xTier3 + " x, " + yTier3 + " y", logName);
                                     LogToFile(tier3.Pdl, logName);
@@ -421,7 +421,7 @@ namespace WinCC_Timer
                                             Thread.Sleep(1500);
                                             if (snapBox.Checked && !firstRunHasEnded) //only fpr snapshot to ensure page has loaded after tolerance time
                                                 ScreenshotAndSave(true);
-                                            Thread.Sleep(2500); //expand tier2 menu or open page
+                                            Thread.Sleep(5000); //expand tier2 menu or open page
 
                                             LogToFile("For " + tier4.Caption + " expand menu, clicked at " + xTier4 + " x, " + yTier4 + " y", logName);
                                             LogToFile(tier4.Pdl, logName);
@@ -490,11 +490,18 @@ namespace WinCC_Timer
             {
                 if (new DirectoryInfo(System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots").Exists == false)
                     Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots");
-                path = System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + ".png";
+                path = System.Windows.Forms.Application.StartupPath + "\\" + "Screenshots" + "\\" + currentPage + "_" + inc + ".png";
+            }
+
+            if (new FileInfo(path).Exists)
+            {
+                inc++;
+                path = path.Replace(currentPage + "_" + (inc - 1), currentPage + "_" + inc);
             }
 
             bmp.Save(path);
         }
+        int inc = 0;
 
         private int GetMenuDropWidth(IEnumerable<MenuRow> ChildrenTier2)
         {
@@ -536,6 +543,11 @@ namespace WinCC_Timer
         {
             MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            //MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            //Thread.Sleep(500);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
         }
 
@@ -1434,22 +1446,22 @@ namespace WinCC_Timer
                 FindOpenCloseFlyouts(handle, extractedData.Where(c => c.ObjectName.Contains("FlyoutButton") && !c.CallsPdl.Contains("_e_")).ToList(), false);
             }
 
-            //if (embeddedsBox.Checked)
-            //{
-            //    List<ObjectData> extractedData2 = new List<ObjectData>();
-            //    if (extractedData.Count == 0)
-            //    {
-            //        GetRuntimeInfo("HMIButton", out extractedData);
-            //        GetRuntimeInfo("HMIGroup", out extractedData2);
-            //    }
+            if (embeddedsBox.Checked)
+            {
+                List<ObjectData> extractedData2 = new List<ObjectData>();
+                if (extractedData.Count == 0)
+                {
+                    GetRuntimeInfo("HMIButton", out extractedData);
+                }
+                GetRuntimeInfo("HMIGroup", out extractedData2);
 
-            //    extractedData = extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList();
-            //    extractedData2 = extractedData2.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+                extractedData = extractedData.Where(c => c.CallsPdl.Contains("_e_")).ToList();
+                extractedData2 = extractedData2.Where(c => c.CallsPdl.Contains("_e_")).ToList();
 
-            //    extractedData = extractedData.Concat(extractedData2).ToList();
+                extractedData = extractedData.Concat(extractedData2).ToList();
 
-            //    FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
-            //}
+                FindSwitchEmbeddeds(handle, extractedData); //embeddeds will change pages; these also need to be checked for popups and embeddeds 
+            }
         }
         private List<string> navigatedPages = new List<string>();
 
@@ -1591,15 +1603,15 @@ namespace WinCC_Timer
 
             foreach (var s in filteredScreens)
             {
-                //this used to yield error. check for alternative to find picture window position in the frame
-                try
-                {
-                    LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top + ", " + s.Parent.Width + ", " + s.Parent.Height, "\\Screen.log", false);
-                }
-                catch (Exception ex)
-                {
-                    LogToFile(ex.Message, "\\Screen.log", false);
-                }
+                ////this used to yield error. check for alternative to find picture window position in the frame
+                //try
+                //{
+                    //LogToFile(s.ObjectName + " at " + s.Parent.Left + ", " + s.Parent.Top + ", " + s.Parent.Width + ", " + s.Parent.Height, "\\Screen.log", false);
+                //}
+                //catch (Exception ex)
+                //{
+                //    LogToFile(ex.Message, "\\Screen.log", false);
+                //}
 
                 var mainScreen = GetMainScreen();
                 WindowData screenData = new WindowData();
@@ -1613,9 +1625,14 @@ namespace WinCC_Timer
                 {
                     screenData = windowData.FirstOrDefault(c => c.Parent == mainScreen);
                 }
+                screenData = windowData.FirstOrDefault(c => c.Name == s.Parent.ObjectName);
 
-
-                var left = screenData.ScreenLeft;
+                
+                var left = /*s.Parent.Parent.Parent.Width == 1920 && !s.Parent.Parent.ObjectName.StartsWith("@") ? screenData.ScreenLeft - 175 :*/ screenData.ScreenLeft;
+                //if (left != screenData.ScreenLeft && s.Parent.Parent.Parent.Width == 1920 && !s.Parent.Parent.ObjectName.StartsWith("@"))
+                //{
+                //    screenData.ScreenLeft = left;
+                //}
                 var top = screenData.ScreenTop;
 
                 var screenItems = s.ScreenItems.Cast<IHMIScreenItem>();
@@ -1629,26 +1646,13 @@ namespace WinCC_Timer
                     {
                         listBox1.Items.Add(obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value);
 
-                        LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
-                        LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
-                            (left + obj.Left.value) + "," +
-                            (top + obj.Top.value) + "," +
-                            (left + obj.Left.value + obj.Width.value) + "," +
-                            (top + obj.Top.value + obj.Height.value), "\\Screen.log", false);
+                        //LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," + obj.Left.value + "," + obj.Top.value, "\\Screen.log", false);
+                        //LogToFile(o.Parent.ObjectName + "," + obj.ObjectName.value + "," +
+                        //    (left + obj.Left.value) + "," +
+                        //    (top + obj.Top.value) + "," +
+                        //    (left + obj.Left.value + obj.Width.value) + "," +
+                        //    (top + obj.Top.value + obj.Height.value), "\\Screen.log", false);
 
-                        dataList.Add(new ObjectData()
-                        {
-                            RealLeft = left + obj.Left.value,
-                            RealRight = left + obj.Left.value + obj.Width.value,
-                            RealTop = top + obj.Top.value,
-                            RealBottom = top + obj.Top.value + obj.Height.value,
-
-                            OffsetLeft = left,
-                            OffsetTop = top,
-                            ObjectName = obj.ObjectName.value,
-                            Page = s.ObjectName,
-                            CallsPdl = ""
-                        });
 
                         var events = obj.Events.Cast<HMIEvent>();
                         HMIEvent evs = events.FirstOrDefault(e => e.EventName == "OnLButtonUp" && e.Actions.Count > 0);
@@ -1686,11 +1690,29 @@ namespace WinCC_Timer
                             }
                         }
 
-                        pdl = pdl != "" ? pdl.Replace(".pdl", "") : "";
+                        pdl = pdl != null ? pdl.Replace(".pdl", "") : "";
 
-                        dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != "" ? pdl : "";
+                        //dataList.FirstOrDefault(c => c.ObjectName == o.ObjectName).CallsPdl = pdl != "" ? pdl : "";
 
-                        LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
+                        if (pdl != "")
+                        {
+                            dataList.Add(new ObjectData()
+                            {
+                                RealLeft = left + obj.Left.value,
+                                RealRight = left + obj.Left.value + obj.Width.value,
+                                RealTop = top + obj.Top.value,
+                                RealBottom = top + obj.Top.value + obj.Height.value,
+
+                                OffsetLeft = left,
+                                OffsetTop = top,
+                                ObjectName = obj.ObjectName.value,
+                                Page = s.ObjectName,
+                                CallsPdl = pdl
+                            });
+                            Console.WriteLine(pdl);
+                        }
+
+                        //LogToFile(obj.ObjectName.value + " calls " + dataList.Last().CallsPdl, "\\PdlCalls.log", false);
                     }
                 }
             }
@@ -1713,28 +1735,53 @@ namespace WinCC_Timer
 
             string mainscreen = GetMainScreen();
 
+            var allScreenNames = screensList.Select(c => c.ObjectName).ToList();
+
             //relevantScreens = screensList.Where(c => c.Parent != null && (c.Parent.ObjectName.StartsWith("@DataClass") || c.Parent.ObjectName == "@ProcAreaLight"));
             foreach (IHMIScreen s in screensList)
             {
-                if (s.Parent != null)
-                {
-                    if (s.Parent.ObjectName == "@DataClass1" || s.Parent.ObjectName == "@DataClass2")
-                    {
-                        //if (s.Parent.Parent.ObjectName == "@frame_s_content")
-                        //{
-                        relevantScreens.Add(s);
-                        //}
-                    }
-                    else if (s.Parent.ObjectName == "@DataClass3" && s.Parent.Parent.ObjectName == mainscreen)
-                    {
-                        relevantScreens.Add(s);
-                    }
+                //if (s.Parent != null)
+                //{
+                //    if (s.Parent.ObjectName.StartsWith("@DataClass") || s.Parent.Type == "HMIScreenWindow")
+                //    {
+                //        //if (s.Parent.Parent.ObjectName == "@frame_s_content")
+                //        //{
+                //        relevantScreens.Add(s);
+                //        //}
+                //    }
+                //    //else if (s.Parent.ObjectName == "@DataClass3" && s.Parent.Parent.ObjectName == mainscreen)
+                //    //{
+                //    //    relevantScreens.Add(s);
+                //    //}
 
-                    if (s.Parent.ObjectName == "@ProcAreaLight")
+                //    if (s.Parent.ObjectName == "@ProcAreaLight")
+                //    {
+                //        relevantScreens.Add(s);
+                //    }
+                //}
+
+                var hashtagSplit = s.ObjectName.Split("#".ToCharArray());
+
+                if (hashtagSplit.Length > 1)
+                {
+                    var dashSplit = hashtagSplit[1].Split("-".ToCharArray());
+
+                    if (dashSplit.Length > 1)
                     {
-                        relevantScreens.Add(s);
+                        var parseSuccess = int.TryParse(dashSplit[0], out int parseResult);
+
+                        if (parseSuccess == true)
+                        {
+                            Console.WriteLine(parseResult);
+                            if (parseResult > 0 && !s.ObjectName.ToUpper().Contains("_f_".ToUpper()))
+                            {
+                                relevantScreens.Add(s);
+                            }
+                        }
+
                     }
                 }
+
             }
 
             var result = from c in relevantScreens
@@ -1785,16 +1832,19 @@ namespace WinCC_Timer
             var dc2 = windowData.FirstOrDefault(c => c.Name == "@DataClass2");
             var dc3 = windowData.FirstOrDefault(c => c.Name == "@DataClass3");
 
-            if (dc2.Width == 1920)
-            {
-                dc2.Left -= dc1.Width;
-                dc2.ScreenLeft -= dc1.Width;
-                if (dc3 != null)
-                {
-                    dc3.Left -= dc1.Width;
-                    dc3.ScreenLeft -= dc1.Width;
-                }
-            }
+            //if (dc1 != null && dc2 != null)
+            //{
+            //    if (dc2.Width == 1920)
+            //    {
+            //        dc2.Left -= dc1.Width;
+            //        dc2.ScreenLeft -= dc1.Width;
+            //        if (dc3 != null)
+            //        {
+            //            dc3.Left -= dc1.Width;
+            //            dc3.ScreenLeft -= dc1.Width;
+            //        }
+            //    }
+            //}
 
             return windowData;
         }
@@ -1862,15 +1912,15 @@ namespace WinCC_Timer
 
                     PInvokeLibrary.SetForegroundWindow(handle);
 
-                    ScreenshotAndSave(
-                        true,
-                        new Rectangle()
-                        {
-                            Width = embdata.Width,
-                            Height = embdata.Height,
-                            X = embdata.ScreenLeft,
-                            Y = embdata.ScreenTop
-                        });
+                    ScreenshotAndSave(true);
+                        //true,
+                        //new Rectangle()
+                        //{
+                        //    Width = embdata.Width,
+                        //    Height = embdata.Height,
+                        //    X = embdata.ScreenLeft,
+                        //    Y = embdata.ScreenTop
+                        //});
 
                     if (dataList.Count > 0)
                     {
@@ -1965,23 +2015,34 @@ namespace WinCC_Timer
 
             grafexe.HMIObject go = null;
 
-            grafexe.Document seldoc = g.Documents.Open(seldocfullname, openType);
-            grafexe.HMIObjects selos = seldoc.HMIObjects;
-
-            go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;
-
-            if (go != null)
+            try
             {
-                if (go.Visible.value == false && go.Visible.DynamicStateType == HMIDynamicStateType.hmiDynamicStateTypeNoDynamic)
-                    go = null;
-            }
+                grafexe.Document seldoc = g.Documents.Open(seldocfullname, openType);
+                grafexe.HMIObjects selos = seldoc.HMIObjects;
 
-            if (go != null)
+                go = selos.Find(ObjectName: objName).Count > 0 ? selos.Find(ObjectName: objName)[1] : null;
+
+                if (go != null)
+                {
+                    if (go.Visible.value == false && go.Visible.DynamicStateType == HMIDynamicStateType.hmiDynamicStateTypeNoDynamic)
+                        go = null;
+                }
+
+                if (go != null)
+                {
+                    listBox1.Items.Add(go.ObjectName.value);
+                }
+
+                return go;
+            }
+            catch (Exception exc)
             {
-                listBox1.Items.Add(go.ObjectName.value);
+                LogToFile(exc.Message, logName);
             }
-
-            return go;
+            finally
+            {
+            }
+            return null;
         }
     }
 }
