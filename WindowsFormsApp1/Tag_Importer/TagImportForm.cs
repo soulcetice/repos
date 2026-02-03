@@ -13,14 +13,18 @@ using System.Windows.Forms;
 using Tag_Importer.Properties;
 using WindowHandle;
 using WindowsUtilities;
+using Tag_Importer.Services;
 
 namespace Tag_Importer
 {
     public partial class TagImportForm : Form
     {
+        private WinCCIntegrationService _winCCService;
+
         public TagImportForm()
         {
             InitializeComponent();
+            _winCCService = new WinCCIntegrationService();
 
             string configFile = Path.Combine(Application.StartupPath, "Tag_Importer.ini");
             GetInitialValues(configFile);
@@ -40,107 +44,38 @@ namespace Tag_Importer
             RemoveTemporaryOutputs();
         }
 
-        private IntPtr OpenTagMgmtMenu(IntPtr tagMgmt)
+        private bool ImportTags()
         {
-            PInvokeLibrary.SetForegroundWindow(tagMgmt);
+           LogToFile("Started actions ******************************************");
+           try
+           {
+               foreach (int index in checkedListBox1.CheckedIndices)
+               {
+                   string fileName = checkedListBox1.Items[index].ToString();
+                   // Reconstruct full path based on logic in original code
+                   string fullPath = Path.Combine(textBox1.Text, fileName); 
+                   
+                   LogToFile($"Importing: {fullPath}");
+                   _winCCService.ImportTags(fullPath);
 
-            System.Threading.Thread.Sleep(100);
-
-            IntPtr importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
-
-            if (importPopup == IntPtr.Zero)
-            {
-                SendKeyHandled(tagMgmt, "(%)");
-                SendKeyHandled(tagMgmt, "{RIGHT}");
-                SendKeyHandled(tagMgmt, "{ENTER}");
-                SendKeyHandled(tagMgmt, "{DOWN}");
-                SendKeyHandled(tagMgmt, "{DOWN}");
-                SendKeyHandled(tagMgmt, "{DOWN}");
-                SendKeyHandled(tagMgmt, "{DOWN}");
-                SendKeyHandled(tagMgmt, "{ENTER}");
-
-                importPopup = PInvokeLibrary.FindWindow("#32770", "Import");
-                do
-                {
-                    try { importPopup = PInvokeLibrary.FindWindow("#32770", "Import"); }
-                    catch (Exception exc)
-                    {
-                        Console.WriteLine(exc.Message);
-                    }
-                    System.Threading.Thread.Sleep(100);
-                } while (importPopup == IntPtr.Zero);
-
-                //changing address...
-                SendKeyHandled(importPopup, "{TAB}");
-                SendKeyHandled(importPopup, "{TAB}");
-                SendKeyHandled(importPopup, "{TAB}");
-                SendKeyHandled(importPopup, "{TAB}");
-                SendKeyHandled(importPopup, "{TAB}");
-                SendKeyHandled(importPopup, "{ENTER}");
-                string path = textBox1.Text;
-                foreach (char c in path)
-                    SendKeys.SendWait(c.ToString());
-                SendKeyHandled(importPopup, "{ENTER}");
-
-            }
-
-            System.Threading.Thread.Sleep(1000);
-            return importPopup;
+                   if (checkBox2.CheckState == CheckState.Checked)
+                   {
+                       MoveFilesPair(new FileInfo(fullPath));
+                   }
+               }
+               
+                LogToFile("Finished importing from folder");
+                MessageBox.Show(new Form { TopMost = true }, "Finished importing from specified folder");
+                return true;
+           }
+           catch (Exception ex)
+           {
+               LogToFile("Error: " + ex.Message);
+               MessageBox.Show("Error: " + ex.Message);
+               return false;
+           }
         }
 
-        private void KeepConfig()
-        {
-            string configPath = Path.Combine(Application.StartupPath, "Tag_Importer.ini");
-            var configFile = File.CreateText(configPath);
-            configFile.WriteLine(textBox1.Text);
-            configFile.WriteLine(textBox2.Text);
-            configFile.WriteLine(checkBox1.Checked);
-            configFile.WriteLine(checkBox2.Checked);
-            configFile.WriteLine(textBox3.Text);
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
-            configFile.Close();
-        }
-
-        private void GetInitialValues(string path)
-        {
-            if (path != string.Empty)
-            {
-                if (new FileInfo(path).Exists)
-                {
-                    var configFile = File.ReadLines(path);
-                    var fileLen = configFile.Count();
-
-                    textBox1.Text = configFile.ElementAt(0);
-                    if (fileLen >= 2) textBox2.Text = configFile.ElementAt(1);
-                    if (fileLen >= 3) checkBox1.Checked = bool.Parse(configFile.ElementAt(2));
-                    if (fileLen >= 4) checkBox2.Checked = bool.Parse(configFile.ElementAt(3));
-                    if (fileLen >= 5) textBox3.Text = configFile.ElementAt(4);
-                }
-            }
-        }
-
-        private void SendKeyHandled(IntPtr windowHandle, string key)
-        {
-            bool success;
-            do
-            {
-                try
-                {
-                    PInvokeLibrary.SetForegroundWindow(windowHandle);
-                    SendKeys.SendWait(key);
-                    success = true;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    LogToFile(e.Message);
-                    success = false;
-                }
-            } while (success == false);
-        }
 
         #region currently unused
         public string GetControlText(IntPtr hWnd)
@@ -476,79 +411,11 @@ namespace Tag_Importer
             return myDay;
         }
 
-        private static void GetRobustHandleByParent(IntPtr tag, out IntPtr dataGridHandle, out RECT ccAxtRect)
-        {
-            List<IntPtr> ccAxs = GetAllChildrenWindowHandles(tag, 10);
 
-            dataGridHandle = IntPtr.Zero;
-            ccAxtRect = new RECT();
-            foreach (var c in ccAxs)
-            {
-                IntPtr ccAxt = c;
-                _ = PInvokeLibrary.GetWindowRect(c, out ccAxtRect);
-                dataGridHandle = PInvokeLibrary.FindWindowEx(c, IntPtr.Zero, "WinCC DataGridControl Window", null);
-                if (dataGridHandle != IntPtr.Zero)
-                {
-                    LogToFile("Data Grid Handle was " + dataGridHandle.ToString());
-                    break;
-                }
-            }
-        }
 
-        private static void SleepUntilPopupGoesAway()
-        {
-            IntPtr tagDeletionWindow;
-            do
-            {
-                tagDeletionWindow = PInvokeLibrary.FindWindow("#32770", "Tag Management");
-                System.Threading.Thread.Sleep(100);
-            } while (tagDeletionWindow != IntPtr.Zero);
-        }
 
-        private void DeleteExistingTags(IntPtr trHandle, RECT trRect, RECT ccAxtRect, IntPtr dataGridHandle, NameConnection connData)
-        {
-            ExpandTreeItem(trHandle, connData.connection, true, trRect);
 
-            LogToFile("Expanded: " + connData.connection);
 
-            List<WordWithLocation> rowData = GetWordsInHandle(trHandle);
-            WordWithLocation myGroup = FindClosestMatch(rowData, connData.name);
-            while (myGroup == null)
-            {
-                ScrollDownOnePage(trHandle, trRect, false);
-                rowData = GetWordsInHandle(trHandle);
-                myGroup = FindClosestMatch(rowData, connData.name);
-            }
-
-            foreach (var c in rowData)
-            {
-                //LogToFile("myGroup " + c.word + " " + connData.name);
-            }
-
-            try
-            {
-                RobustClick(trHandle, trRect.left + myGroup.x, trRect.top + myGroup.y, 1);
-                LogToFile("Clicked on treehandle for " + connData.name + " " + connData.connection + " " + myGroup.word.ToString());
-                //now delete the tags
-                RobustClick(dataGridHandle, ccAxtRect.left + 100, ccAxtRect.top + 100, 1); //click in data grid
-                System.Threading.Thread.Sleep(100);
-                SendKeyHandled(dataGridHandle, "^(a)");
-                System.Threading.Thread.Sleep(100); //necessary to sleep because it was trying to delete before selecting
-                SendKeyHandled(dataGridHandle, "{DELETE}");
-                System.Threading.Thread.Sleep(100);
-
-                SleepUntilPopupGoesAway();
-
-                ExpandTreeItem(trHandle, connData.connection, false, trRect);
-
-                LogToFile("Deleted all variables from " + connData.connection + " " + connData.name);
-            }
-            catch (Exception exc)
-            {
-                LogToFile(exc.Message + " " + exc.InnerException);
-            }
-            ScrollAllTheWayUp(trHandle, trRect, true);
-        }
 
         private void MoveFilesPair(FileInfo file)
         {
@@ -587,202 +454,15 @@ namespace Tag_Importer
             }
         }
 
-        private void RobustClick(IntPtr handle, int? x, int? y, int repeat)
-        {
-            for (int i = 0; i < repeat; i++)
-            {
-                PInvokeLibrary.SetForegroundWindow(handle);
 
-                MouseOperations.SetCursorPosition(x.Value, y.Value); //have to use the found minus/plus coordinates here
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            }
-        }
 
-        private int GetHandleScrollState(Bitmap img)
-        {
-            Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
-            Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
-            var hasUp = TheMagic.Find(img, scrollUp);
-            var hasDn = TheMagic.Find(img, scrollDn);
-            if (hasUp.Count == 0 && hasDn.Count != 0) return 1; //Console.WriteLine("is already scrolled all the way up");
-            if (hasDn.Count == 0 && hasUp.Count != 0) return 2; //Console.WriteLine("is already scrolled all the way down");
-            if (hasDn.Count != 0 && hasDn.Count != 0) return 3; //Console.WriteLine("is in between");
-            if (hasDn.Count == 0 && hasDn.Count == 0) return 4; //Console.WriteLine("there is no scrolling available, window contens are all seen. expand?");
 
-            return 0; //inconclusive
-        }
 
-        private List<TheMagic.PosBitmap> GetCharactersInHandle(IntPtr handle)
-        {
-            //only works for white background for now!!!
-            MouseOperations.SetCursorPosition(1, 1); //have to use the found minus/plus coordinates here
-            Bitmap img = TheMagic.GetPngByHandle(handle);
-            List<TheMagic.PosBitmap> allCharsFound = new List<TheMagic.PosBitmap>();
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_A")), "A"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_B")), "B"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_C")), "C"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_D")), "D"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_E")), "E"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_F")), "F"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_G")), "G"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_H")), "H"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_I")), "I"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_J")), "J"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_K")), "K"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_L")), "L"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_M")), "M"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_N")), "N"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_O")), "O"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_P")), "P"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Q")), "Q"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_R")), "R"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_S")), "S"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_T")), "T"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_U")), "U"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_V")), "V"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_W")), "W"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_X")), "X"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Y")), "Y"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("upper_Z")), "Z"));
 
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_a")), "a"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_b")), "b"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_c")), "c"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_d")), "d"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_e")), "e"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_f")), "f"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_g")), "g"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_h")), "h"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_i")), "i"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_j")), "j"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_k")), "k"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_l")), "l"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_m")), "m"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_n")), "n"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_o")), "o"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_p")), "p"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_q")), "q"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_r")), "r"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_s")), "s"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_t")), "t"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_u")), "u"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_v")), "v"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_w")), "w"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_x")), "x"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_y")), "y"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_z")), "z"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rf")), "rf"));
-            //allCharsFound.AddRange(TheMagic.Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("lower_rt")), "rt"));
-            //allCharsFound.AddRange(TheMagic.Find(img, MyFunctions.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("txt")), ".txt"));
 
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("underscore")), "_"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("arond")), "@"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("dot")), "."));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_#")), "#"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_1")), "1"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_2")), "2"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_3")), "3"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_4")), "4"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_5")), "5"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_6")), "6"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_7")), "7"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_8")), "8"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_9")), "9"));
-            allCharsFound.AddRange(TheMagic.Find(img, TheMagic.MakeExistingTransparent((Bitmap)Resources.ResourceManager.GetObject("_0")), "0"));
 
-            return allCharsFound;
-        }
 
-        private void ScrollDownOnePage(IntPtr trHandle, RECT trRect, bool up)
-        {
-            var img = TheMagic.GetPngByHandle(trHandle);
-            var scrollState = GetHandleScrollState(img);
-            //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
 
-            Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
-            Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
-
-            int FirstState;
-            int SecondState;
-
-            switch (up)
-            {
-                case true:
-                    FirstState = 1;
-                    break;
-                default:
-                    FirstState = 2;
-                    break;
-            }
-            SecondState = 4;
-
-            if (scrollState != FirstState || scrollState != SecondState)
-            {
-                if (scrollState != FirstState && scrollState != SecondState)
-                {
-                    if (up == true)
-                    {
-                        var goHere = TheMagic.Find(img, scrollUp).FirstOrDefault();
-                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
-                    }
-                    else
-                    {
-                        var goHere = TheMagic.Find(img, scrollDn).FirstOrDefault();
-                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
-                    }
-                    img = TheMagic.GetPngByHandle(trHandle);
-
-                    scrollState = GetHandleScrollState(img);
-                    img.Dispose();
-                    System.Threading.Thread.Sleep(10);
-                }
-            }
-        }
-
-        private void ScrollAllTheWayUp(IntPtr trHandle, RECT trRect, bool up)
-        {
-            var img = TheMagic.GetPngByHandle(trHandle);
-            var scrollState = GetHandleScrollState(img);
-            Bitmap scrollUp = (Bitmap)Resources.ResourceManager.GetObject("scrollUp");
-            Bitmap scrollDn = (Bitmap)Resources.ResourceManager.GetObject("scrollDown");
-            //HideStructureTags(trHandle, GetWordsInHandle(trHandle), trRect);
-
-            int FirstState;
-            int SecondState;
-
-            switch (up)
-            {
-                case true:
-                    FirstState = 1;
-                    break;
-                default:
-                    FirstState = 2;
-                    break;
-            }
-            SecondState = 4;
-
-            if (scrollState != FirstState || scrollState != SecondState)
-            {
-                do
-                {
-                    if (up == true)
-                    {
-                        var goHere = TheMagic.Find(img, scrollUp).FirstOrDefault();
-                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 50);
-                    }
-                    else
-                    {
-                        var goHere = TheMagic.Find(img, scrollDn).FirstOrDefault();
-                        RobustClick(trHandle, trRect.left + goHere.X, trRect.top + goHere.Y, 1);
-                    }
-                    img = TheMagic.GetPngByHandle(trHandle);
-
-                    scrollState = GetHandleScrollState(img);
-                    System.Threading.Thread.Sleep(10);
-                } while (scrollState != FirstState && scrollState != SecondState);
-            }
-        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

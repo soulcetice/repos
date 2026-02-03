@@ -91,6 +91,10 @@ namespace HMIUpdater
         private Button button10;
         #endregion
 
+        private readonly Services.ConfigurationService _configService;
+        private readonly Services.ProcessManager _processManager;
+        private Models.AppConfiguration _config;
+
         [STAThread]
         public static void Main()
         {
@@ -101,23 +105,14 @@ namespace HMIUpdater
 
         public HMIUpdateForm()
         {
-            CloseConflictingProcesses("NCM_Downloader");
+            _processManager = new Services.ProcessManager();
+            _processManager.CloseConflictingProcesses("NCM_Downloader");
 
             InitializeComponent();
-
-            string configPath = string.Empty;
-            if (File.Exists(Path.Combine(Application.StartupPath, "NCM_Downloader.ini")))
-            {
-                configPath = Path.Combine(Application.StartupPath, "NCM_Downloader.ini");
-            }
-            else if (File.Exists(Path.Combine(Application.StartupPath, "\\NCM_Downloader.exe.ini")))
-            {
-                configPath = Path.Combine(Application.StartupPath, "\\NCM_Downloader.exe.ini");
-            }
-            if (configPath != string.Empty)
-            {
-                GetInitialValues(configPath);
-            }
+            
+            _configService = new Services.ConfigurationService(Application.StartupPath);
+            _config = _configService.Load();
+            ApplyConfigurationToUi(_config);
 
             SetTooltips();
 
@@ -145,310 +140,52 @@ namespace HMIUpdater
             Console.WriteLine(statusLabel.Size.Height / statusLabel.Font.Height);
         }
 
+        private void ApplyConfigurationToUi(Models.AppConfiguration config)
+        {
+            pathTextBox.Text = config.LoadLogPath;
+            firstClientIndexBox.Text = config.FirstClientIndex.ToString();
+            numClTextBox.Text = config.NumClients.ToString();
+            ipTextBox.Text = config.LmHostsPath;
+            unTextBox.Text = config.Username;
+            passTextBox.Text = config.Password;
+            rdpCheckBox.Checked = config.AutoRdp;
+            widthBox.Text = config.RdpWidth.ToString();
+            heightBox.Text = config.RdpHeight.ToString();
+            leftBox.Text = config.RdpLeft.ToString();
+            topBox.Text = config.RdpTop.ToString();
+            parallelBox.Text = config.ParallelDownloads.ToString();
+            sourcePathBox.Text = config.SourcePath;
+            destinationPathBox.Text = config.DestinationPath;
+            mcpPathBox.Text = config.McpPath;
+            vpnPassBox.Text = config.VpnPassword;
+            checkBox2.Checked = config.CheckBox2;
+            includeNonClientsBox.Checked = config.IncludeNonClients;
+            killKeyCheckBox.Checked = config.KillKey;
+            useRemotes.Checked = config.UseRemotes;
+
+            if (config.IncludeNonClients)
+            {
+                 RenewIpsOrInit(true);
+            }
+        }
+
         #region init
         private List<string> ipList = new List<string>();
         private List<string> sdList = new List<string>();
         private string computerName = string.Empty;
         private readonly List<string> selectiveFolders = new List<string>();
-        private readonly List<string> processes = new List<string>
-            {
-                //"CCAgent",
-                //"CCDBUtils",
-                //"CCEClient_x64",
-                //"CCEServer_x64",
-                //"CCProjectMgr",
-                //"CCRemoteService",
-                //"CCPackageMgr",
-                //"CCUCSurrogate",
-                //"CCPerfMon",
-                //"CCDeltaLoader",
-                //"CCLicenseService",
-                //"CCOnScreenKeyboard",
-                //"CCNSInfo2Provider",
-                //"script",
-                //"SDiagRT",
-                //"RedundancyState",
-                //"PassDBRT"
+        private List<string> ipList = new List<string>();
+        private List<string> sdList = new List<string>();
+        private string computerName = string.Empty;
+        private readonly List<string> selectiveFolders = new List<string>();
 
-                "apdiag",
-                "asosheartbeatx",
-                "AutoStartRT",
-                "BildAnw",
-                "CAArchiveManagerBackupCopyX",
-                "CADeleteWinCCMessageQueueing",
-                "CAReportMergerX",
-                "CC_DPSRV",
-                "CC_MShh",
-                "ccaeprovider",
-                "CCAgent.exe",
-                "CCAlgIAlarmDataCollector",
-                "CCAlgIAlarmDataProxyServer",
-                "CcAlgRtServer",
-                "CCArchiveConnMon",
-                "CCArchiveManager",
-                "CCAuthorInformation",
-                "CCAuditProviderSrv.exe",
-                "CCAuditTrailServer.exe",
-                "CCAuditViewer",
-                "CCAuditDCV",
-                "CCClientAPIs",
-                "CCCloudConnect",
-                "CCConfigServerMemory",
-                "CCConfigStudio",
-                "CCConfigStudio_x64",
-                "CCCSigRTServer",
-                "CCDBUtils.exe",
-                "CCDeltaLoader",
-                "CCDiagnosisView",
-                "CCDiagRTServer",
-                "CCDMClientHelper",
-                "CCDmIVarProxyServer",
-                "CCDmRtChannelHost",
-                "CCDmRuntimePersistence",
-                "CCEClient_x64",
-                "CCEClient",
-                "CCEmergencyWatchRTServer",
-                "CCEServer_x64",
-                "CCEServer",
-                "CCLBMRTServer",
-                "CCLicenseService",
-                "CCMcpAutServer",
-                "CCMigrator",
-                "CCNSInfo2Provider",
-                "CCOnlCmp",
-                "CCOPCConfigPerm",
-                "CCPackageMgr",
-                "CCPerfMon",
-                "CcPJob",
-                "CCProfileServer" ,
-                "CCProgressDlg",
-                "CCProjectDuplicator",
-                "CCProjectMgr",
-                "CCPtmRTServer",
-                "CCRedCodi",
-                "CCRedundancyAgent",
-                "CCRemoteService.exe",
-                "CCRtsLoader",
-                "CCRtsLoader_x64",
-                "CCRunDTSPackage",
-                "CCRunRedCodiCS",
-                "CCScriptEditor",
-                "CCSplash",
-                "CCSsmRTServer",
-                "CCSyncAgent",
-                "CCSystemDiagnosticsHost",
-                "CCSysTray",
-                "CCSysTrayProxy",
-                "CCTextDistributor",
-                "CCTextServer",
-                "CCTlgArchiveClient",
-                "CCTlgServer",
-                "CCTMConfiguration",
-                "CCTMTimeSync",
-                "CCTMTimeSyncServer",
-                "CCTMTimeSyncServerV5",
-                "CCTMTimeSyncV5",
-                "CCTTRTServer",
-                "CCTxtProxy",
-                "CCUAEditor",
-                "CCUAIUABasicProxyServer",
-                "CCUAIUABasicStubServer",
-                "CCUASetupDCOM",
-                "CCUCSurrogate",
-                "CCUsrAcv",
-                "CCWinCCMTEditor",
-                "CCWinCCStart",
-                "CCWriteArchiveServer",
-                "CCXREF.Presentation.Editor",
-                "ChannelWrapperCS",
-                "DdeServ",
-                "DiagServ",
-                "Grafexe",
-                "gsccs",
-                "gscrt",
-                "HMRT",
-                "HornCS",
-                "imserverx",
-                "LBMS",
-                "MessageCorrectorx",
-                "MSCS",
-                "OPCTags",
-                "OpcUaServerWinCC.exe",
-                "osltmhandlerx",
-                "osstatemachinex",
-                "PassCS",
-                "PassDBRT",
-                "PassReg",
-                "PDLCSApiTest",
-                "PdlRT",
-                "PdlServ",
-                "Print1",
-                "PrintIt",
-                "Projecteditor",
-                "ProtCS",
-                "PrtScr",
-                "PTMCS",
-                "RebootX",
-                "Rd1CS",
-                "RedundancyControl",
-                "RedundancyState",
-                "RptRT",
-                "s7asysvx",
-                "s7aversx",
-                "s7dosTraceControlPanelx",
-                "s7oiehsx" ,
-                "s7otbxsx" ,
-                "s7sninsx",
-                "S7TraceServiceX.exe",
-                "s7tgtopx",
-                "s7ubTstx",
-                "sfcrt",
-                "SAMExportToolx",
-                "script",
-                "SCSDialogX",
-                "SCSDistServiceX.exe",
-                "SCSFsX",
-                "SCSMonitor",
-                "SCSMX.exe",
-                "SDiagRT",
-                "setupdcom",
-                "Siemens.Automation.FrameApplicationLoader",
-                "Siemens.Automation.ObjectFrame.FileStorage.Server",
-                "Siemens.Automation.Portal",
-                "sn_cp1612",
-                "ssc_visual",
-                "SSMSettings",
-                "TagAnw",
-                "textbib",
-                "TextLibrary",
-                "TlgCS",
-                "TouchInputPC",
-                "TrendOnl",
-                "trv",
-                "TTEdit",
-                "WebNavigatorRT",
-                "WinCCChnDiag",
-                "WinCCExplorer",
-                "WinCCWebLicense",
-                "LBMCS",
-                "CCOnScreenKeyboard",
-                "CCCAPHServer",
-                "CalendarAccessProvider.exe",
-                "WinCC_Calendar_Server",
-                "WinCC_Calendar_Viewer",
-                "PlantIntelligenceService.exe",
-                "PMNSInfo2Provider",
-                "CCSESRTSrv",
-                "GfxRTS",
-                "CCKeyboardHook",
-                "CCProjectMgr.exe",
-                //"SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
-                //"SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
-                //"CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
-                //"S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
-                //"CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
-                //"CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
-                //"OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
-                //"CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
-                //"CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
-                //"CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
-                //"CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
-                //"PlantIntelligenceService.exe",// restartprio = "12" servicename = "PerformanceMonitor Service" />
-                //"sqlservr", //"MSSQL$WINCC",
-            };
-
-        private readonly List<string> rebootProcesses = new List<string>
-            {
-                //"sqlservr", //"MSSQL$WINCC",
-                "SCSMX.exe",// servicename = "SCSMonitor" restartprio = "1" />
-                "SCSDistServiceX.exe",// servicename = "SCS Distribution Service" restartprio = "2" />
-                "CCAgent.exe",// servicename = "CCAgent" restartprio = "3" />     
-                "S7TraceServiceX.exe",// servicename = "S7TraceServiceX" restartprio = "4" />     
-                "CCDBUtils.exe",// servicename = "CCDBUtils" restartprio = "5" />     
-                "CCRemoteService.exe",// servicename = "CCRemoteService" restartprio = "6" />     
-                "OpcUaServerWinCC.exe",// servicename = "OpcUaServerWinCC" restartprio = "7" />
-                "CCAuditTrailServer.exe",// restartprio = "8" servicename = "CCAuditTrailServer" />
-                "CCAuditProviderSrv.exe",// restartprio = "9" servicename = "CCAuditProviderSrv" />
-                "CalendarAccessProvider.exe",// restartprio = "10" servicename = "CalendarAccessProvider" />     
-                "CCProjectMgr.exe",// restartprio = "11" servicename = "CCProjectMgr" />
-                "PlantIntelligenceService.exe"// restartprio = "12" servicename = "PerformanceMonitor Service" />
-            };
 
         private readonly string passPhrase = "Hush, little baby, don't say a word " +
             "And never mind that noise you heard " +
             "It's just the beasts under your bed " +
             "In your closet, in your head";
 
-        private void GetInitialValues(string path)
-        {
-            var configFile = File.ReadLines(path);
-            var fileLen = configFile.Count();
-            var de = "";
 
-            pathTextBox.Text = configFile.ElementAt(0);
-            if (fileLen >= 2) firstClientIndexBox.Text = configFile.ElementAt(1);
-            if (fileLen >= 3) numClTextBox.Text = configFile.ElementAt(2);
-            if (fileLen >= 4) ipTextBox.Text = configFile.ElementAt(3);
-            if (fileLen >= 5) unTextBox.Text = configFile.ElementAt(4);
-            if (fileLen >= 6)
-            {
-                if (configFile.ElementAt(5) != "")
-                {
-                    de = StringCipher.Decrypt(configFile.ElementAt(5), passPhrase);
-                    passTextBox.Text = de;
-                }
-            }
-
-            if (fileLen >= 7)
-            {
-                if (Boolean.TryParse(configFile.ElementAt(6), out bool result))
-                    rdpCheckBox.Checked = result;
-            }
-
-            if (fileLen >= 8) widthBox.Text = configFile.ElementAt(7);
-            if (fileLen >= 9) heightBox.Text = configFile.ElementAt(8);
-            if (fileLen >= 10) leftBox.Text = configFile.ElementAt(9);
-            if (fileLen >= 11) topBox.Text = configFile.ElementAt(10);
-            if (fileLen >= 12) parallelBox.Text = configFile.ElementAt(11);
-            if (fileLen >= 13) sourcePathBox.Text = configFile.ElementAt(12);
-            if (fileLen >= 14) destinationPathBox.Text = configFile.ElementAt(13);
-            if (fileLen >= 15) mcpPathBox.Text = configFile.ElementAt(14);
-
-            if (fileLen >= 16)
-            {
-                if (configFile.ElementAt(15) != "")
-                {
-
-                    de = StringCipher.Decrypt(configFile.ElementAt(15), passPhrase);
-                    vpnPassBox.Text = de;
-                }
-            }
-
-            if (fileLen >= 17)
-            {
-                if (Boolean.TryParse(configFile.ElementAt(16), out bool result))
-                    checkBox2.Checked = result;
-            }
-
-            if (fileLen >= 18)
-            {
-                if (Boolean.TryParse(configFile.ElementAt(17), out bool result))
-                    includeNonClientsBox.Checked = result;
-                RenewIpsOrInit(result);
-            }
-
-            if (fileLen >= 19)
-            {
-                if (Boolean.TryParse(configFile.ElementAt(18), out bool result))
-                    killKeyCheckBox.Checked = result;
-            }
-
-            if (fileLen >= 20)
-            {
-                if (Boolean.TryParse(configFile.ElementAt(19), out bool result))
-                    useRemotes.Checked = result;
-            }
-        }
 
         private void RenewIpsOrInit(bool include)
         {
@@ -508,43 +245,7 @@ namespace HMIUpdater
             }
         }
 
-        private void KeepConfig()
-        {
-            string configPath = "NCM_Downloader.ini";
-            var configFile = File.CreateText(configPath);
-            configFile.WriteLine(pathTextBox.Text);
-            configFile.WriteLine(firstClientIndexBox.Text);
-            configFile.WriteLine(numClTextBox.Text);
-            configFile.WriteLine(ipTextBox.Text);
-            configFile.WriteLine(unTextBox.Text);
-            configFile.WriteLine(StringCipher.Encrypt(passTextBox.Text, passPhrase).ToString());
-            configFile.WriteLine(rdpCheckBox.Checked);
-            configFile.WriteLine(widthBox.Text);
-            configFile.WriteLine(heightBox.Text);
-            configFile.WriteLine(leftBox.Text);
-            configFile.WriteLine(topBox.Text);
-            configFile.WriteLine(parallelBox.Text);
-            configFile.WriteLine(sourcePathBox.Text);
-            configFile.WriteLine(destinationPathBox.Text);
-            configFile.WriteLine(mcpPathBox.Text);
-            configFile.WriteLine(StringCipher.Encrypt(vpnPassBox.Text, passPhrase).ToString());
-            configFile.WriteLine(checkBox2.Checked);
-            configFile.WriteLine(includeNonClientsBox.Checked);
-            configFile.WriteLine(killKeyCheckBox.Checked);
-            configFile.WriteLine(useRemotes.Checked);
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("");
-            configFile.WriteLine("Authored by Muresan Radu-Adrian (MURA02)");
-            configFile.Close();
-        }
+
 
         private void SetTooltips()
         {
