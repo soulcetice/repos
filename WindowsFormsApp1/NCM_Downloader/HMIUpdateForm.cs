@@ -23,6 +23,8 @@ using WindowsUtilities;
 
 namespace HMIUpdater
 {
+    using NCM_Downloader.Services;
+
     class HMIUpdateForm : Form
     {
         #region Form Objects
@@ -93,6 +95,8 @@ namespace HMIUpdater
 
         private readonly Services.ConfigurationService _configService;
         private readonly Services.ProcessManager _processManager;
+        private readonly Services.DeploymentService _deploymentService;
+        private readonly Services.ILoggerService _logger;
         private Models.AppConfiguration _config;
 
         [STAThread]
@@ -112,6 +116,10 @@ namespace HMIUpdater
             
             _configService = new Services.ConfigurationService(Application.StartupPath);
             _config = _configService.Load();
+            
+            _logger = new Services.FileLoggerService("NCM_Downloader.logger");
+            _deploymentService = new Services.DeploymentService(_logger, _config);
+
             ApplyConfigurationToUi(_config);
 
             SetTooltips();
@@ -1086,24 +1094,40 @@ namespace HMIUpdater
             }
             if (checkedListBox1.CheckedItems.Count == 0)
             {
-                //MessageBox.Show(new Form { TopMost = true }, " You have not checked any clients to download to!");
                 msg = "Status: You have not checked any clients to download to!";
                 UpdateStatus(msg);
                 return;
             }
 
-            KeepConfig();
+            //KeepConfig(); // Config is saved by service now if needed, or we implement Save()
 
-            EnablePSRemotingAndAddTrustedHosts();
+            List<string> selectedClients = new List<string>();
+            foreach (var item in checkedListBox1.CheckedItems)
+            {
+                selectedClients.Add(item.ToString());
+            }
 
-            DownloadProcess();
+            // Run in background to not block UI? 
+            // For now, simple synchronous call or Task.Run to keep UI responsive.
+            Task.Run(() => 
+            {
+                 _deploymentService.StartParallelDownloads(selectedClients, (status) => 
+                 {
+                     this.Invoke((MethodInvoker)delegate { UpdateStatus(status); });
+                 });
+            });
         }
 
         private void UpdateStatus(string msg)
         {
+            if (listBox1.InvokeRequired)
+            {
+                listBox1.Invoke(new Action<string>(UpdateStatus), msg);
+                return;
+            }
             listBox1.Items.Add(msg);
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            LogToFile(msg);
+            _logger.Log(msg);
         }
 
         public string GetControlText(IntPtr hWnd)
@@ -1607,66 +1631,9 @@ namespace HMIUpdater
         }
         #endregion
 
-        private static void LogToFile(string content)
-        {
-            using (var fileWriter = new StreamWriter(Path.Combine(Application.StartupPath, "NCM_Downloader.logger"), true))
-            {
-                DateTime date = DateTime.UtcNow;
-                fileWriter.WriteLine(date.Year + "/" + date.Month + "/" + date.Day + " " + date.Hour + ":" + date.Minute + ":" + date.Second + ":" + date.Millisecond + " UTC: " + content);
-                fileWriter.Close();
-            }
-        }
 
-        private void StartDownloads(int paralellismDeg)
-        {
-            if (mcpPathBox.Text == "")
-            {
-                MessageBox.Show(new Form { TopMost = true }, "MCP Path textbox is null");
-                return;
-            }
 
-            //parallel method
-            List<string> checkedItems = new List<string>();
-            foreach (object c in checkedListBox1.CheckedItems)
-            {
-                checkedItems.Add(c.ToString());
-            }
 
-            #region first stop rt and reset wincc, delete paralelly
-            var msg = "";
-            Parallel.ForEach(checkedItems,
-                    new ParallelOptions { MaxDegreeOfParallelism = paralellismDeg },
-                    (CheckedItem) =>
-                    {
-                        //do something
-                        msg = "Started download process for " + CheckedItem;
-                        UpdateStatus(msg);
-
-                        var ip = ipList.Where(x => x.Contains(CheckedItem.ToString())).FirstOrDefault().Split(Convert.ToChar("\t"))[0];
-
-                        var clientPath = @"\\" + CheckedItem + "\\" + destinationPathBox.Text;
-                        var sourcePath = sourcePathBox.Text;
-                        if (sourcePath.EndsWith(@"\"))
-                            sourcePath = sourcePath.Substring(0, sourcePath.Length - 1);
-                        if (clientPath.EndsWith(@"\"))
-                            clientPath = clientPath.Substring(0, clientPath.Length - 1);
-
-                        StopWinCCRuntime(CheckedItem);
-                        //DeleteProjectFolder(CheckedItem);
-                        Copy(sourcePathBox.Text, @"\\" + ip + @"\" + destinationPathBox.Text, CheckedItem);
-                        OpenRemoteSession(ip, unTextBox.Text, passTextBox.Text);
-                        StartWinCCRuntime(CheckedItem);
-                        System.Threading.Thread.Sleep(10000);
-                        CloseRemoteSession(ip);
-
-                        msg = "Finished download process for " + CheckedItem;
-                        UpdateStatus(msg);
-
-                        Console.WriteLine(CheckedItem);
-                    });
-            #endregion
-
-        }
 
         private void DownloadProcess()
         {
